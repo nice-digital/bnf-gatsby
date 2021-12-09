@@ -1,0 +1,68 @@
+
+{
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": false,
+    "source.fixAll.eslint": true,
+    "source.fixAll": true
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.rulers": [80, 120],
+  "markdown.extension.toc.levels": "2..6",
+  "files.eol": "\n",
+  "typescript.tsdk": "node_modules\\typescript\\lib",
+  "npm.includeDirectories": ["gatsby", "functional-tests"],
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/.next": true,
+    "**/coverage": true,
+    "**/dist": true,
+    "**/.cache": true,
+    "**/current": true
+  },
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false,
+  "sasslint.enable": false,
+  "eslint.codeActionsOnSave.mode": "problems",
+  "eslint.lintTask.enable": true,
+  "eslint.format.enable": true,
+  "eslint.packageManager": "npm",
+  "debug.javascript.terminalOptions": {
+    "skipFiles": ["<node_internals>/**"]
+  },
+  "editor.wordWrap": "on",
+  "debug.showInStatusBar": "always",
+  "[feature]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.defaultFormatter": "alexkrechik.cucumberautocomplete"
+  },
+  "cucumberautocomplete.steps": [
+    "functional-tests/node_modules/@nice-digital/wdio-cucumber-steps/lib/given/definitions.js",
+    "functional-tests/node_modules/@nice-digital/wdio-cucumber-steps/lib/when/definitions.js",
+    "functional-tests/node_modules/@nice-digital/wdio-cucumber-steps/lib/then/definitions.js",
+    "functional-tests/steps/given.ts",
+    "functional-tests/steps/when.ts",
+    "functional-tests/steps/then.ts"
+  ],
+  "workbench.colorCustomizations": {
+		"activityBar.background": "#768769",
+		"activityBar.foreground": "#fff",
+    "activityBar.inactiveForeground": "#464c49",
+    "activityBar.activeBackground": "#464c49",
+    "activityBar.activeBorder": "#fff",
+    "activityBarBadge.background": "#c4c6a5",
+		"titleBar.activeBackground": "#464c49",
+		"titleBar.activeForeground": "#fff"
+  },
+  "jest.jestCommandLine": "npm test --",
+  "jest.autoRun": {
+    "watch": false,
+    "onSave": "test-file"
+ }
+}

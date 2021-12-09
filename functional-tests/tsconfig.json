@@ -1,0 +1,15 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "commonjs",
+    "sourceMap": true,
+    "composite": true,
+    "noEmit": false,
+    "outDir": "./dist",
+    "rootDir": "../",
+    "types": ["node", "webdriverio/async", "@wdio/cucumber-framework"]
+  },
+  "include": ["./**/*"],
+  "exclude": ["dist", "allure-report", "docker-output"]
+}

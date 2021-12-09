@@ -1,0 +1,15 @@
+{
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "msjsdiag.debugger-for-chrome",
+    "christian-kohler.npm-intellisense",
+    "eg2.vscode-npm-script",
+    "editorconfig.editorconfig",
+    "dbaeumer.vscode-eslint",
+    "stylelint.vscode-stylelint",
+    "orta.vscode-jest",
+    "ExodiusStudios.comment-anchors",
+    "ms-vscode.powershell",
+    "alexkrechik.cucumberautocomplete"
+  ]
+}

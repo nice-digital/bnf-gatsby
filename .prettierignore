@@ -1,0 +1,13 @@
+**/package.json
+**/package-lock.json
+
+# Gatsby cache
+.cache
+
+# Generated test coverage
+coverage
+
+dist
+
+functional-tests/docker-output
+functional-tests/allure-report

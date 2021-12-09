@@ -1,0 +1,6 @@
+dist
+coverage
+.cache
+node_modules
+docker-output
+allure-report
