@@ -26,6 +26,13 @@ module.exports = {
 			"@typescript-eslint/parser": [".ts", ".tsx"],
 		},
 		"import/resolver": {
+			alias: {
+				map: [
+					// Gatsby uses a webpack alias to resolve a customised reach router
+					// So we alias it here to avoid "Unable to resolve path to module '@reach/router'" errors
+					["@reach/router", "@gatsbyjs/reach-router"],
+				],
+			},
 			typescript: {
 				project: [
 					"./tsconfig.json",
@@ -41,7 +48,7 @@ module.exports = {
 		"@typescript-eslint/no-explicit-any": "error",
 		"@typescript-eslint/explicit-module-boundary-types": [
 			"error",
-			{ allowedNames: ["getServerSideProps"] },
+			{ allowedNames: [] },
 		],
 		// Allow unused variables that start with _ see https://stackoverflow.com/a/64067915/486434
 		"@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
