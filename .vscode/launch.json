@@ -1,0 +1,84 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Gatsby - Develop",
+      "type": "node",
+      "request": "launch",
+      "protocol": "inspector",
+      "program": "${workspaceFolder}/gatsby/node_modules/gatsby/dist/bin/gatsby",
+      "args": ["develop", "--host", "0.0.0.0"],
+      "env": {
+        "GATSBY_SITE": "${input:site}"
+      },
+      "cwd": "${workspaceFolder}/gatsby",
+      "localRoot": "${workspaceFolder}/gatsby",
+      "remoteRoot": "${workspaceFolder}/gatsby",
+      "stopOnEntry": false,
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["--nolazy"],
+      "console": "externalTerminal",
+      "internalConsoleOptions": "openOnSessionStart",
+      "outputCapture": "std",
+      "sourceMaps": true,
+      // "serverReadyAction": {
+      //   "action": "debugWithChrome",
+      //   "pattern": "([0-9]+)/___graphql",
+      //   "uriFormat": "http://localhost:%s",
+      //   "webRoot": "${workspaceFolder}"
+      // },
+      "presentation": {
+        "hidden": false,
+        "group": "Static site",
+        "order": 1
+      }
+    },
+    {
+      "name": "Gatsby - Debug with Chrome",
+      "type": "chrome",
+      "userDataDir": true,
+      "request": "launch",
+      "url": "http://localhost:8000",
+      "webRoot": "${workspaceFolder}/gatsby",
+      "preLaunchTask": "Gatsby - wait",
+      "presentation": {
+        "hidden": false,
+        "group": "Static site",
+        "order": 2
+      }
+    }
+  ],
+  "compounds": [
+    {
+      "name": "LAUNCH BNF/BNFC",
+      "presentation": {
+        "hidden": false,
+        "group": "__",
+        "order": 1
+      },
+      "configurations": ["Gatsby - Develop", "Gatsby - Debug with Chrome"]
+    }
+  ],
+  "inputs": [
+    {
+      "id": "site",
+      "description": "Which site (BNF or BNFC)?",
+      "default": "bnf",
+      "type": "pickString",
+      "options": ["bnf", "bnfc"]
+    },
+    {
+      "id": "baseUrl",
+      "description": "Base URL",
+      "default": "http://localhost:5000",
+      "type": "pickString",
+      "options": [
+        "http://localhost:3000",
+        "https://dev.bnf.nice.org.uk",
+        "https://test.bnf.nice.org.uk",
+        "https://beta-bnf.nice.org.uk",
+        "https://bnf.nice.org.uk"
+      ]
+    }
+  ]
+}

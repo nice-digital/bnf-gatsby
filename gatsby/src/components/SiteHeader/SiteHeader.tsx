@@ -4,6 +4,8 @@ import React, { useEffect, useState, useCallback } from "react";
 
 import { Header as GlobalNavHeader } from "@nice-digital/global-nav";
 
+import { isBNF } from "./../../site";
+
 const searchInputSelector = "header form[role='search'] [name='q']";
 
 /**
@@ -64,7 +66,7 @@ export const SiteHeader: React.FC = () => {
 	return (
 		<div ref={globalNavWrapperRef}>
 			<GlobalNavHeader
-				service="bnf"
+				service={isBNF ? "bnf" : "bnfc"}
 				skipLinkId="content-start"
 				onNavigating={(e): void => {
 					if (e.href[0] === "/") navigate(e.href);
@@ -72,7 +74,7 @@ export const SiteHeader: React.FC = () => {
 				}}
 				auth={false}
 				search={{
-					placeholder: "Search BNF…",
+					placeholder: isBNF ? "Search BNF…" : "Search BNFC…",
 					autocomplete: {
 						suggestions: "/api/autocomplete",
 						suggestionTemplate: (suggestion) => {

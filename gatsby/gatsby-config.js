@@ -1,6 +1,8 @@
+const isBNF = process.env.GATSBY_SITE === "bnf";
+
 module.exports = {
 	siteMetadata: {
-		siteUrl: "https://www.yourdomain.tld",
+		siteUrl: isBNF ? "https://bnf.nice.org.uk" : "https://bnfc.nice.org.uk",
 		title: "BNF and BNFC",
 	},
 	plugins: [
