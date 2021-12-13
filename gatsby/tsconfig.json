@@ -1,0 +1,19 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "composite": true,
+    "noEmit": false,
+    "jsx": "preserve",
+    "outDir": "./dist",
+    "rootDir": "../",
+    "baseUrl": ".",
+    "paths": {
+      "@/test-utils": ["src/test-utils"],
+      "@/components/*": ["src/components/*"]
+    }
+  },
+  "include": ["./**/*", "./**/*.json", "../jest.config.js"],
+  "exclude": ["dist", ".gatsby"]
+}
