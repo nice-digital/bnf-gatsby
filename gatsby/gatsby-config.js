@@ -2,8 +2,11 @@ const isBNF = process.env.GATSBY_SITE === "bnf";
 
 module.exports = {
 	siteMetadata: {
-		siteUrl: isBNF ? "https://bnf.nice.org.uk" : "https://bnfc.nice.org.uk",
-		title: "BNF and BNFC",
+		isBNF,
+		siteUrl: `https://${isBNF ? "bnf" : "bnfc"}.nice.org.uk`,
+		siteTitleShort: isBNF ? "BNF" : "BNFC",
+		siteTitleLong:
+			"British National Formulary" + (isBNF ? "" : " for Children"),
 	},
 	plugins: [
 		// Avoid errors like "ModuleNotFoundError: Module not found: Error: Can't resolve '@/components/Layout/Layout'" when using custom paths in tsconfig.json
