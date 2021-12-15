@@ -9,6 +9,7 @@ module.exports = {
 			"British National Formulary" + (isBNF ? "" : " for Children"),
 	},
 	plugins: [
+		`gatsby-source-bnf`,
 		// Avoid errors like "ModuleNotFoundError: Module not found: Error: Can't resolve '@/components/Layout/Layout'" when using custom paths in tsconfig.json
 		`gatsby-plugin-tsconfig-paths`,
 		{

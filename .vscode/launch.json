@@ -9,7 +9,8 @@
       "program": "${workspaceFolder}/gatsby/node_modules/gatsby/dist/bin/gatsby",
       "args": ["develop", "--host", "0.0.0.0"],
       "env": {
-        "GATSBY_SITE": "${input:site}"
+        "GATSBY_SITE": "${input:site}",
+        "ENABLE_GATSBY_REFRESH_ENDPOINT": "true"
       },
       "cwd": "${workspaceFolder}/gatsby",
       "localRoot": "${workspaceFolder}/gatsby",

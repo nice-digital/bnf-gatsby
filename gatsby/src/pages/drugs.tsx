@@ -8,7 +8,19 @@ import { Layout } from "@/components/Layout/Layout";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
-const IndexPage: FC = () => {
+export type DrugsPageProps = PageProps<{
+	allDrugs: {
+		group: {
+			fieldValue: string;
+			nodes: {
+				title: string;
+				slug: string;
+			}[];
+		}[];
+	};
+}>;
+
+const DrugsPage: FC<DrugsPageProps> = ({ data: { allDrugs } }) => {
 	const { siteTitleShort } = useSiteMetadata();
 
 	return (
@@ -27,8 +39,38 @@ const IndexPage: FC = () => {
 				heading="Drugs A&nbsp;to&nbsp;Z"
 				lead="Browse over 1600 drug monographs, arranged alphabetically."
 			/>
+
+			<ol>
+				{allDrugs.group.map(({ fieldValue, nodes }) => (
+					<li key={fieldValue}>
+						<h2>{fieldValue}</h2>
+
+						<ol>
+							{nodes.map(({ title, slug }) => (
+								<li key={slug}>
+									<Link to={`/drugs/${slug}/`}>{title}</Link>
+								</li>
+							))}
+						</ol>
+					</li>
+				))}
+			</ol>
 		</Layout>
 	);
 };
 
-export default IndexPage;
+export const query = graphql`
+	{
+		allDrugs: allBnfDrug(sort: { fields: title, order: ASC }) {
+			group(field: firstLetter) {
+				fieldValue
+				nodes {
+					title
+					slug
+				}
+			}
+		}
+	}
+`;
+
+export default DrugsPage;
