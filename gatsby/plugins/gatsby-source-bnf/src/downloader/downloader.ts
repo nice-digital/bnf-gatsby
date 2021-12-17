@@ -1,11 +1,9 @@
-import { readFile } from "fs/promises";
+import axios from "axios";
 
-import { Feed } from "./types";
+import type { Feed } from "./types";
 
-export const downloadFeed = async (): Promise<Feed> => {
-	const feedData = await readFile("path here", "utf-8");
+export const downloadFeed = async (feedURL: string): Promise<Feed> => {
+	const response = await axios.get<Feed>(feedURL);
 
-	const feedJson = JSON.parse(feedData);
-
-	return feedJson as Feed;
+	return response.data;
 };

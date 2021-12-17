@@ -1,18 +1,14 @@
-/**
- * Creates Gatsby GraphQL nodes for topics from downloaded data
- */
-
 import slugify from "@sindresorhus/slugify";
-import { SourceNodesArgs, NodeInput } from "gatsby";
 
-import { FeedDrug } from "../downloader/types";
+import type { FeedDrug } from "../downloader/types";
+import type { SourceNodesArgs, NodeInput } from "gatsby";
 
 export const drugNodeType = "BnfDrug";
 
 export interface DrugNode
 	extends NodeInput,
-		Omit<FeedDrug, "clinicalSpecialties" | "topicHtmlObjects"> {
-	firstLetter: string;
+		Omit<FeedDrug, "primaryClassification" | "secondaryClassifications"> {
+	initial: string;
 	// Internal Gatsby node stuff
 	internal: {
 		type: typeof drugNodeType;
@@ -31,7 +27,7 @@ export const createDrugNodes = (
 			bnfId: id,
 			sid,
 			title,
-			firstLetter: title[0].toLowerCase(),
+			initial: title[0].toLowerCase(),
 			slug: slugify(title),
 		};
 

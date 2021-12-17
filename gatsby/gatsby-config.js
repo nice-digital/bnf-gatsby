@@ -1,4 +1,10 @@
-const isBNF = process.env.GATSBY_SITE === "bnf";
+const { NODE_ENV, GATSBY_SITE, FEED_URL: feedURL } = process.env;
+
+const isBNF = GATSBY_SITE === "bnf";
+
+require("dotenv").config({
+	path: `.env.${NODE_ENV}`,
+});
 
 module.exports = {
 	siteMetadata: {
@@ -9,7 +15,12 @@ module.exports = {
 			"British National Formulary" + (isBNF ? "" : " for Children"),
 	},
 	plugins: [
-		`gatsby-source-bnf`,
+		{
+			resolve: `gatsby-source-bnf`,
+			options: {
+				feedURL,
+			},
+		},
 		// Avoid errors like "ModuleNotFoundError: Module not found: Error: Can't resolve '@/components/Layout/Layout'" when using custom paths in tsconfig.json
 		`gatsby-plugin-tsconfig-paths`,
 		{

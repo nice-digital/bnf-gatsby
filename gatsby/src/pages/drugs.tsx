@@ -62,7 +62,7 @@ const DrugsPage: FC<DrugsPageProps> = ({ data: { allDrugs } }) => {
 export const query = graphql`
 	{
 		allDrugs: allBnfDrug(sort: { fields: title, order: ASC }) {
-			group(field: firstLetter) {
+			group(field: initial) {
 				fieldValue
 				nodes {
 					title
