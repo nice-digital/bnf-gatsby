@@ -7,6 +7,7 @@ require("dotenv").config({
 });
 
 module.exports = {
+	jsxRuntime: "automatic",
 	siteMetadata: {
 		isBNF,
 		siteUrl: `https://${isBNF ? "bnf" : "bnfc"}.nice.org.uk`,

@@ -1,5 +1,5 @@
 import { Link } from "gatsby";
-import React, { FC } from "react";
+import { FC } from "react";
 
 // markup
 const NotFoundPage: FC = () => {

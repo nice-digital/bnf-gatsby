@@ -1,5 +1,5 @@
 import { graphql, PageProps, Link } from "gatsby";
-import React, { FC } from "react";
+import { FC } from "react";
 
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
 import { PageHeader } from "@nice-digital/nds-page-header";
