@@ -1,19 +1,5 @@
 export const drugSchema = `
 	"""
-	A classifications for a drug, as a small taxonomy, represented as a tree data structure.
-	"""
-	type Classification @dontInfer {
-		"The ID of the classification e.g. '_448101428'"
-		id: String!
-
-		"The name of the classification e.g 'Vitamins and trace elements'"
-		name: String!
-
-		"The more specific classifications where available. For example, 'HIV-integrase inhibitors' is a more specific classification of 'antivirals'."
-		moreSpecificClassifications: [Classification]!
-	}
-
-	"""
 	A drug monograph
 	"""
 	type BnfDrug implements Node @dontInfer {
