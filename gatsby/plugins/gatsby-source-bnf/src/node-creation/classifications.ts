@@ -1,10 +1,10 @@
-import type { FeedClassification, FeedDrug } from "../downloader/types";
+import type { FeedDrug } from "../downloader/types";
 import type { SourceNodesArgs, NodeInput } from "gatsby";
 
 export const classificationNodeType = "BnfClassification";
 
 export interface ClassificationNode extends NodeInput {
-	id: string;
+	bnfId: string;
 	name: string;
 	moreSpecificClassifications: string[];
 	moreGeneralClassification: string | null;

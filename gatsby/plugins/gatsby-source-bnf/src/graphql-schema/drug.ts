@@ -21,10 +21,13 @@ export const drugSchema = `
 		"The review date, if available for this record."
 		reviewDate: String
 
-		"The primary classification for a drug, as a small taxonomy, represented as a tree data structure."
-		specificPrimaryClassification: BnfClassification!
+		"TODO The general primary classification for a drug"
+		generalPrimaryClassification: BnfClassification
 
-		"The secondary classifications for a drug, as a small taxonomy, represented as a tree data structure."
+		"TODO The primary classification for a drug, as a small taxonomy, represented as a tree data structure."
+		specificPrimaryClassification: BnfClassification
+
+		"TODO The secondary classifications for a drug, as a small taxonomy, represented as a tree data structure."
 		specificSecondaryClassifications: [BnfClassification]
 	}
 `;

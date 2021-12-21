@@ -3,8 +3,8 @@ export const classificationSchema = `
 	A classifications for a drug, as a small taxonomy, represented as a tree data structure.
 	"""
 	type BnfClassification implements Node @dontInfer {
-		"The ID of the classification e.g. '_448101428'"
-		id: String!
+		"The feed ID of the classification e.g. '_448101428'"
+		bnfId: String!
 
 		"The name of the classification e.g 'Vitamins and trace elements'"
 		name: String!
@@ -15,7 +15,10 @@ export const classificationSchema = `
 		"The parent classification(s), if any. E.g. 'Monoclonal antibodies' (_805434570) is in both 'Immunosuppressants' (_224050719) and 'Antineoplastic drugs' (_633107392)"
 		moreGeneralClassification: [BnfClassification!] @link
 
-		primaryDrugs: [BnfDrug!] @link
-		secondaryDrugs: [BnfDrug!] @link
+		"The drugs for which this is a primary classification"
+		primaryDrugs: [BnfDrug!]! @link
+
+		"The drugs for which this is a secondary classification"
+		secondaryDrugs: [BnfDrug!]! @link
 	}
 `;
