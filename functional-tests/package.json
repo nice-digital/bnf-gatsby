@@ -1,10 +1,13 @@
 {
   "name": "@nice-digital/bnf-gatsby-functional-tests",
   "version": "1.0.0",
+  "private": true,
   "description": "Browser-based BDD functional tests for BNF and BNFC",
-  "main": "wdio.config.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "wdio run wdio.conf.ts",
+    "test:docker": "npm test -- --hostname selenium-hub --baseUrl https://www.nice.org.uk",
+    "wait:docker": "wait-on https://www.nice.org.uk/ --timeout 10000",
+    "wait-then-test": "npm run wait:docker && npm run test:docker"
   },
   "keywords": [
     "wdio"
@@ -16,16 +19,16 @@
   },
   "devDependencies": {
     "@nice-digital/wdio-cucumber-steps": "^2.0.2",
-    "@wdio/allure-reporter": "^7.16.10",
-    "@wdio/cli": "^7.16.10",
-    "@wdio/cucumber-framework": "^7.16.6",
-    "@wdio/local-runner": "^7.16.10",
-    "@wdio/selenium-standalone-service": "^7.16.6",
-    "@wdio/spec-reporter": "^7.16.9",
+    "@wdio/allure-reporter": "^7.16.11",
+    "@wdio/cli": "^7.16.12",
+    "@wdio/cucumber-framework": "^7.16.12",
+    "@wdio/local-runner": "^7.16.12",
+    "@wdio/selenium-standalone-service": "^7.16.11",
+    "@wdio/spec-reporter": "^7.16.11",
     "ts-node": "^10.4.0",
-    "typescript": "^4.5.2",
+    "typescript": "^4.5.4",
     "wait-on": "^6.0.0",
     "wdio-teamcity-reporter": "^3.0.2",
-    "webdriverio": "^7.16.10"
+    "webdriverio": "^7.16.12"
   }
 }
