@@ -6,6 +6,8 @@
 # See https://github.com/docker/for-win/issues/1829#issuecomment-376328022
 export COMPOSE_CONVERT_WINDOWS_PATHS=1
 
+export TEAMCITY_VERSION=1
+
 function cleanupBeforeStart() {
   # Clean up before we start
   rm -rf docker-output && rm -rf allure-results && rm -rf allure-report
@@ -13,7 +15,7 @@ function cleanupBeforeStart() {
 
 function runTests() {
   if [[ -v TEAMCITY_VERSION ]]; then
-    # Assume that on TeamCity we've created the containers in the background but not started them
+    # Assume that on TeamCity we've created the containers in the background with `docker-compose up --no-start` but not started them
     docker-compose start
   else
     docker-compose up -d
@@ -22,7 +24,7 @@ function runTests() {
   # Wait for the web app to be up before running the tests
   docker-compose run -T bnf-test-runner npm run wait-then-test
   # Or for dev mode, uncomment:
-  #winpty docker-compose exec bnf-test-runner bash
+  #docker-compose exec bnf-test-runner sh
 }
 
 function processTestOutput() {
