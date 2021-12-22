@@ -20,14 +20,14 @@ function runTests() {
   fi
 
   # Wait for the web app to be up before running the tests
-  docker-compose run -T test-runner npm run wait-then-test
+  docker-compose run -T bnf-test-runner npm run wait-then-test
   # Or for dev mode, uncomment:
-  #winpty docker-compose exec test-runner bash
+  #winpty docker-compose exec bnf-test-runner bash
 }
 
 function processTestOutput() {
   # Generate an Allure test report
-  docker-compose run -T test-runner allure generate --clean
+  docker-compose run -T bnf-test-runner allure generate --clean
 
   # Copy logs to use as a TeamCity artifact for debugging purposes
   mkdir -p docker-output
