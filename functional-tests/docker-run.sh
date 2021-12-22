@@ -31,7 +31,7 @@ function processTestOutput() {
 
   # Copy logs to use as a TeamCity artifact for debugging purposes
   mkdir -p docker-output
-  docker cp test-runner:/bnf-gatsby/tests/allure-report ./docker-output
+  docker cp bnf-test-runner:/bnf-gatsby/tests/allure-report ./docker-output
 
   docker-compose logs --no-color > ./docker-output/logs.txt
 }
