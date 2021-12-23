@@ -8,6 +8,8 @@
     "strict": true,
     "esModuleInterop": true,
     "noImplicitAny": true,
+    "allowJs": false,
+    "checkJs": false,
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "noEmit": true,

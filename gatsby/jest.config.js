@@ -13,20 +13,20 @@ module.exports = {
 	// Extend the base config from the root as it's got shared/common config
 	...baseConfig,
 	displayName: "gatsby",
-	rootDir: "./src/",
-	roots: ["<rootDir>", "<rootDir>/../"],
+	rootDir: "./",
+	roots: ["<rootDir>"],
 	projects: undefined,
 	moduleNameMapper: {
 		"\\.(css|scss|svg)$": "identity-obj-proxy",
 		// Alias React/Next into the gatsby folder because of our monorepo setup.
 		// Avoids errors like "multiple instances of React" with hooks
-		"^react(.*)$": "<rootDir>/../node_modules/react$1",
-		"^next(.*)$": "<rootDir>/../node_modules/next$1",
+		"^react(.*)$": "<rootDir>/node_modules/react$1",
+		"^gatsby(.*)$": "<rootDir>/node_modules/gatsby$1",
 		// Aliases to match paths in tsconfig.json
 		...tsPathsModuleNameMappings,
 	},
 	transformIgnorePatterns: ["/node_modules/", "/dist/"],
-	setupFilesAfterEnv: ["./jest.setup.ts"],
+	setupFilesAfterEnv: ["./src/jest.setup.ts"],
 	testPathIgnorePatterns: ["./config/"],
 	testURL: "https://bnf-gatsby-tests.nice.org.uk",
 	testEnvironment: "jsdom",

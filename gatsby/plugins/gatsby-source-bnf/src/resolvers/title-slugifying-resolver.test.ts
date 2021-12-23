@@ -11,7 +11,7 @@ describe("title-slugifying-resolver", () => {
 				{},
 				{}
 			);
-			expect(slugPromise).rejects.toBe(
+			expect(slugPromise).rejects.toThrow(
 				"Expected node to have a title property"
 			);
 		});

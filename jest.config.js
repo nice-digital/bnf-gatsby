@@ -9,6 +9,7 @@ module.exports = {
 	collectCoverageFrom: [
 		"**/*.{js,ts,tsx}",
 		"!**/.gatsby/**",
+		"!**/.cache/**",
 		"!**/public/**",
 		"!**/*.d.ts",
 		"!**/jest.config.js",
