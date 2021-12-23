@@ -8,7 +8,7 @@ import { Layout } from "@/components/Layout/Layout";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
-export type DrugsPageProps = PageProps<{
+export type DrugsIndexPageProps = PageProps<{
 	allDrugs: {
 		group: {
 			fieldValue: string;
@@ -20,7 +20,7 @@ export type DrugsPageProps = PageProps<{
 	};
 }>;
 
-const DrugsPage: FC<DrugsPageProps> = ({ data: { allDrugs } }) => {
+const DrugsIndexPage: FC<DrugsIndexPageProps> = ({ data: { allDrugs } }) => {
 	const { siteTitleShort } = useSiteMetadata();
 
 	return (
@@ -73,4 +73,4 @@ export const query = graphql`
 	}
 `;
 
-export default DrugsPage;
+export default DrugsIndexPage;

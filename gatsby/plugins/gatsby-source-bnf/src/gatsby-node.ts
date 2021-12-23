@@ -1,5 +1,6 @@
 import { downloadFeed } from "./downloader/downloader";
 import { schema } from "./graphql-schema";
+import { createAboutSectionNodes } from "./node-creation/about-sections";
 import { createClassificationNodes } from "./node-creation/classifications";
 import { createDrugNodes } from "./node-creation/drugs";
 
@@ -53,6 +54,7 @@ export const sourceNodes = async (
 	// Create all of our different nodes
 	createDrugNodes(feedData.drugs, sourceNodesArgs);
 	createClassificationNodes(feedData.drugs, sourceNodesArgs);
+	createAboutSectionNodes(feedData.about, sourceNodesArgs);
 
 	setStatus(`Created all nodes`);
 	end();

@@ -32,6 +32,8 @@ const IndexPage: FC = () => {
 
 			<p>
 				<Link to="/drugs/">Go to drugs</Link>
+				<br />
+				<Link to="/about/">Go to about</Link>
 			</p>
 		</Layout>
 	);
