@@ -1,5 +1,3 @@
-import slugify from "@sindresorhus/slugify";
-
 import type { FeedSimpleRecord, FeedRecordSection } from "../downloader/types";
 import type { SourceNodesArgs, NodeInput } from "gatsby";
 import type { Except } from "type-fest";
@@ -11,8 +9,7 @@ export interface AboutSectionNode
 		Except<FeedSimpleRecord, "id" | "sections"> {
 	order: number;
 	bnfId: string;
-	slug: string;
-	sections: ({ slug: string; order: number } & FeedRecordSection)[];
+	sections: ({ order: number } & FeedRecordSection)[];
 	// Internal Gatsby node stuff
 	internal: {
 		type: typeof aboutSectionNodeType;
@@ -32,10 +29,8 @@ export const createAboutSectionNodes = (
 			bnfId: id,
 			title,
 			reviewDate,
-			slug: slugify(title),
 			sections: sections.map(({ title, ...props }, order) => ({
 				title,
-				slug: slugify(title),
 				order,
 				...props,
 			})),

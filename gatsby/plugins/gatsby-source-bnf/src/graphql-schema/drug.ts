@@ -12,11 +12,8 @@ export const drugSchema = `
 		"The SID for the drug e.g. _694410247"
 		sid: String!
 
-		"The title for the drug. May include HTML markup."
+		"The title for the drug. May include HTML markup. E.g. anti-D (Rh0) immunoglobulin has a subscript 0"
 		title: String!
-
-		"The lowercase slugified title, used as the path within a URL e.g. 'bacillus-calmette-guérin' for 'Bacillus Calmette-Guérin'"
-		slug: String!
 
 		"The review date, if available for this record."
 		reviewDate: String

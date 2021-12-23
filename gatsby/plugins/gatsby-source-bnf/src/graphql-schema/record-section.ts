@@ -11,9 +11,6 @@ export const recordSectionSchema = `
 		"The title of the section. May contain HTML markup."
 		title: String!
 
-		"The slugified title"
-		slug: String!
-
 		"The review date of the record, formatted into a string."
 		reviewDate: String
 

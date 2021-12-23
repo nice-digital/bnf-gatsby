@@ -1,5 +1,3 @@
-import slugify from "@sindresorhus/slugify";
-
 import type { FeedDrug } from "../downloader/types";
 import type { SourceNodesArgs, NodeInput } from "gatsby";
 
@@ -28,7 +26,6 @@ export const createDrugNodes = (
 			sid,
 			title,
 			initial: title[0].toLowerCase(),
-			slug: slugify(title),
 		};
 
 		const drugNode: DrugNode = {

@@ -36,7 +36,9 @@ const DrugPage: FC<DrugPageProps> = ({
 				<Breadcrumb>{title}</Breadcrumb>
 			</Breadcrumbs>
 
-			<PageHeader heading={title} />
+			<PageHeader
+				heading={<div dangerouslySetInnerHTML={{ __html: title }} />}
+			/>
 		</Layout>
 	);
 };

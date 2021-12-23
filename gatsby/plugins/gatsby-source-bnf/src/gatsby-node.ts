@@ -3,12 +3,14 @@ import { schema } from "./graphql-schema";
 import { createAboutSectionNodes } from "./node-creation/about-sections";
 import { createClassificationNodes } from "./node-creation/classifications";
 import { createDrugNodes } from "./node-creation/drugs";
+import { withSlugFieldFromTitle } from "./resolvers/title-slugifying-resolver";
 
 import type { Feed } from "./downloader/types";
 import type {
 	SourceNodesArgs,
 	CreateSchemaCustomizationArgs,
 	PluginOptionsSchemaArgs,
+	CreateResolversArgs,
 } from "gatsby";
 import type { Schema } from "gatsby-plugin-utils";
 
@@ -74,5 +76,19 @@ export const pluginOptionsSchema = ({
 		feedURL: Joi.string()
 			.required()
 			.description(`The absolute URL of the feed endpoint`),
+	});
+};
+
+/**
+ * Gatsby hook for resolving fields
+ * See https://www.gatsbyjs.org/docs/schema-customization/#createresolvers-api
+ */
+export const createResolvers = ({
+	createResolvers,
+}: CreateResolversArgs): void => {
+	createResolvers({
+		BnfAboutSection: withSlugFieldFromTitle,
+		BnfDrug: withSlugFieldFromTitle,
+		BnfRecordSection: withSlugFieldFromTitle,
 	});
 };

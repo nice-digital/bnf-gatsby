@@ -48,7 +48,10 @@ const DrugsIndexPage: FC<DrugsIndexPageProps> = ({ data: { allDrugs } }) => {
 						<ol>
 							{nodes.map(({ title, slug }) => (
 								<li key={slug}>
-									<Link to={`/drugs/${slug}/`}>{title}</Link>
+									<Link
+										to={`/drugs/${slug}/`}
+										dangerouslySetInnerHTML={{ __html: title }}
+									/>
 								</li>
 							))}
 						</ol>
