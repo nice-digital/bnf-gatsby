@@ -1,44 +1,32 @@
+import { createBnfNode } from "./utils";
+
 import type { FeedDrug } from "../downloader/types";
-import type { SourceNodesArgs, NodeInput } from "gatsby";
+import type { SourceNodesArgs } from "gatsby";
+import type { Except } from "type-fest";
 
 export const drugNodeType = "BnfDrug";
 
 export interface DrugNode
-	extends NodeInput,
-		Omit<FeedDrug, "primaryClassification" | "secondaryClassifications"> {
+	extends Except<
+		FeedDrug,
+		"primaryClassification" | "secondaryClassifications" | "id"
+	> {
+	bnfId: string;
 	initial: string;
-	// Internal Gatsby node stuff
-	internal: {
-		type: typeof drugNodeType;
-	} & NodeInput["internal"];
 }
 
 export const createDrugNodes = (
 	drugs: FeedDrug[],
 	sourceNodesArgs: SourceNodesArgs
 ): void => {
-	const { createNodeId, createContentDigest, actions } = sourceNodesArgs;
-	const { createNode } = actions;
-
-	drugs.forEach(({ id, sid, title }: FeedDrug) => {
-		const nodeContent = {
-			bnfId: id,
+	drugs.forEach(({ id: bnfId, sid, title }: FeedDrug) => {
+		const nodeContent: DrugNode = {
+			bnfId,
 			sid,
 			title,
 			initial: title[0].toLowerCase(),
 		};
 
-		const drugNode: DrugNode = {
-			...nodeContent,
-			id: createNodeId(id),
-			children: [],
-			internal: {
-				type: drugNodeType,
-				content: JSON.stringify(nodeContent),
-				contentDigest: createContentDigest(nodeContent),
-			},
-		};
-
-		createNode(drugNode);
+		createBnfNode(nodeContent, "bnfId", drugNodeType, sourceNodesArgs);
 	});
 };
