@@ -6,7 +6,7 @@ import type { Except } from "type-fest";
 
 export const drugNodeType = "BnfDrug";
 
-export interface DrugNode
+export interface DrugNodeInput
 	extends Except<
 		FeedDrug,
 		"primaryClassification" | "secondaryClassifications" | "id"
@@ -20,7 +20,7 @@ export const createDrugNodes = (
 	sourceNodesArgs: SourceNodesArgs
 ): void => {
 	drugs.forEach(({ id: bnfId, sid, title }: FeedDrug) => {
-		const nodeContent: DrugNode = {
+		const nodeContent: DrugNodeInput = {
 			bnfId,
 			sid,
 			title,
