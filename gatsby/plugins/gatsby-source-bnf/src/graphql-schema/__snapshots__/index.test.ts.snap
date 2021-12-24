@@ -1,0 +1,116 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`schema should match snapshot 1`] = `
+"
+	\\"\\"\\"
+	A drug monograph
+	\\"\\"\\"
+	type BnfDrug implements Node @dontInfer {
+		\\"The lowercase first letter of the title, used for grouping\\"
+		initial: String!
+
+		\\"The PHP ID for the drug e.g. PHP5693\\"
+		bnfId: String!
+
+		\\"The SID for the drug e.g. _694410247\\"
+		sid: String!
+
+		\\"The title for the drug. May include HTML markup. E.g. anti-D (Rh0) immunoglobulin has a subscript 0\\"
+		title: String!
+
+		\\"The review date, if available for this record.\\"
+		reviewDate: String
+
+		\\"TODO The general primary classification for a drug\\"
+		generalPrimaryClassification: BnfClassification
+
+		\\"TODO The primary classification for a drug, as a small taxonomy, represented as a tree data structure.\\"
+		specificPrimaryClassification: BnfClassification
+
+		\\"TODO The secondary classifications for a drug, as a small taxonomy, represented as a tree data structure.\\"
+		specificSecondaryClassifications: [BnfClassification]
+	}
+
+
+	\\"\\"\\"
+	A classifications for a drug, as a small taxonomy, represented as a tree data structure.
+	\\"\\"\\"
+	type BnfClassification implements Node @dontInfer {
+		\\"The feed ID of the classification e.g. '_448101428'\\"
+		bnfId: String!
+
+		\\"The name of the classification e.g 'Vitamins and trace elements'\\"
+		name: String!
+
+		\\"The more specific classifications where available. For example, 'HIV-integrase inhibitors' is a more specific classification of 'antivirals'. Not all classifications have a more specific one, for example 'Enzymes' for the drug 'velaglucerase alfa'\\"
+		moreSpecificClassifications: [BnfClassification!] @link
+
+		\\"The parent classification(s), if any. E.g. 'Monoclonal antibodies' (_805434570) is in both 'Immunosuppressants' (_224050719) and 'Antineoplastic drugs' (_633107392)\\"
+		moreGeneralClassification: [BnfClassification!] @link
+
+		\\"The drugs for which this is a primary classification\\"
+		primaryDrugs: [BnfDrug!]! @link
+
+		\\"The drugs for which this is a secondary classification\\"
+		secondaryDrugs: [BnfDrug!]! @link
+	}
+
+
+	\\"\\"\\"
+	A simple record that just contains a list of sections.
+	For example, treatment summaries, about and guidance records, interactions introduction, etc.
+	\\"\\"\\"
+	interface BnfSimpleRecord @dontInfer {
+		order: Int!
+
+		\\"The ID of the record.\\"
+		bnfId: ID!
+
+		\\"The title of the section. May contain HTML markup.\\"
+		title: String!
+
+		\\"The review date of the record, formatted into a string.\\"
+		reviewDate: String
+
+		\\"The sections of the record.\\"
+		sections: [BnfRecordSection!]!
+	}
+
+
+	\\"\\"\\"
+	A section of a simple record.
+	\\"\\"\\"
+	type BnfRecordSection @dontInfer {
+		order: Int!
+
+		\\"The ID of the record.\\"
+		bnfId: String!
+
+		\\"The title of the section. May contain HTML markup.\\"
+		title: String!
+
+		\\"The review date of the record, formatted into a string.\\"
+		reviewDate: String
+
+		\\"The content for the section. May contain HTML markup. \\"
+		content: String!
+	}
+
+
+	type BnfAboutSection implements Node & BnfSimpleRecord @dontInfer {
+		order: Int!
+
+		\\"The ID of the record.\\"
+		bnfId: ID!
+
+		\\"The title of the section. May contain HTML markup.\\"
+		title: String!
+
+		\\"The review date of the record, formatted into a string.\\"
+		reviewDate: String
+
+		\\"The sections of the record.\\"
+		sections: [BnfRecordSection!]!
+	}
+"
+`;
