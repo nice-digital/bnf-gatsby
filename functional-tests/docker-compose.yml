@@ -1,0 +1,35 @@
+version: '3.8'
+services:
+  bnf-selenium-hub:
+    image: selenium/hub:4.1.1-20211217
+    container_name: bnf-selenium-hub
+    ports:
+      - '4442:4442'
+      - '4443:4443'
+      - '4444:4444'
+
+  bnf-selenium-chrome:
+    image: selenium/node-chrome:4.1.1-20211217
+    container_name: bnf-selenium-chrome
+    shm_size: '2gb'
+    depends_on:
+      - bnf-selenium-hub
+    environment:
+      - SE_EVENT_BUS_HOST=bnf-selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+
+  bnf-test-runner:
+    build: .
+    container_name: bnf-test-runner
+    depends_on:
+      - bnf-selenium-hub
+    environment:
+      - TEAMCITY_VERSION
+    volumes:
+      - ./:/bnf-gatsby/tests
+      - /bnf-gatsby/tests/node_modules/
+
+networks:
+  default:
+    name: bnf-gatsby-functional-tests

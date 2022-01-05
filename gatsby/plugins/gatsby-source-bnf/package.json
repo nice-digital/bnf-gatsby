@@ -1,0 +1,28 @@
+{
+  "name": "@nice-digital/gatsby-source-bnf",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Gatsby source plugin for pulling content from the BNF/C feed",
+  "main": "gatsby-node.js",
+  "scripts": {
+    "test": "echo \"Error: run tests from the parent gatsby project\" && exit 1",
+    "start": "echo \"Error: run commands from the parent gatsby project\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nice-digital/bnf-gatsby.git"
+  },
+  "keywords": [
+    "gatsby",
+    "gatsby-plugin",
+    "gatsby-source-plugin"
+  ],
+  "author": "NICE Digital (https://www.nice.org.uk/digital)",
+  "contributors": [
+    "NICE Digital Services (https://www.nice.org.uk/digital)",
+    "Ian Routledge (http://ediblecode.com)"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/nice-digital/bnf-gatsby#readme",
+  "devDependencies": {}
+}

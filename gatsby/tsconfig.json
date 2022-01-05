@@ -1,0 +1,28 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "lib": ["ES2015", "DOM"],
+    "jsx": "preserve",
+    "strict": true,
+    "esModuleInterop": true,
+    "noImplicitAny": true,
+    "allowJs": false,
+    "checkJs": false,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "noEmit": true,
+    "strictNullChecks": true,
+    "forceConsistentCasingInFileNames": true,
+    "sourceMap": true,
+    "baseUrl": "./",
+    "paths": {
+      "@/test-utils": ["src/test-utils"],
+      "@/components/*": ["src/components/*"],
+      "@/hooks/*": ["src/hooks/*"]
+    }
+  },
+  "include": ["./**/*", "./**/*.json", "../jest.config.js"],
+  "exclude": ["dist", ".gatsby"]
+}

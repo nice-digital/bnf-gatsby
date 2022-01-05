@@ -1,0 +1,67 @@
+{
+  "name": "@nice-digital/bnf-gatsby-monorepo",
+  "version": "0.0.1",
+  "description": "Monorepo for BNF/BNFC",
+  "scripts": {
+    "// TESTS": "",
+    "test": "jest --silent --notify --detectOpenHandles",
+    "test:gatsby": "jest --silent --notify --detectOpenHandles --selectProjects gatsby",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "// AUDIT": "",
+    "audit:teamcity": "npm audit --audit-level=moderate --json|npm-audit-reporter-teamcity",
+    "// LINTING/CODE STYLE": "",
+    "lint": "npm run prettier && npm run lint:ts && npm run lint:scss && npm run ts:check",
+    "prettier": "prettier --check \"./**/*.{ts,tsx,js}\"",
+    "prettier:fix": "npm run prettier -- --write",
+    "lint:ts": "eslint .",
+    "lint:ts:fix": "npm run lint:ts -- --fix",
+    "lint:scss": "stylelint \"**/*.scss\"",
+    "lint:scss:fix": "npm run lint:scss -- --fix",
+    "// TYPECHECKING": "",
+    "ts:check": "tsc -p gatsby -p functional-tests --noEmit",
+    "ts:build": "tsc -b"
+  },
+  "author": "NICE Digital (https://www.nice.org.uk/digital)",
+  "contributors": [
+    "NICE Digital Services (https://www.nice.org.uk/digital)",
+    "Ian Routledge (http://ediblecode.com)"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nice-digital/bnf-gatsby.git"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/nice-digital/bnf-gatsby#readme",
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.1",
+    "@testing-library/react": "^12.1.2",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.0.3",
+    "@typescript-eslint/eslint-plugin": "^5.8.0",
+    "@typescript-eslint/parser": "^5.8.0",
+    "eslint": "^8.5.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-import-resolver-typescript": "^2.5.0",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.27.1",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "eslint-plugin-testing-library": "^5.0.1",
+    "jest": "^27.4.5",
+    "jest-extended": "^1.2.0",
+    "jest-teamcity-reporter": "^0.9.0",
+    "node-notifier": "^10.0.0",
+    "npm-audit-reporter-teamcity": "^0.3.1",
+    "prettier": "^2.5.1",
+    "stylelint": "^14.2.0",
+    "stylelint-config-sass-guidelines": "^9.0.1",
+    "stylelint-config-standard": "^24.0.0",
+    "ts-jest": "^27.1.2",
+    "typescript": "^4.5.4"
+  },
+  "volta": {
+    "node": "14.18.2"
+  }
+}
