@@ -67,15 +67,15 @@ const SearchIndexPage: FC<SearchIndexPageProps> = () => {
 
 		//TODO use searchClient methods
 
-		// async function fetchData() {
-		// 	initialise({
-		// 		baseURL: "https://alpha-search-api.nice.org.uk/api",
-		// 		index: "bnf",
-		// 	});
-		// 	const searchResults = await search(location.search);
-		// }
+		async function fetchData() {
+			initialise({
+				baseURL: "https://alpha-search-api.nice.org.uk/api",
+				index: "bnf",
+			});
+			const searchResults = await search(location.search);
+		}
 
-		// fetchData();
+		fetchData();
 	}, [location.search]);
 
 	//TODO data useEffect
