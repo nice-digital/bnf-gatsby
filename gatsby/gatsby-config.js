@@ -1,11 +1,8 @@
-const { NODE_ENV, GATSBY_SITE, FEED_URL: feedURL } = process.env;
-
-const isBNF = GATSBY_SITE === "bnf";
-
 require("dotenv").config({
-	path: `.env.${NODE_ENV}`,
+	path: `.env.${process.env.NODE_ENV}`,
 });
 
+const isBNF = process.env.GATSBY_SITE === "bnf";
 module.exports = {
 	jsxRuntime: "automatic",
 	siteMetadata: {
@@ -19,7 +16,7 @@ module.exports = {
 		{
 			resolve: `gatsby-source-bnf`,
 			options: {
-				feedURL,
+				feedURL: process.env.FEED_URL,
 			},
 		},
 		// Avoid errors like "ModuleNotFoundError: Module not found: Error: Can't resolve '@/components/Layout/Layout'" when using custom paths in tsconfig.json
