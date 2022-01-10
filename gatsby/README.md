@@ -61,12 +61,14 @@ To run the the Gatsby site on its own from the command line:
 
 There are various other commands you can run in a terminal from the _gatsby_ folder:
 
-| Script          | What does it do                                                              |
-| --------------- | ---------------------------------------------------------------------------- |
-| `npm start`     | Runs the Gatsby site in development mode                                     |
-| `npm run build` | Builds the production build of the Gatsby site into the _public_ folder      |
-| `npm run serve` | Serves the built Gatsby files from `npm run build` on http://localhost:9000/ |
-| `npm run clean` | Cleans out the .gatsby and public folders                                    |
+| Script               | What does it do                                                              |
+| -------------------- | ---------------------------------------------------------------------------- |
+| `npm start`          | Runs the Gatsby site in development mode                                     |
+| `npm run build`      | Builds the production build of the Gatsby site into the _public_ folder      |
+| `npm run build:bnf`  | Builds the production build of the BNF site                                  |
+| `npm run build:bnfc` | Builds the production build of the BNFC site                                 |
+| `npm run serve`      | Serves the built Gatsby files from `npm run build` on http://localhost:9000/ |
+| `npm run clean`      | Cleans out the .gatsby and public folders                                    |
 
 ## Source plugin
 
@@ -79,23 +81,29 @@ In the case of BNF, the source data comes from the feed. The data fetching and m
 
 ### Configuration
 
-The source plugin can be configured by passing in options via gatsby-config.js. See the [source plugin readme](plugins/gatsby-source-bnf/README.md#configuration) for details of each option.
+The following environment variables are used to configure the gatsby site and source plugin:
 
-Configure these options via environment variables. The Gatsby build looks for the following environment variables corresponding to each plugin option:
+| Environment variable | Notes                                                                                                    |
+| -------------------- | -------------------------------------------------------------------------------------------------------- |
+| FEED_URL             | The absolute URL of the feed, passed as the `feedURL` config option to custom `gatsby-source-bnf` plugin |
+| USER_KEY             | The API/user key for authentication of the feed.                                                         |
+| GATSBY_SITE          | Which site you're building (`bnf` or `bnfc`)                                                             |
+| GATSBY_SEARCH_URL    | The single search endpoint base URL e.g. `https://alpha-search-api.nice.org.uk/api`                      |
 
-| Config option | Environment variable | Notes                        |
-| ------------- | -------------------- | ---------------------------- |
-| feedURL       | FEED_URL             | The absolute URL of the feed |
+> Note: the variables prefixed with `GATSBY_` are made available to client side scripts so are public values, [see the Gatsby docs](https://www.gatsbyjs.com/docs/how-to/local-development/environment-variables/#accessing-environment-variables-in-the-browser).
 
-Set these environment variables using _.env_ files. Create a _.env.development_ file (for local development with `npm run develop`) or _.env.production_ file (for the production build with `npm run build`) in this _gatsby_ folder to set these environment variables.
+Set these environment variables using _.env_ files. Create a _.env.development_ file (for local development with `npm run develop`) or _.env.production_ file (for the production build with `npm run build`) in this _gatsby_ folder to set these environment variables. These _.env_ files are deliberately ignored from git.
 
-These _.env_ files are deliberately ignore from git.
-
-For example, create a _.env.production_ file pointing to the live API to create a live-like production build via `npm run build`:
+For example, create a _.env.production_ file to create a live-like production build via `npm run build`:
 
 ```
 # .env.production
 FEED_URL=https://whatever
+USER_KEY=abcd1234
+GATSBY_SITE=bnfc # Or bnf
+GATSBY_SEARCH_URL=https://alpha-search-api.nice.org.uk/api
 ```
+
+Alternatively, run `npm run build:bnf` or `npm run build:bnfc` to build a specific site and skip setting the `GATSBY_SITE` variable.
 
 > Note: you can get the live values from the TeamCity build parameters or ask a team member.
