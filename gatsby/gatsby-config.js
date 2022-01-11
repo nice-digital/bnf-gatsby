@@ -3,6 +3,7 @@ require("dotenv").config({
 });
 
 const isBNF = process.env.GATSBY_SITE === "bnf";
+
 module.exports = {
 	jsxRuntime: "automatic",
 	siteMetadata: {
