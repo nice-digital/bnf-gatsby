@@ -54,27 +54,20 @@ const SearchIndexPage: FC<SearchIndexPageProps> = () => {
 
 	const searchAPIUrl = process.env.GATSBY_SEARCH_URL;
 
-	//TODO replace harcoded baseURL
-	// initialise({
-	// 	baseURL: "https://alpha-search-api.nice.org.uk/api",
-	// 	index: bnfIndex,
-	// });
-
 	useEffect(() => {
 		setData(null);
 
-		temporaryFetch();
+		// temporaryFetch();
 
 		//TODO use searchClient methods
-
 		async function fetchData() {
 			initialise({
 				baseURL: "https://alpha-search-api.nice.org.uk/api",
-				index: "bnf",
+				index: bnfIndex,
 			});
 			const searchResults = await search(location.search);
+			setData(searchResults as SearchResults);
 		}
-
 		fetchData();
 	}, [location.search]);
 
@@ -92,6 +85,7 @@ const SearchIndexPage: FC<SearchIndexPageProps> = () => {
 			{/* TODO accessibility announcement */}
 			{/* TODO Error message */}
 			{/* TODO Results list  */}
+
 			{/* TODO Pagination Wrapper */}
 		</Layout>
 	);
