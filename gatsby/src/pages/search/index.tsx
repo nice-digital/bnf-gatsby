@@ -15,13 +15,18 @@ import {
 	getUrlPathAndQuery,
 } from "@nice-digital/search-client";
 
+import { ErrorPageContent } from "@/components/ErrorPageContent/ErrorPageContent";
 import { Layout } from "@/components/Layout/Layout";
+import { SearchCardList } from "@/components/SearchCardList/SearchCardList";
+import { SearchPagination } from "@/components/SearchPagination/SearchPagination";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
 export type SearchIndexPageProps = PageProps<{ someprop: "somevalue" }>;
 
 //TODO Search Result Types
+
+const searchAPIUrl = process.env.GATSBY_SEARCH_URL;
 
 const SearchIndexPage: FC<SearchIndexPageProps> = () => {
 	const { siteTitleShort, isBNF } = useSiteMetadata();
@@ -30,63 +35,58 @@ const SearchIndexPage: FC<SearchIndexPageProps> = () => {
 
 	//TODO state management
 	const [data, setData] = useState<SearchResults | null>(null);
-	const [error, setError] = useState<boolean>(false);
 	const [a11yMessage, setA11yMessage] = useState<string>("");
 
 	//TODO location useEffect
 	const location = useLocation();
 
-	function temporaryFetch() {
-		//TODO change hardcoded url to use index from gatsby and url from env
-		const searchUrl = searchAPIUrl + "/search" + location.search + "&index=bnf";
-		fetch(searchUrl)
-			.then((data) => data.json())
-			.then((results) => {
-				setError(false);
-				console.log("results! " + results);
-				setData(results as SearchResults);
-			})
-			.catch((err) => {
-				setError(true);
-				console.log("error ", err);
-			});
-	}
-
-	const searchAPIUrl = process.env.GATSBY_SEARCH_URL;
-
 	useEffect(() => {
 		setData(null);
-
-		// temporaryFetch();
-
-		//TODO use searchClient methods
 		async function fetchData() {
 			initialise({
 				baseURL: "https://alpha-search-api.nice.org.uk/api",
 				index: bnfIndex,
 			});
 			const searchResults = await search(location.search);
-			setData(searchResults as SearchResults);
+			setData(searchResults);
 		}
 		fetchData();
 	}, [location.search]);
 
-	//TODO data useEffect
-	useEffect(() => {
-		console.log("data! ", data);
-	}, [data]);
+	if (data && data.failed) return <ErrorPageContent />;
 
-	console.log("search api - ", searchAPIUrl);
+	//TODO loading icon
+	if (!data) return "loading...";
 
 	return (
 		<Layout>
-			<SEO title="Search Results" />
-			<p>Search Results here...</p>
+			<SEO title={`${siteTitleShort} | Search Results`} />
+			<h1>Search Results</h1>
+
+			<div>
+				<p>
+					You are viewing {isBNF ? "BNF" : "BNFC"}. If you require{" "}
+					{isBNF ? "BNFC for Children" : "BNF"}, use{" "}
+					{isBNF ? (
+						<a href="https://bnfc.nice.org.uk">BNFC.</a>
+					) : (
+						<a href="https://bnf.nice.org.uk">BNF.</a>
+					)}
+				</p>
+			</div>
+
 			{/* TODO accessibility announcement */}
 			{/* TODO Error message */}
-			{/* TODO Results list  */}
-
+			{data && data.documents.length === 0 ? (
+				<p id="results">
+					We can&apos;t find any results. Try{" "}
+					<Link to="/somewhere">clearing your filters</Link> and starting again.
+				</p>
+			) : (
+				<SearchCardList documents={data.documents} />
+			)}
 			{/* TODO Pagination Wrapper */}
+			<SearchPagination results={data} scrollTargetId="filter-summary" />
 		</Layout>
 	);
 };
