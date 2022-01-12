@@ -10,20 +10,11 @@ export interface SearchCardListProps {
 export const SearchCardList: React.FC<SearchCardListProps> = ({
 	documents,
 }) => {
-	console.log("search card list documents ", documents);
 	return (
 		<>
 			<ol className={styles.list}>
 				{documents.map((item: Document) => {
-					const {
-						id,
-						title,
-						guidanceRef,
-						metaDescription,
-						pathAndQuery,
-						teaser,
-						subSectionLinks,
-					} = item;
+					const { id, title, metaDescription, pathAndQuery, teaser } = item;
 					return (
 						<li className={styles.listItem} key={id}>
 							<Card

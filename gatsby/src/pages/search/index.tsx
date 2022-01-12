@@ -16,6 +16,7 @@ import {
 	getUrlPathAndQuery,
 } from "@nice-digital/search-client";
 
+import { Announcer } from "@/components/Announcer/Announcer";
 import { ErrorPageContent } from "@/components/ErrorPageContent/ErrorPageContent";
 import { Layout } from "@/components/Layout/Layout";
 import { SearchCardList } from "@/components/SearchCardList/SearchCardList";
@@ -32,9 +33,8 @@ const SearchIndexPage: FC<SearchIndexPageProps> = () => {
 
 	const bnfIndex = isBNF ? "bnf" : "bnfc";
 
-	//TODO state management
 	const [data, setData] = useState<SearchResults | null>(null);
-	const [a11yMessage, setA11yMessage] = useState<string>("");
+	const [announcement, setAnnouncement] = useState<string>("");
 
 	const location = useLocation();
 
@@ -51,33 +51,43 @@ const SearchIndexPage: FC<SearchIndexPageProps> = () => {
 		fetchData();
 	}, [location.search]);
 
+	useEffect(() => {
+		// setAnnouncement(
+		// 	`Showing ${data.firstResult} to ${data.lastResult} of ${data.resultCount}`
+		// );
+		if (data && data.failed)
+			setAnnouncement("There was an error getting search results");
+
+		if (!data) setAnnouncement("Loading search results");
+
+		if (data && !data.failed) {
+			const summary = `Showing ${data.firstResult} to ${data.lastResult} of ${data.resultCount}`;
+			const spellcheck = data.finalSearchText
+				? ` for ${data.finalSearchText}`
+				: null;
+			setAnnouncement(summary + spellcheck);
+		}
+	}, [data]);
+
 	if (data && data.failed) return <ErrorPageContent />;
 
 	//TODO loading icon move into layout
-	if (!data) return "loading...";
-
-	const { q } = getSearchUrl(location.search);
-
-	console.log("###", data.finalSearchText, data.originalSearch?.searchText);
+	if (!data)
+		return (
+			<Layout>
+				<SEO title={`${siteTitleShort} | Search Results`} />
+				<h1 className="visually-hidden">{siteTitleShort} search results</h1>
+				<p>Loading results...</p>
+			</Layout>
+		);
 
 	return (
 		<Layout>
 			{/* TODO breadcrumb */}
 			<SEO title={`${siteTitleShort} | Search Results`} />
+			<Announcer announcement={announcement} />
 			<h1 className="visually-hidden">{siteTitleShort} search results</h1>
 
-			{/* TODO accessibility announcement */}
-
-			{/* <div className="page-header">
-				<h1 className="page-header__heading">
-					{siteTitleShort} search results
-				</h1>
-				<p className="page-header__lead">
-					Your search for <b>aspirrin</b> returned no results
-					<br />
-					105 results for <b>aspirin</b>
-				</p>
-			</div> */}
 			<FilterSummary id="filter-summary">
 				{data.resultCount === 0 ? (
 					data.originalSearch ? (
