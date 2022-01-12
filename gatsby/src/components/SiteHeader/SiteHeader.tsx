@@ -91,6 +91,18 @@ export const SiteHeader: React.FC = () => {
 					query: queryTerm,
 				}}
 			/>
+			{/* TODO componentise site warning ? */}
+			<div className={isBNF ? "bnf" : "bnfc"}>
+				<p>
+					You are viewing {isBNF ? "BNF" : "BNFC"}. If you require{" "}
+					{isBNF ? "BNFC for Children" : "BNF"}, use{" "}
+					{isBNF ? (
+						<a href="https://bnfc.nice.org.uk">BNFC.</a>
+					) : (
+						<a href="https://bnf.nice.org.uk">BNF.</a>
+					)}
+				</p>
+			</div>
 		</div>
 	);
 };

@@ -1,7 +1,8 @@
 import { useLocation } from "@reach/router";
-import { graphql, PageProps, Link } from "gatsby";
+import { PageProps, Link } from "gatsby";
 import { FC, useEffect, useState } from "react";
 
+import { FilterSummary } from "@nice-digital/nds-filters";
 import {
 	search,
 	initialise,
@@ -24,8 +25,6 @@ import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
 export type SearchIndexPageProps = PageProps<{ someprop: "somevalue" }>;
 
-//TODO Search Result Types
-
 const searchAPIUrl = process.env.GATSBY_SEARCH_URL;
 
 const SearchIndexPage: FC<SearchIndexPageProps> = () => {
@@ -37,7 +36,6 @@ const SearchIndexPage: FC<SearchIndexPageProps> = () => {
 	const [data, setData] = useState<SearchResults | null>(null);
 	const [a11yMessage, setA11yMessage] = useState<string>("");
 
-	//TODO location useEffect
 	const location = useLocation();
 
 	useEffect(() => {
@@ -58,25 +56,27 @@ const SearchIndexPage: FC<SearchIndexPageProps> = () => {
 	//TODO loading icon
 	if (!data) return "loading...";
 
+	const { q } = getSearchUrl(location.search);
+
 	return (
 		<Layout>
 			<SEO title={`${siteTitleShort} | Search Results`} />
-			<h1>Search Results</h1>
-
-			<div>
-				<p>
-					You are viewing {isBNF ? "BNF" : "BNFC"}. If you require{" "}
-					{isBNF ? "BNFC for Children" : "BNF"}, use{" "}
-					{isBNF ? (
-						<a href="https://bnfc.nice.org.uk">BNFC.</a>
-					) : (
-						<a href="https://bnf.nice.org.uk">BNF.</a>
-					)}
-				</p>
-			</div>
+			<h1 className="visually-hidden">Search results</h1>
 
 			{/* TODO accessibility announcement */}
-			{/* TODO Error message */}
+
+			<FilterSummary id="filter-summary">
+				{data.resultCount === 0 ? (
+					"Showing 0 results"
+				) : (
+					<>
+						{`Showing ${data.firstResult} to ${data.lastResult} of ${
+							data.resultCount
+						} results ${q && `for "${q}"`}`}
+					</>
+				)}
+			</FilterSummary>
+
 			{data && data.documents.length === 0 ? (
 				<p id="results">
 					We can&apos;t find any results. Try{" "}
@@ -85,8 +85,7 @@ const SearchIndexPage: FC<SearchIndexPageProps> = () => {
 			) : (
 				<SearchCardList documents={data.documents} />
 			)}
-			{/* TODO Pagination Wrapper */}
-			<SearchPagination results={data} scrollTargetId="filter-summary" />
+			<SearchPagination results={data} />
 		</Layout>
 	);
 };
