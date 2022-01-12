@@ -53,38 +53,74 @@ const SearchIndexPage: FC<SearchIndexPageProps> = () => {
 
 	if (data && data.failed) return <ErrorPageContent />;
 
-	//TODO loading icon
+	//TODO loading icon move into layout
 	if (!data) return "loading...";
 
 	const { q } = getSearchUrl(location.search);
 
+	console.log("###", data.finalSearchText, data.originalSearch?.searchText);
+
 	return (
 		<Layout>
+			{/* TODO breadcrumb */}
 			<SEO title={`${siteTitleShort} | Search Results`} />
-			<h1 className="visually-hidden">Search results</h1>
+			<h1 className="visually-hidden">{siteTitleShort} search results</h1>
 
 			{/* TODO accessibility announcement */}
 
+			{/* <div className="page-header">
+				<h1 className="page-header__heading">
+					{siteTitleShort} search results
+				</h1>
+				<p className="page-header__lead">
+					Your search for <b>aspirrin</b> returned no results
+					<br />
+					105 results for <b>aspirin</b>
+				</p>
+			</div> */}
 			<FilterSummary id="filter-summary">
 				{data.resultCount === 0 ? (
-					"Showing 0 results"
+					data.originalSearch ? (
+						<>
+							Your search for <strong>{data.originalSearch.searchText}</strong>{" "}
+							returned no results
+						</>
+					) : (
+						<>
+							No results for <strong>{data.finalSearchText}</strong>
+						</>
+					)
 				) : (
 					<>
-						{`Showing ${data.firstResult} to ${data.lastResult} of ${
-							data.resultCount
-						} results ${q && `for "${q}"`}`}
+						{data.originalSearch && (
+							<>
+								Your search for{" "}
+								<strong>{data.originalSearch.searchText}</strong> returned no
+								results
+								<br />
+							</>
+						)}
+						Showing {data.firstResult} to {data.lastResult} of{" "}
+						{data.resultCount}
+						{data.finalSearchText && (
+							<>
+								{" "}
+								for <strong>{data.finalSearchText}</strong>
+							</>
+						)}
 					</>
 				)}
 			</FilterSummary>
 
-			{data && data.documents.length === 0 ? (
+			{data.resultCount === 0 ? (
 				<p id="results">
-					We can&apos;t find any results. Try{" "}
-					<Link to="/somewhere">clearing your filters</Link> and starting again.
+					We can&apos;t find any results.
+					{/* TODO no results landing page */}
 				</p>
 			) : (
 				<SearchCardList documents={data.documents} />
 			)}
+
 			<SearchPagination results={data} />
 		</Layout>
 	);

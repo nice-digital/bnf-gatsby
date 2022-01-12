@@ -9,6 +9,8 @@ import {
 	upsertQueryParam,
 } from "@nice-digital/search-client";
 
+import styles from "./SearchPagination.module.scss";
+
 export interface SearchPaginationProps {
 	results: SearchResultsSuccess;
 }
@@ -22,18 +24,24 @@ export const SearchPagination: FC<SearchPaginationProps> = ({
 		mapPageNumberToHref = useCallback(
 			(pageNumber: number) =>
 				pageNumber === 1
-					? removeQueryParam(location.pathname, "pa")
-					: upsertQueryParam(location.pathname, "pa", String(pageNumber)),
+					? removeQueryParam(location.pathname + location.search, "pa")
+					: upsertQueryParam(
+							location.pathname + location.search,
+							"pa",
+							String(pageNumber)
+					  ),
 			[location]
 		);
 
 	return (
-		<EnhancedPagination
-			elementType={(props) => <Link {...props} />}
-			method="to"
-			currentPage={currentPage}
-			totalPages={totalPages}
-			mapPageNumberToHref={mapPageNumberToHref}
-		/>
+		<div className={styles.pagination}>
+			<EnhancedPagination
+				elementType={Link}
+				method="to"
+				currentPage={currentPage}
+				totalPages={totalPages}
+				mapPageNumberToHref={mapPageNumberToHref}
+			/>
+		</div>
 	);
 };
