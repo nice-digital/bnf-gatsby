@@ -2,18 +2,13 @@ import { useLocation } from "@reach/router";
 import { PageProps, Link } from "gatsby";
 import { FC, useEffect, useState } from "react";
 
+import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
 import { FilterSummary } from "@nice-digital/nds-filters";
 import {
 	search,
 	initialise,
-	SearchResults,
-	getSearchUrl,
-	getActiveModifiers,
-	removeQueryParam,
-	SearchUrl,
-	SearchResultsSuccess,
-	upsertQueryParam,
-	getUrlPathAndQuery,
+	type SearchResults,
+	type InitialiseOptions,
 } from "@nice-digital/search-client";
 
 import { Announcer } from "@/components/Announcer/Announcer";
@@ -24,27 +19,25 @@ import { SearchPagination } from "@/components/SearchPagination/SearchPagination
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
+import { isBNF } from "../../site";
+
 export type SearchIndexPageProps = PageProps<{ someprop: "somevalue" }>;
 
-const searchAPIUrl = process.env.GATSBY_SEARCH_URL;
+initialise({
+	baseURL: process.env.GATSBY_SEARCH_URL as InitialiseOptions["baseURL"],
+	index: isBNF ? "bnf" : "bnfc",
+});
 
 const SearchIndexPage: FC<SearchIndexPageProps> = () => {
-	const { siteTitleShort, isBNF } = useSiteMetadata();
-
-	const bnfIndex = isBNF ? "bnf" : "bnfc";
+	const { siteTitleShort } = useSiteMetadata();
+	const location = useLocation();
 
 	const [data, setData] = useState<SearchResults | null>(null);
 	const [announcement, setAnnouncement] = useState<string>("");
 
-	const location = useLocation();
-
 	useEffect(() => {
 		setData(null);
 		async function fetchData() {
-			initialise({
-				baseURL: "https://alpha-search-api.nice.org.uk/api",
-				index: bnfIndex,
-			});
 			const searchResults = await search(location.search);
 			setData(searchResults);
 		}
@@ -52,9 +45,6 @@ const SearchIndexPage: FC<SearchIndexPageProps> = () => {
 	}, [location.search]);
 
 	useEffect(() => {
-		// setAnnouncement(
-		// 	`Showing ${data.firstResult} to ${data.lastResult} of ${data.resultCount}`
-		// );
 		if (data && data.failed)
 			setAnnouncement("There was an error getting search results");
 
@@ -71,24 +61,38 @@ const SearchIndexPage: FC<SearchIndexPageProps> = () => {
 
 	if (data && data.failed) return <ErrorPageContent />;
 
-	//TODO loading icon move into layout
 	if (!data)
 		return (
 			<Layout>
 				<SEO title={`${siteTitleShort} | Search Results`} />
+				<Breadcrumbs>
+					<Breadcrumb to="https://www.nice.org.uk/">NICE</Breadcrumb>
+					<Breadcrumb to="/" elementType={Link}>
+						{siteTitleShort}
+					</Breadcrumb>
+					<Breadcrumb>Loading search results...</Breadcrumb>
+				</Breadcrumbs>
 				<h1 className="visually-hidden">{siteTitleShort} search results</h1>
-				<p>Loading results...</p>
+				<FilterSummary>Loading search results...</FilterSummary>
 			</Layout>
 		);
 
 	return (
 		<Layout>
-			{/* TODO breadcrumb */}
 			<SEO title={`${siteTitleShort} | Search Results`} />
 			<Announcer announcement={announcement} />
+
+			<Breadcrumbs>
+				<Breadcrumb to="https://www.nice.org.uk/">NICE</Breadcrumb>
+				<Breadcrumb to="/" elementType={Link}>
+					{siteTitleShort}
+				</Breadcrumb>
+				<Breadcrumb>Search results</Breadcrumb>
+			</Breadcrumbs>
+
 			<h1 className="visually-hidden">{siteTitleShort} search results</h1>
 
-			<FilterSummary id="filter-summary">
+			<FilterSummary>
 				{data.resultCount === 0 ? (
 					data.originalSearch ? (
 						<>
@@ -97,7 +101,8 @@ const SearchIndexPage: FC<SearchIndexPageProps> = () => {
 						</>
 					) : (
 						<>
-							No results for <strong>{data.finalSearchText}</strong>
+							Your search for <strong>{data.finalSearchText}</strong> returned
+							no results
 						</>
 					)
 				) : (
