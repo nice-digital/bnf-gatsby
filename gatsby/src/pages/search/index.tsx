@@ -129,7 +129,7 @@ const SearchIndexPage: FC<SearchIndexPageProps> = () => {
 
 			<PageHeader
 				heading={`${siteTitleShort} search results`}
-				lead={loading ? "Loading search results" : summaryText(data)}
+				lead={loading ? "Loading search results" : data && summaryText(data)}
 				id="content-start"
 			/>
 
