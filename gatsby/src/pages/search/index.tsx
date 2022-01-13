@@ -1,5 +1,3 @@
-import { resourceLimits } from "worker_threads";
-
 import { useLocation } from "@reach/router";
 import { PageProps, Link } from "gatsby";
 import { FC, useEffect, useState } from "react";
@@ -87,7 +85,7 @@ const SearchIndexPage: FC<SearchIndexPageProps> = () => {
 	const [announcement, setAnnouncement] = useState<string>("");
 
 	useEffect(() => {
-		setData(null);
+		// setData(null);
 		async function fetchData() {
 			const searchResults = await search(location.search);
 			setData(searchResults);
