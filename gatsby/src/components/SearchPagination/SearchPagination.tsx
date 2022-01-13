@@ -1,10 +1,9 @@
 import { useLocation } from "@reach/router";
 import { Link } from "gatsby";
-import { FC, useCallback } from "react";
+import { FC } from "react";
 
-import { EnhancedPagination } from "@nice-digital/nds-enhanced-pagination";
+import { SimplePagination } from "@nice-digital/nds-simple-pagination";
 import {
-	removeQueryParam,
 	SearchResultsSuccess,
 	upsertQueryParam,
 } from "@nice-digital/search-client";
@@ -20,27 +19,39 @@ export const SearchPagination: FC<SearchPaginationProps> = ({
 }) => {
 	const location = useLocation(),
 		totalPages = Math.ceil(resultCount / pageSize),
-		currentPage = Math.ceil(firstResult / pageSize),
-		mapPageNumberToHref = useCallback(
-			(pageNumber: number) =>
-				pageNumber === 1
-					? removeQueryParam(location.pathname + location.search, "pa")
-					: upsertQueryParam(
-							location.pathname + location.search,
-							"pa",
-							String(pageNumber)
-					  ),
-			[location]
-		);
+		currentPage = Math.ceil(firstResult / pageSize);
+
+	const nextPageLink =
+		currentPage !== totalPages
+			? {
+					elementType: Link,
+					destination: upsertQueryParam(
+						location.pathname + location.search,
+						"pa",
+						String(currentPage + 1)
+					),
+			  }
+			: undefined;
+
+	const previousPageLink =
+		currentPage > 1
+			? {
+					elementType: Link,
+					destination: upsertQueryParam(
+						location.pathname + location.search,
+						"pa",
+						String(currentPage - 1)
+					),
+			  }
+			: undefined;
 
 	return (
 		<div className={styles.pagination}>
-			<EnhancedPagination
-				elementType={Link}
-				method="to"
+			<SimplePagination
 				currentPage={currentPage}
+				nextPageLink={nextPageLink}
+				previousPageLink={previousPageLink}
 				totalPages={totalPages}
-				mapPageNumberToHref={mapPageNumberToHref}
 			/>
 		</div>
 	);
