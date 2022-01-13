@@ -1,5 +1,5 @@
-export const aboutSectionSchema = `
-	type BnfAboutSection implements Node & BnfSimpleRecord @dontInfer {
+export const treamentSummarySchema = `
+	type BnfTreatmentSummary implements Node & BnfSimpleRecord @dontInfer {
 		order: Int!
 
 		"The title of the section. May contain HTML markup."

@@ -9,14 +9,14 @@ exports[`schema should match snapshot 1`] = `
 		\\"The lowercase first letter of the title, used for grouping\\"
 		initial: String!
 
-		\\"The PHP ID for the drug e.g. PHP5693\\"
-		bnfId: String!
-
 		\\"The SID for the drug e.g. _694410247\\"
 		sid: String!
 
 		\\"The title for the drug. May include HTML markup. E.g. anti-D (Rh0) immunoglobulin has a subscript 0\\"
 		title: String!
+
+		\\"The slugified and lowercased title, used as a URL path\\"
+		slug: String! @slug(field: \\"title\\")
 
 		\\"The review date, if available for this record.\\"
 		reviewDate: String
@@ -36,9 +36,6 @@ exports[`schema should match snapshot 1`] = `
 	A classifications for a drug, as a small taxonomy, represented as a tree data structure.
 	\\"\\"\\"
 	type BnfClassification implements Node @dontInfer {
-		\\"The feed ID of the classification e.g. '_448101428'\\"
-		bnfId: String!
-
 		\\"The name of the classification e.g 'Vitamins and trace elements'\\"
 		name: String!
 
@@ -61,13 +58,11 @@ exports[`schema should match snapshot 1`] = `
 	For example, treatment summaries, about and guidance records, interactions introduction, etc.
 	\\"\\"\\"
 	interface BnfSimpleRecord @dontInfer {
-		order: Int!
-
-		\\"The ID of the record.\\"
-		bnfId: ID!
-
 		\\"The title of the section. May contain HTML markup.\\"
 		title: String!
+
+		\\"The slugified and lowercased title, used as a URL path\\"
+		slug: String! @slug(field: \\"title\\")
 
 		\\"The review date of the record, formatted into a string.\\"
 		reviewDate: String
@@ -83,25 +78,39 @@ exports[`schema should match snapshot 1`] = `
 	type BnfRecordSection @dontInfer {
 		order: Int!
 
-		\\"The ID of the record.\\"
-		bnfId: String!
-
 		\\"The title of the section. May contain HTML markup.\\"
 		title: String!
+
+		\\"The slugified and lowercased title, used as a URL path\\"
+		slug: String! @slug(field: \\"title\\")
 
 		\\"The review date of the record, formatted into a string.\\"
 		reviewDate: String
 
 		\\"The content for the section. May contain HTML markup. \\"
-		content: String!
+		content: String! @html
 	}
 
 
 	type BnfAboutSection implements Node & BnfSimpleRecord @dontInfer {
 		order: Int!
 
-		\\"The ID of the record.\\"
-		bnfId: ID!
+		\\"The title of the section. May contain HTML markup.\\"
+		title: String!
+
+		\\"The review date of the record, formatted into a string.\\"
+		reviewDate: String
+
+		\\"The slugified and lowercased title, used as a URL path\\"
+		slug: String! @slug(field: \\"title\\")
+
+		\\"The sections of the record.\\"
+		sections: [BnfRecordSection!]!
+	}
+
+
+	type BnfTreatmentSummary implements Node & BnfSimpleRecord @dontInfer {
+		order: Int!
 
 		\\"The title of the section. May contain HTML markup.\\"
 		title: String!
@@ -109,8 +118,57 @@ exports[`schema should match snapshot 1`] = `
 		\\"The review date of the record, formatted into a string.\\"
 		reviewDate: String
 
+		\\"The slugified and lowercased title, used as a URL path\\"
+		slug: String! @slug(field: \\"title\\")
+
 		\\"The sections of the record.\\"
 		sections: [BnfRecordSection!]!
+	}
+
+
+	type BnfGuidance implements Node & BnfSimpleRecord @dontInfer {
+		order: Int!
+
+		\\"The title of the section. May contain HTML markup.\\"
+		title: String!
+
+		\\"The review date of the record, formatted into a string.\\"
+		reviewDate: String
+
+		\\"The slugified and lowercased title, used as a URL path\\"
+		slug: String! @slug(field: \\"title\\")
+
+		\\"The sections of the record.\\"
+		sections: [BnfRecordSection!]!
+	}
+
+
+	type BnfCautionaryAndAdvisoryGuidance implements Node & BnfSimpleRecord @dontInfer {
+		\\"The title of the section. May contain HTML markup.\\"
+		title: String!
+
+		\\"The review date of the record, formatted into a string.\\"
+		reviewDate: String
+
+		\\"The slugified and lowercased title, used as a URL path\\"
+		slug: String! @slug(field: \\"title\\")
+
+		\\"The sections of the record.\\"
+		sections: [BnfRecordSection!]!
+	}
+
+
+	type BnfCautionaryAndAdvisoryLabel implements Node @dontInfer {
+		number: Int!
+
+		\\"A description of the label. May contain HTML mark-up. \\"
+		description: String!
+
+		\\"The label recommendation in English.\\"
+		englishRecommendation: String!
+
+		\\"The Welsh translation of the label recommendation.\\"
+		welshRecommendation: String!
 	}
 "
 `;

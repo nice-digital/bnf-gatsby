@@ -1,16 +1,19 @@
 import { downloadFeed } from "./downloader/downloader";
+import { htmlFieldExtension } from "./field-extensions/html";
+import { slugFieldExtension } from "./field-extensions/slug";
 import { schema } from "./graphql-schema";
 import { createAboutSectionNodes } from "./node-creation/about-sections";
+import { createCautionaryAndAdvisoryLabelsNodes } from "./node-creation/cautionary-advisory";
 import { createClassificationNodes } from "./node-creation/classifications";
 import { createDrugNodes } from "./node-creation/drugs";
-import { withSlugFieldFromTitle } from "./resolvers/title-slugifying-resolver";
+import { createGuidanceNodes } from "./node-creation/guidance";
+import { createTreamentSummaryNodes } from "./node-creation/treament-summaries";
 
 import type { Feed } from "./downloader/types";
 import type {
 	SourceNodesArgs,
 	CreateSchemaCustomizationArgs,
 	PluginOptionsSchemaArgs,
-	CreateResolversArgs,
 } from "gatsby";
 import type { Schema } from "gatsby-plugin-utils";
 
@@ -24,8 +27,13 @@ interface PluginOptions {
  * See https://www.gatsbyjs.org/docs/schema-customization/
  */
 export const createSchemaCustomization = ({
-	actions: { createTypes },
-}: CreateSchemaCustomizationArgs): void => createTypes(schema);
+	actions: { createFieldExtension, createTypes },
+}: CreateSchemaCustomizationArgs): void => {
+	createTypes(schema);
+
+	createFieldExtension(slugFieldExtension);
+	createFieldExtension(htmlFieldExtension);
+};
 
 /**
  * Gatsby hook for creating nodes from a plugin.
@@ -57,6 +65,12 @@ export const sourceNodes = async (
 	createDrugNodes(feedData.drugs, sourceNodesArgs);
 	createClassificationNodes(feedData.drugs, sourceNodesArgs);
 	createAboutSectionNodes(feedData.about, sourceNodesArgs);
+	createTreamentSummaryNodes(feedData.treatmentSummaries, sourceNodesArgs);
+	createGuidanceNodes(feedData.guidance, sourceNodesArgs);
+	createCautionaryAndAdvisoryLabelsNodes(
+		feedData.cautionaryAndAdvisoryLabels,
+		sourceNodesArgs
+	);
 
 	setStatus(`Created all nodes`);
 	end();
@@ -76,19 +90,5 @@ export const pluginOptionsSchema = ({
 		feedURL: Joi.string()
 			.required()
 			.description(`The absolute URL of the feed endpoint`),
-	});
-};
-
-/**
- * Gatsby hook for resolving fields
- * See https://www.gatsbyjs.org/docs/schema-customization/#createresolvers-api
- */
-export const createResolvers = ({
-	createResolvers,
-}: CreateResolversArgs): void => {
-	createResolvers({
-		BnfAboutSection: withSlugFieldFromTitle,
-		BnfDrug: withSlugFieldFromTitle,
-		BnfRecordSection: withSlugFieldFromTitle,
 	});
 };

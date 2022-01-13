@@ -3,9 +3,6 @@ export const classificationSchema = `
 	A classifications for a drug, as a small taxonomy, represented as a tree data structure.
 	"""
 	type BnfClassification implements Node @dontInfer {
-		"The feed ID of the classification e.g. '_448101428'"
-		bnfId: String!
-
 		"The name of the classification e.g 'Vitamins and trace elements'"
 		name: String!
 

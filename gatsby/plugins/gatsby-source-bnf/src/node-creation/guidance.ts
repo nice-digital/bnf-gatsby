@@ -4,20 +4,20 @@ import type { FeedSimpleRecord, FeedRecordSection } from "../downloader/types";
 import type { SourceNodesArgs } from "gatsby";
 import type { Except } from "type-fest";
 
-export const aboutSectionNodeType = "BnfAboutSection";
+export const guidanceNodeType = "BnfGuidance";
 
-export interface AboutSectionNodeInput
+export interface GuidanceNodeInput
 	extends Except<FeedSimpleRecord, "sections"> {
 	order: number;
 	sections: ({ order: number } & FeedRecordSection)[];
 }
 
-export const createAboutSectionNodes = (
-	aboutSections: FeedSimpleRecord[],
+export const createGuidanceNodes = (
+	treamentSummaries: FeedSimpleRecord[],
 	sourceNodesArgs: SourceNodesArgs
 ): void => {
-	aboutSections.forEach(({ id, title, reviewDate, sections }, order) => {
-		const nodeContent: AboutSectionNodeInput = {
+	treamentSummaries.forEach(({ id, title, reviewDate, sections }, order) => {
+		const nodeContent: GuidanceNodeInput = {
 			order,
 			id,
 			title,
@@ -28,6 +28,6 @@ export const createAboutSectionNodes = (
 			})),
 		};
 
-		createBnfNode(nodeContent, aboutSectionNodeType, sourceNodesArgs);
+		createBnfNode(nodeContent, guidanceNodeType, sourceNodesArgs);
 	});
 };

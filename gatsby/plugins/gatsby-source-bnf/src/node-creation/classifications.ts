@@ -4,7 +4,7 @@ import type { SourceNodesArgs, NodeInput } from "gatsby";
 export const classificationNodeType = "BnfClassification";
 
 export interface ClassificationNode extends NodeInput {
-	bnfId: string;
+	id: string;
 	name: string;
 	moreSpecificClassifications: string[];
 	moreGeneralClassification: string | null;
