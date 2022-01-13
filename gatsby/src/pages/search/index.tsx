@@ -5,7 +5,6 @@ import { PageProps, Link } from "gatsby";
 import { FC, useEffect, useState } from "react";
 
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
-import { FilterSummary } from "@nice-digital/nds-filters";
 import { PageHeader } from "@nice-digital/nds-page-header";
 import {
 	search,
@@ -32,43 +31,51 @@ initialise({
 	index: isBNF ? "bnf" : "bnfc",
 });
 
+const summaryRecordCount = ({
+	firstResult,
+	lastResult,
+	resultCount,
+	finalSearchText,
+}: SearchResultsSuccess) => {
+	return (
+		<>
+			Showing {firstResult} to {lastResult} of {resultCount}
+			{finalSearchText && (
+				<>
+					{" "}
+					for <strong>{finalSearchText}</strong>
+				</>
+			)}
+		</>
+	);
+};
+
 const summaryText = (data: SearchResultsSuccess) => {
-	const {
-		originalSearch,
-		finalSearchText,
-		firstResult,
-		lastResult,
-		resultCount,
-	} = data;
+	const { originalSearch, finalSearchText, resultCount } = data;
 
-	let finalQuerySummary;
-	let spellCheckedQuerySummary;
-
-	if (finalSearchText) finalQuerySummary = <>for {finalSearchText}</>;
-
-	if (originalSearch)
-		spellCheckedQuerySummary = (
-			<p>
-				Your search for <strong>{originalSearch.searchText}</strong> returned no
-				results
-			</p>
-		);
-
-	if (resultCount === 0) {
-		return <p>Your search {finalQuerySummary} returned no results</p>;
-	} else {
+	if (resultCount === 0 && !originalSearch) {
 		return (
 			<>
-				{originalSearch && spellCheckedQuerySummary}
-				Showing {firstResult} to {lastResult} of {resultCount}
-				{finalSearchText && (
-					<>
-						{" "}
-						for <strong>{finalSearchText}</strong>
-					</>
-				)}
+				We couldn&apos;t find any results for <strong>{finalSearchText}</strong>
+				<br />
+				Check for spelling mistakes or try another search term.
 			</>
 		);
+	}
+
+	if (originalSearch) {
+		return (
+			<>
+				Your search for <strong>{originalSearch.searchText}</strong> returned no
+				results
+				<br />
+				{summaryRecordCount(data)}
+			</>
+		);
+	}
+
+	if (resultCount !== 0) {
+		return <>{summaryRecordCount(data)}</>;
 	}
 };
 
@@ -126,10 +133,7 @@ const SearchIndexPage: FC<SearchIndexPageProps> = () => {
 			/>
 
 			{data && data.resultCount === 0 && (
-				<p id="results">
-					We can&apos;t find any results.
-					{/* TODO no results landing page */}
-				</p>
+				<p id="results">{/* TODO no results landing page */}</p>
 			)}
 
 			{data && (
