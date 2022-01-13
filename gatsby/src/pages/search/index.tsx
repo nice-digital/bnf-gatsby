@@ -1,14 +1,18 @@
+import { resourceLimits } from "worker_threads";
+
 import { useLocation } from "@reach/router";
 import { PageProps, Link } from "gatsby";
 import { FC, useEffect, useState } from "react";
 
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
 import { FilterSummary } from "@nice-digital/nds-filters";
+import { PageHeader } from "@nice-digital/nds-page-header";
 import {
 	search,
 	initialise,
 	type SearchResults,
 	type InitialiseOptions,
+	SearchResultsSuccess,
 } from "@nice-digital/search-client";
 
 import { Announcer } from "@/components/Announcer/Announcer";
@@ -27,6 +31,46 @@ initialise({
 	baseURL: process.env.GATSBY_SEARCH_URL as InitialiseOptions["baseURL"],
 	index: isBNF ? "bnf" : "bnfc",
 });
+
+const summaryText = (data: SearchResultsSuccess) => {
+	const {
+		originalSearch,
+		finalSearchText,
+		firstResult,
+		lastResult,
+		resultCount,
+	} = data;
+
+	let finalQuerySummary;
+	let spellCheckedQuerySummary;
+
+	if (finalSearchText) finalQuerySummary = <>for {finalSearchText}</>;
+
+	if (originalSearch)
+		spellCheckedQuerySummary = (
+			<p>
+				Your search for <strong>{originalSearch.searchText}</strong> returned no
+				results
+			</p>
+		);
+
+	if (resultCount === 0) {
+		return <p>Your search {finalQuerySummary} returned no results</p>;
+	} else {
+		return (
+			<>
+				{originalSearch && spellCheckedQuerySummary}
+				Showing {firstResult} to {lastResult} of {resultCount}
+				{finalSearchText && (
+					<>
+						{" "}
+						for <strong>{finalSearchText}</strong>
+					</>
+				)}
+			</>
+		);
+	}
+};
 
 const SearchIndexPage: FC<SearchIndexPageProps> = () => {
 	const { siteTitleShort } = useSiteMetadata();
@@ -61,22 +105,6 @@ const SearchIndexPage: FC<SearchIndexPageProps> = () => {
 
 	if (data && data.failed) return <ErrorPageContent />;
 
-	if (!data)
-		return (
-			<Layout>
-				<SEO title={`${siteTitleShort} | Search Results`} />
-				<Breadcrumbs>
-					<Breadcrumb to="https://www.nice.org.uk/">NICE</Breadcrumb>
-					<Breadcrumb to="/" elementType={Link}>
-						{siteTitleShort}
-					</Breadcrumb>
-					<Breadcrumb>Loading search results...</Breadcrumb>
-				</Breadcrumbs>
-				<h1 className="visually-hidden">{siteTitleShort} search results</h1>
-				<FilterSummary>Loading search results...</FilterSummary>
-			</Layout>
-		);
-
 	return (
 		<Layout>
 			<SEO title={`${siteTitleShort} | Search Results`} />
@@ -87,56 +115,29 @@ const SearchIndexPage: FC<SearchIndexPageProps> = () => {
 				<Breadcrumb to="/" elementType={Link}>
 					{siteTitleShort}
 				</Breadcrumb>
-				<Breadcrumb>Search results</Breadcrumb>
+				<Breadcrumb>
+					{!data ? "Loading search results" : "Search results"}
+				</Breadcrumb>
 			</Breadcrumbs>
 
-			<h1 className="visually-hidden">{siteTitleShort} search results</h1>
+			<PageHeader
+				heading={`${siteTitleShort} search results`}
+				lead={!data ? "Loading search results" : summaryText(data)}
+			/>
 
-			<FilterSummary>
-				{data.resultCount === 0 ? (
-					data.originalSearch ? (
-						<>
-							Your search for <strong>{data.originalSearch.searchText}</strong>{" "}
-							returned no results
-						</>
-					) : (
-						<>
-							Your search for <strong>{data.finalSearchText}</strong> returned
-							no results
-						</>
-					)
-				) : (
-					<>
-						{data.originalSearch && (
-							<>
-								Your search for{" "}
-								<strong>{data.originalSearch.searchText}</strong> returned no
-								results
-								<br />
-							</>
-						)}
-						Showing {data.firstResult} to {data.lastResult} of{" "}
-						{data.resultCount}
-						{data.finalSearchText && (
-							<>
-								{" "}
-								for <strong>{data.finalSearchText}</strong>
-							</>
-						)}
-					</>
-				)}
-			</FilterSummary>
-
-			{data.resultCount === 0 ? (
+			{data && data.resultCount === 0 && (
 				<p id="results">
 					We can&apos;t find any results.
 					{/* TODO no results landing page */}
 				</p>
-			) : (
-				<SearchCardList documents={data.documents} />
 			)}
 
-			<SearchPagination results={data} />
+			{data && (
+				<>
+					<SearchCardList documents={data.documents} />
+					<SearchPagination results={data} />
+				</>
+			)}
 		</Layout>
 	);
 };
