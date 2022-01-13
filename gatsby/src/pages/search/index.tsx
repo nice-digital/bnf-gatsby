@@ -82,13 +82,15 @@ const SearchIndexPage: FC<SearchIndexPageProps> = () => {
 	const location = useLocation();
 
 	const [data, setData] = useState<SearchResults | null>(null);
+	const [loading, setLoading] = useState<boolean>();
 	const [announcement, setAnnouncement] = useState<string>("");
 
 	useEffect(() => {
-		// setData(null);
+		setLoading(true);
 		async function fetchData() {
 			const searchResults = await search(location.search);
 			setData(searchResults);
+			setLoading(false);
 		}
 		fetchData();
 	}, [location.search]);
@@ -97,7 +99,7 @@ const SearchIndexPage: FC<SearchIndexPageProps> = () => {
 		if (data && data.failed)
 			setAnnouncement("There was an error getting search results");
 
-		if (!data) setAnnouncement("Loading search results");
+		if (loading) setAnnouncement("Loading search results");
 
 		if (data && !data.failed) {
 			const summary = `Showing ${data.firstResult} to ${data.lastResult} of ${data.resultCount}`;
@@ -106,7 +108,7 @@ const SearchIndexPage: FC<SearchIndexPageProps> = () => {
 				: null;
 			setAnnouncement(summary + spellcheck);
 		}
-	}, [data]);
+	}, [data, loading]);
 
 	if (data && data.failed) return <ErrorPageContent />;
 
@@ -121,13 +123,13 @@ const SearchIndexPage: FC<SearchIndexPageProps> = () => {
 					{siteTitleShort}
 				</Breadcrumb>
 				<Breadcrumb>
-					{!data ? "Loading search results" : "Search results"}
+					{loading ? "Loading search results" : "Search results"}
 				</Breadcrumb>
 			</Breadcrumbs>
 
 			<PageHeader
 				heading={`${siteTitleShort} search results`}
-				lead={!data ? "Loading search results" : summaryText(data)}
+				lead={loading ? "Loading search results" : summaryText(data)}
 				id="content-start"
 			/>
 
