@@ -1,21 +1,19 @@
+import {
+	type SourceNodesArgs,
+	type CreateSchemaCustomizationArgs,
+	type PluginOptionsSchemaArgs,
+} from "gatsby";
+import { type Schema } from "gatsby-plugin-utils";
+
 import { downloadFeed } from "./downloader/downloader";
+import { type Feed } from "./downloader/types";
 import { htmlFieldExtension } from "./field-extensions/html";
 import { slugFieldExtension } from "./field-extensions/slug";
 import { schema } from "./graphql-schema";
-import { createAboutSectionNodes } from "./node-creation/about-sections";
 import { createCautionaryAndAdvisoryLabelsNodes } from "./node-creation/cautionary-advisory";
-import { createClassificationNodes } from "./node-creation/classifications";
 import { createDrugNodes } from "./node-creation/drugs";
-import { createGuidanceNodes } from "./node-creation/guidance";
-import { createTreamentSummaryNodes } from "./node-creation/treament-summaries";
-
-import type { Feed } from "./downloader/types";
-import type {
-	SourceNodesArgs,
-	CreateSchemaCustomizationArgs,
-	PluginOptionsSchemaArgs,
-} from "gatsby";
-import type { Schema } from "gatsby-plugin-utils";
+import { createSimpleRecordNodes } from "./node-creation/utils";
+import { BnfNode } from "./node-types";
 
 interface PluginOptions {
 	/** The API base URL */
@@ -63,10 +61,20 @@ export const sourceNodes = async (
 
 	// Create all of our different nodes
 	createDrugNodes(feedData.drugs, sourceNodesArgs);
-	createClassificationNodes(feedData.drugs, sourceNodesArgs);
-	createAboutSectionNodes(feedData.about, sourceNodesArgs);
-	createTreamentSummaryNodes(feedData.treatmentSummaries, sourceNodesArgs);
-	createGuidanceNodes(feedData.guidance, sourceNodesArgs);
+
+	// Simple records nodes:
+	createSimpleRecordNodes(
+		feedData.about,
+		BnfNode.AboutSection,
+		sourceNodesArgs
+	);
+	createSimpleRecordNodes(
+		feedData.treatmentSummaries,
+		BnfNode.TreatmentSummary,
+		sourceNodesArgs
+	);
+	createSimpleRecordNodes(feedData.guidance, BnfNode.Guidance, sourceNodesArgs);
+
 	createCautionaryAndAdvisoryLabelsNodes(
 		feedData.cautionaryAndAdvisoryLabels,
 		sourceNodesArgs

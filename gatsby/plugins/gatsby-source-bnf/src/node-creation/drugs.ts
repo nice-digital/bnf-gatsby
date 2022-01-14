@@ -1,10 +1,10 @@
+import { type SourceNodesArgs } from "gatsby";
+import { type Except } from "type-fest";
+
+import { type FeedDrug } from "../downloader/types";
+import { BnfNode } from "../node-types";
+
 import { createBnfNode } from "./utils";
-
-import type { FeedDrug } from "../downloader/types";
-import type { SourceNodesArgs } from "gatsby";
-import type { Except } from "type-fest";
-
-export const drugNodeType = "BnfDrug";
 
 export interface DrugNodeInput
 	extends Except<
@@ -26,6 +26,6 @@ export const createDrugNodes = (
 			initial: title[0].toLowerCase(),
 		};
 
-		createBnfNode(nodeContent, drugNodeType, sourceNodesArgs);
+		createBnfNode(nodeContent, BnfNode.Drug, sourceNodesArgs);
 	});
 };

@@ -1,5 +1,7 @@
+import { BnfNode } from "../node-types";
+
 export const treamentSummarySchema = `
-	type BnfTreatmentSummary implements Node & BnfSimpleRecord @dontInfer {
+	type ${BnfNode.TreatmentSummary} implements Node & ${BnfNode.SimpleRecord} @dontInfer {
 		order: Int!
 
 		"The title of the section. May contain HTML markup."
@@ -12,6 +14,6 @@ export const treamentSummarySchema = `
 		slug: String! @slug(field: "title")
 
 		"The sections of the record."
-		sections: [BnfRecordSection!]!
+		sections: [${BnfNode.RecordSection}!]!
 	}
 `;

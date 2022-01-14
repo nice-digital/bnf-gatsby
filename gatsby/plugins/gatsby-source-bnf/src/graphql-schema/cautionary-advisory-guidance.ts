@@ -1,5 +1,7 @@
+import { BnfNode } from "../node-types";
+
 export const cautionaryAndAdvisoryGuidanceSchema = `
-	type BnfCautionaryAndAdvisoryGuidance implements Node & BnfSimpleRecord @dontInfer {
+	type ${BnfNode.CautionaryAndAdvisoryGuidance} implements Node & ${BnfNode.SimpleRecord} @dontInfer {
 		"The title of the section. May contain HTML markup."
 		title: String!
 
@@ -10,6 +12,6 @@ export const cautionaryAndAdvisoryGuidanceSchema = `
 		slug: String! @slug(field: "title")
 
 		"The sections of the record."
-		sections: [BnfRecordSection!]!
+		sections: [${BnfNode.RecordSection}!]!
 	}
 `;

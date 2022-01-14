@@ -1,7 +1,6 @@
 import { aboutSectionSchema } from "./about-section";
 import { cautionaryAndAdvisoryGuidanceSchema } from "./cautionary-advisory-guidance";
 import { cautionaryAndAdvisoryLabelSchema } from "./cautionary-advisory-label";
-import { classificationSchema } from "./classification";
 import { drugSchema } from "./drug";
 import { guidanceSchema } from "./guidance";
 import { recordSectionSchema } from "./record-section";
@@ -13,7 +12,6 @@ import { treamentSummarySchema } from "./treatment-summary";
 // And https://graphql.org/learn/schema/#type-language
 export const schema = [
 	drugSchema,
-	classificationSchema,
 	simpleRecordSchema,
 	recordSectionSchema,
 	aboutSectionSchema,

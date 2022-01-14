@@ -1,8 +1,10 @@
+import { BnfNode } from "../node-types";
+
 export const drugSchema = `
 	"""
 	A drug monograph
 	"""
-	type BnfDrug implements Node @dontInfer {
+	type ${BnfNode.Drug} implements Node @dontInfer {
 		"The lowercase first letter of the title, used for grouping"
 		initial: String!
 
@@ -17,14 +19,5 @@ export const drugSchema = `
 
 		"The review date, if available for this record."
 		reviewDate: String
-
-		"TODO The general primary classification for a drug"
-		generalPrimaryClassification: BnfClassification
-
-		"TODO The primary classification for a drug, as a small taxonomy, represented as a tree data structure."
-		specificPrimaryClassification: BnfClassification
-
-		"TODO The secondary classifications for a drug, as a small taxonomy, represented as a tree data structure."
-		specificSecondaryClassifications: [BnfClassification]
 	}
 `;

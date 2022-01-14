@@ -1,29 +1,16 @@
-import { createBnfNode } from "./utils";
+import { type SourceNodesArgs } from "gatsby";
+import { type Except } from "type-fest";
 
-import type {
-	FeedSimpleRecord,
-	FeedRecordSection,
-	FeedCautionaryAndAdvisoryLabels,
-} from "../downloader/types";
-import type { SourceNodesArgs } from "gatsby";
-import type { Except } from "type-fest";
+import { type FeedCautionaryAndAdvisoryLabels } from "../downloader/types";
+import { BnfNode } from "../node-types";
 
-export const cautionaryAndAdvisoryGuidanceNodeType =
-	"BnfCautionaryAndAdvisoryGuidance";
-
-export const cautionaryAndAdvisoryLabelNodeType =
-	"BnfCautionaryAndAdvisoryLabel";
-
-export interface CautionaryAndAdvisoryGuidanceNodeInput
-	extends Except<FeedSimpleRecord, "sections"> {
-	sections: ({ order: number } & FeedRecordSection)[];
-}
+import { createBnfNode, SimpleRecordNodeInput } from "./utils";
 
 export const createCautionaryAndAdvisoryLabelsNodes = (
 	{ guidance, labels }: FeedCautionaryAndAdvisoryLabels,
 	sourceNodesArgs: SourceNodesArgs
 ): void => {
-	const guidanceNodeContent: CautionaryAndAdvisoryGuidanceNodeInput = {
+	const guidanceNodeContent: Except<SimpleRecordNodeInput, "order"> = {
 		...guidance,
 		sections: guidance.sections.map((section, order) => ({
 			...section,
@@ -33,7 +20,7 @@ export const createCautionaryAndAdvisoryLabelsNodes = (
 
 	createBnfNode(
 		guidanceNodeContent,
-		cautionaryAndAdvisoryGuidanceNodeType,
+		BnfNode.CautionaryAndAdvisoryGuidance,
 		sourceNodesArgs
 	);
 
@@ -43,7 +30,7 @@ export const createCautionaryAndAdvisoryLabelsNodes = (
 				...label,
 				id: sourceNodesArgs.createNodeId(label.englishRecommendation),
 			},
-			cautionaryAndAdvisoryLabelNodeType,
+			BnfNode.CautionaryAndAdvisoryLabel,
 			sourceNodesArgs
 		);
 	});

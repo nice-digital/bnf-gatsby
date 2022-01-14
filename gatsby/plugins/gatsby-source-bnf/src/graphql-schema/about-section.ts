@@ -1,5 +1,7 @@
+import { BnfNode } from "../node-types";
+
 export const aboutSectionSchema = `
-	type BnfAboutSection implements Node & BnfSimpleRecord @dontInfer {
+	type ${BnfNode.AboutSection} implements Node & ${BnfNode.SimpleRecord} @dontInfer {
 		order: Int!
 
 		"The title of the section. May contain HTML markup."
@@ -12,6 +14,6 @@ export const aboutSectionSchema = `
 		slug: String! @slug(field: "title")
 
 		"The sections of the record."
-		sections: [BnfRecordSection!]!
+		sections: [${BnfNode.RecordSection}!]!
 	}
 `;

@@ -1,8 +1,10 @@
+import { BnfNode } from "../node-types";
+
 export const recordSectionSchema = `
 	"""
 	A section of a simple record.
 	"""
-	type BnfRecordSection @dontInfer {
+	type ${BnfNode.RecordSection} @dontInfer {
 		order: Int!
 
 		"The title of the section. May contain HTML markup."

@@ -1,5 +1,7 @@
+import { BnfNode } from "../node-types";
+
 export const cautionaryAndAdvisoryLabelSchema = `
-	type BnfCautionaryAndAdvisoryLabel implements Node @dontInfer {
+	type ${BnfNode.CautionaryAndAdvisoryLabel} implements Node @dontInfer {
 		number: Int!
 
 		"A description of the label. May contain HTML mark-up. "

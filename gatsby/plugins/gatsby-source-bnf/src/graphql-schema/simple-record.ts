@@ -1,9 +1,11 @@
+import { BnfNode } from "../node-types";
+
 export const simpleRecordSchema = `
 	"""
 	A simple record that just contains a list of sections.
 	For example, treatment summaries, about and guidance records, interactions introduction, etc.
 	"""
-	interface BnfSimpleRecord @dontInfer {
+	interface ${BnfNode.SimpleRecord} @dontInfer {
 		"The title of the section. May contain HTML markup."
 		title: String!
 
@@ -14,6 +16,6 @@ export const simpleRecordSchema = `
 		reviewDate: String
 
 		"The sections of the record."
-		sections: [BnfRecordSection!]!
+		sections: [${BnfNode.RecordSection}!]!
 	}
 `;

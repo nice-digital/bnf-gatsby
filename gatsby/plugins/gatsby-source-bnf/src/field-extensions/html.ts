@@ -1,21 +1,30 @@
-import { NodeInput } from "gatsby";
-import replaceAsync from "string-replace-async";
+import { type NodeInput } from "gatsby";
 
-import { aboutSectionNodeType } from "../node-creation/about-sections";
-import { cautionaryAndAdvisoryGuidanceNodeType } from "../node-creation/cautionary-advisory";
-import { drugNodeType } from "../node-creation/drugs";
-import { guidanceNodeType } from "../node-creation/guidance";
-import { treatmentSummaryNodeType } from "../node-creation/treament-summaries";
 import { type FieldResolveContext, type NodeModel } from "../node-model";
+import { BnfNode, BnfNodeType } from "../node-types";
 
 import { slugify } from "./slug";
 
+const nodeTypePathMap: { [key: BnfNodeType]: string } = {
+	[BnfNode.Drug]: "drugs",
+	[BnfNode.AboutSection]: "about",
+	[BnfNode.CautionaryAndAdvisoryGuidance]: "about",
+	[BnfNode.TreatmentSummary]: "treatment-summaries",
+	[BnfNode.Guidance]: "medicines-guidance",
+};
+
+/**
+ * Regular expression to target `xref` element within an HTML string.
+ * We can do this via a regex because HTML from the feed is always strict, valid XML and xrefs always follow a set format.
+ *
+ * Note the optional `sid`: some xrefs only have `idref` and some have both `idref` and `sid`.
+ */
 const xRefRegex =
 	/<xref type="([^"]*)"(?: sid="([^"]*)")? idref="([^"]*)">([^<].*?)<\/xref>/gm;
 
-const getHtmlReplacer =
+const getHtmlReplaceFunc =
 	(nodeModel: NodeModel) =>
-	async (
+	(
 		_match: string,
 		type: "drug" | "bookmark" | string,
 		sid: string | null,
@@ -35,45 +44,34 @@ const getHtmlReplacer =
 
 		if (!node) throw new Error(`Couldn't find node with id ${id}`);
 
-		let path = "";
-		switch (node.internal.type) {
-			case drugNodeType:
-				path = "drugs";
-				break;
-			case aboutSectionNodeType:
-			case cautionaryAndAdvisoryGuidanceNodeType:
-				path = "about";
-				break;
-			case treatmentSummaryNodeType:
-				path = "treatment-summaries";
-				break;
-			case guidanceNodeType:
-				path = "medicines-guidance";
-				break;
-			default:
-				throw new Error(
-					`Unsupported node type ${node.internal.type} for mapping to a path`
-				);
-		}
+		const path = nodeTypePathMap[node.internal.type as BnfNodeType],
+			slug = slugify(node.title);
 
-		// TODO: it seems a shame to have slugify again here and it's not returned as part of the node content
-		const slug = slugify(node.title);
+		if (!path)
+			throw new Error(
+				`Unsupported node type ${node.internal.type} for mapping to a path`
+			);
 
 		return `<a href="/${path}/${slug}/">${textContent}</a>`;
 	};
 
 /**
- * Custom Gatsby field extension to replace xrefs in HTML content with anchor tags
+ * Custom Gatsby field extension to process HTML string fields.
+ * It replaces xrefs with anchor tags, resolving the xref ids into URL paths to the relevant page.
+ *
+ * @example Use within a GraphQL schema like:
+ * 	content: String! @html
  *
  * See https://www.gatsbyjs.com/docs/reference/graphql-data-layer/schema-customization/#creating-custom-extensions
  */
 export const htmlFieldExtension = {
 	name: "html",
-	extend(_options: never, _prevFieldConfig: unknown): object {
+	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+	extend(_options: unknown, _prevFieldConfig: unknown) {
 		return {
-			async resolve(
+			resolve(
 				source: unknown,
-				args: never,
+				args: unknown,
 				context: FieldResolveContext,
 				info: unknown
 			) {
@@ -84,13 +82,13 @@ export const htmlFieldExtension = {
 					info
 				);
 
-				const result = await replaceAsync(
-					fieldValue,
-					xRefRegex,
-					getHtmlReplacer(context.nodeModel)
-				);
+				if (!fieldValue || typeof fieldValue !== "string")
+					throw new Error(`Expected HTML content field to be a string`);
 
-				return result;
+				return fieldValue.replace(
+					xRefRegex,
+					getHtmlReplaceFunc(context.nodeModel)
+				);
 			},
 		};
 	},
