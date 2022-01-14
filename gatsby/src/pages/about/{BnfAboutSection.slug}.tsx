@@ -3,10 +3,9 @@ import React, { FC } from "react";
 
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
 import { Grid, GridItem } from "@nice-digital/nds-grid";
-import { InPageNav } from "@nice-digital/nds-in-page-nav";
 import { PageHeader } from "@nice-digital/nds-page-header";
-import { StackedNav, StackedNavLink } from "@nice-digital/nds-stacked-nav";
 
+import { AboutSectionMenu } from "@/components/AboutSectionMenu/AboutSectionMenu";
 import { Layout } from "@/components/Layout/Layout";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
@@ -23,19 +22,11 @@ export type AboutDetailsPageProps = PageProps<{
 			content: string;
 		}[];
 	};
-	allBnfAboutSection: {
-		allAboutPages: {
-			id: string;
-			title: string;
-			slug: string;
-		}[];
-	};
 }>;
 
 const AboutDetailsPage: FC<AboutDetailsPageProps> = ({
 	data: {
 		currentAboutPage: { title, sections },
-		allBnfAboutSection: { allAboutPages },
 	},
 }) => {
 	sections = sections.sort((a, b) => a.order - b.order);
@@ -63,21 +54,7 @@ const AboutDetailsPage: FC<AboutDetailsPageProps> = ({
 
 			<Grid gutter="loose">
 				<GridItem cols={12} md={4} lg={3}>
-					<StackedNav
-						label="About"
-						link={{ destination: "/about/", elementType: Link }}
-					>
-						{allAboutPages.map((aboutPage) => (
-							<StackedNavLink
-								key={aboutPage.id}
-								destination={`/about/${aboutPage.slug}/`}
-								elementType={Link}
-								isCurrent={aboutPage.title === title}
-							>
-								<span dangerouslySetInnerHTML={{ __html: aboutPage.title }} />
-							</StackedNavLink>
-						))}
-					</StackedNav>
+					<AboutSectionMenu />
 				</GridItem>
 				<GridItem cols={12} md={8} lg={9}>
 					<Grid reverse gutter="loose">
@@ -130,13 +107,6 @@ export const query = graphql`
 				order
 				title
 				content
-			}
-		}
-		allBnfAboutSection(sort: { fields: order }) {
-			allAboutPages: nodes {
-				id
-				slug
-				title
 			}
 		}
 	}
