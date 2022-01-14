@@ -1,0 +1,6 @@
+@use '@nice-digital/nds-core/scss/core';
+
+.label {
+  border: 2px solid core.$nds-colour-border;
+  padding: 10px;
+}
