@@ -47,6 +47,9 @@ const AboutIndexPage: FC<AboutIndexPageProps> = ({
 						/>
 					</li>
 				))}
+				<li>
+					<Link to={`/about/labels/`}>Labels</Link>
+				</li>
 			</ol>
 		</Layout>
 	);
