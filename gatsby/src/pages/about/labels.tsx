@@ -9,6 +9,8 @@ import { Layout } from "@/components/Layout/Layout";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
+import styles from "./labels.module.scss";
+
 export type CautionaryAdvisoryLabelsPageProps = PageProps<{
 	allBnfCautionaryAndAdvisoryLabel: {
 		advisoryLabels: {
@@ -45,7 +47,7 @@ const CautionaryAdvisoryLabelsGuidancePage: FC<
 			</Breadcrumbs>
 
 			<PageHeader heading="Cautionary and advisory labels" />
-			<ol>
+			<ol className={styles.labelList}>
 				{advisoryLabels.map((label) => (
 					<li key={label.number}>
 						<CautionaryAndAdvisoryLabel {...label} />

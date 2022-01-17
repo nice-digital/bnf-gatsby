@@ -18,8 +18,13 @@ export const CautionaryAndAdvisoryLabel: React.FC<
 	number,
 }: CautionaryAndAdvisoryLabelProps) => {
 	return (
-		<>
-			<p className={styles.label}>I am a label! {description}</p>
-		</>
+		<section>
+			<h2>Label {number}</h2>
+			<div className={styles.label}>
+				<p>{englishRecommendation}</p>
+				<p>{welshRecommendation}</p>
+			</div>
+			<div dangerouslySetInnerHTML={{ __html: description }}></div>
+		</section>
 	);
 };
