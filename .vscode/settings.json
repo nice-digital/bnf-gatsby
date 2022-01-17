@@ -1,4 +1,3 @@
-
 {
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
@@ -22,7 +21,12 @@
     "**/coverage": true,
     "**/dist": true,
     "**/.cache": true,
-    "**/current": true
+    "**/current": true,
+    "**/bnf-website-build": true,
+    "**/bnfc-website-build": true,
+    "**/allure-report": true,
+    "**/allure-results": true,
+    "**/docker-output": true
   },
   "css.validate": false,
   "less.validate": false,
@@ -51,18 +55,18 @@
     "functional-tests/steps/then.ts"
   ],
   "workbench.colorCustomizations": {
-		"activityBar.background": "#768769",
-		"activityBar.foreground": "#fff",
+    "activityBar.background": "#768769",
+    "activityBar.foreground": "#fff",
     "activityBar.inactiveForeground": "#464c49",
     "activityBar.activeBackground": "#464c49",
     "activityBar.activeBorder": "#fff",
     "activityBarBadge.background": "#c4c6a5",
-		"titleBar.activeBackground": "#464c49",
-		"titleBar.activeForeground": "#fff"
+    "titleBar.activeBackground": "#464c49",
+    "titleBar.activeForeground": "#fff"
   },
   "jest.jestCommandLine": "npm test --",
   "jest.autoRun": {
     "watch": false,
     "onSave": "test-file"
- }
+  }
 }
