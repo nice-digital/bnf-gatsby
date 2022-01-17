@@ -1,20 +1,33 @@
-import { PageProps, Link } from "gatsby";
+import { PageProps, Link, graphql } from "gatsby";
 import React, { FC } from "react";
 
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
 import { PageHeader } from "@nice-digital/nds-page-header";
 
+import { AboutSectionMenu } from "@/components/AboutSectionMenu/AboutSectionMenu";
 import { Layout } from "@/components/Layout/Layout";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
 export type CautionaryAdvisoryLabelsGuidancePageProps = PageProps<{
-	// TODO
+	currentPage: {
+		title: string;
+		sections: {
+			order: number;
+			title: string;
+			slug: string;
+			content: string;
+		}[];
+	};
 }>;
 
 const CautionaryAdvisoryLabelsGuidancePage: FC<
 	CautionaryAdvisoryLabelsGuidancePageProps
-> = ({ data }) => {
+> = ({
+	data: {
+		currentPage: { title, sections },
+	},
+}) => {
 	const { siteTitleShort } = useSiteMetadata();
 
 	return (
@@ -33,8 +46,24 @@ const CautionaryAdvisoryLabelsGuidancePage: FC<
 			</Breadcrumbs>
 
 			<PageHeader heading="Guidance for cautionary and advisory labels" />
+
+			<AboutSectionMenu />
 		</Layout>
 	);
 };
+
+export const query = graphql`
+	query ($id: String) {
+		currentPage: bnfCautionaryAndAdvisoryGuidance(id: { eq: $id }) {
+			title
+			sections {
+				slug
+				order
+				title
+				content
+			}
+		}
+	}
+`;
 
 export default CautionaryAdvisoryLabelsGuidancePage;

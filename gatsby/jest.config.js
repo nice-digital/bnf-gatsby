@@ -22,6 +22,8 @@ module.exports = {
 		// Avoids errors like "multiple instances of React" with hooks
 		"^react(.*)$": "<rootDir>/node_modules/react$1",
 		"^gatsby(.*)$": "<rootDir>/node_modules/gatsby$1",
+		// See https://www.gatsbyjs.com/docs/reference/release-notes/migrating-from-v2-to-v3/#reach-router
+		"^@reach/router(.*)": "<rootDir>/node_modules/@gatsbyjs/reach-router$1",
 		// Aliases to match paths in tsconfig.json
 		...tsPathsModuleNameMappings,
 	},
