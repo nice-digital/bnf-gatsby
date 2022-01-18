@@ -1,3 +1,7 @@
 allure-results
 allure-report
 docker-output
+
+# Copies of the public output directories from the Gatsby build process, used for mounting inside the Docker network
+bnf-website-build
+bnfc-website-build

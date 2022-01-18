@@ -23,6 +23,7 @@ export const config: WebdriverIO.Config = {
 
 	logLevel: "error",
 
+	// Run against the production build of the Gatsby site by default as dev mode renders on demand so causes timing issues
 	baseUrl: "http://localhost:9000/",
 	reporters: [
 		"spec",

@@ -1,1 +1,6 @@
 node_modules
+allure-results
+allure-report
+docker-output
+bnf-website-build
+bnfc-website-build
