@@ -5,8 +5,8 @@
   "description": "Browser-based BDD functional tests for BNF and BNFC",
   "scripts": {
     "test": "wdio run wdio.conf.ts",
-    "test:docker": "npm test -- --hostname bnf-selenium-hub --baseUrl https://www.nice.org.uk",
-    "wait:docker": "wait-on https://www.nice.org.uk/ --timeout 10000",
+    "test:docker": "npm test -- --hostname bnf-selenium-hub --baseUrl http://bnf-functional-tests.nice.org.uk",
+    "wait:docker": "wait-on http://bnf-functional-tests.nice.org.uk --timeout 10000",
     "wait-then-test": "npm run wait:docker && npm run test:docker"
   },
   "keywords": [

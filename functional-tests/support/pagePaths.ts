@@ -1,6 +1,7 @@
 export const pagePaths = {
 	home: "/",
 	guidance: "/guidance/",
+	about: "/about/",
 } as const;
 
 export type PageName = keyof typeof pagePaths;
