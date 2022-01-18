@@ -1,5 +1,5 @@
 import { useLocation } from "@reach/router";
-import { PageProps, Link } from "gatsby";
+import { Link } from "gatsby";
 import { FC, useEffect, useState } from "react";
 
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
@@ -21,8 +21,6 @@ import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
 import { isBNF } from "../../site";
-
-export type SearchIndexPageProps = PageProps<{ someprop: "somevalue" }>;
 
 initialise({
 	baseURL: process.env.GATSBY_SEARCH_URL as InitialiseOptions["baseURL"],
@@ -75,9 +73,11 @@ const summaryText = (data: SearchResultsSuccess) => {
 	if (resultCount !== 0) {
 		return <>{summaryRecordCount(data)}</>;
 	}
+
+	return null;
 };
 
-const SearchIndexPage: FC<SearchIndexPageProps> = () => {
+const SearchIndexPage: FC = () => {
 	const { siteTitleShort } = useSiteMetadata();
 	const location = useLocation();
 
