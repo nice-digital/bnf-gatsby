@@ -55,26 +55,38 @@ describe("Search Page", () => {
 
 		it("should render the incorrect spelling and indicate it returned no results...", async () => {
 			render(<SearchPage />);
+
 			await waitFor(() => {
-				const view = screen.getByText(/your search for/i);
-				expect(within(view).getByText(/ocelot/i)).toBeInTheDocument();
+				expect(
+					screen.getByText(/your search for/i, { exact: false }).textContent
+				).toContain("Your search for ocelot returned no results");
 			});
 		});
 
-		it("should render the corrected spelling", async () => {
+		it("should render the corrected spelling after the result count", async () => {
 			render(<SearchPage />);
 			await waitFor(() => {
-				const view = screen.getByText(/your search for/i);
-				expect(within(view).getByText(/oculo/i)).toBeInTheDocument();
+				expect(
+					screen.getByText(/Showing 1 to 1 of 1/i, { exact: false }).textContent
+				).toContain("for oculo");
 			});
 		});
 
 		it("should render the result count", async () => {
 			render(<SearchPage />);
+
 			await waitFor(() => {
-				expect(
-					screen.getByText(/showing 1 to 1 of 1 for/i)
-				).toBeInTheDocument();
+				expect(screen.getByText(/showing 1 to 1 of 1/i)).toBeInTheDocument();
+			});
+		});
+
+		it("should format the result summary with bold highligting for the search query(ies)", async () => {
+			render(<SearchPage />);
+			await waitFor(() => {
+				const resultSummary = screen.getByText(/your search for/i);
+				expect(resultSummary.innerHTML).toEqual(
+					"Your search for <strong>ocelot</strong> returned no results<br>Showing 1 to 1 of 1 for <strong>oculo</strong>"
+				);
 			});
 		});
 	});
