@@ -24,11 +24,40 @@ services:
     container_name: bnf-test-runner
     depends_on:
       - bnf-selenium-hub
+      - bnf-website
+      - bnfc-website
     environment:
       - TEAMCITY_VERSION
     volumes:
       - ./:/bnf-gatsby/tests
       - /bnf-gatsby/tests/node_modules/
+
+  bnf-website:
+    image: nginx
+    container_name: bnf-website
+    environment:
+      - NGINX_HOST=bnf-functional-tests.nice.org.uk
+    volumes:
+      # We expect the built BNF website to have been copied into this bnf-website-build folder.
+      # This happens automatically if you run `npm run build:bnf` from the Gatsby folder
+      - ./bnf-website-build:/usr/share/nginx/html
+    networks:
+      default:
+        aliases:
+          # Make sure the app uses a nice.org.uk domain so that the cookie banner license works
+          - bnf-functional-tests.nice.org.uk
+
+  bnfc-website:
+    image: nginx
+    container_name: bnfc-website
+    environment:
+      - NGINX_HOST=bnfc-functional-tests.nice.org.uk
+    volumes:
+      - ./bnfc-website-build:/usr/share/nginx/html
+    networks:
+      default:
+        aliases:
+          - bnfc-functional-tests.nice.org.uk
 
 networks:
   default:
