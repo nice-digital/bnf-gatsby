@@ -1,10 +1,7 @@
 export const pagePaths = {
 	home: "/",
 	guidance: "/guidance/",
-<<<<<<< HEAD
-=======
 	about: "/about/",
->>>>>>> main
 } as const;
 
 export type PageName = keyof typeof pagePaths;
