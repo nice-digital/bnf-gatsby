@@ -1,4 +1,4 @@
-import { waitFor, render, screen } from "@testing-library/react";
+import { waitFor, render, screen, within } from "@testing-library/react";
 import React from "react";
 
 import SearchPage from "./../search/index";
@@ -6,20 +6,13 @@ import SearchPage from "./../search/index";
 jest.useFakeTimers();
 
 describe("Search Page", () => {
-	it("should render a loading message before the request comes in", async () => {
+	it("should render a loading message in the page header lead paragraph before the request comes in", async () => {
 		render(<SearchPage />);
-		const loadingElements = screen.getAllByText(/loading search results/i);
-		expect(loadingElements).toHaveLength(2);
-		await waitFor(() => {
-			expect(screen.queryAllByText("Loading search results")).toHaveLength(0);
-		});
-	});
-
-	it.only("should render a loading message in the page header lead paragraph before the request comes in", async () => {
-		render(<SearchPage />);
-		const pageHeader = screen.getByText("Loading search results", {
-			selector: ".page-header__lead",
-		});
+		expect(
+			screen.getByText("Loading search results", {
+				selector: ".page-header__lead",
+			})
+		).toBeInTheDocument();
 
 		await waitFor(() => {
 			expect(
@@ -31,8 +24,21 @@ describe("Search Page", () => {
 	});
 
 	it("should render a loading message in the breadcrumb before the request comes in", async () => {
-		screen.getByRole("listitem", {
-			name: "Loading search results",
+		render(<SearchPage />);
+
+		const navigation = screen.getByRole("navigation", {
+			name: /breadcrumbs/i,
+		});
+
+		const loadingBreadcrumb = within(navigation).getByText(
+			/loading search results/i
+		);
+
+		expect(loadingBreadcrumb).toBeInTheDocument();
+
+		await waitFor(() => {
+			expect(within(navigation).queryByText(/loading search results/i))
+				.toBeNull;
 		});
 	});
 });
