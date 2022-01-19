@@ -1,6 +1,2 @@
-module.exports = {
-	Footer: jest.fn(() => (): null => null),
-	Header: jest.fn(() => (): null => null),
-};
-
-export {};
+export const Footer = jest.fn().mockReturnValue(null);
+export const Header = jest.fn().mockReturnValue(null);

@@ -4,9 +4,9 @@ import "jest-extended";
 import { type SiteMetaData } from "./hooks/useSiteMetadata";
 
 // SiteHeader uses useStaticQuery in it, so easier to mock it globally as a no-op
-jest.mock("./components/SiteHeader/SiteHeader.tsx", () => {
+jest.mock("./components/SiteHeader/SiteHeader", () => {
 	return {
-		SiteHeader: (): null => null,
+		SiteHeader: jest.fn((): null => null),
 	};
 });
 

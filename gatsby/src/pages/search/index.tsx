@@ -27,7 +27,7 @@ initialise({
 	index: isBNF ? "bnf" : "bnfc",
 });
 
-const summaryRecordCount = ({
+const SummaryRecordCount = ({
 	firstResult,
 	lastResult,
 	resultCount,
@@ -46,7 +46,7 @@ const summaryRecordCount = ({
 	);
 };
 
-const summaryText = (data: SearchResultsSuccess) => {
+const SummaryText = (data: SearchResultsSuccess) => {
 	const { originalSearch, finalSearchText, resultCount } = data;
 
 	if (resultCount === 0 && !originalSearch) {
@@ -65,13 +65,13 @@ const summaryText = (data: SearchResultsSuccess) => {
 				Your search for <strong>{originalSearch.searchText}</strong> returned no
 				results
 				<br />
-				{summaryRecordCount(data)}
+				<SummaryRecordCount {...data} />
 			</>
 		);
 	}
 
 	if (resultCount !== 0) {
-		return <>{summaryRecordCount(data)}</>;
+		return <SummaryRecordCount {...data} />;
 	}
 
 	return null;
@@ -129,7 +129,9 @@ const SearchIndexPage: FC = () => {
 
 			<PageHeader
 				heading={`${siteTitleShort} search results`}
-				lead={loading ? "Loading search results" : data && summaryText(data)}
+				lead={
+					loading ? "Loading search results" : data && <SummaryText {...data} />
+				}
 				id="content-start"
 			/>
 
