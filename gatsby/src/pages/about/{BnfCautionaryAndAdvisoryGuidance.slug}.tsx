@@ -1,4 +1,4 @@
-import { type PageProps, graphql } from "gatsby";
+import { graphql } from "gatsby";
 import React, { type FC } from "react";
 
 import { AboutSectionMenu } from "@/components/AboutSectionMenu/AboutSectionMenu";
@@ -7,15 +7,17 @@ import { RecordSectionsContent } from "@/components/RecordSectionsContent/Record
 
 import { type RecordSection } from "src/types";
 
-export type CautionaryAdvisoryLabelsGuidancePageProps = PageProps<{
-	currentPage: {
-		title: string;
-		sections: RecordSection[];
+export type CautionaryAdvisoryGuidancePageProps = {
+	data: {
+		currentPage: {
+			title: string;
+			sections: RecordSection[];
+		};
 	};
-}>;
+};
 
-const CautionaryAdvisoryLabelsGuidancePage: FC<
-	CautionaryAdvisoryLabelsGuidancePageProps
+const CautionaryAdvisoryGuidancePage: FC<
+	CautionaryAdvisoryGuidancePageProps
 > = ({
 	data: {
 		currentPage: { title, sections },
@@ -42,4 +44,4 @@ export const query = graphql`
 	}
 `;
 
-export default CautionaryAdvisoryLabelsGuidancePage;
+export default CautionaryAdvisoryGuidancePage;

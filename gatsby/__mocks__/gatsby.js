@@ -8,7 +8,7 @@ const navigate = jest.fn();
 module.exports = {
 	...gatsby,
 	navigate: navigate,
-	graphql: jest.fn(),
+	graphql: jest.fn((str) => str[0]),
 	Link: jest.fn().mockImplementation(
 		// these props are invalid for an `a` tag
 		({

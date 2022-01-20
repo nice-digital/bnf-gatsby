@@ -2,7 +2,8 @@ import { useStaticQuery } from "gatsby";
 
 import { useAboutPages, type AboutPages } from "./useAboutPages";
 
-(useStaticQuery as jest.Mock).mockReturnValue({
+// Export this mock data so we can use it elsewhere
+export const mockAboutPagesQueryData: AboutPages = {
 	allBnfAboutSection: {
 		aboutSectionPages: [
 			{
@@ -23,7 +24,9 @@ import { useAboutPages, type AboutPages } from "./useAboutPages";
 			},
 		],
 	},
-} as AboutPages);
+};
+
+(useStaticQuery as jest.Mock).mockReturnValue(mockAboutPagesQueryData);
 
 describe("useAboutPages", () => {
 	const aboutPages = useAboutPages();

@@ -1,4 +1,4 @@
-import { graphql, type PageProps } from "gatsby";
+import { graphql } from "gatsby";
 import React, { type FC } from "react";
 
 import { AboutSectionMenu } from "@/components/AboutSectionMenu/AboutSectionMenu";
@@ -7,14 +7,16 @@ import { RecordSectionsContent } from "@/components/RecordSectionsContent/Record
 
 import { type RecordSection } from "src/types";
 
-export type AboutDetailsPageProps = PageProps<{
-	currentAboutPage: {
-		title: string;
-		sections: RecordSection[];
+export type AboutSectionPageProps = {
+	data: {
+		currentAboutPage: {
+			title: string;
+			sections: RecordSection[];
+		};
 	};
-}>;
+};
 
-const AboutDetailsPage: FC<AboutDetailsPageProps> = ({
+const AboutSectionPage: FC<AboutSectionPageProps> = ({
 	data: {
 		currentAboutPage: { title, sections },
 	},
@@ -40,4 +42,4 @@ export const query = graphql`
 	}
 `;
 
-export default AboutDetailsPage;
+export default AboutSectionPage;

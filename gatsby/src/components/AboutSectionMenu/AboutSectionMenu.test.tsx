@@ -2,32 +2,11 @@ import { useLocation } from "@reach/router";
 import { render, screen } from "@testing-library/react";
 import { useStaticQuery } from "gatsby";
 
-import { type AboutPages } from "@/hooks/useAboutPages";
+import { mockAboutPagesQueryData } from "@/hooks/useAboutPages.test";
 
 import { AboutSectionMenu } from "./AboutSectionMenu";
 
-(useStaticQuery as jest.Mock).mockReturnValue({
-	allBnfAboutSection: {
-		aboutSectionPages: [
-			{
-				slug: "changes",
-				title: "Changes",
-			},
-			{
-				slug: "publication-information",
-				title: "Publication <i>information</i>",
-			},
-		],
-	},
-	allBnfCautionaryAndAdvisoryGuidance: {
-		labelsGuidancePages: [
-			{
-				slug: "guidance-for-cautionary-and-advisory-labels",
-				title: "Guidance for cautionary and advisory labels",
-			},
-		],
-	},
-} as AboutPages);
+(useStaticQuery as jest.Mock).mockReturnValue(mockAboutPagesQueryData);
 
 describe("AboutSectionMenu", () => {
 	it("should render labelled navigation wrapper", () => {
