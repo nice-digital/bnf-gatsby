@@ -6,7 +6,7 @@ const baseConfig = require("./../jest.config"),
 // Translation of TypeScript path mappings to jest paths: https://kulshekhar.github.io/ts-jest/docs/getting-started/paths-mapping
 const tsPathsModuleNameMappings = pathsToModuleNameMapper(
 	compilerOptions.paths,
-	{ prefix: "<rootDir>/../" }
+	{ prefix: "<rootDir>/" }
 );
 
 module.exports = {
@@ -28,7 +28,7 @@ module.exports = {
 		...tsPathsModuleNameMappings,
 	},
 	transformIgnorePatterns: ["/node_modules/", "/dist/"],
-	setupFilesAfterEnv: ["./src/jest.setup.ts"],
+	setupFilesAfterEnv: ["./src/jest.setup.ts", "jest-extended/all"],
 	testPathIgnorePatterns: ["./config/"],
 	testURL: "https://bnf-gatsby-tests.nice.org.uk",
 	testEnvironment: "jsdom",

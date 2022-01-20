@@ -1,4 +1,4 @@
-import { graphql, PageProps, Link } from "gatsby";
+import { Link } from "gatsby";
 import { FC } from "react";
 
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
@@ -6,23 +6,12 @@ import { PageHeader } from "@nice-digital/nds-page-header";
 
 import { Layout } from "@/components/Layout/Layout";
 import { SEO } from "@/components/SEO/SEO";
+import { useAboutPages } from "@/hooks/useAboutPages";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
-export type AboutIndexPageProps = PageProps<{
-	allAboutPages: {
-		sectionList: {
-			title: string;
-			slug: string;
-		}[];
-	};
-}>;
-
-const AboutIndexPage: FC<AboutIndexPageProps> = ({
-	data: {
-		allAboutPages: { sectionList },
-	},
-}) => {
-	const { siteTitleShort } = useSiteMetadata();
+const AboutIndexPage: FC = () => {
+	const { siteTitleShort } = useSiteMetadata(),
+		aboutPages = useAboutPages();
 
 	return (
 		<Layout>
@@ -39,31 +28,14 @@ const AboutIndexPage: FC<AboutIndexPageProps> = ({
 			<PageHeader heading={`About ${siteTitleShort}`} />
 
 			<ol>
-				{sectionList.map(({ slug, title }) => (
-					<li key={slug}>
-						<Link
-							to={`/about/${slug}/`}
-							dangerouslySetInnerHTML={{ __html: title }}
-						/>
+				{aboutPages.map(({ href, title }) => (
+					<li key={href}>
+						<Link to={href} dangerouslySetInnerHTML={{ __html: title }} />
 					</li>
 				))}
-				<li>
-					<Link to={`/about/labels/`}>Labels</Link>
-				</li>
 			</ol>
 		</Layout>
 	);
 };
-
-export const query = graphql`
-	{
-		allAboutPages: allBnfAboutSection(sort: { fields: order, order: ASC }) {
-			sectionList: nodes {
-				slug
-				title
-			}
-		}
-	}
-`;
 
 export default AboutIndexPage;

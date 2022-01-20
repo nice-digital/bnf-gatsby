@@ -1,0 +1,29 @@
+:global {
+  // Some record section e.g. "Approximate Conversions and Units" in the about section
+  // contain tables so we need the table component styling from NDS
+  @import '@nice-digital/nds-table/scss/table';
+
+  td {
+    // Some table (e.g. Conversion of pounds to kilograms) are just so narrow
+    // they look well weird without a bit of extra width
+    min-width: 10ch;
+  }
+}
+
+.firstHeading {
+  // Removing the margin allows the first heading to sit flush with the other columns e.g. stacked nav
+  margin-top: 0;
+}
+
+/* stylelint-disable selector-class-pattern -- Classes coming from the feed HTML */
+:global(.contact-details) {
+  // Style addresses/contact details
+
+  p {
+    margin: 0;
+  }
+
+  :global(.contact) {
+    font-style: italic;
+  }
+}

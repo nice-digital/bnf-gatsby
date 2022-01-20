@@ -35,7 +35,7 @@ export const SEO: React.FC<SEOProps> = ({
 			<Helmet
 				htmlAttributes={{ class: globalCSSClassName }}
 				title={title}
-				titleTemplate={`%s | ${siteTitleShort} | NICE`}
+				titleTemplate={`%s | ${siteTitleShort} content published by NICE`}
 				defaultTitle={`${siteTitleShort} (${siteTitleLong}) | NICE`}
 			>
 				<html lang="en-GB" />

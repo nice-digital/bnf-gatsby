@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DetailsPageLayout Body should match snapshot for body 1`] = `
+<div
+  class="grid grid--loose"
+  data-testid="body"
+>
+  <div
+    data-g="12 md:4 lg:3"
+  >
+    Menu
+  </div>
+  <div
+    data-g="12 md:8 lg:9"
+  >
+    <div
+      class="grid grid--rev grid--loose"
+    >
+      <div
+        data-g="12 lg:3"
+      >
+        <nav
+          aria-labelledby="on-this-page"
+        >
+          <h2
+            class="h4"
+            id="on-this-page"
+          >
+            On this page
+          </h2>
+          <ol
+            aria-label="Jump links to sections on this page"
+          >
+            <li>
+              TODO
+            </li>
+          </ol>
+        </nav>
+      </div>
+      <div
+        data-g="12 lg:9"
+      >
+        Body content
+      </div>
+    </div>
+  </div>
+</div>
+`;
