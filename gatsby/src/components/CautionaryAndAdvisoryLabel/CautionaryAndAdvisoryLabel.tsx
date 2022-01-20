@@ -1,8 +1,8 @@
-import React, { ReactNode } from "react";
+import React from "react";
 
 import styles from "./CautionaryAndAdvisoryLabel.module.scss";
 
-type CautionaryAndAdvisoryLabelProps = {
+export type CautionaryAndAdvisoryLabelProps = {
 	description: string;
 	englishRecommendation: string;
 	welshRecommendation: string;
@@ -21,8 +21,8 @@ export const CautionaryAndAdvisoryLabel: React.FC<
 		<section>
 			<h2>Label {number}</h2>
 			<div className={styles.label}>
-				<p>{englishRecommendation}</p>
-				<p>{welshRecommendation}</p>
+				<p lang="en-GB">{englishRecommendation}</p>
+				<p lang="cy">{welshRecommendation}</p>
 			</div>
 			<div dangerouslySetInnerHTML={{ __html: description }}></div>
 		</section>
