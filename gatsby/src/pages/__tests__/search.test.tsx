@@ -3,6 +3,7 @@ import React from "react";
 
 import { search } from "@nice-digital/search-client";
 
+import searchResponseJson from "@/mockdata/search-response.json";
 import spellCheckJsonResponse from "@/mockdata/spellcheck-response.json";
 
 import SearchPage from "./../search/index";
@@ -46,12 +47,64 @@ describe("Search Page", () => {
 		});
 	});
 
+	describe("error handling", () => {
+		beforeEach(() => {
+			searchMock.mockResolvedValue({ failed: true });
+		});
+
+		it("should fall back to error message if the response doesn't come back", async () => {
+			render(<SearchPage />);
+
+			await waitFor(() => {
+				expect(screen.getByText(/Error Page/i)).toBeInTheDocument();
+			});
+		});
+	});
+
+	describe("Screen reader announcements", () => {
+		it.todo(
+			"should make a screen reader announcement when the search results have loaded"
+		);
+		it.todo(
+			"should make a screen reader announcement when the search result response has errored"
+		);
+		it.todo(
+			"should make a screen reader announcement when the search result response is loading"
+		);
+	});
+
+	describe("Breadcrumbs", () => {
+		it.todo("should not link to the original query if we're on page 1");
+		it.todo(
+			"should include a link to the original query if we're on page >= 2"
+		);
+	});
+
+	describe("result summary", () => {
+		beforeEach(() => {
+			searchMock.mockResolvedValue(searchResponseJson);
+		});
+
+		it("should render the result summary record count information", async () => {
+			render(<SearchPage />);
+
+			await waitFor(() => {
+				expect(screen.getByText(/showing 1 to 10 of 234/i)).toBeInTheDocument();
+			});
+		});
+	});
+
+	describe("pagination", () => {
+		//TODO implement page limit on search results page if required
+		it.todo(
+			"should not show any pagination if there are fewer results than the supplied page limit"
+		);
+	});
+
 	describe("spelling suggestions", () => {
 		beforeEach(() => {
 			searchMock.mockResolvedValue(spellCheckJsonResponse);
 		});
-
-		// Your search for <strong> ocelot </strong> returned no results <br /> Showing 1 to 1 of 1 for <strong> oculo </strong>
 
 		it("should render the incorrect spelling and indicate it returned no results...", async () => {
 			render(<SearchPage />);
@@ -72,15 +125,7 @@ describe("Search Page", () => {
 			});
 		});
 
-		it("should render the result count", async () => {
-			render(<SearchPage />);
-
-			await waitFor(() => {
-				expect(screen.getByText(/showing 1 to 1 of 1/i)).toBeInTheDocument();
-			});
-		});
-
-		it("should format the result summary with bold highligting for the search query(ies)", async () => {
+		it("should format the spellchecked result summary with bold highligting for the search query(ies)", async () => {
 			render(<SearchPage />);
 			await waitFor(() => {
 				const resultSummary = screen.getByText(/your search for/i);
