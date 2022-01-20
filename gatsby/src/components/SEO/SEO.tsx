@@ -49,7 +49,10 @@ export const SEO: React.FC<SEOProps> = ({
 				<meta property="og:type" content="website" />
 				<meta
 					property="og:title"
-					content={(title ? `${title} | ` : "") + `${siteTitleShort} | NICE`}
+					content={
+						(title ? `${title} | ` : "") +
+						`${siteTitleShort} content published by NICE`
+					}
 				/>
 				<meta property="og:image" content={`${siteUrl}/open-graph-image.png`} />
 				<meta property="og:image:width" content="1200" />
