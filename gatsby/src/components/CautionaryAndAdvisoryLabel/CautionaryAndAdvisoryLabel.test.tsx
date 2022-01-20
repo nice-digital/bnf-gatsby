@@ -23,7 +23,7 @@ describe("CautionaryAndAdvisoryLabel", () => {
 	it("Should contain an English language recommendation", () => {
 		render(<CautionaryAndAdvisoryLabel {...props} />);
 		const recommendation = screen.getByText(props.englishRecommendation);
-		expect(recommendation).toHaveAttribute("lang", "en-GB");
+		expect(recommendation).toBeInTheDocument();
 	});
 
 	it("Should contain a Welsh language recommendation", () => {
@@ -37,4 +37,16 @@ describe("CautionaryAndAdvisoryLabel", () => {
 		const description = screen.getByText("Test description");
 		expect(description).toBeInTheDocument();
 	});
+
+	it("should create an h2 with an appropriate id for the section title", () => {
+		render(<CautionaryAndAdvisoryLabel {...props} />);
+		const heading = screen.getByRole("heading", { name: "Label 3" });
+		expect(heading).toHaveProperty("id", "label-3");
+	});
+
+	it.todo("Should render a section and label it with the section title");
+	// Select region by name as per RecordSectionsContent...
+
+	it.todo("Should contain a styled label with a specific class name");
+	// Select by concatenating english and welsh recommendations
 });

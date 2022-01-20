@@ -23,7 +23,8 @@ const CautionaryAdvisoryLabelsGuidancePage: FC<
 }) => (
 	<DetailsPageLayout
 		titleHtml={title}
-		parentBreadcrumbs={[{ href: "/about", text: "About" }]}
+		parentTitleParts={["About"]}
+		parentBreadcrumbs={[{ href: "/about/", text: "About" }]}
 		menu={AboutSectionMenu}
 	>
 		<RecordSectionsContent sections={sections} />

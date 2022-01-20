@@ -18,10 +18,10 @@ export const CautionaryAndAdvisoryLabel: React.FC<
 	number,
 }: CautionaryAndAdvisoryLabelProps) => {
 	return (
-		<section>
-			<h2>Label {number}</h2>
+		<section aria-labelledby={`label-${number}`}>
+			<h2 id={`label-${number}`}>Label {number}</h2>
 			<div className={styles.label}>
-				<p lang="en-GB">{englishRecommendation}</p>
+				<p>{englishRecommendation}</p>
 				<p lang="cy">{welshRecommendation}</p>
 			</div>
 			<div dangerouslySetInnerHTML={{ __html: description }}></div>

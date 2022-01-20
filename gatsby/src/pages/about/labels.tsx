@@ -1,52 +1,39 @@
-import { PageProps, Link, graphql } from "gatsby";
+import { Link, graphql } from "gatsby";
 import React, { FC } from "react";
 
-import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
-import { PageHeader } from "@nice-digital/nds-page-header";
-
+import { AboutSectionMenu } from "@/components/AboutSectionMenu/AboutSectionMenu";
 import { CautionaryAndAdvisoryLabel } from "@/components/CautionaryAndAdvisoryLabel/CautionaryAndAdvisoryLabel";
-import { Layout } from "@/components/Layout/Layout";
-import { SEO } from "@/components/SEO/SEO";
-import { useSiteMetadata } from "@/hooks/useSiteMetadata";
+import { DetailsPageLayout } from "@/components/DetailsPageLayout/DetailsPageLayout";
 
 import styles from "./labels.module.scss";
 
-export type CautionaryAdvisoryLabelsPageProps = PageProps<{
-	allBnfCautionaryAndAdvisoryLabel: {
-		advisoryLabels: {
-			description: string;
-			englishRecommendation: string;
-			welshRecommendation: string;
-			number: number;
-		}[];
+export type CautionaryAdvisoryLabelsPageProps = {
+	data: {
+		allBnfCautionaryAndAdvisoryLabel: {
+			advisoryLabels: {
+				description: string;
+				englishRecommendation: string;
+				welshRecommendation: string;
+				number: number;
+			}[];
+		};
 	};
-}>;
+};
 
-const CautionaryAdvisoryLabelsGuidancePage: FC<
+export const CautionaryAdvisoryLabelsGuidancePage: FC<
 	CautionaryAdvisoryLabelsPageProps
 > = ({
 	data: {
 		allBnfCautionaryAndAdvisoryLabel: { advisoryLabels },
 	},
 }) => {
-	const { siteTitleShort } = useSiteMetadata();
-
 	return (
-		<Layout>
-			<SEO title={`Guidance for cautionary and advisory labels | About`} />
-
-			<Breadcrumbs>
-				<Breadcrumb to="https://www.nice.org.uk/">NICE</Breadcrumb>
-				<Breadcrumb to="/" elementType={Link}>
-					{siteTitleShort}
-				</Breadcrumb>
-				<Breadcrumb to="/about/" elementType={Link}>
-					About
-				</Breadcrumb>
-				<Breadcrumb>Guidance for cautionary and advisory labels</Breadcrumb>
-			</Breadcrumbs>
-
-			<PageHeader heading="Cautionary and advisory labels" />
+		<DetailsPageLayout
+			titleHtml={"Guidance for cautionary and advisory labels"}
+			parentTitleParts={["About"]}
+			parentBreadcrumbs={[{ href: "/about/", text: "About" }]}
+			menu={AboutSectionMenu}
+		>
 			<ol className={styles.labelList}>
 				{advisoryLabels.map((label) => (
 					<li key={label.number}>
@@ -54,7 +41,7 @@ const CautionaryAdvisoryLabelsGuidancePage: FC<
 					</li>
 				))}
 			</ol>
-		</Layout>
+		</DetailsPageLayout>
 	);
 };
 
