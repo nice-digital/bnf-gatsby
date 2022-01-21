@@ -6,6 +6,7 @@ exports[`DetailsPageLayout Body should match snapshot for body 1`] = `
   data-testid="body"
 >
   <div
+    class="hide-print"
     data-g="12 md:4 lg:3"
   >
     Menu
@@ -21,6 +22,7 @@ exports[`DetailsPageLayout Body should match snapshot for body 1`] = `
       >
         <nav
           aria-labelledby="on-this-page"
+          class="hide-print"
         >
           <h2
             class="h4"

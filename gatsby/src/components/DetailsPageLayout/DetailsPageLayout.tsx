@@ -69,13 +69,13 @@ export const DetailsPageLayout: React.FC<DetailsPageLayoutProps> = ({
 			/>
 
 			<Grid gutter="loose" data-testid="body">
-				<GridItem cols={12} md={4} lg={3}>
+				<GridItem cols={12} md={4} lg={3} className="hide-print">
 					<Menu />
 				</GridItem>
 				<GridItem cols={12} md={8} lg={9}>
 					<Grid reverse gutter="loose">
 						<GridItem cols={12} lg={3}>
-							<nav aria-labelledby="on-this-page">
+							<nav aria-labelledby="on-this-page" className="hide-print">
 								<h2 id="on-this-page" className="h4">
 									On this page
 								</h2>
