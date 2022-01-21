@@ -26,6 +26,10 @@ const AboutSectionPage: FC<AboutSectionPageProps> = ({
 		parentTitleParts={["About"]}
 		parentBreadcrumbs={[{ href: "/about/", text: "About" }]}
 		menu={AboutSectionMenu}
+		sections={sections.map(({ slug, title }) => ({
+			id: slug,
+			title,
+		}))}
 	>
 		<RecordSectionsContent sections={sections} />
 	</DetailsPageLayout>

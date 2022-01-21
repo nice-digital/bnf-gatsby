@@ -7,8 +7,7 @@ exports[`CautionaryAndAdvisoryLabel should render the correct content within eac
   <h2
     id="label-3"
   >
-    Label 
-    3
+    Label 3
   </h2>
   <div
     class="label"

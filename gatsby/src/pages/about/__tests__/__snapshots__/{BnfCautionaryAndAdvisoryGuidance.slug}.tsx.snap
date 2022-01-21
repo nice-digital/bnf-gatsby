@@ -220,24 +220,37 @@ exports[`CautionaryAdvisoryGuidancePage should match snapshot for page contents 
           >
             <nav
               aria-labelledby="on-this-page"
-              class="hide-print"
+              class="wrapper"
             >
               <h2
-                class="h4"
+                class="heading"
                 id="on-this-page"
               >
                 On this page
               </h2>
               <ol
                 aria-label="Jump links to sections on this page"
+                class="list"
               >
                 <li>
-                  TODO
+                  <a
+                    href="#introduction"
+                  >
+                    Introduction
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#original-packs"
+                  >
+                    Original packs
+                  </a>
                 </li>
               </ol>
             </nav>
           </div>
           <div
+            class="body"
             data-g="12 lg:9"
           >
             <section
