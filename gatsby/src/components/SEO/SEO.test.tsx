@@ -2,6 +2,8 @@
 import { render, waitFor } from "@testing-library/react";
 import React from "react";
 
+import { useSiteMetadata } from "@/hooks/useSiteMetadata";
+
 import { SEO } from "./SEO";
 
 describe("SEO", () => {
@@ -11,6 +13,23 @@ describe("SEO", () => {
 			expect(document.querySelector("html")?.getAttribute("lang")).toEqual(
 				"en-GB"
 			);
+		});
+	});
+
+	it("should add BNF specific CSS class to html root element", async () => {
+		render(<SEO />);
+		await waitFor(() => {
+			expect(document.documentElement).toHaveClass("site-bnf");
+		});
+	});
+
+	it("should add BNFC specific CSS class to html root element", async () => {
+		(useSiteMetadata as jest.Mock).mockImplementationOnce(() => ({
+			isBNF: false,
+		}));
+		render(<SEO />);
+		await waitFor(() => {
+			expect(document.documentElement).toHaveClass("site-bnfc");
 		});
 	});
 
