@@ -2,6 +2,12 @@ import { slugify, slugFieldExtension } from "./slug";
 
 describe("slug field extension", () => {
 	describe("slugify", () => {
+		it("should throw error if passed an falsey string", () => {
+			expect(() => {
+				slugify("");
+			}).toThrow("Cannot slugify an empty string");
+		});
+
 		it("should lowercase", () => {
 			expect(slugify("THING")).toBe("thing");
 		});
