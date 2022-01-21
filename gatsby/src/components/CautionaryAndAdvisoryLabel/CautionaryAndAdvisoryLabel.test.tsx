@@ -14,25 +14,25 @@ const props: CautionaryAndAdvisoryLabelProps = {
 };
 
 describe("CautionaryAndAdvisoryLabel", () => {
-	it("Should render a heading containing the label number", () => {
+	it("should render a heading containing the label number", () => {
 		render(<CautionaryAndAdvisoryLabel {...props} />);
 		const heading = screen.getByRole("heading", { name: "Label 3" });
 		expect(heading).toBeInTheDocument();
 	});
 
-	it("Should contain an English language recommendation", () => {
+	it("should contain an English language recommendation", () => {
 		render(<CautionaryAndAdvisoryLabel {...props} />);
 		const recommendation = screen.getByText(props.englishRecommendation);
 		expect(recommendation).toBeInTheDocument();
 	});
 
-	it("Should contain a Welsh language recommendation", () => {
+	it("should contain a Welsh language recommendation", () => {
 		render(<CautionaryAndAdvisoryLabel {...props} />);
 		const recommendation = screen.getByText(props.welshRecommendation);
 		expect(recommendation).toHaveAttribute("lang", "cy");
 	});
 
-	it("Should contain an HTML description of the label", () => {
+	it("should contain an HTML description of the label", () => {
 		render(<CautionaryAndAdvisoryLabel {...props} />);
 		const description = screen.getByText("Test description");
 		expect(description).toBeInTheDocument();
@@ -44,9 +44,16 @@ describe("CautionaryAndAdvisoryLabel", () => {
 		expect(heading).toHaveProperty("id", "label-3");
 	});
 
-	it.todo("Should render a section and label it with the section title");
-	// Select region by name as per RecordSectionsContent...
+	it("should render the correct content within each section", () => {
+		render(<CautionaryAndAdvisoryLabel {...props} />);
+		const section = screen.getByRole("region", { name: "Label 3" });
+		expect(section).toMatchSnapshot();
+	});
 
-	it.todo("Should contain a styled label with a specific class name");
-	// Select by concatenating english and welsh recommendations
+	it("should add a CSS class to the label itself to show a border", () => {
+		render(<CautionaryAndAdvisoryLabel {...props} />);
+		// eslint-disable-next-line testing-library/no-node-access
+		const label = screen.getByText(props.englishRecommendation).closest("div");
+		expect(label).toHaveClass("label");
+	});
 });
