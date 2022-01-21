@@ -119,6 +119,7 @@ exports[`CautionaryAdvisoryGuidancePage should match snapshot for page contents 
       data-testid="body"
     >
       <div
+        class="hide-print"
         data-g="12 md:4 lg:3"
       >
         <nav
@@ -219,6 +220,7 @@ exports[`CautionaryAdvisoryGuidancePage should match snapshot for page contents 
           >
             <nav
               aria-labelledby="on-this-page"
+              class="hide-print"
             >
               <h2
                 class="h4"

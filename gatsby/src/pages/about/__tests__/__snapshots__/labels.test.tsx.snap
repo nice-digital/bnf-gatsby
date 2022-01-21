@@ -121,6 +121,7 @@ exports[`Labels page LabelsPage should match snapshot for page contents 1`] = `
       data-testid="body"
     >
       <div
+        class="hide-print"
         data-g="12 md:4 lg:3"
       >
         <nav
@@ -221,6 +222,7 @@ exports[`Labels page LabelsPage should match snapshot for page contents 1`] = `
           >
             <nav
               aria-labelledby="on-this-page"
+              class="hide-print"
             >
               <h2
                 class="h4"
