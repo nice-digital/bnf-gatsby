@@ -20,7 +20,7 @@ export type CautionaryAdvisoryLabelsPageProps = {
 	};
 };
 
-export const CautionaryAdvisoryLabelsGuidancePage: FC<
+export const CautionaryAdvisoryLabelsPage: FC<
 	CautionaryAdvisoryLabelsPageProps
 > = ({
 	data: {
@@ -29,11 +29,16 @@ export const CautionaryAdvisoryLabelsGuidancePage: FC<
 }) => {
 	return (
 		<DetailsPageLayout
-			titleHtml={"Guidance for cautionary and advisory labels"}
+			titleHtml={"Cautionary and advisory labels"}
 			parentTitleParts={["About"]}
 			parentBreadcrumbs={[{ href: "/about/", text: "About" }]}
 			menu={AboutSectionMenu}
 		>
+			<p>
+				<Link to="/about/guidance-for-cautionary-and-advisory-labels/">
+					View guidance for cautionary and advisory labels
+				</Link>
+			</p>
 			<ol className={styles.labelList}>
 				{advisoryLabels.map((label) => (
 					<li key={label.number}>
@@ -58,4 +63,4 @@ export const query = graphql`
 	}
 `;
 
-export default CautionaryAdvisoryLabelsGuidancePage;
+export default CautionaryAdvisoryLabelsPage;

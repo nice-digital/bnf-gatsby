@@ -1,11 +1,12 @@
+import { useLocation } from "@reach/router";
 import { render, screen } from "@testing-library/react";
+import { useStaticQuery } from "gatsby";
 import React from "react";
 
-import { CautionaryAndAdvisoryLabelProps } from "../../../components/CautionaryAndAdvisoryLabel/CautionaryAndAdvisoryLabel";
-import {
-	CautionaryAdvisoryLabelsGuidancePage,
-	CautionaryAdvisoryLabelsPageProps,
-} from "../labels";
+import { mockAboutPagesQueryData } from "@/hooks/useAboutPages.test";
+
+import { type CautionaryAndAdvisoryLabelProps } from "../../../components/CautionaryAndAdvisoryLabel/CautionaryAndAdvisoryLabel";
+import { CautionaryAdvisoryLabelsPage, query } from "../labels";
 
 describe("Labels page", () => {
 	const exampleLabels: CautionaryAndAdvisoryLabelProps[] = [
@@ -31,7 +32,21 @@ describe("Labels page", () => {
 		},
 	};
 
-	it.todo("Should render a heading containing the label number");
-	it.todo("Should show the page breadcrumbs");
-	it.todo("Should render an ordered list of labels");
+	describe("LabelsPage", () => {
+		it("should match snapshot for graphql query", () => {
+			expect(query).toMatchSnapshot();
+		});
+
+		it("should match snapshot for page contents", () => {
+			(useLocation as jest.Mock).mockImplementation(
+				() => new URL("https://bnf-gatsby-tests.nice.org.uk/about/labels/")
+			);
+
+			(useStaticQuery as jest.Mock).mockReturnValue(mockAboutPagesQueryData);
+
+			render(<CautionaryAdvisoryLabelsPage {...props} />);
+
+			expect(screen.getByRole("main")).toMatchSnapshot();
+		});
+	});
 });
