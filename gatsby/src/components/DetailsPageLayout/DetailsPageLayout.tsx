@@ -10,6 +10,10 @@ import { Layout } from "@/components/Layout/Layout";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
+import { OnThisPage, type OnThisPageProps } from "../OnThisPage/OnThisPage";
+
+import styles from "./DetailsPageLayout.module.scss";
+
 type DetailsPageLayoutProps = {
 	/** The ancestors from the parent page e.g. ["About"] */
 	parentTitleParts?: string[];
@@ -21,6 +25,7 @@ type DetailsPageLayoutProps = {
 		text: string;
 	}[];
 	metaDescription?: string;
+	sections: OnThisPageProps["sections"];
 };
 
 /**
@@ -33,6 +38,7 @@ export const DetailsPageLayout: React.FC<DetailsPageLayoutProps> = ({
 	menu: Menu,
 	parentBreadcrumbs = [],
 	metaDescription,
+	sections,
 }) => {
 	const { siteTitleShort } = useSiteMetadata(),
 		titleNoHtml = striptags(titleHtml),
@@ -75,25 +81,9 @@ export const DetailsPageLayout: React.FC<DetailsPageLayoutProps> = ({
 				<GridItem cols={12} md={8} lg={9}>
 					<Grid reverse gutter="loose">
 						<GridItem cols={12} lg={3}>
-							<nav aria-labelledby="on-this-page" className="hide-print">
-								<h2 id="on-this-page" className="h4">
-									On this page
-								</h2>
-								<ol aria-label="Jump links to sections on this page">
-									<li>TODO</li>
-									{/* {sections.map((section, i) => (
-										<li key={section.slug}>
-											<a href={`#${section.slug}`}>
-												<span
-													dangerouslySetInnerHTML={{ __html: section.title }}
-												/>
-											</a>
-										</li>
-									))} */}
-								</ol>
-							</nav>
+							<OnThisPage sections={sections} />
 						</GridItem>
-						<GridItem cols={12} lg={9}>
+						<GridItem className={styles.body} cols={12} lg={9}>
 							{children}
 						</GridItem>
 					</Grid>

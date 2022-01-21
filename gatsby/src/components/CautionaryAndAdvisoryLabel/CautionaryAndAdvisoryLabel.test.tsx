@@ -4,6 +4,8 @@ import React from "react";
 import {
 	CautionaryAndAdvisoryLabel,
 	type CautionaryAndAdvisoryLabelProps,
+	generateId,
+	generateTitle,
 } from "./CautionaryAndAdvisoryLabel";
 
 const props: CautionaryAndAdvisoryLabelProps = {
@@ -55,5 +57,13 @@ describe("CautionaryAndAdvisoryLabel", () => {
 		// eslint-disable-next-line testing-library/no-node-access
 		const label = screen.getByText(props.englishRecommendation).closest("div");
 		expect(label).toHaveClass("label");
+	});
+
+	it("should generate an appropriate ID from a label number", () => {
+		expect(generateId(7)).toBe("label-7");
+	});
+
+	it("should generate an appropriate title from a label number", () => {
+		expect(generateTitle(7)).toBe("Label 7");
 	});
 });

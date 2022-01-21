@@ -2,7 +2,11 @@ import { Link, graphql } from "gatsby";
 import React, { FC } from "react";
 
 import { AboutSectionMenu } from "@/components/AboutSectionMenu/AboutSectionMenu";
-import { CautionaryAndAdvisoryLabel } from "@/components/CautionaryAndAdvisoryLabel/CautionaryAndAdvisoryLabel";
+import {
+	CautionaryAndAdvisoryLabel,
+	generateId,
+	generateTitle,
+} from "@/components/CautionaryAndAdvisoryLabel/CautionaryAndAdvisoryLabel";
 import { DetailsPageLayout } from "@/components/DetailsPageLayout/DetailsPageLayout";
 
 import styles from "./labels.module.scss";
@@ -33,6 +37,12 @@ export const CautionaryAdvisoryLabelsPage: FC<
 			parentTitleParts={["About"]}
 			parentBreadcrumbs={[{ href: "/about/", text: "About" }]}
 			menu={AboutSectionMenu}
+			sections={advisoryLabels.map((label) => {
+				return {
+					id: generateId(label.number),
+					title: generateTitle(label.number),
+				};
+			})}
 		>
 			<p>
 				<Link to="/about/guidance-for-cautionary-and-advisory-labels/">

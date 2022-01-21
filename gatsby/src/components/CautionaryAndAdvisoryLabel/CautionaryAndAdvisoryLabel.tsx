@@ -9,6 +9,14 @@ export type CautionaryAndAdvisoryLabelProps = {
 	number: number;
 };
 
+export const generateTitle = (labelNumber: number): string => {
+	return `Label ${labelNumber}`;
+};
+
+export const generateId = (labelNumber: number): string => {
+	return `label-${labelNumber}`;
+};
+
 export const CautionaryAndAdvisoryLabel: React.FC<
 	CautionaryAndAdvisoryLabelProps
 > = ({
@@ -18,8 +26,8 @@ export const CautionaryAndAdvisoryLabel: React.FC<
 	number,
 }: CautionaryAndAdvisoryLabelProps) => {
 	return (
-		<section aria-labelledby={`label-${number}`}>
-			<h2 id={`label-${number}`}>Label {number}</h2>
+		<section aria-labelledby={generateId(number)}>
+			<h2 id={generateId(number)}>{generateTitle(number)}</h2>
 			<div className={styles.label}>
 				<p>{englishRecommendation}</p>
 				<p lang="cy">{welshRecommendation}</p>

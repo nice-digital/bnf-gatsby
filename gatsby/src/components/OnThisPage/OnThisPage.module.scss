@@ -1,0 +1,25 @@
+@use '@nice-digital/nds-core/scss/core';
+
+.wrapper {
+  @include core.nds-hide-print;
+
+  @include core.mq($from: lg) {
+    position: sticky;
+    top: core.rem(core.$nds-spacing-medium);
+  }
+}
+
+.heading {
+  @include core.nds-h4;
+  margin-top: 0;
+}
+
+.list {
+  list-style: none;
+  margin: 0 0 core.rem(core.$nds-spacing-medium);
+
+  @include core.mq($from: lg) {
+    max-height: 90vh;
+    overflow: auto;
+  }
+}
