@@ -101,4 +101,16 @@ describe("SEO", () => {
 			expect(document.querySelector("meta[name='robots']")).toBeNull();
 		});
 	});
+
+	it("should render custom meta tag", async () => {
+		render(
+			<SEO additionalMetadata={[{ name: "test", content: "Some content" }]} />
+		);
+		await waitFor(() => {
+			expect(document.querySelector("meta[name='test']")).toHaveAttribute(
+				"content",
+				"Some content"
+			);
+		});
+	});
 });
