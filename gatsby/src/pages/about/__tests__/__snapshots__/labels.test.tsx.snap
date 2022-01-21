@@ -222,24 +222,37 @@ exports[`Labels page LabelsPage should match snapshot for page contents 1`] = `
           >
             <nav
               aria-labelledby="on-this-page"
-              class="hide-print"
+              class="wrapper"
             >
               <h2
-                class="h4"
+                class="heading"
                 id="on-this-page"
               >
                 On this page
               </h2>
               <ol
                 aria-label="Jump links to sections on this page"
+                class="list"
               >
                 <li>
-                  TODO
+                  <a
+                    href="#label-1"
+                  >
+                    Label 1
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#label-2"
+                  >
+                    Label 2
+                  </a>
                 </li>
               </ol>
             </nav>
           </div>
           <div
+            class="body"
             data-g="12 lg:9"
           >
             <p>
@@ -259,8 +272,7 @@ exports[`Labels page LabelsPage should match snapshot for page contents 1`] = `
                   <h2
                     id="label-1"
                   >
-                    Label 
-                    1
+                    Label 1
                   </h2>
                   <div
                     class="label"
@@ -288,8 +300,7 @@ exports[`Labels page LabelsPage should match snapshot for page contents 1`] = `
                   <h2
                     id="label-2"
                   >
-                    Label 
-                    2
+                    Label 2
                   </h2>
                   <div
                     class="label"

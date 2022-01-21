@@ -2,9 +2,22 @@
 /* eslint-disable testing-library/no-node-access */
 import { render, screen, waitFor, within } from "@testing-library/react";
 
+import { type OnThisPageProps } from "../OnThisPage/OnThisPage";
+
 import { DetailsPageLayout } from "./DetailsPageLayout";
 
 describe("DetailsPageLayout", () => {
+	const sections = [
+		{
+			id: "test-1",
+			title: "Test 1",
+		},
+		{
+			id: "test-2",
+			title: "Test 2",
+		},
+	];
+
 	describe("SEO", () => {
 		beforeEach(() => {
 			render(
@@ -13,6 +26,7 @@ describe("DetailsPageLayout", () => {
 					titleHtml="FAQs for BNF <em>for Children</em> — general"
 					parentTitleParts={["Parent", "Grandparent"]}
 					metaDescription="A test meta"
+					sections={sections}
 				>
 					test
 				</DetailsPageLayout>
@@ -53,6 +67,7 @@ describe("DetailsPageLayout", () => {
 					menu={() => null}
 					titleHtml="Some title"
 					parentBreadcrumbs={[{ href: "/about/", text: "About" }]}
+					sections={sections}
 				>
 					test
 				</DetailsPageLayout>
@@ -100,7 +115,11 @@ describe("DetailsPageLayout", () => {
 	describe("Page header", () => {
 		it("should add content start skip link target id to page header", () => {
 			render(
-				<DetailsPageLayout menu={() => null} titleHtml="Anything">
+				<DetailsPageLayout
+					menu={() => null}
+					titleHtml="Anything"
+					sections={sections}
+				>
 					test
 				</DetailsPageLayout>
 			);
@@ -112,7 +131,11 @@ describe("DetailsPageLayout", () => {
 
 		it("should render heading 1 with current page title", () => {
 			render(
-				<DetailsPageLayout menu={() => null} titleHtml="Some <b>title</b>">
+				<DetailsPageLayout
+					menu={() => null}
+					titleHtml="Some <b>title</b>"
+					sections={sections}
+				>
 					test
 				</DetailsPageLayout>
 			);
@@ -130,7 +153,11 @@ describe("DetailsPageLayout", () => {
 	describe("Body", () => {
 		it("should match snapshot for body", () => {
 			render(
-				<DetailsPageLayout menu={() => <>Menu</>} titleHtml="Anything">
+				<DetailsPageLayout
+					menu={() => <>Menu</>}
+					titleHtml="Anything"
+					sections={sections}
+				>
 					Body content
 				</DetailsPageLayout>
 			);
