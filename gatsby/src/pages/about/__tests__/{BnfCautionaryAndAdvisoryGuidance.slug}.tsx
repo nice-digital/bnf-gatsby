@@ -1,5 +1,5 @@
 import { useLocation } from "@reach/router";
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import { useStaticQuery } from "gatsby";
 
 import { mockAboutPagesQueryData } from "@/hooks/useAboutPages.test";
@@ -33,23 +33,33 @@ const pageProps: CautionaryAdvisoryGuidancePageProps = {
 	},
 };
 
+(useLocation as jest.Mock).mockImplementation(
+	() =>
+		new URL(
+			"https://bnf-gatsby-tests.nice.org.uk/about/guidance-for-cautionary-and-advisory-labels/"
+		)
+);
+
+(useStaticQuery as jest.Mock).mockReturnValue(mockAboutPagesQueryData);
+
 describe("CautionaryAdvisoryGuidancePage", () => {
 	it("should match snapshot for graphql query", () => {
 		expect(query).toMatchSnapshot();
 	});
 
 	it("should match snapshot for page contents", () => {
-		(useLocation as jest.Mock).mockImplementation(
-			() =>
-				new URL(
-					"https://bnf-gatsby-tests.nice.org.uk/about/guidance-for-cautionary-and-advisory-labels/"
-				)
-		);
-
-		(useStaticQuery as jest.Mock).mockReturnValue(mockAboutPagesQueryData);
-
 		render(<CautionaryAdvisoryGuidancePage {...pageProps} />);
 
 		expect(screen.getByRole("main")).toMatchSnapshot();
+	});
+
+	it("should set page title", async () => {
+		render(<CautionaryAdvisoryGuidancePage {...pageProps} />);
+
+		await waitFor(() => {
+			expect(document.title).toBe(
+				"Guidance for cautionary and advisory labels | About | BNF content published by NICE"
+			);
+		});
 	});
 });
