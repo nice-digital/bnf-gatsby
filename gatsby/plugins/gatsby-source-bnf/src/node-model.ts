@@ -64,5 +64,5 @@ export interface ResolveContext {
 }
 
 export type FieldResolveContext = ResolveContext & {
-	defaultFieldResolver: (...args: unknown[]) => string;
+	defaultFieldResolver: (...args: unknown[]) => unknown;
 };
