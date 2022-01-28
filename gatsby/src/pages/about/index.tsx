@@ -2,6 +2,7 @@ import { graphql, PageProps, Link } from "gatsby";
 import { FC } from "react";
 
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
+import { ColumnList } from "@nice-digital/nds-column-list";
 import { PageHeader } from "@nice-digital/nds-page-header";
 
 import { Layout } from "@/components/Layout/Layout";
@@ -38,7 +39,7 @@ const AboutIndexPage: FC<AboutIndexPageProps> = ({
 
 			<PageHeader heading={`About ${siteTitleShort}`} />
 
-			<ol>
+			<ColumnList>
 				{sectionList.map(({ slug, title }) => (
 					<li key={slug}>
 						<Link
@@ -47,7 +48,7 @@ const AboutIndexPage: FC<AboutIndexPageProps> = ({
 						/>
 					</li>
 				))}
-			</ol>
+			</ColumnList>
 		</Layout>
 	);
 };
