@@ -27,6 +27,11 @@ initialise({
 	index: isBNF ? "bnf" : "bnfc",
 });
 
+const getTitleString = (searchText: string, pageIndex: number) =>
+	[pageIndex > 1 && `Page ${pageIndex}`, searchText, "Search results"]
+		.filter(Boolean)
+		.join(" | ");
+
 const SummaryRecordCount = ({
 	firstResult,
 	lastResult,
@@ -112,9 +117,21 @@ const SearchIndexPage: FC = () => {
 
 	if (data && data.failed) return <ErrorPageContent />;
 
+	const currentPage = data ? Math.ceil(data.firstResult / data.pageSize) : 0;
+
+	let siteTitle = "Search results";
+	if (loading) siteTitle = "Loading | Search results";
+	else if (data) {
+		siteTitle = getTitleString(data.finalSearchText, currentPage);
+	}
+
+	const breadcrumbText = `Search results ${
+		data?.finalSearchText ? `for ${data.finalSearchText}` : ""
+	}`;
+
 	return (
 		<Layout>
-			<SEO title={`${siteTitleShort} | Search Results`} />
+			<SEO title={siteTitle} noIndex />
 			<Announcer announcement={announcement} />
 
 			<Breadcrumbs>
@@ -122,17 +139,33 @@ const SearchIndexPage: FC = () => {
 				<Breadcrumb to="/" elementType={Link}>
 					{siteTitleShort}
 				</Breadcrumb>
-				<Breadcrumb>
-					{loading ? "Loading search results" : "Search results"}
-				</Breadcrumb>
+				{loading ? (
+					<Breadcrumb>Loading search results…</Breadcrumb>
+				) : currentPage <= 1 ? (
+					<Breadcrumb>{breadcrumbText}</Breadcrumb>
+				) : (
+					<Breadcrumb
+						to={`/search/?q=${data?.finalSearchText}`}
+						elementType={Link}
+					>
+						{breadcrumbText}
+					</Breadcrumb>
+				)}
+				{currentPage > 1 ? (
+					<Breadcrumb>{`Page ${currentPage.toString(10)}`}</Breadcrumb>
+				) : null}
 			</Breadcrumbs>
 
 			<PageHeader
+				id="content-start"
 				heading={`${siteTitleShort} search results`}
 				lead={
-					loading ? "Loading search results" : data && <SummaryText {...data} />
+					loading ? (
+						"Loading search results…"
+					) : data ? (
+						<SummaryText {...data} />
+					) : null
 				}
-				id="content-start"
 			/>
 
 			{data && data.resultCount === 0 && (
