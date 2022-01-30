@@ -9,6 +9,8 @@ import React from "react";
 
 import { search } from "@nice-digital/search-client";
 
+import noResultsResponse from "@/mockdata/noresults-response.json";
+import pageTwoResponse from "@/mockdata/pagetwo-response.json";
 import searchResponseJson from "@/mockdata/search-response.json";
 import spellCheckJsonResponse from "@/mockdata/spellcheck-response.json";
 
@@ -21,16 +23,70 @@ describe("Search Page", () => {
 		searchMock.mockResolvedValue(searchResponseJson);
 	});
 
-	describe("SEO", () => {
-		it.todo("should hide page from robots");
+	describe("Robots", () => {
+		it("should hide page from robots using noindex meta tag", async () => {
+			render(<SearchPage />);
 
-		it.todo("should set page title when loading");
+			await waitFor(() => {
+				// eslint-disable-next-line testing-library/no-node-access
+				expect(document.querySelector("meta[name='robots']")).toHaveAttribute(
+					"content",
+					"noindex"
+				);
+			});
+		});
+	});
 
-		it.todo("should set page title when results loaded");
+	describe("Page title", () => {
+		it("should set page title when loading", async () => {
+			searchMock.mockImplementationOnce(() => {
+				// Mock a pending promise to allow us to assert on the loading title
+				return new Promise(jest.fn());
+			});
+			render(<SearchPage />);
 
-		it.todo("should set page title when no results");
+			await waitFor(() => {
+				expect(document.title).toContain("Loading… | Search results |");
+			});
+		});
 
-		it.todo("should set page title when errored");
+		it("should set page title when results loaded", async () => {
+			render(<SearchPage />);
+
+			await waitFor(() => {
+				expect(document.title).toContain("aspirin | Search results |");
+			});
+		});
+
+		it("should set page title when results loaded for page >=2 ", async () => {
+			searchMock.mockResolvedValueOnce(pageTwoResponse);
+			render(<SearchPage />);
+
+			await waitFor(() => {
+				expect(document.title).toContain("Page 2 | dentist | Search results |");
+			});
+		});
+
+		it("should set page title when no results", async () => {
+			searchMock.mockResolvedValueOnce(noResultsResponse);
+
+			render(<SearchPage />);
+
+			await waitFor(() => {
+				expect(document.title).toContain(
+					"No results | ferrari | Search results |"
+				);
+			});
+		});
+
+		it("should set page title when errored", async () => {
+			searchMock.mockResolvedValueOnce({ failed: true });
+			render(<SearchPage />);
+
+			await waitFor(() => {
+				expect(document.title).toContain("Error");
+			});
+		});
 	});
 
 	describe("Error handling", () => {
@@ -138,10 +194,54 @@ describe("Search Page", () => {
 			);
 		});
 
-		it.todo("should not link to the original query if we're on page 1");
-		it.todo(
-			"should include a link to the original query if we're on page >= 2"
-		);
+		it("should not link to the original query if we're on page 1", async () => {
+			render(<SearchPage />);
+
+			const breadcrumbNav = screen.getByRole("navigation", {
+				name: "Breadcrumbs",
+			});
+
+			await waitFor(() => {
+				expect(
+					within(breadcrumbNav).getByText("Search results for aspirin")
+				).not.toHaveProperty("tagName", "A");
+			});
+		});
+
+		it("should include a link to the original query if we're on page >= 2", async () => {
+			searchMock.mockResolvedValueOnce(pageTwoResponse);
+
+			render(<SearchPage />);
+
+			const breadcrumbNav = screen.getByRole("navigation", {
+				name: "Breadcrumbs",
+			});
+
+			await waitFor(() => {
+				expect(
+					within(breadcrumbNav).getByRole("link", {
+						name: "Search results for dentist",
+					})
+				).toHaveProperty("href", expect.stringContaining("/search/?q=dentist"));
+			});
+		});
+
+		it("should include non-clickable breadcrumb for page >= 2", async () => {
+			searchMock.mockResolvedValueOnce(pageTwoResponse);
+
+			render(<SearchPage />);
+
+			const breadcrumbNav = screen.getByRole("navigation", {
+				name: "Breadcrumbs",
+			});
+
+			await waitFor(() => {
+				expect(within(breadcrumbNav).getByText("Page 2")).not.toHaveProperty(
+					"tagName",
+					"A"
+				);
+			});
+		});
 	});
 
 	describe("Page header", () => {
@@ -229,12 +329,5 @@ describe("Search Page", () => {
 				});
 			});
 		});
-	});
-
-	describe("pagination", () => {
-		//TODO implement page limit on search results page if required
-		it.todo(
-			"should not show any pagination if there are fewer results than the supplied page limit"
-		);
 	});
 });

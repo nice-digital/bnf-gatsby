@@ -1,4 +1,4 @@
-import { useEffect, FC } from "react";
+import { useEffect, type FC } from "react";
 
 export interface AnnounceProps {
 	announcement: string;

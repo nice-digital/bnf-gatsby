@@ -4,6 +4,11 @@ require("dotenv").config({
 
 const isBNF = process.env.GATSBY_SITE === "bnf";
 
+if (!process.env.GATSBY_SEARCH_URL)
+	throw new Error(
+		"Env var GATSBY_SEARCH_URL isn't set. Did you forget to add it?"
+	);
+
 module.exports = {
 	jsxRuntime: "automatic",
 	siteMetadata: {

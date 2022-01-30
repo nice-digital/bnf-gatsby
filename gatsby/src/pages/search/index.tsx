@@ -27,11 +27,6 @@ initialise({
 	index: isBNF ? "bnf" : "bnfc",
 });
 
-const getTitleString = (searchText: string, pageIndex: number) =>
-	[pageIndex > 1 && `Page ${pageIndex}`, searchText, "Search results"]
-		.filter(Boolean)
-		.join(" | ");
-
 const SummaryRecordCount = ({
 	firstResult,
 	lastResult,
@@ -119,10 +114,15 @@ const SearchIndexPage: FC = () => {
 
 	const currentPage = data ? Math.ceil(data.firstResult / data.pageSize) : 0;
 
-	let siteTitle = "Search results";
-	if (loading) siteTitle = "Loading | Search results";
+	let siteTitleParts: (string | undefined)[] = [];
+	if (loading) siteTitleParts = ["Loading…"];
+	else if (!data?.documents.length)
+		siteTitleParts = ["No results", data?.finalSearchText];
 	else if (data) {
-		siteTitle = getTitleString(data.finalSearchText, currentPage);
+		siteTitleParts = [
+			currentPage > 1 ? `Page ${currentPage}` : "",
+			data.finalSearchText,
+		];
 	}
 
 	const breadcrumbText = `Search results ${
@@ -131,7 +131,12 @@ const SearchIndexPage: FC = () => {
 
 	return (
 		<Layout>
-			<SEO title={siteTitle} noIndex />
+			<SEO
+				title={[...siteTitleParts, "Search results"]
+					.filter(Boolean)
+					.join(" | ")}
+				noIndex
+			/>
 			<Announcer announcement={announcement} />
 
 			<Breadcrumbs>
@@ -168,9 +173,9 @@ const SearchIndexPage: FC = () => {
 				}
 			/>
 
-			{data && data.resultCount === 0 && (
+			{data?.resultCount === 0 ? (
 				<p id="results">{/* TODO no results landing page */}</p>
-			)}
+			) : null}
 
 			{data && (
 				<>
