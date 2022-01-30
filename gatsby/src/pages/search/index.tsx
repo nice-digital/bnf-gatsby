@@ -16,6 +16,7 @@ import { Announcer } from "@/components/Announcer/Announcer";
 import { ErrorPageContent } from "@/components/ErrorPageContent/ErrorPageContent";
 import { Layout } from "@/components/Layout/Layout";
 import { SearchCardList } from "@/components/SearchCardList/SearchCardList";
+import { SearchNoResults } from "@/components/SearchNoResults/SearchNoResults";
 import { SearchPagination } from "@/components/SearchPagination/SearchPagination";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
@@ -174,7 +175,9 @@ const SearchIndexPage: FC = () => {
 			/>
 
 			{data?.resultCount === 0 ? (
-				<p id="results">{/* TODO no results landing page */}</p>
+				<SearchNoResults
+					searchText={data?.originalSearch?.searchText || data?.finalSearchText}
+				/>
 			) : null}
 
 			{data && (
