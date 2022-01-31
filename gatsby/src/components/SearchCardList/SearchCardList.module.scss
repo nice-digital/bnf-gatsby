@@ -1,9 +1,5 @@
 @use '@nice-digital/nds-core/scss/core';
 
-.card {
-  position: relative;
-}
-
 .list {
   list-style: none;
   margin: 0;
@@ -11,8 +7,9 @@
   padding: 0;
 }
 
-.listItem {
-  border-bottom: 1px solid core.$nds-colour-nice-grey-1;
-  padding-bottom: core.rem(core.$nds-spacing-medium);
+.card {
+  border-bottom: 1px solid core.$nds-colour-border;
+  margin-bottom: core.rem(core.$nds-spacing-medium);
+  padding-bottom: core.rem(core.$nds-spacing-small);
   position: relative;
 }

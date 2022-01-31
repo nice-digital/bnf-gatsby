@@ -15,7 +15,7 @@ export const SearchCardList: React.FC<SearchCardListProps> = ({
 	return (
 		<ol className={styles.list}>
 			{documents.map(({ id, title, pathAndQuery, teaser }) => (
-				<li className={styles.listItem} key={id}>
+				<li key={id}>
 					<Card
 						className={styles.card}
 						elementType="div"
