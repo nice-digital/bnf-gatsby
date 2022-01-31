@@ -12,7 +12,7 @@ exports[`SearchNoResults should match snapshot for BNF site 1`] = `
         Browse for content
       </h3>
       <p>
-        Try browsing for content with our:
+        Try browsing our:
       </p>
       <ul
         aria-label="Ways to browse for content"
@@ -21,21 +21,21 @@ exports[`SearchNoResults should match snapshot for BNF site 1`] = `
           <a
             href="/drugs/"
           >
-            Drugs A to Z list
+            drugs A to Z list
           </a>
         </li>
         <li>
           <a
             href="/treatment-summaries/"
           >
-            Treatment summaries A to Z list
+            treatment summaries A to Z list
           </a>
         </li>
         <li>
           <a
             href="/interactions/"
           >
-            Interactions A to Z list
+            interactions A to Z list
           </a>
         </li>
       </ul>
@@ -130,7 +130,7 @@ exports[`SearchNoResults should match snapshot for BNFC site 1`] = `
         Browse for content
       </h3>
       <p>
-        Try browsing for content with our:
+        Try browsing our:
       </p>
       <ul
         aria-label="Ways to browse for content"
@@ -139,21 +139,21 @@ exports[`SearchNoResults should match snapshot for BNFC site 1`] = `
           <a
             href="/drugs/"
           >
-            Drugs A to Z list
+            drugs A to Z list
           </a>
         </li>
         <li>
           <a
             href="/treatment-summaries/"
           >
-            Treatment summaries A to Z list
+            treatment summaries A to Z list
           </a>
         </li>
         <li>
           <a
             href="/interactions/"
           >
-            Interactions A to Z list
+            interactions A to Z list
           </a>
         </li>
       </ul>
