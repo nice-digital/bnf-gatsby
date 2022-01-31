@@ -98,7 +98,7 @@ exports[`SearchNoResults should match snapshot for BNF site 1`] = `
           British National Formulary for Children (BNFC)
         </h5>
         <p>
-          Drug and prescribing information for healthcare professionals. A reference for correct dosage, indication, interaction and side effects of drugs.
+          Information on the selection, prescribing, dispensing and administration of drugs to children.
         </p>
         <h5>
           NICE guidance
@@ -216,7 +216,7 @@ exports[`SearchNoResults should match snapshot for BNFC site 1`] = `
           British National Formulary (BNF)
         </h5>
         <p>
-          Drug and prescribing information for healthcare professionals. A reference for correct dosage, indication, interaction and side effects of drugs.
+          Information on the selection, prescribing, dispensing and administration of drugs.
         </p>
         <h5>
           NICE guidance

@@ -14,18 +14,18 @@ export const SearchNoResults: FC<SearchNoResultsProps> = ({ searchText }) => {
 		<>
 			<section aria-labelledby="browse-for-content">
 				<h3 id="browse-for-content">Browse for content</h3>
-				<p>Try browsing for content with our:</p>
+				<p>Try browsing our:</p>
 				<ul aria-label="Ways to browse for content">
 					<li>
-						<Link to={"/drugs/"}>Drugs A to Z list</Link>
+						<Link to="/drugs/">drugs A to Z list</Link>
 					</li>
 					<li>
-						<Link to={"/treatment-summaries/"}>
-							Treatment summaries A to Z list
+						<Link to="/treatment-summaries/">
+							treatment summaries A to Z list
 						</Link>
 					</li>
 					<li>
-						<Link to={"/interactions/"}>Interactions A to Z list</Link>
+						<Link to="/interactions/">interactions A to Z list</Link>
 					</li>
 				</ul>
 			</section>
@@ -74,9 +74,9 @@ export const SearchNoResults: FC<SearchNoResultsProps> = ({ searchText }) => {
 							: "British National Formulary (BNF)"}
 					</h5>
 					<p>
-						Drug and prescribing information for healthcare professionals. A
-						reference for correct dosage, indication, interaction and side
-						effects of drugs.
+						{isBNF
+							? "Information on the selection, prescribing, dispensing and administration of drugs to children."
+							: "Information on the selection, prescribing, dispensing and administration of drugs."}
 					</p>
 					<h5>NICE guidance</h5>
 					<p>
