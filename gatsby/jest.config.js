@@ -28,7 +28,7 @@ module.exports = {
 		...tsPathsModuleNameMappings,
 	},
 	transformIgnorePatterns: ["/node_modules/", "/dist/"],
-	setupFilesAfterEnv: ["./src/jest.setup.ts"],
+	setupFilesAfterEnv: ["./src/jest.setup.ts", "jest-extended/all"],
 	testPathIgnorePatterns: ["./config/"],
 	testURL: "https://bnf-gatsby-tests.nice.org.uk",
 	testEnvironment: "jsdom",

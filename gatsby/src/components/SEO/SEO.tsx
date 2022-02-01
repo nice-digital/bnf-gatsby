@@ -1,13 +1,8 @@
 import { useLocation } from "@reach/router";
-import React from "react";
+import React, { type FC } from "react";
 import { Helmet } from "react-helmet";
 
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
-
-import { isBNF } from "./../../site";
-
-// A global CSS class allows us to distinguish BNF from BNFC in (S)CSS styles
-const globalCSSClassName = isBNF ? "site-bnf" : "site-bnfc";
 
 export interface SEOProps {
 	title?: string;
@@ -19,26 +14,28 @@ export interface SEOProps {
 	}[];
 }
 
-export const SEO: React.FC<SEOProps> = ({
+export const SEO: FC<SEOProps> = ({
 	title,
 	description,
 	noIndex,
 	additionalMetadata,
 }: SEOProps) => {
 	const { pathname } = useLocation();
-	const { siteUrl, siteTitleShort, siteTitleLong } = useSiteMetadata();
+	const { siteUrl, siteTitleShort, siteTitleLong, isBNF } = useSiteMetadata();
+
+	// A global CSS class allows us to distinguish BNF from BNFC in (S)CSS styles
+	const globalCSSClassName = isBNF ? "site-bnf" : "site-bnfc";
 
 	const defaultDescription = `Free online access to the UK ${siteTitleShort} (${siteTitleLong} content published by NICE`;
 
 	return (
 		<>
 			<Helmet
-				htmlAttributes={{ class: globalCSSClassName }}
 				title={title}
-				titleTemplate={`%s | ${siteTitleShort} | NICE`}
+				titleTemplate={`%s | ${siteTitleShort} content published by NICE`}
 				defaultTitle={`${siteTitleShort} (${siteTitleLong}) | NICE`}
 			>
-				<html lang="en-GB" />
+				<html lang="en-GB" className={globalCSSClassName} />
 				<meta name="description" content={description || defaultDescription} />
 				<meta
 					property="og:description"
@@ -49,7 +46,10 @@ export const SEO: React.FC<SEOProps> = ({
 				<meta property="og:type" content="website" />
 				<meta
 					property="og:title"
-					content={(title ? `${title} | ` : "") + `${siteTitleShort} | NICE`}
+					content={
+						(title ? `${title} | ` : "") +
+						`${siteTitleShort} content published by NICE`
+					}
 				/>
 				<meta property="og:image" content={`${siteUrl}/open-graph-image.png`} />
 				<meta property="og:image:width" content="1200" />

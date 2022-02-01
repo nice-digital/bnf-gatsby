@@ -1,7 +1,10 @@
 export interface Feed {
 	/** All about records in the BNF, in a consistent order. */
 	about: FeedSimpleRecord[];
+	treatmentSummaries: FeedSimpleRecord[];
+	guidance: FeedSimpleRecord[];
 	drugs: FeedDrug[];
+	cautionaryAndAdvisoryLabels: FeedCautionaryAndAdvisoryLabels;
 }
 
 export interface FeedClassification {
@@ -18,6 +21,23 @@ export interface FeedDrug {
 	/** Note: not all 'drugs' have a primary classification, e.g. "St John's wort", "cranberry", "dairy products", "enteral feeds" etc */
 	primaryClassification?: FeedClassification;
 	secondaryClassifications: FeedClassification[];
+}
+
+export interface FeedCautionaryAndAdvisoryLabels {
+	guidance: FeedSimpleRecord;
+	labels: FeedLabel[];
+}
+
+/** A cautionary and advisory label */
+export interface FeedLabel {
+	/** The label number */
+	number: number;
+	/** A description of the label. May contain HTML mark-up. */
+	description: string;
+	/** The label recommendation in English. */
+	englishRecommendation: string;
+	/** The Welsh translation of the label recommendation. */
+	welshRecommendation: string;
 }
 
 /**

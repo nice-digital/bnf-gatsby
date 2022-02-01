@@ -1,9 +1,8 @@
-export const aboutSectionSchema = `
-	type BnfAboutSection implements Node & BnfSimpleRecord @dontInfer {
-		order: Int!
+import { BnfNode } from "../node-types";
 
-		"The ID of the record."
-		bnfId: ID!
+export const aboutSectionSchema = `
+	type ${BnfNode.AboutSection} implements Node & ${BnfNode.SimpleRecord} @dontInfer {
+		order: Int!
 
 		"The title of the section. May contain HTML markup."
 		title: String!
@@ -11,7 +10,10 @@ export const aboutSectionSchema = `
 		"The review date of the record, formatted into a string."
 		reviewDate: String
 
+		"The slugified and lowercased title, used as a URL path"
+		slug: String! @slug(field: "title")
+
 		"The sections of the record."
-		sections: [BnfRecordSection!]!
+		sections: [${BnfNode.RecordSection}!]!
 	}
 `;

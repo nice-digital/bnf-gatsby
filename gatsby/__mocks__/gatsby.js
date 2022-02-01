@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // See https://www.gatsbyjs.org/docs/unit-testing/#mocking-gatsby
 const React = require("react");
-
 const gatsby = jest.requireActual("gatsby");
 
 const navigate = jest.fn();
@@ -9,7 +8,7 @@ const navigate = jest.fn();
 module.exports = {
 	...gatsby,
 	navigate: navigate,
-	graphql: jest.fn(),
+	graphql: jest.fn((str) => str[0]),
 	Link: jest.fn().mockImplementation(
 		// these props are invalid for an `a` tag
 		({

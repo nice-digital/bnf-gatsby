@@ -13,6 +13,7 @@ module.exports = {
 		"!**/public/**",
 		"!**/*.d.ts",
 		"!**/jest.config.js",
+		"!**/graphql-fragments/**",
 	],
 	testResultsProcessor: "jest-teamcity-reporter",
 	moduleFileExtensions: ["ts", "tsx", "js"],

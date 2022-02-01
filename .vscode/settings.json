@@ -46,6 +46,9 @@
     "editor.tabSize": 2,
     "editor.defaultFormatter": "alexkrechik.cucumberautocomplete"
   },
+  "[xml]": {
+    "editor.defaultFormatter": "DotJoshJohnson.xml"
+  },
   "cucumberautocomplete.steps": [
     "functional-tests/node_modules/@nice-digital/wdio-cucumber-steps/lib/given/definitions.js",
     "functional-tests/node_modules/@nice-digital/wdio-cucumber-steps/lib/when/definitions.js",
@@ -68,5 +71,7 @@
   "jest.autoRun": {
     "watch": false,
     "onSave": "test-file"
-  }
+  },
+  "xmlTools.splitAttributesOnFormat": false,
+  "xmlTools.enforcePrettySelfClosingTagOnFormat": true
 }

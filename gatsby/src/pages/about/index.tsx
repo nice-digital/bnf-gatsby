@@ -7,6 +7,7 @@ import { PageHeader } from "@nice-digital/nds-page-header";
 
 import { Layout } from "@/components/Layout/Layout";
 import { SEO } from "@/components/SEO/SEO";
+import { useAboutPages } from "@/hooks/useAboutPages";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
 export type AboutIndexPageProps = {
