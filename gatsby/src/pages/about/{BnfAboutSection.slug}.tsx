@@ -1,78 +1,49 @@
-import { graphql, PageProps, Link } from "gatsby";
-import React, { FC } from "react";
+import { graphql } from "gatsby";
+import React, { type FC } from "react";
 
-import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
-import { PageHeader } from "@nice-digital/nds-page-header";
+import { AboutSectionMenu } from "@/components/AboutSectionMenu/AboutSectionMenu";
+import { DetailsPageLayout } from "@/components/DetailsPageLayout/DetailsPageLayout";
+import { RecordSectionsContent } from "@/components/RecordSectionsContent/RecordSectionsContent";
 
-import { Layout } from "@/components/Layout/Layout";
-import { SEO } from "@/components/SEO/SEO";
-import { useSiteMetadata } from "@/hooks/useSiteMetadata";
+import { type RecordSection } from "src/types";
 
-export type AboutDetailsPageProps = PageProps<{
-	bnfAboutSection: {
-		title: string;
-		sections: {
-			order: number;
-			title: string;
-			slug: string;
-			content: string;
-		}[];
-	};
-}>;
-
-const AboutDetailsPage: FC<AboutDetailsPageProps> = ({
+export type AboutSectionPageProps = {
 	data: {
-		bnfAboutSection: { title, sections },
-	},
-}) => {
-	const { siteTitleShort } = useSiteMetadata();
-
-	return (
-		<Layout>
-			<SEO title={`${title} | About`} />
-
-			<Breadcrumbs>
-				<Breadcrumb to="https://www.nice.org.uk/">NICE</Breadcrumb>
-				<Breadcrumb to="/" elementType={Link}>
-					{siteTitleShort}
-				</Breadcrumb>
-				<Breadcrumb to="/about/" elementType={Link}>
-					About
-				</Breadcrumb>
-				<Breadcrumb>{title}</Breadcrumb>
-			</Breadcrumbs>
-
-			<PageHeader
-				heading={<div dangerouslySetInnerHTML={{ __html: title }} />}
-			/>
-
-			{sections
-				.sort((a, b) => a.order - b.order)
-				.map((section) => (
-					<section key={section.slug} aria-labelledby={section.slug}>
-						<h2
-							id={section.slug}
-							dangerouslySetInnerHTML={{ __html: section.title }}
-						/>
-						<div dangerouslySetInnerHTML={{ __html: section.content }} />
-					</section>
-				))}
-		</Layout>
-	);
+		currentAboutPage: {
+			title: string;
+			sections: RecordSection[];
+		};
+	};
 };
+
+const AboutSectionPage: FC<AboutSectionPageProps> = ({
+	data: {
+		currentAboutPage: { title, sections },
+	},
+}) => (
+	<DetailsPageLayout
+		titleHtml={title}
+		parentTitleParts={["About"]}
+		parentBreadcrumbs={[{ href: "/about/", text: "About" }]}
+		menu={AboutSectionMenu}
+		sections={sections.map(({ slug, title }) => ({
+			id: slug,
+			title,
+		}))}
+	>
+		<RecordSectionsContent sections={sections} />
+	</DetailsPageLayout>
+);
 
 export const query = graphql`
 	query ($id: String) {
-		bnfAboutSection(id: { eq: $id }) {
+		currentAboutPage: bnfAboutSection(id: { eq: $id }) {
 			title
 			sections {
-				slug
-				order
-				title
-				content
+				...RecordSection
 			}
 		}
 	}
 `;
 
-export default AboutDetailsPage;
+export default AboutSectionPage;

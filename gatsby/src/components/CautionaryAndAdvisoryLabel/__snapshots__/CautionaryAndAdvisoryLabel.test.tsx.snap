@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CautionaryAndAdvisoryLabel should render the correct content within each section 1`] = `
+<section
+  aria-labelledby="label-3"
+>
+  <h2
+    id="label-3"
+  >
+    Label 3
+  </h2>
+  <div
+    class="label"
+  >
+    <p>
+      English test recommendation
+    </p>
+    <p
+      lang="cy"
+    >
+      Welsh test recommendation
+    </p>
+  </div>
+  <div>
+    <p>
+      Test description
+    </p>
+  </div>
+</section>
+`;

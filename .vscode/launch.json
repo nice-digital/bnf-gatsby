@@ -47,6 +47,38 @@
         "group": "Static site",
         "order": 2
       }
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Functional tests - current feature",
+      "cwd": "${workspaceFolder}/functional-tests",
+      "localRoot": "${workspaceFolder}/functional-tests",
+      "remoteRoot": "${workspaceFolder}/functional-tests",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "test",
+        "--",
+        "--spec",
+        "${fileBasenameNoExtension}",
+        "--baseUrl",
+        "${input:baseUrl}"
+      ],
+      "autoAttachChildProcesses": true,
+      "outFiles": [
+        "${workspaceFolder}/functional-tests/**/*.js",
+        "!**/node_modules/**"
+      ],
+      "console": "integratedTerminal",
+      "protocol": "inspector",
+      "sourceMaps": true,
+      "disableOptimisticBPs": true,
+      "presentation": {
+        "hidden": false,
+        "group": "Functional tests",
+        "order": 1
+      }
     }
   ],
   "compounds": [
@@ -71,14 +103,13 @@
     {
       "id": "baseUrl",
       "description": "Base URL",
-      "default": "http://localhost:5000",
+      "default": "http://localhost:9000",
       "type": "pickString",
       "options": [
-        "http://localhost:3000",
-        "https://dev.bnf.nice.org.uk",
-        "https://test.bnf.nice.org.uk",
-        "https://beta-bnf.nice.org.uk",
-        "https://bnf.nice.org.uk"
+        "http://localhost:9000",
+        "http://localhost:8000",
+        "https://dev-bnf-gatsby.nice.org.uk",
+        "https://test-bnf-gatsby.nice.org.uk"
       ]
     }
   ]

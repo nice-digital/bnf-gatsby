@@ -16,7 +16,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }: LayoutProps) => {
 	return (
 		<>
 			<SiteHeader />
-			<main id="content-start">
+			<main>
 				<Container>{children}</Container>
 			</main>
 			<Footer service={isBNF ? "bnf" : "bnfc"} />
