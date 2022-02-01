@@ -1,6 +1,6 @@
 import { useStaticQuery, graphql } from "gatsby";
 
-interface SiteMetaData {
+export interface SiteMetaData {
 	/** Whether the current site is BNF or BNFC */
 	isBNF: boolean;
 	/** Absolute URL to the site homepage, without trailing slash */

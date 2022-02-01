@@ -11,6 +11,7 @@
     "ExodiusStudios.comment-anchors",
     "ms-vscode.powershell",
     "alexkrechik.cucumberautocomplete",
-    "IronGeek.vscode-env"
+    "IronGeek.vscode-env",
+    "DotJoshJohnson.xml"
   ]
 }

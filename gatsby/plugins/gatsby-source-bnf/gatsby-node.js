@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 "use strict";
 
 // Allow execution of TypeScript, without having to pre-compile
