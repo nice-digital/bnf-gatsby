@@ -4,12 +4,9 @@ import React, { useEffect, useState, useCallback } from "react";
 
 import { Header as GlobalNavHeader } from "@nice-digital/global-nav";
 
-import { isBNF } from "./../../site";
+import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
 const searchInputSelector = "header form[role='search'] [name='q']";
-const suggestionsUrl = `${process.env.GATSBY_SEARCH_URL}/typeahead?index=${
-	isBNF ? "bnf" : "bnfc"
-}`;
 
 /**
  * Gets the value of the q parameter fro the given querystring
@@ -25,8 +22,13 @@ const getQueryTerm = (queryString: string): string => {
 
 export const SiteHeader: React.FC = () => {
 	const { search: queryString } = useLocation();
+	const { isBNF } = useSiteMetadata();
 
 	const [queryTerm, setQueryTermState] = useState(getQueryTerm(queryString));
+
+	const suggestionsUrl = `${process.env.GATSBY_SEARCH_URL}/typeahead?index=${
+		isBNF ? "bnf" : "bnfc"
+	}`;
 
 	// Parse the q value from the querystring
 	useEffect(() => {
