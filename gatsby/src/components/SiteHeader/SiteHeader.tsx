@@ -7,6 +7,9 @@ import { Header as GlobalNavHeader } from "@nice-digital/global-nav";
 import { isBNF } from "./../../site";
 
 const searchInputSelector = "header form[role='search'] [name='q']";
+const suggestionsUrl = `${process.env.GATSBY_SEARCH_URL}/typeahead?index=${
+	isBNF ? "bnf" : "bnfc"
+}`;
 
 /**
  * Gets the value of the q parameter fro the given querystring
@@ -75,16 +78,17 @@ export const SiteHeader: React.FC = () => {
 				auth={false}
 				search={{
 					placeholder: isBNF ? "Search BNF…" : "Search BNFC…",
-					autocomplete: {
-						suggestions: "/api/autocomplete",
-						suggestionTemplate: (suggestion) => {
-							if (!suggestion || !suggestion.Link) return "";
+					autocomplete: suggestionsUrl,
+					// autocomplete: {
+					// 	suggestions: suggestionsUrl,
+					// 	suggestionTemplate: (suggestion) => {
+					// 		if (!suggestion || !suggestion.Link) return "";
 
-							let typeLabel = "BNF search";
-							if (suggestion.TypeAheadType === "drug") typeLabel = "BNF drug";
-							return `<a href="${suggestion.Link}">${suggestion.Title} (${typeLabel})</a>`;
-						},
-					},
+					// 		let typeLabel = "BNF search";
+					// 		if (suggestion.TypeAheadType === "drug") typeLabel = "BNF drug";
+					// 		return `<a href="${suggestion.Link}">${suggestion.Title} (${typeLabel})</a>`;
+					// 	},
+					// },
 					onSearching: (e): void => {
 						navigate("/search/?q=" + encodeURIComponent(e.query));
 					},
