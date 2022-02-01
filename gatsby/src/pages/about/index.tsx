@@ -10,17 +10,6 @@ import { SEO } from "@/components/SEO/SEO";
 import { useAboutPages } from "@/hooks/useAboutPages";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
-export type AboutIndexPageProps = {
-	data: {
-		allAboutPages: {
-			sectionList: {
-				title: string;
-				slug: string;
-			}[];
-		};
-	};
-};
-
 const AboutIndexPage: FC = () => {
 	const { siteTitleShort } = useSiteMetadata(),
 		aboutPages = useAboutPages();
