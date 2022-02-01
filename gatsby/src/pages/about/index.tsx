@@ -1,4 +1,4 @@
-import { graphql, PageProps, Link } from "gatsby";
+import { graphql, Link } from "gatsby";
 import { FC } from "react";
 
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
@@ -9,14 +9,16 @@ import { Layout } from "@/components/Layout/Layout";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
-export type AboutIndexPageProps = PageProps<{
-	allAboutPages: {
-		sectionList: {
-			title: string;
-			slug: string;
-		}[];
+export type AboutIndexPageProps = {
+	data: {
+		allAboutPages: {
+			sectionList: {
+				title: string;
+				slug: string;
+			}[];
+		};
 	};
-}>;
+};
 
 const AboutIndexPage: FC<AboutIndexPageProps> = ({
 	data: {
