@@ -83,12 +83,12 @@ In the case of BNF, the source data comes from the feed. The data fetching and m
 
 The following environment variables are used to configure the gatsby site and source plugin:
 
-| Environment variable | Notes                                                                                                    |
-| -------------------- | -------------------------------------------------------------------------------------------------------- |
-| FEED_URL             | The absolute URL of the feed, passed as the `feedURL` config option to custom `gatsby-source-bnf` plugin |
-| USER_KEY             | The API/user key for authentication of the feed.                                                         |
-| GATSBY_SITE          | Which site you're building (`bnf` or `bnfc`)                                                             |
-| GATSBY_SEARCH_URL    | The single search endpoint base URL e.g. `https://alpha-search-api.nice.org.uk/api`                      |
+| Environment variable | Notes                                                                                                         |
+| -------------------- | ------------------------------------------------------------------------------------------------------------- |
+| FEED_URL             | The absolute base URL of the feed, passed as the `feedURL` config option to custom `gatsby-source-bnf` plugin |
+| FEED_USER_KEY        | The API/user key for authentication of the feed.                                                              |
+| GATSBY_SITE          | Which site you're building (`bnf` or `bnfc`)                                                                  |
+| GATSBY_SEARCH_URL    | The single search endpoint base URL e.g. `https://alpha-search-api.nice.org.uk/api`                           |
 
 > Note: the variables prefixed with `GATSBY_` are made available to client side scripts so are public values, [see the Gatsby docs](https://www.gatsbyjs.com/docs/how-to/local-development/environment-variables/#accessing-environment-variables-in-the-browser).
 
@@ -99,7 +99,7 @@ For example, create a _.env.production_ file to create a live-like production bu
 ```
 # .env.production
 FEED_URL=https://whatever
-USER_KEY=abcd1234
+FEED_USER_KEY=abcd1234
 GATSBY_SITE=bnfc # Or bnf
 GATSBY_SEARCH_URL=https://alpha-search-api.nice.org.uk/api
 ```

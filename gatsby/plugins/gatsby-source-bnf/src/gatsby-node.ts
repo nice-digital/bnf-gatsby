@@ -5,7 +5,7 @@ import {
 } from "gatsby";
 import { type Schema } from "gatsby-plugin-utils";
 
-import { downloadFeed } from "./downloader/downloader";
+import { downloadFeed, type PluginOptions } from "./downloader/downloader";
 import { type Feed } from "./downloader/types";
 import { htmlFieldExtension } from "./field-extensions/html";
 import { slugFieldExtension } from "./field-extensions/slug";
@@ -14,11 +14,6 @@ import { createCautionaryAndAdvisoryLabelsNodes } from "./node-creation/cautiona
 import { createDrugNodes } from "./node-creation/drugs";
 import { createSimpleRecordNodes } from "./node-creation/utils";
 import { BnfNode } from "./node-types";
-
-interface PluginOptions {
-	/** The API base URL */
-	feedURL: string;
-}
 
 /**
  * Gatsby hook for customizing the schema.
@@ -39,7 +34,7 @@ export const createSchemaCustomization = ({
  */
 export const sourceNodes = async (
 	sourceNodesArgs: SourceNodesArgs,
-	{ feedURL }: PluginOptions
+	options: PluginOptions
 ): Promise<undefined> => {
 	const {
 		reporter: { activityTimer },
@@ -52,7 +47,7 @@ export const sourceNodes = async (
 
 	let feedData: Feed;
 	try {
-		feedData = await downloadFeed(feedURL);
+		feedData = await downloadFeed(options);
 		setStatus(`Downloaded feed data`);
 	} catch (e) {
 		panic(e);
@@ -97,6 +92,15 @@ export const pluginOptionsSchema = ({
 	return Joi.object({
 		feedURL: Joi.string()
 			.required()
-			.description(`The absolute URL of the feed endpoint`),
-	});
+			.description(
+				`The absolute URL of the feed endpoint e.g. https://api.somurl.io/v9/`
+			),
+		userKey: Joi.string()
+			.required()
+			.description(`The user/API key for authenticating against the feed`),
+		site: Joi.string()
+			.valid("bnf", "bnfc")
+			.required()
+			.description(`The site (bnf/bnfc) we're currently building`),
+	}).required();
 };

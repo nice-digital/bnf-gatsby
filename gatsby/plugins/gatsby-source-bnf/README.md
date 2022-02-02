@@ -58,7 +58,9 @@ The plugin gets its dependencies from the parent gatsby folder. This because it 
 
 The plugin has the following configuration options. These should be passed in via gatsby-config.js.
 
-- `feedURL` {String} The absolute URL of the JSON feed e.g. "http://localhost:7000/api"
+- `feedURL` {String} The absolute base URL of the JSON feed e.g. "https://api.somurl.io/v9/"
+- `userKey` {String} The user/API key for authenticating against the feed
+- `site` {"bnf" | "bnfc"} Which site we're currently building
 
 An example configuration might look like this:
 
@@ -69,6 +71,8 @@ module.exports = {
 +			resolve: `gatsby-source-bnf`,
 +			options: {
 +				feedURL: process.env.FEED_URL,
++				userKey: process.env.FEED_USER_KEY,
++				site: "bnf",
 +			},
 +		},
 	],
