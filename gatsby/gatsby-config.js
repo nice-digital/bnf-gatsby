@@ -18,6 +18,8 @@ module.exports = {
 			resolve: `gatsby-source-bnf`,
 			options: {
 				feedURL: process.env.FEED_URL,
+				userKey: process.env.FEED_USER_KEY,
+				site: isBNF ? "bnf" : "bnfc",
 			},
 		},
 		// Avoid errors like "ModuleNotFoundError: Module not found: Error: Can't resolve '@/components/Layout/Layout'" when using custom paths in tsconfig.json
