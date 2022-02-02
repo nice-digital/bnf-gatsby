@@ -53,7 +53,11 @@ describe("gatsby-node", () => {
 		} as unknown as PluginOptionsSchemaArgs);
 
 		it("should fail validation with missing feed URL argument", () => {
-			const validationResult = pluginSchema.validate({ test: true });
+			const validationResult = pluginSchema.validate({
+				test: true,
+				userKey: "anything",
+				site: "bnf",
+			});
 
 			expect(validationResult.error).toBeTruthy();
 			expect(validationResult.error).toHaveProperty(
@@ -63,7 +67,10 @@ describe("gatsby-node", () => {
 		});
 
 		it("should fail validation with empty feed URL string", () => {
-			const validationResult = pluginSchema.validate({ feedURL: "" });
+			const validationResult = pluginSchema.validate({
+				feedURL: "",
+				userKey: "anything",
+			});
 
 			expect(validationResult.error).toBeTruthy();
 			expect(validationResult.error).toHaveProperty(
@@ -72,8 +79,66 @@ describe("gatsby-node", () => {
 			);
 		});
 
-		it("should pass validation with provided feed URL", () => {
-			const validationResult = pluginSchema.validate({ feedURL: "Something" });
+		it("should fail validation with missing user key argument", () => {
+			const validationResult = pluginSchema.validate({
+				feedURL: "anything",
+				site: "bnf",
+			});
+
+			expect(validationResult.error).toBeTruthy();
+			expect(validationResult.error).toHaveProperty(
+				"message",
+				`"userKey" is required`
+			);
+		});
+
+		it("should fail validation with empty user key argument", () => {
+			const validationResult = pluginSchema.validate({
+				feedURL: "anything",
+				userKey: "",
+				site: "bnf",
+			});
+
+			expect(validationResult.error).toBeTruthy();
+			expect(validationResult.error).toHaveProperty(
+				"message",
+				`"userKey" is not allowed to be empty`
+			);
+		});
+
+		it("should fail validation with missing site argument", () => {
+			const validationResult = pluginSchema.validate({
+				feedURL: "anything",
+				userKey: "anything",
+			});
+
+			expect(validationResult.error).toBeTruthy();
+			expect(validationResult.error).toHaveProperty(
+				"message",
+				`"site" is required`
+			);
+		});
+
+		it("should fail validation with invalid site argument", () => {
+			const validationResult = pluginSchema.validate({
+				feedURL: "anything",
+				userKey: "anything",
+				site: "invalid",
+			});
+
+			expect(validationResult.error).toBeTruthy();
+			expect(validationResult.error).toHaveProperty(
+				"message",
+				`"site" must be one of [bnf, bnfc]`
+			);
+		});
+
+		it("should pass validation with provided options", () => {
+			const validationResult = pluginSchema.validate({
+				feedURL: "Something",
+				userKey: "anything",
+				site: "bnf",
+			});
 
 			expect(validationResult.error).toBeFalsy();
 		});
