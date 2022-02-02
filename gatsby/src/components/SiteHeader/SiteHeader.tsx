@@ -2,10 +2,7 @@ import { useLocation } from "@reach/router";
 import { navigate } from "gatsby";
 import React, { useEffect, useState, useCallback } from "react";
 
-import {
-	type AutoCompleteSuggestion,
-	Header as GlobalNavHeader,
-} from "@nice-digital/global-nav";
+import { Header as GlobalNavHeader } from "@nice-digital/global-nav";
 
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
