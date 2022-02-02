@@ -24,19 +24,20 @@ const getQueryTerm = (queryString: string): string => {
 };
 
 const getTypeLabel = (suggestion: AutoCompleteSuggestion, isBNF: boolean) => {
+	const formularyVariant = isBNF ? "BNF" : "BNFC";
 	switch (suggestion.TypeAheadType) {
 		case "Drug":
-			return "drugs/monographs";
+			return formularyVariant + " drugs/monographs";
 		case "BorderlineSubstance":
-			return "borderline substances";
+			return formularyVariant + " borderline substances";
 		case "MedicalDevice":
-			return "medical devices";
+			return formularyVariant + " medical devices";
 		case "TreatmentSummary":
-			return "treatment summaries";
+			return formularyVariant + " treatment summaries";
 		case "WoundManagement":
-			return "wound management";
+			return formularyVariant + " wound management";
 		default:
-			return isBNF ? "BNF search" : "BNFC search";
+			return formularyVariant + " search";
 	}
 };
 
