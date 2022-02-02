@@ -23,21 +23,20 @@ const getQueryTerm = (queryString: string): string => {
 		: "";
 };
 
-const getTypeLabel = (suggestion: AutoCompleteSuggestion, isBNF: boolean) => {
-	const formularyVariant = isBNF ? "BNF" : "BNFC";
-	switch (suggestion.TypeAheadType) {
+const getTypeLabel = (typeAheadType: string | undefined) => {
+	switch (typeAheadType) {
 		case "Drug":
-			return formularyVariant + " drugs/monographs";
+			return "drugs/monographs";
 		case "BorderlineSubstance":
-			return formularyVariant + " borderline substances";
+			return "borderline substances";
 		case "MedicalDevice":
-			return formularyVariant + " medical devices";
+			return "medical devices";
 		case "TreatmentSummary":
-			return formularyVariant + " treatment summaries";
+			return "treatment summaries";
 		case "WoundManagement":
-			return formularyVariant + " wound management";
+			return "wound management";
 		default:
-			return formularyVariant + " search";
+			return "search";
 	}
 };
 
@@ -106,9 +105,9 @@ export const SiteHeader: React.FC = () => {
 						suggestionTemplate: (suggestion) => {
 							if (!suggestion || !suggestion.Link) return "";
 
-							return `<a href="${suggestion.Link}">${
-								suggestion.Title
-							} (${getTypeLabel(suggestion, isBNF)})</a>`;
+							return `<a href="${suggestion.Link}">${suggestion.Title} (${
+								isBNF ? "BNF" : "BNFC"
+							} ${getTypeLabel(suggestion.TypeAheadType)})</a>`;
 						},
 					},
 					onSearching: (e): void => {
