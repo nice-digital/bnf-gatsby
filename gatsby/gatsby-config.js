@@ -10,7 +10,7 @@ module.exports = {
 	siteMetadata: {
 		isBNF,
 		siteUrl: `https://${isBNF ? "bnf" : "bnfc"}.nice.org.uk`,
-		searchUrl: searchUrl,
+		searchUrl,
 		siteTitleShort: isBNF ? "BNF" : "BNFC",
 		siteTitleLong:
 			"British National Formulary" + (isBNF ? "" : " for Children"),
