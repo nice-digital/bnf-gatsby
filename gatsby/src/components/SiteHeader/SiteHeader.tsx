@@ -3,7 +3,7 @@ import { navigate } from "gatsby";
 import React, { useEffect, useState, useCallback } from "react";
 
 import {
-	AutoCompleteSuggestion,
+	type AutoCompleteSuggestion,
 	Header as GlobalNavHeader,
 } from "@nice-digital/global-nav";
 
