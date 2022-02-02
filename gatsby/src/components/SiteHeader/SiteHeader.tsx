@@ -42,11 +42,11 @@ const getTypeLabel = (suggestion: AutoCompleteSuggestion, isBNF: boolean) => {
 
 export const SiteHeader: React.FC = () => {
 	const { search: queryString } = useLocation();
-	const { isBNF } = useSiteMetadata();
+	const { isBNF, searchUrl } = useSiteMetadata();
 
 	const [queryTerm, setQueryTermState] = useState(getQueryTerm(queryString));
 
-	const suggestionsUrl = `${process.env.GATSBY_SEARCH_URL}/typeahead?index=${
+	const suggestionsUrl = `${searchUrl}/typeahead?index=${
 		isBNF ? "bnf" : "bnfc"
 	}`;
 

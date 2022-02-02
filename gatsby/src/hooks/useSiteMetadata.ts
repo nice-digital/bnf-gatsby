@@ -5,6 +5,8 @@ export interface SiteMetaData {
 	isBNF: boolean;
 	/** Absolute URL to the site homepage, without trailing slash */
 	siteUrl: string;
+	/** Absolute URL to the search api, without trailing slash */
+	searchUrl: string;
 	/** Short site title e.g. "BNF" or "BNFC" */
 	siteTitleShort: string;
 	/** Full site title e.g. "British National Formulary" or "British National Formulary for Children" */
@@ -30,6 +32,7 @@ export const useSiteMetadata = (): SiteMetaData => {
 					siteMetadata {
 						isBNF
 						siteUrl
+						searchUrl
 						siteTitleShort
 						siteTitleLong
 					}
