@@ -4,7 +4,6 @@ import React, { useEffect, useState, useCallback } from "react";
 
 import {
 	AutoCompleteSuggestion,
-	AutoCompleteSuggestions,
 	Header as GlobalNavHeader,
 } from "@nice-digital/global-nav";
 
