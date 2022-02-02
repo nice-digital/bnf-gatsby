@@ -2,7 +2,11 @@ import { useLocation } from "@reach/router";
 import { navigate } from "gatsby";
 import React, { useEffect, useState, useCallback } from "react";
 
-import { Header as GlobalNavHeader } from "@nice-digital/global-nav";
+import {
+	AutoCompleteSuggestion,
+	AutoCompleteSuggestions,
+	Header as GlobalNavHeader,
+} from "@nice-digital/global-nav";
 
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
@@ -18,6 +22,23 @@ const getQueryTerm = (queryString: string): string => {
 	return queryMatch
 		? decodeURIComponent(queryMatch[1].replace(/\+/g, "%20"))
 		: "";
+};
+
+const getTypeLabel = (suggestion: AutoCompleteSuggestion, isBNF: boolean) => {
+	switch (suggestion.TypeAheadType) {
+		case "Drug":
+			return "drugs/monographs";
+		case "BorderlineSubstance":
+			return "borderline substances";
+		case "MedicalDevice":
+			return "medical devices";
+		case "TreatmentSummary":
+			return "treatment summaries";
+		case "WoundManagement":
+			return "wound management";
+		default:
+			return isBNF ? "BNF search" : "BNFC search";
+	}
 };
 
 export const SiteHeader: React.FC = () => {
@@ -80,17 +101,16 @@ export const SiteHeader: React.FC = () => {
 				auth={false}
 				search={{
 					placeholder: isBNF ? "Search BNF…" : "Search BNFC…",
-					autocomplete: suggestionsUrl,
-					// autocomplete: {
-					// 	suggestions: suggestionsUrl,
-					// 	suggestionTemplate: (suggestion) => {
-					// 		if (!suggestion || !suggestion.Link) return "";
+					autocomplete: {
+						suggestions: suggestionsUrl,
+						suggestionTemplate: (suggestion) => {
+							if (!suggestion || !suggestion.Link) return "";
 
-					// 		let typeLabel = "BNF search";
-					// 		if (suggestion.TypeAheadType === "drug") typeLabel = "BNF drug";
-					// 		return `<a href="${suggestion.Link}">${suggestion.Title} (${typeLabel})</a>`;
-					// 	},
-					// },
+							return `<a href="${suggestion.Link}">${
+								suggestion.Title
+							} (${getTypeLabel(suggestion, isBNF)})</a>`;
+						},
+					},
 					onSearching: (e): void => {
 						navigate("/search/?q=" + encodeURIComponent(e.query));
 					},
