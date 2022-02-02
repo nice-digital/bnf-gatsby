@@ -2,7 +2,6 @@ import "@testing-library/jest-dom";
 import "jest-extended";
 
 import { type SiteMetaData } from "./hooks/useSiteMetadata";
-import { MenuPageLink } from "./types";
 
 // SiteHeader uses useStaticQuery in it, so easier to mock it globally as a no-op
 jest.mock("./components/SiteHeader/SiteHeader", () => {
@@ -22,18 +21,5 @@ jest.mock("./hooks/useSiteMetadata", () => {
 				siteTitleLong: "British National Formulary",
 			})
 		),
-	};
-});
-
-// Mock the useAboutPages hook to test the list of links (e.g. on the index page)
-jest.mock("./hooks/useAboutPages", () => {
-	return {
-		useAboutPages: jest.fn((): MenuPageLink[] => [
-			{ title: "Labels", href: "/about/labels/" },
-			{
-				title: "Publication <i>information</i>",
-				href: "/about/publication-information/",
-			},
-		]),
 	};
 });

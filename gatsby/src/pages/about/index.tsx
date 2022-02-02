@@ -26,9 +26,9 @@ const AboutIndexPage: FC = () => {
 				<Breadcrumb>About</Breadcrumb>
 			</Breadcrumbs>
 
-			<PageHeader heading={`About ${siteTitleShort}`} />
+			<PageHeader id="content-start" heading={`About ${siteTitleShort}`} />
 
-			<ColumnList>
+			<ColumnList aria-label="Pages in the about section">
 				{aboutPages.map(({ href, title }) => (
 					<li key={href}>
 						<Link to={href} dangerouslySetInnerHTML={{ __html: title }} />
