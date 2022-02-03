@@ -1,5 +1,4 @@
 import React, { ReactNode } from "react";
-import { Helmet } from "react-helmet";
 
 import { Footer } from "@nice-digital/global-nav";
 import { Container } from "@nice-digital/nds-container";

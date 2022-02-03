@@ -18,9 +18,10 @@
     "sourceMap": true,
     "baseUrl": "./",
     "paths": {
-      "@/test-utils": ["src/test-utils"],
+      "@/test-utils/*": ["src/test-utils/*"],
       "@/components/*": ["src/components/*"],
-      "@/hooks/*": ["src/hooks/*"]
+      "@/hooks/*": ["src/hooks/*"],
+      "@/mockdata/*": ["src/__mockdata__/*"]
     }
   },
   "include": ["./**/*", "./**/*.json", "../jest.config.js"],

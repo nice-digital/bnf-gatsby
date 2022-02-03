@@ -1,0 +1,71 @@
+{
+  "debug": {
+    "rawResponse": "Valid NEST response built from a successful low level call on POST: /bnf/document/_search?typed_keys=true\r\n# Audit trail of this API call:\r\n - [1] HealthyResponse: Node: http://beta-elastic-6-cluster.nice.org.uk:9200/ Took: 00:00:00.0072883\r\n# Request:\r\n{\"from\":0,\"size\":10,\"highlight\":{\"pre_tags\":[\"<mark>\"],\"post_tags\":[\"</mark>\"],\"fields\":{\"content\":{\"fragment_size\":150,\"no_match_size\":150,\"type\":\"fvh\",\"matched_fields\":[\"content\",\"content.plain\"]},\"title\":{\"pre_tags\":[\"<b>\"],\"post_tags\":[\"</b>\"],\"fragment_size\":300,\"number_of_fragments\":0,\"type\":\"fvh\",\"matched_fields\":[\"title\",\"title.plain\"]}}},\"_source\":{\"excludes\":[\"content\"]},\"aggs\":{\"unique_count\":{\"cardinality\":{\"field\":\"clusterid\"}}},\"query\":{\"function_score\":{\"query\":{\"function_score\":{\"query\":{\"bool\":{\"should\":[{\"bool\":{\"should\":[{\"bool\":{\"must\":[{\"query_string\":{\"type\":\"best_fields\",\"query\":\"FERRARI\",\"default_operator\":\"and\",\"analyzer\":\"fulltext_query\",\"analyze_wildcard\":true,\"fields\":[\"content\",\"title^2\",\"metadescription\",\"keywords\"],\"tie_breaker\":1.0,\"quote_field_suffix\":\".plain\",\"auto_generate_synonyms_phrase_query\":false}}]}},{\"bool\":{\"must\":[{\"query_string\":{\"type\":\"best_fields\",\"query\":\"FERRARI\",\"default_operator\":\"and\",\"analyzer\":\"fulltext_no_synonyms\",\"analyze_wildcard\":true,\"fields\":[\"content\",\"title^2\",\"metadescription\",\"keywords\"],\"tie_breaker\":1.0,\"quote_field_suffix\":\".plain\",\"auto_generate_synonyms_phrase_query\":false}}]}},{\"bool\":{\"must\":[{\"multi_match\":{\"type\":\"phrase\",\"query\":\"FERRARI\",\"analyzer\":\"standard\",\"fields\":[\"title.plain\",\"content.plain\",\"metadescription.plain\"]}}]}}]}}]}},\"functions\":[{\"field_value_factor\":{\"field\":\"boostvalue\",\"factor\":0.01}}],\"score_mode\":\"multiply\"}},\"functions\":[{\"weight\":1.0}],\"score_mode\":\"multiply\"}}}\r\n# Response:\r\n{\"took\":3,\"timed_out\":false,\"_shards\":{\"total\":1,\"successful\":1,\"skipped\":0,\"failed\":0},\"hits\":{\"total\":0,\"max_score\":null,\"hits\":[]},\"aggregations\":{\"cardinality#unique_count\":{\"value\":0}}}\r\n"
+  },
+  "failed": false,
+  "errorMessage": null,
+  "parentResultUrl": null,
+  "resultCount": 0,
+  "rolledUpCount": 0,
+  "unrolledCount": 0,
+  "documents": [],
+  "pagerLinks": {
+    "previous": null,
+    "first": null,
+    "pages": [
+      {
+        "title": "1",
+        "url": {
+          "af": null,
+          "am": null,
+          "arms": null,
+          "ci": null,
+          "cid": null,
+          "co": null,
+          "em": null,
+          "fc": null,
+          "fd": null,
+          "from": null,
+          "fs": null,
+          "fullUrl": "?pa=1&q=ferrari",
+          "fullUrlWithDefaultRoot": "",
+          "m": null,
+          "om": null,
+          "pa": 1,
+          "pathTerm": null,
+          "pbu": null,
+          "ps": null,
+          "pt": null,
+          "pwbu": null,
+          "q": "ferrari",
+          "rf": null,
+          "s": null,
+          "sa": null,
+          "aggsOnly": null,
+          "sm": null,
+          "sn": null,
+          "sp": null,
+          "spuid": null,
+          "sr": null,
+          "ss": null,
+          "syn": null,
+          "t": null,
+          "td": null,
+          "title": null,
+          "to": null,
+          "route": null
+        },
+        "isCurrent": true
+      }
+    ],
+    "next": null
+  },
+  "pageSize": 10,
+  "firstResult": 0,
+  "lastResult": 0,
+  "finalSearchText": "ferrari",
+  "finalSearchTextNoStopWords": "ferrari",
+  "originalSearch": null,
+  "navigators": [],
+  "unfilteredResultsUrl": null
+}
