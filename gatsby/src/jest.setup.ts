@@ -1,7 +1,11 @@
 import "@testing-library/jest-dom";
 import "jest-extended";
+import { enableFetchMocks } from "jest-fetch-mock";
 
 import { type SiteMetaData } from "./hooks/useSiteMetadata";
+
+// Enable mock fetch, mostly for the autocomplete requests from the header
+enableFetchMocks();
 
 // SiteHeader uses useStaticQuery in it, so easier to mock it globally as a no-op
 jest.mock("./components/SiteHeader/SiteHeader", () => {
@@ -17,6 +21,7 @@ jest.mock("./hooks/useSiteMetadata", () => {
 			(): SiteMetaData => ({
 				isBNF: true,
 				siteUrl: "https://bnf.nice.org.uk",
+				searchUrl: "https://mock-search-api.nice.org.uk",
 				siteTitleShort: "BNF",
 				siteTitleLong: "British National Formulary",
 			})
