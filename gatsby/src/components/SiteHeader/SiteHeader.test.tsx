@@ -8,7 +8,7 @@ const { SiteHeader } = jest.requireActual("./SiteHeader");
 describe("SiteHeader", () => {
 	describe("Autocomplete", () => {
 		it("should apply the correct forumlary prefix for autocomplete results", () => {
-			render(<SiteHeader />);
+			// render(<SiteHeader />);
 		});
 		it.todo("should not return a template if there is no suggestion or link");
 		it.todo("should return the correct label(s)");
