@@ -32,7 +32,7 @@
   },
   "dependencies": {
     "@nice-digital/browserslist-config": "^2.0.1",
-    "@nice-digital/design-system": "^1.2.32",
+    "@nice-digital/design-system": "^1.4.0",
     "@nice-digital/global-nav": "^4.1.711",
     "@nice-digital/search-client": "^2.0.1426",
     "gatsby": "^4.4.0",

@@ -2,6 +2,7 @@ import { Link } from "gatsby";
 import { FC } from "react";
 
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
+import { ColumnList } from "@nice-digital/nds-column-list";
 import { PageHeader } from "@nice-digital/nds-page-header";
 
 import { Layout } from "@/components/Layout/Layout";
@@ -25,15 +26,15 @@ const AboutIndexPage: FC = () => {
 				<Breadcrumb>About</Breadcrumb>
 			</Breadcrumbs>
 
-			<PageHeader heading={`About ${siteTitleShort}`} />
+			<PageHeader id="content-start" heading={`About ${siteTitleShort}`} />
 
-			<ol>
+			<ColumnList aria-label="Pages in the about section">
 				{aboutPages.map(({ href, title }) => (
 					<li key={href}>
 						<Link to={href} dangerouslySetInnerHTML={{ __html: title }} />
 					</li>
 				))}
-			</ol>
+			</ColumnList>
 		</Layout>
 	);
 };
