@@ -1,0 +1,79 @@
+{
+  "about": [
+    {
+      "id": "about-1",
+      "title": "About 1",
+      "sections": [
+        {
+          "id": "about-1.1",
+          "title": "About 1.1",
+          "content": "<p>Some about section content</p>"
+        }
+      ]
+    }
+  ],
+  "drugs": [
+    {
+      "id": "drug-1",
+      "title": "Drug 1"
+    }
+  ],
+  "treatmentSummaries": [
+    {
+      "id": "treatment-summary-1",
+      "title": "Treatment summary 1",
+      "sections": [
+        {
+          "id": "treatment-summary-1.1",
+          "title": "Treatment summary 1.1",
+          "content": "<p>Some treatment summary section content</p>"
+        }
+      ]
+    }
+  ],
+  "guidance": [
+    {
+      "id": "guidance-1",
+      "title": "Guidance 1",
+      "sections": [
+        {
+          "id": "guidance-1.1",
+          "title": "Guidance 1.1",
+          "content": "<p>Some guidance section content</p>"
+        }
+      ]
+    }
+  ],
+  "dentalPractitionersFormulary": {
+    "id": "dental-practitioners-formulary",
+    "title": "Dental Practitioners’ Formulary",
+    "sections": [
+      {
+        "id": "dental-practitioners-formulary-11.1",
+        "title": "Dental Practitioners’ Formulary 1.1",
+        "content": "<p>Some guidance section content</p>"
+      }
+    ]
+  },
+  "cautionaryAndAdvisoryLabels": {
+    "guidance": {
+      "id": "cautionary-labels-guidance",
+      "title": "Guidance for cautionary and advisory labels",
+      "sections": [
+        {
+          "id": "cautionary-labels-guidance-11.1",
+          "title": "Guidance for cautionary and advisory labels 1.1",
+          "content": "<p>Some guidance for cautionary and advisory labels section content</p>"
+        }
+      ]
+    },
+    "labels": [
+      {
+        "number": 1,
+        "description": "<p>Some label description</p>",
+        "englishRecommendation": "Some recommendation in English",
+        "welshRecommendation": "Some recommendation in Welsh"
+      }
+    ]
+  }
+}

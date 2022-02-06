@@ -1,13 +1,29 @@
 import {
+	type SourceNodesArgs,
 	type CreateSchemaCustomizationArgs,
 	type PluginOptionsSchemaArgs,
 } from "gatsby";
 import Joi from "joi";
 
+import { downloadFeed, type PluginOptions } from "./downloader/downloader";
+import { Feed } from "./downloader/types";
 import { htmlFieldExtension } from "./field-extensions/html";
 import { slugFieldExtension } from "./field-extensions/slug";
-import { createSchemaCustomization, pluginOptionsSchema } from "./gatsby-node";
+import {
+	createSchemaCustomization,
+	sourceNodes,
+	pluginOptionsSchema,
+} from "./gatsby-node";
 import { schema } from "./graphql-schema";
+import mockFeed from "./mock-feed.json";
+import { BnfNode } from "./node-types";
+
+jest.mock("./downloader/downloader", () => ({
+	downloadFeed: jest.fn().mockImplementation(() => {
+		// eslint-disable-next-line @typescript-eslint/no-var-requires
+		return Promise.resolve(require("./mock-feed.json"));
+	}),
+}));
 
 describe("gatsby-node", () => {
 	describe("createSchemaCustomization", () => {
@@ -44,6 +60,55 @@ describe("gatsby-node", () => {
 				2,
 				htmlFieldExtension
 			);
+		});
+	});
+
+	describe("sourceNodes", () => {
+		const sourceNodesArgs: SourceNodesArgs = {
+			reporter: {
+				activityTimer: (): unknown => ({
+					start: (): void => void 0,
+					end: (): void => void 0,
+					setStatus: (): void => void 0,
+				}),
+				info: (): void => void 0,
+			},
+			createContentDigest: jest.fn(),
+			createNodeId: jest.fn(),
+			actions: {
+				createNode: jest.fn(),
+			},
+		} as unknown as SourceNodesArgs;
+
+		const pluginOptions: PluginOptions = {
+			feedURL: "https://some-feed-url",
+			site: "bnf",
+			userKey: "abc123",
+		};
+
+		it("should download feed", async () => {
+			await sourceNodes(sourceNodesArgs, pluginOptions);
+
+			expect(downloadFeed).toHaveBeenCalledTimes(1);
+			expect(downloadFeed).toHaveBeenCalledWith(pluginOptions);
+		});
+
+		it("should create Dental Practitioners’ Formulary node", async () => {
+			await sourceNodes(sourceNodesArgs, pluginOptions);
+			expect(sourceNodesArgs.actions.createNode).toHaveBeenNthCalledWith(5, {
+				...mockFeed.dentalPractitionersFormulary,
+				sections: [
+					{
+						order: 0,
+						reviewDate: undefined,
+						...mockFeed.dentalPractitionersFormulary.sections[0],
+					},
+				],
+				order: 0,
+				internal: expect.objectContaining({
+					type: BnfNode.DentalPractitionersFormulary,
+				}),
+			});
 		});
 	});
 
