@@ -1,4 +1,5 @@
 import { render, screen, waitFor } from "@testing-library/react";
+import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
 import DentalPractitionersFormularyPage, {
 	type DentalPractitionersFormularyPageProps,
@@ -48,5 +49,37 @@ describe("DentalPractitionersFormularyPageProps", () => {
 		});
 	});
 
-	it.todo("should render meta description");
+	it("should render meta description for BNF", async () => {
+		render(<DentalPractitionersFormularyPage {...pageProps} />);
+
+		await waitFor(() => {
+			expect(
+				document
+					// eslint-disable-next-line testing-library/no-node-access
+					.querySelector("meta[name='description']")
+			).toHaveAttribute(
+				"content",
+				"Browse the Dental Practitioners' Formulary (DPF) - the list of approved preparations for prescribing by dentists in the BNF."
+			);
+		});
+	});
+
+	it("should render meta description for BNFC", async () => {
+		(useSiteMetadata as jest.Mock).mockImplementationOnce(() => ({
+			siteTitleShort: "BNFC",
+		}));
+
+		render(<DentalPractitionersFormularyPage {...pageProps} />);
+
+		await waitFor(() => {
+			expect(
+				document
+					// eslint-disable-next-line testing-library/no-node-access
+					.querySelector("meta[name='description']")
+			).toHaveAttribute(
+				"content",
+				"Browse the Dental Practitioners' Formulary (DPF) - the list of approved preparations for prescribing by dentists in the BNFC."
+			);
+		});
+	});
 });
