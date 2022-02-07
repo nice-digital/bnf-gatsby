@@ -59,7 +59,8 @@
     "stylelint-config-sass-guidelines": "^9.0.1",
     "stylelint-config-standard": "^24.0.0",
     "ts-jest": "^27.1.2",
-    "typescript": "^4.5.4"
+    "typescript": "^4.5.4",
+    "xml-js": "^1.6.11"
   },
   "volta": {
     "node": "14.18.2"

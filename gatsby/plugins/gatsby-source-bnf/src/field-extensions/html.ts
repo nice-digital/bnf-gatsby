@@ -1,11 +1,12 @@
 import { type NodeInput } from "gatsby";
+import { js2xml, xml2js, type Element, type Attributes } from "xml-js";
 
 import { type FieldResolveContext, type NodeModel } from "../node-model";
-import { BnfNode, BnfNodeType } from "../node-types";
+import { BnfNode } from "../node-types";
 
 import { slugify } from "./slug";
 
-const nodeTypePathMap: { [key: BnfNodeType]: string } = {
+const nodeTypePathMap: Record<string, string> = {
 	[BnfNode.Drug]: "drugs",
 	[BnfNode.AboutSection]: "about",
 	[BnfNode.CautionaryAndAdvisoryGuidance]: "about",
@@ -13,47 +14,64 @@ const nodeTypePathMap: { [key: BnfNodeType]: string } = {
 	[BnfNode.Guidance]: "medicines-guidance",
 };
 
+type TitledNodeInput = { title: string } & NodeInput;
+
 /**
  * Regular expression to target `xref` element within an HTML string.
- * We can do this via a regex because HTML from the feed is always strict, valid XML and xrefs always follow a set format.
- *
- * Note the optional `sid`: some xrefs only have `idref` and some have both `idref` and `sid`.
+ * We can do this via a regex because HTML from the feed is always strict, valid XML.
  */
-const xRefRegex =
-	/<xref type="([^"]*)"(?: sid="([^"]*)")? idref="([^"]*)">([^<].*?)<\/xref>/gm;
+const xRefRegex = /<xref[^>]*>.*?<\/xref>/gm;
 
-const getHtmlReplaceFunc =
-	(nodeModel: NodeModel) =>
-	(
-		_match: string,
-		type: "drug" | "bookmark" | string,
-		sid: string | null,
-		id: string,
-		textContent: string
-	) => {
-		if (type !== "drug" && type !== "bookmark")
-			throw new Error(
-				`Unexpected xref type of ${type} found. Expected either drug or bookmark.`
-			);
+/** Known/expected values for the type attribute on xref nodes */
+const knownXrefTypes = ["drug", "bookmark"];
 
-		let node = nodeModel.getNodeById<{ title: string } & NodeInput>({ id });
+const knownXrefAttributes = ["type", "sid", "idref"];
 
-		// Some nodes e.g. treatment summaries seem to use the sid instead of PHP id so do a fallback query
-		if (!node && sid)
-			node = nodeModel.getNodeById<{ title: string } & NodeInput>({ id: sid });
+const getHtmlReplaceFunc = (nodeModel: NodeModel) => (xrefXML: string) => {
+	const parsedXml = xml2js(xrefXML, { elementNameFn: () => "a" }),
+		attributes = parsedXml.elements[0].attributes as Record<string, string>,
+		{ type, sid, idref } = attributes;
 
-		if (!node) throw new Error(`Couldn't find node with id ${id}`);
+	if (!knownXrefTypes.includes(type))
+		throw Error(
+			`Unexpected xref type of ${type} found. Expected one of ${knownXrefTypes}.`
+		);
 
-		const path = nodeTypePathMap[node.internal.type as BnfNodeType],
-			slug = slugify(node.title);
+	let node = nodeModel.getNodeById<TitledNodeInput>({
+		id: idref,
+	});
+
+	// Some nodes e.g. treatment summaries seem to use the sid instead of PHP id so do a fallback query
+	if (!node && sid)
+		node = nodeModel.getNodeById<TitledNodeInput>({
+			id: sid,
+		});
+
+	if (!node) {
+		// TODO: This should error, but it's a warning instead until we have final content in the feed with the correct links
+		console.warn(
+			`Couldn't find node with id ${idref} or sid ${sid} in xref ${xrefXML}`
+		);
+
+		attributes["href"] = `#`;
+		attributes["style"] = `text-decoration: underline wavy from-font red;`;
+	} else {
+		const path = nodeTypePathMap[node.internal.type];
 
 		if (!path)
-			throw new Error(
+			throw Error(
 				`Unsupported node type ${node.internal.type} for mapping to a path`
 			);
 
-		return `<a href="/${path}/${slug}/">${textContent}</a>`;
-	};
+		attributes["href"] = `/${path}/${slugify(node.title)}/`;
+	}
+
+	return js2xml(parsedXml, {
+		attributeNameFn: (attrName) =>
+			// Map original xref attributes to data-* attributes for debugging links
+			knownXrefAttributes.includes(attrName) ? `data-${attrName}` : attrName,
+	});
+};
 
 /**
  * Custom Gatsby field extension to process HTML string fields.
@@ -83,7 +101,7 @@ export const htmlFieldExtension = {
 				);
 
 				if (!fieldValue || typeof fieldValue !== "string")
-					throw new Error(`Expected HTML content field to be a string`);
+					throw Error(`Expected HTML content field value to be a string`);
 
 				return fieldValue.replace(
 					xRefRegex,
