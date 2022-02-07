@@ -1,4 +1,5 @@
 import { render, screen, waitFor } from "@testing-library/react";
+
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
 import DentalPractitionersFormularyPage, {
