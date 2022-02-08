@@ -20,21 +20,12 @@ const getQueryTerm = (queryString: string): string => {
 		: "";
 };
 
-const getTypeLabel = (typeAheadType: string | undefined) => {
-	switch (typeAheadType) {
-		case "Drug":
-			return "drugs/monographs";
-		case "BorderlineSubstance":
-			return "borderline substances";
-		case "MedicalDevice":
-			return "medical devices";
-		case "TreatmentSummary":
-			return "treatment summaries";
-		case "WoundManagement":
-			return "wound management";
-		default:
-			return "search";
-	}
+const typeAheadLabelMappings: Record<string, unknown> = {
+	Drug: "drugs/monographs",
+	BorderlineSubstance: "borderline substances",
+	MedicalDevice: "medical devices",
+	TreatmentSummary: "treatment summaries",
+	WoundManagement: "wound management",
 };
 
 export const SiteHeader: React.FC = () => {
@@ -104,7 +95,11 @@ export const SiteHeader: React.FC = () => {
 
 							return `<a href="${suggestion.Link}">${suggestion.Title} (${
 								isBNF ? "BNF" : "BNFC"
-							} ${getTypeLabel(suggestion.TypeAheadType)})</a>`;
+							} ${
+								suggestion.TypeAheadType
+									? typeAheadLabelMappings[suggestion.TypeAheadType]
+									: "search"
+							})</a>`;
 						},
 					},
 					onSearching: (e): void => {
