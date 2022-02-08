@@ -69,6 +69,11 @@ export const sourceNodes = async (
 		sourceNodesArgs
 	);
 	createSimpleRecordNodes(feedData.guidance, BnfNode.Guidance, sourceNodesArgs);
+	createSimpleRecordNodes(
+		[feedData.dentalPractitionersFormulary],
+		BnfNode.DentalPractitionersFormulary,
+		sourceNodesArgs
+	);
 
 	createCautionaryAndAdvisoryLabelsNodes(
 		feedData.cautionaryAndAdvisoryLabels,

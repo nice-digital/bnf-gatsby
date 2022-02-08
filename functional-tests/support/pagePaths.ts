@@ -1,6 +1,7 @@
 export const pagePaths = {
 	home: "/",
 	guidance: "/guidance/",
+	"Dental Practitioners’ Formulary": "/dental-practitioners-formulary/",
 	// About
 	about: "/about/",
 	changes: "/about/changes/",
