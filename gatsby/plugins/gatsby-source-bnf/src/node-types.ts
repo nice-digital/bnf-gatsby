@@ -8,6 +8,7 @@ export const BnfNode = {
 	Classification: "BnfClassification",
 	Drug: "BnfDrug",
 	Guidance: "BnfGuidance",
+	Interactant: "BnfInteractant",
 	TreatmentSummary: "BnfTreatmentSummary",
 	RecordSection: "BnfRecordSection",
 	SimpleRecord: "BnfSimpleRecord",

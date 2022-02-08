@@ -12,6 +12,7 @@ import { slugFieldExtension } from "./field-extensions/slug";
 import { schema } from "./graphql-schema";
 import { createCautionaryAndAdvisoryLabelsNodes } from "./node-creation/cautionary-advisory";
 import { createDrugNodes } from "./node-creation/drugs";
+import { createInteractionNodes } from "./node-creation/interactions";
 import { createSimpleRecordNodes } from "./node-creation/utils";
 import { BnfNode } from "./node-types";
 
@@ -21,8 +22,37 @@ import { BnfNode } from "./node-types";
  */
 export const createSchemaCustomization = ({
 	actions: { createFieldExtension, createTypes },
+	schema: { buildObjectType },
 }: CreateSchemaCustomizationArgs): void => {
-	createTypes(schema);
+	createTypes([
+		schema,
+		// buildObjectType({
+		// 	name: BnfNode.Interactant,
+		// 	fields: {
+		// 		drug: {
+		// 			type: BnfNode.Drug,
+		// 			resolve: (source, args, context, info) => {
+		// 				// If you were linking by ID, you could use `getNodeById` to
+		// 				// find the correct author:
+		// 				//
+		// 				// return context.nodeModel.getNodeById({
+		// 				//   id: source.author,
+		// 				//   type: "AuthorJson",
+		// 				// })
+		// 				//
+		// 				// But since the example is using the author email as foreign key,
+		// 				// you can use `nodeModel.findOne` to find the linked author node.
+		// 				// Note: Instead of getting all nodes and then using Array.prototype.find()
+		// 				// Use nodeModel.findOne instead where possible!
+		// 				return context.nodeModel.getNodeById({
+		// 					id: source.id,
+		// 					type: BnfNode.Drug,
+		// 				});
+		// 			},
+		// 		},
+		// 	},
+		// }),
+	]);
 
 	createFieldExtension(slugFieldExtension);
 	createFieldExtension(htmlFieldExtension);
@@ -74,6 +104,8 @@ export const sourceNodes = async (
 		feedData.cautionaryAndAdvisoryLabels,
 		sourceNodesArgs
 	);
+
+	createInteractionNodes(feedData.interactions, sourceNodesArgs);
 
 	setStatus(`Created all nodes`);
 	end();

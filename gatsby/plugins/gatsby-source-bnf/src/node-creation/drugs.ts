@@ -6,13 +6,10 @@ import { BnfNode } from "../node-types";
 
 import { createBnfNode } from "./utils";
 
-export interface DrugNodeInput
-	extends Except<
-		FeedDrug,
-		"primaryClassification" | "secondaryClassifications"
-	> {
-	initial: string;
-}
+export type DrugNodeInput = Except<
+	FeedDrug,
+	"primaryClassification" | "secondaryClassifications"
+>;
 
 export const createDrugNodes = (
 	drugs: FeedDrug[],
@@ -23,7 +20,6 @@ export const createDrugNodes = (
 			id,
 			sid,
 			title,
-			initial: title[0].toLowerCase(),
 		};
 
 		createBnfNode(nodeContent, BnfNode.Drug, sourceNodesArgs);

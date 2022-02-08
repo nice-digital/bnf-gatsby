@@ -5,9 +5,6 @@ export const drugSchema = `
 	A drug monograph
 	"""
 	type ${BnfNode.Drug} implements Node @dontInfer {
-		"The lowercase first letter of the title, used for grouping"
-		initial: String!
-
 		"The SID for the drug e.g. _694410247"
 		sid: String!
 
@@ -19,5 +16,7 @@ export const drugSchema = `
 
 		"The review date, if available for this record."
 		reviewDate: String
+
+		interactant: ${BnfNode.Interactant} @link(by: "sid", from: "sid")
 	}
 `;
