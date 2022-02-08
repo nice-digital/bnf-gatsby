@@ -7,6 +7,8 @@ import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
 // Header is mocked globally in setup
 const { SiteHeader } = jest.requireActual("./SiteHeader");
+const { Header } = jest.requireActual("@nice-digital/global-nav");
+const GlobalNavHeader = Header;
 
 const mockAutocompleteEndPointSuggestionsForDrug = [
 	{
@@ -25,7 +27,7 @@ const mockNoLinkorTitle = [
 
 describe("SiteHeader", () => {
 	describe("Autocomplete", () => {
-		it("should apply the BNF forumlary prefix for autocomplete results", async () => {
+		it.only("should apply the BNF forumlary prefix for autocomplete results", async () => {
 			(useSiteMetadata as jest.Mock).mockImplementationOnce(() => ({
 				isBNF: true,
 			}));
@@ -65,7 +67,7 @@ describe("SiteHeader", () => {
 				);
 			});
 		});
-		it.only("should not return a template if there is no suggestion or link", async () => {
+		it("should not return a template if there is no suggestion or link", async () => {
 			(useSiteMetadata as jest.Mock).mockImplementationOnce(() => ({
 				isBNF: false,
 			}));
@@ -73,14 +75,13 @@ describe("SiteHeader", () => {
 			render(<SiteHeader />);
 
 			fetchMock.mockResponseOnce(JSON.stringify(mockNoLinkorTitle));
-			userEvent.type(await screen.findByRole("combobox"), "FRANGIPAN");
+			userEvent.type(await screen.findByRole("combobox"), "zyx");
 			await waitFor(() => {
 				const suggestedElements = screen.queryAllByRole("option");
 				expect(suggestedElements).toHaveLength(1);
-				// expect(suggestedElements.firstChild).toBeNull();
 			});
 		});
-		it.todo("should return the correct label(s)");
+		it.todo("should append the correct typeahead label(s) for suggestions");
 		it.todo("should have a correctly formatted url for autocomplete queries");
 	});
 });
