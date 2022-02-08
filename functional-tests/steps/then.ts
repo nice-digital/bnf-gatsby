@@ -17,3 +17,18 @@ Then(
 		expect(labelEnglishElement).toBeExisting();
 	}
 );
+
+Then("I expect that the BNF GTM container is available", async () => {
+	const containerId = (await browser.executeAsync(function (
+		done: (containerId: string) => void
+	) {
+		(window as unknown as { dataLayer: unknown[] }).dataLayer.push({
+			event: "integration-test",
+			eventCallback: function (containerId: string) {
+				done(containerId);
+			},
+		});
+	} as unknown as () => void)) as string;
+
+	expect(containerId).toEqual("GTM-5H5L9GK");
+});

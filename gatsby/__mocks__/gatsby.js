@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // See https://www.gatsbyjs.org/docs/unit-testing/#mocking-gatsby
 const React = require("react");
+
 const gatsby = jest.requireActual("gatsby");
 
 const navigate = jest.fn();

@@ -1,0 +1,15 @@
+@use '@nice-digital/nds-core/scss/core';
+
+.list {
+  list-style: none;
+  margin: 0;
+  max-width: unset;
+  padding: 0;
+}
+
+.card {
+  border-bottom: 1px solid core.$nds-colour-border;
+  margin-bottom: core.rem(core.$nds-spacing-medium);
+  padding-bottom: core.rem(core.$nds-spacing-small);
+  position: relative;
+}

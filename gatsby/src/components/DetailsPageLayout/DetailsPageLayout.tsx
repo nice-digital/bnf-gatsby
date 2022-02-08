@@ -18,7 +18,7 @@ type DetailsPageLayoutProps = {
 	/** The ancestors from the parent page e.g. ["About"] */
 	parentTitleParts?: string[];
 	titleHtml: string;
-	menu: ElementType;
+	menu?: ElementType;
 	children: ReactNode;
 	parentBreadcrumbs?: {
 		href: string;
@@ -75,10 +75,12 @@ export const DetailsPageLayout: React.FC<DetailsPageLayoutProps> = ({
 			/>
 
 			<Grid gutter="loose" data-testid="body">
-				<GridItem cols={12} md={4} lg={3} className="hide-print">
-					<Menu />
-				</GridItem>
-				<GridItem cols={12} md={8} lg={9}>
+				{Menu && (
+					<GridItem cols={12} md={4} lg={3} className="hide-print">
+						<Menu />
+					</GridItem>
+				)}
+				<GridItem cols={12} md={Menu ? 8 : 12} lg={Menu ? 9 : 12}>
 					<Grid reverse gutter="loose">
 						<GridItem cols={12} lg={3}>
 							<OnThisPage sections={sections} />

@@ -5,6 +5,11 @@ require("dotenv").config({
 const isBNF = process.env.GATSBY_SITE === "bnf";
 const searchUrl = process.env.GATSBY_SEARCH_URL;
 
+if (!process.env.GATSBY_SEARCH_URL)
+	throw new Error(
+		"Env var GATSBY_SEARCH_URL isn't set. Did you forget to add it?"
+	);
+
 module.exports = {
 	jsxRuntime: "automatic",
 	siteMetadata: {
@@ -40,7 +45,19 @@ module.exports = {
 		},
 		"gatsby-plugin-catch-links",
 		"gatsby-plugin-react-helmet",
-		"gatsby-plugin-sitemap",
+		{
+			resolve: `gatsby-plugin-sitemap`,
+			options: {
+				excludes: [`/search/`],
+			},
+		},
+		{
+			resolve: "gatsby-plugin-google-tagmanager",
+			options: {
+				id: "GTM-5H5L9GK",
+				includeInDevelopment: true,
+			},
+		},
 		{
 			resolve: "gatsby-plugin-manifest",
 			options: {

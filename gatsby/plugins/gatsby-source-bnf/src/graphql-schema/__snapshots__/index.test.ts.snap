@@ -140,5 +140,20 @@ exports[`schema should match snapshot 1`] = `
 		\\"The Welsh translation of the label recommendation.\\"
 		welshRecommendation: String!
 	}
+
+
+	type BnfDentalPractitionersFormulary implements Node & BnfSimpleRecord @dontInfer {
+		\\"The title of the section. May contain HTML markup.\\"
+		title: String!
+
+		\\"The review date of the record, formatted into a string.\\"
+		reviewDate: String
+
+		\\"The slugified and lowercased title, used as a URL path\\"
+		slug: String! @slug(field: \\"title\\")
+
+		\\"The sections of the record.\\"
+		sections: [BnfRecordSection!]!
+	}
 "
 `;
