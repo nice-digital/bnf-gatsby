@@ -70,10 +70,19 @@ describe("SiteHeader", () => {
 		it.each([
 			["Drug", "BNF drugs/monographs", true],
 			["Drug", "BNFC drugs/monographs", false],
+			["BorderlineSubstance", "BNF borderline substances", true],
+			["BorderlineSubstance", "BNFC borderline substances", false],
+			["MedicalDevice", "BNF medical devices", true],
+			["MedicalDevice", "BNFC medical devices", false],
+			["TreatmentSummary", "BNF treatment summaries", true],
+			["TreatmentSummary", "BNFC treatment summaries", false],
+			["WoundManagement", "BNF wound management", true],
+			["WoundManagement", "BNFC wound management", false],
+			["", "BNF search", true],
+			["", "BNFC search", false],
 		])(
 			"should show label for %s typeahead suggestions - %s",
 			async (TypeAheadType, expected, isBNF) => {
-				// expect(input * 2).toBe(expected);
 				useSiteMetadataMock.mockReturnValueOnce({
 					isBNF,
 				});
