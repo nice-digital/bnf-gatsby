@@ -6,13 +6,13 @@ import {
 	type AtoZLetter,
 } from "@/components/AtoZListPage/AtoZListPage";
 
-export type TreatmentSummariesIndexPageProps = {
+export interface TreatmentSummariesIndexPageProps {
 	data: {
 		allTreatmentSummaries: {
 			letters: AtoZLetter[];
 		};
 	};
-};
+}
 
 const TreatmentSummariesIndexPage: FC<TreatmentSummariesIndexPageProps> = ({
 	data: {
@@ -22,7 +22,7 @@ const TreatmentSummariesIndexPage: FC<TreatmentSummariesIndexPageProps> = ({
 	<AtoZListPage
 		title="Treatment summaries"
 		path="treatment-summaries"
-		data={letters}
+		letters={letters}
 	/>
 );
 

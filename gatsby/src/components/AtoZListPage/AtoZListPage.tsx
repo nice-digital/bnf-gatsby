@@ -8,9 +8,6 @@ import { Layout } from "@/components/Layout/Layout";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
-const alphabetically = (a: AtoZLink, b: AtoZLink) =>
-	a.title.localeCompare(b.title);
-
 export interface AtoZLink {
 	title: string;
 	slug: string;
@@ -24,10 +21,17 @@ export interface AtoZLetter {
 export interface AtoZListPageProps {
 	title: string;
 	path: string;
-	data: AtoZLetter[];
+	letters: AtoZLetter[];
 }
 
-export const AtoZListPage: FC<AtoZListPageProps> = ({ title, path, data }) => {
+const byTitleAlphabetically = (a: AtoZLink, b: AtoZLink) =>
+	a.title.localeCompare(b.title);
+
+export const AtoZListPage: FC<AtoZListPageProps> = ({
+	title,
+	path,
+	letters,
+}) => {
 	const { siteTitleShort } = useSiteMetadata();
 
 	return (
@@ -45,12 +49,12 @@ export const AtoZListPage: FC<AtoZListPageProps> = ({ title, path, data }) => {
 			<PageHeader id="content-start" heading={<>{title} A&nbsp;to&nbsp;Z</>} />
 
 			<ol>
-				{data.map(({ letter, links }) => (
+				{letters.map(({ letter, links }) => (
 					<li key={letter}>
 						<h2>{letter}</h2>
 
 						<ol>
-							{links.sort(alphabetically).map(({ title, slug }) => (
+							{links.sort(byTitleAlphabetically).map(({ title, slug }) => (
 								<li key={slug}>
 									<Link
 										to={`/${path}/${slug}/`}
