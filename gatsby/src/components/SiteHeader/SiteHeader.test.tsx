@@ -65,7 +65,26 @@ describe("SiteHeader", () => {
 		//assert against fetchmock...to have been called with
 		it.todo("should have a correctly formatted url for autocomplete queries");
 
-		it.todo("test anchor href=link...");
+		it("should render the suggestion link correctly", async () => {
+			useSiteMetadataMock.mockReturnValueOnce({
+				isBNF: false,
+			});
+
+			render(<SiteHeader />);
+
+			// Global nav uses a fetch to load autocomplete suggestions, and changing the input value triggers this fetch
+			fetchMock.mockResponseOnce(
+				JSON.stringify(mockAutocompleteEndPointSuggestionsForDrug)
+			);
+			userEvent.type(await screen.findByRole("combobox"), "SODIUM");
+
+			await waitFor(() => {
+				const link = screen.getByRole("link", {
+					name: /sodium bicarbonate \(bnfc drugs\/monographs\)/i,
+				});
+				expect(link).toHaveAttribute("href", "/drugs/sodium-bicarbonate");
+			});
+		});
 
 		it.each([
 			["Drug", "BNF drugs/monographs", true],
