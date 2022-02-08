@@ -62,8 +62,28 @@ describe("SiteHeader", () => {
 			});
 		});
 
-		//assert against fetchmock...to have been called with
-		it.todo("should have a correctly formatted url for autocomplete queries");
+		it("should have a correctly formatted url for autocomplete queries", async () => {
+			useSiteMetadataMock.mockReturnValueOnce({
+				isBNF: false,
+				searchUrl: "/test-api-url",
+			});
+
+			render(<SiteHeader />);
+
+			// Global nav uses a fetch to load autocomplete suggestions, and changing the input value triggers this fetch
+			fetchMock.mockResponseOnce(
+				JSON.stringify([{ Title: "test", Link: "/test" }])
+			);
+			userEvent.type(await screen.findByRole("combobox"), "anything");
+
+			await waitFor(() => {
+				expect(fetchMock).toHaveBeenCalledTimes(1);
+				// eslint-disable-next-line testing-library/no-wait-for-multiple-assertions
+				expect(fetchMock).toHaveBeenCalledWith(
+					"/test-api-url/typeahead?index=bnfc&q=anything"
+				);
+			});
+		});
 
 		it("should render the suggestion link correctly", async () => {
 			useSiteMetadataMock.mockReturnValueOnce({
