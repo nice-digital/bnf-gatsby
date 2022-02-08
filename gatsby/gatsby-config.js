@@ -50,6 +50,13 @@ module.exports = {
 			},
 		},
 		{
+			resolve: "gatsby-plugin-google-tagmanager",
+			options: {
+				id: "GTM-5H5L9GK",
+				includeInDevelopment: true,
+			},
+		},
+		{
 			resolve: "gatsby-plugin-manifest",
 			options: {
 				icon: "src/images/icon.png",
