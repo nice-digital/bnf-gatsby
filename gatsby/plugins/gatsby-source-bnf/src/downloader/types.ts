@@ -5,6 +5,7 @@ export interface Feed {
 	guidance: FeedSimpleRecord[];
 	drugs: FeedDrug[];
 	cautionaryAndAdvisoryLabels: FeedCautionaryAndAdvisoryLabels;
+	dentalPractitionersFormulary: FeedSimpleRecord;
 	interactions: FeedInteractions;
 }
 

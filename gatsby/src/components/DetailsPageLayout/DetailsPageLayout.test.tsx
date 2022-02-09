@@ -161,5 +161,14 @@ describe("DetailsPageLayout", () => {
 			);
 			expect(screen.getByTestId("body")).toMatchSnapshot();
 		});
+
+		it("should match snapshot for body with no menu", () => {
+			render(
+				<DetailsPageLayout titleHtml="Anything" {...sections}>
+					Body content
+				</DetailsPageLayout>
+			);
+			expect(screen.getByTestId("body")).toMatchSnapshot();
+		});
 	});
 });

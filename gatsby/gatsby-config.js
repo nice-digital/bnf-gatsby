@@ -46,10 +46,18 @@ module.exports = {
 		},
 		"gatsby-plugin-catch-links",
 		"gatsby-plugin-react-helmet",
+		"gatsby-plugin-remove-generator",
 		{
 			resolve: `gatsby-plugin-sitemap`,
 			options: {
 				excludes: [`/search/`],
+			},
+		},
+		{
+			resolve: "gatsby-plugin-google-tagmanager",
+			options: {
+				id: "GTM-5H5L9GK",
+				includeInDevelopment: true,
 			},
 		},
 		{

@@ -6,6 +6,7 @@ export const BnfNode = {
 	CautionaryAndAdvisoryGuidance: "BnfCautionaryAndAdvisoryGuidance",
 	CautionaryAndAdvisoryLabel: "BnfCautionaryAndAdvisoryLabel",
 	Classification: "BnfClassification",
+	DentalPractitionersFormulary: "BnfDentalPractitionersFormulary",
 	Drug: "BnfDrug",
 	Guidance: "BnfGuidance",
 	Interactant: "BnfInteractant",
