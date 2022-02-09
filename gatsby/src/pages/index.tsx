@@ -54,18 +54,22 @@ const IndexPage: FC = () => {
 						<p>
 							Browse the list of drug interactions, arranged alphabetically.
 						</p>
-						<Button to="/drugs/" variant="inverse" elementType={Link}>
+						<Button to="/interactions/" variant="inverse" elementType={Link}>
 							Browse interactions
 						</Button>
 					</Panel>
 				</GridItem>
 				<GridItem cols={12} sm={6} md={4}>
-					<Panel variant="supporting">
+					<Panel variant="impact-alt">
 						<h2 className="h3">Treatment summaries</h2>
 						<p>
 							Browse the list of treatment summaries, arranged alphabetically.
 						</p>
-						<Button to="/drugs/" variant="secondary" elementType={Link}>
+						<Button
+							to="/treatment-summaries/"
+							variant="secondary"
+							elementType={Link}
+						>
 							Browse treatment summaries
 						</Button>
 					</Panel>

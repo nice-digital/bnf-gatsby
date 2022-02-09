@@ -32,11 +32,7 @@ export const query = graphql`
 			sort: { fields: title, order: ASC }
 		) {
 			letters: group(field: initial) {
-				letter: fieldValue
-				links: nodes {
-					title
-					slug
-				}
+				...TreatmentSummaryGroup
 			}
 		}
 	}
