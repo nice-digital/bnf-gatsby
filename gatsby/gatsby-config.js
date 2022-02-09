@@ -43,6 +43,7 @@ module.exports = {
 		},
 		"gatsby-plugin-catch-links",
 		"gatsby-plugin-react-helmet",
+		"gatsby-plugin-remove-generator",
 		{
 			resolve: `gatsby-plugin-sitemap`,
 			options: {
