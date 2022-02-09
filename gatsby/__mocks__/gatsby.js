@@ -2,13 +2,10 @@
 // See https://www.gatsbyjs.org/docs/unit-testing/#mocking-gatsby
 const React = require("react");
 
-const gatsby = jest.requireActual("gatsby");
-
 const navigate = jest.fn();
 
 module.exports = {
-	...gatsby,
-	navigate: navigate,
+	navigate,
 	graphql: jest.fn((str) => str[0]),
 	Link: jest.fn().mockImplementation(
 		// these props are invalid for an `a` tag
@@ -27,7 +24,7 @@ module.exports = {
 			React.createElement("a", {
 				...rest,
 				href: to,
-				onClick: (e) => {
+				onClick: jest.fn((e) => {
 					onClick && onClick(e);
 
 					if (!e.defaultPrevented) {
@@ -35,7 +32,7 @@ module.exports = {
 						// Call the navigate mock function, so tests can asserts on calls to the mock
 						navigate(to);
 					}
-				},
+				}),
 			})
 	),
 	StaticQuery: jest.fn(),

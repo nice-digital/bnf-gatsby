@@ -30,6 +30,7 @@ describe("useSiteMetadata", () => {
 							siteMetadata {
 								isBNF
 								siteUrl
+								searchUrl
 								siteTitleShort
 								siteTitleLong
 							}
