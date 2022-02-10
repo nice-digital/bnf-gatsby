@@ -117,6 +117,12 @@ describe("SiteHeader", () => {
 			["TreatmentSummary", "BNFC treatment summaries", false],
 			["WoundManagement", "BNF wound management", true],
 			["WoundManagement", "BNFC wound management", false],
+			["About", "BNF about", true],
+			["About", "BNFC about", false],
+			["MedicinesGuidance", "BNF medicines guidance", true],
+			["MedicinesGuidance", "BNFC medicines guidance", false],
+			["NursePrescribersFormulary", "BNF nurse prescribers formulary", true],
+			["NursePrescribersFormulary", "BNFC nurse prescribers formulary", false],
 			["", "BNF search", true],
 			["", "BNFC search", false],
 		])(

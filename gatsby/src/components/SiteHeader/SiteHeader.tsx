@@ -26,6 +26,9 @@ const typeAheadLabelMappings: Record<string, unknown> = {
 	MedicalDevice: "medical devices",
 	TreatmentSummary: "treatment summaries",
 	WoundManagement: "wound management",
+	About: "about",
+	MedicinesGuidance: "medicines guidance",
+	NursePrescribersFormulary: "nurse prescribers formulary",
 };
 
 export const SiteHeader: React.FC = () => {
