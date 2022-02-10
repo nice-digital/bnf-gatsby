@@ -99,9 +99,9 @@ export const SiteHeader: React.FC = () => {
 							return `<a href="${suggestion.Link}">${suggestion.Title} (${
 								isBNF ? "BNF" : "BNFC"
 							} ${
-								suggestion.TypeAheadType
-									? typeAheadLabelMappings[suggestion.TypeAheadType]
-									: "search"
+								(suggestion.TypeAheadType &&
+									typeAheadLabelMappings[suggestion.TypeAheadType]) ||
+								"search"
 							})</a>`;
 						},
 					},
