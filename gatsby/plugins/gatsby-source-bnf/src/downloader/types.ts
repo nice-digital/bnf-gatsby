@@ -1,13 +1,33 @@
 export interface Feed {
 	/** All about records in the BNF, in a consistent order. */
 	about: FeedSimpleRecord[];
+	/** All the treatment summaries. A treatment summary provides guidance on
+	 * how to deliver a drugs to particular body systems, comparisons between
+	 * groups of drugs, or overviews of treatment for common conditions. */
 	treatmentSummaries: FeedSimpleRecord[];
+	/** All guidance records in the BNF, in a consistent order.
+	 * These records would typically (but not exclusively) be found in the front
+	 * and back matter of the print editions of the BNF. */
 	guidance: FeedSimpleRecord[];
+	/** All the drug monograph content.
+	 * Each drug monograph contains a number of standard sections (called
+	 * `pots`) which describe the various properties of the drug when used in a
+	 * clinical context. */
 	drugs: FeedDrug[];
+	/** The guidance for cautionary and advisory labels and details of each of the labels (Appendix 3). */
 	cautionaryAndAdvisoryLabels: FeedCautionaryAndAdvisoryLabels;
 	dentalPractitionersFormulary: FeedSimpleRecord;
+	/** The interactions introduction, interactants and interactions messages. This field correlates to Appendix 1 of the print editions of the BNF. */
 	interactions: FeedInteractions;
 }
+
+/** A BNF PHP ID in the format `^PHP[0-9]+$` */
+export type PHPID = `PHP${number}`;
+
+/** A BNF SID in the format `^_[0-9]{9,12}$` */
+export type SID = `_${number}`;
+
+export type BNFID = PHPID | SID;
 
 export interface FeedClassification {
 	id: string;
@@ -16,13 +36,41 @@ export interface FeedClassification {
 }
 
 export interface FeedDrug {
-	id: string;
-	sid: string;
+	/** The PHP ID for the drug. */
+	id: PHPID;
+	/** The SID for the drug. */
+	sid: SID;
+	/** The title for the drug. May include HTML mark-up. */
 	title: string;
+	/**
+	 * The review date, if available for this record.
+	 * The format used is ISO 8601-1:2019 compliant (without a time zone designator), e.g. `2021-07-06T00:37:25.918`.
+	 */
+	reviewDate?: string;
+	/** The constituent drugs. This will be populated if the drug is a combination (e.g. 'tramadol with paracetamol') where each constituent exists in the BNF as a monograph in its own right. */
+	constituentDrugs?: FeedConstituentDrugs;
 
 	/** Note: not all 'drugs' have a primary classification, e.g. "St John's wort", "cranberry", "dairy products", "enteral feeds" etc */
 	primaryClassification?: FeedClassification;
 	secondaryClassifications: FeedClassification[];
+}
+
+/** A wrapper for the constituent drugs of a combination drug. */
+export interface FeedConstituentDrugs {
+	/** The standard message to be included with the constituent drugs. */
+	message: string;
+	/** The constituents of the combination drug. */
+	constituents: [FeedConstituentDrug, ...FeedConstituentDrug[]];
+}
+
+/** A constituent of a combination drug. */
+export interface FeedConstituentDrug {
+	/** The PHP ID of the constituent drug. */
+	id: PHPID;
+	/** The SID of the constituent drug. */
+	sid: SID;
+	/** The title of the constituent drug. May contain HTML mark-up */
+	title: string;
 }
 
 export interface FeedCautionaryAndAdvisoryLabels {
@@ -47,11 +95,11 @@ export interface FeedLabel {
  * For example, treatment summaries, about and guidance records, interactions introduction, etc.
  */
 export interface FeedSimpleRecord {
-	/** The ID of the record. */
-	id: string;
+	/** The ID of the record. The ID may be used in anchor links in HTML content elsewhere in the JSON. */
+	id: BNFID;
 	/** The title of the section. May contain HTML markup. */
 	title: string;
-	/** The review date of the record, formatted into a string. */
+	/** The review date, if available for this record. The format used is ISO 8601-1:2019 compliant (without a time zone designator), e.g. `2021-07-06T00:37:25.918`. */
 	reviewDate?: string;
 	/** The sections of the record." */
 	sections: FeedRecordSection[];
@@ -59,11 +107,11 @@ export interface FeedSimpleRecord {
 
 /** A section of a simple record. */
 export interface FeedRecordSection {
-	/** The ID of the section. E.g. `PHP107699` */
-	id: string;
+	/** The ID of the section. The ID may be used in anchor links in HTML content elsewhere in the JSON. The section ID can be used to determine the order of the sections within the parent record. Each ID is of the form `section[parent_id]-[num]` where `[parent_id]` is the ID of the parent record and `[num]` is an integer indicating the ordering of the sections, starting from zero. For example, the ID `sectionPHP101870-0` is the first section within the record with ID `PHP101870`. */
+	id: `section${BNFID}-${number}`;
 	/** The title of the section. May contain HTML markup. */
 	title: string;
-	/** The review date of the record, formatted into a string. */
+	/** The review date of the record if available, formatted into a String. The format used is ISO 8601-1:2019 compliant (without a time zone designator), e.g. `2021-07-06T00:37:25.918`. */
 	reviewDate?: string;
 	/** The content for the section. May contain HTML markup. */
 	content: string;

@@ -18,7 +18,14 @@ const DrugsIndexPage: FC<DrugsIndexPageProps> = ({
 	data: {
 		allDrugs: { letters },
 	},
-}) => <AtoZListPage title="Drugs" path="drugs" letters={letters} />;
+}) => (
+	<AtoZListPage
+		title="Drugs"
+		path="drugs"
+		metaDescription="Browse the complete list of drugs, alphabetically."
+		letters={letters}
+	/>
+);
 
 export const query = graphql`
 	{

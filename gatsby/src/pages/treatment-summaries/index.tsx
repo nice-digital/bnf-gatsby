@@ -22,6 +22,7 @@ const TreatmentSummariesIndexPage: FC<TreatmentSummariesIndexPageProps> = ({
 	<AtoZListPage
 		title="Treatment summaries"
 		path="treatment-summaries"
+		metaDescription="Browse the complete list of treatment summaries, alphabetically."
 		letters={letters}
 	/>
 );

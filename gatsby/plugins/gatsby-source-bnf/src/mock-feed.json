@@ -75,5 +75,43 @@
         "welshRecommendation": "Some recommendation in Welsh"
       }
     ]
+  },
+  "interactions": {
+    "introduction": {
+      "id": "PHP101220",
+      "title": "Appendix 1 Interactions",
+      "sections": [
+        {
+          "id": "sectionPHP101220-0",
+          "title": "Interactions",
+          "content": "<p>Two or more drugs given at the same time can exert their effects independently or they can interact.</p>"
+        }
+      ]
+    },
+    "messages": [
+      {
+        "interactant1": "_406847720",
+        "interactant2": "_149824369",
+        "messages": [
+          {
+            "message": "<p>Some message here</p>",
+            "severity": "Moderate",
+            "severityOrder": 3,
+            "evidence": "Theoretical",
+            "additiveEffect": false
+          }
+        ]
+      }
+    ],
+    "interactants": [
+      {
+        "sid": "_406847720",
+        "title": "Abacavir"
+      },
+      {
+        "sid": "_149824369",
+        "title": "Abatacept"
+      }
+    ]
   }
 }

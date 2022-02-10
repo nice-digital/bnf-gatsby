@@ -25,6 +25,14 @@ describe("initial field extension", () => {
 			).toBe("m");
 		});
 
+		it("should return lowercase initial from HTML title field", () => {
+			expect(
+				initialFieldExtension
+					.extend({ field: "something" }, null)
+					.resolve({ something: "<p><br />Ooooo</p>" }, null, null, null)
+			).toBe("o");
+		});
+
 		it("should throw if the field doesn't exist", () => {
 			expect(() => {
 				initialFieldExtension

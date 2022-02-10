@@ -19,7 +19,12 @@ const InteractionsIndexPage: FC<InteractionsIndexPageProps> = ({
 		allInteractants: { letters },
 	},
 }) => (
-	<AtoZListPage title="Interactions" path="interactions" letters={letters} />
+	<AtoZListPage
+		title="Interactions"
+		path="interactions"
+		metaDescription="Look up a drug to see which other drugs it interacts with and how serious those interactions are."
+		letters={letters}
+	/>
 );
 
 export const query = graphql`

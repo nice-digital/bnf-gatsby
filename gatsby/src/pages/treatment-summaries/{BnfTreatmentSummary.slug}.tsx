@@ -1,48 +1,49 @@
-import { graphql, PageProps, Link } from "gatsby";
+import { graphql, Link } from "gatsby";
 import React, { FC } from "react";
+import striptags from "striptags";
 
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
 import { PageHeader } from "@nice-digital/nds-page-header";
 
+import { DetailsPageLayout } from "@/components/DetailsPageLayout/DetailsPageLayout";
 import { Layout } from "@/components/Layout/Layout";
+import { RecordSectionsContent } from "@/components/RecordSectionsContent/RecordSectionsContent";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
+
+import { type RecordSection } from "src/types";
 
 export type TreatmentSummaryPageProps = {
 	data: {
 		bnfTreatmentSummary: {
 			title: string;
+			sections: RecordSection[];
 		};
 	};
 };
 
 const TreatmentSummaryPage: FC<TreatmentSummaryPageProps> = ({
 	data: {
-		bnfTreatmentSummary: { title },
+		bnfTreatmentSummary: { title, sections },
 	},
 }) => {
-	const { siteTitleShort } = useSiteMetadata();
+	const titleNoHtml = striptags(title);
 
 	return (
-		<Layout>
-			<SEO title={`${title} | Treatment summaries`} />
-
-			<Breadcrumbs>
-				<Breadcrumb to="https://www.nice.org.uk/">NICE</Breadcrumb>
-				<Breadcrumb to="/" elementType={Link}>
-					{siteTitleShort}
-				</Breadcrumb>
-				<Breadcrumb to="/treatment-summaries/" elementType={Link}>
-					Treatment summaries A to Z
-				</Breadcrumb>
-				<Breadcrumb>{title}</Breadcrumb>
-			</Breadcrumbs>
-
-			<PageHeader
-				id="content-start"
-				heading={<div dangerouslySetInnerHTML={{ __html: title }} />}
-			/>
-		</Layout>
+		<DetailsPageLayout
+			titleHtml={title}
+			metaDescription={`This treatment summary topic describes ${titleNoHtml}`}
+			parentTitleParts={["Treatment summaries"]}
+			parentBreadcrumbs={[
+				{ href: "/treatment-summaries/", text: "Treatment summaries" },
+			]}
+			sections={sections.map(({ slug, title }) => ({
+				id: slug,
+				title,
+			}))}
+		>
+			<RecordSectionsContent sections={sections} />
+		</DetailsPageLayout>
 	);
 };
 
@@ -50,6 +51,9 @@ export const query = graphql`
 	query ($id: String) {
 		bnfTreatmentSummary(id: { eq: $id }) {
 			title
+			sections {
+				...RecordSection
+			}
 		}
 	}
 `;

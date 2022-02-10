@@ -27,6 +27,10 @@ describe("gatsby-node", () => {
 					\\"The lowercase first letter of the title, used for grouping\\"
 					initial: String! @initial(field: \\"title\\")
 				  }
+				  type BnfInteractant implements Node {
+					\\"The lowercase first letter of the title, used for grouping\\"
+					initial: String! @initial(field: \\"title\\")
+				  }
 				"
 		`);
 		});

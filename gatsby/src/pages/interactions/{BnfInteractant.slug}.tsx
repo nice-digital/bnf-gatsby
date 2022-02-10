@@ -1,5 +1,6 @@
-import { graphql, PageProps, Link } from "gatsby";
+import { graphql, Link } from "gatsby";
 import React, { FC } from "react";
+import striptags from "striptags";
 
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
 import { PageHeader } from "@nice-digital/nds-page-header";
@@ -8,28 +9,32 @@ import { Layout } from "@/components/Layout/Layout";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
-export type InteractantPageProps = {
+export interface InteractantPageProps {
 	data: {
 		bnfInteractant: {
 			title: string;
-			drug: {
+			drug: null | {
 				title: string;
 				slug: string;
-			} | null;
+			};
 		};
 	};
-};
+}
 
 const InteractantPage: FC<InteractantPageProps> = ({
 	data: {
 		bnfInteractant: { title, drug },
 	},
 }) => {
-	const { siteTitleShort } = useSiteMetadata();
+	const { siteTitleShort } = useSiteMetadata(),
+		titleNoHtml = striptags(title);
 
 	return (
 		<Layout>
-			<SEO title={`${title} | Interactions`} />
+			<SEO
+				title={`${titleNoHtml} | Interactions`}
+				description={`A list of drugs that interact with ${titleNoHtml}`}
+			/>
 
 			<Breadcrumbs>
 				<Breadcrumb to="https://www.nice.org.uk/">NICE</Breadcrumb>
@@ -37,14 +42,15 @@ const InteractantPage: FC<InteractantPageProps> = ({
 					{siteTitleShort}
 				</Breadcrumb>
 				<Breadcrumb to="/interactions/" elementType={Link}>
-					Interactions A to Z
+					Interactions
 				</Breadcrumb>
-				<Breadcrumb>{title}</Breadcrumb>
+				<Breadcrumb>{titleNoHtml}</Breadcrumb>
 			</Breadcrumbs>
 
 			<PageHeader
 				id="content-start"
-				heading={<div dangerouslySetInnerHTML={{ __html: title }} />}
+				preheading={<span dangerouslySetInnerHTML={{ __html: title + " " }} />}
+				heading="Interactions"
 				lead={
 					drug ? (
 						<Link to={`/drugs/${drug.slug}/`}>

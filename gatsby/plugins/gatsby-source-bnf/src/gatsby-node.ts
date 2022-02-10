@@ -22,37 +22,8 @@ import { BnfNode } from "./node-types";
  */
 export const createSchemaCustomization = ({
 	actions: { createFieldExtension, createTypes },
-	schema: { buildObjectType },
 }: CreateSchemaCustomizationArgs): void => {
-	createTypes([
-		schema,
-		// buildObjectType({
-		// 	name: BnfNode.Interactant,
-		// 	fields: {
-		// 		drug: {
-		// 			type: BnfNode.Drug,
-		// 			resolve: (source, args, context, info) => {
-		// 				// If you were linking by ID, you could use `getNodeById` to
-		// 				// find the correct author:
-		// 				//
-		// 				// return context.nodeModel.getNodeById({
-		// 				//   id: source.author,
-		// 				//   type: "AuthorJson",
-		// 				// })
-		// 				//
-		// 				// But since the example is using the author email as foreign key,
-		// 				// you can use `nodeModel.findOne` to find the linked author node.
-		// 				// Note: Instead of getting all nodes and then using Array.prototype.find()
-		// 				// Use nodeModel.findOne instead where possible!
-		// 				return context.nodeModel.getNodeById({
-		// 					id: source.id,
-		// 					type: BnfNode.Drug,
-		// 				});
-		// 			},
-		// 		},
-		// 	},
-		// }),
-	]);
+	createTypes(schema);
 
 	createFieldExtension(slugFieldExtension);
 	createFieldExtension(htmlFieldExtension);

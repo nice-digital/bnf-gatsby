@@ -20,6 +20,7 @@ export interface AtoZLetter {
 
 export interface AtoZListPageProps {
 	title: string;
+	metaDescription: string;
 	path: string;
 	letters: AtoZLetter[];
 }
@@ -29,6 +30,7 @@ const byTitleAlphabetically = (a: AtoZLink, b: AtoZLink) =>
 
 export const AtoZListPage: FC<AtoZListPageProps> = ({
 	title,
+	metaDescription,
 	path,
 	letters,
 }) => {
@@ -36,7 +38,7 @@ export const AtoZListPage: FC<AtoZListPageProps> = ({
 
 	return (
 		<Layout>
-			<SEO title={`${title} A to Z`} />
+			<SEO title={`${title} A to Z`} description={metaDescription} />
 
 			<Breadcrumbs>
 				<Breadcrumb to="https://www.nice.org.uk/">NICE</Breadcrumb>
@@ -48,12 +50,28 @@ export const AtoZListPage: FC<AtoZListPageProps> = ({
 
 			<PageHeader id="content-start" heading={<>{title} A&nbsp;to&nbsp;Z</>} />
 
-			<ol>
+			<ol style={{ display: "flex", listStyle: "none", marginLeft: 0 }}>
+				{letters.map(({ letter }) => (
+					<li key={letter}>
+						<a href={`#${letter}`} style={{ padding: ".5rem" }}>
+							{letter.toUpperCase()}
+						</a>
+					</li>
+				))}
+			</ol>
+
+			<ol aria-label={`Letters A to Z with matching links to ${title}`}>
 				{letters.map(({ letter, links }) => (
 					<li key={letter}>
-						<h2>{letter}</h2>
+						<h2
+							id={letter}
+							tabIndex={-1}
+							aria-label={`${title} starting with letter '${letter.toUpperCase()}'`}
+						>
+							{letter.toUpperCase()}
+						</h2>
 
-						<ol>
+						<ol aria-labelledby={letter}>
 							{links.sort(byTitleAlphabetically).map(({ title, slug }) => (
 								<li key={slug}>
 									<Link
