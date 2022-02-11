@@ -53,6 +53,13 @@ export const config: WebdriverIO.Config = {
 		if (error) await browser.takeScreenshot();
 	},
 
+	afterScenario: async function (_world, _result, _context) {
+		// Clear session storage after each test because Gatsby stores scroll
+		// positions of each page, which causes issues running multiple tests
+		// on the same page in the same browser instance when scrolling to links
+		await browser.execute("sessionStorage.clear()");
+	},
+
 	autoCompileOpts: {
 		autoCompile: true,
 		// see https://github.com/TypeStrong/ts-node#cli-and-programmatic-options

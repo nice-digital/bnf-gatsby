@@ -54,7 +54,7 @@ export const AtoZListPage: FC<AtoZListPageProps> = ({
 				{letters.map(({ letter }) => (
 					<li key={letter}>
 						<a href={`#${letter}`} style={{ padding: ".5rem" }}>
-							{letter.toUpperCase()}
+							{letter.trim().toUpperCase() || "n/a"}
 						</a>
 					</li>
 				))}
@@ -68,7 +68,7 @@ export const AtoZListPage: FC<AtoZListPageProps> = ({
 							tabIndex={-1}
 							aria-label={`${title} starting with letter '${letter.toUpperCase()}'`}
 						>
-							{letter.toUpperCase()}
+							{letter.trim().toUpperCase() || "n/a"}
 						</h2>
 
 						<ol aria-labelledby={letter}>
