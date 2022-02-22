@@ -33,7 +33,7 @@ services:
       - /bnf-gatsby/tests/node_modules/
 
   bnf-website:
-    image: nginx
+    image: nginx:1.21.6-alpine
     container_name: bnf-website
     environment:
       - NGINX_HOST=bnf-functional-tests.nice.org.uk
@@ -48,7 +48,7 @@ services:
           - bnf-functional-tests.nice.org.uk
 
   bnfc-website:
-    image: nginx
+    image: nginx:1.21.6-alpine
     container_name: bnfc-website
     environment:
       - NGINX_HOST=bnfc-functional-tests.nice.org.uk

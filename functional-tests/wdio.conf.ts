@@ -16,7 +16,15 @@ export const config: WebdriverIO.Config = {
 		{
 			browserName: "chrome",
 			"goog:chromeOptions": {
-				args: ["--window-size=1366,768"].concat(isInDocker ? "--headless" : []),
+				args: [
+					"--window-size=1366,768",
+					// Automation optimizations as per https://github.com/GoogleChrome/chrome-launcher/blob/master/docs/chrome-flags-for-tools.md
+					"--enable-automation",
+					"--disable-extensions",
+					"--disable-component-extensions-with-background-pages",
+					"--disable-background-networking",
+					"--disable-sync",
+				].concat(isInDocker ? "--headless" : []),
 			},
 		},
 	],
