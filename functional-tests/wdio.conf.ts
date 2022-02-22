@@ -46,7 +46,7 @@ export const config: WebdriverIO.Config = {
 		],
 		tagExpression: "not @pending", // See https://docs.cucumber.io/tag-expressions/
 		// Need quite a long timeout here because some of the Axe a11y tests take a while for longer pages (like drugs A to Z)
-		timeout: 30000,
+		timeout: 60000,
 	},
 
 	afterStep: async function (_test, _scenario, { error }) {

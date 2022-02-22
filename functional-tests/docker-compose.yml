@@ -11,7 +11,7 @@ services:
   bnf-selenium-chrome:
     image: selenium/node-chrome:4.1.1-20211217
     container_name: bnf-selenium-chrome
-    shm_size: '2gb'
+    shm_size: '3gb'
     depends_on:
       - bnf-selenium-hub
     environment:
