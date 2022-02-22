@@ -7,7 +7,7 @@ export const config: WebdriverIO.Config = {
 	// We need to use webdriver protocol in Docker because we use the selenium grid.
 	automationProtocol: isInDocker ? "webdriver" : "devtools",
 
-	maxInstances: isInDocker ? 5 : 1,
+	maxInstances: 1,
 	path: "/wd/hub",
 
 	specs: ["./features/**/*.feature"],
