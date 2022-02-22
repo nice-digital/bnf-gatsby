@@ -45,7 +45,7 @@ export const config: WebdriverIO.Config = {
 			"./node_modules/@nice-digital/wdio-cucumber-steps/lib",
 		],
 		tagExpression: "not @pending", // See https://docs.cucumber.io/tag-expressions/
-		timeout: 15000,
+		timeout: 20000,
 	},
 
 	afterStep: async function (_test, _scenario, { error }) {

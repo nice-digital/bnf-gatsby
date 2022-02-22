@@ -21,7 +21,7 @@ Feature: Interactions A to Z page
     Then I expect that the path is "/"
 
   Scenario: Heading text
-    Then I expect that element "h1" matches the text "Interactions A to Z"
+    Then I expect that element "h1" contains the text "Interactions"
 
   Scenario: Click letter C
     When I click the "C" link
