@@ -7,11 +7,14 @@ services:
       - '4442:4442'
       - '4443:4443'
       - '4444:4444'
+    environment:
+      # When using headless browser mode, there's no need for the Xvfb server to be started.
+      - START_XVFB=false
 
   bnf-selenium-chrome:
     image: selenium/node-chrome:4.1.1-20211217
-    container_name: bnf-selenium-chrome
-    shm_size: '3gb'
+    #container_name: bnf-selenium-chrome
+    shm_size: '2gb'
     depends_on:
       - bnf-selenium-hub
     environment:

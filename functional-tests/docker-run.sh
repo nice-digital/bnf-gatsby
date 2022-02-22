@@ -16,7 +16,7 @@ function runTests() {
     # Assume that on TeamCity we've created the containers in the background with `docker-compose up --no-start` but not started them
     docker-compose start
   else
-    docker-compose up -d
+    docker-compose up --scale bnf-selenium-chrome=2 -d
   fi
 
   # Wait for the web app to be up before running the tests
