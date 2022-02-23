@@ -136,7 +136,7 @@ describe("SiteHeader", () => {
 
 				// Global nav uses a fetch to load autocomplete suggestions, and changing the input value triggers this fetch
 				fetchMock.mockResponseOnce(
-					JSON.stringify([{ Title: "test", Link: "/test", TypeAheadType }])
+					JSON.stringify([{ TitleHtml: "test", Link: "/test", TypeAheadType }])
 				);
 				userEvent.type(await screen.findByRole("combobox"), "anything");
 

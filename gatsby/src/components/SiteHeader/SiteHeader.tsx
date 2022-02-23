@@ -95,6 +95,7 @@ export const SiteHeader: React.FC = () => {
 						suggestions: suggestionsUrl,
 						suggestionTemplate: (suggestion) => {
 							if (!suggestion || !suggestion.Link) return "";
+							console.log("###", suggestion.TitleHtml);
 
 							return `<a href="${suggestion.Link}">${suggestion.TitleHtml} (${
 								isBNF ? "BNF" : "BNFC"
