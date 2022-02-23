@@ -8,8 +8,7 @@ import {
 	generateTitle,
 } from "@/components/CautionaryAndAdvisoryLabel/CautionaryAndAdvisoryLabel";
 import { DetailsPageLayout } from "@/components/DetailsPageLayout/DetailsPageLayout";
-
-import styles from "./labels.module.scss";
+import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
 export type CautionaryAdvisoryLabelsPageProps = {
 	data: {
@@ -31,6 +30,8 @@ export const CautionaryAdvisoryLabelsPage: FC<
 		allBnfCautionaryAndAdvisoryLabel: { advisoryLabels },
 	},
 }) => {
+	const { siteTitleShort } = useSiteMetadata();
+
 	return (
 		<DetailsPageLayout
 			titleHtml={"Cautionary and advisory labels"}
@@ -43,13 +44,14 @@ export const CautionaryAdvisoryLabelsPage: FC<
 					title: generateTitle(label.number),
 				};
 			})}
+			metaDescription={`List of the ${advisoryLabels.length} cautionary, warning and advisory labels applied to the medications used in the ${siteTitleShort}, as found in appendix 3 of the printed edition.`}
 		>
 			<p>
 				<Link to="/about/guidance-for-cautionary-and-advisory-labels/">
 					View guidance for cautionary and advisory labels
 				</Link>
 			</p>
-			<ol className={styles.labelList}>
+			<ol className="list--unstyled">
 				{advisoryLabels.map((label) => (
 					<li key={label.number}>
 						<CautionaryAndAdvisoryLabel {...label} />

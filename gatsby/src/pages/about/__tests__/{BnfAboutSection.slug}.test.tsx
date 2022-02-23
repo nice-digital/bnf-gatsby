@@ -3,6 +3,7 @@ import { render, screen, waitFor } from "@testing-library/react";
 import { useStaticQuery } from "gatsby";
 
 import { mockAboutPagesQueryData } from "@/hooks/useAboutPages.test";
+import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
 import AboutSectionPage, {
 	type AboutSectionPageProps,
@@ -31,15 +32,18 @@ const pageProps: AboutSectionPageProps = {
 			],
 		},
 	},
+	path: "/about/changes/",
 };
 
-(useLocation as jest.Mock).mockImplementation(
-	() => new URL("https://bnf-gatsby-tests.nice.org.uk/about/changes/")
-);
-
-(useStaticQuery as jest.Mock).mockReturnValue(mockAboutPagesQueryData);
-
 describe("AboutSectionPage", () => {
+	beforeEach(() => {
+		(useLocation as jest.Mock).mockImplementation(
+			() => new URL("https://bnf-gatsby-tests.nice.org.uk" + pageProps.path)
+		);
+
+		(useStaticQuery as jest.Mock).mockReturnValue(mockAboutPagesQueryData);
+	});
+
 	it("should match snapshot for graphql query", () => {
 		expect(query).toMatchSnapshot();
 	});
@@ -54,9 +58,47 @@ describe("AboutSectionPage", () => {
 		render(<AboutSectionPage {...pageProps} />);
 
 		await waitFor(() => {
-			expect(document.title).toBe(
-				"Changes | About | BNF content published by NICE"
+			expect(document.title).toStartWith("Changes | About | ");
+		});
+	});
+
+	it("should set meta description for known path on BNF", async () => {
+		render(<AboutSectionPage {...pageProps} />);
+
+		await waitFor(() => {
+			expect(
+				// eslint-disable-next-line testing-library/no-node-access
+				document.querySelector(`meta[name="description"]`)
+			).toHaveAttribute(
+				"content",
+				"Keep up to date with the latest significant changes in the BNF that are relevant to your clinical practice. Updated monthly."
 			);
 		});
+	});
+
+	it("should set meta description for known path on BNFC", async () => {
+		(useSiteMetadata as jest.Mock).mockImplementationOnce(() => ({
+			siteTitleShort: "BNFC",
+		}));
+
+		render(<AboutSectionPage {...pageProps} />);
+
+		await waitFor(() => {
+			expect(
+				// eslint-disable-next-line testing-library/no-node-access
+				document.querySelector(`meta[name="description"]`)
+			).toHaveAttribute(
+				"content",
+				"Keep up to date with the latest significant changes in the BNFC that are relevant to your clinical practice. Updated monthly."
+			);
+		});
+	});
+
+	it("should throw error for unknown path", () => {
+		expect(() => {
+			render(<AboutSectionPage {...pageProps} path="/about/unknown" />);
+		}).toThrowError(
+			"Couldn't find meta description for page with path /about/unknown"
+		);
 	});
 });

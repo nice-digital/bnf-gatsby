@@ -5,7 +5,7 @@ import React from "react";
 
 import { useAboutPages } from "@/hooks/useAboutPages";
 
-import AboutIndexPage from "../about/index";
+import AboutIndexPage from "..";
 
 jest.mock("@/hooks/useAboutPages");
 (useAboutPages as jest.Mock).mockImplementation(() => [
