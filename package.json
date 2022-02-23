@@ -64,5 +64,8 @@
   },
   "volta": {
     "node": "14.18.2"
+  },
+  "dependencies": {
+    "jest-fetch-mock": "^3.0.3"
   }
 }

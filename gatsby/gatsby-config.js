@@ -3,6 +3,7 @@ require("dotenv").config({
 });
 
 const isBNF = process.env.GATSBY_SITE === "bnf";
+const searchUrl = process.env.GATSBY_SEARCH_URL;
 
 if (!process.env.GATSBY_SEARCH_URL)
 	throw new Error(
@@ -14,6 +15,7 @@ module.exports = {
 	siteMetadata: {
 		isBNF,
 		siteUrl: `https://${isBNF ? "bnf" : "bnfc"}.nice.org.uk`,
+		searchUrl,
 		siteTitleShort: isBNF ? "BNF" : "BNFC",
 		siteTitleLong:
 			"British National Formulary" + (isBNF ? "" : " for Children"),

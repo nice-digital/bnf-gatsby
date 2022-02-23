@@ -4,7 +4,7 @@ import React, { useEffect, useState, useCallback } from "react";
 
 import { Header as GlobalNavHeader } from "@nice-digital/global-nav";
 
-import { isBNF } from "./../../site";
+import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
 const searchInputSelector = "header form[role='search'] [name='q']";
 
@@ -20,10 +20,26 @@ const getQueryTerm = (queryString: string): string => {
 		: "";
 };
 
+const typeAheadLabelMappings: Record<string, unknown> = {
+	Drug: "drugs/monographs",
+	BorderlineSubstance: "borderline substances",
+	MedicalDevice: "medical devices",
+	TreatmentSummary: "treatment summaries",
+	WoundManagement: "wound management",
+	About: "about",
+	MedicinesGuidance: "medicines guidance",
+	NursePrescribersFormulary: "nurse prescribers formulary",
+};
+
 export const SiteHeader: React.FC = () => {
 	const { search: queryString } = useLocation();
+	const { isBNF, searchUrl } = useSiteMetadata();
 
 	const [queryTerm, setQueryTermState] = useState(getQueryTerm(queryString));
+
+	const suggestionsUrl = `${searchUrl}/typeahead?index=${
+		isBNF ? "bnf" : "bnfc"
+	}`;
 
 	// Parse the q value from the querystring
 	useEffect(() => {
@@ -76,13 +92,18 @@ export const SiteHeader: React.FC = () => {
 				search={{
 					placeholder: isBNF ? "Search BNF…" : "Search BNFC…",
 					autocomplete: {
-						suggestions: "/api/autocomplete",
+						suggestions: suggestionsUrl,
 						suggestionTemplate: (suggestion) => {
 							if (!suggestion || !suggestion.Link) return "";
+							console.log("###", suggestion.TitleHtml);
 
-							let typeLabel = "BNF search";
-							if (suggestion.TypeAheadType === "drug") typeLabel = "BNF drug";
-							return `<a href="${suggestion.Link}">${suggestion.Title} (${typeLabel})</a>`;
+							return `<a href="${suggestion.Link}">${suggestion.TitleHtml} (${
+								isBNF ? "BNF" : "BNFC"
+							} ${
+								(suggestion.TypeAheadType &&
+									typeAheadLabelMappings[suggestion.TypeAheadType]) ||
+								"search"
+							})</a>`;
 						},
 					},
 					onSearching: (e): void => {
