@@ -93,6 +93,10 @@ const AboutSectionPage: FC<AboutSectionPageProps> = ({
 			"/about/medicines-information-services/",
 			`Find contact details for both regional and national medicines information and advice lines/services in the UK.`
 		);
+		metas.set(
+			"/about/paediatric-formulary-committee",
+			`The Paediatric Formulary Committee (PFC) is responsible for the content of ${siteTitleShort}. The PFC includes pharmacy, medical, nursing and lay representatives.`
+		);
 
 		return metas;
 	}, [siteTitleShort, siteTitleLong, isBNF]);
