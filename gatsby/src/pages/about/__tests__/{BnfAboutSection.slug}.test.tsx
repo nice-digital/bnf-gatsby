@@ -32,13 +32,18 @@ const pageProps: AboutSectionPageProps = {
 			],
 		},
 	},
-	path: "/about/changes/",
+	location: {
+		pathname: "/about/changes/",
+	},
 };
 
 describe("AboutSectionPage", () => {
 	beforeEach(() => {
 		(useLocation as jest.Mock).mockImplementation(
-			() => new URL("https://bnf-gatsby-tests.nice.org.uk" + pageProps.path)
+			() =>
+				new URL(
+					"https://bnf-gatsby-tests.nice.org.uk" + pageProps.location.pathname
+				)
 		);
 
 		(useStaticQuery as jest.Mock).mockReturnValue(mockAboutPagesQueryData);
@@ -96,7 +101,12 @@ describe("AboutSectionPage", () => {
 
 	it("should throw error for unknown path", () => {
 		expect(() => {
-			render(<AboutSectionPage {...pageProps} path="/about/unknown" />);
+			render(
+				<AboutSectionPage
+					{...pageProps}
+					location={{ pathname: "/about/unknown" }}
+				/>
+			);
 		}).toThrowError(
 			"Couldn't find meta description for page with path /about/unknown"
 		);

@@ -15,14 +15,16 @@ export type AboutSectionPageProps = {
 			sections: RecordSection[];
 		};
 	};
-	path: string;
+	location: {
+		pathname: string;
+	};
 };
 
 const AboutSectionPage: FC<AboutSectionPageProps> = ({
 	data: {
 		currentAboutPage: { title, sections },
 	},
-	path,
+	location: { pathname },
 }) => {
 	const { siteTitleShort, siteTitleLong, isBNF } = useSiteMetadata();
 
@@ -95,14 +97,14 @@ const AboutSectionPage: FC<AboutSectionPageProps> = ({
 		return metas;
 	}, [siteTitleShort, siteTitleLong, isBNF]);
 
-	const metaDesc = metaDescriptions.get(path);
+	const metaDesc = metaDescriptions.get(pathname);
 
 	// Throwing an error here means we break the build if a new about page gets
 	// added to the feed but that's a) infrequent and b) what we want so we can
 	// craft a new meta description.
 	if (!metaDesc)
 		throw new Error(
-			`Couldn't find meta description for page with path ${path}`
+			`Couldn't find meta description for page with path ${pathname}`
 		);
 
 	return (
