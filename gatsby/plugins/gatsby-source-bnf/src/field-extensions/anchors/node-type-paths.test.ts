@@ -1,7 +1,8 @@
 import { nodeTypePathMap } from "./node-type-paths";
 
 describe("nodeTypePathMap", () => {
-	expect(nodeTypePathMap).toMatchInlineSnapshot(`
+	it("should match snapshot for node type path mappings", () => {
+		expect(nodeTypePathMap).toMatchInlineSnapshot(`
 		Map {
 		  "BnfDrug" => "drugs",
 		  "BnfAboutSection" => "about",
@@ -10,4 +11,5 @@ describe("nodeTypePathMap", () => {
 		  "BnfGuidance" => "medicines-guidance",
 		}
 	`);
+	});
 });
