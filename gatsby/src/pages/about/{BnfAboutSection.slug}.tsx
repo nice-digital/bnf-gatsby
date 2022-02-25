@@ -41,7 +41,9 @@ const AboutSectionPage: FC<AboutSectionPageProps> = ({
 		);
 		metas.set(
 			"/about/preface/",
-			`The ${siteTitleLong} is a rapid reference resource for the latest information and advice on prescribing and pharmacology.`
+			isBNF
+				? `The British National Formulary is a rapid reference resource for the latest information and advice on prescribing and pharmacology.`
+				: `The British National Formulary for Children is a rapid reference resource for the latest information and advice on prescribing and pharmacology in children.`
 		);
 		metas.set(
 			"/about/acknowledgements/",
@@ -75,7 +77,7 @@ const AboutSectionPage: FC<AboutSectionPageProps> = ({
 		);
 		metas.set(
 			"/about/frequently-asked-questions-for-the-bnf-and-bnf-for-children-bnfc-general/",
-			`Get answers to frequently asked questions about the British National Formulary, including how to cite, or reference, the different versions of the BNF and BNFc.`
+			`Get answers to frequently asked questions about the British National Formulary, including how to cite, or reference, the different versions of the BNF and BNFC.`
 		);
 		metas.set(
 			"/about/frequently-asked-questions-clinical/",
