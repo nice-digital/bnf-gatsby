@@ -1,3 +1,6 @@
+require("source-map-support").install();
+require("ts-node/register/transpile-only");
+
 require("dotenv").config({
 	path: `.env.${process.env.NODE_ENV}`,
 });
@@ -5,7 +8,7 @@ require("dotenv").config({
 const isBNF = process.env.GATSBY_SITE === "bnf";
 const searchUrl = process.env.GATSBY_SEARCH_URL;
 
-if (!process.env.GATSBY_SEARCH_URL)
+if (process.env.NODE_ENV && !process.env.GATSBY_SEARCH_URL)
 	throw new Error(
 		"Env var GATSBY_SEARCH_URL isn't set. Did you forget to add it?"
 	);

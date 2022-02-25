@@ -5,9 +5,6 @@ export const drugSchema = `
 	A drug monograph
 	"""
 	type ${BnfNode.Drug} implements Node @dontInfer {
-		"The lowercase first letter of the title, used for grouping"
-		initial: String!
-
 		"The SID for the drug e.g. _694410247"
 		sid: String!
 
@@ -18,6 +15,23 @@ export const drugSchema = `
 		slug: String! @slug(field: "title")
 
 		"The review date, if available for this record."
-		reviewDate: String
+		reviewDate: Date @dateformat
+
+		"The interactant with the same sid as this drug, if it exists, otherwise null"
+		interactant: ${BnfNode.Interactant} @link(by: "sid", from: "sid")
+
+		"The constituent drugs. This will be populated if the drug is a combination (e.g. 'tramadol with paracetamol') where each constituent exists in the BNF as a monograph in its own right."
+		constituentDrugs: ${BnfNode.ConstituentDrugs}
+	}
+
+	"""
+	A wrapper for the constituent drugs of a combination drug.
+	"""
+	type ${BnfNode.ConstituentDrugs} {
+		"The standard message to be included with the constituent drugs."
+		message: String!
+
+		"The constituents of the combination drug. TODO: Make this non-nullable when the feed is fixed (currently it shows constituents that aren't themselves drug monographs)"
+		constituents: [${BnfNode.Drug}]! @link(by: "sid")
 	}
 `;

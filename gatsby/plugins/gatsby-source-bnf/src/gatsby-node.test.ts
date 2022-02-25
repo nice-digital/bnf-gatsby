@@ -6,7 +6,6 @@ import {
 import Joi from "joi";
 
 import { downloadFeed, type PluginOptions } from "./downloader/downloader";
-import { Feed } from "./downloader/types";
 import { htmlFieldExtension } from "./field-extensions/html";
 import { slugFieldExtension } from "./field-extensions/slug";
 import {

@@ -12,6 +12,7 @@ import { slugFieldExtension } from "./field-extensions/slug";
 import { schema } from "./graphql-schema";
 import { createCautionaryAndAdvisoryLabelsNodes } from "./node-creation/cautionary-advisory";
 import { createDrugNodes } from "./node-creation/drugs";
+import { createInteractionNodes } from "./node-creation/interactions";
 import { createSimpleRecordNodes } from "./node-creation/utils";
 import { BnfNode } from "./node-types";
 
@@ -79,6 +80,8 @@ export const sourceNodes = async (
 		feedData.cautionaryAndAdvisoryLabels,
 		sourceNodesArgs
 	);
+
+	createInteractionNodes(feedData.interactions, sourceNodesArgs);
 
 	setStatus(`Created all nodes`);
 	end();
