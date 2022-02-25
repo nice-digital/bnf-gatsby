@@ -13,6 +13,7 @@ import { schema } from "./graphql-schema";
 import { createCautionaryAndAdvisoryLabelsNodes } from "./node-creation/cautionary-advisory";
 import { createDrugNodes } from "./node-creation/drugs";
 import { createInteractionNodes } from "./node-creation/interactions";
+import { createMedicalDeviceNodes } from "./node-creation/medical-devices";
 import { createSimpleRecordNodes } from "./node-creation/utils";
 import { BnfNode } from "./node-types";
 
@@ -82,6 +83,8 @@ export const sourceNodes = async (
 	);
 
 	createInteractionNodes(feedData.interactions, sourceNodesArgs);
+
+	createMedicalDeviceNodes(feedData.medicalDevices, sourceNodesArgs);
 
 	setStatus(`Created all nodes`);
 	end();

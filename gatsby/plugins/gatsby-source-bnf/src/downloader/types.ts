@@ -19,6 +19,8 @@ export interface Feed {
 	dentalPractitionersFormulary: FeedSimpleRecord;
 	/** The interactions introduction, interactants and interactions messages. This field correlates to Appendix 1 of the print editions of the BNF. */
 	interactions: FeedInteractions;
+	/** All the medical device monograph content. Each medical device monograph contains a number of standard sections (called `pots`) which describe the various properties of the medical device when used in a clinical context. */
+	medicalDevices: FeedMedicalDevice[];
 }
 
 /** A BNF PHP ID in the format `^PHP[0-9]+$` */
@@ -191,3 +193,45 @@ export type FeedInteractionMessage = {
 			additiveEffect: true;
 	  }
 );
+
+/** All the properties for a single medical device monograph. */
+export interface FeedMedicalDevice {
+	/** The PHP ID for the medical device. */
+	id: PHPID;
+	/** The SID for the medical device. */
+	sid: SID;
+	/** The title for the medical device. May include HTML mark-up. */
+	title: string;
+	/** The medical device types. Usually there is only one of these, but theoretically there could be more. */
+	medicalDeviceTypes: [FeedMedicalDeviceType, ...FeedMedicalDeviceType[]];
+}
+
+/** An individual medical device. Preparations can appear at this level but they can also appear at the clinical medical device information group level. */
+export interface FeedMedicalDeviceType {
+	/** The PHP ID for the medical device type. */
+	id: PHPID;
+	/** The title for the medical device type. May include HTML mark-up. */
+	title: string;
+	/** The general preparations for the medical device type. This will only be present if there are no clinical medical device information groups. */
+	preparations?: FeedPrep[];
+	/** The clinical medical device information groups. These contain preparation-specific content such as device descriptions, compliance standards and prescribing & dispensing information. */
+	clinicalMedicalDeviceInformationGroups?: FeedClinicalMedicalDeviceInformationGroup[];
+}
+
+/** The properties for a preparation. Context is provided by this object being given in the `preps` field of `MedicinalForm` or a `MedicalDeviceType`. */
+export interface FeedPrep {
+	/** The name of the preparation, for example, \"Anadin Paracetamol 500mg tablets\". */
+	name: string;
+}
+
+/** This object contains content that is relevant to a set of medical device preparations. */
+export interface FeedClinicalMedicalDeviceInformationGroup {
+	/** The device description for the clinical medical device information group. For clinical medical device information groups, the drug class content will always be empty, as will the preparation content. The 'drugContent' will contain the information for the clinical medical device information group. */
+	deviceDescription?: FeedSimplePot;
+}
+
+/** A single section of simple (unstructured) content for a BNF drug or medical device. A monograph will include content from relevant drug classes (groups of drugs that share the same properties), the drug itself, and specific preparations where the properties differ from those of the generic drug. This record has these three parts of content in the \"drugClassContent\", \"drugContent\" and \"prepContent\" fields respectively. */
+export interface FeedSimplePot {
+	/** The name/title of the pot. */
+	potName: string;
+}

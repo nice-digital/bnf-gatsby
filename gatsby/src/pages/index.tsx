@@ -84,6 +84,9 @@ const IndexPage: FC = () => {
 					Go to Dental Practitioners’ Formulary
 				</Link>
 			</p>
+			<p>
+				<Link to="/medical-devices/">Go to medical devices</Link>
+			</p>
 		</Layout>
 	);
 };

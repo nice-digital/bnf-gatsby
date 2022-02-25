@@ -9,6 +9,7 @@ describe("nodeTypePathMap", () => {
 		  "BnfCautionaryAndAdvisoryGuidance" => "about",
 		  "BnfTreatmentSummary" => "treatment-summaries",
 		  "BnfGuidance" => "medicines-guidance",
+		  "BnfMedicalDevice" => "medical-devices",
 		}
 	`);
 	});

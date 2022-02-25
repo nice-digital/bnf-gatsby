@@ -9,6 +9,7 @@ map.set(BnfNode.AboutSection, "about");
 map.set(BnfNode.CautionaryAndAdvisoryGuidance, "about");
 map.set(BnfNode.TreatmentSummary, "treatment-summaries");
 map.set(BnfNode.Guidance, "medicines-guidance");
+map.set(BnfNode.MedicalDevice, "medical-devices");
 
 /**
  * A mapping of BNF node type to root URL path segment
