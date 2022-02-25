@@ -11,6 +11,12 @@ export const pagePaths = {
 	"abbreviations and symbols": "/about/abbreviations-and-symbols/",
 	"approximate conversions and units":
 		"/about/approximate-conversions-and-units/",
+	"drugs A to Z": "/drugs/",
+	"interactions A to Z": "/interactions/",
+	"treatment summaries A to Z": "/treatment-summaries/",
+	"abacavir interactions": "/interactions/abacavir/",
+	"abacavir drug": "/drugs/abacavir/",
+	"dementia treatment summary": "/treatment-summaries/dementia/",
 } as const;
 
 export type PageName = keyof typeof pagePaths;

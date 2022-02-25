@@ -6,9 +6,6 @@ exports[`schema should match snapshot 1`] = `
 	A drug monograph
 	\\"\\"\\"
 	type BnfDrug implements Node @dontInfer {
-		\\"The lowercase first letter of the title, used for grouping\\"
-		initial: String!
-
 		\\"The SID for the drug e.g. _694410247\\"
 		sid: String!
 
@@ -19,7 +16,42 @@ exports[`schema should match snapshot 1`] = `
 		slug: String! @slug(field: \\"title\\")
 
 		\\"The review date, if available for this record.\\"
-		reviewDate: String
+		reviewDate: Date @dateformat
+
+		\\"The interactant with the same sid as this drug, if it exists, otherwise null\\"
+		interactant: BnfInteractant @link(by: \\"sid\\", from: \\"sid\\")
+
+		\\"The constituent drugs. This will be populated if the drug is a combination (e.g. 'tramadol with paracetamol') where each constituent exists in the BNF as a monograph in its own right.\\"
+		constituentDrugs: BnfConstituentDrugs
+	}
+
+	\\"\\"\\"
+	A wrapper for the constituent drugs of a combination drug.
+	\\"\\"\\"
+	type BnfConstituentDrugs {
+		\\"The standard message to be included with the constituent drugs.\\"
+		message: String!
+
+		\\"The constituents of the combination drug. TODO: Make this non-nullable when the feed is fixed (currently it shows constituents that aren't themselves drug monographs)\\"
+		constituents: [BnfDrug]! @link(by: \\"sid\\")
+	}
+
+
+	\\"\\"\\"
+	An interactant, which is a substance against which interaction messages are authored. Interactions are generally authored against moieties while some drug monographs are authored against salts (e.g. 'warfarin' and 'warfarin sodium'.
+	\\"\\"\\"
+	type BnfInteractant implements Node @dontInfer {
+		\\"The SID for the Interactant e.g. _694410247 which may, or may not, match the sid of a drug\\"
+		sid: String!
+
+		\\"The drug that matches this interactant, that is, the drug with same id if it exists, otherwise null\\"
+		drug: BnfDrug @link(by: \\"sid\\", from: \\"sid\\")
+
+		\\"The title for the interactant. May include HTML markup. E.g. anti-D (Rh0) immunoglobulin has a subscript 0\\"
+		title: String!
+
+		\\"The slugified and lowercased title, used as a URL path\\"
+		slug: String! @slug(field: \\"title\\")
 	}
 
 

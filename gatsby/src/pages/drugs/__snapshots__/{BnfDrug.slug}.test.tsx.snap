@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DrugPage should match snapshot for graphql query 1`] = `
+"
+	query ($id: String) {
+		bnfDrug(id: { eq: $id }) {
+			title
+			interactant {
+				title
+				slug
+			}
+			constituentDrugs {
+				message
+				constituents {
+					title
+					slug
+				}
+			}
+		}
+	}
+"
+`;

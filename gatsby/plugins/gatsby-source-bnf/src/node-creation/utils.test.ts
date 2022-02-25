@@ -81,13 +81,13 @@ describe("utils", () => {
 
 	describe("createSimpleRecordNodes", () => {
 		const mockRecordSection: FeedRecordSection = {
-			id: "aa",
+			id: "sectionPHP123-0",
 			title: "Significant changes",
 			content: `<p>Significant changes made since the release of data</p>`,
 		};
 
 		const mockAboutSimpleRecord: FeedSimpleRecord = {
-			id: "a",
+			id: "PHP123",
 			title: "Changes",
 			sections: [mockRecordSection, mockRecordSection],
 		};
@@ -111,7 +111,7 @@ describe("utils", () => {
 
 			expect(createNode).toHaveBeenCalledWith({
 				order: 0,
-				id: "a",
+				id: "PHP123",
 				title: "Changes",
 				reviewDate: undefined,
 				sections: [

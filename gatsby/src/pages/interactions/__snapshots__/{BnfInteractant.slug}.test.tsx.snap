@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InteractantPage should match snapshot for graphql query 1`] = `
+"
+	query ($id: String) {
+		bnfInteractant(id: { eq: $id }) {
+			title
+			drug {
+				title
+				slug
+			}
+		}
+	}
+"
+`;

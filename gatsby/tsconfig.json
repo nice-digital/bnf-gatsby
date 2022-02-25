@@ -20,6 +20,7 @@
     "paths": {
       "@/test-utils/*": ["src/test-utils/*"],
       "@/components/*": ["src/components/*"],
+      "@/field-extensions/*": ["src/field-extensions/*"],
       "@/hooks/*": ["src/hooks/*"],
       "@/mockdata/*": ["src/__mockdata__/*"]
     }
