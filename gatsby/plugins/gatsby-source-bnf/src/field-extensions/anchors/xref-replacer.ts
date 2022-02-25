@@ -19,10 +19,10 @@ const knownXrefAttributes = ["type", "sid", "idref"];
  */
 export const xRefRegex = /<xref[^>]*>.*?<\/xref>/gm;
 
-export const xRefReplacer =
+const xRefReplacer =
 	(nodeModel: NodeModel) =>
-	(xRefElementXML: string): string => {
-		const parsedXml = xml2js(xRefElementXML, { elementNameFn: () => "a" }),
+	(xRefXMLStr: string): string => {
+		const parsedXml = xml2js(xRefXMLStr, { elementNameFn: () => "a" }),
 			attributes = parsedXml.elements[0].attributes as Record<string, string>,
 			{ type, sid, idref } = attributes;
 
@@ -42,23 +42,20 @@ export const xRefReplacer =
 			});
 
 		if (!node) {
-			// TODO: This should error, but it's a warning instead until we have final content in the feed with the correct links
-			console.warn(
-				`Couldn't find node with id ${idref} or sid ${sid} in xref ${xRefElementXML}`
+			throw Error(
+				`Couldn't find node with id '${idref}' or sid '${sid}' in xref ${xRefXMLStr}`
+			);
+		}
+
+		const { title, internal } = node,
+			path = nodeTypePathMap.get(internal.type);
+
+		if (!path)
+			throw Error(
+				`Node '${title}' has unsupported type '${node.internal.type}' for mapping to a path`
 			);
 
-			attributes["href"] = `#`;
-			attributes["style"] = `text-decoration: underline wavy from-font red;`;
-		} else {
-			const path = nodeTypePathMap.get(node.internal.type);
-
-			if (!path)
-				throw Error(
-					`Unsupported node type ${node.internal.type} for mapping to a path`
-				);
-
-			attributes["href"] = `/${path}/${slugify(node.title)}/`;
-		}
+		attributes["href"] = `/${path}/${slugify(node.title)}/`;
 
 		return js2xml(parsedXml, {
 			attributeNameFn: (attrName) =>
@@ -66,3 +63,6 @@ export const xRefReplacer =
 				knownXrefAttributes.includes(attrName) ? `data-${attrName}` : attrName,
 		});
 	};
+
+export const replaceXRefs = (html: string, nodeModel: NodeModel): string =>
+	html.replace(xRefRegex, xRefReplacer(nodeModel));

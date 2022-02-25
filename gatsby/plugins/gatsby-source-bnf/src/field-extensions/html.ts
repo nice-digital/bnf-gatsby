@@ -1,7 +1,7 @@
 import { type FieldResolveContext } from "../node-model";
 
-import { anchorReplacer, internalAnchorRegex } from "./anchors/anchor-replacer";
-import { xRefReplacer, xRefRegex } from "./anchors/xref-replacer";
+import { replaceInternalAnchors } from "./anchors/anchor-replacer";
+import { replaceXRefs } from "./anchors/xref-replacer";
 
 /**
  * Custom Gatsby field extension to process HTML string fields.
@@ -23,19 +23,20 @@ export const htmlFieldExtension = {
 				context: FieldResolveContext,
 				info: unknown
 			) {
-				const fieldValue = context.defaultFieldResolver(
+				let fieldValue = context.defaultFieldResolver(
 					source,
 					args,
 					context,
 					info
-				);
+				) as string | null;
 
 				if (!fieldValue || typeof fieldValue !== "string")
 					throw Error(`Expected HTML content field value to be a string`);
 
-				return fieldValue
-					.replace(xRefRegex, xRefReplacer(context.nodeModel))
-					.replace(internalAnchorRegex, anchorReplacer(context.nodeModel));
+				fieldValue = replaceInternalAnchors(fieldValue, context.nodeModel);
+				fieldValue = replaceXRefs(fieldValue, context.nodeModel);
+
+				return fieldValue;
 			},
 		};
 	},
