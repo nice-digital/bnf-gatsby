@@ -21,6 +21,8 @@ export interface Feed {
 	interactions: FeedInteractions;
 	/** All the medical device monograph content. Each medical device monograph contains a number of standard sections (called `pots`) which describe the various properties of the medical device when used in a clinical context. */
 	medicalDevices: FeedMedicalDevice[];
+	/** The wound management products and elasticated garments (Appendix 4) content. This will only be present for BNF (and not BNFc). */
+	woundManagement?: FeedWoundManagement;
 }
 
 /** A BNF PHP ID in the format `^PHP[0-9]+$` */
@@ -234,4 +236,36 @@ export interface FeedClinicalMedicalDeviceInformationGroup {
 export interface FeedSimplePot {
 	/** The name/title of the pot. */
 	potName: string;
+}
+
+/** The wound management products and elasticated garments (Appendix 4) content in the BNF. The content is presented as a taxonomy which uses a tree structure, alongside the introductory content. */
+export interface FeedWoundManagement {
+	/** The wound management introduction. */
+	introduction: FeedSimpleRecord;
+	/** The taxonomy of wound management products, presented as a tree structure. */
+	taxonomy: [FeedWoundManagementTaxonomy, ...FeedWoundManagementTaxonomy[]];
+}
+
+/** The wound management products and elasticated garments taxonomy, presented as a tree structure. */
+export interface FeedWoundManagementTaxonomy {
+	/** The ID of the taxonomy node. */
+	id: SID;
+	/** The title of the taxonomy node. May contain HTML mark-up. */
+	title: string;
+	/** The review date of the record, formatted into a string. The format used is ISO 8601-1:2019 compliant (without a time zone designator), e.g. `2021-07-06T00:37:25.918`. */
+	reviewDate?: string;
+	/** The wound management product groups and preparations that are applicable for this point in the wound management taxonomy. */
+	productGroups?: WoundManagementProductGroup[];
+	/** Any children records of the wound management taxonomy. */
+	children?: FeedWoundManagementTaxonomy[];
+}
+
+/** A wound management product group represents a group of wound management products including details of any relevant preparations and prices. */
+export interface WoundManagementProductGroup {
+	/** The title of the wound management product group. */
+	title: string;
+	/** The description of the wound management product group. May contain HTML mark-up. */
+	description?: string;
+	/** The list of products in the wound management product group. */
+	products?: FeedPrep[];
 }

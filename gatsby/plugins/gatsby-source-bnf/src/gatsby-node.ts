@@ -15,6 +15,7 @@ import { createDrugNodes } from "./node-creation/drugs";
 import { createInteractionNodes } from "./node-creation/interactions";
 import { createMedicalDeviceNodes } from "./node-creation/medical-devices";
 import { createSimpleRecordNodes } from "./node-creation/utils";
+import { createWoundManagementNodes } from "./node-creation/wound-management";
 import { BnfNode } from "./node-types";
 
 /**
@@ -85,6 +86,10 @@ export const sourceNodes = async (
 	createInteractionNodes(feedData.interactions, sourceNodesArgs);
 
 	createMedicalDeviceNodes(feedData.medicalDevices, sourceNodesArgs);
+
+	// Wound management only exists in BNF and not BNFC
+	if (feedData.woundManagement)
+		createWoundManagementNodes(feedData.woundManagement, sourceNodesArgs);
 
 	setStatus(`Created all nodes`);
 	end();

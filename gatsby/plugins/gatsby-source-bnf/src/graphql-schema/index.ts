@@ -9,6 +9,7 @@ import { medicalDeviceSchema } from "./medical-device";
 import { recordSectionSchema } from "./record-section";
 import { simpleRecordSchema } from "./simple-record";
 import { treamentSummarySchema } from "./treatment-summary";
+import { woundManagementSchema } from "./wound-management";
 
 /**
  * Custom schema for our BNF-specific nodes
@@ -28,4 +29,5 @@ export const schema = [
 	recordSectionSchema,
 	simpleRecordSchema,
 	treamentSummarySchema,
+	woundManagementSchema,
 ].join("\n");

@@ -31,12 +31,12 @@ const anchorReplacer =
 		const { title, internal } = node,
 			path = nodeTypePathMap.get(internal.type);
 
-		if (!path)
+		if (path === undefined)
 			throw Error(
 				`Node '${title}' has unsupported type '${internal.type}' for mapping to a path`
 			);
 
-		return anchorHTML.replace(href, `/${path}/${slugify(title)}/`);
+		return anchorHTML.replace(href, `${path}/${slugify(title)}/`);
 	};
 
 export const replaceInternalAnchors = (

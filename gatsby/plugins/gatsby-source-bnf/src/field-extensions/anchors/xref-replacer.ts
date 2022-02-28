@@ -50,12 +50,12 @@ const xRefReplacer =
 		const { title, internal } = node,
 			path = nodeTypePathMap.get(internal.type);
 
-		if (!path)
+		if (path === undefined)
 			throw Error(
 				`Node '${title}' has unsupported type '${node.internal.type}' for mapping to a path`
 			);
 
-		attributes["href"] = `/${path}/${slugify(node.title)}/`;
+		attributes["href"] = `${path}/${slugify(node.title)}/`;
 
 		return js2xml(parsedXml, {
 			attributeNameFn: (attrName) =>
