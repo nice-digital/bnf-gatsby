@@ -2,8 +2,8 @@
 
 exports[`CautionaryAdvisoryGuidancePage should match snapshot for graphql query 1`] = `
 "
-	query ($id: String) {
-		currentPage: bnfCautionaryAndAdvisoryGuidance(id: { eq: $id }) {
+	{
+		bnfCautionaryAndAdvisoryGuidance {
 			title
 			sections {
 				...RecordSection
