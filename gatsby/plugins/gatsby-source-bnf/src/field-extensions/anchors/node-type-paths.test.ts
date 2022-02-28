@@ -4,12 +4,14 @@ describe("nodeTypePathMap", () => {
 	it("should match snapshot for node type path mappings", () => {
 		expect(nodeTypePathMap).toMatchInlineSnapshot(`
 		Map {
-		  "BnfDrug" => "drugs",
-		  "BnfAboutSection" => "about",
-		  "BnfCautionaryAndAdvisoryGuidance" => "about",
-		  "BnfTreatmentSummary" => "treatment-summaries",
-		  "BnfGuidance" => "medicines-guidance",
-		  "BnfMedicalDevice" => "medical-devices",
+		  "BnfDrug" => "/drugs",
+		  "BnfAboutSection" => "/about",
+		  "BnfCautionaryAndAdvisoryGuidance" => "/about",
+		  "BnfTreatmentSummary" => "/treatment-summaries",
+		  "BnfGuidance" => "/medicines-guidance",
+		  "BnfMedicalDevice" => "/medical-devices",
+		  "BnfWoundManagementIntroduction" => "",
+		  "BnfWoundManagementTaxonomy" => "/wound-management-products-and-elasticated-garments",
 		}
 	`);
 	});
