@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Labels page LabelsPage should match snapshot for graphql query 1`] = `
+exports[`CautionaryAdvisoryLabelsPage should match snapshot for graphql query 1`] = `
 "
 	{
 		allBnfCautionaryAndAdvisoryLabel(sort: { fields: number, order: ASC }) {
@@ -15,7 +15,7 @@ exports[`Labels page LabelsPage should match snapshot for graphql query 1`] = `
 "
 `;
 
-exports[`Labels page LabelsPage should match snapshot for page contents 1`] = `
+exports[`CautionaryAdvisoryLabelsPage should match snapshot for page contents 1`] = `
 <main>
   <div
     class="container"
@@ -263,7 +263,7 @@ exports[`Labels page LabelsPage should match snapshot for page contents 1`] = `
               </a>
             </p>
             <ol
-              class="labelList"
+              class="list--unstyled"
             >
               <li>
                 <section
