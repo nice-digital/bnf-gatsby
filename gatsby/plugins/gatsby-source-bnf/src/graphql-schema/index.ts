@@ -5,9 +5,11 @@ import { dentalPractitionersFormularySchema } from "./dental-practitioners-formu
 import { drugSchema } from "./drug";
 import { guidanceSchema } from "./guidance";
 import { interactantSchema } from "./interactant";
+import { medicalDeviceSchema } from "./medical-device";
 import { recordSectionSchema } from "./record-section";
 import { simpleRecordSchema } from "./simple-record";
 import { treamentSummarySchema } from "./treatment-summary";
+import { woundManagementSchema } from "./wound-management";
 
 /**
  * Custom schema for our BNF-specific nodes
@@ -16,14 +18,16 @@ import { treamentSummarySchema } from "./treatment-summary";
  * And https://graphql.org/learn/schema/#type-language
  */
 export const schema = [
-	drugSchema,
-	interactantSchema,
-	simpleRecordSchema,
-	recordSectionSchema,
 	aboutSectionSchema,
-	treamentSummarySchema,
-	guidanceSchema,
 	cautionaryAndAdvisoryGuidanceSchema,
 	cautionaryAndAdvisoryLabelSchema,
 	dentalPractitionersFormularySchema,
+	drugSchema,
+	guidanceSchema,
+	interactantSchema,
+	medicalDeviceSchema,
+	recordSectionSchema,
+	simpleRecordSchema,
+	treamentSummarySchema,
+	woundManagementSchema,
 ].join("\n");

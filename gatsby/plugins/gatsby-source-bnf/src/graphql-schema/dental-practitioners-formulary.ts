@@ -5,8 +5,8 @@ export const dentalPractitionersFormularySchema = `
 		"The title of the section. May contain HTML markup."
 		title: String!
 
-		"The review date of the record, formatted into a string."
-		reviewDate: String
+		"The review date of the record."
+		reviewDate: Date @dateformat
 
 		"The slugified and lowercased title, used as a URL path"
 		slug: String! @slug(field: "title")

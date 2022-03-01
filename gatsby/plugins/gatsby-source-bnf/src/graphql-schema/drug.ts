@@ -5,8 +5,11 @@ export const drugSchema = `
 	A drug monograph
 	"""
 	type ${BnfNode.Drug} implements Node @dontInfer {
+		"The PHP ID for the drug e.g. PHP5693"
+		phpid: ID!
+
 		"The SID for the drug e.g. _694410247"
-		sid: String!
+		sid: ID!
 
 		"The title for the drug. May include HTML markup. E.g. anti-D (Rh0) immunoglobulin has a subscript 0"
 		title: String!

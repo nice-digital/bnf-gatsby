@@ -77,11 +77,19 @@ const IndexPage: FC = () => {
 			</Grid>
 
 			<p>
-				<Link to="/about/">Go to about</Link>
+				<Link to="/about/">About</Link>
 			</p>
 			<p>
 				<Link to="/dental-practitioners-formulary/">
-					Go to Dental Practitioners’ Formulary
+					Dental Practitioners’ Formulary
+				</Link>
+			</p>
+			<p>
+				<Link to="/medical-devices/">Medical devices</Link>
+			</p>
+			<p>
+				<Link to="/wound-management-products-and-elasticated-garments/">
+					Wound management products and elasticated garments
 				</Link>
 			</p>
 		</Layout>
