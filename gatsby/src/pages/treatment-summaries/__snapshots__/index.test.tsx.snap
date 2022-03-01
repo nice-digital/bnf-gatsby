@@ -84,38 +84,43 @@ exports[`TreatmentSummariesIndexPage should match snapshot for page body 1`] = `
       </h1>
     </div>
     <ol
-      style="display: flex; list-style: none; margin-left: 0px;"
+      class="alphabet  "
+      id="a-to-z"
     >
-      <li>
+      <li
+        class="alphabet__letter "
+      >
         <a
           href="#a"
-          style="padding: .5rem;"
         >
           A
         </a>
       </li>
-      <li>
+      <li
+        class="alphabet__letter "
+      >
         <a
           href="#b"
-          style="padding: .5rem;"
         >
           B
         </a>
       </li>
     </ol>
     <ol
-      aria-label="Letters A to Z with matching links to Treatment summaries"
+      class="a-z-list "
     >
-      <li>
+      <li
+        class="a-z-list__item "
+      >
         <h2
-          aria-label="Treatment summaries starting with letter 'A'"
+          class="a-z-list__item-heading"
           id="a"
-          tabindex="-1"
         >
           A
         </h2>
         <ol
           aria-labelledby="a"
+          class="column-list column-list--boxed"
         >
           <li>
             <a
@@ -133,16 +138,18 @@ exports[`TreatmentSummariesIndexPage should match snapshot for page body 1`] = `
           </li>
         </ol>
       </li>
-      <li>
+      <li
+        class="a-z-list__item "
+      >
         <h2
-          aria-label="Treatment summaries starting with letter 'B'"
+          class="a-z-list__item-heading"
           id="b"
-          tabindex="-1"
         >
           B
         </h2>
         <ol
           aria-labelledby="b"
+          class="column-list column-list--boxed"
         >
           <li>
             <a
