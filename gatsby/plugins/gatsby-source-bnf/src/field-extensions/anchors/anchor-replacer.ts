@@ -15,7 +15,7 @@ type TitledNodeInput = { title: string } & NodeInput;
  * Notice the hashbang URL formats - these come from the MC BNF.
  */
 const internalAnchorRegex =
-	/<a[^>]*?href="(\/#\/content\/bnf\/([^"]*))".*?<\/a>/gm;
+	/<a[^>]*?href="(\/#\/content\/bnfc?\/([^"]*))".*?<\/a>/gm;
 
 const anchorReplacer =
 	(nodeModel: NodeModel) =>

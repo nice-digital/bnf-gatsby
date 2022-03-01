@@ -19,21 +19,28 @@ describe("replaceInternalAnchors", () => {
 	});
 
 	it.each([
-		[BnfNode.Drug, "drugs"],
-		[BnfNode.TreatmentSummary, "treatment-summaries"],
-		[BnfNode.AboutSection, "about"],
-		[BnfNode.CautionaryAndAdvisoryGuidance, "about"],
-		[BnfNode.Guidance, "medicines-guidance"],
+		[BnfNode.Drug, "drugs", "bnf"],
+		[BnfNode.Drug, "drugs", "bnfc"],
+		[BnfNode.TreatmentSummary, "treatment-summaries", "bnf"],
+		[BnfNode.TreatmentSummary, "treatment-summaries", "bnfc"],
+		[BnfNode.AboutSection, "about", "bnf"],
+		[BnfNode.AboutSection, "about", "bnfc"],
+		[BnfNode.CautionaryAndAdvisoryGuidance, "about", "bnf"],
+		[BnfNode.CautionaryAndAdvisoryGuidance, "about", "bnfc"],
+		[BnfNode.Guidance, "medicines-guidance", "bnf"],
+		[BnfNode.Guidance, "medicines-guidance", "bnfc"],
+		[BnfNode.MedicalDevice, "medical-devices", "bnf"],
+		[BnfNode.MedicalDevice, "medical-devices", "bnfc"],
 	])(
 		"should replace link to %s with base path of %s based on id",
-		(nodeType, path) => {
+		(nodeType, path, site) => {
 			getNodeById.mockReturnValueOnce({
 				title: "A thing",
 				internal: { type: nodeType },
 			});
 			expect(
 				replaceInternalAnchors(
-					`a <a href="/#/content/bnf/_123" title="A thing">thing</a> link`,
+					`a <a href="/#/content/${site}/_123" title="A thing">thing</a> link`,
 					nodeModel
 				)
 			).toBe(`a <a href="/${path}/a-thing/" title="A thing">thing</a> link`);
