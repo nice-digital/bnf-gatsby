@@ -12,6 +12,7 @@ export const BnfNode = {
 	Guidance: "BnfGuidance",
 	Interactant: "BnfInteractant",
 	Interaction: "BnfInteraction",
+	InteractionMessage: "BnfInteractionMessage",
 	MedicalDevice: "BnfMedicalDevice",
 	TreatmentSummary: "BnfTreatmentSummary",
 	RecordSection: "BnfRecordSection",

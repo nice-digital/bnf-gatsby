@@ -4,7 +4,7 @@ import { cautionaryAndAdvisoryLabelSchema } from "./cautionary-advisory-label";
 import { dentalPractitionersFormularySchema } from "./dental-practitioners-formulary";
 import { drugSchema } from "./drug";
 import { guidanceSchema } from "./guidance";
-import { interactantSchema } from "./interactant";
+import { interactionSchema } from "./interaction";
 import { medicalDeviceSchema } from "./medical-device";
 import { recordSectionSchema } from "./record-section";
 import { simpleRecordSchema } from "./simple-record";
@@ -24,7 +24,7 @@ export const schema = [
 	dentalPractitionersFormularySchema,
 	drugSchema,
 	guidanceSchema,
-	interactantSchema,
+	interactionSchema,
 	medicalDeviceSchema,
 	recordSectionSchema,
 	simpleRecordSchema,
