@@ -57,6 +57,8 @@ export interface FeedDrug {
 	/** Note: not all 'drugs' have a primary classification, e.g. "St John's wort", "cranberry", "dairy products", "enteral feeds" etc */
 	primaryClassification?: FeedClassification;
 	secondaryClassifications: FeedClassification[];
+	/** The medicinal forms for the drug. */
+	medicinalForms: FeedMedicinalForms;
 }
 
 /** A wrapper for the constituent drugs of a combination drug. */
@@ -75,6 +77,35 @@ export interface FeedConstituentDrug {
 	sid: SID;
 	/** The title of the constituent drug. May contain HTML mark-up */
 	title: string;
+}
+
+/**
+ * The medicinal forms for a drug. A medicinal form is how a drug is made up for a patient to take, such as `tablet`, `capsule`, or `solution for injection`.
+ *
+ * Each medicinal form will contain details of the available preparations of the drug.
+ * In some cases, a drug monograph may appear in the BNF without any preparations and medicinal forms (for example, if the drug only has special-order preparations that the BNF does not list).
+ * In this case, the `initialStatement` will indicate that there are no medicines listed. */
+export interface FeedMedicinalForms {
+	/** The initial statement for the medicinal forms for a drug. This will either be a standard licensing variation statement or a statement to indicate that there are no medicines listed. */
+	initialStatement: string;
+	/** The BNF does not contain details of special-order preparations, but where these are available, this field contains a statement to say for which forms special-order preparations are available. */
+	specialOrderManufacturersStatement?: string;
+	/** The medicinal forms. May be empty if there are no licensed medicines listed in the BNF. */
+	medicinalForms?: FeedMedicinalForm[];
+}
+
+/** The properties for a medicinal form. This contains all the preparations and packs for a specific medicinal form for a drug, as well as information about applicable cautionary and advisory labels, excipients and electrolytes. */
+export interface FeedMedicinalForm {
+	/** The name of the medicinal form. */
+	form: string;
+	/** A list of any cautionary and advisory labels for the medicinal form. */
+	cautionaryAndAdvisoryLabels?: string[]; // TODO: Hoping this changes from as string array to an array of objects to include welsh translation and label number
+	/** A list of any excipients for the medicinal form, provided as a text statement. */
+	excipients?: string;
+	/** A list of any electrolytes for the medicinal form, provided as a text statement. */
+	electolytes?: string;
+	/** The preparations of the drug for the medicinal form. */
+	preps: FeedPrep[];
 }
 
 export interface FeedCautionaryAndAdvisoryLabels {
@@ -222,8 +253,67 @@ export interface FeedMedicalDeviceType {
 
 /** The properties for a preparation. Context is provided by this object being given in the `preps` field of `MedicinalForm` or a `MedicalDeviceType`. */
 export interface FeedPrep {
-	/** The name of the preparation, for example, \"Anadin Paracetamol 500mg tablets\". */
+	/** The name of the preparation, for example, `Anadin Paracetamol 500mg tablets`. */
 	name: string;
+	/** The manufacturer/supplier of the preparation, for example, `GlaxoSmithKline Consumer Healthcare UK Ltd`. */
+	manufacturer: string;
+	/** The dm+d AMP ID for this preparation. This value is a SNOMED CT identifier, which should be represented as a 64-bit integer, but it is represented as a String in this JSON to avoid any potential problems of 32-bit integer overflows. */
+	ampId: `${number}`;
+	/** A flag to indicate whether (true) or not (false) this preparation is subject to additional monitoring as required by the European Medicines Agency (EMA). If this flag is true, then an inverted black triangle symbol should be shown (Unicode character U+25BC: ▼). */
+	blackTriangle: boolean;
+	/** The controlled drug category for the preparation. If this value is not given then the preparation has no controlled drug status. */
+	controlledDrugSchedule?:
+		| "Schedule 1 (CD Lic)"
+		| "Schedule 2 (CD)"
+		| "Schedule 2 (CD Exempt Safe Custody)"
+		| "Schedule 3 (CD No Register)"
+		| "Schedule 3 (CD No Register Exempt Safe Custody)"
+		| "Schedule 3 (CD No Register Phenobarbital)"
+		| "Schedule 3 (CD No Register Temazepam)"
+		| "Schedule 4 (CD Anab)"
+		| "Schedule 4 (CD Benz)"
+		| "Schedule 5 (CD Inv)";
+	/** A marker to indicate whether the preparation is sugar-free or not. This field will not be populated for borderline substance and wound management preparations. */
+	sugarFree?: boolean;
+	/** A list of the active ingredients for the preparation. */
+	activeIngredients?: string[];
+	/** A list of the packs for the preparation. For a borderline substance preparation, the packs are sorted by the \"size\" field of the pack as a double-precision floating point number, in ascending order. */
+	packs?: FeedPack[];
+}
+
+/** The properties for a specific pack of a preparation. Context is provided by this object being given in the `packs` field of `Prep`. */
+export interface FeedPack {
+	/** The dm+d AMPP ID for this pack, if available. This value is a SNOMED CT identifier, which should be represented as a 64-bit integer, but it is represented as a String in this JSON to avoid any potential problems of 32-bit integer overflows. */
+	amppId?: `${number}`;
+	/** The quantity/size of the pack. The units for this quantity are given in the `units` field. Will always be present except for wound management preparations. */
+	size?: string;
+	/** The units of the quantity/size in the `size` field. Will always be present except for wound management preparations. */
+	unit?: string;
+	/** The NHS indicative price, if available, for example, `£377.00` or `£225,513.09`. For wound management preparations, this field may contain the drug tariff price if no NHS indicative price exists. */
+	nhsIndicativePrice?: string;
+	/** The legal category, if available. Will not be present for wound management preparations. Can only be `POM`, `P`, `GSL`, or `Not Applicable`. */
+	legalCategory?: "POM" | "P" | "GSL" | "Not Applicable";
+	/** A flag to indicate whether (`true`) or not (`false`) this pack is only available through hospital ordering. Will not be present for wound management preparations. */
+	hospitalOnly?: boolean;
+	/** The drug tariff payment category, if available, for example, `Part VIIIA Category A`. */
+	drugTariff?:
+		| "Part VIIIA Category A"
+		| "Part VIII Category B"
+		| "Part VIIIA Category C"
+		| "Part VIII Category E"
+		| "Part IXa"
+		| "Part IXb"
+		| "Part IXc"
+		| "Part IXr"
+		| "Part X"
+		| "Parts IXb & IXc"
+		| "Part VIIIA Category M"
+		| "Part VIIIB"
+		| "Part VIIIC";
+	/** The drug tariff price, if available, for example, `£2.94` or `£2,181.53`. For wound management preparations, the drug tariff price may appear in the 'nhsIndicativePrice' field in the case where there is no NHS indicative price available. */
+	drugTariffPrice?: string;
+	/** The colour of the preparation, if available. This will only ever be present for wound management preparations. */
+	colour?: string;
 }
 
 /** This object contains content that is relevant to a set of medical device preparations. */

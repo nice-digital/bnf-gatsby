@@ -146,6 +146,27 @@ describe("DetailsPageLayout", () => {
 				"<span>Some <b>title</b></span>"
 			);
 		});
+
+		it("should render pre header", () => {
+			render(
+				<DetailsPageLayout
+					menu={() => null}
+					preheading="Some <strong>HTML</strong>"
+					titleHtml="Title"
+					{...sections}
+				>
+					test
+				</DetailsPageLayout>
+			);
+			const heading1 = screen.getByRole("heading", {
+				level: 1,
+			});
+			expect(heading1).toHaveTextContent("Some HTMLTitle");
+			expect(heading1).toHaveProperty(
+				"innerHTML",
+				`<span class="page-header__pre-heading"><span>Some <strong>HTML</strong></span></span><span>Title</span>`
+			);
+		});
 	});
 
 	describe("Body", () => {

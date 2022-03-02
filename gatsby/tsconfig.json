@@ -22,7 +22,8 @@
       "@/components/*": ["src/components/*"],
       "@/field-extensions/*": ["src/field-extensions/*"],
       "@/hooks/*": ["src/hooks/*"],
-      "@/mockdata/*": ["src/__mockdata__/*"]
+      "@/mockdata/*": ["src/__mockdata__/*"],
+      "@nice-digital/gatsby-source-bnf": ["plugins/gatsby-source-bnf/index"]
     }
   },
   "include": ["./**/*", "./**/*.json", "../jest.config.js"],

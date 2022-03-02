@@ -25,18 +25,34 @@ export const createDrugNodes = (
 	drugs: FeedDrug[],
 	sourceNodesArgs: SourceNodesArgs
 ): void => {
-	drugs.forEach(({ constituentDrugs, id, sid, ...drug }) => {
-		const nodeContent: DrugNodeInput = {
-			...drug,
-			id: sid,
+	drugs.forEach(
+		({
+			constituentDrugs,
+			id,
 			sid,
-			phpid: id,
-			constituentDrugs: constituentDrugs && {
-				message: constituentDrugs.message,
-				constituents: constituentDrugs.constituents.map((d) => d.sid),
-			},
-		};
+			medicinalForms: { medicinalForms, ...medicinalFormsProps },
+			...drug
+		}) => {
+			const nodeContent: DrugNodeInput = {
+				...drug,
+				id: sid,
+				sid,
+				phpid: id,
+				constituentDrugs: constituentDrugs && {
+					message: constituentDrugs.message,
+					constituents: constituentDrugs.constituents.map((d) => d.sid),
+				},
+				// TODO: Add order property onto each medicinal form, prep and pack
+				medicinalForms: {
+					...medicinalFormsProps,
+					medicinalForms: medicinalForms?.map((form, order) => ({
+						...form,
+						order,
+					})),
+				},
+			};
 
-		createBnfNode(nodeContent, BnfNode.Drug, sourceNodesArgs);
-	});
+			createBnfNode(nodeContent, BnfNode.Drug, sourceNodesArgs);
+		}
+	);
 };
