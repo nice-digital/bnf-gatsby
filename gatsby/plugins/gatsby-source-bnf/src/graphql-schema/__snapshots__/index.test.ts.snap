@@ -87,6 +87,9 @@ exports[`schema should match snapshot 1`] = `
 
 		\\"The constituent drugs. This will be populated if the drug is a combination (e.g. 'tramadol with paracetamol') where each constituent exists in the BNF as a monograph in its own right.\\"
 		constituentDrugs: BnfConstituentDrugs
+
+		\\"The medicinal forms for the drug.\\"
+		medicinalForms: BnfMedicinalForms!
 	}
 
 	\\"\\"\\"
@@ -98,6 +101,43 @@ exports[`schema should match snapshot 1`] = `
 
 		\\"The constituents of the combination drug. TODO: Make this non-nullable when the feed is fixed (currently it shows constituents that aren't themselves drug monographs)\\"
 		constituents: [BnfDrug]! @link(by: \\"sid\\")
+	}
+
+	\\"\\"\\"
+	The medicinal forms for a drug. A medicinal form is how a drug is made up for a patient to take, such as 'tablet', 'capsule', or 'solution for injection'. Each medicinal form will contain details of the available preparations of the drug. In some cases, a drug monograph may appear in the BNF without any preparations and medicinal forms (for example, if the drug only has special-order preparations that the BNF does not list). In this case, the 'initialStatement' will indicate that there are no medicines listed.
+	\\"\\"\\"
+	type BnfMedicinalForms {
+		\\"The initial statement for the medicinal forms for a drug. This will either be a standard licensing variation statement or a statement to indicate that there are no medicines listed.\\"
+		initialStatement: String!
+
+		\\"The BNF does not contain details of special-order preparations, but where these are available, this field contains a statement to say for which forms special-order preparations are available\\"
+		specialOrderManufacturersStatement: String
+
+		\\"The medicinal forms. May be empty if there are no licensed medicines listed in the BNF.\\"
+		medicinalForms: [BnfMedicinalForm!]
+	}
+
+	\\"\\"\\"
+	The properties for a medicinal form. This contains all the preparations and packs for a specific medicinal form for a drug, as well as information about applicable cautionary and advisory labels, excipients and electrolytes.
+	\\"\\"\\"
+	type BnfMedicinalForm {
+		\\"The name of the medicinal form.\\"
+		form: String!
+
+		\\"The slugified and lowercased form name, used as a section id, and hash target\\"
+		slug: String! @slug(field: \\"form\\")
+
+		\\"A list of any cautionary and advisory labels for the medicinal form.\\"
+		cautionaryAndAdvisoryLabels: [String!]
+
+		\\"A list of any excipients for the medicinal form, provided as a text statement.\\"
+		excipients: String
+
+		\\"A list of any electrolytes for the medicinal form, provided as a text statement.\\"
+		electolytes: String
+
+		\\"The preparations of the drug for the medicinal form.\\"
+		preps: [BnfPrep!]
 	}
 
 
@@ -151,6 +191,74 @@ exports[`schema should match snapshot 1`] = `
 
 		\\"The slugified and lowercased title, used as a URL path\\"
 		slug: String! @slug(field: \\"title\\")
+	}
+
+
+	\\"\\"\\"
+	The properties for a preparation. Context is provided by this object being given in the 'preps' field of MedicinalForm, or on a Medical Device.
+	\\"\\"\\"
+	type BnfPrep @dontInfer {
+		\\"The 0-based order (or index) of the prep within the form\\"
+		order: Int!
+
+		\\"The name of the preparation, for example, 'Anadin Paracetamol 500mg tablets'.\\"
+		name: String!
+
+		\\"The manufacturer/supplier of the preparation, for example, 'GlaxoSmithKline Consumer Healthcare UK Ltd'.\\"
+		manufacturer: String!
+
+		\\"The dm+d AMP ID for this preparation. This value is a SNOMED CT identifier, which should be represented as a 64-bit integer, but it is represented as a String in this JSON to avoid any potential problems of 32-bit integer overflows.\\"
+		ampId: ID!
+
+		\\"A flag to indicate whether (true) or not (false) this preparation is subject to additional monitoring as required by the European Medicines Agency (EMA). If this flag is true, then an inverted black triangle symbol should be shown (Unicode character U+25BC: ▼).\\"
+		blackTriangle: Boolean!
+
+		\\"The controlled drug category for the preparation. If this value is not given then the preparation has no controlled drug status.\\"
+		controlledDrugSchedule: String
+
+		\\"A marker to indicate whether the preparation is sugar-free or not. This field will not be populated for borderline substance and wound management preparations.\\"
+		sugarFree: Boolean
+
+		\\"A list of the active ingredients for the preparation.\\"
+		activeIngredients: [String!]
+
+		\\"A list of the packs for the preparation. For a borderline substance preparation, the packs are sorted by the 'size' field of the pack as a double-precision floating point number, in ascending order.\\"
+		packs: [BnfPack!]
+	}
+
+	\\"\\"\\"
+	The properties for a specific pack of a preparation.
+	\\"\\"\\"
+	type BnfPack @dontInfer {
+		\\"The 0-based order (or index) of the pack within the prep\\"
+		order: Int!
+
+		\\"The dm+d AMPP ID for this pack, if available. This value is a SNOMED CT identifier, which should be represented as a 64-bit integer, but it is represented as a String in this JSON to avoid any potential problems of 32-bit integer overflows.\\"
+		amppId: ID
+
+		\\"The quantity/size of the pack. The units for this quantity are given in the 'units' field. Will always be present except for wound management preparations.\\"
+		size: String
+
+		\\"The units of the quantity/size in the 'size' field. Will always be present except for wound management preparations.\\"
+		unit: String
+
+		\\"The NHS indicative price, if available, for example, £377.00 or £225,513.09. For wound management preparations, this field may contain the drug tariff price if no NHS indicative price exists.\\"
+		nhsIndicativePrice: String
+
+		\\"The legal category, if available. Will not be present for +wound management preparations. Can only be 'POM', 'P', 'GSL', or 'Not Applicable'.\\"
+		legalCategory: String
+
+		\\"A flag to indicate whether (true) or not (false) this pack is only available through hospital ordering. Will not be present for wound management preparations.\\"
+		hospitalOnly: Boolean
+
+		\\"The drug tariff payment category, if available, for example, 'Part VIIIA Category A'.\\"
+		drugTariff: String
+
+		\\"The drug tariff price, if available, for example, '£2.94' or '£2,181.53'. For wound management preparations, the drug tariff price may appear in the 'nhsIndicativePrice' field in the case where there is no NHS indicative price available.\\"
+		drugTariffPrice: String
+
+		\\"The colour of the preparation, if available. This will only ever be present for wound management preparations.\\"
+		colour: String
 	}
 
 
