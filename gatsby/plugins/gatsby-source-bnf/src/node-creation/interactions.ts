@@ -22,7 +22,11 @@ export const createInteractionNodes = (
 	{ introduction, interactants, messages }: FeedInteractions,
 	sourceNodesArgs: SourceNodesArgs
 ): void => {
-	createBnfNode(introduction, BnfNode.SimpleRecord, sourceNodesArgs);
+	createBnfNode(
+		introduction,
+		BnfNode.InteractionsIntroduction,
+		sourceNodesArgs
+	);
 
 	interactants.forEach(({ sid, title }) => {
 		const nodeContent: InteractantNodeInput = {

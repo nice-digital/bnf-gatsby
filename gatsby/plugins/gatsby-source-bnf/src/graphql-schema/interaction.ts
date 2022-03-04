@@ -24,10 +24,10 @@ export const interactionSchema = `
 	"""
 	type ${BnfNode.Interaction} implements Node @dontInfer {
 			"The SID for the first interactant"
-			interactant1: String!
+			interactant1: ${BnfNode.Interactant}! @link(from: "sid")
 
 			"The SID for the second interactant"
-			interactant2: String!
+			interactant2: ${BnfNode.Interactant}! @link(from: "sid")
 
 			"The messages for this interaction"
 			messages: [${BnfNode.InteractionMessage}!]!
@@ -37,20 +37,20 @@ export const interactionSchema = `
 	An interaction message, which contains am HTML explanation of the nature of the interaction as well as details
 	of its severity.
 	"""
-	type ${BnfNode.InteractionMessage} implements Node @dontinfer {
+	type ${BnfNode.InteractionMessage} {
 		"An HTML explanation of the nature of the interaction"
 		message: String!
 
 		"A grading of how severe this interaction might be, e.g. severe/moderate"
 		severity: String!
 
-		"An integer that corresponds to the level of severity, with higher numbers indicating greater severity. Useful for sorting"
+		"An integer that corresponds to the level of severity, with higher numbers indicating greater severity. Useful for sorting. Severe = 4; Moderate = 3; Mild = 2; Normal = 1; Unknown = 0"
 		severityOrder: Int!
 
-		"TODO: Give a better explanation here. Seems to be Study or Theoretical"
+		"The evidence for the interaction. This will only bepresent for messages that are not describing additive effects (i.e. 'additiveEffect' is false). Can only be 'Study', 'Anecdotal', or 'Theoretical'."
 		evidence: String!
 
-		"TODO: Give a better explanation here. Not sure what this is referring to"
+		"Whether the interaction is an additive effect (true) or not (false)."
 		additiveEffect: Boolean!
 	}
 `;
