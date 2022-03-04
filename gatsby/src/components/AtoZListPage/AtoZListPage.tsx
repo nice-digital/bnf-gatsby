@@ -1,7 +1,10 @@
 import { Link } from "gatsby";
 import { type FC } from "react";
 
+import { AZList, AZListItem } from "@nice-digital/nds-a-z-list";
+import { Alphabet, Letter } from "@nice-digital/nds-alphabet";
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
+import { ColumnList } from "@nice-digital/nds-column-list";
 import { PageHeader } from "@nice-digital/nds-page-header";
 
 import { Layout } from "@/components/Layout/Layout";
@@ -36,6 +39,16 @@ export const AtoZListPage: FC<AtoZListPageProps> = ({
 }) => {
 	const { siteTitleShort } = useSiteMetadata();
 
+	const alphabet = () => (
+		<Alphabet>
+			{letters.map(({ letter }) => (
+				<Letter key={letter} to={`#${letter}`}>
+					{letter.trim().toUpperCase() || "n/a"}
+				</Letter>
+			))}
+		</Alphabet>
+	);
+
 	return (
 		<Layout>
 			<SEO title={`${title} A to Z`} description={metaDescription} />
@@ -50,28 +63,10 @@ export const AtoZListPage: FC<AtoZListPageProps> = ({
 
 			<PageHeader id="content-start" heading={<>{title} A&nbsp;to&nbsp;Z</>} />
 
-			<ol style={{ display: "flex", listStyle: "none", marginLeft: 0 }}>
-				{letters.map(({ letter }) => (
-					<li key={letter}>
-						<a href={`#${letter}`} style={{ padding: ".5rem" }}>
-							{letter.trim().toUpperCase() || "n/a"}
-						</a>
-					</li>
-				))}
-			</ol>
-
-			<ol aria-label={`Letters A to Z with matching links to ${title}`}>
+			<AZList alphabet={alphabet}>
 				{letters.map(({ letter, links }) => (
-					<li key={letter}>
-						<h2
-							id={letter}
-							tabIndex={-1}
-							aria-label={`${title} starting with letter '${letter.toUpperCase()}'`}
-						>
-							{letter.trim().toUpperCase() || "n/a"}
-						</h2>
-
-						<ol aria-labelledby={letter}>
+					<AZListItem key={letter} title={letter.toUpperCase()}>
+						<ColumnList aria-labelledby={letter}>
 							{links.sort(byTitleAlphabetically).map(({ title, slug }) => (
 								<li key={slug}>
 									<Link
@@ -80,10 +75,10 @@ export const AtoZListPage: FC<AtoZListPageProps> = ({
 									/>
 								</li>
 							))}
-						</ol>
-					</li>
+						</ColumnList>
+					</AZListItem>
 				))}
-			</ol>
+			</AZList>
 		</Layout>
 	);
 };

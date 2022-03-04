@@ -113,5 +113,27 @@
         "title": "Abatacept"
       }
     ]
+  },
+  "medicalDevices": [
+    {
+      "id": "PHP80476",
+      "sid": "_641918909",
+      "title": "Artificial saliva products",
+      "medicalDeviceTypes": []
+    }
+  ],
+  "woundManagement": {
+    "introduction": {
+      "id": "_320704649",
+      "title": "Wound management products and elasticated garments",
+      "sections": [
+        {
+          "id": "section_320704649-0",
+          "title": "Introduction",
+          "content": "<p>The correct dressing for wound management depends not only on the type of wound but also on the stage of the healing process.</p>"
+        }
+      ]
+    },
+    "taxonomy": []
   }
 }

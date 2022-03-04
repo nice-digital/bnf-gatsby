@@ -11,9 +11,13 @@ export const BnfNode = {
 	Drug: "BnfDrug",
 	Guidance: "BnfGuidance",
 	Interactant: "BnfInteractant",
+	MedicalDevice: "BnfMedicalDevice",
 	TreatmentSummary: "BnfTreatmentSummary",
 	RecordSection: "BnfRecordSection",
 	SimpleRecord: "BnfSimpleRecord",
+	WoundManagementIntroduction: "BnfWoundManagementIntroduction",
+	WoundManagementProductGroup: "BnfWoundManagementProductGroup",
+	WoundManagementTaxonomy: "BnfWoundManagementTaxonomy",
 } as const;
 
 export type BnfNodeTypes = typeof BnfNode[keyof typeof BnfNode];
