@@ -24,10 +24,10 @@ export const interactionSchema = `
 	"""
 	type ${BnfNode.Interaction} implements Node @dontInfer {
 			"The SID for the first interactant"
-			interactant1: ${BnfNode.Interactant}! @link(from: "sid")
+			interactant1: ${BnfNode.Interactant}! @link(by: "sid")
 
 			"The SID for the second interactant"
-			interactant2: ${BnfNode.Interactant}! @link(from: "sid")
+			interactant2: ${BnfNode.Interactant}! @link(by: "sid")
 
 			"The messages for this interaction"
 			messages: [${BnfNode.InteractionMessage}!]!
