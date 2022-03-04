@@ -15,7 +15,40 @@
   "drugs": [
     {
       "id": "drug-1",
-      "title": "Drug 1"
+      "title": "Drug 1",
+      "medicinalForms": {
+        "initialStatement": "There can be variation in the licensing of different medicines containing the same drug.",
+        "medicinalForms": [
+          {
+            "form": "Solution for injection",
+            "cautionaryAndAdvisoryLabels": [],
+            "excipients": "May contain polysorbates.",
+            "electolytes": "",
+            "preps": [
+              {
+                "name": "Fuzzzumab 120mg/1ml solution",
+                "manufacturer": "Acme and Company Ltd",
+                "ampId": "37499711000001101",
+                "blackTriangle": true,
+                "sugarFree": false,
+                "activeIngredients": [
+                  "Fuzzzumab 120&#x2009;mg per 1&#x2009;ml"
+                ],
+                "packs": [
+                  {
+                    "amppId": "37499811000001109",
+                    "size": "1",
+                    "unit": "pre-filled disposable injection",
+                    "nhsIndicativePrice": "99.00",
+                    "legalCategory": "POM",
+                    "hospitalOnly": false
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
     }
   ],
   "treatmentSummaries": [

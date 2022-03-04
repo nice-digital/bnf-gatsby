@@ -14,6 +14,7 @@ export interface MedicinalFormsPageProps {
 				initialStatement: string;
 				specialOrderManufacturersStatement: null | string;
 				medicinalForms: {
+					order: number;
 					form: string;
 					slug: string;
 					preps: PrepProps["prep"][];
@@ -50,7 +51,7 @@ const MedicinalFormsPage: FC<MedicinalFormsPageProps> = ({
 				text: striptags(title),
 			},
 		]}
-		sections={medicinalForms?.map(({ form, slug }) => ({
+		sections={medicinalForms.map(({ form, slug }) => ({
 			id: slug,
 			title: form,
 		}))}
@@ -61,20 +62,24 @@ const MedicinalFormsPage: FC<MedicinalFormsPageProps> = ({
 				dangerouslySetInnerHTML={{ __html: specialOrderManufacturersStatement }}
 			/>
 		)}
-		{medicinalForms?.map(({ form, slug, preps }) => (
-			<section key={form} aria-labelledby={slug}>
-				<h2 id={slug}>{form}</h2>
-				{preps.length ? (
-					<ol>
-						{preps.map((prep) => (
-							<li key={prep.ampId}>
-								<Prep prep={prep} />
-							</li>
-						))}
-					</ol>
-				) : null}
-			</section>
-		))}
+		{medicinalForms
+			.sort((a, b) => a.order - b.order)
+			.map(({ form, slug, preps }) => (
+				<section key={form} aria-labelledby={slug}>
+					<h2 id={slug}>{form}</h2>
+					{preps.length ? (
+						<ol>
+							{preps
+								.sort((a, b) => a.order - b.order)
+								.map((prep) => (
+									<li key={prep.ampId}>
+										<Prep prep={prep} />
+									</li>
+								))}
+						</ol>
+					) : null}
+				</section>
+			))}
 	</DetailsPageLayout>
 );
 
@@ -87,6 +92,7 @@ export const query = graphql`
 				initialStatement
 				specialOrderManufacturersStatement
 				medicinalForms {
+					order
 					form
 					slug
 					preps {

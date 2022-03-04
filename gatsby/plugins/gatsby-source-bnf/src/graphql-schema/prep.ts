@@ -30,7 +30,7 @@ export const prepSchema = `
 		activeIngredients: [String!]
 
 		"A list of the packs for the preparation. For a borderline substance preparation, the packs are sorted by the 'size' field of the pack as a double-precision floating point number, in ascending order."
-		packs: [${BnfNode.Pack}!]
+		packs: [${BnfNode.Pack}!]!
 	}
 
 	"""

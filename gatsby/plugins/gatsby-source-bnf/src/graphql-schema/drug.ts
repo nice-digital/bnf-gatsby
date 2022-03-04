@@ -52,13 +52,16 @@ export const drugSchema = `
 		specialOrderManufacturersStatement: String
 
 		"The medicinal forms. May be empty if there are no licensed medicines listed in the BNF."
-		medicinalForms: [${BnfNode.MedicinalForm}!]
+		medicinalForms: [${BnfNode.MedicinalForm}!]!
 	}
 
 	"""
 	The properties for a medicinal form. This contains all the preparations and packs for a specific medicinal form for a drug, as well as information about applicable cautionary and advisory labels, excipients and electrolytes.
 	"""
 	type ${BnfNode.MedicinalForm} {
+		"The 0-based order (or index) of the form within the drugs"
+		order: Int!
+
 		"The name of the medicinal form."
 		form: String!
 
@@ -75,6 +78,6 @@ export const drugSchema = `
 		electolytes: String
 
 		"The preparations of the drug for the medicinal form."
-		preps: [${BnfNode.Prep}!]
+		preps: [${BnfNode.Prep}!]!
 	}
 `;

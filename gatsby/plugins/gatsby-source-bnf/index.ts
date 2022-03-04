@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 /**
  * Exporting things here, in combination with a custom path alias (see tsconfig.json)
  * allows us to do things like the following inside components and pages:
