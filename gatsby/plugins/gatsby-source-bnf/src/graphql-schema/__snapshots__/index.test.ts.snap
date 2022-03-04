@@ -114,13 +114,16 @@ exports[`schema should match snapshot 1`] = `
 		specialOrderManufacturersStatement: String
 
 		\\"The medicinal forms. May be empty if there are no licensed medicines listed in the BNF.\\"
-		medicinalForms: [BnfMedicinalForm!]
+		medicinalForms: [BnfMedicinalForm!]!
 	}
 
 	\\"\\"\\"
 	The properties for a medicinal form. This contains all the preparations and packs for a specific medicinal form for a drug, as well as information about applicable cautionary and advisory labels, excipients and electrolytes.
 	\\"\\"\\"
 	type BnfMedicinalForm {
+		\\"The 0-based order (or index) of the form within the drugs\\"
+		order: Int!
+
 		\\"The name of the medicinal form.\\"
 		form: String!
 
@@ -137,7 +140,7 @@ exports[`schema should match snapshot 1`] = `
 		electolytes: String
 
 		\\"The preparations of the drug for the medicinal form.\\"
-		preps: [BnfPrep!]
+		preps: [BnfPrep!]!
 	}
 
 
@@ -223,7 +226,7 @@ exports[`schema should match snapshot 1`] = `
 		activeIngredients: [String!]
 
 		\\"A list of the packs for the preparation. For a borderline substance preparation, the packs are sorted by the 'size' field of the pack as a double-precision floating point number, in ascending order.\\"
-		packs: [BnfPack!]
+		packs: [BnfPack!]!
 	}
 
 	\\"\\"\\"

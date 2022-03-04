@@ -10,6 +10,7 @@ exports[`MedicinalFormsPage should match snapshot for graphql query 1`] = `
 				initialStatement
 				specialOrderManufacturersStatement
 				medicinalForms {
+					order
 					form
 					slug
 					preps {
