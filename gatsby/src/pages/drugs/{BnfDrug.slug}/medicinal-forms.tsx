@@ -38,7 +38,7 @@ const MedicinalFormsPage: FC<MedicinalFormsPageProps> = ({
 	},
 }) => (
 	<DetailsPageLayout
-		preheading={title}
+		preheading={`${title} `}
 		titleHtml="Medicinal forms"
 		parentTitleParts={[striptags(title), "Drugs"]}
 		parentBreadcrumbs={[
