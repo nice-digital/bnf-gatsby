@@ -11,7 +11,20 @@ const drug: MedicinalFormsPageProps["data"]["bnfDrug"] = {
 	medicinalForms: {
 		initialStatement: "",
 		specialOrderManufacturersStatement: "",
-		medicinalForms: [],
+		medicinalForms: [
+			{
+				form: "Tablets",
+				order: 1,
+				slug: "tablets",
+				preps: [],
+			},
+			{
+				form: "Powder",
+				order: 0,
+				slug: "powder",
+				preps: [],
+			},
+		],
 	},
 };
 
@@ -35,7 +48,7 @@ describe("MedicinalFormsPage", () => {
 			});
 		});
 
-		it.todo("Meta description");
+		it.todo("Meta description (see BNF-1215");
 	});
 
 	describe("Breadcrumbs", () => {
@@ -70,6 +83,25 @@ describe("MedicinalFormsPage", () => {
 				within(breadcrumbNav).getByText("Medicinal forms");
 			expect(currentPageCrumb).toBeInTheDocument();
 			expect(currentPageCrumb.tagName).toBe("SPAN");
+		});
+	});
+
+	describe("Body", () => {
+		it("should create a section and heading for each medicinal form", () => {
+			render(<MedicinalFormsPage data={dataProp} />);
+
+			expect(screen.getAllByRole("region")).toHaveLength(2);
+			expect(
+				screen.getAllByRole("heading", { level: 2, name: /Tablets|Powder/ })
+			).toHaveLength(2);
+		});
+
+		it("should create a labelled section", () => {
+			render(<MedicinalFormsPage data={dataProp} />);
+
+			expect(
+				screen.getByRole("region", { name: "Tablets" })
+			).toBeInTheDocument();
 		});
 	});
 });
