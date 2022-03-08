@@ -1,0 +1,389 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HomePage should match snapshot for BNF 1`] = `
+<main>
+  <div
+    class="container"
+  >
+    <div
+      class="hero"
+      id="content-start"
+    >
+      <div
+        class="hero__container"
+      >
+        <nav
+          aria-label="Breadcrumbs"
+          role="navigation"
+        >
+          <ol
+            class="breadcrumbs"
+          >
+            <li
+              class="breadcrumbs__crumb"
+            >
+              <a
+                href="https://www.nice.org.uk/"
+              >
+                NICE
+              </a>
+            </li>
+            <li
+              class="breadcrumbs__crumb"
+            >
+              <span>
+                BNF
+              </span>
+            </li>
+          </ol>
+        </nav>
+        <script
+          type="application/ld+json"
+        >
+          {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@id": "https://www.nice.org.uk/",
+        "name": "NICE"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "name": "BNF"
+      }
+    }
+  ]
+}
+        </script>
+        <div
+          class="hero__body"
+        >
+          <div
+            class="hero__copy"
+          >
+            <h1
+              class="hero__title"
+            >
+              British National Formulary
+            </h1>
+            <p
+              class="hero__intro"
+            >
+              The British National Formulary (BNF) is the first choice for concise medicines information. Trusted by healthcare professionals across the world to support confident decision-making at the point of care.
+            </p>
+            <div
+              class="hero__actions"
+            >
+              <a
+                class="btn btn--cta"
+                href="/drugs/"
+              >
+                Browse drugs
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="grid grid--loose"
+    >
+      <div
+        data-g="12 sm:6 md:4"
+      >
+        <div
+          class="panel panel--impact-alt"
+        >
+          <h2
+            class="h3"
+          >
+            Drugs A to Z
+          </h2>
+          <p>
+            Browse the list of drug monographs, arranged alphabetically.
+          </p>
+          <a
+            class="btn btn--cta"
+            href="/drugs/"
+          >
+            Browse drugs
+          </a>
+        </div>
+      </div>
+      <div
+        data-g="12 sm:6 md:4"
+      >
+        <div
+          class="panel panel--primary"
+        >
+          <h2
+            class="h3"
+          >
+            Interactions
+          </h2>
+          <p>
+            Browse the list of drug interactions, arranged alphabetically.
+          </p>
+          <a
+            class="btn btn--inverse"
+            href="/interactions/"
+          >
+            Browse interactions
+          </a>
+        </div>
+      </div>
+      <div
+        data-g="12 sm:6 md:4"
+      >
+        <div
+          class="panel panel--impact-alt"
+        >
+          <h2
+            class="h3"
+          >
+            Treatment summaries
+          </h2>
+          <p>
+            Browse the list of treatment summaries, arranged alphabetically.
+          </p>
+          <a
+            class="btn btn--secondary"
+            href="/treatment-summaries/"
+          >
+            Browse treatment summaries
+          </a>
+        </div>
+      </div>
+    </div>
+    <p>
+      <a
+        href="/about/"
+      >
+        About
+      </a>
+    </p>
+    <p>
+      <a
+        href="/dental-practitioners-formulary/"
+      >
+        Dental Practitioners’ Formulary
+      </a>
+    </p>
+    <p>
+      <a
+        href="/medical-devices/"
+      >
+        Medical devices
+      </a>
+    </p>
+    <p>
+      <a
+        href="/wound-management-products-and-elasticated-garments/"
+      >
+        Wound management products and elasticated garments
+      </a>
+    </p>
+  </div>
+</main>
+`;
+
+exports[`HomePage should match snapshot for BNFC 1`] = `
+<main>
+  <div
+    class="container"
+  >
+    <div
+      class="hero"
+      id="content-start"
+    >
+      <div
+        class="hero__container"
+      >
+        <nav
+          aria-label="Breadcrumbs"
+          role="navigation"
+        >
+          <ol
+            class="breadcrumbs"
+          >
+            <li
+              class="breadcrumbs__crumb"
+            >
+              <a
+                href="https://www.nice.org.uk/"
+              >
+                NICE
+              </a>
+            </li>
+            <li
+              class="breadcrumbs__crumb"
+            >
+              <span>
+                BNF
+              </span>
+            </li>
+          </ol>
+        </nav>
+        <script
+          type="application/ld+json"
+        >
+          {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@id": "https://www.nice.org.uk/",
+        "name": "NICE"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "name": "BNF"
+      }
+    }
+  ]
+}
+        </script>
+        <div
+          class="hero__body"
+        >
+          <div
+            class="hero__copy"
+          >
+            <h1
+              class="hero__title"
+            >
+              British National Formulary for Children
+            </h1>
+            <p
+              class="hero__intro"
+            >
+              Covering neonates to adolescents, the BNF for Children includes key clinical and pharmaceutical information specific to those age groups.
+            </p>
+            <div
+              class="hero__actions"
+            >
+              <a
+                class="btn btn--cta"
+                href="/drugs/"
+              >
+                Browse drugs
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="grid grid--loose"
+    >
+      <div
+        data-g="12 sm:6 md:4"
+      >
+        <div
+          class="panel panel--impact-alt"
+        >
+          <h2
+            class="h3"
+          >
+            Drugs A to Z
+          </h2>
+          <p>
+            Browse the list of drug monographs, arranged alphabetically.
+          </p>
+          <a
+            class="btn btn--cta"
+            href="/drugs/"
+          >
+            Browse drugs
+          </a>
+        </div>
+      </div>
+      <div
+        data-g="12 sm:6 md:4"
+      >
+        <div
+          class="panel panel--primary"
+        >
+          <h2
+            class="h3"
+          >
+            Interactions
+          </h2>
+          <p>
+            Browse the list of drug interactions, arranged alphabetically.
+          </p>
+          <a
+            class="btn btn--inverse"
+            href="/interactions/"
+          >
+            Browse interactions
+          </a>
+        </div>
+      </div>
+      <div
+        data-g="12 sm:6 md:4"
+      >
+        <div
+          class="panel panel--impact-alt"
+        >
+          <h2
+            class="h3"
+          >
+            Treatment summaries
+          </h2>
+          <p>
+            Browse the list of treatment summaries, arranged alphabetically.
+          </p>
+          <a
+            class="btn btn--secondary"
+            href="/treatment-summaries/"
+          >
+            Browse treatment summaries
+          </a>
+        </div>
+      </div>
+    </div>
+    <p>
+      <a
+        href="/about/"
+      >
+        About
+      </a>
+    </p>
+    <p>
+      <a
+        href="/dental-practitioners-formulary/"
+      >
+        Dental Practitioners’ Formulary
+      </a>
+    </p>
+    <p>
+      <a
+        href="/medical-devices/"
+      >
+        Medical devices
+      </a>
+    </p>
+    <p>
+      <a
+        href="/wound-management-products-and-elasticated-garments/"
+      >
+        Wound management products and elasticated garments
+      </a>
+    </p>
+  </div>
+</main>
+`;
