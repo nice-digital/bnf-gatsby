@@ -66,6 +66,7 @@
     "node": "14.18.2"
   },
   "dependencies": {
+    "@nice-digital/global-nav": "^4.1.758-GN-166-Update-subnav",
     "jest-fetch-mock": "^3.0.3"
   }
 }
