@@ -11,6 +11,7 @@ export const BnfNode = {
 	Drug: "BnfDrug",
 	Guidance: "BnfGuidance",
 	Interactant: "BnfInteractant",
+	InteractantInteraction: "BnfInteractantInteraction",
 	Interaction: "BnfInteraction",
 	InteractionMessage: "BnfInteractionMessage",
 	InteractionsIntroduction: "BnfInteractionsIntroduction",

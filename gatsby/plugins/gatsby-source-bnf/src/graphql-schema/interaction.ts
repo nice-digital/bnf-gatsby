@@ -16,6 +16,9 @@ export const interactionSchema = `
 
 		"The slugified and lowercased title, used as a URL path"
 		slug: String! @slug(field: "title")
+
+		"An array of interactions related to this particular interactant"
+		interactions: [${BnfNode.InteractantInteraction}]
 	}
 
 	"""
@@ -23,16 +26,25 @@ export const interactionSchema = `
 	details on this combination.
 	"""
 	type ${BnfNode.Interaction} implements Node @dontInfer {
-			"The SID for the first interactant"
-			interactant1: ${BnfNode.Interactant}! @link(by: "sid")
+		"The SID for the first interactant"
+		interactant1: ${BnfNode.Interactant}! @link(by: "sid")
 
-			"The SID for the second interactant"
-			interactant2: ${BnfNode.Interactant}! @link(by: "sid")
+		"The SID for the second interactant"
+		interactant2: ${BnfNode.Interactant}! @link(by: "sid")
 
-			"The messages for this interaction"
-			messages: [${BnfNode.InteractionMessage}!]!
+		"The messages for this interaction"
+		messages: [${BnfNode.InteractionMessage}!]!
 	}
+	"""
+	An interaction for a specific interactant
+	"""
+	type ${BnfNode.InteractantInteraction} {
+		"The title of the second interactant"
+		interactant2: String!
 
+		"The messages for this interaction"
+		messages: [${BnfNode.InteractionMessage}!]!
+	}
 	"""
 	An interaction message, which contains am HTML explanation of the nature of the interaction as well as details
 	of its severity.
