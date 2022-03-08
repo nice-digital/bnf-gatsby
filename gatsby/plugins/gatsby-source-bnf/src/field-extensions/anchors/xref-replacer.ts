@@ -22,7 +22,10 @@ export const xRefRegex = /<xref[^>]*>.*?<\/xref>/gm;
 const xRefReplacer =
 	(nodeModel: NodeModel) =>
 	(xRefXMLStr: string): string => {
-		const parsedXml = xml2js(xRefXMLStr, { elementNameFn: () => "a" }),
+		const parsedXml = xml2js(xRefXMLStr, {
+				elementNameFn: (elementName) =>
+					elementName === "xref" ? "a" : elementName,
+			}),
 			attributes = parsedXml.elements[0].attributes as Record<string, string>,
 			{ type, sid, idref } = attributes;
 
