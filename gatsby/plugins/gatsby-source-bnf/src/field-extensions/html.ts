@@ -30,7 +30,9 @@ export const htmlFieldExtension = {
 					info
 				) as string | null;
 
-				if (!fieldValue || typeof fieldValue !== "string")
+				if (!fieldValue) return fieldValue;
+
+				if (typeof fieldValue !== "string")
 					throw Error(`Expected HTML content field value to be a string`);
 
 				fieldValue = replaceInternalAnchors(fieldValue, context.nodeModel);
