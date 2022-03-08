@@ -17,13 +17,22 @@ export interface InteractantPageProps {
 				title: string;
 				slug: string;
 			};
+			interactions: {
+				interactant2: string;
+				messages: {
+					evidence: string | null;
+					message: string;
+					severity: string;
+					severityOrder: number;
+				}[];
+			}[];
 		};
 	};
 }
 
 const InteractantPage: FC<InteractantPageProps> = ({
 	data: {
-		bnfInteractant: { title, drug },
+		bnfInteractant: { title, drug, interactions },
 	},
 }) => {
 	const { siteTitleShort } = useSiteMetadata(),
@@ -54,11 +63,42 @@ const InteractantPage: FC<InteractantPageProps> = ({
 				lead={
 					drug ? (
 						<Link to={`/drugs/${drug.slug}/`}>
-							View drug monograph for {drug.title}
+							View {drug.title} monograph page
 						</Link>
 					) : null
 				}
 			/>
+
+			<p>{drug?.title} has the following interaction information</p>
+
+			{interactions && (
+				<ol>
+					{interactions.map((interaction) => (
+						<li key={interaction.interactant2}>
+							<h2>{interaction.interactant2}</h2>
+							<ul>
+								{interaction.messages.map(
+									(
+										{ evidence, message, severity, severityOrder },
+										messageIndex
+									) => (
+										<li key={messageIndex}>
+											<p dangerouslySetInnerHTML={{ __html: message }}></p>
+											<p>Severity: {severity}</p>
+											<p>Severity order: {severityOrder}</p>
+											<p>Evidence: {evidence || "N/A"}</p>
+										</li>
+									)
+								)}
+							</ul>
+						</li>
+					))}
+				</ol>
+			)}
+			<p>
+				TODO: Why does including additiveEffect break everything whenever it has
+				a value of true?
+			</p>
 		</Layout>
 	);
 };
@@ -70,6 +110,15 @@ export const query = graphql`
 			drug {
 				title
 				slug
+			}
+			interactions {
+				interactant2
+				messages {
+					evidence
+					message
+					severity
+					severityOrder
+				}
 			}
 		}
 	}

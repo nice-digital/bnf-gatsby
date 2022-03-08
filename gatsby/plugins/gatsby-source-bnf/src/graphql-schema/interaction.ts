@@ -59,8 +59,8 @@ export const interactionSchema = `
 		"An integer that corresponds to the level of severity, with higher numbers indicating greater severity. Useful for sorting. Severe = 4; Moderate = 3; Mild = 2; Normal = 1; Unknown = 0"
 		severityOrder: Int!
 
-		"The evidence for the interaction. This will only bepresent for messages that are not describing additive effects (i.e. 'additiveEffect' is false). Can only be 'Study', 'Anecdotal', or 'Theoretical'."
-		evidence: String!
+		"The evidence for the interaction. This will only be present for messages that are not describing additive effects (i.e. 'additiveEffect' is false). Can only be 'Study', 'Anecdotal', or 'Theoretical'."
+		evidence: String
 
 		"Whether the interaction is an additive effect (true) or not (false)."
 		additiveEffect: Boolean!
