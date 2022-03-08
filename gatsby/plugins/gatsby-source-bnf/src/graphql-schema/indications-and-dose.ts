@@ -8,6 +8,9 @@ export const indicationsAndDoseSchema = `
 		"The name/title of the pot."
 		potName: String!
 
+		"The slugified and lowercased pot name, used as a DOM ID and hash target"
+		slug: String! @slug(field: "potName")
+
 		"The indications and dose pot content that relates to relevant drug classes for the drug. This field will contain more than one entry when the drug belongs to multiple drug classes with relevant content for the pot."
 		drugClassContent: [${BnfNode.IndicationsAndDoseContent}]
 
@@ -22,36 +25,32 @@ export const indicationsAndDoseSchema = `
 	The details of the indications and doses for a drug, drug class or preparation.
 	"""
 	type ${BnfNode.IndicationsAndDoseContent} @dontInfer {
-		order: Int!
-
 		"What the content is for (the name of a drug class, drug or preparation). May contain HTML mark-up"
-		contentFor: String!
+		contentFor: String! @html
 
 		"The indication and dose groups."
 		indicationAndDoseGroups: [${BnfNode.IndicationAndDoseGroup}!]!
 
 		"Dose adjustments due to interactions content. May contain HTML mark-up."
-		doseAdjustments: String
+		doseAdjustments: String @html
 
 		"Extremes of body weight content. May contain HTML mark-up."
-		extremesOfBodyWeight: String
+		extremesOfBodyWeight: String @html
 
 		"dose equivalence and conversion content. May contain HTML mark-up."
-		doseEquivalence: String
+		doseEquivalence: String @html
 
 		"Potency content. May contain HTML mark-up."
-		potency: String
+		potency: String @html
 
 		"Pharmacokinetics content. May contain HTML mark-up."
-		pharmacokinetics: String
+		pharmacokinetics: String @html
 	}
 
 	"""
 	A grouping of one or more indications and the doses relevant for those indications.
 	"""
 	type ${BnfNode.IndicationAndDoseGroup} @dontInfer {
-		order: Int!
-
 		"The therapeutic indications."
 		therapeuticIndications: [${BnfNode.TherapeuticIndication}!]!
 
@@ -63,8 +62,6 @@ export const indicationsAndDoseSchema = `
 	The therapeutic indication, including SNOMED CT coding where available.
 	"""
 	type ${BnfNode.TherapeuticIndication} @dontInfer {
-		order: Int!
-
 		"If available, the SNOMED CT identifier that encodes the indication. This value is a should be represented as a 64-bit integer, but it is represented as a String in this JSON to avoid any potential problems of 32-bit integer overflows."
 		sctIndication: String
 
@@ -72,15 +69,13 @@ export const indicationsAndDoseSchema = `
 		sctTherapeuticIntent: String
 
 		"The indication. May contain HTML mark-up."
-		indication: String!
+		indication: String! @html
 	}
 
 	"""
 	The route of administration and one or more patient groups with doses for that route.
 	"""
 	type ${BnfNode.RouteAndPatientGroups} @dontInfer {
-		order: Int!
-
 		"The route of administration."
 		routeOfAdministration: String!
 
@@ -92,8 +87,6 @@ export const indicationsAndDoseSchema = `
 	A dose statement and the patient group that the dose applies to (e.g. adult or child).
 	"""
 	type ${BnfNode.PatientGroup} @dontInfer {
-		order: Int!
-
 		"The patient group that the dose applies to which can only be adult, child, or neonate."
 		patientGroup: String!
 
@@ -101,8 +94,6 @@ export const indicationsAndDoseSchema = `
 		detailedPatientGroup: String!
 
 		"The dose statement. May contain HTML mark-up."
-		doseStatement: String!
+		doseStatement: String! @html
 	}
-
-
 `;

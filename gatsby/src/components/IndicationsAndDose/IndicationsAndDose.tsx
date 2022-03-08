@@ -1,24 +1,37 @@
-import { FC } from "react";
-import { type Except } from "type-fest";
+import { type FC } from "react";
 
-import {
-	type FeedIndicationsAndDosePot,
-	type FeedIndicationsAndDosePotContent,
-} from "@nice-digital/gatsby-source-bnf";
+import { type FeedIndicationsAndDosePot } from "@nice-digital/gatsby-source-bnf";
+
+import { IndicationsAndDoseContent } from "@/components/IndicationsAndDoseContent/IndicationsAndDoseContent";
 
 import styles from "./IndicationsAndDose.module.scss";
 
 export interface IndicationsAndDoseProps {
 	indicationsAndDose: FeedIndicationsAndDosePot & {
-		//order: number;
-		//packs: (FeedPack & { order: number })[];
+		slug: string;
 	};
 }
 
 export const IndicationsAndDose: FC<IndicationsAndDoseProps> = ({
-	indicationsAndDose: { potName, drugClassContent, drugContent, prepContent },
+	indicationsAndDose: {
+		potName,
+		slug,
+		drugClassContent,
+		drugContent,
+		prepContent,
+	},
 }) => (
-	<section className={styles.wrapper}>
-		<h2 dangerouslySetInnerHTML={{ __html: potName }} />
+	<section className={styles.wrapper} aria-labelledby={slug}>
+		<h2 dangerouslySetInnerHTML={{ __html: potName }} id={slug} />
+
+		{drugContent && <IndicationsAndDoseContent content={drugContent} />}
+
+		{drugClassContent?.map((content) => (
+			<IndicationsAndDoseContent key={content.contentFor} content={content} />
+		))}
+
+		{prepContent?.map((content) => (
+			<IndicationsAndDoseContent key={content.contentFor} content={content} />
+		))}
 	</section>
 );

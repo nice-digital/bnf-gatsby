@@ -1,0 +1,69 @@
+@use '@nice-digital/nds-core/scss/core';
+
+.contentFor {
+  text-transform: uppercase;
+}
+
+.indicationWrapper {
+  background: core.$nds-colour-nice-white;
+  border: 1px solid core.$nds-colour-nice-grey-2;
+  margin-bottom: core.rem(core.$nds-spacing-medium);
+  padding: core.rem(core.$nds-spacing-medium);
+
+  > :first-child {
+    margin-top: 0;
+  }
+
+  > :last-child,
+  > :last-child > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+.indication {
+  display: block;
+
+  &::after {
+    content: ', ';
+  }
+
+  &:last-child::after {
+    display: none;
+  }
+}
+
+.indicationSeparator {
+  // Visually hidden but still read by screenreaders, We use the psuedo above to add the comma visually
+  @include core.nds-invisible;
+}
+
+.routeOfAdministration {
+  @include core.nds-p;
+}
+
+.patientGroupDose {
+  border-left: core.rem(core.$nds-spacing-small) solid
+    core.$nds-colour-nice-grey-2;
+  margin-bottom: core.rem(core.$nds-spacing-medium);
+  padding-left: core.rem(core.$nds-spacing-small);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &.adult {
+    border-color: core.$nds-colour-nice-teal;
+  }
+
+  &.child {
+    border-color: core.$nds-colour-nice-purple;
+  }
+}
+
+.patientGroup {
+  font-weight: bold;
+}
+
+.doseStatement {
+  margin: 0;
+}

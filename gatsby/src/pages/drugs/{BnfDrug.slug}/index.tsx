@@ -5,7 +5,12 @@ import striptags from "striptags";
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
 import { PageHeader } from "@nice-digital/nds-page-header";
 
+import {
+	IndicationsAndDose,
+	type IndicationsAndDoseProps,
+} from "@/components/IndicationsAndDose/IndicationsAndDose";
 import { Layout } from "@/components/Layout/Layout";
+import { SectionNav } from "@/components/SectionNav/SectionNav";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
@@ -26,13 +31,14 @@ export interface DrugPageProps {
 					slug: string;
 				})[];
 			};
+			indicationsAndDose?: IndicationsAndDoseProps["indicationsAndDose"];
 		};
 	};
 }
 
 const DrugPage: FC<DrugPageProps> = ({
 	data: {
-		bnfDrug: { title, slug, interactant, constituentDrugs },
+		bnfDrug: { title, slug, interactant, constituentDrugs, indicationsAndDose },
 	},
 }) => {
 	const { siteTitleShort } = useSiteMetadata(),
@@ -60,6 +66,19 @@ const DrugPage: FC<DrugPageProps> = ({
 				id="content-start"
 				heading={<span dangerouslySetInnerHTML={{ __html: title }} />}
 			/>
+
+			<SectionNav
+				sections={[
+					indicationsAndDose && {
+						id: indicationsAndDose.slug,
+						title: indicationsAndDose.potName,
+					},
+				]}
+			/>
+
+			{indicationsAndDose && (
+				<IndicationsAndDose indicationsAndDose={indicationsAndDose} />
+			)}
 
 			{interactant && (
 				<p>
@@ -108,6 +127,19 @@ export const query = graphql`
 				constituents {
 					title
 					slug
+				}
+			}
+			indicationsAndDose {
+				potName
+				slug
+				drugClassContent {
+					...IndicationsAndDoseContent
+				}
+				drugContent {
+					...IndicationsAndDoseContent
+				}
+				prepContent {
+					...IndicationsAndDoseContent
 				}
 			}
 		}

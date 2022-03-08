@@ -40,8 +40,8 @@ export const drugSchema = `
 		"The standard message to be included with the constituent drugs."
 		message: String!
 
-		"The constituents of the combination drug. TODO: Make this non-nullable when the feed is fixed (currently it shows constituents that aren't themselves drug monographs)"
-		constituents: [${BnfNode.Drug}]! @link(by: "sid")
+		"The constituents of the combination drug."
+		constituents: [${BnfNode.Drug}!]! @link(by: "sid")
 	}
 
 	"""
@@ -62,9 +62,6 @@ export const drugSchema = `
 	The properties for a medicinal form. This contains all the preparations and packs for a specific medicinal form for a drug, as well as information about applicable cautionary and advisory labels, excipients and electrolytes.
 	"""
 	type ${BnfNode.MedicinalForm} {
-		"The 0-based order (or index) of the form within the drugs"
-		order: Int!
-
 		"The name of the medicinal form."
 		form: String!
 
