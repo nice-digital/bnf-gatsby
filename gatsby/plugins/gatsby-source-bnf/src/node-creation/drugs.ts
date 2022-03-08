@@ -5,11 +5,22 @@ import {
 	type PHPID,
 	type SID,
 	type FeedDrug,
+	type FeedMedicinalForms,
+	type FeedMedicinalForm,
+	type FeedPrep,
+	type FeedPack,
 	type FeedIndicationsAndDosePotContent,
 } from "../downloader/types";
 import { BnfNode } from "../node-types";
 
 import { createBnfNode, type OrderedDeep } from "./utils";
+
+type OrderedMedicinalForm = FeedMedicinalForm & {
+	order: number;
+	preps: OrderedPrep[];
+};
+type OrderedPrep = FeedPrep & { order: number; packs: OrderedPack[] };
+type OrderedPack = FeedPack & { order: number };
 
 export type DrugNodeInput = Except<
 	FeedDrug,
@@ -17,6 +28,7 @@ export type DrugNodeInput = Except<
 	| "primaryClassification"
 	| "secondaryClassifications"
 	| "constituentDrugs"
+	| "medicinalForms"
 	| "indicationsAndDose"
 > & {
 	id: SID;
@@ -24,6 +36,9 @@ export type DrugNodeInput = Except<
 	constituentDrugs?: {
 		message: string;
 		constituents: string[];
+	};
+	medicinalForms: FeedMedicinalForms & {
+		medicinalForms: OrderedMedicinalForm[];
 	};
 	indicationsAndDose?: OrderedDeep<FeedDrug["indicationsAndDose"]>;
 };
@@ -33,7 +48,14 @@ export const createDrugNodes = (
 	sourceNodesArgs: SourceNodesArgs
 ): void => {
 	drugs.forEach(
-		({ constituentDrugs, id, sid, indicationsAndDose, ...drug }) => {
+		({
+			constituentDrugs,
+			id,
+			sid,
+			medicinalForms: { medicinalForms, ...medicinalFormsProps },
+			indicationsAndDose,
+			...drug
+		}) => {
 			const nodeContent: DrugNodeInput = {
 				...drug,
 				id: sid,
@@ -42,6 +64,24 @@ export const createDrugNodes = (
 				constituentDrugs: constituentDrugs && {
 					message: constituentDrugs.message,
 					constituents: constituentDrugs.constituents.map((d) => d.sid),
+				},
+				medicinalForms: {
+					...medicinalFormsProps,
+					// Add an order (index) property onto each form, prep and pack so we can present them in a consistent order
+					medicinalForms:
+						medicinalForms?.map((form, order) => ({
+							...form,
+							order,
+							preps: form.preps.map((prep, order) => ({
+								...prep,
+								order,
+								packs:
+									prep.packs?.map((pack, order) => ({
+										...pack,
+										order,
+									})) || [],
+							})),
+						})) || [],
 				},
 				indicationsAndDose: indicationsAndDose && {
 					potName: indicationsAndDose.potName,
