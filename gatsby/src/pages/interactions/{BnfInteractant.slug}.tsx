@@ -20,6 +20,7 @@ export interface InteractantPageProps {
 			interactions: {
 				interactant2: string;
 				messages: {
+					additiveEffect: boolean;
 					evidence: string | null;
 					message: string;
 					severity: string;
@@ -69,7 +70,7 @@ const InteractantPage: FC<InteractantPageProps> = ({
 				}
 			/>
 
-			<p>{drug?.title} has the following interaction information</p>
+			<p>{title} has the following interaction information</p>
 
 			{interactions && (
 				<ol>
@@ -79,11 +80,18 @@ const InteractantPage: FC<InteractantPageProps> = ({
 							<ul>
 								{interaction.messages.map(
 									(
-										{ evidence, message, severity, severityOrder },
+										{
+											evidence,
+											message,
+											additiveEffect,
+											severity,
+											severityOrder,
+										},
 										messageIndex
 									) => (
 										<li key={messageIndex}>
 											<p dangerouslySetInnerHTML={{ __html: message }}></p>
+											<p>Additive effect: {additiveEffect.toString()}</p>
 											<p>Severity: {severity}</p>
 											<p>Severity order: {severityOrder}</p>
 											<p>Evidence: {evidence || "N/A"}</p>
@@ -95,10 +103,6 @@ const InteractantPage: FC<InteractantPageProps> = ({
 					))}
 				</ol>
 			)}
-			<p>
-				TODO: Why does including additiveEffect break everything whenever it has
-				a value of true?
-			</p>
 		</Layout>
 	);
 };
@@ -114,6 +118,7 @@ export const query = graphql`
 			interactions {
 				interactant2
 				messages {
+					additiveEffect
 					evidence
 					message
 					severity

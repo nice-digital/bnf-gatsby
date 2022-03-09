@@ -50,13 +50,19 @@ export const createInteractionNodes = (
 		},
 		[] as InteractionNodeInput[]);
 
-		const nodeContent: InteractantNodeInput = {
-			id: sourceNodesArgs.createNodeId(sid),
-			interactions,
-			sid,
-			title,
-		};
+		// Only create a node if there are some constituent interactions
+		if (interactions.length > 0) {
+			// Sort by interactant name by default
+			interactions.sort((a, b) => (a.interactant2 > b.interactant2 ? 1 : -1));
 
-		createBnfNode(nodeContent, BnfNode.Interactant, sourceNodesArgs);
+			const nodeContent: InteractantNodeInput = {
+				id: sourceNodesArgs.createNodeId(sid),
+				interactions,
+				sid,
+				title,
+			};
+
+			createBnfNode(nodeContent, BnfNode.Interactant, sourceNodesArgs);
+		}
 	});
 };
