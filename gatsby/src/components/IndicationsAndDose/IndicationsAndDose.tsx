@@ -20,18 +20,39 @@ export const IndicationsAndDose: FC<IndicationsAndDoseProps> = ({
 		drugContent,
 		prepContent,
 	},
-}) => (
-	<section className={styles.wrapper} aria-labelledby={slug}>
-		<h2 dangerouslySetInnerHTML={{ __html: potName }} id={slug} />
+}) => {
+	const shouldCollapseSections =
+		(!drugContent ? 0 : 1) +
+			(drugClassContent || []).length +
+			(prepContent || []).length >
+		1;
 
-		{drugContent && <IndicationsAndDoseContent content={drugContent} />}
+	return (
+		<section className={styles.wrapper} aria-labelledby={slug}>
+			<h2 id={slug} dangerouslySetInnerHTML={{ __html: potName }} />
 
-		{drugClassContent?.map((content) => (
-			<IndicationsAndDoseContent key={content.contentFor} content={content} />
-		))}
+			{drugContent && (
+				<IndicationsAndDoseContent
+					content={drugContent}
+					collapsible={shouldCollapseSections}
+				/>
+			)}
 
-		{prepContent?.map((content) => (
-			<IndicationsAndDoseContent key={content.contentFor} content={content} />
-		))}
-	</section>
-);
+			{drugClassContent?.map((content) => (
+				<IndicationsAndDoseContent
+					key={content.contentFor}
+					content={content}
+					collapsible={shouldCollapseSections}
+				/>
+			))}
+
+			{prepContent?.map((content) => (
+				<IndicationsAndDoseContent
+					key={content.contentFor}
+					content={content}
+					collapsible={shouldCollapseSections}
+				/>
+			))}
+		</section>
+	);
+};

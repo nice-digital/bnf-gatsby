@@ -1,9 +1,5 @@
 @use '@nice-digital/nds-core/scss/core';
 
-.contentFor {
-  text-transform: uppercase;
-}
-
 .indicationWrapper {
   background: core.$nds-colour-nice-white;
   border: 1px solid core.$nds-colour-nice-grey-2;
@@ -23,11 +19,11 @@
 .indication {
   display: block;
 
-  &::after {
+  &::before {
     content: ', ';
   }
 
-  &:last-child::after {
+  &:first-child::before {
     display: none;
   }
 }
@@ -51,12 +47,16 @@
     margin-bottom: 0;
   }
 
-  &.adult {
-    border-color: core.$nds-colour-nice-teal;
+  &.neonate {
+    border-color: core.$nds-colour-nice-ice-teal;
   }
 
   &.child {
     border-color: core.$nds-colour-nice-purple;
+  }
+
+  &.adult {
+    border-color: core.$nds-colour-nice-teal-2;
   }
 }
 

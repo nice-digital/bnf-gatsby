@@ -3,7 +3,9 @@ import React, { FC } from "react";
 import striptags from "striptags";
 
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
+import { Grid, GridItem } from "@nice-digital/nds-grid";
 import { PageHeader } from "@nice-digital/nds-page-header";
+import { Panel } from "@nice-digital/nds-panel";
 
 import {
 	IndicationsAndDose,
@@ -67,48 +69,58 @@ const DrugPage: FC<DrugPageProps> = ({
 				heading={<span dangerouslySetInnerHTML={{ __html: title }} />}
 			/>
 
-			<SectionNav
-				sections={[
-					indicationsAndDose && {
-						id: indicationsAndDose.slug,
-						title: indicationsAndDose.potName,
-					},
-				]}
-			/>
+			<Grid gutter="loose">
+				<GridItem cols={12} md={8} lg={9}>
+					<SectionNav
+						sections={[
+							indicationsAndDose && {
+								id: indicationsAndDose.slug,
+								title: indicationsAndDose.potName,
+							},
+						]}
+					/>
+				</GridItem>
+				<GridItem cols={12} md={4} lg={3}>
+					<Panel>Quick links will go here</Panel>
+				</GridItem>
+				<GridItem cols={12} md={8} lg={9}>
+					{indicationsAndDose && (
+						<IndicationsAndDose indicationsAndDose={indicationsAndDose} />
+					)}
 
-			{indicationsAndDose && (
-				<IndicationsAndDose indicationsAndDose={indicationsAndDose} />
-			)}
+					{interactant && (
+						<p>
+							<Link to={`/interactions/${interactant.slug}/`}>
+								View interactions page for {interactant.title}
+							</Link>
+						</p>
+					)}
 
-			{interactant && (
-				<p>
-					<Link to={`/interactions/${interactant.slug}/`}>
-						View interactions page for {interactant.title}
-					</Link>
-				</p>
-			)}
+					{constituentDrugs && (
+						<section aria-labelledby="constituent-drugs">
+							<h2 id="constituent-drugs">Constituent drugs</h2>
+							<p
+								dangerouslySetInnerHTML={{ __html: constituentDrugs.message }}
+							/>
+							<ul aria-labelledby="constituent-drugs">
+								{constituentDrugs.constituents.map((constituent) =>
+									constituent ? (
+										<li key={constituent.slug}>
+											<Link to={`/drugs/${constituent.slug}/`}>
+												{constituent.title}
+											</Link>
+										</li>
+									) : null
+								)}
+							</ul>
+						</section>
+					)}
 
-			{constituentDrugs && (
-				<section aria-labelledby="constituent-drugs">
-					<h2 id="constituent-drugs">Constituent drugs</h2>
-					<p dangerouslySetInnerHTML={{ __html: constituentDrugs.message }} />
-					<ul aria-labelledby="constituent-drugs">
-						{constituentDrugs.constituents.map((constituent) =>
-							constituent ? (
-								<li key={constituent.slug}>
-									<Link to={`/drugs/${constituent.slug}/`}>
-										{constituent.title}
-									</Link>
-								</li>
-							) : null
-						)}
-					</ul>
-				</section>
-			)}
-
-			<p>
-				<Link to={`/drugs/${slug}/medicinal-forms/`}>Medicinal forms</Link>
-			</p>
+					<p>
+						<Link to={`/drugs/${slug}/medicinal-forms/`}>Medicinal forms</Link>
+					</p>
+				</GridItem>
+			</Grid>
 		</Layout>
 	);
 };
