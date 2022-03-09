@@ -18,38 +18,26 @@ export const interactionSchema = `
 		slug: String! @slug(field: "title")
 
 		"An array of interactions related to this particular interactant"
-		interactions: [${BnfNode.InteractantInteraction}]
+		interactions: [${BnfNode.Interaction}!]!
 	}
 
 	"""
 	An interaction, which is a combination of two interactants and an array of interaction messages that give further
 	details on this combination.
 	"""
-	type ${BnfNode.Interaction} implements Node @dontInfer {
-		"The SID for the first interactant"
-		interactant1: ${BnfNode.Interactant}! @link(by: "sid")
-
-		"The SID for the second interactant"
-		interactant2: ${BnfNode.Interactant}! @link(by: "sid")
+	type ${BnfNode.Interaction} @dontInfer {
+		"The second interactant"
+		interactant: ${BnfNode.Interactant}! @link(by: "sid")
 
 		"The messages for this interaction"
 		messages: [${BnfNode.InteractionMessage}!]!
 	}
-	"""
-	An interaction for a specific interactant
-	"""
-	type ${BnfNode.InteractantInteraction} {
-		"The title of the second interactant"
-		interactant2: String!
 
-		"The messages for this interaction"
-		messages: [${BnfNode.InteractionMessage}!]!
-	}
 	"""
 	An interaction message, which contains am HTML explanation of the nature of the interaction as well as details
 	of its severity.
 	"""
-	type ${BnfNode.InteractionMessage} {
+	type ${BnfNode.InteractionMessage} @dontInfer {
 		"An HTML explanation of the nature of the interaction"
 		message: String!
 

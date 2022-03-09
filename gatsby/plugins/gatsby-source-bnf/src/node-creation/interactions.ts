@@ -1,22 +1,23 @@
 import { type SourceNodesArgs } from "gatsby";
-import { type Except } from "type-fest";
 
 import {
-	type FeedInteraction,
+	type FeedInteractionMessage,
 	type FeedInteractions,
-	type FeedInteractant,
 } from "../downloader/types";
 import { BnfNode } from "../node-types";
 
 import { createBnfNode } from "./utils";
 
-export type InteractantNodeInput = FeedInteractant & {
+export type InteractantNodeInput = {
 	id: string;
+	sid: string;
 	interactions: InteractionNodeInput[];
+	title: string;
 };
 
-export type InteractionNodeInput = Except<FeedInteraction, "interactant1"> & {
-	id: string;
+export type InteractionNodeInput = {
+	interactant: string;
+	messages: FeedInteractionMessage[];
 };
 
 export const createInteractionNodes = (
@@ -31,30 +32,15 @@ export const createInteractionNodes = (
 
 	interactants.forEach(({ sid, title }) => {
 		// Find all interactions for this interactant
-		const interactions = messages.reduce(function (
-			interactionArray,
-			currentValue
-		) {
-			if (currentValue.interactant1 === sid) {
-				const secondInteractant = interactants.find(
-					(i) => i.sid === currentValue.interactant2
-				);
-				const updatedInteraction = {
-					id: sourceNodesArgs.createNodeId(sid + secondInteractant?.sid),
-					messages: currentValue.messages,
-					interactant2: secondInteractant?.title || "",
-				};
-				interactionArray.push(updatedInteraction);
-			}
-			return interactionArray;
-		},
-		[] as InteractionNodeInput[]);
+		const interactions = messages
+			.filter((m) => m.interactant1 === sid)
+			.map((m) => ({
+				messages: m.messages,
+				interactant: m.interactant2,
+			}));
 
 		// Only create a node if there are some constituent interactions
 		if (interactions.length > 0) {
-			// Sort by interactant name by default
-			interactions.sort((a, b) => (a.interactant2 > b.interactant2 ? 1 : -1));
-
 			const nodeContent: InteractantNodeInput = {
 				id: sourceNodesArgs.createNodeId(sid),
 				interactions,

@@ -18,7 +18,12 @@ export interface InteractantPageProps {
 				slug: string;
 			};
 			interactions: {
-				interactant2: string;
+				interactant: {
+					title: string;
+					drug: {
+						slug: string;
+					};
+				};
 				messages: {
 					additiveEffect: boolean;
 					evidence: string | null;
@@ -38,6 +43,11 @@ const InteractantPage: FC<InteractantPageProps> = ({
 }) => {
 	const { siteTitleShort } = useSiteMetadata(),
 		titleNoHtml = striptags(title);
+
+	// Sort by interactant name by default
+	interactions.sort((a, b) =>
+		a.interactant.title > b.interactant.title ? 1 : -1
+	);
 
 	return (
 		<Layout>
@@ -72,37 +82,35 @@ const InteractantPage: FC<InteractantPageProps> = ({
 
 			<p>{title} has the following interaction information</p>
 
-			{interactions && (
-				<ol>
-					{interactions.map((interaction) => (
-						<li key={interaction.interactant2}>
-							<h2>{interaction.interactant2}</h2>
-							<ul>
-								{interaction.messages.map(
-									(
-										{
-											evidence,
-											message,
-											additiveEffect,
-											severity,
-											severityOrder,
-										},
-										messageIndex
-									) => (
-										<li key={messageIndex}>
-											<p dangerouslySetInnerHTML={{ __html: message }}></p>
-											<p>Additive effect: {additiveEffect.toString()}</p>
-											<p>Severity: {severity}</p>
-											<p>Severity order: {severityOrder}</p>
-											<p>Evidence: {evidence || "N/A"}</p>
-										</li>
-									)
-								)}
-							</ul>
-						</li>
-					))}
-				</ol>
-			)}
+			<ol>
+				{interactions.map(({ interactant, messages }) => (
+					<li key={interactant.title}>
+						<h2>{interactant.title}</h2>
+						<ul>
+							{messages.map(
+								(
+									{
+										evidence,
+										message,
+										additiveEffect,
+										severity,
+										severityOrder,
+									},
+									messageIndex
+								) => (
+									<li key={messageIndex}>
+										<p dangerouslySetInnerHTML={{ __html: message }}></p>
+										<p>Additive effect: {additiveEffect.toString()}</p>
+										<p>Severity: {severity}</p>
+										<p>Severity order: {severityOrder}</p>
+										<p>Evidence: {evidence || "N/A"}</p>
+									</li>
+								)
+							)}
+						</ul>
+					</li>
+				))}
+			</ol>
 		</Layout>
 	);
 };
@@ -116,7 +124,12 @@ export const query = graphql`
 				slug
 			}
 			interactions {
-				interactant2
+				interactant {
+					title
+					drug {
+						slug
+					}
+				}
 				messages {
 					additiveEffect
 					evidence
