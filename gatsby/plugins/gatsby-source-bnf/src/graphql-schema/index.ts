@@ -6,6 +6,7 @@ import { drugSchema } from "./drug";
 import { guidanceSchema } from "./guidance";
 import { interactantSchema } from "./interactant";
 import { medicalDeviceSchema } from "./medical-device";
+import { prepSchema } from "./prep";
 import { recordSectionSchema } from "./record-section";
 import { simpleRecordSchema } from "./simple-record";
 import { treamentSummarySchema } from "./treatment-summary";
@@ -26,6 +27,7 @@ export const schema = [
 	guidanceSchema,
 	interactantSchema,
 	medicalDeviceSchema,
+	prepSchema,
 	recordSectionSchema,
 	simpleRecordSchema,
 	treamentSummarySchema,

@@ -1,5 +1,5 @@
 /* eslint-disable testing-library/no-render-in-setup */
-import { render, screen, waitFor, within } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 
 import { type RecordSection } from "../../types";
 
