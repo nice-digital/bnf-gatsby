@@ -1,5 +1,5 @@
 import { graphql, Link } from "gatsby";
-import React, { FC } from "react";
+import React, { FC, useState, useEffect, useCallback } from "react";
 import striptags from "striptags";
 
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
@@ -9,6 +9,26 @@ import { Layout } from "@/components/Layout/Layout";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
+import { interactionSchema } from "plugins/gatsby-source-bnf/src/graphql-schema/interaction";
+
+import CautionaryAdvisoryLabelsPage from "../about/labels";
+
+type Interaction = {
+	interactant: {
+		title: string;
+		drug: {
+			slug: string;
+		};
+	};
+	messages: {
+		additiveEffect: boolean;
+		evidence: string | null;
+		message: string;
+		severity: string;
+		severityOrder: number;
+	}[];
+};
+
 export interface InteractantPageProps {
 	data: {
 		bnfInteractant: {
@@ -17,21 +37,7 @@ export interface InteractantPageProps {
 				title: string;
 				slug: string;
 			};
-			interactions: {
-				interactant: {
-					title: string;
-					drug: {
-						slug: string;
-					};
-				};
-				messages: {
-					additiveEffect: boolean;
-					evidence: string | null;
-					message: string;
-					severity: string;
-					severityOrder: number;
-				}[];
-			}[];
+			interactions: Interaction[];
 		};
 	};
 }
@@ -44,10 +50,41 @@ const InteractantPage: FC<InteractantPageProps> = ({
 	const { siteTitleShort } = useSiteMetadata(),
 		titleNoHtml = striptags(title);
 
-	// Sort by interactant name by default
-	interactions.sort((a, b) =>
-		a.interactant.title > b.interactant.title ? 1 : -1
+	const [sortBySeverity, setSortBySeverity] = useState<boolean>(false);
+
+	const getSortedInteractions = useCallback(() => {
+		return interactions.sort((a, b) => {
+			if (sortBySeverity) {
+				// First, sort by severity within each message (for drugs with
+				// multiple interactions)
+				interactions.forEach((i) => {
+					i.messages.sort((a, b) => {
+						return a.severityOrder > b.severityOrder ? 1 : -1;
+					});
+				});
+
+				// Next, sort the whole list
+				const aMaxSeverity = Math.max(
+					...a.messages.map((m) => m.severityOrder)
+				);
+				const bMaxSeverity = Math.max(
+					...b.messages.map((m) => m.severityOrder)
+				);
+				return aMaxSeverity > bMaxSeverity ? 1 : -1;
+			} else {
+				return a.interactant.title.localeCompare(b.interactant.title);
+			}
+		});
+	}, [interactions, sortBySeverity]);
+
+	const [sortedInteractions, setSortedInteractions] = useState<Interaction[]>(
+		getSortedInteractions()
 	);
+
+	// Sort interactants by name or severity
+	useEffect(() => {
+		setSortedInteractions(getSortedInteractions());
+	}, [sortBySeverity, getSortedInteractions]);
 
 	return (
 		<Layout>
@@ -82,35 +119,54 @@ const InteractantPage: FC<InteractantPageProps> = ({
 
 			<p>{title} has the following interaction information</p>
 
-			<ol>
-				{interactions.map(({ interactant, messages }) => (
-					<li key={interactant.title}>
-						<h2>{interactant.title}</h2>
-						<ul>
-							{messages.map(
-								(
-									{
-										evidence,
-										message,
-										additiveEffect,
-										severity,
-										severityOrder,
-									},
-									messageIndex
-								) => (
-									<li key={messageIndex}>
-										<p dangerouslySetInnerHTML={{ __html: message }}></p>
-										<p>Additive effect: {additiveEffect.toString()}</p>
-										<p>Severity: {severity}</p>
-										<p>Severity order: {severityOrder}</p>
-										<p>Evidence: {evidence || "N/A"}</p>
-									</li>
-								)
-							)}
-						</ul>
-					</li>
-				))}
-			</ol>
+			<aside>
+				<div>Filters go here</div>
+				<div>
+					<strong>Sorted by:</strong>
+					{sortBySeverity ? <span>Severity |</span> : <span>Name |</span>}
+					{sortBySeverity ? (
+						<button onClick={() => setSortBySeverity(false)}>
+							Sort by: Name
+						</button>
+					) : (
+						<button onClick={() => setSortBySeverity(true)}>
+							Sort by: Severity
+						</button>
+					)}
+				</div>
+			</aside>
+
+			{sortedInteractions.length ? (
+				<ol>
+					{interactions.map(({ interactant, messages }) => (
+						<li key={interactant.title}>
+							<h2>{interactant.title}</h2>
+							<ul>
+								{messages.map(
+									(
+										{
+											evidence,
+											message,
+											additiveEffect,
+											severity,
+											severityOrder,
+										},
+										messageIndex
+									) => (
+										<li key={messageIndex}>
+											<p dangerouslySetInnerHTML={{ __html: message }}></p>
+											<p>Additive effect: {additiveEffect.toString()}</p>
+											<p>Severity: {severity}</p>
+											<p>Severity order: {severityOrder}</p>
+											<p>Evidence: {evidence || "N/A"}</p>
+										</li>
+									)
+								)}
+							</ul>
+						</li>
+					))}
+				</ol>
+			) : null}
 		</Layout>
 	);
 };
