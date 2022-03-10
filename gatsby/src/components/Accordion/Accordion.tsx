@@ -36,7 +36,7 @@ export const Accordion: FC<AccordionProps> = ({
 					title
 				)}
 				<span className={styles.toggleLabel}>
-					<ChevronDownIcon className={styles.icon} />
+					<ChevronDownIcon className={styles.icon} />{" "}
 					{isOpen ? hideLabel : showLabel}
 				</span>
 			</summary>

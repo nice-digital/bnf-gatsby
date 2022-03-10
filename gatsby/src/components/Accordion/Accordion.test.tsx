@@ -1,28 +1,117 @@
+import { render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+
 import { Accordion } from "./Accordion";
 
 describe("Accordion", () => {
-	it.todo("should match snapshot");
+	it("should match snapshot", () => {
+		render(
+			<Accordion title={<h3>Some title</h3>}>
+				<p>Body content</p>
+			</Accordion>
+		);
 
-	describe("open/close defaults", () => {
-		it.todo("should be closed by default");
-		it.todo("should be closed by default with false defaultOpen prop");
-		it.todo("should be open by default with true defaultOpen prop");
+		expect(screen.getByRole("group")).toMatchSnapshot();
 	});
 
-	describe("summary/title", () => {
-		it.todo("should add class for styling summary");
+	it.each([
+		["closed", "Show", undefined, undefined],
+		["closed", "Expand", undefined, "Expand"],
+		["closed", "Show", false, undefined],
+		["closed", "Expand", false, "Expand"],
+		["open", "Hide", true, undefined],
+		["open", "Collase", true, "Collase"],
+	])(
+		"should render %s accordion with label of %s",
+		(_expectedState, expectedLabel, defaultOpen, actualLabel) => {
+			render(
+				<Accordion
+					title={<h3>Some title</h3>}
+					defaultOpen={defaultOpen}
+					showLabel={defaultOpen ? undefined : actualLabel}
+					hideLabel={defaultOpen ? actualLabel : undefined}
+				>
+					<p>Body content</p>
+				</Accordion>
+			);
+			expect(screen.getByRole("group")).toHaveProperty(
+				"open",
+				Boolean(defaultOpen)
+			);
+			expect(
+				screen.getByText(
+					(_content, element) =>
+						element?.textContent === `Some title ${expectedLabel}`,
+					{
+						selector: "summary",
+					}
+				)
+			).toBeInTheDocument();
+		}
+	);
 
-		it.todo("should render title");
-		it.todo("should wrap string title in span");
-		it.todo("should wrap number title in span");
+	it("should add class for styling details", () => {
+		render(
+			<Accordion title="Test">
+				<p>Body content</p>
+			</Accordion>
+		);
 
-		it.todo("should render chevron down icon");
-
-		it.todo("should render default show and labels when none specified");
-		it.todo("should render given show and labels");
+		expect(screen.getByRole("group")).toHaveClass("details");
 	});
 
-	describe("body", () => {
-		it.todo("should render given children as accordion body");
+	it("should add class for styling summary", () => {
+		render(
+			<Accordion title="Test">
+				<p>Body content</p>
+			</Accordion>
+		);
+
+		expect(
+			screen.getByText(
+				(_content, element) => element?.textContent === "Test Show"
+			)
+		).toHaveClass("summary");
+	});
+
+	it("should wrap string title in span", () => {
+		render(
+			<Accordion title="Test">
+				<p>Body content</p>
+			</Accordion>
+		);
+
+		expect(screen.getByText("Test")).toHaveProperty("tagName", "SPAN");
+	});
+
+	it("should wrap number title in span", () => {
+		render(
+			<Accordion title={99}>
+				<p>Body content</p>
+			</Accordion>
+		);
+
+		expect(screen.getByText("99")).toHaveProperty("tagName", "SPAN");
+	});
+
+	it("should update label when expanded", async () => {
+		render(
+			<Accordion title="Test" defaultOpen={false}>
+				<p>Body content</p>
+			</Accordion>
+		);
+
+		const summary = screen.getByText(
+			(_content, element) => element?.textContent === `Test Show`,
+			{
+				selector: "summary",
+			}
+		);
+
+		userEvent.click(summary);
+
+		await waitFor(() => {
+			expect(summary).toHaveTextContent("Test Hide");
+		});
 	});
 });
