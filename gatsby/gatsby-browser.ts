@@ -11,6 +11,14 @@ export const onRouteUpdate = ({
 		const prevPath = (prevLocation as Location).pathname,
 			path = location.pathname;
 
+		console.log(
+			"prevLocation ",
+			prevLocation,
+			"prevPath",
+			prevPath,
+			" path ",
+			path
+		);
 		// Push our own event to the dataLayer on page change rather than using the
 		// 'gatsby-route-change' event built into gatsby-plugin-google-tagmanager.
 		// Because gatsby-route-change is pushed on initial page load as well as route change,
