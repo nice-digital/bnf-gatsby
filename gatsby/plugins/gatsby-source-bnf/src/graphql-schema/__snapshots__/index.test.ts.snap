@@ -88,6 +88,9 @@ exports[`schema should match snapshot 1`] = `
 		\\"The constituent drugs. This will be populated if the drug is a combination (e.g. 'tramadol with paracetamol') where each constituent exists in the BNF as a monograph in its own right.\\"
 		constituentDrugs: BnfConstituentDrugs
 
+		\\"The indications and dose section for the drug, including any relevant drug classes and preparations.\\"
+		indicationsAndDose: BnfIndicationsAndDose
+
 		\\"The medicinal forms for the drug.\\"
 		medicinalForms: BnfMedicinalForms!
 	}
@@ -99,8 +102,8 @@ exports[`schema should match snapshot 1`] = `
 		\\"The standard message to be included with the constituent drugs.\\"
 		message: String!
 
-		\\"The constituents of the combination drug. TODO: Make this non-nullable when the feed is fixed (currently it shows constituents that aren't themselves drug monographs)\\"
-		constituents: [BnfDrug]! @link(by: \\"sid\\")
+		\\"The constituents of the combination drug.\\"
+		constituents: [BnfDrug!]! @link(by: \\"sid\\")
 	}
 
 	\\"\\"\\"
@@ -121,9 +124,6 @@ exports[`schema should match snapshot 1`] = `
 	The properties for a medicinal form. This contains all the preparations and packs for a specific medicinal form for a drug, as well as information about applicable cautionary and advisory labels, excipients and electrolytes.
 	\\"\\"\\"
 	type BnfMedicinalForm {
-		\\"The 0-based order (or index) of the form within the drugs\\"
-		order: Int!
-
 		\\"The name of the medicinal form.\\"
 		form: String!
 
@@ -158,6 +158,103 @@ exports[`schema should match snapshot 1`] = `
 
 		\\"The sections of the record.\\"
 		sections: [BnfRecordSection!]!
+	}
+
+
+	\\"\\"\\"
+	A single section of simple (unstructured) content for a BNF drug or medical device. A monograph will include content from relevant drug classes (groups of drugs that share the same properties), the drug itself, and specific preparations where the properties differ from those of the generic drug. This record has these three parts of content in the drugClassContent, drugContent and prepContent fields respectively.
+	\\"\\"\\"
+	type BnfIndicationsAndDose @dontInfer {
+		\\"The name/title of the pot.\\"
+		potName: String!
+
+		\\"The slugified and lowercased pot name, used as a DOM ID and hash target\\"
+		slug: String! @slug(field: \\"potName\\")
+
+		\\"The indications and dose pot content that relates to relevant drug classes for the drug. This field will contain more than one entry when the drug belongs to multiple drug classes with relevant content for the pot.\\"
+		drugClassContent: [BnfIndicationsAndDoseContent]
+
+		\\"The indications and dose pot content that relates to the drug.\\"
+		drugContent: BnfIndicationsAndDoseContent
+
+		\\"Any indications and dose pot content that relates to specific preparations. This field will contain more than one entry when the drug has multiple preparations with specific relevant content for the pot.\\"
+		prepContent: [BnfIndicationsAndDoseContent]
+	}
+
+	\\"\\"\\"
+	The details of the indications and doses for a drug, drug class or preparation.
+	\\"\\"\\"
+	type BnfIndicationsAndDoseContent @dontInfer {
+		\\"What the content is for (the name of a drug class, drug or preparation). May contain HTML mark-up\\"
+		contentFor: String! @html
+
+		\\"The indication and dose groups.\\"
+		indicationAndDoseGroups: [BnfIndicationAndDoseGroup!]!
+
+		\\"Dose adjustments due to interactions content. May contain HTML mark-up.\\"
+		doseAdjustments: String @html
+
+		\\"Extremes of body weight content. May contain HTML mark-up.\\"
+		extremesOfBodyWeight: String @html
+
+		\\"dose equivalence and conversion content. May contain HTML mark-up.\\"
+		doseEquivalence: String @html
+
+		\\"Potency content. May contain HTML mark-up.\\"
+		potency: String @html
+
+		\\"Pharmacokinetics content. May contain HTML mark-up.\\"
+		pharmacokinetics: String @html
+	}
+
+	\\"\\"\\"
+	A grouping of one or more indications and the doses relevant for those indications.
+	\\"\\"\\"
+	type BnfIndicationAndDoseGroup @dontInfer {
+		\\"The therapeutic indications.\\"
+		therapeuticIndications: [BnfTherapeuticIndication!]!
+
+		\\"The routes, indications, patient groups and doses statements.\\"
+		routesAndPatientGroups: [BnfRouteAndPatientGroups!]!
+	}
+
+	\\"\\"\\"
+	The therapeutic indication, including SNOMED CT coding where available.
+	\\"\\"\\"
+	type BnfTherapeuticIndication @dontInfer {
+		\\"If available, the SNOMED CT identifier that encodes the indication. This value is a should be represented as a 64-bit integer, but it is represented as a String in this JSON to avoid any potential problems of 32-bit integer overflows.\\"
+		sctIndication: String
+
+		\\"If available, the English preferred name of the SNOMED CT concept that encodes the therapeutic intent of the indication.\\"
+		sctTherapeuticIntent: String
+
+		\\"The indication. May contain HTML mark-up.\\"
+		indication: String! @html
+	}
+
+	\\"\\"\\"
+	The route of administration and one or more patient groups with doses for that route.
+	\\"\\"\\"
+	type BnfRouteAndPatientGroups @dontInfer {
+		\\"The route of administration.\\"
+		routeOfAdministration: String!
+
+		\\"The patient groups and dose statements for the given route of administration.\\"
+		patientGroups: [BnfPatientGroup!]!
+	}
+
+	\\"\\"\\"
+	A dose statement and the patient group that the dose applies to (e.g. adult or child).
+	\\"\\"\\"
+	type BnfPatientGroup @dontInfer {
+		\\"The patient group that the dose applies to which can only be adult, child, or neonate.\\"
+		patientGroup: String!
+
+		\\"Details of the patient group that the dose applies to (e.g. adult or child).\\"
+		detailedPatientGroup: String!
+
+		\\"The dose statement. May contain HTML mark-up.\\"
+		doseStatement: String! @html
 	}
 
 
@@ -201,9 +298,6 @@ exports[`schema should match snapshot 1`] = `
 	The properties for a preparation. Context is provided by this object being given in the 'preps' field of MedicinalForm, or on a Medical Device.
 	\\"\\"\\"
 	type BnfPrep @dontInfer {
-		\\"The 0-based order (or index) of the prep within the form\\"
-		order: Int!
-
 		\\"The name of the preparation, for example, 'Anadin Paracetamol 500mg tablets'.\\"
 		name: String!
 
@@ -233,9 +327,6 @@ exports[`schema should match snapshot 1`] = `
 	The properties for a specific pack of a preparation.
 	\\"\\"\\"
 	type BnfPack @dontInfer {
-		\\"The 0-based order (or index) of the pack within the prep\\"
-		order: Int!
-
 		\\"The dm+d AMPP ID for this pack, if available. This value is a SNOMED CT identifier, which should be represented as a 64-bit integer, but it is represented as a String in this JSON to avoid any potential problems of 32-bit integer overflows.\\"
 		amppId: ID
 

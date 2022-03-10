@@ -1,4 +1,4 @@
-import { useCallback, useState, type FC } from "react";
+import { useCallback, useEffect, useState, type FC } from "react";
 
 import { type FeedIndicationsAndDosePot } from "@nice-digital/gatsby-source-bnf";
 
@@ -28,6 +28,11 @@ export const IndicationsAndDose: FC<IndicationsAndDoseProps> = ({
 		collapsible = numberOfSections > 1;
 
 	const [defaultOpen, setDefaultOpen] = useState(false);
+	const [isMounted, setIsMounted] = useState(false);
+
+	useEffect(() => {
+		setIsMounted(true);
+	}, []);
 
 	const toggleAllSectionsClickHandler = useCallback(() => {
 		setDefaultOpen((defaultOpen) => !defaultOpen);
@@ -37,8 +42,9 @@ export const IndicationsAndDose: FC<IndicationsAndDoseProps> = ({
 		<section className={styles.wrapper} aria-labelledby={slug}>
 			<h2 id={slug} dangerouslySetInnerHTML={{ __html: potName }} />
 
-			{collapsible ? (
+			{isMounted && collapsible ? (
 				<button
+					type="button"
 					className={styles.toggleAllButton}
 					onClick={toggleAllSectionsClickHandler}
 				>
@@ -60,6 +66,7 @@ export const IndicationsAndDose: FC<IndicationsAndDoseProps> = ({
 					content={content}
 					collapsible={collapsible}
 					defaultOpen={defaultOpen}
+					contentForPrefix="For all"
 				/>
 			))}
 
