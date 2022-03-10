@@ -114,4 +114,58 @@ describe("Accordion", () => {
 			expect(summary).toHaveTextContent("Test Hide");
 		});
 	});
+
+	it("should open when default open prop changed from false to true", async () => {
+		const { rerender } = render(
+			<Accordion title="Test" defaultOpen={false}>
+				<p>Body content</p>
+			</Accordion>
+		);
+
+		const summary = screen.getByText(
+			(_content, element) => element?.textContent === `Test Show`,
+			{
+				selector: "summary",
+			}
+		);
+
+		rerender(
+			<Accordion title="Test" defaultOpen={true}>
+				<p>Body content</p>
+			</Accordion>
+		);
+
+		expect(screen.getByRole("group")).toHaveProperty("open", true);
+
+		await waitFor(() => {
+			expect(summary).toHaveTextContent("Test Hide");
+		});
+	});
+
+	it("should close when default open prop changed from true to false", async () => {
+		const { rerender } = render(
+			<Accordion title="Test" defaultOpen={true}>
+				<p>Body content</p>
+			</Accordion>
+		);
+
+		const summary = screen.getByText(
+			(_content, element) => element?.textContent === `Test Hide`,
+			{
+				selector: "summary",
+			}
+		);
+
+		rerender(
+			<Accordion title="Test" defaultOpen={false}>
+				<p>Body content</p>
+			</Accordion>
+		);
+
+		expect(screen.getByRole("group")).toHaveProperty("open", false);
+
+		await waitFor(() => {
+			expect(summary).toHaveTextContent("Test Show");
+		});
+	});
 });
