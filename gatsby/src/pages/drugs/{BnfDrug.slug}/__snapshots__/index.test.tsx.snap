@@ -5,6 +5,7 @@ exports[`DrugPage should match snapshot for graphql query 1`] = `
 	query ($id: String) {
 		bnfDrug(id: { eq: $id }) {
 			title
+			slug
 			interactant {
 				title
 				slug

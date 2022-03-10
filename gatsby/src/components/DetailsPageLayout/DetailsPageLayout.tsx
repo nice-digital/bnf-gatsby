@@ -18,6 +18,7 @@ type DetailsPageLayoutProps = {
 	/** The ancestors from the parent page e.g. ["About"] */
 	parentTitleParts?: string[];
 	titleHtml: string;
+	preheading?: string;
 	menu?: ElementType;
 	children: ReactNode;
 	parentBreadcrumbs?: {
@@ -35,6 +36,7 @@ export const DetailsPageLayout: React.FC<DetailsPageLayoutProps> = ({
 	children,
 	parentTitleParts = [],
 	titleHtml,
+	preheading,
 	menu: Menu,
 	parentBreadcrumbs = [],
 	metaDescription,
@@ -71,6 +73,11 @@ export const DetailsPageLayout: React.FC<DetailsPageLayoutProps> = ({
 
 			<PageHeader
 				id="content-start"
+				preheading={
+					preheading ? (
+						<span dangerouslySetInnerHTML={{ __html: preheading }} />
+					) : undefined
+				}
 				heading={<span dangerouslySetInnerHTML={{ __html: titleHtml }} />}
 			/>
 

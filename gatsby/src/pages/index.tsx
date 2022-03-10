@@ -11,7 +11,7 @@ import { Layout } from "@/components/Layout/Layout";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
-const IndexPage: FC = () => {
+const HomePage: FC = () => {
 	const { siteTitleShort, siteTitleLong, isBNF } = useSiteMetadata();
 
 	return (
@@ -96,4 +96,4 @@ const IndexPage: FC = () => {
 	);
 };
 
-export default IndexPage;
+export default HomePage;

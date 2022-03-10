@@ -1,10 +1,11 @@
 import { render, waitFor, screen, within } from "@testing-library/react";
 
-import DrugPage, { query, type DrugPageProps } from "./{BnfDrug.slug}";
+import DrugPage, { query, type DrugPageProps } from ".";
 
 const drug: DrugPageProps["data"]["bnfDrug"] = {
 	// Note deliberate use of HTML within the title for testing stripping of tags
 	title: "Anti-D (Rh<sub>0</sub>) immunoglobulin",
+	slug: "anti-d-rh0-immunoglobulin",
 	interactant: null,
 	constituentDrugs: null,
 };
