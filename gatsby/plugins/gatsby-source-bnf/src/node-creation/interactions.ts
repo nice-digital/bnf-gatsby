@@ -45,7 +45,7 @@ export const createInteractionNodes = (
 				id: sourceNodesArgs.createNodeId(sid),
 				interactions,
 				sid,
-				title,
+				title: title.trim(),
 			};
 
 			createBnfNode(nodeContent, BnfNode.Interactant, sourceNodesArgs);

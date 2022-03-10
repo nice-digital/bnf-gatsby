@@ -13,6 +13,7 @@ export interface DrugPageProps {
 	data: {
 		bnfDrug: {
 			title: string;
+			slug: string;
 			interactant: null | {
 				title: string;
 				slug: string;
@@ -31,7 +32,7 @@ export interface DrugPageProps {
 
 const DrugPage: FC<DrugPageProps> = ({
 	data: {
-		bnfDrug: { title, interactant, constituentDrugs },
+		bnfDrug: { title, slug, interactant, constituentDrugs },
 	},
 }) => {
 	const { siteTitleShort } = useSiteMetadata(),
@@ -85,6 +86,10 @@ const DrugPage: FC<DrugPageProps> = ({
 					</ul>
 				</section>
 			)}
+
+			<p>
+				<Link to={`/drugs/${slug}/medicinal-forms/`}>Medicinal forms</Link>
+			</p>
 		</Layout>
 	);
 };
@@ -93,6 +98,7 @@ export const query = graphql`
 	query ($id: String) {
 		bnfDrug(id: { eq: $id }) {
 			title
+			slug
 			interactant {
 				title
 				slug
