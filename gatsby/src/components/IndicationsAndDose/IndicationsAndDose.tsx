@@ -1,4 +1,4 @@
-import { type FC } from "react";
+import { useCallback, useState, type FC } from "react";
 
 import { type FeedIndicationsAndDosePot } from "@nice-digital/gatsby-source-bnf";
 
@@ -21,20 +21,36 @@ export const IndicationsAndDose: FC<IndicationsAndDoseProps> = ({
 		prepContent,
 	},
 }) => {
-	const shouldCollapseSections =
-		(!drugContent ? 0 : 1) +
+	const numberOfSections =
+			(drugContent ? 1 : 0) +
 			(drugClassContent || []).length +
-			(prepContent || []).length >
-		1;
+			(prepContent || []).length,
+		collapsible = numberOfSections > 1;
+
+	const [defaultOpen, setDefaultOpen] = useState(false);
+
+	const toggleAllSectionsClickHandler = useCallback(() => {
+		setDefaultOpen((defaultOpen) => !defaultOpen);
+	}, [setDefaultOpen]);
 
 	return (
 		<section className={styles.wrapper} aria-labelledby={slug}>
 			<h2 id={slug} dangerouslySetInnerHTML={{ __html: potName }} />
 
+			{collapsible ? (
+				<button
+					className={styles.toggleAllButton}
+					onClick={toggleAllSectionsClickHandler}
+				>
+					{defaultOpen ? "Hide" : "Show"} all {numberOfSections} sections
+				</button>
+			) : null}
+
 			{drugContent && (
 				<IndicationsAndDoseContent
 					content={drugContent}
-					collapsible={shouldCollapseSections}
+					collapsible={collapsible}
+					defaultOpen={defaultOpen}
 				/>
 			)}
 
@@ -42,7 +58,8 @@ export const IndicationsAndDose: FC<IndicationsAndDoseProps> = ({
 				<IndicationsAndDoseContent
 					key={content.contentFor}
 					content={content}
-					collapsible={shouldCollapseSections}
+					collapsible={collapsible}
+					defaultOpen={defaultOpen}
 				/>
 			))}
 
@@ -50,7 +67,8 @@ export const IndicationsAndDose: FC<IndicationsAndDoseProps> = ({
 				<IndicationsAndDoseContent
 					key={content.contentFor}
 					content={content}
-					collapsible={shouldCollapseSections}
+					collapsible={collapsible}
+					defaultOpen={defaultOpen}
 				/>
 			))}
 		</section>

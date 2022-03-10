@@ -3,3 +3,24 @@
 .wrapper {
   border-bottom: 1px solid core.$nds-colour-nice-grey-2;
 }
+
+.toggleAllButton {
+  @include core.nds-link-default;
+  appearance: none;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+
+  &:focus {
+    @include core.nds-default-focus-style;
+  }
+
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  &:focus-visible {
+    @include core.nds-default-focus-style;
+  }
+}

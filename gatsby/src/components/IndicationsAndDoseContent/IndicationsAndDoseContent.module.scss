@@ -18,19 +18,6 @@
 
 .indication {
   display: block;
-
-  &::before {
-    content: ', ';
-  }
-
-  &:first-child::before {
-    display: none;
-  }
-}
-
-.indicationSeparator {
-  // Visually hidden but still read by screenreaders, We use the psuedo above to add the comma visually
-  @include core.nds-invisible;
 }
 
 .routeOfAdministration {

@@ -17,12 +17,15 @@ export interface IndicationsAndDoseContentProps {
 	contentForPrefix?: string;
 	/** Whether to (`true`) or not (`false`) to wrap this indications and dose content in an accordion to make it collapsible */
 	collapsible: boolean;
+	/** Whether to open the accordion (if `collapsible=true`) by default */
+	defaultOpen: boolean;
 }
 
 export const IndicationsAndDoseContent: FC<IndicationsAndDoseContentProps> = ({
 	content: { contentFor, indicationAndDoseGroups },
 	contentForPrefix = "For",
 	collapsible,
+	defaultOpen,
 }) => {
 	const slug = slugify(striptags(contentFor));
 
@@ -46,14 +49,17 @@ export const IndicationsAndDoseContent: FC<IndicationsAndDoseContentProps> = ({
 									) => (
 										<Fragment key={indication}>
 											<span
-												dangerouslySetInnerHTML={{ __html: indication }}
+												dangerouslySetInnerHTML={{
+													__html:
+														indication +
+														(indicationIndex < therapeuticIndications.length - 1
+															? ", "
+															: ""),
+												}}
 												className={styles.indication}
 												data-sct-indication={sctIndication}
 												data-sct-therapeutic-intent={sctTherapeuticIntent}
 											/>
-											{indicationIndex < therapeuticIndications.length - 1 ? (
-												<span className={styles.indicationSeparator}> or </span>
-											) : null}
 										</Fragment>
 									)
 								)}
@@ -99,7 +105,7 @@ export const IndicationsAndDoseContent: FC<IndicationsAndDoseContentProps> = ({
 					);
 				}
 			),
-		[indicationAndDoseGroups, slug]
+		[indicationAndDoseGroups, slug, contentFor]
 	);
 
 	return (
@@ -111,7 +117,7 @@ export const IndicationsAndDoseContent: FC<IndicationsAndDoseContentProps> = ({
 							{contentForPrefix} {contentFor}
 						</h3>
 					}
-					defaultOpen={false}
+					defaultOpen={defaultOpen}
 				>
 					{body}
 				</Accordion>
