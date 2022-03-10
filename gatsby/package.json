@@ -33,11 +33,7 @@
   "dependencies": {
     "@nice-digital/browserslist-config": "^2.0.1",
     "@nice-digital/design-system": "^1.6.2",
-<<<<<<< HEAD
     "@nice-digital/global-nav": "^4.1.757-GN-166-Update-subnav",
-=======
-    "@nice-digital/global-nav": "^4.1.759",
->>>>>>> main
     "@nice-digital/search-client": "^2.0.1426",
     "gatsby": "^4.6.1",
     "gatsby-plugin-catch-links": "^4.6.0",
