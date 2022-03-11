@@ -102,8 +102,8 @@ exports[`schema should match snapshot 1`] = `
 		\\"The standard message to be included with the constituent drugs.\\"
 		message: String!
 
-		\\"The constituents of the combination drug.\\"
-		constituents: [BnfDrug!]! @link(by: \\"sid\\")
+		\\"The constituents of the combination drug. TODO: Make this non-nullable when the feed is fixed (currently it shows constituents that aren't themselves drug monographs)\\"
+		constituents: [BnfDrug]! @link(by: \\"sid\\")
 	}
 
 	\\"\\"\\"
