@@ -1,5 +1,269 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`InteractantPage body should match snapshot for page body 1`] = `
+<main>
+  <div
+    class="container"
+  >
+    <nav
+      aria-label="Breadcrumbs"
+      role="navigation"
+    >
+      <ol
+        class="breadcrumbs"
+      >
+        <li
+          class="breadcrumbs__crumb"
+        >
+          <a
+            href="https://www.nice.org.uk/"
+          >
+            NICE
+          </a>
+        </li>
+        <li
+          class="breadcrumbs__crumb"
+        >
+          <a
+            href="/"
+          >
+            BNF
+          </a>
+        </li>
+        <li
+          class="breadcrumbs__crumb"
+        >
+          <a
+            href="/interactions/"
+          >
+            Interactions
+          </a>
+        </li>
+        <li
+          class="breadcrumbs__crumb"
+        >
+          <span>
+            Anti-D (Rh0) immunoglobulin
+          </span>
+        </li>
+      </ol>
+    </nav>
+    <script
+      type="application/ld+json"
+    >
+      {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@id": "https://www.nice.org.uk/",
+        "name": "NICE"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@id": "/",
+        "name": "BNF"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@id": "/interactions/",
+        "name": "Interactions"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "item": {
+        "name": "Anti-D (Rh0) immunoglobulin"
+      }
+    }
+  ]
+}
+    </script>
+    <div
+      class="page-header"
+      id="content-start"
+    >
+      <h1
+        class="page-header__heading"
+      >
+        <span
+          class="page-header__pre-heading"
+        >
+          <span>
+            Anti-D (Rh
+            <sub>
+              0
+            </sub>
+            ) immunoglobulin 
+          </span>
+        </span>
+        Interactions
+      </h1>
+      <p
+        class="page-header__lead"
+      >
+        <a
+          href="/drugs/acarbose/"
+        >
+          View 
+          acarbose
+           monograph page
+        </a>
+      </p>
+    </div>
+    <p>
+      Anti-D (Rh&lt;sub&gt;0&lt;/sub&gt;) immunoglobulin
+       has the following interaction information
+    </p>
+    <aside>
+      <div>
+        <strong>
+          Sorted by:
+        </strong>
+        Name |
+        <button>
+          Sort by: Severity
+        </button>
+      </div>
+    </aside>
+    <h2
+      class="visually-hidden"
+      id="interactions-list-heading"
+    >
+      List of interactions for 
+      acarbose
+    </h2>
+    <ol
+      aria-labelledby="interactions-list-heading"
+    >
+      <li>
+        <h3>
+          Canagliflozin
+        </h3>
+        <ul>
+          <li>
+            <p>
+              <p>
+                Both 
+                <span
+                  class="substance-primary"
+                  data-monograph-sid="_426793441"
+                  data-sid="_426793441"
+                >
+                  acarbose
+                </span>
+                 and 
+                <span
+                  class="substance-primary"
+                  data-monograph-sid="_629412592"
+                  data-sid="_629412592"
+                >
+                  canagliflozin
+                </span>
+                 can increase the risk of hypoglycaemia.
+              </p>
+            </p>
+            <p>
+              Additive effect: 
+              true
+            </p>
+            <p>
+              Severity: 
+              Normal
+            </p>
+            <p>
+              Severity order: 
+              1
+            </p>
+            <p>
+              Evidence: 
+              N/A
+            </p>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <h3>
+          Pancreatin
+        </h3>
+        <ul>
+          <li>
+            <p>
+              <span
+                class="substance-primary"
+                data-monograph-sid="_743802912"
+                data-sid="_743802912"
+              >
+                pancreatin
+              </span>
+               
+              <span
+                class="effectQualifier"
+              >
+                is predicted to
+              </span>
+               
+              <span
+                class="effect"
+              >
+                decrease
+              </span>
+               
+              <span
+                class="parameter"
+              >
+                the effects of
+              </span>
+               
+              <span
+                class="substance-primary"
+                data-monograph-sid="_426793441"
+                data-sid="_426793441"
+              >
+                acarbose
+              </span>
+              . 
+              <span
+                class="action"
+              >
+                Manufacturer advises avoid
+              </span>
+              .  
+            </p>
+            <p>
+              Additive effect: 
+              false
+            </p>
+            <p>
+              Severity: 
+              Moderate
+            </p>
+            <p>
+              Severity order: 
+              3
+            </p>
+            <p>
+              Evidence: 
+              Theoretical
+            </p>
+          </li>
+        </ul>
+      </li>
+    </ol>
+  </div>
+</main>
+`;
+
 exports[`InteractantPage should match snapshot for graphql query 1`] = `
 "
 	query ($id: String) {
@@ -8,6 +272,21 @@ exports[`InteractantPage should match snapshot for graphql query 1`] = `
 			drug {
 				title
 				slug
+			}
+			interactions {
+				interactant {
+					title
+					drug {
+						slug
+					}
+				}
+				messages {
+					additiveEffect
+					evidence
+					message
+					severity
+					severityOrder
+				}
 			}
 		}
 	}

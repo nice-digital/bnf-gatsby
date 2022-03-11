@@ -1,4 +1,5 @@
 import { render, waitFor, screen, within } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import InteractantPage, {
 	query,
@@ -8,7 +9,48 @@ import InteractantPage, {
 const interactant: InteractantPageProps["data"]["bnfInteractant"] = {
 	// Note deliberate use of HTML within the title for testing stripping of tags
 	title: "Anti-D (Rh<sub>0</sub>) immunoglobulin",
-	drug: null,
+	drug: {
+		title: "acarbose",
+		slug: "acarbose",
+	},
+	interactions: [
+		{
+			interactant: {
+				title: "Pancreatin",
+				drug: {
+					slug: "pancreatin",
+				},
+			},
+			messages: [
+				{
+					additiveEffect: false,
+					evidence: "Theoretical",
+					message:
+						'<span class="substance-primary" data-monograph-sid="_743802912" data-sid="_743802912">pancreatin</span> <span class="effectQualifier">is predicted to</span> <span class="effect">decrease</span> <span class="parameter">the effects of</span> <span class="substance-primary" data-monograph-sid="_426793441" data-sid="_426793441">acarbose</span>. <span class="action">Manufacturer advises avoid</span>.  ',
+					severity: "Moderate",
+					severityOrder: 3,
+				},
+			],
+		},
+		{
+			interactant: {
+				title: "Canagliflozin",
+				drug: {
+					slug: "canagliflozin",
+				},
+			},
+			messages: [
+				{
+					additiveEffect: true,
+					evidence: null,
+					message:
+						'<p>Both <span class="substance-primary" data-monograph-sid="_426793441" data-sid="_426793441">acarbose</span> and <span class="substance-primary" data-monograph-sid="_629412592" data-sid="_629412592">canagliflozin</span> can increase the risk of hypoglycaemia.</p>',
+					severity: "Normal",
+					severityOrder: 1,
+				},
+			],
+		},
+	],
 };
 
 const dataProp: InteractantPageProps["data"] = {
@@ -104,6 +146,95 @@ describe("InteractantPage", () => {
 	});
 
 	describe("body", () => {
-		it.todo("should link to drug monograph page for matching drug");
+		it("should match snapshot for page body", () => {
+			render(<InteractantPage data={dataProp} />);
+			expect(screen.getByRole("main")).toMatchSnapshot();
+		});
+
+		it("should link to drug monograph page for matching drug", () => {
+			render(<InteractantPage data={dataProp} />);
+			const monographLink = screen.getByRole("link", {
+				name: `View ${interactant.drug?.title} monograph page`,
+			});
+			expect(monographLink).toHaveAttribute(
+				"href",
+				`/drugs/${interactant.drug?.slug}/`
+			);
+		});
+
+		it("should render a list of interactions, one per interactant", () => {
+			render(<InteractantPage data={dataProp} />);
+			const interactionList = screen.getByRole("list", {
+				name: `List of interactions for ${interactant.drug?.title}`,
+			});
+			// Have to disable linting on no-node-access, as nested list items mean that getAllByRole returns too many elements
+			// eslint-disable-next-line testing-library/no-node-access
+			expect(interactionList.children).toHaveLength(
+				interactant.interactions.length
+			);
+		});
+	});
+
+	describe("sorting", () => {
+		it("should toggle between the two different sorting buttons whenever one is pressed", () => {
+			render(<InteractantPage data={dataProp} />);
+
+			const nameSortButtonArgs: [string, { name: string }] = [
+				"button",
+				{
+					name: "Sort by: Name",
+				},
+			];
+			const severitySortButtonArgs: [string, { name: string }] = [
+				"button",
+				{
+					name: "Sort by: Severity",
+				},
+			];
+
+			// Have to use queryByRole instead of getByRole for nullable queries (i.e. queries that may return no elements)
+			// This is because we want to check that certain elements *don't* exist and have been removed from the DOM
+			let nameSortButton: HTMLElement | null = screen.queryByRole(
+				...nameSortButtonArgs
+			);
+			let severitySortButton: HTMLElement | null = screen.getByRole(
+				...severitySortButtonArgs
+			);
+			expect(nameSortButton).not.toBeInTheDocument();
+			expect(severitySortButton).toBeInTheDocument();
+
+			userEvent.click(severitySortButton);
+			nameSortButton = screen.getByRole(...nameSortButtonArgs);
+			severitySortButton = screen.queryByRole(...severitySortButtonArgs);
+			expect(nameSortButton).toBeInTheDocument();
+			expect(severitySortButton).not.toBeInTheDocument();
+
+			userEvent.click(nameSortButton);
+			nameSortButton = screen.queryByRole(...nameSortButtonArgs);
+			severitySortButton = screen.getByRole(...severitySortButtonArgs);
+			expect(nameSortButton).not.toBeInTheDocument();
+			expect(severitySortButton).toBeInTheDocument();
+		});
+		it("should sort the interaction results alphabetically by default", () => {
+			render(<InteractantPage data={dataProp} />);
+			expect(
+				screen
+					.getAllByRole("heading", { level: 3 })
+					.map((heading) => heading.textContent)
+			).toStrictEqual(["Canagliflozin", "Pancreatin"]);
+		});
+
+		it("should sort the interaction results by severity after hitting the 'Sort by severity' button", () => {
+			render(<InteractantPage data={dataProp} />);
+			const sortButton = screen.getByRole("button", {
+				name: "Sort by: Severity",
+			});
+			userEvent.click(sortButton);
+			expect(
+				screen
+					.getAllByRole("heading", { level: 3 })
+					.map((heading) => heading.textContent)
+			).toStrictEqual(["Pancreatin", "Canagliflozin"]);
+		});
 	});
 });
