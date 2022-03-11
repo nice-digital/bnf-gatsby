@@ -25,6 +25,11 @@
 
 .interactionsListItem {
   border-bottom: 1px solid #828282; // TODO: Reconcile with the design system
+
+  &:last-child {
+    border-bottom: 0;
+    margin-bottom: core.rem(core.$nds-spacing-large);
+  }
 }
 
 .filterPanel {

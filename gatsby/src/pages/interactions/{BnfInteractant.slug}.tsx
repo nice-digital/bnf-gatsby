@@ -120,7 +120,7 @@ const InteractantPage: FC<InteractantPageProps> = ({
 						<h2 className="visually-hidden">Filters and sorting</h2>
 						<div>TODO: Add filter</div>
 						<div className={styles.sortControls}>
-							<strong>Sorted by:</strong>
+							<strong>Sorted by: </strong>
 							{sortBySeverity ? (
 								<>
 									<span className={styles.sortButtonLabel}>Severity | </span>

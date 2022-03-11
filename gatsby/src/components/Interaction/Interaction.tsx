@@ -36,19 +36,16 @@ export const Interaction: React.FC<InteractionProps> = ({
 			)}
 			<ul className={styles.messageList}>
 				{messages.map(({ message, severity, severityOrder }, messageIndex) => {
-					const severeClass = severityOrder >= 4 ? styles.severeMessage : "";
-
 					return (
-						<li
-							key={messageIndex}
-							className={`${styles.message} ${severeClass}`}
-						>
-							<p dangerouslySetInnerHTML={{ __html: message }}></p>
-							{severityOrder >= 4 && (
-								<p>
-									<strong>Severity: {severity}</strong>
-								</p>
-							)}
+						<li key={messageIndex} className={styles.message}>
+							<div className={severityOrder >= 4 ? styles.severeMessage : ""}>
+								<div dangerouslySetInnerHTML={{ __html: message }}></div>
+								{severityOrder >= 4 && (
+									<p>
+										<strong>Severity: {severity}</strong>
+									</p>
+								)}
+							</div>
 						</li>
 					);
 				})}
