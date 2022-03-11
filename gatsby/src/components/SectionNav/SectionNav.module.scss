@@ -3,10 +3,15 @@
 .nav {
   background: core.$nds-colour-nice-white;
   border: 1px solid core.$nds-colour-nice-grey-2;
+  margin-bottom: core.rem(core.$nds-spacing-large);
   padding: core.rem(core.$nds-spacing-medium);
 
   @media print {
     display: none;
+  }
+
+  @include core.mq($from: md) {
+    margin-bottom: 0;
   }
 }
 
