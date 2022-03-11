@@ -40,8 +40,8 @@ export const drugSchema = `
 		"The standard message to be included with the constituent drugs."
 		message: String!
 
-		"The constituents of the combination drug."
-		constituents: [${BnfNode.Drug}!]! @link(by: "sid")
+		"The constituents of the combination drug. TODO: Make this non-nullable when the feed is fixed (currently it shows constituents that aren't themselves drug monographs)"
+		constituents: [${BnfNode.Drug}]! @link(by: "sid")
 	}
 
 	"""
