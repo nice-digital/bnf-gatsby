@@ -70,7 +70,7 @@ const DrugPage: FC<DrugPageProps> = ({
 			/>
 
 			<Grid gutter="loose">
-				<GridItem cols={12} md={8} lg={9}>
+				<GridItem cols={12} md={8} lg={9} className="hide-print">
 					<SectionNav
 						sections={[
 							indicationsAndDose && {
@@ -80,7 +80,7 @@ const DrugPage: FC<DrugPageProps> = ({
 						]}
 					/>
 				</GridItem>
-				<GridItem cols={12} md={4} lg={3}>
+				<GridItem cols={12} md={4} lg={3} className="hide-print">
 					<Panel>Quick links will go here</Panel>
 				</GridItem>
 				<GridItem cols={12} md={8} lg={9}>

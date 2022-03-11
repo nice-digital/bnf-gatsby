@@ -4,6 +4,10 @@
   background: core.$nds-colour-nice-white;
   border: 1px solid core.$nds-colour-nice-grey-2;
   padding: core.rem(core.$nds-spacing-medium);
+
+  @media print {
+    display: none;
+  }
 }
 
 .heading {

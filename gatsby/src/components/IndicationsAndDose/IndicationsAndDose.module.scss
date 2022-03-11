@@ -23,4 +23,8 @@
   &:focus-visible {
     @include core.nds-default-focus-style;
   }
+
+  @media print {
+    display: none;
+  }
 }

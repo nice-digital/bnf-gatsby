@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use '@nice-digital/nds-core/scss/core';
 
 .indicationWrapper {
@@ -5,45 +6,80 @@
   border: 1px solid core.$nds-colour-nice-grey-2;
   margin-bottom: core.rem(core.$nds-spacing-medium);
   padding: core.rem(core.$nds-spacing-medium);
-
-  > :first-child {
-    margin-top: 0;
-  }
-
-  > :last-child,
-  > :last-child > :last-child {
-    margin-bottom: 0;
-  }
 }
 
-.indication {
+.indicationHeading {
+  break-inside: avoid;
+  margin: core.rem(0 0 core.$nds-spacing-medium);
+  max-width: none;
+}
+
+.indicationText {
   display: block;
 }
 
 .routeOfAdministration {
+  margin-bottom: core.rem(core.$nds-spacing-medium);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.routeOfAdministrationHeading {
   @include core.nds-p;
+  break-inside: avoid;
+  margin: core.rem(0 0 core.$nds-spacing-medium);
+  max-width: none;
+}
+
+.patientGroups {
+  margin: 0;
 }
 
 .patientGroupDose {
-  border-left: core.rem(core.$nds-spacing-small) solid
-    core.$nds-colour-nice-grey-2;
+  break-inside: avoid;
   margin-bottom: core.rem(core.$nds-spacing-medium);
-  padding-left: core.rem(core.$nds-spacing-small);
+  padding-left: core.rem(core.$nds-spacing-medium);
+  position: relative;
 
   &:last-child {
     margin-bottom: 0;
   }
 
-  &.neonate {
-    border-color: core.$nds-colour-nice-ice-teal;
+  &::before {
+    content: '';
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: core.rem(core.$nds-spacing-small);
   }
 
-  &.child {
-    border-color: core.$nds-colour-nice-purple;
+  /* stylelint-disable function-parentheses-space-inside */
+  // Use patterned colours to distinguish patient groups
+  &.neonate::before {
+    background: repeating-linear-gradient(
+      -45deg,
+      color.adjust(core.$nds-colour-nice-ice-teal, $lightness: 25%),
+      color.adjust(core.$nds-colour-nice-ice-teal, $lightness: 25%) 1px,
+      core.$nds-colour-nice-ice-teal 1px,
+      core.$nds-colour-nice-ice-teal 12px
+    );
   }
 
-  &.adult {
-    border-color: core.$nds-colour-nice-teal-2;
+  &.child::before {
+    background: repeating-linear-gradient(
+      45deg,
+      color.adjust(core.$nds-colour-nice-purple, $lightness: 75%),
+      color.adjust(core.$nds-colour-nice-purple, $lightness: 75%) 1px,
+      core.$nds-colour-nice-purple 1px,
+      core.$nds-colour-nice-purple 12px
+    );
+  }
+
+  &.adult::before {
+    background: core.$nds-colour-nice-teal-2;
   }
 }
 

@@ -41,7 +41,7 @@ export const IndicationsAndDoseContent: FC<IndicationsAndDoseContentProps> = ({
 							className={styles.indicationWrapper}
 							aria-labelledby={groupId}
 						>
-							<h4 id={groupId}>
+							<h4 id={groupId} className={styles.indicationHeading}>
 								{therapeuticIndications.map(
 									(
 										{ indication, sctIndication, sctTherapeuticIntent },
@@ -56,7 +56,7 @@ export const IndicationsAndDoseContent: FC<IndicationsAndDoseContentProps> = ({
 															? ", "
 															: ""),
 												}}
-												className={styles.indication}
+												className={styles.indicationText}
 												data-sct-indication={sctIndication}
 												data-sct-therapeutic-intent={sctTherapeuticIntent}
 											/>
@@ -67,11 +67,14 @@ export const IndicationsAndDoseContent: FC<IndicationsAndDoseContentProps> = ({
 							</h4>
 							{routesAndPatientGroups?.map(
 								({ routeOfAdministration, patientGroups }) => (
-									<section key={routeOfAdministration}>
-										<h5 className={styles.routeOfAdministration}>
+									<section
+										key={routeOfAdministration}
+										className={styles.routeOfAdministration}
+									>
+										<h5 className={styles.routeOfAdministrationHeading}>
 											{routeOfAdministration}
 										</h5>
-										<dl>
+										<dl className={styles.patientGroups}>
 											{patientGroups.map(
 												({
 													patientGroup,
