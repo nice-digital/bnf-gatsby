@@ -14,7 +14,7 @@ export interface IndicationsAndDoseContentProps {
 	/** The string to be rendered before the `contentFor` field.
 	 *
 	 * Defaults to `For`. Pass `For all` for drug classes to read `For all tetracyclines` for example. */
-	contentForPrefix?: string;
+	contentForPrefix?: "For" | "For all";
 	/** Whether to (`true`) or not (`false`) to wrap this indications and dose content in an accordion to make it collapsible */
 	collapsible: boolean;
 	/** Whether to open the accordion (if `collapsible=true`) by default */
