@@ -5,25 +5,15 @@ import striptags from "striptags";
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
 import { PageHeader } from "@nice-digital/nds-page-header";
 
+import {
+	Interaction,
+	InteractionProps,
+} from "@/components/Interaction/Interaction";
 import { Layout } from "@/components/Layout/Layout";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
-type Interaction = {
-	interactant: {
-		title: string;
-		drug: {
-			slug: string;
-		};
-	};
-	messages: {
-		additiveEffect: boolean;
-		evidence: string | null;
-		message: string;
-		severity: string;
-		severityOrder: number;
-	}[];
-};
+import styles from "./{BnfInteractant.slug}.module.scss";
 
 export interface InteractantPageProps {
 	data: {
@@ -33,7 +23,7 @@ export interface InteractantPageProps {
 				title: string;
 				slug: string;
 			};
-			interactions: Interaction[];
+			interactions: InteractionProps[];
 		};
 	};
 }
@@ -79,9 +69,9 @@ const InteractantPage: FC<InteractantPageProps> = ({
 		});
 	}, [interactions, sortBySeverity]);
 
-	const [sortedInteractions, setSortedInteractions] = useState<Interaction[]>(
-		getSortedInteractions()
-	);
+	const [sortedInteractions, setSortedInteractions] = useState<
+		InteractionProps[]
+	>(getSortedInteractions());
 
 	// Sort interactants by name or severity
 	useEffect(() => {
@@ -119,65 +109,71 @@ const InteractantPage: FC<InteractantPageProps> = ({
 				}
 			/>
 
-			<p>{title} has the following interaction information</p>
+			<p className={styles.interactionInformation}>
+				{title} has the following interaction information:
+			</p>
 
-			<aside>
-				<div>
-					<strong>Sorted by:</strong>
-					{sortBySeverity ? (
+			<div className={styles.grid}>
+				<div className={styles.rightCol}>TODO: Add interaction info panel</div>
+				<div className={styles.leftCol}>
+					<section className={styles.filterPanel}>
+						<h2 className="visually-hidden">Filters and sorting</h2>
+						<div>TODO: Add filter</div>
+						<div className={styles.sortControls}>
+							<strong>Sorted by:</strong>
+							{sortBySeverity ? (
+								<>
+									<span className={styles.sortButtonLabel}>Severity | </span>
+									<button
+										className={styles.sortButton}
+										onClick={() => setSortBySeverity(false)}
+									>
+										Sort by: Name
+									</button>
+								</>
+							) : (
+								<>
+									<span className={styles.sortButtonLabel}>Name | </span>
+									<button
+										className={styles.sortButton}
+										onClick={() => setSortBySeverity(true)}
+									>
+										Sort by: Severity
+									</button>
+								</>
+							)}
+						</div>
+					</section>
+
+					<div className={styles.resultCount}>
+						Showing {interactions.length} of {interactions.length}
+					</div>
+
+					{sortedInteractions.length ? (
 						<>
-							Severity |
-							<button onClick={() => setSortBySeverity(false)}>
-								Sort by: Name
-							</button>
+							<h2 className="visually-hidden" id="interactions-list-heading">
+								List of interactions for {drug?.title}
+							</h2>
+							<ol
+								className={styles.interactionsList}
+								aria-labelledby="interactions-list-heading"
+							>
+								{interactions.map(({ interactant, messages }) => (
+									<li
+										className={styles.interactionsListItem}
+										key={interactant.title}
+									>
+										<Interaction
+											interactant={interactant}
+											messages={messages}
+										/>
+									</li>
+								))}
+							</ol>
 						</>
-					) : (
-						<>
-							Name |
-							<button onClick={() => setSortBySeverity(true)}>
-								Sort by: Severity
-							</button>
-						</>
-					)}
+					) : null}
 				</div>
-			</aside>
-
-			{sortedInteractions.length ? (
-				<>
-					<h2 className="visually-hidden" id="interactions-list-heading">
-						List of interactions for {drug?.title}
-					</h2>
-					<ol aria-labelledby="interactions-list-heading">
-						{interactions.map(({ interactant, messages }) => (
-							<li key={interactant.title}>
-								<h3>{interactant.title}</h3>
-								<ul>
-									{messages.map(
-										(
-											{
-												evidence,
-												message,
-												additiveEffect,
-												severity,
-												severityOrder,
-											},
-											messageIndex
-										) => (
-											<li key={messageIndex}>
-												<p dangerouslySetInnerHTML={{ __html: message }}></p>
-												<p>Additive effect: {additiveEffect.toString()}</p>
-												<p>Severity: {severity}</p>
-												<p>Severity order: {severityOrder}</p>
-												<p>Evidence: {evidence || "N/A"}</p>
-											</li>
-										)
-									)}
-								</ul>
-							</li>
-						))}
-					</ol>
-				</>
-			) : null}
+			</div>
 		</Layout>
 	);
 };

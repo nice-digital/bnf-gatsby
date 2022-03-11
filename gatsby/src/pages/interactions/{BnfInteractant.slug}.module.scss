@@ -1,0 +1,61 @@
+@use '@nice-digital/nds-core/scss/core';
+
+.grid {
+  @include core.mq($from: md) {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+  }
+}
+
+.rightCol {
+  @include core.mq($from: md) {
+    margin-left: core.rem(core.$nds-spacing-large);
+  }
+}
+
+.interactionInformation {
+  margin-bottom: core.rem(core.$nds-spacing-large);
+}
+
+.interactionsList {
+  list-style: none;
+  margin: 0;
+}
+
+.interactionsListItem {
+  border-bottom: 1px solid #828282; // TODO: Reconcile with the design system
+}
+
+.filterPanel {
+  margin-bottom: core.rem(core.$nds-spacing-medium);
+
+  @include core.mq($from: md) {
+    display: flex;
+  }
+}
+
+.sortControls {
+  margin-left: auto;
+}
+
+.sortButtonLabel {
+  font-weight: bold;
+}
+
+.sortButton {
+  border: 0;
+  color: core.$nds-colour-link;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 0;
+  text-decoration: underline;
+
+  &:hover {
+    color: core.$nds-colour-link-hover;
+  }
+}
+
+.resultCount {
+  font-weight: bold;
+}

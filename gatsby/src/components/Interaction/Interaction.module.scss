@@ -1,0 +1,19 @@
+@use '@nice-digital/nds-core/scss/core';
+
+.messageList {
+  list-style: none;
+  margin: 0;
+}
+
+.interactantTitle {
+  @include core.nds-h6();
+}
+
+.message + .message {
+  border-top: 2px dashed #828282; // TODO: Reconcile with the design system
+}
+
+.severeMessage {
+  border-left: 6px solid #e10303; // TODO: Reconcile with the design system
+  padding-left: core.rem(core.$nds-spacing-medium);
+}
