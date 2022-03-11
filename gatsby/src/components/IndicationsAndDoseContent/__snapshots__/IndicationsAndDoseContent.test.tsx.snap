@@ -17,17 +17,18 @@ exports[`IndicationsAndDoseContent should match snapshot 1`] = `
     class="indicationWrapper"
   >
     <h4
+      class="indicationHeading"
       id="diazepam-indication-1"
     >
       <span
-        class="indication"
+        class="indicationText"
         data-sct-indication="197480006"
         data-sct-therapeutic-intent="262202000"
       >
         Severe acute anxiety, 
       </span>
       <span
-        class="indication"
+        class="indicationText"
       >
         Control of acute panic attacks
       </span>
@@ -38,13 +39,17 @@ exports[`IndicationsAndDoseContent should match snapshot 1`] = `
         diazepam
       </span>
     </h4>
-    <section>
+    <section
+      class="routeOfAdministration"
+    >
       <h5
-        class="routeOfAdministration"
+        class="routeOfAdministrationHeading"
       >
         By mouth
       </h5>
-      <dl>
+      <dl
+        class="patientGroups"
+      >
         <div
           class="patientGroupDose child"
         >
@@ -75,13 +80,17 @@ exports[`IndicationsAndDoseContent should match snapshot 1`] = `
         </div>
       </dl>
     </section>
-    <section>
+    <section
+      class="routeOfAdministration"
+    >
       <h5
-        class="routeOfAdministration"
+        class="routeOfAdministrationHeading"
       >
         By intramuscular injection, or by slow intravenous injection
       </h5>
-      <dl>
+      <dl
+        class="patientGroups"
+      >
         <div
           class="patientGroupDose adult"
         >
