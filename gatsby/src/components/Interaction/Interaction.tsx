@@ -25,15 +25,15 @@ export const Interaction: React.FC<InteractionProps> = ({
 }: InteractionProps) => {
 	return (
 		<>
-			{interactant.drug?.slug ? (
-				<h3 className={styles.interactantTitle}>
+			<h3 className={styles.interactantTitle}>
+				{interactant.drug?.slug ? (
 					<Link to={`/drugs/${interactant.drug.slug}`}>
 						{interactant.title}
 					</Link>
-				</h3>
-			) : (
-				<h3 className={styles.interactantTitle}>{interactant.title}</h3>
-			)}
+				) : (
+					interactant.title
+				)}
+			</h3>
 			<ul className={styles.messageList}>
 				{messages.map(({ message, severity, severityOrder }, messageIndex) => {
 					return (
