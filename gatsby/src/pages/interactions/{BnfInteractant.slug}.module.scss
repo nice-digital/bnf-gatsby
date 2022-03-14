@@ -10,8 +10,19 @@
 
 .rightCol {
   @include core.mq($from: md) {
+    flex: 0 1 33%;
     margin-left: core.rem(core.$nds-spacing-large);
   }
+}
+
+.informationPanel {
+  background: core.$nds-colour-nice-grey-3;
+  margin-bottom: core.rem(core.$nds-spacing-large);
+  padding: core.rem(core.$nds-spacing-medium);
+}
+
+.informationPanelHeading {
+  @include core.nds-h6();
 }
 
 .interactionInformation {
@@ -24,7 +35,7 @@
 }
 
 .interactionsListItem {
-  border-bottom: 1px solid #828282; // TODO: Reconcile with the design system
+  border-bottom: 1px solid core.$nds-colour-nice-grey-1;
 
   &:last-child {
     border-bottom: 0;

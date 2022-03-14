@@ -13,6 +13,8 @@ import { Layout } from "@/components/Layout/Layout";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
+import interactionStyles from "../../components/Interaction/Interaction.module.scss";
+
 import styles from "./{BnfInteractant.slug}.module.scss";
 
 export interface InteractantPageProps {
@@ -114,7 +116,21 @@ const InteractantPage: FC<InteractantPageProps> = ({
 			</p>
 
 			<div className={styles.grid}>
-				<div className={styles.rightCol}>TODO: Add interaction info panel</div>
+				<div className={styles.rightCol}>
+					<div className={styles.informationPanel}>
+						<h2 className={styles.informationPanelHeading}>
+							Drug interaction information
+						</h2>
+						<p className={interactionStyles.severeMessage}>
+							Severe interactions are highlighted with a red marker
+						</p>
+						<p>
+							<Link to="/interactions/">
+								Find out more about BNF interactions information
+							</Link>
+						</p>
+					</div>
+				</div>
 				<div className={styles.leftCol}>
 					<section className={styles.filterPanel}>
 						<h2 className="visually-hidden">Filters and sorting</h2>

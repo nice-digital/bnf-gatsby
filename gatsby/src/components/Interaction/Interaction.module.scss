@@ -9,11 +9,15 @@
   @include core.nds-h6();
 }
 
+.message {
+  margin-bottom: core.rem(core.$nds-spacing-medium);
+}
+
 .message + .message {
-  border-top: 2px dashed #828282; // TODO: Reconcile with the design system
+  border-top: 2px dashed core.$nds-colour-nice-grey-1;
 }
 
 .severeMessage {
-  border-left: 6px solid #e10303; // TODO: Reconcile with the design system
+  border-left: core.rem(core.$nds-spacing-small) solid core.$nds-colour-error;
   padding-left: core.rem(core.$nds-spacing-medium);
 }
