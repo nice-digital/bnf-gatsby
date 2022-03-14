@@ -61,8 +61,8 @@
   &.neonate::before {
     background: repeating-linear-gradient(
       -45deg,
-      color.adjust(core.$nds-colour-nice-ice-teal, $lightness: 25%),
-      color.adjust(core.$nds-colour-nice-ice-teal, $lightness: 25%) 1px,
+      core.$nds-colour-nice-teal-2,
+      core.$nds-colour-nice-teal-2 1px,
       core.$nds-colour-nice-ice-teal 1px,
       core.$nds-colour-nice-ice-teal 12px
     );
