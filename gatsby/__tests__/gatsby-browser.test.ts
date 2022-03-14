@@ -5,32 +5,12 @@ import { onRouteUpdate } from "../gatsby-browser";
 
 describe("gatsby-browser", () => {
 	describe("onRouteUpdate behaviour", () => {
-		let spy: jest.SpyInstance;
 		beforeEach(() => {
 			window.dataLayer = [];
-			spy = jest
-				.spyOn(window, "requestAnimationFrame")
-				.mockImplementation((callback: FrameRequestCallback): number => {
-					callback(0);
-					return 0;
-				});
 		});
 
 		afterEach(() => {
-			spy.mockRestore();
-		});
-
-		it("Should use request animationframe delay before push to the data layer", async () => {
-			onRouteUpdate({
-				prevLocation: { href: "elsewhere", pathname: "/elsewhere" },
-				location: { href: "somewhere", pathname: "/somewhere" },
-			} as unknown as RouteUpdateArgs);
-
-			expect(requestAnimationFrame).toHaveBeenCalledTimes(2);
-
-			await waitFor(() => {
-				expect(window.dataLayer).toHaveLength(2);
-			});
+			jest.useRealTimers();
 		});
 
 		it("should push a page view to the data layer when the path changes", async () => {
@@ -116,5 +96,53 @@ describe("gatsby-browser", () => {
 				referrer: "some referrer",
 			});
 		});
+
+		it("Should use request animationframe delay before push to the data layer", async () => {
+			const spy: jest.SpyInstance = jest
+				.spyOn(window, "requestAnimationFrame")
+				.mockImplementation((callback: FrameRequestCallback): number => {
+					callback(0);
+					return 0;
+				});
+
+			onRouteUpdate({
+				prevLocation: { href: "elsewhere", pathname: "/elsewhere" },
+				location: { href: "somewhere", pathname: "/somewhere" },
+			} as unknown as RouteUpdateArgs);
+
+			expect(spy).toHaveBeenCalledTimes(2);
+
+			await waitFor(() => {
+				expect(window.dataLayer).toHaveLength(2);
+			});
+
+			spy.mockRestore();
+		});
+
+		it.skip("should use set timeout when request animation frame is not available", async () => {
+			// jest.useFakeTimers();
+			// jest.spyOn(global, "setTimeout");
+			// onRouteUpdate({
+			// 	prevLocation: { href: "elsewhere", pathname: "/elsewhere" },
+			// 	location: { href: "somewhere", pathname: "/somewhere" },
+			// } as unknown as RouteUpdateArgs);
+			// await waitFor(() => {
+			// 	jest.advanceTimersByTime(32);
+			// 	expect(setTimeout).not.toHaveBeenCalled();
+			// });
+			// expect(window.dataLayer).toHaveLength(2);
+			// expect(setTimeout).toHaveBeenCalledTimes(1);
+		});
 	});
 });
+
+// const mockRaf = undefined;
+// jest.spyOn(window, 'setTimeout')
+
+// const originalWindow = { ...window };
+// const windowSpy = jest.spyOn(global, "window", "get");
+// windowSpy.mockImplementation(() => {
+// 	return {
+// 		...originalWindow,
+// 	};
+// });
