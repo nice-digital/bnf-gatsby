@@ -26,6 +26,77 @@ export const drugSchema = `
 		"The constituent drugs. This will be populated if the drug is a combination (e.g. 'tramadol with paracetamol') where each constituent exists in the BNF as a monograph in its own right."
 		constituentDrugs: ${BnfNode.ConstituentDrugs}
 
+		"The allergy and cross-sensitivity section for the drug, including any relevant drug classes and preparations."
+		allergyAndCrossSensitivity: ${BnfNode.SimplePot}
+
+		"The unlicensed use section for the drug, including any relevant drug classes and preparations."
+		unlicensedUse: ${BnfNode.SimplePot}
+
+		"The important safety information section for the drug, including any relevant drug classes and preparations."
+		importantSafetyInformation: ${BnfNode.SimplePot}
+
+		"The contra-indications section for the drug, including any relevant drug classes and preparations."
+		contraIndications: ${BnfNode.SimplePot}
+
+		# cautions: ${BnfNode.SimplePot} # TODO: Will this be a simple pot or a more specific schema to include welsh translations and label number
+
+		"The side effects section for the drug, including any relevant drug classes and preparations."
+		sideEffects: ${BnfNode.SimplePot}
+
+		"The conception and contraception section for the drug, including any relevant drug classes and preparations."
+		conceptionAndContraception: ${BnfNode.SimplePot}
+
+		"The pregnancy section for the drug, including any relevant drug classes and preparations."
+		pregnancy: ${BnfNode.SimplePot}
+
+		"The breast feeding section for the drug, including any relevant drug classes and preparations."
+		breastFeeding: ${BnfNode.SimplePot}
+
+		"The hepatic impairment section for the drug, including any relevant drug classes and preparations."
+		hepaticImpairment: ${BnfNode.SimplePot}
+
+		"The renal impairment section for the drug, including any relevant drug classes and preparations."
+		renalImpairment: ${BnfNode.SimplePot}
+
+		"The treatment cessation section for the drug, including any relevant drug classes and preparations."
+		treatmentCessation: ${BnfNode.SimplePot}
+
+		"The directions for administration section for the drug, including any relevant drug classes and preparations."
+		directionsForAdministration: ${BnfNode.SimplePot}
+
+		"The prescribing and dispensing information section for the drug, including any relevant drug classes and preparations. Note that this section used to contain information about prescribing and dispensing in palliative care, but this will now appear in the palliative care section."
+		prescribingAndDispensingInformation: ${BnfNode.SimplePot}
+
+		"The palliative care section for the drug, including any relevant drug classes and preparations."
+		palliativeCare: ${BnfNode.SimplePot}
+
+		"The patient and carer advice section for the drug, including any relevant drug classes and preparations."
+		patientAndCarerAdvice: ${BnfNode.SimplePot}
+
+		"The profession specific information section for the drug, including any relevant drug classes and preparations."
+		professionSpecificInformation: ${BnfNode.SimplePot}
+
+		"The exceptions to legal category section for the drug, including any relevant drug classes and preparations."
+		exceptionsToLegalCategory: ${BnfNode.SimplePot}
+
+		"The drug action section for the drug, including any relevant drug classes and preparations"
+		drugAction: ${BnfNode.SimplePot}
+
+		"The effect on laboratory tests section for the drug, including any relevant drug classes and preparations."
+		effectOnLaboratoryTests: ${BnfNode.SimplePot}
+
+		"The monitoring requirements section for the drug, including any relevant drug classes and preparations."
+		monitoringRequirements: ${BnfNode.MonitoringPot}
+
+		"The pre-treatment screening section for the drug, including any relevant drug classes and preparations."
+		preTreatmentScreening: ${BnfNode.SimplePot}
+
+		"The handling and storage section for the drug, including any relevant drug classes and preparations."
+		handlingAndStorage: ${BnfNode.SimplePot}
+
+		"The national funding section for the drug, including any relevant drug classes and preparations."
+		nationalFunding: ${BnfNode.NationalFundingPot}
+
 		"The medicinal forms for the drug."
 		medicinalForms: ${BnfNode.MedicinalForms}!
 	}

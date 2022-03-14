@@ -57,6 +57,21 @@ export interface FeedDrug {
 	/** Note: not all 'drugs' have a primary classification, e.g. "St John's wort", "cranberry", "dairy products", "enteral feeds" etc */
 	primaryClassification?: FeedClassification;
 	secondaryClassifications: FeedClassification[];
+
+	/* The allergy and cross-sensitivity section for the drug, including any relevant drug classes and preparations.*/
+	allergyAndCrossSensitivity?: FeedSimplePot;
+	/** The unlicensed use section for the drug, including any relevant drug classes and preparations. */
+	unlicensedUse?: FeedSimplePot;
+	/** The important safety information section for the drug, including any relevant drug classes and preparations. */
+	importantSafetyInformation?: FeedSimplePot;
+	/** The contra-indications section for the drug, including any relevant drug classes and preparations. */
+	contraIndications?: FeedSimplePot;
+	/** TODO: Will cautions be a string array or object array? */
+	cautions: unknown;
+	/** The side effects section for the drug, including any relevant drug classes and preparations. */
+	sideEffects?: FeedSimplePot;
+	// TODO: Add other drug fields here
+
 	/** The medicinal forms for the drug. */
 	medicinalForms: FeedMedicinalForms;
 }
@@ -77,6 +92,22 @@ export interface FeedConstituentDrug {
 	sid: SID;
 	/** The title of the constituent drug. May contain HTML mark-up */
 	title: string;
+}
+
+export interface FeedBasePot<TPotContent extends FeedBasePotContent> {
+	/** The name/title of the pot. */
+	potName: string;
+	/** The pot content that relates to relevant drug classes for the drug. This field will contain more than one entry when the drug belongs to multiple drug classes with relevant content for the pot. */
+	drugClassContent?: TPotContent[];
+	/** The pot content that relates to the drug. */
+	drugContent?: TPotContent;
+	/** Any pot content that relates to specific preparations. This field will contain more than one entry when the drug has multiple preparations with specific relevant content for the pot. */
+	prepContent?: TPotContent[];
+}
+
+export interface FeedBasePotContent {
+	/** What the content is for (the name of a drug class, drug or preparation). May contain HTML mark-up */
+	contentFor: string;
 }
 
 /**
@@ -106,6 +137,17 @@ export interface FeedMedicinalForm {
 	electolytes?: string;
 	/** The preparations of the drug for the medicinal form. */
 	preps: FeedPrep[];
+}
+
+/** A single section of simple (unstructured) content for a BNF drug or medical device. A monograph will include content from relevant drug classes (groups of drugs that share the same properties), the drug itself, and specific preparations where the properties differ from those of the generic drug. This record has these three parts of content in the `drugClassContent`, `drugContent` and `prepContent` fields respectively. */
+export type FeedSimplePot = FeedBasePot<FeedFeedSimplePotContent>;
+
+/** The details of the indications and doses for a drug, drug class or preparation. */
+export interface FeedFeedSimplePotContent extends FeedBasePotContent {
+	/** What the content is for (the name of a drug class, drug or preparation). May contain HTML mark-up */
+	contentFor: string;
+	/** The content. May contain HTML mark-up. */
+	content: string;
 }
 
 export interface FeedCautionaryAndAdvisoryLabels {
@@ -320,12 +362,6 @@ export interface FeedPack {
 export interface FeedClinicalMedicalDeviceInformationGroup {
 	/** The device description for the clinical medical device information group. For clinical medical device information groups, the drug class content will always be empty, as will the preparation content. The 'drugContent' will contain the information for the clinical medical device information group. */
 	deviceDescription?: FeedSimplePot;
-}
-
-/** A single section of simple (unstructured) content for a BNF drug or medical device. A monograph will include content from relevant drug classes (groups of drugs that share the same properties), the drug itself, and specific preparations where the properties differ from those of the generic drug. This record has these three parts of content in the \"drugClassContent\", \"drugContent\" and \"prepContent\" fields respectively. */
-export interface FeedSimplePot {
-	/** The name/title of the pot. */
-	potName: string;
 }
 
 /** The wound management products and elasticated garments (Appendix 4) content in the BNF. The content is presented as a taxonomy which uses a tree structure, alongside the introductory content. */
