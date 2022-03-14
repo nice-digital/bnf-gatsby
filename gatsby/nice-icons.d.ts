@@ -2,7 +2,7 @@
 // for the react components
 
 declare module "@nice-digital/icons/lib/Print" {
-	import { FC, FC, FC } from "react";
+	import { type FC } from "react";
 
 	export interface IconProps {
 		colour?: string;
