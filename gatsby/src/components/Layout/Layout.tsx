@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 
-import { Footer } from "@nice-digital/global-nav";
+import { Footer, Main } from "@nice-digital/global-nav";
 import { Container } from "@nice-digital/nds-container";
 
 import { SiteHeader } from "../SiteHeader/SiteHeader";
@@ -16,9 +16,9 @@ export const Layout: React.FC<LayoutProps> = ({ children }: LayoutProps) => {
 	return (
 		<>
 			<SiteHeader />
-			<main>
+			<Main>
 				<Container>{children}</Container>
-			</main>
+			</Main>
 			<Footer service={isBNF ? "bnf" : "bnfc"} />
 		</>
 	);
