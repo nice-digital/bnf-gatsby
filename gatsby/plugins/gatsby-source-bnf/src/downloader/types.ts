@@ -60,20 +60,56 @@ export interface FeedDrug {
 
 	/* The allergy and cross-sensitivity section for the drug, including any relevant drug classes and preparations.*/
 	allergyAndCrossSensitivity?: FeedSimplePot;
-	/** The unlicensed use section for the drug, including any relevant drug classes and preparations. */
-	unlicensedUse?: FeedSimplePot;
-	/** The important safety information section for the drug, including any relevant drug classes and preparations. */
-	importantSafetyInformation?: FeedSimplePot;
+	/** The breast feeding section for the drug, including any relevant drug classes and preparations.*/
+	breastFeeding?: FeedSimplePot;
+	/** TODO: Will cautions be a string array or object array? */
+	cautions?: FeedSimplePot;
+	/** The conception and contraception section for the drug, including any relevant drug classes and preparations.*/
+	conceptionAndContraception?: FeedSimplePot;
 	/** The contra-indications section for the drug, including any relevant drug classes and preparations. */
 	contraIndications?: FeedSimplePot;
-	/** TODO: Will cautions be a string array or object array? */
-	cautions: unknown;
-	/** The side effects section for the drug, including any relevant drug classes and preparations. */
-	sideEffects?: FeedSimplePot;
-	// TODO: Add other drug fields here
-
+	/** The drug action section for the drug, including any relevant drug classes and preparations*/
+	drugAction?: FeedSimplePot;
+	/** The directions for administration section for the drug, including any relevant drug classes and preparations.*/
+	directionsForAdministration?: FeedSimplePot;
+	/** The effect on laboratory tests section for the drug, including any relevant drug classes and preparations.*/
+	effectOnLaboratoryTests?: FeedSimplePot;
+	/** The exceptions to legal category section for the drug, including any relevant drug classes and preparations.*/
+	exceptionsToLegalCategory?: FeedSimplePot;
+	/** The handling and storage section for the drug, including any relevant drug classes and preparations.*/
+	handlingAndStorage?: FeedSimplePot;
+	/** The hepatic impairment section for the drug, including any relevant drug classes and preparations.*/
+	hepaticImpairment?: FeedSimplePot;
+	/** The important safety information section for the drug, including any relevant drug classes and preparations. */
+	importantSafetyInformation?: FeedSimplePot;
+	/** The less suitable for prescribing section for the drug, including any relevant drug classes and preparations. */
+	lessSuitableForPrescribing?: FeedSimplePot;
 	/** The medicinal forms for the drug. */
 	medicinalForms: FeedMedicinalForms;
+	/** The monitoring requirements section for the drug, including any relevant drug classes and preparations. */
+	monitoringRequirements?: unknown; // TODO: Add type for this
+	/** The national funding section for the drug, including any relevant drug classes and preparations. */
+	nationalFunding?: unknown; // TODO: Add type for this
+	/** The palliative care section for the drug, including any relevant drug classes and preparations.*/
+	palliativeCare?: FeedSimplePot;
+	/** The patient and carer advice section for the drug, including any relevant drug classes and preparations.*/
+	patientAndCarerAdvice?: FeedSimplePot;
+	/** The pregnancy section for the drug, including any relevant drug classes and preparations.*/
+	pregnancy?: FeedSimplePot;
+	/** The prescribing and dispensing information section for the drug, including any relevant drug classes and preparations. Note that this section used to contain information about prescribing and dispensing in palliative care, but this will now appear in the palliative care section.*/
+	prescribingAndDispensingInformation?: FeedSimplePot;
+	/** The pre-treatment screening section for the drug, including any relevant drug classes and preparations.*/
+	preTreatmentScreening?: FeedSimplePot;
+	/** The profession specific information section for the drug, including any relevant drug classes and preparations.*/
+	professionSpecificInformation?: FeedSimplePot;
+	/** The renal impairment section for the drug, including any relevant drug classes and preparations.*/
+	renalImpairment?: FeedSimplePot;
+	/** The side effects section for the drug, including any relevant drug classes and preparations. */
+	sideEffects?: FeedSimplePot;
+	/** The treatment cessation section for the drug, including any relevant drug classes and preparations.*/
+	treatmentCessation?: FeedSimplePot;
+	/** The unlicensed use section for the drug, including any relevant drug classes and preparations. */
+	unlicensedUse?: FeedSimplePot;
 }
 
 /** A wrapper for the constituent drugs of a combination drug. */

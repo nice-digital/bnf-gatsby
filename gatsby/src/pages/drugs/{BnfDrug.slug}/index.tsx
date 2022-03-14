@@ -1,18 +1,20 @@
 import { graphql, Link } from "gatsby";
 import React, { FC } from "react";
 import striptags from "striptags";
+import { type Except } from "type-fest";
 
+import { type FeedDrug } from "@nice-digital/gatsby-source-bnf";
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
 import { PageHeader } from "@nice-digital/nds-page-header";
 
 import { Layout } from "@/components/Layout/Layout";
 import { SEO } from "@/components/SEO/SEO";
+import { SimplePot } from "@/components/SimplePot/SimplePot";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
 export interface DrugPageProps {
 	data: {
-		bnfDrug: {
-			title: string;
+		bnfDrug: Except<FeedDrug, "constituentDrugs"> & {
 			slug: string;
 			interactant: null | {
 				title: string;
@@ -26,13 +28,22 @@ export interface DrugPageProps {
 					slug: string;
 				})[];
 			};
+			allergyAndCrossSensitivity: { slug: string };
+			pregnancy: { slug: string };
 		};
 	};
 }
 
 const DrugPage: FC<DrugPageProps> = ({
 	data: {
-		bnfDrug: { title, slug, interactant, constituentDrugs },
+		bnfDrug: {
+			title,
+			slug,
+			interactant,
+			constituentDrugs,
+			allergyAndCrossSensitivity,
+			pregnancy,
+		},
 	},
 }) => {
 	const { siteTitleShort } = useSiteMetadata(),
@@ -87,6 +98,12 @@ const DrugPage: FC<DrugPageProps> = ({
 				</section>
 			)}
 
+			{allergyAndCrossSensitivity && (
+				<SimplePot data={allergyAndCrossSensitivity} />
+			)}
+
+			{pregnancy && <SimplePot data={pregnancy} />}
+
 			<p>
 				<Link to={`/drugs/${slug}/medicinal-forms/`}>Medicinal forms</Link>
 			</p>
@@ -109,6 +126,72 @@ export const query = graphql`
 					title
 					slug
 				}
+			}
+			allergyAndCrossSensitivity {
+				...SimplePot
+			}
+			breastFeeding {
+				...SimplePot
+			}
+			conceptionAndContraception {
+				...SimplePot
+			}
+			contraIndications {
+				...SimplePot
+			}
+			directionsForAdministration {
+				...SimplePot
+			}
+			drugAction {
+				...SimplePot
+			}
+			effectOnLaboratoryTests {
+				...SimplePot
+			}
+			exceptionsToLegalCategory {
+				...SimplePot
+			}
+			handlingAndStorage {
+				...SimplePot
+			}
+			hepaticImpairment {
+				...SimplePot
+			}
+			importantSafetyInformation {
+				...SimplePot
+			}
+			lessSuitableForPrescribing {
+				...SimplePot
+			}
+			palliativeCare {
+				...SimplePot
+			}
+			patientAndCarerAdvice {
+				...SimplePot
+			}
+			preTreatmentScreening {
+				...SimplePot
+			}
+			pregnancy {
+				...SimplePot
+			}
+			prescribingAndDispensingInformation {
+				...SimplePot
+			}
+			professionSpecificInformation {
+				...SimplePot
+			}
+			renalImpairment {
+				...SimplePot
+			}
+			sideEffects {
+				...SimplePot
+			}
+			treatmentCessation {
+				...SimplePot
+			}
+			unlicensedUse {
+				...SimplePot
 			}
 		}
 	}

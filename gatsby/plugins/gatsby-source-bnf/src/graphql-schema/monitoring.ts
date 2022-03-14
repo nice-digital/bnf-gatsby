@@ -11,7 +11,7 @@ export const monitoringSchema = `
 		"The slugified and lowercased pot name, used as an ID/hash link"
 		slug: String! @slug(field: "potName")
 
-		""The monitoring requirements pot content that relates to relevant drug classes for the drug. This field will contain more than one entry when the drug belongs to multiple drug classes with relevant content for the pot."
+		"The monitoring requirements pot content that relates to relevant drug classes for the drug. This field will contain more than one entry when the drug belongs to multiple drug classes with relevant content for the pot."
 		drugClassContent: [${BnfNode.MonitoringPotContent}!]!
 
 		"The monitoring requirements pot content that relates to the drug."
@@ -32,7 +32,6 @@ export const monitoringSchema = `
 		therapeuticDrugMonitoring: String
 
 		"The monitoring of patient parameters section. May contain HTML mark-up"
-		therapeuticDrugMonitoring
 		monitoringOfPatientParameters: String
 
 		"The patient monitoring programmes section. May contain HTML mark-up"
