@@ -10,6 +10,8 @@ services:
     environment:
       # When using headless browser mode, there's no need for the Xvfb server to be started.
       - START_XVFB=false
+      # Avoid IPv6 issues in Chrome, see https://stackoverflow.com/a/63310211/486434
+      - JAVA_OPTS=-Dwebdriver.chrome.whitelistedIps=
 
   bnf-selenium-chrome:
     image: selenium/node-chrome:4.1.2-20220217
