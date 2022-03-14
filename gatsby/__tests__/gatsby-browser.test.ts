@@ -98,7 +98,7 @@ describe("gatsby-browser", () => {
 		});
 
 		it("Should use request animationframe delay before push to the data layer", async () => {
-			const spy: jest.SpyInstance = jest
+			const rafSpy: jest.SpyInstance = jest
 				.spyOn(window, "requestAnimationFrame")
 				.mockImplementation((callback: FrameRequestCallback): number => {
 					callback(0);
@@ -110,39 +110,36 @@ describe("gatsby-browser", () => {
 				location: { href: "somewhere", pathname: "/somewhere" },
 			} as unknown as RouteUpdateArgs);
 
-			expect(spy).toHaveBeenCalledTimes(2);
+			expect(rafSpy).toHaveBeenCalledTimes(2);
 
 			await waitFor(() => {
 				expect(window.dataLayer).toHaveLength(2);
 			});
 
-			spy.mockRestore();
+			rafSpy.mockRestore();
 		});
 
-		it.skip("should use set timeout when request animation frame is not available", async () => {
-			// jest.useFakeTimers();
-			// jest.spyOn(global, "setTimeout");
-			// onRouteUpdate({
-			// 	prevLocation: { href: "elsewhere", pathname: "/elsewhere" },
-			// 	location: { href: "somewhere", pathname: "/somewhere" },
-			// } as unknown as RouteUpdateArgs);
-			// await waitFor(() => {
-			// 	jest.advanceTimersByTime(32);
-			// 	expect(setTimeout).not.toHaveBeenCalled();
-			// });
-			// expect(window.dataLayer).toHaveLength(2);
-			// expect(setTimeout).toHaveBeenCalledTimes(1);
+		it("should use set timeout when request animation frame is not available", async () => {
+			jest.useFakeTimers();
+
+			const rafSpy2: jest.SpyInstance = jest.spyOn(
+				window,
+				"requestAnimationFrame"
+			);
+
+			rafSpy2.mockReturnValue(null);
+
+			const setTimeoutSpy: jest.SpyInstance = jest.spyOn(window, "setTimeout");
+
+			onRouteUpdate({
+				prevLocation: { href: "elsewhere", pathname: "/elsewhere" },
+				location: { href: "somewhere", pathname: "/somewhere" },
+			} as unknown as RouteUpdateArgs);
+
+			await waitFor(() => {
+				expect(setTimeoutSpy).toHaveBeenCalled();
+			});
+			expect(setTimeoutSpy).toHaveBeenCalledTimes(1);
 		});
 	});
 });
-
-// const mockRaf = undefined;
-// jest.spyOn(window, 'setTimeout')
-
-// const originalWindow = { ...window };
-// const windowSpy = jest.spyOn(global, "window", "get");
-// windowSpy.mockImplementation(() => {
-// 	return {
-// 		...originalWindow,
-// 	};
-// });
