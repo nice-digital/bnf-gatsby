@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Interaction Should match the snapshot 1`] = `
+<body>
+  <div>
+    <h3
+      class="interactantTitle"
+    >
+      <a
+        href="/drugs/test-title"
+      >
+        Test title
+      </a>
+    </h3>
+    <ul
+      class="messageList"
+    >
+      <li
+        class="message"
+      >
+        <div
+          class="severeMessage"
+        >
+          <div>
+            Lorem ipsum dolor sit amet
+          </div>
+          <p>
+            <strong>
+              Severity: 
+              Severe
+            </strong>
+          </p>
+        </div>
+      </li>
+      <li
+        class="message"
+      >
+        <div
+          class=""
+        >
+          <div>
+            <p>
+              Fusce in justo tincidunt, blandit est at, feugiat tellus.
+            </p>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</body>
+`;
