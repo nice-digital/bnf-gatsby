@@ -2,7 +2,6 @@ import { graphql } from "gatsby";
 
 export const FullPrep = graphql`
 	fragment FullPrep on BnfPrep {
-		order
 		name
 		manufacturer
 		ampId
@@ -11,7 +10,6 @@ export const FullPrep = graphql`
 		sugarFree
 		activeIngredients
 		packs {
-			order
 			amppId
 			size
 			unit

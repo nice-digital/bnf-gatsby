@@ -5,9 +5,6 @@ export const prepSchema = `
 	The properties for a preparation. Context is provided by this object being given in the 'preps' field of MedicinalForm, or on a Medical Device.
 	"""
 	type ${BnfNode.Prep} @dontInfer {
-		"The 0-based order (or index) of the prep within the form"
-		order: Int!
-
 		"The name of the preparation, for example, 'Anadin Paracetamol 500mg tablets'."
 		name: String!
 
@@ -37,9 +34,6 @@ export const prepSchema = `
 	The properties for a specific pack of a preparation.
 	"""
 	type ${BnfNode.Pack} @dontInfer {
-		"The 0-based order (or index) of the pack within the prep"
-		order: Int!
-
 		"The dm+d AMPP ID for this pack, if available. This value is a SNOMED CT identifier, which should be represented as a 64-bit integer, but it is represented as a String in this JSON to avoid any potential problems of 32-bit integer overflows."
 		amppId: ID
 

@@ -25,6 +25,18 @@ describe("HTML field extension", () => {
 			}).toThrow("Expected HTML content field value to be a string");
 		});
 
+		it("should return value as-is for falsey value", () => {
+			const mockResolveContext = {
+				defaultFieldResolver: () => undefined,
+				nodeModel: null as unknown as NodeModel,
+			};
+			expect(
+				htmlFieldExtension
+					.extend({ field: "something" }, null)
+					.resolve({}, null, mockResolveContext, null)
+			).toBeUndefined();
+		});
+
 		it("should replace internal anchors and xrefs", () => {
 			const mockResolveContext = {
 				defaultFieldResolver: () =>

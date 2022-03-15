@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   bnf-selenium-hub:
-    image: selenium/hub:4.1.1-20211217
+    image: selenium/hub:4.1.2-20220217
     container_name: bnf-selenium-hub
     ports:
       - '4442:4442'
@@ -10,9 +10,11 @@ services:
     environment:
       # When using headless browser mode, there's no need for the Xvfb server to be started.
       - START_XVFB=false
+      # Avoid IPv6 issues in Chrome, see https://stackoverflow.com/a/63310211/486434
+      - JAVA_OPTS=-Dwebdriver.chrome.whitelistedIps=
 
   bnf-selenium-chrome:
-    image: selenium/node-chrome:4.1.1-20211217
+    image: selenium/node-chrome:4.1.2-20220217
     #container_name: bnf-selenium-chrome
     shm_size: '2gb'
     depends_on:

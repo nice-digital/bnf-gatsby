@@ -19,6 +19,7 @@ export const config: WebdriverIO.Config = {
 				args: [
 					"--window-size=1366,768",
 					// Automation optimizations as per https://github.com/GoogleChrome/chrome-launcher/blob/master/docs/chrome-flags-for-tools.md
+					"--disable-dev-shm-usage",
 					"--enable-automation",
 					"--disable-extensions",
 					"--disable-component-extensions-with-background-pages",
@@ -29,6 +30,7 @@ export const config: WebdriverIO.Config = {
 		},
 	],
 
+	bail: 1,
 	logLevel: "error",
 
 	// Run against the production build of the Gatsby site by default as dev mode renders on demand so causes timing issues
