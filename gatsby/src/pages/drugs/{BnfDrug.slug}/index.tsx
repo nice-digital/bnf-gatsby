@@ -1,35 +1,43 @@
 import { graphql, Link } from "gatsby";
-import React, { FC } from "react";
+import React, { ElementType, FC } from "react";
 import striptags from "striptags";
 import { type Except } from "type-fest";
 
-import { type FeedDrug } from "@nice-digital/gatsby-source-bnf";
+import {
+	type FeedDrug,
+	type FeedBaseNamedPot,
+} from "@nice-digital/gatsby-source-bnf";
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
 import { PageHeader } from "@nice-digital/nds-page-header";
 
+import {
+	ConstituentDrugs,
+	type ConstituentDrugsProps,
+} from "@/components/DrugSections/ConstituentDrugs/ConstituentDrugs";
+import { SimplePot } from "@/components/DrugSections/SimplePot/SimplePot";
 import { Layout } from "@/components/Layout/Layout";
 import { SEO } from "@/components/SEO/SEO";
-import { SimplePot } from "@/components/SimplePot/SimplePot";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
+
+type PotWithSlug = FeedBaseNamedPot & {
+	slug: string;
+};
+
+type DrugWithSluggedPots = {
+	[Key in keyof FeedDrug]-?: FeedDrug[Key] extends FeedBaseNamedPot | undefined
+		? (FeedDrug[Key] & PotWithSlug) | null
+		: FeedDrug[Key];
+};
 
 export interface DrugPageProps {
 	data: {
-		bnfDrug: Except<FeedDrug, "constituentDrugs"> & {
+		bnfDrug: Except<DrugWithSluggedPots, "constituentDrugs"> & {
 			slug: string;
 			interactant: null | {
 				title: string;
 				slug: string;
 			};
-			constituentDrugs: null | {
-				message: string;
-				// TODO This will be non-null when the feed only surfaces existing monograph ids for constituent drugs
-				constituents: (null | {
-					title: string;
-					slug: string;
-				})[];
-			};
-			allergyAndCrossSensitivity: { slug: string };
-			pregnancy: { slug: string };
+			constituentDrugs: null | ConstituentDrugsProps;
 		};
 	};
 }
@@ -42,7 +50,28 @@ const DrugPage: FC<DrugPageProps> = ({
 			interactant,
 			constituentDrugs,
 			allergyAndCrossSensitivity,
+			breastFeeding,
+			conceptionAndContraception,
+			contraIndications,
+			cautions,
+			directionsForAdministration,
+			drugAction,
+			effectOnLaboratoryTests,
+			exceptionsToLegalCategory,
+			handlingAndStorage,
+			hepaticImpairment,
+			importantSafetyInformation,
+			lessSuitableForPrescribing,
+			palliativeCare,
+			patientAndCarerAdvice,
+			preTreatmentScreening,
 			pregnancy,
+			prescribingAndDispensingInformation,
+			professionSpecificInformation,
+			renalImpairment,
+			sideEffects,
+			treatmentCessation,
+			unlicensedUse,
 		},
 	},
 }) => {
@@ -80,29 +109,51 @@ const DrugPage: FC<DrugPageProps> = ({
 				</p>
 			)}
 
-			{constituentDrugs && (
-				<section aria-labelledby="constituent-drugs">
-					<h2 id="constituent-drugs">Constituent drugs</h2>
-					<p dangerouslySetInnerHTML={{ __html: constituentDrugs.message }} />
-					<ul aria-labelledby="constituent-drugs">
-						{constituentDrugs.constituents.map((constituent) =>
-							constituent ? (
-								<li key={constituent.slug}>
-									<Link to={`/drugs/${constituent.slug}/`}>
-										{constituent.title}
-									</Link>
-								</li>
-							) : null
-						)}
-					</ul>
-				</section>
+			{constituentDrugs && <ConstituentDrugs {...constituentDrugs} />}
+			{drugAction && <SimplePot {...drugAction} />}
+			{/* TODO Indications and dose */}
+			{unlicensedUse && <SimplePot {...unlicensedUse} />}
+			{importantSafetyInformation && (
+				<SimplePot {...importantSafetyInformation} />
 			)}
-
+			{contraIndications && <SimplePot {...contraIndications} />}
+			{cautions && <SimplePot {...cautions} />}
+			{/* TODO Interactions */}
+			{sideEffects && <SimplePot {...sideEffects} />}
 			{allergyAndCrossSensitivity && (
-				<SimplePot data={allergyAndCrossSensitivity} />
+				<SimplePot {...allergyAndCrossSensitivity} />
 			)}
-
-			{pregnancy && <SimplePot data={pregnancy} />}
+			{conceptionAndContraception && (
+				<SimplePot {...conceptionAndContraception} />
+			)}
+			{pregnancy && <SimplePot {...pregnancy} />}
+			{breastFeeding && <SimplePot {...breastFeeding} />}
+			{hepaticImpairment && <SimplePot {...hepaticImpairment} />}
+			{renalImpairment && <SimplePot {...renalImpairment} />}
+			{preTreatmentScreening && <SimplePot {...preTreatmentScreening} />}
+			{/* TODO Monitoring */}
+			{effectOnLaboratoryTests && <SimplePot {...effectOnLaboratoryTests} />}
+			{treatmentCessation && <SimplePot {...treatmentCessation} />}
+			{directionsForAdministration && (
+				<SimplePot {...directionsForAdministration} />
+			)}
+			{prescribingAndDispensingInformation && (
+				<SimplePot {...prescribingAndDispensingInformation} />
+			)}
+			{handlingAndStorage && <SimplePot {...handlingAndStorage} />}
+			{patientAndCarerAdvice && <SimplePot {...patientAndCarerAdvice} />}
+			{palliativeCare && <SimplePot {...palliativeCare} />}
+			{professionSpecificInformation && (
+				<SimplePot {...professionSpecificInformation} />
+			)}
+			{/* TODO National funding */}
+			{exceptionsToLegalCategory && (
+				<SimplePot {...exceptionsToLegalCategory} />
+			)}
+			{lessSuitableForPrescribing && (
+				<SimplePot {...lessSuitableForPrescribing} />
+			)}
+			{/* TODO Medicinal forms */}
 
 			<p>
 				<Link to={`/drugs/${slug}/medicinal-forms/`}>Medicinal forms</Link>
@@ -137,6 +188,9 @@ export const query = graphql`
 				...SimplePot
 			}
 			contraIndications {
+				...SimplePot
+			}
+			cautions {
 				...SimplePot
 			}
 			directionsForAdministration {

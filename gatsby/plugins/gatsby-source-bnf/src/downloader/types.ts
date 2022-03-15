@@ -130,9 +130,13 @@ export interface FeedConstituentDrug {
 	title: string;
 }
 
-export interface FeedBasePot<TPotContent extends FeedBasePotContent> {
+export interface FeedBaseNamedPot {
 	/** The name/title of the pot. */
 	potName: string;
+}
+
+export interface FeedBasePot<TPotContent extends FeedBasePotContent>
+	extends FeedBaseNamedPot {
 	/** The pot content that relates to relevant drug classes for the drug. This field will contain more than one entry when the drug belongs to multiple drug classes with relevant content for the pot. */
 	drugClassContent?: TPotContent[];
 	/** The pot content that relates to the drug. */

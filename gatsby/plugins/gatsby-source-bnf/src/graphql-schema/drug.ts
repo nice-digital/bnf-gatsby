@@ -32,7 +32,8 @@ export const drugSchema = `
 		"The breast feeding section for the drug, including any relevant drug classes and preparations."
 		breastFeeding: ${BnfNode.SimplePot}
 
-		# cautions: ${BnfNode.SimplePot} # TODO: Will this be a simple pot or a more specific schema to include welsh translations and label number
+		"The cautions section for the drug, including any relevant drug classes and preparations."
+		cautions: ${BnfNode.SimplePot}
 
 		"The conception and contraception section for the drug, including any relevant drug classes and preparations."
 		conceptionAndContraception: ${BnfNode.SimplePot}
