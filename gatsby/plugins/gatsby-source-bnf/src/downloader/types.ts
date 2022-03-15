@@ -89,9 +89,9 @@ export interface FeedDrug {
 	/** The medicinal forms for the drug. */
 	medicinalForms: FeedMedicinalForms;
 	/** The monitoring requirements section for the drug, including any relevant drug classes and preparations. */
-	monitoringRequirements?: unknown; // TODO: Add type for this
+	monitoringRequirements?: FeedMonitoringPot;
 	/** The national funding section for the drug, including any relevant drug classes and preparations. */
-	nationalFunding?: unknown; // TODO: Add type for this
+	nationalFunding?: FeedNationalFundingPot;
 	/** The palliative care section for the drug, including any relevant drug classes and preparations.*/
 	palliativeCare?: FeedSimplePot;
 	/** The patient and carer advice section for the drug, including any relevant drug classes and preparations.*/
@@ -251,6 +251,48 @@ export interface FeedFeedSimplePotContent extends FeedBasePotContent {
 	contentFor: string;
 	/** The content. May contain HTML mark-up. */
 	content: string;
+}
+
+/** A single section of monitoring requirements content for a BNF drug or medical device. A monograph will include content from relevant drug classes (groups of drugs that share the same properties), the drug itself, and specific preparations where the properties differ from those of the generic drug. This record has these three parts of content in the `drugClassContent`, `drugContent` and `prepContent` fields respectively. */
+export type FeedMonitoringPot = FeedBasePot<FeedMonitoringPotContent>;
+
+/** The sections covering monitoring requirements. */
+export interface FeedMonitoringPotContent extends FeedBasePotContent {
+	/** The therapeutic drug monitoring section. May contain HTML mark-up */
+	therapeuticDrugMonitoring?: string;
+	/** The monitoring of patient parameters section. May contain HTML mark-up */
+	monitoringOfPatientParameters?: string;
+	/** The patient monitoring programmes section. May contain HTML mark-up */
+	patientMonitoringProgrammes?: string;
+}
+
+/** A single section of national funding content for a BNF drug or medical device. A monograph will include content from relevant drug classes (groups of drugs that share the same properties), the drug itself, and specific preparations where the properties differ from those of the generic drug. This record has these three parts of content in the `drugClassContent`, `drugContent` and `prepContent` fields respectively. */
+export type FeedNationalFundingPot = FeedBasePot<FeedMonitoringPotContent>;
+
+/** The relevant decisions from NICE, SMC and AWMSG. */
+export interface FeedNationalFundingPotContent extends FeedBasePotContent {
+	/** The initial paragraph of text at the start of the national funding pot. May contain HTML mark-up */
+	initialText: string;
+	/** The NICE funding decisions. */
+	niceDecisions?: FeedFundingDecision[];
+	/** The SMC funding decisions. */
+	smcDecisions?: FeedFundingDecision[];
+	/** The AWMSG funding decisions. */
+	awmsgDecisions?: FeedFundingDecision[];
+}
+
+/** A specific funding decision. */
+export interface FeedFundingDecision {
+	/** The funding identifier (e.g. `TA177`) */
+	fundingIdentifier: string;
+	/** The title of the funding decision, usually including the date that the decision was published. May contain HTML mark-up */
+	title?: string;
+	/** The URL to the relevant funding body's decision. */
+	uri: string;
+	approvedForUse:
+		| "Not recommended"
+		| "Recommended"
+		| "Recommended with restrictions";
 }
 
 export interface FeedCautionaryAndAdvisoryLabels {

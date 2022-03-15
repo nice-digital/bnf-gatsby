@@ -1,7 +1,6 @@
 import { graphql, Link } from "gatsby";
-import React, { ElementType, FC } from "react";
+import React, { useMemo, type ElementType, type FC } from "react";
 import striptags from "striptags";
-import { type Except } from "type-fest";
 
 import {
 	type FeedDrug,
@@ -13,10 +12,13 @@ import { PageHeader } from "@nice-digital/nds-page-header";
 import { Panel } from "@nice-digital/nds-panel";
 
 import {
-	ConstituentDrugs,
-	type ConstituentDrugsProps,
-} from "@/components/DrugSections/ConstituentDrugs/ConstituentDrugs";
-import { SimplePot } from "@/components/DrugSections/SimplePot/SimplePot";
+	Constituents,
+	ImportantSafetyInfo,
+	MedicinalForms,
+	Monitoring,
+	NationalFunding,
+	SimplePot,
+} from "@/components/DrugSections";
 import {
 	IndicationsAndDose,
 	type IndicationsAndDoseProps,
@@ -24,12 +26,24 @@ import {
 import { Layout } from "@/components/Layout/Layout";
 import { SectionNav } from "@/components/SectionNav/SectionNav";
 import { SEO } from "@/components/SEO/SEO";
+import { useIsTruthy } from "@/hooks/useIsTruthy";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
-type PotWithSlug = FeedBaseNamedPot & {
-	slug: string;
-};
+import {
+	type SlugAndTitle,
+	type PotWithSlug,
+	type ConstituentsWithSlugs,
+} from "src/types";
 
+/**
+ * Utility type with slug property added to all 'pots' on a drug.
+ *
+ * This ie because we re-use the raw `FeedDrug` type to avoid having to redeclare each and every drug field.
+ * But we add `slug` fields to pots when we create GraphQL nodes, so we add the `slug` property here.
+ *
+ * We also swap `undefined` to `null` because the feed misses out empty properties (`undefined`) but when we query
+ * them with GraphQL they come back as `null` instead.
+ * */
 type DrugWithSluggedPots = {
 	[Key in keyof FeedDrug]-?: FeedDrug[Key] extends FeedBaseNamedPot | undefined
 		? (FeedDrug[Key] & PotWithSlug) | null
@@ -38,54 +52,85 @@ type DrugWithSluggedPots = {
 
 export interface DrugPageProps {
 	data: {
-		bnfDrug: Except<DrugWithSluggedPots, "constituentDrugs"> & {
+		bnfDrug: {
 			slug: string;
-			interactant: null | {
-				title: string;
-				slug: string;
-			};
-			constituentDrugs: null | ConstituentDrugsProps;
-			indicationsAndDose?: IndicationsAndDoseProps["indicationsAndDose"];
-		};
+			interactant: SlugAndTitle | null;
+			constituentDrugs: ConstituentsWithSlugs | null;
+			indicationsAndDose: IndicationsAndDoseProps | null;
+		} & DrugWithSluggedPots;
 	};
 }
 
-const DrugPage: FC<DrugPageProps> = ({
-	data: {
-		bnfDrug: {
-			title,
-			slug,
-			interactant,
-			constituentDrugs,
-			indicationsAndDose,
-			allergyAndCrossSensitivity,
-			breastFeeding,
-			conceptionAndContraception,
-			contraIndications,
-			cautions,
-			directionsForAdministration,
-			drugAction,
-			effectOnLaboratoryTests,
-			exceptionsToLegalCategory,
-			handlingAndStorage,
-			hepaticImpairment,
-			importantSafetyInformation,
-			lessSuitableForPrescribing,
-			palliativeCare,
-			patientAndCarerAdvice,
-			preTreatmentScreening,
-			pregnancy,
-			prescribingAndDispensingInformation,
-			professionSpecificInformation,
-			renalImpairment,
-			sideEffects,
-			treatmentCessation,
-			unlicensedUse,
-		},
-	},
-}) => {
-	const { siteTitleShort } = useSiteMetadata(),
-		titleNoHtml = striptags(title);
+const DrugPage: FC<DrugPageProps> = ({ data: { bnfDrug } }) => {
+	const isTruthy = useIsTruthy(),
+		{ siteTitleShort } = useSiteMetadata(),
+		titleNoHtml = striptags(bnfDrug.title),
+		constituents = useMemo(
+			() =>
+				bnfDrug.constituentDrugs && {
+					slug: "constituent-drugs",
+					potName: "Constituent drugs",
+					...bnfDrug.constituentDrugs,
+				},
+			[bnfDrug.constituentDrugs]
+		),
+		medicinalForms = useMemo(
+			() => ({
+				slug: "medicinal-forms",
+				potName: "Medicinal forms",
+				...bnfDrug.medicinalForms,
+			}),
+			[bnfDrug.medicinalForms]
+		),
+		/** Sections of a drug that have their own, specific component that isn't a `SimplePot` */
+		nonSimplePotComponents = useMemo(() => {
+			const {
+					indicationsAndDose,
+					monitoringRequirements,
+					nationalFunding,
+					importantSafetyInformation,
+				} = bnfDrug,
+				map = new Map<PotWithSlug | null, ElementType>();
+			map.set(medicinalForms, MedicinalForms);
+			map.set(constituents, Constituents);
+			map.set(indicationsAndDose, IndicationsAndDose);
+			map.set(monitoringRequirements, Monitoring);
+			map.set(nationalFunding, NationalFunding);
+			map.set(importantSafetyInformation, ImportantSafetyInfo);
+			return map;
+		}, [medicinalForms, constituents, bnfDrug]);
+
+	const orderedSections: PotWithSlug[] = [
+		constituents,
+		bnfDrug.drugAction,
+		bnfDrug.indicationsAndDose,
+		bnfDrug.unlicensedUse,
+		bnfDrug.importantSafetyInformation,
+		bnfDrug.contraIndications,
+		bnfDrug.cautions,
+		// TODO: Interactions
+		bnfDrug.sideEffects,
+		bnfDrug.allergyAndCrossSensitivity,
+		bnfDrug.conceptionAndContraception,
+		bnfDrug.pregnancy,
+		bnfDrug.breastFeeding,
+		bnfDrug.hepaticImpairment,
+		bnfDrug.renalImpairment,
+		bnfDrug.preTreatmentScreening,
+		bnfDrug.monitoringRequirements,
+		bnfDrug.effectOnLaboratoryTests,
+		bnfDrug.treatmentCessation,
+		bnfDrug.directionsForAdministration,
+		bnfDrug.prescribingAndDispensingInformation,
+		bnfDrug.handlingAndStorage,
+		bnfDrug.patientAndCarerAdvice,
+		bnfDrug.palliativeCare,
+		bnfDrug.professionSpecificInformation,
+		bnfDrug.nationalFunding,
+		bnfDrug.exceptionsToLegalCategory,
+		bnfDrug.lessSuitableForPrescribing,
+		medicinalForms,
+	].filter(isTruthy);
 
 	return (
 		<Layout>
@@ -107,85 +152,41 @@ const DrugPage: FC<DrugPageProps> = ({
 
 			<PageHeader
 				id="content-start"
-				heading={<span dangerouslySetInnerHTML={{ __html: title }} />}
+				heading={<span dangerouslySetInnerHTML={{ __html: bnfDrug.title }} />}
 			/>
 
 			<Grid gutter="loose">
 				<GridItem cols={12} md={8} lg={9} className="hide-print">
 					<SectionNav
-						sections={[
-							indicationsAndDose && {
-								id: indicationsAndDose.slug,
-								title: indicationsAndDose.potName,
-							},
-						]}
+						sections={orderedSections.map(({ potName, slug }) => ({
+							id: slug,
+							title: potName,
+						}))}
 					/>
 				</GridItem>
 				<GridItem cols={12} md={4} lg={3} className="hide-print">
 					<Panel>Quick links will go here</Panel>
 				</GridItem>
 				<GridItem cols={12} md={8} lg={9}>
-					{interactant && (
+					{/* {interactant && (
 						<p>
 							<Link to={`/interactions/${interactant.slug}/`}>
 								View interactions page for {interactant.title}
 							</Link>
 						</p>
-					)}
+					)} */}
+					{orderedSections.map((section) => {
+						// Default to a SimplePot as that's the most common type of section
+						const Component = nonSimplePotComponents.get(section) || SimplePot;
 
-					{constituentDrugs && <ConstituentDrugs {...constituentDrugs} />}
-					{drugAction && <SimplePot {...drugAction} />}
-					{indicationsAndDose && (
-						<IndicationsAndDose indicationsAndDose={indicationsAndDose} />
-					)}
-					{unlicensedUse && <SimplePot {...unlicensedUse} />}
-					{importantSafetyInformation && (
-						<SimplePot {...importantSafetyInformation} />
-					)}
-					{contraIndications && <SimplePot {...contraIndications} />}
-					{cautions && <SimplePot {...cautions} />}
-					{/* TODO Interactions */}
-					{sideEffects && <SimplePot {...sideEffects} />}
-					{allergyAndCrossSensitivity && (
-						<SimplePot {...allergyAndCrossSensitivity} />
-					)}
-					{conceptionAndContraception && (
-						<SimplePot {...conceptionAndContraception} />
-					)}
-					{pregnancy && <SimplePot {...pregnancy} />}
-					{breastFeeding && <SimplePot {...breastFeeding} />}
-					{hepaticImpairment && <SimplePot {...hepaticImpairment} />}
-					{renalImpairment && <SimplePot {...renalImpairment} />}
-					{preTreatmentScreening && <SimplePot {...preTreatmentScreening} />}
-					{/* TODO Monitoring */}
-					{effectOnLaboratoryTests && (
-						<SimplePot {...effectOnLaboratoryTests} />
-					)}
-					{treatmentCessation && <SimplePot {...treatmentCessation} />}
-					{directionsForAdministration && (
-						<SimplePot {...directionsForAdministration} />
-					)}
-					{prescribingAndDispensingInformation && (
-						<SimplePot {...prescribingAndDispensingInformation} />
-					)}
-					{handlingAndStorage && <SimplePot {...handlingAndStorage} />}
-					{patientAndCarerAdvice && <SimplePot {...patientAndCarerAdvice} />}
-					{palliativeCare && <SimplePot {...palliativeCare} />}
-					{professionSpecificInformation && (
-						<SimplePot {...professionSpecificInformation} />
-					)}
-					{/* TODO National funding */}
-					{exceptionsToLegalCategory && (
-						<SimplePot {...exceptionsToLegalCategory} />
-					)}
-					{lessSuitableForPrescribing && (
-						<SimplePot {...lessSuitableForPrescribing} />
-					)}
-					{/* TODO Medicinal forms */}
-
-					<p>
-						<Link to={`/drugs/${slug}/medicinal-forms/`}>Medicinal forms</Link>
-					</p>
+						return (
+							<Component
+								key={section.potName}
+								drugSlug={bnfDrug.slug}
+								{...section}
+							/>
+						);
+					})}
 				</GridItem>
 			</Grid>
 		</Layout>
@@ -259,6 +260,27 @@ export const query = graphql`
 			}
 			lessSuitableForPrescribing {
 				...SimplePot
+			}
+			medicinalForms {
+				initialStatement
+				specialOrderManufacturersStatement
+				medicinalForms {
+					form
+					slug
+				}
+			}
+			nationalFunding {
+				potName
+				slug
+				drugClassContent {
+					...NationalFundingContent
+				}
+				drugContent {
+					...NationalFundingContent
+				}
+				prepContent {
+					...NationalFundingContent
+				}
 			}
 			palliativeCare {
 				...SimplePot

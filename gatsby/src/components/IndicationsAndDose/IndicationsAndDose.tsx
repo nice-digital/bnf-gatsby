@@ -6,20 +6,16 @@ import { IndicationsAndDoseContent } from "@/components/IndicationsAndDoseConten
 
 import styles from "./IndicationsAndDose.module.scss";
 
-export interface IndicationsAndDoseProps {
-	indicationsAndDose: FeedIndicationsAndDosePot & {
-		slug: string;
-	};
+export interface IndicationsAndDoseProps extends FeedIndicationsAndDosePot {
+	slug: string;
 }
 
 export const IndicationsAndDose: FC<IndicationsAndDoseProps> = ({
-	indicationsAndDose: {
-		potName,
-		slug,
-		drugClassContent,
-		drugContent,
-		prepContent,
-	},
+	potName,
+	slug,
+	drugClassContent,
+	drugContent,
+	prepContent,
 }) => {
 	const numberOfSections =
 			(drugContent ? 1 : 0) +

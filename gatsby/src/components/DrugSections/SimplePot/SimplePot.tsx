@@ -1,39 +1,9 @@
-import slugify from "@sindresorhus/slugify";
 import { type FC } from "react";
-import striptags from "striptags";
 
-import {
-	type FeedSimplePot,
-	type FeedFeedSimplePotContent,
-} from "@nice-digital/gatsby-source-bnf";
+import { type FeedSimplePot } from "@nice-digital/gatsby-source-bnf";
 
 import styles from "../DrugSection.module.scss";
-
-interface SimplePotContentProps extends FeedFeedSimplePotContent {
-	potSlug: string;
-	contentForPrefix?: "For" | "For all";
-}
-
-const SimplePotContent: FC<SimplePotContentProps> = ({
-	potSlug,
-	contentForPrefix = "For",
-	contentFor,
-	content,
-}) => {
-	const slug = `${potSlug}-${slugify(striptags(contentFor))}`;
-
-	return (
-		<section aria-labelledby={slug}>
-			<h3
-				id={slug}
-				dangerouslySetInnerHTML={{
-					__html: `${contentForPrefix} ${contentFor}`,
-				}}
-			/>
-			<div dangerouslySetInnerHTML={{ __html: content }} />
-		</section>
-	);
-};
+import { SimplePotContent } from "../SimplePotContent/SimplePotContent";
 
 export type SimplePotProps = FeedSimplePot & {
 	slug: string;
@@ -48,7 +18,7 @@ export const SimplePot: FC<SimplePotProps> = ({
 }) => {
 	return (
 		<section aria-labelledby={slug} className={styles.section}>
-			<h2 id={slug}>{potName}</h2>
+			<h2 id={slug} dangerouslySetInnerHTML={{ __html: potName }} />
 
 			{drugClassContent?.map((content) => (
 				<SimplePotContent

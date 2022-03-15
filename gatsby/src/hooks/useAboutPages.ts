@@ -1,19 +1,17 @@
 import { useStaticQuery, graphql } from "gatsby";
 
-import { MenuPageLink } from "src/types";
-
-type SlugLink = { title: string; slug: string };
+import { type MenuPageLink, type SlugAndTitle } from "src/types";
 
 export interface AboutPages {
 	allBnfAboutSection: {
-		aboutSectionPages: SlugLink[];
+		aboutSectionPages: SlugAndTitle[];
 	};
 	allBnfCautionaryAndAdvisoryGuidance: {
-		labelsGuidancePages: SlugLink[];
+		labelsGuidancePages: SlugAndTitle[];
 	};
 }
 
-const slugToHref = ({ title, slug }: SlugLink): MenuPageLink => ({
+const slugToHref = ({ title, slug }: SlugAndTitle): MenuPageLink => ({
 	title,
 	href: `/about/${slug}/`,
 });
