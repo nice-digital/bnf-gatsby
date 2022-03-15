@@ -119,33 +119,44 @@ describe("gatsby-browser", () => {
 			rafSpy.mockRestore();
 		});
 
-		it("should use set timeout when request animation frame is not available", () => {
-			jest.useFakeTimers();
+		describe("setTimeout behaviour", () => {
 			const raf = window.requestAnimationFrame;
-			delete (window as unknown as Record<string, unknown>)
-				.requestAnimationFrame;
+			beforeEach(() => {
+				jest.useFakeTimers();
+				delete (window as unknown as Record<string, unknown>)
+					.requestAnimationFrame;
+			});
 
-			const setTimeoutSpy = jest.spyOn(window, "setTimeout");
+			afterEach(() => {
+				(window as unknown as Record<string, unknown>).requestAnimationFrame =
+					raf;
+			});
 
-			onRouteUpdate({
-				prevLocation: { href: "elsewhere", pathname: "/elsewhere" },
-				location: { href: "somewhere", pathname: "/somewhere" },
-			} as unknown as RouteUpdateArgs);
+			it("should use set timeout when request animation frame is not available", () => {
+				onRouteUpdate({
+					prevLocation: { href: "elsewhere", pathname: "/elsewhere" },
+					location: { href: "somewhere", pathname: "/somewhere" },
+				} as unknown as RouteUpdateArgs);
 
-			expect(window.dataLayer).toHaveLength(0);
+				expect(window.dataLayer).toHaveLength(0);
 
-			jest.advanceTimersByTime(31);
+				jest.runAllTimers();
 
-			expect(window.dataLayer).toHaveLength(0);
+				expect(window.dataLayer).toHaveLength(2);
+			});
 
-			jest.advanceTimersByTime(1);
+			it("should call setTimeout with timing equivalent of 2 requestAnimationFrame calls", () => {
+				const setTimeoutSpy = jest.spyOn(window, "setTimeout");
 
-			expect(setTimeoutSpy).toHaveBeenCalledWith(expect.any(Function), 32);
+				onRouteUpdate({
+					prevLocation: { href: "elsewhere", pathname: "/elsewhere" },
+					location: { href: "somewhere", pathname: "/somewhere" },
+				} as unknown as RouteUpdateArgs);
 
-			expect(window.dataLayer).toHaveLength(2);
+				jest.runAllTimers();
 
-			(window as unknown as Record<string, unknown>).requestAnimationFrame =
-				raf;
+				expect(setTimeoutSpy).toHaveBeenCalledWith(expect.any(Function), 32);
+			});
 		});
 	});
 });
