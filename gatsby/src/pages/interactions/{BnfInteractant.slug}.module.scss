@@ -60,16 +60,12 @@
 }
 
 .sortButton {
+  @include core.nds-link-default;
+  background: none;
   border: 0;
-  color: core.$nds-colour-link;
   cursor: pointer;
   font-weight: bold;
   padding: 0;
-  text-decoration: underline;
-
-  &:hover {
-    color: core.$nds-colour-link-hover;
-  }
 }
 
 .resultCount {

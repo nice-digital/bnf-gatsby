@@ -125,7 +125,7 @@ const InteractantPage: FC<InteractantPageProps> = ({
 							Severe interactions are highlighted with a red marker
 						</p>
 						<p>
-							<Link to="/interactions/">
+							<Link to="/interactions/introduction/">
 								Find out more about BNF interactions information
 							</Link>
 						</p>

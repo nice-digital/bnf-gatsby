@@ -27,7 +27,7 @@ export const Interaction: React.FC<InteractionProps> = ({
 		<>
 			<h3 className={styles.interactantTitle}>
 				{interactant.drug?.slug ? (
-					<Link to={`/drugs/${interactant.drug.slug}`}>
+					<Link to={`/drugs/${interactant.drug.slug}/`}>
 						{interactant.title}
 					</Link>
 				) : (
