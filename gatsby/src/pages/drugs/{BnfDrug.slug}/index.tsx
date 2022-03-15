@@ -8,14 +8,21 @@ import {
 	type FeedBaseNamedPot,
 } from "@nice-digital/gatsby-source-bnf";
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
+import { Grid, GridItem } from "@nice-digital/nds-grid";
 import { PageHeader } from "@nice-digital/nds-page-header";
+import { Panel } from "@nice-digital/nds-panel";
 
 import {
 	ConstituentDrugs,
 	type ConstituentDrugsProps,
 } from "@/components/DrugSections/ConstituentDrugs/ConstituentDrugs";
 import { SimplePot } from "@/components/DrugSections/SimplePot/SimplePot";
+import {
+	IndicationsAndDose,
+	type IndicationsAndDoseProps,
+} from "@/components/IndicationsAndDose/IndicationsAndDose";
 import { Layout } from "@/components/Layout/Layout";
+import { SectionNav } from "@/components/SectionNav/SectionNav";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
@@ -38,6 +45,7 @@ export interface DrugPageProps {
 				slug: string;
 			};
 			constituentDrugs: null | ConstituentDrugsProps;
+			indicationsAndDose?: IndicationsAndDoseProps["indicationsAndDose"];
 		};
 	};
 }
@@ -49,6 +57,7 @@ const DrugPage: FC<DrugPageProps> = ({
 			slug,
 			interactant,
 			constituentDrugs,
+			indicationsAndDose,
 			allergyAndCrossSensitivity,
 			breastFeeding,
 			conceptionAndContraception,
@@ -101,63 +110,84 @@ const DrugPage: FC<DrugPageProps> = ({
 				heading={<span dangerouslySetInnerHTML={{ __html: title }} />}
 			/>
 
-			{interactant && (
-				<p>
-					<Link to={`/interactions/${interactant.slug}/`}>
-						View interactions page for {interactant.title}
-					</Link>
-				</p>
-			)}
+			<Grid gutter="loose">
+				<GridItem cols={12} md={8} lg={9} className="hide-print">
+					<SectionNav
+						sections={[
+							indicationsAndDose && {
+								id: indicationsAndDose.slug,
+								title: indicationsAndDose.potName,
+							},
+						]}
+					/>
+				</GridItem>
+				<GridItem cols={12} md={4} lg={3} className="hide-print">
+					<Panel>Quick links will go here</Panel>
+				</GridItem>
+				<GridItem cols={12} md={8} lg={9}>
+					{interactant && (
+						<p>
+							<Link to={`/interactions/${interactant.slug}/`}>
+								View interactions page for {interactant.title}
+							</Link>
+						</p>
+					)}
 
-			{constituentDrugs && <ConstituentDrugs {...constituentDrugs} />}
-			{drugAction && <SimplePot {...drugAction} />}
-			{/* TODO Indications and dose */}
-			{unlicensedUse && <SimplePot {...unlicensedUse} />}
-			{importantSafetyInformation && (
-				<SimplePot {...importantSafetyInformation} />
-			)}
-			{contraIndications && <SimplePot {...contraIndications} />}
-			{cautions && <SimplePot {...cautions} />}
-			{/* TODO Interactions */}
-			{sideEffects && <SimplePot {...sideEffects} />}
-			{allergyAndCrossSensitivity && (
-				<SimplePot {...allergyAndCrossSensitivity} />
-			)}
-			{conceptionAndContraception && (
-				<SimplePot {...conceptionAndContraception} />
-			)}
-			{pregnancy && <SimplePot {...pregnancy} />}
-			{breastFeeding && <SimplePot {...breastFeeding} />}
-			{hepaticImpairment && <SimplePot {...hepaticImpairment} />}
-			{renalImpairment && <SimplePot {...renalImpairment} />}
-			{preTreatmentScreening && <SimplePot {...preTreatmentScreening} />}
-			{/* TODO Monitoring */}
-			{effectOnLaboratoryTests && <SimplePot {...effectOnLaboratoryTests} />}
-			{treatmentCessation && <SimplePot {...treatmentCessation} />}
-			{directionsForAdministration && (
-				<SimplePot {...directionsForAdministration} />
-			)}
-			{prescribingAndDispensingInformation && (
-				<SimplePot {...prescribingAndDispensingInformation} />
-			)}
-			{handlingAndStorage && <SimplePot {...handlingAndStorage} />}
-			{patientAndCarerAdvice && <SimplePot {...patientAndCarerAdvice} />}
-			{palliativeCare && <SimplePot {...palliativeCare} />}
-			{professionSpecificInformation && (
-				<SimplePot {...professionSpecificInformation} />
-			)}
-			{/* TODO National funding */}
-			{exceptionsToLegalCategory && (
-				<SimplePot {...exceptionsToLegalCategory} />
-			)}
-			{lessSuitableForPrescribing && (
-				<SimplePot {...lessSuitableForPrescribing} />
-			)}
-			{/* TODO Medicinal forms */}
+					{constituentDrugs && <ConstituentDrugs {...constituentDrugs} />}
+					{drugAction && <SimplePot {...drugAction} />}
+					{indicationsAndDose && (
+						<IndicationsAndDose indicationsAndDose={indicationsAndDose} />
+					)}
+					{unlicensedUse && <SimplePot {...unlicensedUse} />}
+					{importantSafetyInformation && (
+						<SimplePot {...importantSafetyInformation} />
+					)}
+					{contraIndications && <SimplePot {...contraIndications} />}
+					{cautions && <SimplePot {...cautions} />}
+					{/* TODO Interactions */}
+					{sideEffects && <SimplePot {...sideEffects} />}
+					{allergyAndCrossSensitivity && (
+						<SimplePot {...allergyAndCrossSensitivity} />
+					)}
+					{conceptionAndContraception && (
+						<SimplePot {...conceptionAndContraception} />
+					)}
+					{pregnancy && <SimplePot {...pregnancy} />}
+					{breastFeeding && <SimplePot {...breastFeeding} />}
+					{hepaticImpairment && <SimplePot {...hepaticImpairment} />}
+					{renalImpairment && <SimplePot {...renalImpairment} />}
+					{preTreatmentScreening && <SimplePot {...preTreatmentScreening} />}
+					{/* TODO Monitoring */}
+					{effectOnLaboratoryTests && (
+						<SimplePot {...effectOnLaboratoryTests} />
+					)}
+					{treatmentCessation && <SimplePot {...treatmentCessation} />}
+					{directionsForAdministration && (
+						<SimplePot {...directionsForAdministration} />
+					)}
+					{prescribingAndDispensingInformation && (
+						<SimplePot {...prescribingAndDispensingInformation} />
+					)}
+					{handlingAndStorage && <SimplePot {...handlingAndStorage} />}
+					{patientAndCarerAdvice && <SimplePot {...patientAndCarerAdvice} />}
+					{palliativeCare && <SimplePot {...palliativeCare} />}
+					{professionSpecificInformation && (
+						<SimplePot {...professionSpecificInformation} />
+					)}
+					{/* TODO National funding */}
+					{exceptionsToLegalCategory && (
+						<SimplePot {...exceptionsToLegalCategory} />
+					)}
+					{lessSuitableForPrescribing && (
+						<SimplePot {...lessSuitableForPrescribing} />
+					)}
+					{/* TODO Medicinal forms */}
 
-			<p>
-				<Link to={`/drugs/${slug}/medicinal-forms/`}>Medicinal forms</Link>
-			</p>
+					<p>
+						<Link to={`/drugs/${slug}/medicinal-forms/`}>Medicinal forms</Link>
+					</p>
+				</GridItem>
+			</Grid>
 		</Layout>
 	);
 };
@@ -213,6 +243,19 @@ export const query = graphql`
 			}
 			importantSafetyInformation {
 				...SimplePot
+			}
+			indicationsAndDose {
+				potName
+				slug
+				drugClassContent {
+					...IndicationsAndDoseContent
+				}
+				drugContent {
+					...IndicationsAndDoseContent
+				}
+				prepContent {
+					...IndicationsAndDoseContent
+				}
 			}
 			lessSuitableForPrescribing {
 				...SimplePot

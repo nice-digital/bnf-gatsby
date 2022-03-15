@@ -42,6 +42,21 @@ describe("replaceXRefs", () => {
 		}
 	);
 
+	it("should replace xref with inner tag", () => {
+		getNodeById.mockReturnValueOnce({
+			title: "Helicobacter pylori",
+			internal: { type: BnfNode.TreatmentSummary },
+		});
+		expect(
+			replaceXRefs(
+				`<xref type="bookmark" sid="_945688461" idref="PHP217191"><organism>Helicobacter pylori</organism> infection</xref>`,
+				nodeModel
+			)
+		).toBe(
+			`<a data-type="bookmark" data-sid="_945688461" data-idref="PHP217191" href="/treatment-summaries/helicobacter-pylori/"><organism>Helicobacter pylori</organism> infection</a>`
+		);
+	});
+
 	it("should replace multiple xrefs", () => {
 		getNodeById
 			.mockReturnValueOnce({
