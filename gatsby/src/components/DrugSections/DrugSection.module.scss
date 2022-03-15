@@ -1,0 +1,6 @@
+@use '@nice-digital/nds-core/scss/core';
+
+.section {
+  border-bottom: 1px solid core.$nds-colour-border;
+  padding-bottom: core.rem(core.$nds-spacing-medium);
+}

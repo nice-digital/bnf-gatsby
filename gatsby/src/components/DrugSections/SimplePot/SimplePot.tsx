@@ -7,6 +7,8 @@ import {
 	type FeedFeedSimplePotContent,
 } from "@nice-digital/gatsby-source-bnf";
 
+import styles from "../DrugSection.module.scss";
+
 interface SimplePotContentProps extends FeedFeedSimplePotContent {
 	potSlug: string;
 	contentForPrefix?: "For" | "For all";
@@ -45,7 +47,7 @@ export const SimplePot: FC<SimplePotProps> = ({
 	prepContent,
 }) => {
 	return (
-		<section aria-labelledby={slug}>
+		<section aria-labelledby={slug} className={styles.section}>
 			<h2 id={slug}>{potName}</h2>
 
 			{drugClassContent?.map((content) => (
