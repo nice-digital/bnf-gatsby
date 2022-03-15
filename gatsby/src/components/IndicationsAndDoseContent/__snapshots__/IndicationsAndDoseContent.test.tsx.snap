@@ -8,9 +8,10 @@ exports[`IndicationsAndDoseContent should match snapshot 1`] = `
     class="visually-hidden"
     id="diazepam-indications-and-dose"
   >
-    For
-     
-    diazepam
+    For 
+    <strong>
+      diazepam
+    </strong>
   </h3>
   <section
     aria-labelledby="diazepam-indication-1"
@@ -36,7 +37,9 @@ exports[`IndicationsAndDoseContent should match snapshot 1`] = `
         class="visually-hidden"
       >
          for 
-        diazepam
+        <strong>
+          diazepam
+        </strong>
       </span>
     </h4>
     <section

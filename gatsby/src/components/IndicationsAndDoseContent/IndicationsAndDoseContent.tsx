@@ -63,7 +63,10 @@ export const IndicationsAndDoseContent: FC<IndicationsAndDoseContentProps> = ({
 										</Fragment>
 									)
 								)}
-								<span className="visually-hidden"> for {contentFor}</span>
+								<span
+									className="visually-hidden"
+									dangerouslySetInnerHTML={{ __html: ` for ${contentFor}` }}
+								/>
 							</h4>
 							{routesAndPatientGroups?.map(
 								({ routeOfAdministration, patientGroups }) => (
@@ -116,9 +119,12 @@ export const IndicationsAndDoseContent: FC<IndicationsAndDoseContentProps> = ({
 			{collapsible ? (
 				<Accordion
 					title={
-						<h3 id={`${slug}-indications-and-dose`}>
-							{contentForPrefix} {contentFor}
-						</h3>
+						<h3
+							id={`${slug}-indications-and-dose`}
+							dangerouslySetInnerHTML={{
+								__html: `${contentForPrefix} ${contentFor}`,
+							}}
+						/>
 					}
 					defaultOpen={defaultOpen}
 				>
@@ -126,9 +132,13 @@ export const IndicationsAndDoseContent: FC<IndicationsAndDoseContentProps> = ({
 				</Accordion>
 			) : (
 				<>
-					<h3 id={`${slug}-indications-and-dose`} className="visually-hidden">
-						{contentForPrefix} {contentFor}
-					</h3>
+					<h3
+						id={`${slug}-indications-and-dose`}
+						className="visually-hidden"
+						dangerouslySetInnerHTML={{
+							__html: `${contentForPrefix} ${contentFor}`,
+						}}
+					/>
 					{body}
 				</>
 			)}

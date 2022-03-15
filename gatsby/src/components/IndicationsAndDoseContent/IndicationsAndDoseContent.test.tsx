@@ -7,7 +7,7 @@ import {
 } from "./IndicationsAndDoseContent";
 
 const content: IndicationsAndDoseContentProps["content"] = {
-	contentFor: "diazepam",
+	contentFor: "<strong>diazepam</strong>",
 	indicationAndDoseGroups: [
 		{
 			therapeuticIndications: [
