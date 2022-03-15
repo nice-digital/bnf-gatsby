@@ -119,27 +119,33 @@ describe("gatsby-browser", () => {
 			rafSpy.mockRestore();
 		});
 
-		it("should use set timeout when request animation frame is not available", async () => {
+		it("should use set timeout when request animation frame is not available", () => {
 			jest.useFakeTimers();
+			const raf = window.requestAnimationFrame;
+			delete (window as unknown as Record<string, unknown>)
+				.requestAnimationFrame;
 
-			const rafSpy2: jest.SpyInstance = jest.spyOn(
-				window,
-				"requestAnimationFrame"
-			);
-
-			rafSpy2.mockReturnValue(null);
-
-			const setTimeoutSpy: jest.SpyInstance = jest.spyOn(window, "setTimeout");
+			const setTimeoutSpy = jest.spyOn(window, "setTimeout");
 
 			onRouteUpdate({
 				prevLocation: { href: "elsewhere", pathname: "/elsewhere" },
 				location: { href: "somewhere", pathname: "/somewhere" },
 			} as unknown as RouteUpdateArgs);
 
-			await waitFor(() => {
-				expect(setTimeoutSpy).toHaveBeenCalled();
-			});
-			expect(setTimeoutSpy).toHaveBeenCalledTimes(1);
+			expect(window.dataLayer).toHaveLength(0);
+
+			jest.advanceTimersByTime(31);
+
+			expect(window.dataLayer).toHaveLength(0);
+
+			jest.advanceTimersByTime(1);
+
+			expect(setTimeoutSpy).toHaveBeenCalledWith(expect.any(Function), 32);
+
+			expect(window.dataLayer).toHaveLength(2);
+
+			(window as unknown as Record<string, unknown>).requestAnimationFrame =
+				raf;
 		});
 	});
 });

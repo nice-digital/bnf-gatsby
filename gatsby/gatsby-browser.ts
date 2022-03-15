@@ -28,8 +28,8 @@ export const onRouteUpdate = ({
 		// Delay before push to the data layer, to make sure the page title has been updated
 		// See https://github.com/gatsbyjs/gatsby/pull/10917/files#diff-bf0d94c8bf47d5c1687e342c2dba1e00R12-R13
 		if ("requestAnimationFrame" in window) {
-			requestAnimationFrame(() => {
-				requestAnimationFrame(sendPageView);
+			window.requestAnimationFrame(() => {
+				window.requestAnimationFrame(sendPageView);
 			});
 		} else {
 			// simulate 2 rAF calls
