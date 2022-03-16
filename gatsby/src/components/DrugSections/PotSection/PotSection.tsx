@@ -10,9 +10,9 @@ import { PotContent } from "./PotContent/PotContent";
 
 export interface PotSectionProps<TContent extends FeedBasePotContent>
 	extends PotWithSlug {
-	drugClassContent?: TContent[];
-	drugContent?: TContent;
-	prepContent?: TContent[];
+	drugClassContent: TContent[];
+	drugContent: TContent | null;
+	prepContent: TContent[];
 	children: (renderArgs: {
 		content: TContent;
 		pot: PotWithSlug;
@@ -30,7 +30,7 @@ export const PotSection = <TPotContent extends FeedBasePotContent>({
 	<section aria-labelledby={slug} className={styles.section}>
 		<h2 id={slug} dangerouslySetInnerHTML={{ __html: potName }} />
 
-		{drugClassContent?.map((content) => (
+		{drugClassContent.map((content) => (
 			<PotContent
 				key={content.contentFor}
 				potSlug={slug}
@@ -57,7 +57,7 @@ export const PotSection = <TPotContent extends FeedBasePotContent>({
 			</PotContent>
 		)}
 
-		{prepContent?.map((content) => (
+		{prepContent.map((content) => (
 			<PotContent
 				key={content.contentFor}
 				potSlug={slug}

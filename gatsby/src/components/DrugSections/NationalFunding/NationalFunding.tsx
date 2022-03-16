@@ -1,6 +1,7 @@
 import slugify from "@sindresorhus/slugify";
 import { type FC } from "react";
 import striptags from "striptags";
+import { type Merge } from "type-fest";
 
 import {
 	type FeedNationalFundingPot,
@@ -14,9 +15,9 @@ import { PotSection } from "../PotSection/PotSection";
 import { NationalFundingContent } from "./NationalFundingContent/NationalFundingContent";
 
 export type NationalFundingProps = WithSlug<FeedNationalFundingPot> & {
-	drugContent?: Required<FeedNationalFundingPotContent>;
-	drugClassContent?: Required<FeedNationalFundingPotContent>[];
-	prepContent?: Required<FeedNationalFundingPotContent>[];
+	drugContent: null | Required<FeedNationalFundingPotContent>;
+	drugClassContent: Required<FeedNationalFundingPotContent>[];
+	prepContent: Required<FeedNationalFundingPotContent>[];
 };
 
 export const NationalFunding: FC<NationalFundingProps> = (props) => {

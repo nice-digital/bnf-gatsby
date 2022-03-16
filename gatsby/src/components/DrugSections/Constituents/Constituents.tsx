@@ -3,11 +3,14 @@ import { type FC } from "react";
 
 import { useIsTruthy } from "@/hooks/useIsTruthy";
 
-import { type ConstituentsWithSlugs, type PotWithSlug } from "src/types";
+import { type SlugAndTitle, type PotWithSlug } from "src/types";
 
 import styles from "../DrugSection.module.scss";
 
-export type ConstituentsProps = PotWithSlug & ConstituentsWithSlugs;
+export type ConstituentsProps = PotWithSlug & {
+	message: string;
+	constituents: SlugAndTitle[];
+};
 
 export const Constituents: FC<ConstituentsProps> = ({
 	message,

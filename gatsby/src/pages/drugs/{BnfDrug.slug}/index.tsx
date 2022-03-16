@@ -1,10 +1,12 @@
 import { graphql, Link } from "gatsby";
 import React, { useMemo, type ElementType, type FC } from "react";
 import striptags from "striptags";
+import { type Merge, type Except, type SetRequired } from "type-fest";
 
 import {
 	type FeedDrug,
 	type FeedBaseNamedPot,
+	type FeedMedicinalForms,
 } from "@nice-digital/gatsby-source-bnf";
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
 import { Grid, GridItem } from "@nice-digital/nds-grid";
@@ -27,11 +29,7 @@ import { SEO } from "@/components/SEO/SEO";
 import { useIsTruthy } from "@/hooks/useIsTruthy";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
-import {
-	type SlugAndTitle,
-	type PotWithSlug,
-	type ConstituentsWithSlugs,
-} from "src/types";
+import { type SlugAndTitle, type PotWithSlug, type WithSlug } from "src/types";
 
 /**
  * Utility type with slug property added to all 'pots' on a drug.
@@ -48,14 +46,28 @@ type DrugWithSluggedPots = {
 		: FeedDrug[Key];
 };
 
+/** Ignore fields on a drug that we don't query and don't need */
+type IgnoredDrugFields =
+	| "id"
+	| "sid"
+	| "primaryClassification"
+	| "secondaryClassifications"
+	| "reviewDate";
+
 export interface DrugPageProps {
 	data: {
-		bnfDrug: {
-			slug: string;
-			interactant: SlugAndTitle | null;
-			constituentDrugs: ConstituentsWithSlugs | null;
-			indicationsAndDose: IndicationsAndDoseProps | null;
-		} & DrugWithSluggedPots;
+		bnfDrug: Merge<
+			Except<WithSlug<DrugWithSluggedPots>, IgnoredDrugFields>,
+			{
+				interactant: SlugAndTitle | null;
+				constituentDrugs: {
+					message: string;
+					constituents: SlugAndTitle[];
+				} | null;
+				indicationsAndDose: IndicationsAndDoseProps | null;
+				medicinalForms: SetRequired<FeedMedicinalForms, "medicinalForms">;
+			}
+		>;
 	};
 }
 

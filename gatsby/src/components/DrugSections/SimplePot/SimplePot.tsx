@@ -6,7 +6,7 @@ import { WithSlug } from "src/types";
 
 import { PotSection } from "../PotSection/PotSection";
 
-export type SimplePotProps = WithSlug<FeedSimplePot>;
+export type SimplePotProps = WithSlug<Required<FeedSimplePot>>;
 
 export const SimplePot: FC<SimplePotProps> = (props) => {
 	return (
