@@ -17,6 +17,19 @@ exports[`DrugPage should match snapshot for graphql query 1`] = `
 					slug
 				}
 			}
+			indicationsAndDose {
+				potName
+				slug
+				drugClassContent {
+					...IndicationsAndDoseContent
+				}
+				drugContent {
+					...IndicationsAndDoseContent
+				}
+				prepContent {
+					...IndicationsAndDoseContent
+				}
+			}
 		}
 	}
 "

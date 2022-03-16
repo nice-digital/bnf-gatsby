@@ -16,6 +16,7 @@ export const pagePaths = {
 	"treatment summaries A to Z": "/treatment-summaries/",
 	"abacavir interactions": "/interactions/abacavir/",
 	"abacavir drug": "/drugs/abacavir/",
+	"co-codamol drug": "/drugs/co-codamol/",
 	"abacavir medicinal forms": "/drugs/abacavir/medicinal-forms/",
 	"dementia treatment summary": "/treatment-summaries/dementia/",
 } as const;

@@ -3,9 +3,16 @@ import React, { FC } from "react";
 import striptags from "striptags";
 
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
+import { Grid, GridItem } from "@nice-digital/nds-grid";
 import { PageHeader } from "@nice-digital/nds-page-header";
+import { Panel } from "@nice-digital/nds-panel";
 
+import {
+	IndicationsAndDose,
+	type IndicationsAndDoseProps,
+} from "@/components/IndicationsAndDose/IndicationsAndDose";
 import { Layout } from "@/components/Layout/Layout";
+import { SectionNav } from "@/components/SectionNav/SectionNav";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
@@ -26,13 +33,14 @@ export interface DrugPageProps {
 					slug: string;
 				})[];
 			};
+			indicationsAndDose?: IndicationsAndDoseProps["indicationsAndDose"];
 		};
 	};
 }
 
 const DrugPage: FC<DrugPageProps> = ({
 	data: {
-		bnfDrug: { title, slug, interactant, constituentDrugs },
+		bnfDrug: { title, slug, interactant, constituentDrugs, indicationsAndDose },
 	},
 }) => {
 	const { siteTitleShort } = useSiteMetadata(),
@@ -61,35 +69,58 @@ const DrugPage: FC<DrugPageProps> = ({
 				heading={<span dangerouslySetInnerHTML={{ __html: title }} />}
 			/>
 
-			{interactant && (
-				<p>
-					<Link to={`/interactions/${interactant.slug}/`}>
-						View interactions page for {interactant.title}
-					</Link>
-				</p>
-			)}
+			<Grid gutter="loose">
+				<GridItem cols={12} md={8} lg={9} className="hide-print">
+					<SectionNav
+						sections={[
+							indicationsAndDose && {
+								id: indicationsAndDose.slug,
+								title: indicationsAndDose.potName,
+							},
+						]}
+					/>
+				</GridItem>
+				<GridItem cols={12} md={4} lg={3} className="hide-print">
+					<Panel>Quick links will go here</Panel>
+				</GridItem>
+				<GridItem cols={12} md={8} lg={9}>
+					{indicationsAndDose && (
+						<IndicationsAndDose indicationsAndDose={indicationsAndDose} />
+					)}
 
-			{constituentDrugs && (
-				<section aria-labelledby="constituent-drugs">
-					<h2 id="constituent-drugs">Constituent drugs</h2>
-					<p dangerouslySetInnerHTML={{ __html: constituentDrugs.message }} />
-					<ul aria-labelledby="constituent-drugs">
-						{constituentDrugs.constituents.map((constituent) =>
-							constituent ? (
-								<li key={constituent.slug}>
-									<Link to={`/drugs/${constituent.slug}/`}>
-										{constituent.title}
-									</Link>
-								</li>
-							) : null
-						)}
-					</ul>
-				</section>
-			)}
+					{interactant && (
+						<p>
+							<Link to={`/interactions/${interactant.slug}/`}>
+								View interactions page for {interactant.title}
+							</Link>
+						</p>
+					)}
 
-			<p>
-				<Link to={`/drugs/${slug}/medicinal-forms/`}>Medicinal forms</Link>
-			</p>
+					{constituentDrugs && (
+						<section aria-labelledby="constituent-drugs">
+							<h2 id="constituent-drugs">Constituent drugs</h2>
+							<p
+								dangerouslySetInnerHTML={{ __html: constituentDrugs.message }}
+							/>
+							<ul aria-labelledby="constituent-drugs">
+								{constituentDrugs.constituents.map((constituent) =>
+									constituent ? (
+										<li key={constituent.slug}>
+											<Link to={`/drugs/${constituent.slug}/`}>
+												{constituent.title}
+											</Link>
+										</li>
+									) : null
+								)}
+							</ul>
+						</section>
+					)}
+
+					<p>
+						<Link to={`/drugs/${slug}/medicinal-forms/`}>Medicinal forms</Link>
+					</p>
+				</GridItem>
+			</Grid>
 		</Layout>
 	);
 };
@@ -108,6 +139,19 @@ export const query = graphql`
 				constituents {
 					title
 					slug
+				}
+			}
+			indicationsAndDose {
+				potName
+				slug
+				drugClassContent {
+					...IndicationsAndDoseContent
+				}
+				drugContent {
+					...IndicationsAndDoseContent
+				}
+				prepContent {
+					...IndicationsAndDoseContent
 				}
 			}
 		}
