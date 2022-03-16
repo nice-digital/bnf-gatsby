@@ -4,14 +4,14 @@ export {
 } from "./Constituents/Constituents";
 
 export {
-	IndicationsAndDose,
-	type IndicationsAndDoseProps,
-} from "./IndicationsAndDose/IndicationsAndDose";
-
-export {
 	ImportantSafetyInfo,
 	type ImportantSafetyInfoProps,
 } from "./ImportantSafetyInfo/ImportantSafetyInfo";
+
+export {
+	IndicationsAndDose,
+	type IndicationsAndDoseProps,
+} from "./IndicationsAndDose/IndicationsAndDose";
 
 export {
 	MedicinalForms,

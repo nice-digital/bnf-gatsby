@@ -1,4 +1,3 @@
-import { Link } from "@reach/router";
 import { type FC, type ReactNode } from "react";
 
 import { FeedFundingDecision } from "@nice-digital/gatsby-source-bnf";

@@ -88,15 +88,16 @@ const DrugPage: FC<DrugPageProps> = ({ data: { bnfDrug } }) => {
 					nationalFunding,
 					importantSafetyInformation,
 				} = bnfDrug,
-				map = new Map<PotWithSlug | null, ElementType>();
-			map.set(medicinalForms, MedicinalForms);
-			map.set(constituents, Constituents);
-			map.set(indicationsAndDose, IndicationsAndDose);
-			map.set(monitoringRequirements, Monitoring);
-			map.set(nationalFunding, NationalFunding);
-			map.set(importantSafetyInformation, ImportantSafetyInfo);
-			return map;
-		}, [medicinalForms, constituents, bnfDrug]);
+				potMap = new Map<PotWithSlug | null, ElementType>();
+			potMap.set(indicationsAndDose, IndicationsAndDose);
+			potMap.set(monitoringRequirements, Monitoring);
+			potMap.set(nationalFunding, NationalFunding);
+			potMap.set(importantSafetyInformation, ImportantSafetyInfo);
+			// Bespoke sections that aren't "pots" in the feed
+			potMap.set(medicinalForms, MedicinalForms);
+			potMap.set(constituents, Constituents);
+			return potMap;
+		}, [bnfDrug, medicinalForms, constituents]);
 
 	const orderedSections: PotWithSlug[] = [
 		constituents,

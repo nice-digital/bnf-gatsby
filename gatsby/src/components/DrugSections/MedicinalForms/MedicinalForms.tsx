@@ -20,7 +20,6 @@ export const MedicinalForms: FC<MedicinalFormsProps> = ({
 	return (
 		<section aria-labelledby={slug} className={styles.section}>
 			<h2 id={slug} dangerouslySetInnerHTML={{ __html: potName }} />
-			{}
 			<p dangerouslySetInnerHTML={{ __html: initialStatement }} />
 			{specialOrderManufacturersStatement && (
 				<p
@@ -29,27 +28,29 @@ export const MedicinalForms: FC<MedicinalFormsProps> = ({
 					}}
 				/>
 			)}
-			<p>
-				View{" "}
-				<Link
-					to={`/drugs/${drugSlug}/medicinal-forms/`}
-					id="medicinal-forms-link"
-				>
-					<span dangerouslySetInnerHTML={{ __html: drugTitle }} /> medicinal
-					forms and pricing information
-				</Link>{" "}
-				or jump straight to:
-			</p>
-			{medicinalForms && medicinalForms?.length ? (
-				<ul aria-labelledby="medicinal-forms-link">
-					{medicinalForms.map(({ form, slug }) => (
-						<li key={form} aria-labelledby={slug}>
-							<Link to={`/drugs/${drugSlug}/medicinal-forms/#${slug}`}>
-								{form}
-							</Link>
-						</li>
-					))}
-				</ul>
+			{medicinalForms.length > 0 ? (
+				<>
+					<p>
+						View{" "}
+						<Link
+							to={`/drugs/${drugSlug}/medicinal-forms/`}
+							id="medicinal-forms-link"
+						>
+							<span dangerouslySetInnerHTML={{ __html: drugTitle }} /> medicinal
+							forms and pricing information
+						</Link>{" "}
+						or jump straight to:
+					</p>
+					<ul aria-labelledby="medicinal-forms-link">
+						{medicinalForms.map(({ form, slug }) => (
+							<li key={form} aria-labelledby={slug}>
+								<Link to={`/drugs/${drugSlug}/medicinal-forms/#${slug}`}>
+									{form}
+								</Link>
+							</li>
+						))}
+					</ul>
+				</>
 			) : null}
 		</section>
 	);
