@@ -14,6 +14,7 @@ import {
 } from "@/components/Interaction/Interaction";
 import { Layout } from "@/components/Layout/Layout";
 import { SEO } from "@/components/SEO/SEO";
+import { useIsClient } from "@/hooks/useIsClient";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
 import interactionStyles from "../../components/Interaction/Interaction.module.scss";
@@ -38,6 +39,7 @@ const InteractantPage: FC<InteractantPageProps> = ({
 		bnfInteractant: { title, drug, interactions },
 	},
 }) => {
+	const isClient = useIsClient();
 	const { siteTitleShort } = useSiteMetadata(),
 		titleNoHtml = striptags(title);
 
@@ -138,14 +140,16 @@ const InteractantPage: FC<InteractantPageProps> = ({
 				lead={
 					drug ? (
 						<Link to={`/drugs/${drug.slug}/`}>
-							View {drug.title} monograph page
+							View <span dangerouslySetInnerHTML={{ __html: title }} />
+							monograph page
 						</Link>
 					) : null
 				}
 			/>
 
 			<p className={styles.interactionInformation}>
-				{title} has the following interaction information:
+				<span dangerouslySetInnerHTML={{ __html: title }} /> has the following
+				interaction information:
 			</p>
 
 			<div className={styles.grid}>
@@ -165,48 +169,50 @@ const InteractantPage: FC<InteractantPageProps> = ({
 					</div>
 				</div>
 				<div className={styles.leftCol}>
-					<section className={styles.filterPanel}>
-						<h2 className="visually-hidden">Filters and sorting</h2>
-						<div className="input-test">
-							<form ref={filterInput}>
-								<Input
-									label="Filter by drug name"
-									placeholder="Enter drug name"
-									name="drugNameInput"
-								/>
-								<Button
-									onClick={() => handleFilter()}
-									variant={Button.variants.secondary}
-								>
-									Filter
-								</Button>
-							</form>
-						</div>
-						<div className={styles.sortControls}>
-							<strong>Sorted by: </strong>
-							{sortBySeverity ? (
-								<>
-									<span className={styles.sortButtonLabel}>Severity | </span>
-									<button
-										className={styles.sortButton}
-										onClick={() => setSortBySeverity(false)}
+					{isClient && (
+						<section className={`${styles.filterPanel} hide-print`}>
+							<h2 className="visually-hidden">Filters and sorting</h2>
+							<div className="input-test">
+								<form ref={filterInput}>
+									<Input
+										label="Filter by drug name"
+										placeholder="Enter drug name"
+										name="drugNameInput"
+									/>
+									<Button
+										onClick={() => handleFilter()}
+										variant={Button.variants.secondary}
 									>
-										Sort by: Name
-									</button>
-								</>
-							) : (
-								<>
-									<span className={styles.sortButtonLabel}>Name | </span>
-									<button
-										className={styles.sortButton}
-										onClick={() => setSortBySeverity(true)}
-									>
-										Sort by: Severity
-									</button>
-								</>
-							)}
-						</div>
-					</section>
+										Filter
+									</Button>
+								</form>
+							</div>
+							<div className={styles.sortControls}>
+								<strong>Sorted by: </strong>
+								{sortBySeverity ? (
+									<>
+										<span className={styles.sortButtonLabel}>Severity | </span>
+										<button
+											className={styles.sortButton}
+											onClick={() => setSortBySeverity(false)}
+										>
+											Sort by: Name
+										</button>
+									</>
+								) : (
+									<>
+										<span className={styles.sortButtonLabel}>Name | </span>
+										<button
+											className={styles.sortButton}
+											onClick={() => setSortBySeverity(true)}
+										>
+											Sort by: Severity
+										</button>
+									</>
+								)}
+							</div>
+						</section>
+					)}
 
 					{filterTerm !== "" && (
 						<div className={styles.clearFilterWrapper}>
@@ -230,7 +236,8 @@ const InteractantPage: FC<InteractantPageProps> = ({
 					{interactionsList.length ? (
 						<>
 							<h2 className="visually-hidden" id="interactions-list-heading">
-								List of interactions for {drug?.title}
+								List of interactions for{" "}
+								<span dangerouslySetInnerHTML={{ __html: title }} />
 							</h2>
 							<ol
 								className={styles.interactionsList}

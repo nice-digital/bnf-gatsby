@@ -23,6 +23,8 @@ export const Interaction: React.FC<InteractionProps> = ({
 	interactant,
 	messages,
 }: InteractionProps) => {
+	const SEVERE_INTERACTION = 4;
+
 	return (
 		<>
 			<h3 className={styles.interactantTitle}>
@@ -38,9 +40,15 @@ export const Interaction: React.FC<InteractionProps> = ({
 				{messages.map(({ message, severity, severityOrder }, messageIndex) => {
 					return (
 						<li key={messageIndex} className={styles.message}>
-							<div className={severityOrder >= 4 ? styles.severeMessage : ""}>
+							<div
+								className={
+									severityOrder >= SEVERE_INTERACTION
+										? styles.severeMessage
+										: ""
+								}
+							>
 								<div dangerouslySetInnerHTML={{ __html: message }}></div>
-								{severityOrder >= 4 && (
+								{severityOrder >= SEVERE_INTERACTION && (
 									<p>
 										<strong>Severity: {severity}</strong>
 									</p>
