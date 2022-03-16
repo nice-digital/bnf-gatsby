@@ -26,6 +26,9 @@ export const drugSchema = `
 		"The constituent drugs. This will be populated if the drug is a combination (e.g. 'tramadol with paracetamol') where each constituent exists in the BNF as a monograph in its own right."
 		constituentDrugs: ${BnfNode.ConstituentDrugs}
 
+		"The indications and dose section for the drug, including any relevant drug classes and preparations."
+		indicationsAndDose: ${BnfNode.IndicationsAndDose}
+
 		"The medicinal forms for the drug."
 		medicinalForms: ${BnfNode.MedicinalForms}!
 	}
@@ -59,9 +62,6 @@ export const drugSchema = `
 	The properties for a medicinal form. This contains all the preparations and packs for a specific medicinal form for a drug, as well as information about applicable cautionary and advisory labels, excipients and electrolytes.
 	"""
 	type ${BnfNode.MedicinalForm} {
-		"The 0-based order (or index) of the form within the drugs"
-		order: Int!
-
 		"The name of the medicinal form."
 		form: String!
 

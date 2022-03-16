@@ -1,8 +1,27 @@
 import { type NodeInput, type SourceNodesArgs } from "gatsby";
-import { type Except } from "type-fest";
+import { type Except, type Primitive } from "type-fest";
 
 import { FeedRecordSection, FeedSimpleRecord } from "../downloader/types";
 import { BnfNodeTypes, type BnfNodeType } from "../node-types";
+
+export type BuiltIns = Primitive | Date | RegExp;
+
+/**
+ * Add's a numeric `order` property to all objects within arrays, recursively.
+ * Used for creating nodes from nested arrays when we want to keep the same order
+ * as the feed.
+ *
+ * Based on type-fest's `ReadonlyDeep`
+ *
+ * @see https://github.com/sindresorhus/type-fest/blob/main/source/readonly-deep.d.ts#L37
+ */
+export type OrderedDeep<O> = O extends BuiltIns | BuiltIns[]
+	? O
+	: O extends (infer U)[]
+	? (OrderedDeep<U> & { order: number })[]
+	: O extends object
+	? { [K in keyof O]: OrderedDeep<O[K]> }
+	: O;
 
 export type TypedNodeInput<
 	TNodeType extends BnfNodeType,

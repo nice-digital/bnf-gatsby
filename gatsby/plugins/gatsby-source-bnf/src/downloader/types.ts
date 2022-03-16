@@ -57,6 +57,8 @@ export interface FeedDrug {
 	/** Note: not all 'drugs' have a primary classification, e.g. "St John's wort", "cranberry", "dairy products", "enteral feeds" etc */
 	primaryClassification?: FeedClassification;
 	secondaryClassifications: FeedClassification[];
+	/** The indications and dose section for the drug, including any relevant drug classes and preparations. */
+	indicationsAndDose?: FeedIndicationsAndDosePot;
 	/** The medicinal forms for the drug. */
 	medicinalForms: FeedMedicinalForms;
 }
@@ -77,6 +79,83 @@ export interface FeedConstituentDrug {
 	sid: SID;
 	/** The title of the constituent drug. May contain HTML mark-up */
 	title: string;
+}
+
+export interface FeedBasePot<TPotContent extends FeedBasePotContent> {
+	/** The name/title of the pot. */
+	potName: string;
+	/** The pot content that relates to relevant drug classes for the drug. This field will contain more than one entry when the drug belongs to multiple drug classes with relevant content for the pot. */
+	drugClassContent?: TPotContent[];
+	/** The pot content that relates to the drug. */
+	drugContent?: TPotContent;
+	/** Any pot content that relates to specific preparations. This field will contain more than one entry when the drug has multiple preparations with specific relevant content for the pot. */
+	prepContent?: TPotContent[];
+}
+
+export interface FeedBasePotContent {
+	/** What the content is for (the name of a drug class, drug or preparation). May contain HTML mark-up */
+	contentFor: string;
+}
+
+/** A single section of simple (unstructured) content for a BNF drug or medical device. A monograph will include content from relevant drug classes (groups of drugs that share the same properties), the drug itself, and specific preparations where the properties differ from those of the generic drug. This record has these three parts of content in the `drugClassContent`, `drugContent` and `prepContent` fields respectively. */
+export type FeedIndicationsAndDosePot =
+	FeedBasePot<FeedIndicationsAndDosePotContent>;
+
+/** The details of the indications and doses for a drug, drug class or preparation. */
+export interface FeedIndicationsAndDosePotContent extends FeedBasePotContent {
+	indicationAndDoseGroups?: FeedIndicationAndDoseGroup[];
+	/** Dose adjustments due to interactions content. May contain HTML mark-up. */
+	doseAdjustments?: string;
+	/** Extremes of body weight content. May contain HTML mark-up. */
+	extremesOfBodyWeight?: string;
+	/** dose equivalence and conversion content. May contain HTML mark-up. */
+	doseEquivalence?: string;
+	/** Potency content. May contain HTML mark-up. */
+	potency?: string;
+	/** Pharmacokinetics content. May contain HTML mark-up. */
+	pharmacokinetics?: string;
+}
+
+/** A grouping of one or more indications and the doses relevant for those indications. */
+export interface FeedIndicationAndDoseGroup {
+	/** The therapeutic indications. */
+	therapeuticIndications: [
+		FeedTherapeuticIndication,
+		...FeedTherapeuticIndication[]
+	];
+	/** The routes, indications, patient groups and doses statements. */
+	routesAndPatientGroups?: [
+		FeedRouteAndPatientGroups,
+		...FeedRouteAndPatientGroups[]
+	];
+}
+
+/** The therapeutic indication, including SNOMED CT coding where available. */
+export interface FeedTherapeuticIndication {
+	/** If available, the SNOMED CT identifier that encodes the indication. This value is a should be represented as a 64-bit integer, but it is represented as a String in this JSON to avoid any potential problems of 32-bit integer overflows. */
+	sctIndication?: `${number}`;
+	/** If available, the English preferred name of the SNOMED CT concept that encodes the therapeutic intent of the indication. */
+	sctTherapeuticIntent?: string;
+	/** The indication. May contain HTML mark-up. For example `Cataract surgery` or `Anterior segment surgery requiring rapid complete miosis` */
+	indication: string;
+}
+
+/** The route of administration and one or more patient groups with doses for that route. */
+export interface FeedRouteAndPatientGroups {
+	/** The route of administration. For example `By mouth` or `By mouth using immediate-release medicines, or by intravenous injection, or by intramuscular injection` */
+	routeOfAdministration: string;
+	/** The patient groups and dose statements for the given route of administration. */
+	patientGroups: [FeedPatientGroup, ...FeedPatientGroup[]];
+}
+
+/** A dose statement and the patient group that the dose applies to (e.g. `adult` or `child`). */
+export interface FeedPatientGroup {
+	/** The patient group that the dose applies to which can only be `adult`, `child`, or `neonate`. */
+	patientGroup: "adult" | "child" | "neonate";
+	/** Details of the patient group that the dose applies to. For example `Adult (body-weight 40 kg and above)` */
+	detailedPatientGroup: string;
+	/** The dose statement. May contain HTML mark-up. For example `1&nbsp;tablet once daily.` or `(consult product literature).` */
+	doseStatement: string;
 }
 
 /**

@@ -1,0 +1,92 @@
+@use 'sass:color';
+@use '@nice-digital/nds-core/scss/core';
+
+.indicationWrapper {
+  background: core.$nds-colour-nice-white;
+  border: 1px solid core.$nds-colour-nice-grey-2;
+  margin-bottom: core.rem(core.$nds-spacing-medium);
+  padding: core.rem(core.$nds-spacing-medium);
+}
+
+.indicationHeading {
+  break-inside: avoid;
+  margin: core.rem(0 0 core.$nds-spacing-medium);
+  max-width: none;
+}
+
+.indicationText {
+  display: block;
+}
+
+.routeOfAdministration {
+  margin-bottom: core.rem(core.$nds-spacing-medium);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.routeOfAdministrationHeading {
+  @include core.nds-p;
+  break-inside: avoid;
+  margin: core.rem(0 0 core.$nds-spacing-medium);
+  max-width: none;
+}
+
+.patientGroups {
+  margin: 0;
+}
+
+.patientGroupDose {
+  break-inside: avoid;
+  margin-bottom: core.rem(core.$nds-spacing-medium);
+  padding-left: core.rem(core.$nds-spacing-medium);
+  position: relative;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &::before {
+    content: '';
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: core.rem(core.$nds-spacing-small);
+  }
+
+  /* stylelint-disable function-parentheses-space-inside */
+  // Use patterned colours to distinguish patient groups
+  &.neonate::before {
+    background: repeating-linear-gradient(
+      -45deg,
+      core.$nds-colour-nice-teal-2,
+      core.$nds-colour-nice-teal-2 1px,
+      core.$nds-colour-nice-ice-teal 1px,
+      core.$nds-colour-nice-ice-teal 12px
+    );
+  }
+
+  &.child::before {
+    background: repeating-linear-gradient(
+      45deg,
+      color.adjust(core.$nds-colour-nice-purple, $lightness: 75%),
+      color.adjust(core.$nds-colour-nice-purple, $lightness: 75%) 1px,
+      core.$nds-colour-nice-purple 1px,
+      core.$nds-colour-nice-purple 12px
+    );
+  }
+
+  &.adult::before {
+    background: core.$nds-colour-nice-teal-2;
+  }
+}
+
+.patientGroup {
+  font-weight: bold;
+}
+
+.doseStatement {
+  margin: 0;
+}
