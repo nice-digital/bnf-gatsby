@@ -3,7 +3,8 @@ import { type FC } from "react";
 import { type FeedSimplePot } from "@nice-digital/gatsby-source-bnf";
 
 import styles from "../DrugSection.module.scss";
-import { SimplePotContent } from "../SimplePotContent/SimplePotContent";
+
+import { SimplePotContent } from "./SimplePotContent/SimplePotContent";
 
 export type SimplePotProps = FeedSimplePot & {
 	slug: string;

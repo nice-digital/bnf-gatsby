@@ -267,7 +267,7 @@ export interface FeedMonitoringPotContent extends FeedBasePotContent {
 }
 
 /** A single section of national funding content for a BNF drug or medical device. A monograph will include content from relevant drug classes (groups of drugs that share the same properties), the drug itself, and specific preparations where the properties differ from those of the generic drug. This record has these three parts of content in the `drugClassContent`, `drugContent` and `prepContent` fields respectively. */
-export type FeedNationalFundingPot = FeedBasePot<FeedMonitoringPotContent>;
+export type FeedNationalFundingPot = FeedBasePot<FeedNationalFundingPotContent>;
 
 /** The relevant decisions from NICE, SMC and AWMSG. */
 export interface FeedNationalFundingPotContent extends FeedBasePotContent {
@@ -288,7 +288,8 @@ export interface FeedFundingDecision {
 	/** The title of the funding decision, usually including the date that the decision was published. May contain HTML mark-up */
 	title?: string;
 	/** The URL to the relevant funding body's decision. */
-	uri: string;
+	url: string;
+	/** A summary of the decision. */
 	approvedForUse:
 		| "Not recommended"
 		| "Recommended"
