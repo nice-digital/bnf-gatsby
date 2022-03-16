@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 export {
 	Constituents,
 	type ConstituentsProps,

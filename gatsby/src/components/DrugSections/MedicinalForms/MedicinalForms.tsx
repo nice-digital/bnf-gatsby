@@ -43,7 +43,7 @@ export const MedicinalForms: FC<MedicinalFormsProps> = ({
 					</p>
 					<ul aria-labelledby="medicinal-forms-link">
 						{medicinalForms.map(({ form, slug }) => (
-							<li key={form} aria-labelledby={slug}>
+							<li key={form}>
 								<Link to={`/drugs/${drugSlug}/medicinal-forms/#${slug}`}>
 									{form}
 								</Link>

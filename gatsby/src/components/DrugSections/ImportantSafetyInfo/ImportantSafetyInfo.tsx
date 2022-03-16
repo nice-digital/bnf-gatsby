@@ -3,14 +3,14 @@ import { type FC } from "react";
 import { type FeedSimplePot } from "@nice-digital/gatsby-source-bnf";
 import { Panel } from "@nice-digital/nds-panel";
 
-import { type PotWithSlug } from "src/types";
+import { type WithSlug } from "src/types";
 
 import sectionStyles from "../DrugSection.module.scss";
 import { PotContent } from "../PotSection/PotContent/PotContent";
 
 import styles from "./ImportantSafetyInfo.module.scss";
 
-export type ImportantSafetyInfoProps = PotWithSlug & FeedSimplePot;
+export type ImportantSafetyInfoProps = WithSlug<FeedSimplePot>;
 
 export const ImportantSafetyInfo: FC<ImportantSafetyInfoProps> = ({
 	potName,

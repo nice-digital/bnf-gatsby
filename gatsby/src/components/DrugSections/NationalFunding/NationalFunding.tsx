@@ -7,7 +7,7 @@ import {
 	type FeedNationalFundingPotContent,
 } from "@nice-digital/gatsby-source-bnf";
 
-import { WithSlug } from "src/types";
+import { type WithSlug } from "src/types";
 
 import { PotSection } from "../PotSection/PotSection";
 

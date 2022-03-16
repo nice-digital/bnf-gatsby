@@ -1,3 +1,5 @@
+import { type Except } from "type-fest";
+
 import {
 	type FeedBaseNamedPot,
 	type FeedMedicinalForms,
@@ -39,4 +41,4 @@ export interface SlugAndTitle {
 export type ConstituentsWithSlugs = {
 	// A consituent can be null if it doesn't correspond to a monograph in its own right
 	constituents: (SlugAndTitle | null)[];
-} & FeedConstituentDrugs;
+} & Except<FeedConstituentDrugs, "constituents">;

@@ -24,7 +24,10 @@ export const Constituents: FC<ConstituentsProps> = ({
 			<ul aria-labelledby={slug}>
 				{constituents.filter(isTruthy).map(({ slug, title }) => (
 					<li key={slug}>
-						<Link to={`/drugs/${slug}/`}>{title}</Link>
+						<Link
+							to={`/drugs/${slug}/`}
+							dangerouslySetInnerHTML={{ __html: title }}
+						/>
 					</li>
 				))}
 			</ul>
