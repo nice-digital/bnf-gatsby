@@ -1,8 +1,11 @@
 import { graphql, Link } from "gatsby";
-import React, { FC, useState, useEffect, useCallback } from "react";
+import React, { FC, useState, useEffect, useCallback, useRef } from "react";
 import striptags from "striptags";
 
+import RemoveIcon from "@nice-digital/icons/lib/Remove";
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
+import { Button } from "@nice-digital/nds-button";
+import { Input } from "@nice-digital/nds-input";
 import { PageHeader } from "@nice-digital/nds-page-header";
 
 import {
@@ -38,6 +41,7 @@ const InteractantPage: FC<InteractantPageProps> = ({
 	const { siteTitleShort } = useSiteMetadata(),
 		titleNoHtml = striptags(title);
 
+	// Handle sorting of interactions
 	const [sortBySeverity, setSortBySeverity] = useState<boolean>(false);
 
 	const getSortedInteractions = useCallback(() => {
@@ -71,14 +75,43 @@ const InteractantPage: FC<InteractantPageProps> = ({
 		});
 	}, [interactions, sortBySeverity]);
 
-	const [sortedInteractions, setSortedInteractions] = useState<
-		InteractionProps[]
-	>(getSortedInteractions());
+	const [interactionsList, setInteractionsList] = useState<InteractionProps[]>(
+		getSortedInteractions()
+	);
 
-	// Sort interactants by name or severity
 	useEffect(() => {
-		setSortedInteractions(getSortedInteractions());
+		setInteractionsList(getSortedInteractions());
 	}, [sortBySeverity, getSortedInteractions]);
+
+	// Handle filtering of interactions
+	const filterInput = useRef<HTMLFormElement>(null);
+	const [filterTerm, setFilterTerm] = useState("");
+
+	const clearFilter = () => {
+		setFilterTerm("");
+		setInteractionsList(getSortedInteractions());
+		if (filterInput?.current?.drugNameInput) {
+			console.log("Clearing:", filterInput.current);
+			filterInput.current.drugNameInput.value = "";
+		}
+	};
+
+	const handleFilter = () => {
+		const input = filterInput?.current?.drugNameInput.value.trim();
+		if (input) {
+			setFilterTerm(input);
+			filterInteractions(input);
+		} else {
+			clearFilter();
+		}
+	};
+
+	const filterInteractions = (input: string) => {
+		const filteredInteractions = interactions.filter((interaction) =>
+			interaction.interactant.title.toLowerCase().includes(input.toLowerCase())
+		);
+		setInteractionsList(filteredInteractions);
+	};
 
 	return (
 		<Layout>
@@ -134,7 +167,21 @@ const InteractantPage: FC<InteractantPageProps> = ({
 				<div className={styles.leftCol}>
 					<section className={styles.filterPanel}>
 						<h2 className="visually-hidden">Filters and sorting</h2>
-						<div>TODO: Add filter</div>
+						<div className="input-test">
+							<form ref={filterInput}>
+								<Input
+									label="Filter by drug name"
+									placeholder="Enter drug name"
+									name="drugNameInput"
+								/>
+								<Button
+									onClick={() => handleFilter()}
+									variant={Button.variants.secondary}
+								>
+									Filter
+								</Button>
+							</form>
+						</div>
 						<div className={styles.sortControls}>
 							<strong>Sorted by: </strong>
 							{sortBySeverity ? (
@@ -161,11 +208,26 @@ const InteractantPage: FC<InteractantPageProps> = ({
 						</div>
 					</section>
 
+					{filterTerm !== "" && (
+						<div className={styles.clearFilterWrapper}>
+							<button
+								onClick={clearFilter}
+								type="button"
+								className={styles.clearFilterButton}
+							>
+								{filterTerm} <RemoveIcon />
+								<span className="visually-hidden">
+									Remove {filterTerm} filter
+								</span>
+							</button>
+						</div>
+					)}
+
 					<div className={styles.resultCount}>
-						Showing {interactions.length} of {interactions.length}
+						Showing {interactionsList.length} of {interactions.length}
 					</div>
 
-					{sortedInteractions.length ? (
+					{interactionsList.length ? (
 						<>
 							<h2 className="visually-hidden" id="interactions-list-heading">
 								List of interactions for {drug?.title}
@@ -174,7 +236,7 @@ const InteractantPage: FC<InteractantPageProps> = ({
 								className={styles.interactionsList}
 								aria-labelledby="interactions-list-heading"
 							>
-								{interactions.map(({ interactant, messages }) => (
+								{interactionsList.map(({ interactant, messages }) => (
 									<li
 										className={styles.interactionsListItem}
 										key={interactant.title}
