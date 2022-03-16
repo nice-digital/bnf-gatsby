@@ -18,11 +18,9 @@ import {
 	Monitoring,
 	NationalFunding,
 	SimplePot,
-} from "@/components/DrugSections";
-import {
 	IndicationsAndDose,
 	type IndicationsAndDoseProps,
-} from "@/components/IndicationsAndDose/IndicationsAndDose";
+} from "@/components/DrugSections";
 import { Layout } from "@/components/Layout/Layout";
 import { SectionNav } from "@/components/SectionNav/SectionNav";
 import { SEO } from "@/components/SEO/SEO";
@@ -183,6 +181,7 @@ const DrugPage: FC<DrugPageProps> = ({ data: { bnfDrug } }) => {
 							<Component
 								key={section.potName}
 								drugSlug={bnfDrug.slug}
+								drugTitle={bnfDrug.title}
 								{...section}
 							/>
 						);
@@ -267,6 +266,28 @@ export const query = graphql`
 				medicinalForms {
 					form
 					slug
+				}
+			}
+			monitoringRequirements {
+				potName
+				slug
+				drugClassContent {
+					contentFor
+					monitoringOfPatientParameters
+					patientMonitoringProgrammes
+					therapeuticDrugMonitoring
+				}
+				drugContent {
+					contentFor
+					monitoringOfPatientParameters
+					patientMonitoringProgrammes
+					therapeuticDrugMonitoring
+				}
+				prepContent {
+					contentFor
+					monitoringOfPatientParameters
+					patientMonitoringProgrammes
+					therapeuticDrugMonitoring
 				}
 			}
 			nationalFunding {

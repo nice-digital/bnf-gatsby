@@ -17,16 +17,18 @@ export interface MenuPageLink {
 	title: string;
 }
 
-export type PotWithSlug = FeedBaseNamedPot & {
+export type WithSlug<T extends object> = T & {
 	slug: string;
 };
+
+export type PotWithSlug = WithSlug<FeedBaseNamedPot>;
 
 /**
  * We add slugs to the feed content when we create GraphQL nodes.
  * So this type represents the original medicinal forms type from the feed but
  * augmented with slugs on each form */
 export type MedicinalFormsWithSlugs = {
-	medicinalForms: (FeedMedicinalForm & { slug: string })[];
+	medicinalForms: WithSlug<FeedMedicinalForm>[];
 } & FeedMedicinalForms;
 
 export interface SlugAndTitle {

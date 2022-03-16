@@ -1,60 +1,68 @@
+import slugify from "@sindresorhus/slugify";
 import { type FC } from "react";
+import striptags from "striptags";
 
 import {
 	type FeedNationalFundingPot,
 	type FeedNationalFundingPotContent,
 } from "@nice-digital/gatsby-source-bnf";
 
-import { type PotWithSlug } from "src/types";
+import { WithSlug } from "src/types";
+
+import { PotSection } from "../PotSection/PotSection";
 
 import { NationalFundingContent } from "./NationalFundingContent/NationalFundingContent";
 
-export type NationalFundingProps = PotWithSlug & {
-	drugContent: Required<FeedNationalFundingPotContent>;
-	drugClassContent: Required<FeedNationalFundingPotContent>[];
-	prepContent: Required<FeedNationalFundingPotContent>[];
-} & FeedNationalFundingPot;
+export type NationalFundingProps = WithSlug<FeedNationalFundingPot> & {
+	drugContent?: Required<FeedNationalFundingPotContent>;
+	drugClassContent?: Required<FeedNationalFundingPotContent>[];
+	prepContent?: Required<FeedNationalFundingPotContent>[];
+};
 
-export const NationalFunding: FC<NationalFundingProps> = ({
-	potName,
-	slug,
-	drugClassContent,
-	drugContent,
-	prepContent,
-}) => {
+export const NationalFunding: FC<NationalFundingProps> = (props) => {
 	return (
-		<section aria-labelledby={slug}>
-			<h2 id={slug} dangerouslySetInnerHTML={{ __html: potName }} />
+		<PotSection {...props}>
+			{({
+				content: {
+					contentFor,
+					initialText,
+					niceDecisions,
+					smcDecisions,
+					awmsgDecisions,
+				},
+			}) => {
+				const sectionSlugPostfix = slugify(striptags(contentFor));
 
-			{drugClassContent?.map((content) => (
-				<NationalFundingContent
-					key={content.contentFor}
-					potSlug={slug}
-					contentForPrefix="For all"
-					showHeading={true}
-					{...content}
-				/>
-			))}
+				return (
+					<>
+						<p dangerouslySetInnerHTML={{ __html: initialText }} />
 
-			{drugContent && (
-				<NationalFundingContent
-					potSlug={slug}
-					showHeading={
-						(!!prepContent && prepContent.length > 0) ||
-						(!!drugClassContent && drugClassContent.length > 0)
-					}
-					{...drugContent}
-				/>
-			)}
+						{niceDecisions.length > 0 ? (
+							<NationalFundingContent
+								slug={`nice-decisions-${sectionSlugPostfix}`}
+								heading="NICE decisions"
+								decisions={niceDecisions}
+							/>
+						) : null}
 
-			{prepContent?.map((content) => (
-				<NationalFundingContent
-					key={content.contentFor}
-					potSlug={slug}
-					showHeading={true}
-					{...content}
-				/>
-			))}
-		</section>
+						{smcDecisions.length > 0 ? (
+							<NationalFundingContent
+								slug={`smc-decisions-${sectionSlugPostfix}`}
+								heading="Scottish Medicines Consortium (SMC) decisions"
+								decisions={smcDecisions}
+							/>
+						) : null}
+
+						{awmsgDecisions.length > 0 ? (
+							<NationalFundingContent
+								slug={`awmsg-decisions-${sectionSlugPostfix}`}
+								heading="All Wales Medicines Strategy Group (AWMSG)"
+								decisions={awmsgDecisions}
+							/>
+						) : null}
+					</>
+				);
+			}}
+		</PotSection>
 	);
 };

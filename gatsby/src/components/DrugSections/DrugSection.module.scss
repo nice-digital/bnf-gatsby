@@ -2,6 +2,7 @@
 
 .section {
   border-bottom: 1px solid core.$nds-colour-border;
+  margin-bottom: core.rem(core.$nds-spacing-large);
   padding-bottom: core.rem(core.$nds-spacing-medium);
 
   /* stylelint-disable selector-class-pattern -- Classes coming from the feed HTML */

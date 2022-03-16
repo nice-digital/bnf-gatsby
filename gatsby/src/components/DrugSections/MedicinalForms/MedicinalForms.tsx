@@ -6,7 +6,7 @@ import { type MedicinalFormsWithSlugs, type PotWithSlug } from "src/types";
 import styles from "../DrugSection.module.scss";
 
 export type MedicinalFormsProps = PotWithSlug &
-	MedicinalFormsWithSlugs & { drugSlug: string };
+	MedicinalFormsWithSlugs & { drugSlug: string; drugTitle: string };
 
 export const MedicinalForms: FC<MedicinalFormsProps> = ({
 	potName,
@@ -15,6 +15,7 @@ export const MedicinalForms: FC<MedicinalFormsProps> = ({
 	initialStatement,
 	specialOrderManufacturersStatement,
 	drugSlug,
+	drugTitle,
 }) => {
 	return (
 		<section aria-labelledby={slug} className={styles.section}>
@@ -28,8 +29,19 @@ export const MedicinalForms: FC<MedicinalFormsProps> = ({
 					}}
 				/>
 			)}
+			<p>
+				View{" "}
+				<Link
+					to={`/drugs/${drugSlug}/medicinal-forms/`}
+					id="medicinal-forms-link"
+				>
+					<span dangerouslySetInnerHTML={{ __html: drugTitle }} /> medicinal
+					forms and pricing information
+				</Link>{" "}
+				or jump straight to:
+			</p>
 			{medicinalForms && medicinalForms?.length ? (
-				<ul>
+				<ul aria-labelledby="medicinal-forms-link">
 					{medicinalForms.map(({ form, slug }) => (
 						<li key={form} aria-labelledby={slug}>
 							<Link to={`/drugs/${drugSlug}/medicinal-forms/#${slug}`}>

@@ -1,0 +1,7 @@
+.panelContents {
+  > :last-child {
+    // Panel removes bottoms margins of direct children by default. But because we
+    // have HTML from the feed and use dangerouslySetInnerHTML those rules don't apply
+    margin-bottom: 0;
+  }
+}

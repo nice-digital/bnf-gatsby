@@ -1,64 +1,48 @@
-import slugify from "@sindresorhus/slugify";
-import { type FC } from "react";
-import striptags from "striptags";
+import { Link } from "@reach/router";
+import { type FC, type ReactNode } from "react";
 
-import { type FeedNationalFundingPotContent } from "@nice-digital/gatsby-source-bnf";
+import { FeedFundingDecision } from "@nice-digital/gatsby-source-bnf";
+import { Card } from "@nice-digital/nds-card";
 
-import { NationalFundingDecisionsGroup } from "../NationalFundingDecisionsGroup/NationalFundingDecisionsGroup";
+import styles from "./NationalFundingContent.module.scss";
 
-export interface NationalFundingContentProps
-	extends Required<FeedNationalFundingPotContent> {
-	potSlug: string;
-	contentForPrefix?: "For" | "For all";
-	showHeading: boolean;
+export interface NationalFundingContentProps {
+	decisions: FeedFundingDecision[];
+	slug: string;
+	heading: ReactNode;
 }
 
 export const NationalFundingContent: FC<NationalFundingContentProps> = ({
-	potSlug,
-	contentForPrefix = "For",
-	contentFor,
-	initialText,
-	niceDecisions,
-	smcDecisions,
-	awmsgDecisions,
-	showHeading,
-}) => {
-	const slug = `${potSlug}-${slugify(striptags(contentFor))}`;
-
-	return (
-		<section aria-labelledby={slug}>
-			<h3
-				id={slug}
-				dangerouslySetInnerHTML={{
-					__html: `${contentForPrefix} ${contentFor}`,
-				}}
-				className={showHeading ? "" : "visually-hidden"}
-			/>
-			<p dangerouslySetInnerHTML={{ __html: initialText }} />
-
-			{niceDecisions.length > 0 ? (
-				<NationalFundingDecisionsGroup
-					slug={`${slug}-nice`}
-					heading="NICE decisions"
-					decisions={niceDecisions}
-				/>
-			) : null}
-
-			{smcDecisions.length > 0 ? (
-				<NationalFundingDecisionsGroup
-					slug={`${slug}-smc`}
-					heading="Scottish Medicines Consortium (SMC) decisions"
-					decisions={smcDecisions}
-				/>
-			) : null}
-
-			{awmsgDecisions.length > 0 ? (
-				<NationalFundingDecisionsGroup
-					slug={`${slug}-awmsg`}
-					heading="All Wales Medicines Strategy Group (AWMSG) "
-					decisions={awmsgDecisions}
-				/>
-			) : null}
-		</section>
-	);
-};
+	decisions,
+	slug,
+	heading,
+}) => (
+	<section aria-labelledby={slug}>
+		<h4 id={slug}>{heading}</h4>
+		<ul className={`list--unstyled ${styles.list}`} aria-labelledby={slug}>
+			{decisions.map(({ fundingIdentifier, url, approvedForUse, title }) => (
+				<li key={fundingIdentifier}>
+					<Card
+						headingText={fundingIdentifier}
+						elementType="article"
+						summary={
+							title ? (
+								<span dangerouslySetInnerHTML={{ __html: title }} />
+							) : null
+						}
+						link={{
+							destination: url,
+						}}
+						metadata={[
+							{
+								label: "Funding decision:",
+								visibleLabel: false,
+								value: approvedForUse,
+							},
+						]}
+					/>
+				</li>
+			))}
+		</ul>
+	</section>
+);

@@ -5,7 +5,10 @@ import { Panel } from "@nice-digital/nds-panel";
 
 import { type PotWithSlug } from "src/types";
 
-import styles from "../DrugSection.module.scss";
+import sectionStyles from "../DrugSection.module.scss";
+import { PotContent } from "../PotSection/PotContent/PotContent";
+
+import styles from "./ImportantSafetyInfo.module.scss";
 
 export type ImportantSafetyInfoProps = PotWithSlug & FeedSimplePot;
 
@@ -17,10 +20,57 @@ export const ImportantSafetyInfo: FC<ImportantSafetyInfoProps> = ({
 	prepContent,
 }) => {
 	return (
-		<section aria-labelledby={slug} className={styles.section}>
+		<section aria-labelledby={slug} className={sectionStyles.section}>
 			<Panel variant="primary">
 				<h2 id={slug} dangerouslySetInnerHTML={{ __html: potName }} />
-				<p>TODO: Important safety info</p>
+
+				{drugClassContent?.map(({ content, contentFor }) => (
+					<PotContent
+						key={contentFor}
+						potSlug={slug}
+						contentFor={contentFor}
+						contentForPrefix="For all"
+						showHeading={true}
+					>
+						<div
+							className={styles.panelContents}
+							dangerouslySetInnerHTML={{ __html: content }}
+						/>
+					</PotContent>
+				))}
+
+				{drugContent && (
+					<PotContent
+						key={drugContent.contentFor}
+						potSlug={slug}
+						contentFor={drugContent.contentFor}
+						contentForPrefix="For"
+						showHeading={
+							(!!prepContent && prepContent.length > 0) ||
+							(!!drugClassContent && drugClassContent.length > 0)
+						}
+					>
+						<div
+							className={styles.panelContents}
+							dangerouslySetInnerHTML={{ __html: drugContent.content }}
+						/>
+					</PotContent>
+				)}
+
+				{prepContent?.map(({ content, contentFor }) => (
+					<PotContent
+						key={contentFor}
+						potSlug={slug}
+						contentFor={contentFor}
+						contentForPrefix="For"
+						showHeading={true}
+					>
+						<div
+							className={styles.panelContents}
+							dangerouslySetInnerHTML={{ __html: content }}
+						/>
+					</PotContent>
+				))}
 			</Panel>
 		</section>
 	);

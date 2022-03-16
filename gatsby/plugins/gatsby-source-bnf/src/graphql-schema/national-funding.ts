@@ -32,19 +32,19 @@ export const nationalFundingSchema = `
 		initialText: String!
 
 		"The NICE funding decisions."
-		niceDecisions: [${BnfNode.FundingDecision}!]!
+		niceDecisions: [${BnfNode.NationalFundingDecision}!]!
 
 		"The SMC funding decisions."
-		smcDecisions: [${BnfNode.FundingDecision}!]!
+		smcDecisions: [${BnfNode.NationalFundingDecision}!]!
 
 		"The AWMSG funding decisions."
-		awmsgDecisions: [${BnfNode.FundingDecision}!]!
+		awmsgDecisions: [${BnfNode.NationalFundingDecision}!]!
 	}
 
 	"""
 	A specific funding decision.
 	"""
-	type ${BnfNode.FundingDecision} {
+	type ${BnfNode.NationalFundingDecision} {
 		"The funding identifier (e.g. TA177)"
 		fundingIdentifier: String!
 

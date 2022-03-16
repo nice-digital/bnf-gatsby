@@ -5,6 +5,8 @@ import { useIsTruthy } from "@/hooks/useIsTruthy";
 
 import { type ConstituentsWithSlugs, type PotWithSlug } from "src/types";
 
+import styles from "../DrugSection.module.scss";
+
 export type ConstituentsProps = PotWithSlug & ConstituentsWithSlugs;
 
 export const Constituents: FC<ConstituentsProps> = ({
@@ -16,7 +18,7 @@ export const Constituents: FC<ConstituentsProps> = ({
 	const isTruthy = useIsTruthy();
 
 	return (
-		<section aria-labelledby={slug}>
+		<section aria-labelledby={slug} className={styles.section}>
 			<h2 id={slug} dangerouslySetInnerHTML={{ __html: potName }} />
 			<p dangerouslySetInnerHTML={{ __html: message }} />
 			<ul aria-labelledby={slug}>

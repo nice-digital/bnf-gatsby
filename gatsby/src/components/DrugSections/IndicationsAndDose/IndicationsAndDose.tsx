@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState, type FC } from "react";
 
 import { type FeedIndicationsAndDosePot } from "@nice-digital/gatsby-source-bnf";
 
-import { IndicationsAndDoseContent } from "@/components/IndicationsAndDoseContent/IndicationsAndDoseContent";
+import { IndicationsAndDoseContent } from "@/components/DrugSections/IndicationsAndDose/IndicationsAndDoseContent/IndicationsAndDoseContent";
 
 import styles from "./IndicationsAndDose.module.scss";
 
@@ -35,7 +35,7 @@ export const IndicationsAndDose: FC<IndicationsAndDoseProps> = ({
 	}, [setDefaultOpen]);
 
 	return (
-		<section className={styles.wrapper} aria-labelledby={slug}>
+		<section aria-labelledby={slug} className={styles.wrapper}>
 			<h2 id={slug} dangerouslySetInnerHTML={{ __html: potName }} />
 
 			{isMounted && collapsible ? (
