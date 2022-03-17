@@ -1,5 +1,5 @@
 import { graphql, Link } from "gatsby";
-import React, { FC, useState, useEffect, useCallback } from "react";
+import React, { FC, useState, useEffect } from "react";
 import striptags from "striptags";
 
 import RemoveIcon from "@nice-digital/icons/lib/Remove";
@@ -12,12 +12,11 @@ import {
 	Interaction,
 	InteractionProps,
 } from "@/components/Interaction/Interaction";
+import interactionStyles from "@/components/Interaction/Interaction.module.scss";
 import { Layout } from "@/components/Layout/Layout";
 import { SEO } from "@/components/SEO/SEO";
 import { useIsClient } from "@/hooks/useIsClient";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
-
-import interactionStyles from "../../components/Interaction/Interaction.module.scss";
 
 import styles from "./{BnfInteractant.slug}.module.scss";
 
@@ -34,6 +33,51 @@ export interface InteractantPageProps {
 	};
 }
 
+const sortInteractions = (
+	interactions: InteractionProps[],
+	sortBySeverity: boolean,
+	searchFilterTerm: string
+) => {
+	return interactions
+		.filter((interaction) => {
+			if (!searchFilterTerm) {
+				return true;
+			} else {
+				return interaction.interactant.title
+					.toLowerCase()
+					.includes(searchFilterTerm.toLowerCase());
+			}
+		})
+		.sort((a, b) => {
+			if (sortBySeverity) {
+				// First, sort by severity within each message (for drugs with
+				// multiple interactions)
+				interactions.forEach((i) => {
+					i.messages.sort((a, b) => {
+						return a.severityOrder < b.severityOrder ? 1 : -1;
+					});
+				});
+
+				// Next, sort the whole list
+				const aMaxSeverity = Math.max(
+					...a.messages.map((m) => m.severityOrder)
+				);
+				const bMaxSeverity = Math.max(
+					...b.messages.map((m) => m.severityOrder)
+				);
+
+				// Sort alphabetically within each type of severity
+				if (aMaxSeverity === bMaxSeverity) {
+					return a.interactant.title.localeCompare(b.interactant.title);
+				} else {
+					return aMaxSeverity < bMaxSeverity ? 1 : -1;
+				}
+			} else {
+				return a.interactant.title.localeCompare(b.interactant.title);
+			}
+		});
+};
+
 const InteractantPage: FC<InteractantPageProps> = ({
 	data: {
 		bnfInteractant: { title, drug, interactions },
@@ -47,59 +91,23 @@ const InteractantPage: FC<InteractantPageProps> = ({
 	const [filterTerm, setFilterTerm] = useState<string>(""); // Stores current value of input
 	const [searchFilterTerm, setSearchFilterTerm] = useState<string>(""); // Stores value of input used when search is triggered
 
-	const getSortedInteractions = useCallback(() => {
-		return interactions
-			.filter((interaction) => {
-				if (!searchFilterTerm) {
-					return true;
-				} else {
-					return interaction.interactant.title
-						.toLowerCase()
-						.includes(searchFilterTerm.toLowerCase());
-				}
-			})
-			.sort((a, b) => {
-				if (sortBySeverity) {
-					// First, sort by severity within each message (for drugs with
-					// multiple interactions)
-					interactions.forEach((i) => {
-						i.messages.sort((a, b) => {
-							return a.severityOrder < b.severityOrder ? 1 : -1;
-						});
-					});
-
-					// Next, sort the whole list
-					const aMaxSeverity = Math.max(
-						...a.messages.map((m) => m.severityOrder)
-					);
-					const bMaxSeverity = Math.max(
-						...b.messages.map((m) => m.severityOrder)
-					);
-
-					// Sort alphabetically within each type of severity
-					if (aMaxSeverity === bMaxSeverity) {
-						return a.interactant.title.localeCompare(b.interactant.title);
-					} else {
-						return aMaxSeverity < bMaxSeverity ? 1 : -1;
-					}
-				} else {
-					return a.interactant.title.localeCompare(b.interactant.title);
-				}
-			});
-	}, [interactions, sortBySeverity, searchFilterTerm]);
+	const getSortedInteractions = (
+		interactions: InteractionProps[],
+		sortBySeverity: boolean,
+		searchFilterTerm: string
+	) => {
+		return sortInteractions(interactions, sortBySeverity, searchFilterTerm);
+	};
 
 	const [interactionsList, setInteractionsList] = useState<InteractionProps[]>(
-		() => getSortedInteractions()
+		() => getSortedInteractions(interactions, sortBySeverity, searchFilterTerm)
 	);
 
 	useEffect(() => {
-		setInteractionsList(getSortedInteractions());
-	}, [getSortedInteractions]);
-
-	// Handle filtering of interactions
-	const handleFilter = () => {
-		setSearchFilterTerm(filterTerm);
-	};
+		setInteractionsList(
+			getSortedInteractions(interactions, sortBySeverity, searchFilterTerm)
+		);
+	}, [interactions, sortBySeverity, searchFilterTerm]);
 
 	return (
 		<Layout>
@@ -158,25 +166,25 @@ const InteractantPage: FC<InteractantPageProps> = ({
 					{isClient && (
 						<section className={`${styles.filterPanel} hide-print`}>
 							<h2 className="visually-hidden">Filters and sorting</h2>
-							<div className="input-test">
-								<form>
-									<Input
-										label="Filter by drug name"
-										placeholder="Enter drug name"
-										onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-											setFilterTerm(e.target.value)
-										}
-										name="drugNameInput"
-										value={filterTerm}
-									/>
-									<Button
-										onClick={handleFilter}
-										variant={Button.variants.secondary}
-									>
-										Filter
-									</Button>
-								</form>
-							</div>
+							<form className={styles.filterForm}>
+								<Input
+									className={styles.filterInput}
+									label="Filter by drug name"
+									placeholder="Enter drug name"
+									onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+										setFilterTerm(e.target.value)
+									}
+									name="drugNameInput"
+									value={filterTerm}
+								/>
+								<Button
+									onClick={() => setSearchFilterTerm(filterTerm)}
+									variant={Button.variants.secondary}
+									className={styles.filterButton}
+								>
+									Filter
+								</Button>
+							</form>
 							<div className={styles.sortControls}>
 								<strong>Sorted by: </strong>
 								{sortBySeverity ? (
@@ -227,7 +235,7 @@ const InteractantPage: FC<InteractantPageProps> = ({
 					</div>
 
 					{interactionsList.length ? (
-						<>
+						<section aria-live="polite">
 							<h2 className="visually-hidden" id="interactions-list-heading">
 								List of interactions for{" "}
 								<span dangerouslySetInnerHTML={{ __html: title }} />
@@ -248,7 +256,7 @@ const InteractantPage: FC<InteractantPageProps> = ({
 									</li>
 								))}
 							</ol>
-						</>
+						</section>
 					) : null}
 				</div>
 			</div>

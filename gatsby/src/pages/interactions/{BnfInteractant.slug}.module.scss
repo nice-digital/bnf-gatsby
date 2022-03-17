@@ -43,6 +43,28 @@
   }
 }
 
+.filterForm {
+  @include core.mq($from: md) {
+    align-items: flex-end;
+    display: flex;
+    flex: 1 0;
+    padding-right: core.rem(core.$nds-spacing-medium);
+  }
+}
+
+.filterInput {
+  @include core.mq($from: md) {
+    flex: 1 0;
+    margin-bottom: core.rem(2px);
+  }
+}
+
+.filterButton {
+  @include core.mq($from: md) {
+    margin: 0 0 0 core.rem(core.$nds-spacing-medium);
+  }
+}
+
 .filterPanel {
   margin-bottom: core.rem(core.$nds-spacing-medium);
 
