@@ -1,12 +1,11 @@
 import { graphql, Link } from "gatsby";
 import React, { useMemo, type ElementType, type FC } from "react";
 import striptags from "striptags";
-import { type Merge, type Except, type SetRequired } from "type-fest";
+import { type Merge, type Except } from "type-fest";
 
 import {
 	type FeedDrug,
 	type FeedBaseNamedPot,
-	type FeedMedicinalForms,
 } from "@nice-digital/gatsby-source-bnf";
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
 import { Grid, GridItem } from "@nice-digital/nds-grid";
@@ -17,6 +16,7 @@ import {
 	Constituents,
 	ImportantSafetyInfo,
 	MedicinalForms,
+	type MedicinalFormsProps,
 	Monitoring,
 	NationalFunding,
 	SimplePot,
@@ -65,7 +65,12 @@ export interface DrugPageProps {
 					constituents: SlugAndTitle[];
 				} | null;
 				indicationsAndDose: IndicationsAndDoseProps | null;
-				medicinalForms: SetRequired<FeedMedicinalForms, "medicinalForms">;
+				medicinalForms: Pick<
+					MedicinalFormsProps,
+					| "initialStatement"
+					| "specialOrderManufacturersStatement"
+					| "medicinalForms"
+				>;
 			}
 		>;
 	};

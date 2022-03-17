@@ -24,6 +24,7 @@ const drug: DrugPageProps["data"]["bnfDrug"] = {
 	lessSuitableForPrescribing: null,
 	medicinalForms: {
 		initialStatement: "Nothing to see here",
+		specialOrderManufacturersStatement: null,
 		medicinalForms: [],
 	},
 	monitoringRequirements: null,

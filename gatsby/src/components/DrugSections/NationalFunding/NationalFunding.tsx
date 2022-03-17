@@ -1,7 +1,6 @@
 import slugify from "@sindresorhus/slugify";
 import { type FC } from "react";
 import striptags from "striptags";
-import { type Merge } from "type-fest";
 
 import {
 	type FeedNationalFundingPot,

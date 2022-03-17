@@ -1,12 +1,17 @@
 import { Link } from "gatsby";
 import { type FC } from "react";
 
-import { type MedicinalFormsWithSlugs, type PotWithSlug } from "src/types";
+import { type PotWithSlug } from "src/types";
 
 import styles from "../DrugSection.module.scss";
 
-export type MedicinalFormsProps = PotWithSlug &
-	MedicinalFormsWithSlugs & { drugSlug: string; drugTitle: string };
+export type MedicinalFormsProps = PotWithSlug & {
+	drugSlug: string;
+	drugTitle: string;
+	initialStatement: string;
+	specialOrderManufacturersStatement: string | null;
+	medicinalForms: { form: string; slug: string }[];
+};
 
 export const MedicinalForms: FC<MedicinalFormsProps> = ({
 	potName,

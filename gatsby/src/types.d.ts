@@ -31,7 +31,7 @@ export type PotWithSlug = WithSlug<FeedBaseNamedPot>;
  * augmented with slugs on each form */
 export type MedicinalFormsWithSlugs = {
 	medicinalForms: WithSlug<FeedMedicinalForm>[];
-} & FeedMedicinalForms;
+} & Except<FeedMedicinalForms, "medicinalForms">;
 
 export interface SlugAndTitle {
 	title: string;
