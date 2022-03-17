@@ -109,6 +109,11 @@ const InteractantPage: FC<InteractantPageProps> = ({
 		);
 	}, [interactions, sortBySeverity, searchFilterTerm]);
 
+	const clearFilters = () => {
+		setFilterTerm("");
+		setSearchFilterTerm("");
+	};
+
 	return (
 		<Layout>
 			<SEO
@@ -215,49 +220,62 @@ const InteractantPage: FC<InteractantPageProps> = ({
 					{searchFilterTerm != "" && (
 						<div className={styles.clearFilterWrapper}>
 							<button
-								onClick={() => {
-									setFilterTerm("");
-									setSearchFilterTerm("");
-								}}
+								onClick={clearFilters}
 								type="button"
 								className={styles.clearFilterButton}
 							>
-								{filterTerm} <RemoveIcon />
+								{searchFilterTerm} <RemoveIcon />
 								<span className="visually-hidden">
-									Remove {filterTerm} filter
+									Remove {searchFilterTerm} filter
 								</span>
 							</button>
 						</div>
 					)}
 
-					<div className={styles.resultCount}>
-						Showing {interactionsList.length} of {interactions.length}
-					</div>
-
 					{interactionsList.length ? (
-						<section aria-live="polite">
-							<h2 className="visually-hidden" id="interactions-list-heading">
-								List of interactions for{" "}
-								<span dangerouslySetInnerHTML={{ __html: title }} />
-							</h2>
-							<ol
-								className={styles.interactionsList}
-								aria-labelledby="interactions-list-heading"
-							>
-								{interactionsList.map(({ interactant, messages }) => (
-									<li
-										className={styles.interactionsListItem}
-										key={interactant.title}
-									>
-										<Interaction
-											interactant={interactant}
-											messages={messages}
-										/>
-									</li>
-								))}
-							</ol>
-						</section>
-					) : null}
+						<>
+							<div className={styles.resultCount}>
+								Showing {interactionsList.length} of {interactions.length}
+							</div>
+							<section aria-live="polite">
+								<h2 className="visually-hidden" id="interactions-list-heading">
+									List of interactions for{" "}
+									<span dangerouslySetInnerHTML={{ __html: title }} />
+								</h2>
+								<ol
+									className={styles.interactionsList}
+									aria-labelledby="interactions-list-heading"
+								>
+									{interactionsList.map(({ interactant, messages }) => (
+										<li
+											className={styles.interactionsListItem}
+											key={interactant.title}
+										>
+											<Interaction
+												interactant={interactant}
+												messages={messages}
+											/>
+										</li>
+									))}
+								</ol>
+							</section>
+						</>
+					) : (
+						<>
+							<h2 className={styles.noResultsHeading}>No results found</h2>
+							<p>
+								We couldn&apos;t find any results that matched your filter. Try{" "}
+								<button
+									type="button"
+									className={styles.linkButton}
+									onClick={clearFilters}
+								>
+									clearing your filters
+								</button>{" "}
+								and starting again.
+							</p>
+						</>
+					)}
 				</div>
 			</div>
 		</Layout>

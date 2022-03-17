@@ -37,26 +37,43 @@ export const Interaction: React.FC<InteractionProps> = ({
 				)}
 			</h3>
 			<ul className={styles.messageList}>
-				{messages.map(({ message, severity, severityOrder }, messageIndex) => {
-					return (
-						<li key={messageIndex} className={styles.message}>
-							<div
-								className={
-									severityOrder >= SEVERE_INTERACTION
-										? styles.severeMessage
-										: ""
-								}
-							>
-								<div dangerouslySetInnerHTML={{ __html: message }}></div>
-								{severityOrder >= SEVERE_INTERACTION && (
-									<p>
-										<strong>Severity: {severity}</strong>
-									</p>
-								)}
-							</div>
-						</li>
-					);
-				})}
+				{messages.map(
+					({ message, severity, severityOrder, evidence }, messageIndex) => {
+						const isSevereInteraction = severityOrder >= SEVERE_INTERACTION;
+						const showSupplementaryInfo =
+							isSevereInteraction || evidence !== null;
+
+						return (
+							<li key={messageIndex} className={styles.message}>
+								<div
+									className={isSevereInteraction ? styles.severeMessage : ""}
+								>
+									<div dangerouslySetInnerHTML={{ __html: message }}></div>
+									{showSupplementaryInfo && (
+										<dl className={styles.supplementaryInfo}>
+											{isSevereInteraction && (
+												<>
+													<dt>
+														<strong>Severity:</strong>
+													</dt>
+													<dd>
+														<strong>{severity}</strong>
+													</dd>
+												</>
+											)}{" "}
+											{evidence !== null && (
+												<>
+													<dt>Evidence:</dt>
+													<dd>{evidence}</dd>
+												</>
+											)}
+										</dl>
+									)}
+								</div>
+							</li>
+						);
+					}
+				)}
 			</ul>
 		</>
 	);

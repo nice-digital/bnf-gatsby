@@ -107,3 +107,15 @@
 .resultCount {
   font-weight: bold;
 }
+
+.noResultsHeading {
+  @include core.nds-h5();
+}
+
+.linkButton {
+  @include core.nds-link-default;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+}
