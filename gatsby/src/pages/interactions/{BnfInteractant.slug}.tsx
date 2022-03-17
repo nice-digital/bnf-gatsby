@@ -90,29 +90,20 @@ const InteractantPage: FC<InteractantPageProps> = ({
 	const [sortBySeverity, setSortBySeverity] = useState<boolean>(false);
 	const [filterTerm, setFilterTerm] = useState<string>(""); // Stores current value of input
 	const [searchFilterTerm, setSearchFilterTerm] = useState<string>(""); // Stores value of input used when search is triggered
-
-	const getSortedInteractions = (
-		interactions: InteractionProps[],
-		sortBySeverity: boolean,
-		searchFilterTerm: string
-	) => {
-		return sortInteractions(interactions, sortBySeverity, searchFilterTerm);
-	};
-
 	const [interactionsList, setInteractionsList] = useState<InteractionProps[]>(
-		() => getSortedInteractions(interactions, sortBySeverity, searchFilterTerm)
+		() => sortInteractions(interactions, sortBySeverity, searchFilterTerm)
 	);
-
-	useEffect(() => {
-		setInteractionsList(
-			getSortedInteractions(interactions, sortBySeverity, searchFilterTerm)
-		);
-	}, [interactions, sortBySeverity, searchFilterTerm]);
 
 	const clearFilters = () => {
 		setFilterTerm("");
 		setSearchFilterTerm("");
 	};
+
+	useEffect(() => {
+		setInteractionsList(
+			sortInteractions(interactions, sortBySeverity, searchFilterTerm)
+		);
+	}, [interactions, sortBySeverity, searchFilterTerm]);
 
 	return (
 		<Layout>
