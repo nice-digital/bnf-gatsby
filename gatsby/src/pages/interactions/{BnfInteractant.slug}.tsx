@@ -1,5 +1,5 @@
 import { graphql, Link } from "gatsby";
-import React, { FC, useState, useEffect, useCallback, useRef } from "react";
+import React, { FC, useState, useEffect, useCallback } from "react";
 import striptags from "striptags";
 
 import RemoveIcon from "@nice-digital/icons/lib/Remove";
@@ -43,76 +43,62 @@ const InteractantPage: FC<InteractantPageProps> = ({
 	const { siteTitleShort } = useSiteMetadata(),
 		titleNoHtml = striptags(title);
 
-	// Handle sorting of interactions
 	const [sortBySeverity, setSortBySeverity] = useState<boolean>(false);
+	const [filterTerm, setFilterTerm] = useState<string>(""); // Stores current value of input
+	const [searchFilterTerm, setSearchFilterTerm] = useState<string>(""); // Stores value of input used when search is triggered
 
 	const getSortedInteractions = useCallback(() => {
-		return interactions.sort((a, b) => {
-			if (sortBySeverity) {
-				// First, sort by severity within each message (for drugs with
-				// multiple interactions)
-				interactions.forEach((i) => {
-					i.messages.sort((a, b) => {
-						return a.severityOrder < b.severityOrder ? 1 : -1;
-					});
-				});
-
-				// Next, sort the whole list
-				const aMaxSeverity = Math.max(
-					...a.messages.map((m) => m.severityOrder)
-				);
-				const bMaxSeverity = Math.max(
-					...b.messages.map((m) => m.severityOrder)
-				);
-
-				// Sort alphabetically within each type of severity
-				if (aMaxSeverity === bMaxSeverity) {
-					return a.interactant.title.localeCompare(b.interactant.title);
+		return interactions
+			.filter((interaction) => {
+				if (!searchFilterTerm) {
+					return true;
 				} else {
-					return aMaxSeverity < bMaxSeverity ? 1 : -1;
+					return interaction.interactant.title
+						.toLowerCase()
+						.includes(searchFilterTerm.toLowerCase());
 				}
-			} else {
-				return a.interactant.title.localeCompare(b.interactant.title);
-			}
-		});
-	}, [interactions, sortBySeverity]);
+			})
+			.sort((a, b) => {
+				if (sortBySeverity) {
+					// First, sort by severity within each message (for drugs with
+					// multiple interactions)
+					interactions.forEach((i) => {
+						i.messages.sort((a, b) => {
+							return a.severityOrder < b.severityOrder ? 1 : -1;
+						});
+					});
+
+					// Next, sort the whole list
+					const aMaxSeverity = Math.max(
+						...a.messages.map((m) => m.severityOrder)
+					);
+					const bMaxSeverity = Math.max(
+						...b.messages.map((m) => m.severityOrder)
+					);
+
+					// Sort alphabetically within each type of severity
+					if (aMaxSeverity === bMaxSeverity) {
+						return a.interactant.title.localeCompare(b.interactant.title);
+					} else {
+						return aMaxSeverity < bMaxSeverity ? 1 : -1;
+					}
+				} else {
+					return a.interactant.title.localeCompare(b.interactant.title);
+				}
+			});
+	}, [interactions, sortBySeverity, searchFilterTerm]);
 
 	const [interactionsList, setInteractionsList] = useState<InteractionProps[]>(
-		getSortedInteractions()
+		() => getSortedInteractions()
 	);
 
 	useEffect(() => {
 		setInteractionsList(getSortedInteractions());
-	}, [sortBySeverity, getSortedInteractions]);
+	}, [getSortedInteractions]);
 
 	// Handle filtering of interactions
-	const filterInput = useRef<HTMLFormElement>(null);
-	const [filterTerm, setFilterTerm] = useState("");
-
-	const clearFilter = () => {
-		setFilterTerm("");
-		setInteractionsList(getSortedInteractions());
-		if (filterInput?.current?.drugNameInput) {
-			console.log("Clearing:", filterInput.current);
-			filterInput.current.drugNameInput.value = "";
-		}
-	};
-
 	const handleFilter = () => {
-		const input = filterInput?.current?.drugNameInput.value.trim();
-		if (input) {
-			setFilterTerm(input);
-			filterInteractions(input);
-		} else {
-			clearFilter();
-		}
-	};
-
-	const filterInteractions = (input: string) => {
-		const filteredInteractions = interactions.filter((interaction) =>
-			interaction.interactant.title.toLowerCase().includes(input.toLowerCase())
-		);
-		setInteractionsList(filteredInteractions);
+		setSearchFilterTerm(filterTerm);
 	};
 
 	return (
@@ -140,7 +126,7 @@ const InteractantPage: FC<InteractantPageProps> = ({
 				lead={
 					drug ? (
 						<Link to={`/drugs/${drug.slug}/`}>
-							View <span dangerouslySetInnerHTML={{ __html: title }} />
+							View <span dangerouslySetInnerHTML={{ __html: drug.title }} />{" "}
 							monograph page
 						</Link>
 					) : null
@@ -173,14 +159,18 @@ const InteractantPage: FC<InteractantPageProps> = ({
 						<section className={`${styles.filterPanel} hide-print`}>
 							<h2 className="visually-hidden">Filters and sorting</h2>
 							<div className="input-test">
-								<form ref={filterInput}>
+								<form>
 									<Input
 										label="Filter by drug name"
 										placeholder="Enter drug name"
+										onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+											setFilterTerm(e.target.value)
+										}
 										name="drugNameInput"
+										value={filterTerm}
 									/>
 									<Button
-										onClick={() => handleFilter()}
+										onClick={handleFilter}
 										variant={Button.variants.secondary}
 									>
 										Filter
@@ -214,10 +204,13 @@ const InteractantPage: FC<InteractantPageProps> = ({
 						</section>
 					)}
 
-					{filterTerm !== "" && (
+					{searchFilterTerm != "" && (
 						<div className={styles.clearFilterWrapper}>
 							<button
-								onClick={clearFilter}
+								onClick={() => {
+									setFilterTerm("");
+									setSearchFilterTerm("");
+								}}
 								type="button"
 								className={styles.clearFilterButton}
 							>
