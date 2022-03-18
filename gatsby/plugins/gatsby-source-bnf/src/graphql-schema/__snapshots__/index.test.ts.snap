@@ -259,7 +259,7 @@ exports[`schema should match snapshot 1`] = `
 
 
 	\\"\\"\\"
-	An interactant, which is a substance against which interaction messages are authored. Interactions are generally authored against moieties while some drug monographs are authored against salts (e.g. 'warfarin' and 'warfarin sodium'.
+	An interactant, which is a substance against which interaction messages are authored. Interactions are generally authored against moieties while some drug monographs are authored against salts (e.g. 'warfarin' and 'warfarin sodium').
 	\\"\\"\\"
 	type BnfInteractant implements Node @dontInfer {
 		\\"The SID for the Interactant e.g. _694410247 which may, or may not, match the sid of a drug\\"
@@ -273,6 +273,42 @@ exports[`schema should match snapshot 1`] = `
 
 		\\"The slugified and lowercased title, used as a URL path\\"
 		slug: String! @slug(field: \\"title\\")
+
+		\\"An array of interactions related to this particular interactant\\"
+		interactions: [BnfInteraction!]!
+	}
+
+	\\"\\"\\"
+	An interaction, which is a combination of two interactants and an array of interaction messages that give further
+	details on this combination.
+	\\"\\"\\"
+	type BnfInteraction @dontInfer {
+		\\"The second interactant\\"
+		interactant: BnfInteractant! @link(by: \\"sid\\")
+
+		\\"The messages for this interaction\\"
+		messages: [BnfInteractionMessage!]!
+	}
+
+	\\"\\"\\"
+	An interaction message, which contains am HTML explanation of the nature of the interaction as well as details
+	of its severity.
+	\\"\\"\\"
+	type BnfInteractionMessage @dontInfer {
+		\\"An HTML explanation of the nature of the interaction\\"
+		message: String!
+
+		\\"A grading of how severe this interaction might be, e.g. severe/moderate\\"
+		severity: String!
+
+		\\"An integer that corresponds to the level of severity, with higher numbers indicating greater severity. Useful for sorting. Severe = 4; Moderate = 3; Mild = 2; Normal = 1; Unknown = 0\\"
+		severityOrder: Int!
+
+		\\"The evidence for the interaction. This will only be present for messages that are not describing additive effects (i.e. 'additiveEffect' is false). Can only be 'Study', 'Anecdotal', or 'Theoretical'.\\"
+		evidence: String
+
+		\\"Whether the interaction is an additive effect (true) or not (false).\\"
+		additiveEffect: Boolean!
 	}
 
 
