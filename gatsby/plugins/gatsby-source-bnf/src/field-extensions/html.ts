@@ -1,6 +1,6 @@
 import { type FieldResolveContext } from "../node-model";
 
-import { replaceInternalAnchors } from "./anchors/anchor-replacer";
+import { replaceHashAnchors } from "./anchors/hash-anchor-replacer";
 import { replaceXRefs } from "./anchors/xref-replacer";
 
 /**
@@ -35,7 +35,7 @@ export const htmlFieldExtension = {
 				if (typeof fieldValue !== "string")
 					throw Error(`Expected HTML content field value to be a string`);
 
-				fieldValue = replaceInternalAnchors(fieldValue, context.nodeModel);
+				fieldValue = replaceHashAnchors(fieldValue, context.nodeModel);
 				fieldValue = replaceXRefs(fieldValue, context.nodeModel);
 
 				return fieldValue;

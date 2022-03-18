@@ -1,9 +1,9 @@
 import { NodeModel } from "../../node-model";
 import { BnfNode } from "../../node-types";
 
-import { replaceInternalAnchors } from "./anchor-replacer";
+import { replaceHashAnchors } from "./hash-anchor-replacer";
 
-describe("replaceInternalAnchors", () => {
+describe("replaceHashAnchors", () => {
 	const getNodeById = jest.fn();
 
 	const nodeModel: NodeModel = {
@@ -39,7 +39,7 @@ describe("replaceInternalAnchors", () => {
 				internal: { type: nodeType },
 			});
 			expect(
-				replaceInternalAnchors(
+				replaceHashAnchors(
 					`a <a href="/#/content/${site}/_123" title="A thing">thing</a> link`,
 					nodeModel
 				)
@@ -58,7 +58,7 @@ describe("replaceInternalAnchors", () => {
 				internal: { type: BnfNode.TreatmentSummary },
 			});
 		expect(
-			replaceInternalAnchors(
+			replaceHashAnchors(
 				`<a href="/#/content/bnf/_123" title="A drug">drug</a><a href="/#/content/bnf/_123" title="A treatment summary">treatment summary</a>`,
 				nodeModel
 			)
@@ -73,7 +73,7 @@ describe("replaceInternalAnchors", () => {
 			internal: { type: BnfNode.Drug },
 		});
 		expect(
-			replaceInternalAnchors(
+			replaceHashAnchors(
 				[
 					`<a href="https://www.nice.org.uk">external</a>`,
 					`<a href="/drugs/a-drug/" title="A drug">drug</a>`,
@@ -89,7 +89,7 @@ describe("replaceInternalAnchors", () => {
 	it("should throw if node can't be found by id", () => {
 		getNodeById.mockReturnValueOnce(null);
 		expect(() => {
-			replaceInternalAnchors(
+			replaceHashAnchors(
 				`a <a href="/#/content/bnf/_123" title="A drug">drug</a> link`,
 				nodeModel
 			);
@@ -104,7 +104,7 @@ describe("replaceInternalAnchors", () => {
 			internal: { type: "SomeInvalidType" },
 		});
 		expect(() => {
-			replaceInternalAnchors(
+			replaceHashAnchors(
 				`a <a href="/#/content/bnf/_123" title="A drug">drug</a> link`,
 				nodeModel
 			);

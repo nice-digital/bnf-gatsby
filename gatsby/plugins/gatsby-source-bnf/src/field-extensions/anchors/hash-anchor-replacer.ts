@@ -1,5 +1,4 @@
 import { type NodeInput } from "gatsby";
-import { js2xml, xml2js } from "xml-js";
 
 import { type NodeModel } from "../../node-model";
 import { slugify } from "../slug";
@@ -9,12 +8,12 @@ import { nodeTypePathMap } from "./node-type-paths";
 type TitledNodeInput = { title: string } & NodeInput;
 
 /**
- * Regular expression to target internal anchors, that is, anchors with an href attribute in the form either:
+ * Regular expression to target internal (hash) anchors, that is, anchors with an href attribute in the form either:
  * - `/#/content/bnf/PHP107737` (PHPID e.g. for about sections)
  * - `/#/content/bnf/_945274338` (SID e.g. for drugs)
  * Notice the hashbang URL formats - these come from the MC BNF.
  */
-const internalAnchorRegex =
+const hashAnchorRegex =
 	/<a[^>]*?href="(\/#\/content\/bnfc?\/([^"]*))".*?<\/a>/gm;
 
 const anchorReplacer =
@@ -39,7 +38,7 @@ const anchorReplacer =
 		return anchorHTML.replace(href, `${path}/${slugify(title)}/`);
 	};
 
-export const replaceInternalAnchors = (
+export const replaceHashAnchors = (
 	html: string,
 	nodeModel: NodeModel
-): string => html.replace(internalAnchorRegex, anchorReplacer(nodeModel));
+): string => html.replace(hashAnchorRegex, anchorReplacer(nodeModel));
