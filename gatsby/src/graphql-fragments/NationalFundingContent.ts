@@ -1,29 +1,30 @@
 import { graphql } from "gatsby";
 
 export const RecordSection = graphql`
+	fragment FundingDecision on BnfFundingDecision {
+		approvedForUse
+		fundingIdentifier
+		slug
+		title
+		url
+	}
+
 	fragment NationalFundingContent on BnfNationalFundingPotContent {
 		contentFor
 		initialText
+		niceDecisionsTitle
 		niceDecisions {
-			approvedForUse
-			fundingIdentifier
-			slug
-			title
-			url
+			...FundingDecision
 		}
+		smcDecisionsTitle
 		smcDecisions {
-			approvedForUse
-			fundingIdentifier
-			slug
-			title
-			url
+			...FundingDecision
 		}
+		awmsgDecisionsTitle
 		awmsgDecisions {
-			approvedForUse
-			fundingIdentifier
-			slug
-			title
-			url
+			...FundingDecision
 		}
+		nonNhsTitle
+		nonNhs
 	}
 `;

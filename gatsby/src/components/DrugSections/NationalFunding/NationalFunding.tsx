@@ -2,22 +2,17 @@ import slugify from "@sindresorhus/slugify";
 import { type FC } from "react";
 import striptags from "striptags";
 
-import {
-	type FeedNationalFundingPot,
-	type FeedNationalFundingPotContent,
-} from "@nice-digital/gatsby-source-bnf";
+import { type FeedNationalFundingPot } from "@nice-digital/gatsby-source-bnf";
 
-import { type WithSlug } from "src/types";
+import { type QueryResult, type WithSlug } from "@/utils";
 
 import { PotSection } from "../PotSection/PotSection";
 
 import { NationalFundingContent } from "./NationalFundingContent/NationalFundingContent";
 
-export type NationalFundingProps = WithSlug<FeedNationalFundingPot> & {
-	drugContent: null | Required<FeedNationalFundingPotContent>;
-	drugClassContent: Required<FeedNationalFundingPotContent>[];
-	prepContent: Required<FeedNationalFundingPotContent>[];
-};
+export type NationalFundingProps = QueryResult<
+	WithSlug<FeedNationalFundingPot>
+>;
 
 export const NationalFunding: FC<NationalFundingProps> = (props) => {
 	return (
@@ -26,9 +21,14 @@ export const NationalFunding: FC<NationalFundingProps> = (props) => {
 				content: {
 					contentFor,
 					initialText,
+					niceDecisionsTitle,
 					niceDecisions,
+					smcDecisionsTitle,
 					smcDecisions,
+					awmsgDecisionsTitle,
 					awmsgDecisions,
+					nonNhsTitle,
+					nonNhs,
 				},
 			}) => {
 				const sectionSlugPostfix = slugify(striptags(contentFor));
@@ -40,7 +40,7 @@ export const NationalFunding: FC<NationalFundingProps> = (props) => {
 						{niceDecisions.length > 0 ? (
 							<NationalFundingContent
 								slug={`nice-decisions-${sectionSlugPostfix}`}
-								heading="NICE decisions"
+								heading={niceDecisionsTitle || "NICE decisions"}
 								decisions={niceDecisions}
 							/>
 						) : null}
@@ -48,7 +48,10 @@ export const NationalFunding: FC<NationalFundingProps> = (props) => {
 						{smcDecisions.length > 0 ? (
 							<NationalFundingContent
 								slug={`smc-decisions-${sectionSlugPostfix}`}
-								heading="Scottish Medicines Consortium (SMC) decisions"
+								heading={
+									smcDecisionsTitle ||
+									"Scottish Medicines Consortium (SMC) decisions"
+								}
 								decisions={smcDecisions}
 							/>
 						) : null}
@@ -56,10 +59,20 @@ export const NationalFunding: FC<NationalFundingProps> = (props) => {
 						{awmsgDecisions.length > 0 ? (
 							<NationalFundingContent
 								slug={`awmsg-decisions-${sectionSlugPostfix}`}
-								heading="All Wales Medicines Strategy Group (AWMSG)"
+								heading={
+									awmsgDecisionsTitle ||
+									"All Wales Medicines Strategy Group (AWMSG)"
+								}
 								decisions={awmsgDecisions}
 							/>
 						) : null}
+
+						{nonNhs && (
+							<section>
+								<h4>{nonNhsTitle || "NHS restrictions"}</h4>
+								<p dangerouslySetInnerHTML={{ __html: nonNhs }} />
+							</section>
+						)}
 					</>
 				);
 			}}

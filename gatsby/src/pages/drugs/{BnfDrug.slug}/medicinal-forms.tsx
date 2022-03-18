@@ -2,17 +2,23 @@ import { graphql } from "gatsby";
 import { FC } from "react";
 import striptags from "striptags";
 
+import {
+	type FeedMedicinalForms,
+	type FeedMedicinalForm,
+} from "@nice-digital/gatsby-source-bnf";
+
 import { DetailsPageLayout } from "@/components/DetailsPageLayout/DetailsPageLayout";
 import { Prep } from "@/components/Prep/Prep";
-
-import { MedicinalFormsWithSlugs } from "src/types";
+import { type QueryResult, type WithSlugDeep } from "@/utils";
 
 export interface MedicinalFormsPageProps {
 	data: {
 		bnfDrug: {
 			title: string;
 			slug: string;
-			medicinalForms: MedicinalFormsWithSlugs;
+			medicinalForms: QueryResult<
+				WithSlugDeep<FeedMedicinalForms, FeedMedicinalForm>
+			>;
 		};
 	};
 }

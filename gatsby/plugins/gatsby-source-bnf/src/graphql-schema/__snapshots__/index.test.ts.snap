@@ -428,7 +428,7 @@ exports[`schema should match snapshot 1`] = `
 	}
 
 	\\"\\"\\"
-	The relevant decisions from NICE, SMC and AWMSG.
+	The relevant decisions from NICE, SMC and AWMSG as well as NHS restrictions.
 	\\"\\"\\"
 	type BnfNationalFundingPotContent {
 		\\"What the content is for (the name of a drug class, drug or preparation). May contain HTML mark-up\\"
@@ -437,14 +437,29 @@ exports[`schema should match snapshot 1`] = `
 		\\"The initial paragraph of text at the start of the national funding pot. May contain HTML mark-up\\"
 		initialText: String!
 
+		\\"Title for the NICE funding decisions.\\"
+		niceDecisionsTitle: String
+
 		\\"The NICE funding decisions.\\"
 		niceDecisions: [BnfFundingDecision!]!
+
+		\\"Title for the SMC funding decisions.\\"
+		smcDecisionsTitle: String
 
 		\\"The SMC funding decisions.\\"
 		smcDecisions: [BnfFundingDecision!]!
 
+		\\"Title for the AWMSG funding decisions.\\"
+		awmsgDecisionsTitle: String
+
 		\\"The AWMSG funding decisions.\\"
 		awmsgDecisions: [BnfFundingDecision!]!
+
+		\\"Title for the non-NHS content.\\"
+		nonNhsTitle: String
+
+		\\"Whether the drug can be accessed through the NHS, based on whether it is approved for national funding. May contain HTML mark-up.\\"
+		nonNhs: String
 	}
 
 	\\"\\"\\"

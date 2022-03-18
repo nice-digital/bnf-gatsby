@@ -2,21 +2,17 @@ import { type ReactElement } from "react";
 
 import { type FeedBasePotContent } from "@nice-digital/gatsby-source-bnf";
 
-import { type PotWithSlug } from "src/types";
-
 import styles from "../DrugSection.module.scss";
+import { BasePot } from "../types";
 
 import { PotContent } from "./PotContent/PotContent";
 
 export interface PotSectionProps<TContent extends FeedBasePotContent>
-	extends PotWithSlug {
+	extends BasePot {
 	drugClassContent: TContent[];
 	drugContent: TContent | null;
 	prepContent: TContent[];
-	children: (renderArgs: {
-		content: TContent;
-		pot: PotWithSlug;
-	}) => ReactElement;
+	children: (renderArgs: { content: TContent; pot: BasePot }) => ReactElement;
 }
 
 export const PotSection = <TPotContent extends FeedBasePotContent>({
@@ -25,7 +21,7 @@ export const PotSection = <TPotContent extends FeedBasePotContent>({
 	drugClassContent,
 	drugContent,
 	prepContent,
-	children,
+	children: renderPotContent,
 }: PotSectionProps<TPotContent>): ReactElement => (
 	<section aria-labelledby={slug} className={styles.section}>
 		<h2 id={slug} dangerouslySetInnerHTML={{ __html: potName }} />
@@ -38,7 +34,7 @@ export const PotSection = <TPotContent extends FeedBasePotContent>({
 				contentForPrefix="For all"
 				showHeading={true}
 			>
-				{children({ content, pot: { potName, slug } })}
+				{renderPotContent({ content, pot: { potName, slug } })}
 			</PotContent>
 		))}
 
@@ -53,7 +49,7 @@ export const PotSection = <TPotContent extends FeedBasePotContent>({
 					(!!drugClassContent && drugClassContent.length > 0)
 				}
 			>
-				{children({ content: drugContent, pot: { potName, slug } })}
+				{renderPotContent({ content: drugContent, pot: { potName, slug } })}
 			</PotContent>
 		)}
 
@@ -65,7 +61,7 @@ export const PotSection = <TPotContent extends FeedBasePotContent>({
 				contentForPrefix="For"
 				showHeading={true}
 			>
-				{children({ content, pot: { potName, slug } })}
+				{renderPotContent({ content, pot: { potName, slug } })}
 			</PotContent>
 		))}
 	</section>

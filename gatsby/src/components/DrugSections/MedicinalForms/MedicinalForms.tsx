@@ -1,17 +1,21 @@
 import { Link } from "gatsby";
 import { type FC } from "react";
 
-import { type PotWithSlug } from "src/types";
+import { FeedMedicinalForms } from "@nice-digital/gatsby-source-bnf";
+
+import { QueryResult, type WithSlug } from "@/utils";
 
 import styles from "../DrugSection.module.scss";
+import { BasePot } from "../types";
 
-export type MedicinalFormsProps = PotWithSlug & {
+export type MedicinalFormsProps = BasePot & {
 	drugSlug: string;
 	drugTitle: string;
-	initialStatement: string;
-	specialOrderManufacturersStatement: string | null;
-	medicinalForms: { form: string; slug: string }[];
-};
+	medicinalForms: WithSlug<{ form: string }>[];
+} & Pick<
+		QueryResult<FeedMedicinalForms>,
+		"initialStatement" | "specialOrderManufacturersStatement"
+	>;
 
 export const MedicinalForms: FC<MedicinalFormsProps> = ({
 	potName,

@@ -22,7 +22,7 @@ export const nationalFundingSchema = `
 	}
 
 	"""
-	The relevant decisions from NICE, SMC and AWMSG.
+	The relevant decisions from NICE, SMC and AWMSG as well as NHS restrictions.
 	"""
 	type ${BnfNode.NationalFundingPotContent} {
 		"What the content is for (the name of a drug class, drug or preparation). May contain HTML mark-up"
@@ -31,14 +31,29 @@ export const nationalFundingSchema = `
 		"The initial paragraph of text at the start of the national funding pot. May contain HTML mark-up"
 		initialText: String!
 
+		"Title for the NICE funding decisions."
+		niceDecisionsTitle: String
+
 		"The NICE funding decisions."
 		niceDecisions: [${BnfNode.NationalFundingDecision}!]!
+
+		"Title for the SMC funding decisions."
+		smcDecisionsTitle: String
 
 		"The SMC funding decisions."
 		smcDecisions: [${BnfNode.NationalFundingDecision}!]!
 
+		"Title for the AWMSG funding decisions."
+		awmsgDecisionsTitle: String
+
 		"The AWMSG funding decisions."
 		awmsgDecisions: [${BnfNode.NationalFundingDecision}!]!
+
+		"Title for the non-NHS content."
+		nonNhsTitle: String
+
+		"Whether the drug can be accessed through the NHS, based on whether it is approved for national funding. May contain HTML mark-up."
+		nonNhs: String
 	}
 
 	"""

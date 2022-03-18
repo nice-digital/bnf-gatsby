@@ -3,10 +3,12 @@ import { type FC, type ReactNode } from "react";
 import { FeedFundingDecision } from "@nice-digital/gatsby-source-bnf";
 import { Card } from "@nice-digital/nds-card";
 
+import { type QueryResult } from "@/utils";
+
 import styles from "./NationalFundingContent.module.scss";
 
 export interface NationalFundingContentProps {
-	decisions: FeedFundingDecision[];
+	decisions: QueryResult<FeedFundingDecision>[];
 	slug: string;
 	heading: ReactNode;
 }

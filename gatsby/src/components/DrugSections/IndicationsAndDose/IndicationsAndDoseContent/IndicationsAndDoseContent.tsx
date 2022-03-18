@@ -6,11 +6,12 @@ import striptags from "striptags";
 import { type FeedIndicationsAndDosePotContent } from "@nice-digital/gatsby-source-bnf";
 
 import { Accordion } from "@/components/Accordion/Accordion";
+import { QueryResult } from "@/utils";
 
 import styles from "./IndicationsAndDoseContent.module.scss";
 
 export interface IndicationsAndDoseContentProps {
-	content: FeedIndicationsAndDosePotContent;
+	content: QueryResult<FeedIndicationsAndDosePotContent>;
 	/** The string to be rendered before the `contentFor` field.
 	 *
 	 * Defaults to `For`. Pass `For all` for drug classes to read `For all tetracyclines` for example. */

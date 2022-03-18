@@ -1,5 +1,7 @@
 /* istanbul ignore file */
 
+export { type BasePot } from "./types";
+
 export {
 	Constituents,
 	type ConstituentsProps,

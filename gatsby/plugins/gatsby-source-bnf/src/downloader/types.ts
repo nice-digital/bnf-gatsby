@@ -273,12 +273,22 @@ export type FeedNationalFundingPot = FeedBasePot<FeedNationalFundingPotContent>;
 export interface FeedNationalFundingPotContent extends FeedBasePotContent {
 	/** The initial paragraph of text at the start of the national funding pot. May contain HTML mark-up */
 	initialText: string;
+	/** Title for the NICE funding decisions. */
+	niceDecisionsTitle?: string;
 	/** The NICE funding decisions. */
 	niceDecisions?: FeedFundingDecision[];
+	/** Title for the SMC funding decisions. */
+	smcDecisionsTitle?: string;
 	/** The SMC funding decisions. */
 	smcDecisions?: FeedFundingDecision[];
+	/** Title for the AWMSG funding decisions. */
+	awmsgDecisionsTitle?: string;
 	/** The AWMSG funding decisions. */
 	awmsgDecisions?: FeedFundingDecision[];
+	/** Title for the non-NHS content. */
+	nonNhsTitle?: string;
+	/** Whether the drug can be accessed through the NHS, based on whether it is approved for national funding. May contain HTML mark-up. */
+	nonNhs?: string;
 }
 
 /** A specific funding decision. */

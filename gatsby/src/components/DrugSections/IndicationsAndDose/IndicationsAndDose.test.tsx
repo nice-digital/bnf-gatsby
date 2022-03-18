@@ -7,20 +7,54 @@ import {
 	type IndicationsAndDoseProps,
 } from "./IndicationsAndDose";
 
-const data: IndicationsAndDoseProps["indicationsAndDose"] = {
+const minimumProps: IndicationsAndDoseProps = {
 	potName: "Indications <em>and</em> dose",
 	slug: "indications-and-dose",
+	drugClassContent: [],
+	drugContent: null,
+	prepContent: [],
 };
+
+const diazepamDrugContent: IndicationsAndDoseProps["drugContent"] = {
+		contentFor: "diazepam",
+		indicationAndDoseGroups: [
+			{
+				therapeuticIndications: [],
+				routesAndPatientGroups: [],
+			},
+		],
+		doseAdjustments: null,
+		doseEquivalence: null,
+		extremesOfBodyWeight: null,
+		pharmacokinetics: null,
+		potency: null,
+	},
+	opioidsDrugClassContent: IndicationsAndDoseProps["drugContent"] = {
+		...diazepamDrugContent,
+		contentFor: "opioids",
+	},
+	antipsychoticDrugClassContent: IndicationsAndDoseProps["drugContent"] = {
+		...diazepamDrugContent,
+		contentFor: "antipsychotic drugs",
+	},
+	kapakePrepContent: IndicationsAndDoseProps["drugContent"] = {
+		...diazepamDrugContent,
+		contentFor: "Kapake® 15/500",
+	},
+	solpadolPrepContent: IndicationsAndDoseProps["drugContent"] = {
+		...diazepamDrugContent,
+		contentFor: "Solpadol® effervescent tablets",
+	};
 
 describe("IndicationsAndDose", () => {
 	it("should render section labelled by pot name", () => {
-		render(<IndicationsAndDose indicationsAndDose={data} />);
+		render(<IndicationsAndDose {...minimumProps} />);
 
 		expect(screen.getByLabelText("Indications and dose")).toBeInTheDocument();
 	});
 
 	it("should render heading 2 with HTML pot name", () => {
-		render(<IndicationsAndDose indicationsAndDose={data} />);
+		render(<IndicationsAndDose {...minimumProps} />);
 
 		expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent(
 			"Indications and dose"
@@ -28,7 +62,7 @@ describe("IndicationsAndDose", () => {
 	});
 
 	it("should render heading 2 with slug as id", () => {
-		render(<IndicationsAndDose indicationsAndDose={data} />);
+		render(<IndicationsAndDose {...minimumProps} />);
 
 		expect(screen.getByRole("heading", { level: 2 })).toHaveAttribute(
 			"id",
@@ -37,18 +71,13 @@ describe("IndicationsAndDose", () => {
 	});
 
 	it("should not render content structure with empty content", () => {
-		render(<IndicationsAndDose indicationsAndDose={data} />);
+		render(<IndicationsAndDose {...minimumProps} />);
 		expect(screen.queryAllByRole("heading", { level: 3 })).toHaveLength(0);
 	});
 
 	it("should render given drug content", () => {
 		render(
-			<IndicationsAndDose
-				indicationsAndDose={{
-					...data,
-					drugContent: { contentFor: "diazepam" },
-				}}
-			/>
+			<IndicationsAndDose {...minimumProps} drugContent={diazepamDrugContent} />
 		);
 		expect(screen.getAllByRole("heading", { level: 3 })).toHaveLength(1);
 		expect(screen.getByRole("heading", { level: 3 })).toHaveTextContent(
@@ -59,13 +88,11 @@ describe("IndicationsAndDose", () => {
 	it("should render content block for each drug class", () => {
 		render(
 			<IndicationsAndDose
-				indicationsAndDose={{
-					...data,
-					drugClassContent: [
-						{ contentFor: "opioids" },
-						{ contentFor: "somethings" },
-					],
-				}}
+				{...minimumProps}
+				drugClassContent={[
+					opioidsDrugClassContent,
+					antipsychoticDrugClassContent,
+				]}
 			/>
 		);
 
@@ -73,19 +100,14 @@ describe("IndicationsAndDose", () => {
 
 		expect(headings.map((n) => n.textContent)).toStrictEqual([
 			"For all opioids",
-			"For all somethings",
+			"For all antipsychotic drugs",
 		]);
 	});
 	it("should render content block for each prep", () => {
 		render(
 			<IndicationsAndDose
-				indicationsAndDose={{
-					...data,
-					prepContent: [
-						{ contentFor: "Kapake® 15/500" },
-						{ contentFor: "Solpadol® effervescent tablets" },
-					],
-				}}
+				{...minimumProps}
+				prepContent={[kapakePrepContent, solpadolPrepContent]}
 			/>
 		);
 
@@ -98,12 +120,7 @@ describe("IndicationsAndDose", () => {
 	});
 	it("should not render single content blocks as accordion", () => {
 		render(
-			<IndicationsAndDose
-				indicationsAndDose={{
-					...data,
-					drugContent: { contentFor: "diazepam" },
-				}}
-			/>
+			<IndicationsAndDose {...minimumProps} drugContent={diazepamDrugContent} />
 		);
 
 		expect(screen.queryByRole("group")).toBeNull();
@@ -112,14 +129,9 @@ describe("IndicationsAndDose", () => {
 	it("should render 2 or more content blocks as accordions", () => {
 		render(
 			<IndicationsAndDose
-				indicationsAndDose={{
-					...data,
-					drugContent: { contentFor: "co-codamol" },
-					prepContent: [
-						{ contentFor: "Kapake® 15/500" },
-						{ contentFor: "Solpadol® effervescent tablets" },
-					],
-				}}
+				{...minimumProps}
+				drugContent={diazepamDrugContent}
+				prepContent={[kapakePrepContent, solpadolPrepContent]}
 			/>
 		);
 
@@ -127,20 +139,15 @@ describe("IndicationsAndDose", () => {
 	});
 
 	describe("toggle all sections button", () => {
-		const indicationsAndDose: IndicationsAndDoseProps["indicationsAndDose"] = {
-			...data,
+		const props: IndicationsAndDoseProps = {
+			...minimumProps,
 			// At least 2 "contentFor" here to get accordions and toggle button to render
-			drugContent: { contentFor: "co-codamol" },
-			prepContent: [
-				{ contentFor: "Kapake® 15/500" },
-				{ contentFor: "Solpadol® effervescent tablets" },
-			],
+			drugContent: diazepamDrugContent,
+			prepContent: [kapakePrepContent, solpadolPrepContent],
 		};
 
 		it("should not render toggle all sections button server side", () => {
-			const view = renderToString(
-				<IndicationsAndDose indicationsAndDose={indicationsAndDose} />
-			);
+			const view = renderToString(<IndicationsAndDose {...props} />);
 
 			expect(view).not.toContain("<button");
 		});
@@ -148,10 +155,8 @@ describe("IndicationsAndDose", () => {
 		it("should not render render toggle all sections button client side with single content block", () => {
 			render(
 				<IndicationsAndDose
-					indicationsAndDose={{
-						...data,
-						drugContent: { contentFor: "co-codamol" },
-					}}
+					{...minimumProps}
+					drugContent={diazepamDrugContent}
 				/>
 			);
 
@@ -159,13 +164,13 @@ describe("IndicationsAndDose", () => {
 		});
 
 		it("should render toggle all sections button client side when multiple content blocks", () => {
-			render(<IndicationsAndDose indicationsAndDose={indicationsAndDose} />);
+			render(<IndicationsAndDose {...props} />);
 
 			expect(screen.getByRole("button")).toBeInTheDocument();
 		});
 
 		it("should expand all sections on toggle button click", () => {
-			render(<IndicationsAndDose indicationsAndDose={indicationsAndDose} />);
+			render(<IndicationsAndDose {...props} />);
 
 			expect(
 				screen.getAllByRole<HTMLDetailsElement>("group").map((d) => d.open)
@@ -179,7 +184,7 @@ describe("IndicationsAndDose", () => {
 		});
 
 		it("should toggle button text on button click", () => {
-			render(<IndicationsAndDose indicationsAndDose={indicationsAndDose} />);
+			render(<IndicationsAndDose {...props} />);
 
 			expect(screen.getByRole("button")).toHaveTextContent(
 				"Show all 3 sections"

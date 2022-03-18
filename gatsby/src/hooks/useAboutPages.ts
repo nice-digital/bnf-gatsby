@@ -1,6 +1,6 @@
 import { useStaticQuery, graphql } from "gatsby";
 
-import { type MenuPageLink, type SlugAndTitle } from "src/types";
+import { type MenuPageLink, type SlugAndTitle } from "@/utils";
 
 export interface AboutPages {
 	allBnfAboutSection: {

@@ -1,17 +1,10 @@
-import { graphql, Link } from "gatsby";
+import { graphql } from "gatsby";
 import React, { FC } from "react";
 import striptags from "striptags";
 
-import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
-import { PageHeader } from "@nice-digital/nds-page-header";
-
 import { DetailsPageLayout } from "@/components/DetailsPageLayout/DetailsPageLayout";
-import { Layout } from "@/components/Layout/Layout";
 import { RecordSectionsContent } from "@/components/RecordSectionsContent/RecordSectionsContent";
-import { SEO } from "@/components/SEO/SEO";
-import { useSiteMetadata } from "@/hooks/useSiteMetadata";
-
-import { type RecordSection } from "src/types";
+import { type RecordSection } from "@/utils";
 
 export type TreatmentSummaryPageProps = {
 	data: {

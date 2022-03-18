@@ -21,22 +21,30 @@ describe("Monitoring", () => {
 							contentFor: "corticosteroids",
 							patientMonitoringProgrammes:
 								"<p>Some patient monitoring for all corticosteroids</p>",
+							monitoringOfPatientParameters: null,
+							therapeuticDrugMonitoring: null,
 						},
 						{
 							contentFor: "opioids",
 							monitoringOfPatientParameters:
 								"<p>Patient parameters for all opioids</p>",
+							therapeuticDrugMonitoring: null,
+							patientMonitoringProgrammes: null,
 						},
 					]}
 					drugContent={{
 						contentFor: "co-codamol",
 						therapeuticDrugMonitoring: "<p>Therapeutic for co-codamol</p>",
+						monitoringOfPatientParameters: null,
+						patientMonitoringProgrammes: null,
 					}}
 					prepContent={[
 						{
 							contentFor: "Solpadol® caplets",
 							patientMonitoringProgrammes:
 								"<p>Patient monitoring for a prep</p>",
+							therapeuticDrugMonitoring: null,
+							monitoringOfPatientParameters: null,
 						},
 					]}
 				/>
@@ -73,6 +81,9 @@ describe("Monitoring", () => {
 			...minimumProps,
 			drugContent: {
 				contentFor: "furosemide",
+				monitoringOfPatientParameters: null,
+				patientMonitoringProgrammes: null,
+				therapeuticDrugMonitoring: null,
 				[propertyName]: "<p>Monitor electrolytes during treatment.</p>",
 			},
 		};

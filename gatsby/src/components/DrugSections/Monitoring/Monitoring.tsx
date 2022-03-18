@@ -1,23 +1,14 @@
 import slugify from "@sindresorhus/slugify";
 import { type FC } from "react";
 import striptags from "striptags";
-import { type Except, type Merge } from "type-fest";
 
-import {
-	type FeedMonitoringPot,
-	type FeedMonitoringPotContent,
-} from "@nice-digital/gatsby-source-bnf";
+import { type FeedMonitoringPot } from "@nice-digital/gatsby-source-bnf";
 
-import { type WithSlug } from "src/types";
+import { type QueryResult, type WithSlug } from "@/utils";
 
 import { PotSection } from "../PotSection/PotSection";
 
-export type MonitoringProps = Merge<
-	Required<WithSlug<FeedMonitoringPot>>,
-	{
-		drugContent: FeedMonitoringPotContent | null;
-	}
->;
+export type MonitoringProps = QueryResult<WithSlug<FeedMonitoringPot>>;
 
 export const Monitoring: FC<MonitoringProps> = (props) => {
 	return (

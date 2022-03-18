@@ -1,6 +1,6 @@
 import React from "react";
 
-import { type RecordSection } from "../../types";
+import { type RecordSection } from "@/utils";
 
 import styles from "./RecordSectionsContent.module.scss";
 

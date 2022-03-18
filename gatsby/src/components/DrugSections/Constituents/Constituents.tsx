@@ -1,13 +1,12 @@
 import { Link } from "gatsby";
 import { type FC } from "react";
 
-import { useIsTruthy } from "@/hooks/useIsTruthy";
-
-import { type SlugAndTitle, type PotWithSlug } from "src/types";
+import { isTruthy, type SlugAndTitle } from "@/utils";
 
 import styles from "../DrugSection.module.scss";
+import { BasePot } from "../types";
 
-export type ConstituentsProps = PotWithSlug & {
+export type ConstituentsProps = BasePot & {
 	message: string;
 	constituents: SlugAndTitle[];
 };
@@ -18,8 +17,6 @@ export const Constituents: FC<ConstituentsProps> = ({
 	potName,
 	slug,
 }) => {
-	const isTruthy = useIsTruthy();
-
 	return (
 		<section aria-labelledby={slug} className={styles.section}>
 			<h2 id={slug} dangerouslySetInnerHTML={{ __html: potName }} />

@@ -22,14 +22,13 @@ import {
 	SimplePot,
 	IndicationsAndDose,
 	type IndicationsAndDoseProps,
+	type BasePot,
 } from "@/components/DrugSections";
 import { Layout } from "@/components/Layout/Layout";
 import { SectionNav } from "@/components/SectionNav/SectionNav";
 import { SEO } from "@/components/SEO/SEO";
-import { useIsTruthy } from "@/hooks/useIsTruthy";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
-
-import { type SlugAndTitle, type PotWithSlug, type WithSlug } from "src/types";
+import { isTruthy, type SlugAndTitle, type WithSlug } from "@/utils";
 
 /**
  * Utility type with slug property added to all 'pots' on a drug.
@@ -42,7 +41,7 @@ import { type SlugAndTitle, type PotWithSlug, type WithSlug } from "src/types";
  * */
 type DrugWithSluggedPots = {
 	[Key in keyof FeedDrug]-?: FeedDrug[Key] extends FeedBaseNamedPot | undefined
-		? (FeedDrug[Key] & PotWithSlug) | null
+		? (FeedDrug[Key] & BasePot) | null
 		: FeedDrug[Key];
 };
 
@@ -77,8 +76,7 @@ export interface DrugPageProps {
 }
 
 const DrugPage: FC<DrugPageProps> = ({ data: { bnfDrug } }) => {
-	const isTruthy = useIsTruthy(),
-		{ siteTitleShort } = useSiteMetadata(),
+	const { siteTitleShort } = useSiteMetadata(),
 		titleNoHtml = striptags(bnfDrug.title),
 		constituents = useMemo(
 			() =>
@@ -105,7 +103,7 @@ const DrugPage: FC<DrugPageProps> = ({ data: { bnfDrug } }) => {
 					nationalFunding,
 					importantSafetyInformation,
 				} = bnfDrug,
-				potMap = new Map<PotWithSlug | null, ElementType>();
+				potMap = new Map<BasePot | null, ElementType>();
 			potMap.set(indicationsAndDose, IndicationsAndDose);
 			potMap.set(monitoringRequirements, Monitoring);
 			potMap.set(nationalFunding, NationalFunding);
@@ -116,7 +114,7 @@ const DrugPage: FC<DrugPageProps> = ({ data: { bnfDrug } }) => {
 			return potMap;
 		}, [bnfDrug, medicinalForms, constituents]);
 
-	const orderedSections: PotWithSlug[] = [
+	const orderedSections: BasePot[] = [
 		constituents,
 		bnfDrug.drugAction,
 		bnfDrug.indicationsAndDose,

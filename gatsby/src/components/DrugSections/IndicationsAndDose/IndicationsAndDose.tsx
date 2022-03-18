@@ -3,12 +3,13 @@ import { useCallback, useEffect, useState, type FC } from "react";
 import { type FeedIndicationsAndDosePot } from "@nice-digital/gatsby-source-bnf";
 
 import { IndicationsAndDoseContent } from "@/components/DrugSections/IndicationsAndDose/IndicationsAndDoseContent/IndicationsAndDoseContent";
+import { type QueryResult, type WithSlug } from "@/utils";
 
 import styles from "./IndicationsAndDose.module.scss";
 
-export interface IndicationsAndDoseProps extends FeedIndicationsAndDosePot {
-	slug: string;
-}
+export type IndicationsAndDoseProps = WithSlug<
+	QueryResult<FeedIndicationsAndDosePot>
+>;
 
 export const IndicationsAndDose: FC<IndicationsAndDoseProps> = ({
 	potName,

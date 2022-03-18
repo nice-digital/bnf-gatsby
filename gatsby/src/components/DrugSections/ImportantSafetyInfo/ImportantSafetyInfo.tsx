@@ -3,7 +3,7 @@ import { type FC } from "react";
 import { type FeedSimplePot } from "@nice-digital/gatsby-source-bnf";
 import { Panel } from "@nice-digital/nds-panel";
 
-import { type WithSlug } from "src/types";
+import { type WithSlug } from "@/utils";
 
 import sectionStyles from "../DrugSection.module.scss";
 import { PotContent } from "../PotSection/PotContent/PotContent";
