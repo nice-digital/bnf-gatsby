@@ -7,7 +7,7 @@ exports[`Interaction Should match the snapshot 1`] = `
       class="interactantTitle"
     >
       <a
-        href="/drugs/test-title"
+        href="/drugs/test-title/"
       >
         Test title
       </a>
@@ -24,12 +24,27 @@ exports[`Interaction Should match the snapshot 1`] = `
           <div>
             Lorem ipsum dolor sit amet
           </div>
-          <p>
-            <strong>
-              Severity: 
-              Severe
-            </strong>
-          </p>
+          <dl
+            class="supplementaryInfo"
+          >
+            <dt>
+              <strong>
+                Severity:
+              </strong>
+            </dt>
+            <dd>
+              <strong>
+                Severe
+              </strong>
+            </dd>
+             
+            <dt>
+              Evidence:
+            </dt>
+            <dd>
+              Test evidence
+            </dd>
+          </dl>
         </div>
       </li>
       <li
@@ -43,6 +58,17 @@ exports[`Interaction Should match the snapshot 1`] = `
               Fusce in justo tincidunt, blandit est at, feugiat tellus.
             </p>
           </div>
+          <dl
+            class="supplementaryInfo"
+          >
+             
+            <dt>
+              Evidence:
+            </dt>
+            <dd>
+              More test evidence
+            </dd>
+          </dl>
         </div>
       </li>
     </ul>

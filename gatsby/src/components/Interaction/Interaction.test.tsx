@@ -56,8 +56,7 @@ describe("Interaction", () => {
 		// eslint-disable-next-line testing-library/no-node-access
 		expect(severeListItem.firstChild).toHaveClass("severeMessage");
 
-		const severeParagraph =
-			within(severeListItem).getByText("Severity: Severe");
-		expect(severeParagraph).toBeInTheDocument();
+		const severeParagraph = within(severeListItem).getByText("Severe");
+		expect(severeParagraph).toBeInTheDocument;
 	});
 });
