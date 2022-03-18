@@ -102,6 +102,14 @@
   cursor: pointer;
   font-weight: bold;
   padding: 0;
+
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  &:focus-visible {
+    @include core.nds-default-focus-style;
+  }
 }
 
 .resultCount {
