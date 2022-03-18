@@ -13,12 +13,6 @@ import { PageHeader } from "@nice-digital/nds-page-header";
 import { Panel } from "@nice-digital/nds-panel";
 
 import {
-	Constituents,
-	ImportantSafetyInfo,
-	MedicinalForms,
-	type MedicinalFormsProps,
-	Monitoring,
-	NationalFunding,
 	SimplePot,
 	IndicationsAndDose,
 	type IndicationsAndDoseProps,
@@ -64,12 +58,6 @@ export interface DrugPageProps {
 					constituents: SlugAndTitle[];
 				} | null;
 				indicationsAndDose: IndicationsAndDoseProps | null;
-				medicinalForms: Pick<
-					MedicinalFormsProps,
-					| "initialStatement"
-					| "specialOrderManufacturersStatement"
-					| "medicinalForms"
-				>;
 			}
 		>;
 	};
@@ -78,44 +66,16 @@ export interface DrugPageProps {
 const DrugPage: FC<DrugPageProps> = ({ data: { bnfDrug } }) => {
 	const { siteTitleShort } = useSiteMetadata(),
 		titleNoHtml = striptags(bnfDrug.title),
-		constituents = useMemo(
-			() =>
-				bnfDrug.constituentDrugs && {
-					slug: "constituent-drugs",
-					potName: "Constituent drugs",
-					...bnfDrug.constituentDrugs,
-				},
-			[bnfDrug.constituentDrugs]
-		),
-		medicinalForms = useMemo(
-			() => ({
-				slug: "medicinal-forms",
-				potName: "Medicinal forms",
-				...bnfDrug.medicinalForms,
-			}),
-			[bnfDrug.medicinalForms]
-		),
 		/** Sections of a drug that have their own, specific component that isn't a `SimplePot` */
 		nonSimplePotComponents = useMemo(() => {
-			const {
-					indicationsAndDose,
-					monitoringRequirements,
-					nationalFunding,
-					importantSafetyInformation,
-				} = bnfDrug,
+			const { indicationsAndDose } = bnfDrug,
 				potMap = new Map<BasePot | null, ElementType>();
 			potMap.set(indicationsAndDose, IndicationsAndDose);
-			potMap.set(monitoringRequirements, Monitoring);
-			potMap.set(nationalFunding, NationalFunding);
-			potMap.set(importantSafetyInformation, ImportantSafetyInfo);
-			// Bespoke sections that aren't "pots" in the feed
-			potMap.set(medicinalForms, MedicinalForms);
-			potMap.set(constituents, Constituents);
 			return potMap;
-		}, [bnfDrug, medicinalForms, constituents]);
+		}, [bnfDrug]);
 
 	const orderedSections: BasePot[] = [
-		constituents,
+		// TODO: constituents,
 		bnfDrug.drugAction,
 		bnfDrug.indicationsAndDose,
 		bnfDrug.unlicensedUse,
@@ -143,7 +103,7 @@ const DrugPage: FC<DrugPageProps> = ({ data: { bnfDrug } }) => {
 		bnfDrug.nationalFunding,
 		bnfDrug.exceptionsToLegalCategory,
 		bnfDrug.lessSuitableForPrescribing,
-		medicinalForms,
+		// TODO: medicinalForms,
 	].filter(isTruthy);
 
 	return (
@@ -182,13 +142,6 @@ const DrugPage: FC<DrugPageProps> = ({ data: { bnfDrug } }) => {
 					<Panel>Quick links will go here</Panel>
 				</GridItem>
 				<GridItem cols={12} md={8} lg={9}>
-					{/* {interactant && (
-						<p>
-							<Link to={`/interactions/${interactant.slug}/`}>
-								View interactions page for {interactant.title}
-							</Link>
-						</p>
-					)} */}
 					{orderedSections.map((section) => {
 						// Default to a SimplePot as that's the most common type of section
 						const Component = nonSimplePotComponents.get(section) || SimplePot;
