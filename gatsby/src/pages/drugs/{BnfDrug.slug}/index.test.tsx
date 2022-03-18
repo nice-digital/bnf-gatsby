@@ -6,8 +6,6 @@ const drug: DrugPageProps["data"]["bnfDrug"] = {
 	// Note deliberate use of HTML within the title for testing stripping of tags
 	title: "Anti-D (Rh<sub>0</sub>) immunoglobulin",
 	slug: "anti-d-rh0-immunoglobulin",
-	interactant: null,
-	constituentDrugs: null,
 	allergyAndCrossSensitivity: null,
 	breastFeeding: null,
 	cautions: null,
@@ -24,8 +22,6 @@ const drug: DrugPageProps["data"]["bnfDrug"] = {
 	lessSuitableForPrescribing: null,
 	medicinalForms: {
 		initialStatement: "Nothing to see here",
-		specialOrderManufacturersStatement: null,
-		medicinalForms: [],
 	},
 	monitoringRequirements: null,
 	nationalFunding: null,

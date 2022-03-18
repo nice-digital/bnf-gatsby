@@ -45,18 +45,14 @@ type IgnoredDrugFields =
 	| "sid"
 	| "primaryClassification"
 	| "secondaryClassifications"
-	| "reviewDate";
+	| "reviewDate"
+	| "constituentDrugs";
 
 export interface DrugPageProps {
 	data: {
 		bnfDrug: Merge<
 			Except<WithSlug<DrugWithSluggedPots>, IgnoredDrugFields>,
 			{
-				interactant: SlugAndTitle | null;
-				constituentDrugs: {
-					message: string;
-					constituents: SlugAndTitle[];
-				} | null;
 				indicationsAndDose: IndicationsAndDoseProps | null;
 			}
 		>;
@@ -75,14 +71,14 @@ const DrugPage: FC<DrugPageProps> = ({ data: { bnfDrug } }) => {
 		}, [bnfDrug]);
 
 	const orderedSections: BasePot[] = [
-		// TODO: constituents,
+		// TODO: constituents (BNF-1271)
 		bnfDrug.drugAction,
 		bnfDrug.indicationsAndDose,
 		bnfDrug.unlicensedUse,
-		bnfDrug.importantSafetyInformation,
+		// TODO bnfDrug.importantSafetyInformation (BNF-1266)
 		bnfDrug.contraIndications,
 		bnfDrug.cautions,
-		// TODO: Interactions
+		// TODO: Interactions (BNF-1268)
 		bnfDrug.sideEffects,
 		bnfDrug.allergyAndCrossSensitivity,
 		bnfDrug.conceptionAndContraception,
@@ -91,7 +87,7 @@ const DrugPage: FC<DrugPageProps> = ({ data: { bnfDrug } }) => {
 		bnfDrug.hepaticImpairment,
 		bnfDrug.renalImpairment,
 		bnfDrug.preTreatmentScreening,
-		bnfDrug.monitoringRequirements,
+		// TODO: bnfDrug.monitoringRequirements (BNF-1269)
 		bnfDrug.effectOnLaboratoryTests,
 		bnfDrug.treatmentCessation,
 		bnfDrug.directionsForAdministration,
@@ -100,10 +96,12 @@ const DrugPage: FC<DrugPageProps> = ({ data: { bnfDrug } }) => {
 		bnfDrug.patientAndCarerAdvice,
 		bnfDrug.palliativeCare,
 		bnfDrug.professionSpecificInformation,
-		bnfDrug.nationalFunding,
+		// TODO: bnfDrug.nationalFunding (BNF-1270)
 		bnfDrug.exceptionsToLegalCategory,
 		bnfDrug.lessSuitableForPrescribing,
-		// TODO: medicinalForms,
+		// TODO: medicinalForms (BNF-1267)
+		// TODO: related treatment summaries (BNF-1212)
+		// TODO: other drugs in class (BNF-1244)
 	].filter(isTruthy);
 
 	return (
