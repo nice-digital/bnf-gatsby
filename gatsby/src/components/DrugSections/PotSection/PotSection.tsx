@@ -16,53 +16,54 @@ export interface PotSectionProps<TContent extends FeedBasePotContent>
 }
 
 export const PotSection = <TPotContent extends FeedBasePotContent>({
-	potName,
-	slug,
 	drugClassContent,
 	drugContent,
 	prepContent,
 	children: renderPotContent,
-}: PotSectionProps<TPotContent>): ReactElement => (
-	<section aria-labelledby={slug} className={styles.section}>
-		<h2 id={slug} dangerouslySetInnerHTML={{ __html: potName }} />
+	...pot
+}: PotSectionProps<TPotContent>): ReactElement => {
+	return (
+		<section aria-labelledby={pot.slug} className={styles.section}>
+			<h2 id={pot.slug} dangerouslySetInnerHTML={{ __html: pot.potName }} />
 
-		{drugClassContent.map((content) => (
-			<PotContent
-				key={content.contentFor}
-				potSlug={slug}
-				contentFor={content.contentFor}
-				contentForPrefix="For all"
-				showHeading={true}
-			>
-				{renderPotContent({ content, pot: { potName, slug } })}
-			</PotContent>
-		))}
+			{drugClassContent.map((content) => (
+				<PotContent
+					key={content.contentFor}
+					pot={pot}
+					contentFor={content.contentFor}
+					contentForPrefix="For all"
+					showHeading={true}
+				>
+					{renderPotContent({ content, pot })}
+				</PotContent>
+			))}
 
-		{drugContent && (
-			<PotContent
-				key={drugContent.contentFor}
-				potSlug={slug}
-				contentFor={drugContent.contentFor}
-				contentForPrefix="For"
-				showHeading={
-					(!!prepContent && prepContent.length > 0) ||
-					(!!drugClassContent && drugClassContent.length > 0)
-				}
-			>
-				{renderPotContent({ content: drugContent, pot: { potName, slug } })}
-			</PotContent>
-		)}
+			{drugContent && (
+				<PotContent
+					key={drugContent.contentFor}
+					pot={pot}
+					contentFor={drugContent.contentFor}
+					contentForPrefix="For"
+					showHeading={
+						(!!prepContent && prepContent.length > 0) ||
+						(!!drugClassContent && drugClassContent.length > 0)
+					}
+				>
+					{renderPotContent({ content: drugContent, pot })}
+				</PotContent>
+			)}
 
-		{prepContent.map((content) => (
-			<PotContent
-				key={content.contentFor}
-				potSlug={slug}
-				contentFor={content.contentFor}
-				contentForPrefix="For"
-				showHeading={true}
-			>
-				{renderPotContent({ content, pot: { potName, slug } })}
-			</PotContent>
-		))}
-	</section>
-);
+			{prepContent.map((content) => (
+				<PotContent
+					key={content.contentFor}
+					pot={pot}
+					contentFor={content.contentFor}
+					contentForPrefix="For"
+					showHeading={true}
+				>
+					{renderPotContent({ content, pot })}
+				</PotContent>
+			))}
+		</section>
+	);
+};

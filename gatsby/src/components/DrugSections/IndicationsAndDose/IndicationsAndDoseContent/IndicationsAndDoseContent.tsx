@@ -69,7 +69,7 @@ export const IndicationsAndDoseContent: FC<IndicationsAndDoseContentProps> = ({
 									dangerouslySetInnerHTML={{ __html: ` for ${contentFor}` }}
 								/>
 							</h4>
-							{routesAndPatientGroups?.map(
+							{routesAndPatientGroups.map(
 								({ routeOfAdministration, patientGroups }) => (
 									<section
 										key={routeOfAdministration}

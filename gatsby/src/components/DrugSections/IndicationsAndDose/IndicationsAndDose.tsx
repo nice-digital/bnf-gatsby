@@ -19,9 +19,7 @@ export const IndicationsAndDose: FC<IndicationsAndDoseProps> = ({
 	prepContent,
 }) => {
 	const numberOfSections =
-			(drugContent ? 1 : 0) +
-			(drugClassContent || []).length +
-			(prepContent || []).length,
+			Number(!!drugContent) + drugClassContent.length + prepContent.length,
 		collapsible = numberOfSections > 1;
 
 	const [defaultOpen, setDefaultOpen] = useState(false);
