@@ -128,6 +128,52 @@ describe("DrugPage", () => {
 	});
 
 	describe("body", () => {
-		it.todo("body tests");
+		it.each<[keyof typeof drug]>([
+			["allergyAndCrossSensitivity"],
+			["breastFeeding"],
+			["cautions"],
+			["conceptionAndContraception"],
+			["contraIndications"],
+			["directionsForAdministration"],
+			["drugAction"],
+			["effectOnLaboratoryTests"],
+			["exceptionsToLegalCategory"],
+			["handlingAndStorage"],
+			["hepaticImpairment"],
+			["lessSuitableForPrescribing"],
+			["palliativeCare"],
+			["patientAndCarerAdvice"],
+			["preTreatmentScreening"],
+			["pregnancy"],
+			["prescribingAndDispensingInformation"],
+			["professionSpecificInformation"],
+			["renalImpairment"],
+			["sideEffects"],
+		])("should render section for and link to %s", (property) => {
+			render(
+				<DrugPage
+					data={{
+						bnfDrug: {
+							...drug,
+							[property]: {
+								potName: "Some pot name",
+								slug: "some-pot-name",
+								drugClassContent: [],
+								drugContent: [],
+								prepContent: [],
+							},
+						},
+					}}
+				/>
+			);
+
+			expect(
+				screen.getByRole("link", { name: "Some pot name" })
+			).toHaveAttribute("href", "#some-pot-name");
+
+			expect(
+				screen.getByRole("heading", { level: 2, name: "Some pot name" })
+			).toHaveAttribute("id", "some-pot-name");
+		});
 	});
 });

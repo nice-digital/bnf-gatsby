@@ -22,7 +22,7 @@ import { Layout } from "@/components/Layout/Layout";
 import { SectionNav } from "@/components/SectionNav/SectionNav";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
-import { isTruthy, type SlugAndTitle, type WithSlug } from "@/utils";
+import { isTruthy, type WithSlug } from "@/utils";
 
 /**
  * Utility type with slug property added to all 'pots' on a drug.
