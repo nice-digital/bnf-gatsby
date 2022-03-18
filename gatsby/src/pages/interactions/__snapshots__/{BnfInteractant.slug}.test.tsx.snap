@@ -116,150 +116,318 @@ exports[`InteractantPage body should match snapshot for page body 1`] = `
           href="/drugs/acarbose/"
         >
           View 
-          acarbose
-           monograph page
+          <span>
+            acarbose
+          </span>
+           
+          monograph page
         </a>
       </p>
     </div>
-    <p>
-      Anti-D (Rh&lt;sub&gt;0&lt;/sub&gt;) immunoglobulin
-       has the following interaction information
+    <p
+      class="interactionInformation"
+    >
+      <span>
+        Anti-D (Rh
+        <sub>
+          0
+        </sub>
+        ) immunoglobulin
+      </span>
+       has the following interaction information:
     </p>
-    <aside>
-      <div>
-        <strong>
-          Sorted by:
-        </strong>
-        Name |
-        <button>
-          Sort by: Severity
-        </button>
+    <div
+      class="grid"
+    >
+      <div
+        class="rightCol"
+      >
+        <div
+          class="informationPanel"
+        >
+          <h2
+            class="informationPanelHeading"
+          >
+            Drug interaction information
+          </h2>
+          <p
+            class="severeMessage"
+          >
+            Severe interactions are highlighted with a red marker
+          </p>
+          <p>
+            <a
+              href="/interactions/introduction/"
+            >
+              Find out more about BNF interactions information
+            </a>
+          </p>
+        </div>
       </div>
-    </aside>
-    <h2
-      class="visually-hidden"
-      id="interactions-list-heading"
-    >
-      List of interactions for 
-      acarbose
-    </h2>
-    <ol
-      aria-labelledby="interactions-list-heading"
-    >
-      <li>
-        <h3>
-          Canagliflozin
-        </h3>
-        <ul>
-          <li>
-            <p>
-              <p>
-                Both 
-                <span
-                  class="substance-primary"
-                  data-monograph-sid="_426793441"
-                  data-sid="_426793441"
+      <div
+        class="leftCol"
+      >
+        <section
+          class="filterPanel hide-print"
+        >
+          <h2
+            class="visually-hidden"
+          >
+            Filters and sorting
+          </h2>
+          <form
+            class="filterForm"
+          >
+            <div
+              class="input filterInput"
+            >
+              <label
+                class="input__label"
+                for="drugNameInput"
+              >
+                Filter by drug name
+              </label>
+              <input
+                class="input__input"
+                id="drugNameInput"
+                name="drugNameInput"
+                placeholder="Enter drug name"
+                type="text"
+                value=""
+              />
+            </div>
+            <button
+              class="btn btn--secondary filterButton"
+              type="button"
+            >
+              Filter
+            </button>
+          </form>
+          <div
+            class="sortControls"
+          >
+            <strong>
+              Sorted by: 
+            </strong>
+            <span
+              class="sortButtonLabel"
+            >
+              Name | 
+            </span>
+            <button
+              class="sortButton"
+            >
+              Sort by: Severity
+            </button>
+          </div>
+        </section>
+        <div
+          class="resultCount"
+        >
+          Showing 
+          3
+           of 
+          3
+        </div>
+        <section
+          aria-live="polite"
+        >
+          <h2
+            class="visually-hidden"
+            id="interactions-list-heading"
+          >
+            List of interactions for
+             
+            <span>
+              acarbose
+            </span>
+          </h2>
+          <ol
+            aria-labelledby="interactions-list-heading"
+            class="interactionsList"
+          >
+            <li
+              class="interactionsListItem"
+            >
+              <h3
+                class="interactantTitle"
+              >
+                <a
+                  href="/drugs/canagliflozin/"
                 >
-                  acarbose
-                </span>
-                 and 
-                <span
-                  class="substance-primary"
-                  data-monograph-sid="_629412592"
-                  data-sid="_629412592"
+                  Canagliflozin test
+                </a>
+              </h3>
+              <ul
+                class="messageList"
+              >
+                <li
+                  class="message"
                 >
-                  canagliflozin
-                </span>
-                 can increase the risk of hypoglycaemia.
-              </p>
-            </p>
-            <p>
-              Additive effect: 
-              true
-            </p>
-            <p>
-              Severity: 
-              Normal
-            </p>
-            <p>
-              Severity order: 
-              1
-            </p>
-            <p>
-              Evidence: 
-              N/A
-            </p>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <h3>
-          Pancreatin
-        </h3>
-        <ul>
-          <li>
-            <p>
-              <span
-                class="substance-primary"
-                data-monograph-sid="_743802912"
-                data-sid="_743802912"
+                  <div
+                    class=""
+                  >
+                    <div>
+                      <p>
+                        Both 
+                        <span
+                          class="substance-primary"
+                          data-monograph-sid="_426793441"
+                          data-sid="_426793441"
+                        >
+                          acarbose
+                        </span>
+                         and 
+                        <span
+                          class="substance-primary"
+                          data-monograph-sid="_629412592"
+                          data-sid="_629412592"
+                        >
+                          canagliflozin
+                        </span>
+                         can increase the risk of hypoglycaemia.
+                      </p>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </li>
+            <li
+              class="interactionsListItem"
+            >
+              <h3
+                class="interactantTitle"
               >
-                pancreatin
-              </span>
-               
-              <span
-                class="effectQualifier"
+                <a
+                  href="/drugs/pancreatin/"
+                >
+                  Pancreatin
+                </a>
+              </h3>
+              <ul
+                class="messageList"
               >
-                is predicted to
-              </span>
-               
-              <span
-                class="effect"
+                <li
+                  class="message"
+                >
+                  <div
+                    class=""
+                  >
+                    <div>
+                      <span
+                        class="substance-primary"
+                        data-monograph-sid="_743802912"
+                        data-sid="_743802912"
+                      >
+                        pancreatin
+                      </span>
+                       
+                      <span
+                        class="effectQualifier"
+                      >
+                        is predicted to
+                      </span>
+                       
+                      <span
+                        class="effect"
+                      >
+                        decrease
+                      </span>
+                       
+                      <span
+                        class="parameter"
+                      >
+                        the effects of
+                      </span>
+                       
+                      <span
+                        class="substance-primary"
+                        data-monograph-sid="_426793441"
+                        data-sid="_426793441"
+                      >
+                        acarbose
+                      </span>
+                      . 
+                      <span
+                        class="action"
+                      >
+                        Manufacturer advises avoid
+                      </span>
+                      .  
+                    </div>
+                    <dl
+                      class="supplementaryInfo"
+                    >
+                       
+                      <dt>
+                        Evidence:
+                      </dt>
+                      <dd>
+                        Theoretical
+                      </dd>
+                    </dl>
+                  </div>
+                </li>
+              </ul>
+            </li>
+            <li
+              class="interactionsListItem"
+            >
+              <h3
+                class="interactantTitle"
               >
-                decrease
-              </span>
-               
-              <span
-                class="parameter"
+                <a
+                  href="/drugs/testinteractant/"
+                >
+                  Test interactant
+                </a>
+              </h3>
+              <ul
+                class="messageList"
               >
-                the effects of
-              </span>
-               
-              <span
-                class="substance-primary"
-                data-monograph-sid="_426793441"
-                data-sid="_426793441"
-              >
-                acarbose
-              </span>
-              . 
-              <span
-                class="action"
-              >
-                Manufacturer advises avoid
-              </span>
-              .  
-            </p>
-            <p>
-              Additive effect: 
-              false
-            </p>
-            <p>
-              Severity: 
-              Moderate
-            </p>
-            <p>
-              Severity order: 
-              3
-            </p>
-            <p>
-              Evidence: 
-              Theoretical
-            </p>
-          </li>
-        </ul>
-      </li>
-    </ol>
+                <li
+                  class="message"
+                >
+                  <div
+                    class=""
+                  >
+                    <div>
+                      Test message 1
+                    </div>
+                  </div>
+                </li>
+                <li
+                  class="message"
+                >
+                  <div
+                    class="severeMessage"
+                  >
+                    <div>
+                      Test message 2 (severe)
+                    </div>
+                    <dl
+                      class="supplementaryInfo"
+                    >
+                      <dt>
+                        <strong>
+                          Severity:
+                        </strong>
+                      </dt>
+                      <dd>
+                        <strong>
+                          Severe
+                        </strong>
+                      </dd>
+                       
+                    </dl>
+                  </div>
+                </li>
+              </ul>
+            </li>
+          </ol>
+        </section>
+      </div>
+    </div>
   </div>
 </main>
 `;

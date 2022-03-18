@@ -34,7 +34,7 @@ const interactant: InteractantPageProps["data"]["bnfInteractant"] = {
 		},
 		{
 			interactant: {
-				title: "Canagliflozin",
+				title: "Canagliflozin test",
 				drug: {
 					slug: "canagliflozin",
 				},
@@ -47,6 +47,30 @@ const interactant: InteractantPageProps["data"]["bnfInteractant"] = {
 						'<p>Both <span class="substance-primary" data-monograph-sid="_426793441" data-sid="_426793441">acarbose</span> and <span class="substance-primary" data-monograph-sid="_629412592" data-sid="_629412592">canagliflozin</span> can increase the risk of hypoglycaemia.</p>',
 					severity: "Normal",
 					severityOrder: 1,
+				},
+			],
+		},
+		{
+			interactant: {
+				title: "Test interactant",
+				drug: {
+					slug: "testinteractant",
+				},
+			},
+			messages: [
+				{
+					additiveEffect: true,
+					evidence: null,
+					message: "Test message 1",
+					severity: "Normal",
+					severityOrder: 1,
+				},
+				{
+					additiveEffect: true,
+					evidence: null,
+					message: "Test message 2 (severe)",
+					severity: "Severe",
+					severityOrder: 4,
 				},
 			],
 		},
@@ -221,7 +245,7 @@ describe("InteractantPage", () => {
 				screen
 					.getAllByRole("heading", { level: 3 })
 					.map((heading) => heading.textContent)
-			).toStrictEqual(["Canagliflozin", "Pancreatin"]);
+			).toStrictEqual(["Canagliflozin test", "Pancreatin", "Test interactant"]);
 		});
 
 		it("should sort the interaction results by severity after hitting the 'Sort by severity' button", () => {
@@ -234,7 +258,41 @@ describe("InteractantPage", () => {
 				screen
 					.getAllByRole("heading", { level: 3 })
 					.map((heading) => heading.textContent)
-			).toStrictEqual(["Pancreatin", "Canagliflozin"]);
+			).toStrictEqual(["Test interactant", "Pancreatin", "Canagliflozin test"]);
+		});
+
+		it("should limit the result set when a filter value is supplied", () => {
+			render(<InteractantPage data={dataProp} />);
+			const filterButton = screen.getByRole("button", {
+				name: "Filter",
+			});
+			userEvent.type(screen.getByRole("textbox"), "Test");
+			userEvent.click(filterButton);
+			expect(
+				screen
+					.getAllByRole("heading", { level: 3 })
+					.map((heading) => heading.textContent)
+			).toStrictEqual(["Canagliflozin test", "Test interactant"]);
+		});
+
+		it("should successfully list a filtered result set in severity order when specified", () => {
+			render(<InteractantPage data={dataProp} />);
+			const filterButton = screen.getByRole("button", {
+				name: "Filter",
+			});
+			userEvent.type(screen.getByRole("textbox"), "Test");
+			userEvent.click(filterButton);
+
+			const sortButton = screen.getByRole("button", {
+				name: "Sort by: Severity",
+			});
+			userEvent.click(sortButton);
+
+			expect(
+				screen
+					.getAllByRole("heading", { level: 3 })
+					.map((heading) => heading.textContent)
+			).toStrictEqual(["Test interactant", "Canagliflozin test"]);
 		});
 	});
 });

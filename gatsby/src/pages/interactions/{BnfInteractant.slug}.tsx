@@ -231,7 +231,9 @@ const InteractantPage: FC<InteractantPageProps> = ({
 							<section aria-live="polite">
 								<h2 className="visually-hidden" id="interactions-list-heading">
 									List of interactions for{" "}
-									<span dangerouslySetInnerHTML={{ __html: title }} />
+									<span
+										dangerouslySetInnerHTML={{ __html: drug?.title || "" }}
+									/>
 								</h2>
 								<ol
 									className={styles.interactionsList}
