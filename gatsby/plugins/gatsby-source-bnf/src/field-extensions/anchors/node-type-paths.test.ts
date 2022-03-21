@@ -10,8 +10,10 @@ describe("nodeTypePathMap", () => {
 		  "BnfTreatmentSummary" => "/treatment-summaries",
 		  "BnfGuidance" => "/medicines-guidance",
 		  "BnfMedicalDevice" => "/medical-devices",
-		  "BnfWoundManagementIntroduction" => "",
-		  "BnfWoundManagementTaxonomy" => "/wound-management-products-and-elasticated-garments",
+		  "BnfNursePrescribersFormularyIntroduction" => "/nurse-prescribers-formulary",
+		  "BnfDentalPractitionersFormulary" => "/dental-practitioners-formulary",
+		  "BnfWoundManagementIntroduction" => "/wound-management",
+		  "BnfWoundManagementTaxonomy" => "/wound-management",
 		}
 	`);
 	});

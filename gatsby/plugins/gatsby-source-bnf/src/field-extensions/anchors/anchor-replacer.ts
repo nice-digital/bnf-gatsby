@@ -3,6 +3,7 @@ import { type NodeInput } from "gatsby";
 import {
 	type PHPID,
 	type SID,
+	type SectionID,
 	type FeedRecordSection,
 } from "../../downloader/types";
 import { type NodeModel } from "../../node-model";
@@ -11,9 +12,10 @@ import { slugify } from "../slug";
 
 import { nodeTypePathMap } from "./node-type-paths";
 
-type TitledNodeInput = { title: string } & NodeInput;
-
-type SectionsNodeInput = TitledNodeInput & { sections: FeedRecordSection[] };
+type CustomNodeInput = NodeInput & {
+	title: string;
+	sections?: FeedRecordSection[];
+};
 
 /**
  * Regular expression to target relative anchors to othe entities within the BNF.
@@ -32,21 +34,13 @@ type SectionsNodeInput = TitledNodeInput & { sections: FeedRecordSection[] };
 const relativeAnchorRegex =
 	/<a[^>]*?href="(\/([^/#"]*)(?:\/([^/#"]*))?\/([^/#"]*)(?:#([^"]*))?)".*?<\/a>/gm;
 
-const entityTypes = [
-	"about",
-	"cautionaryAndAdvisoryLabels",
-	"dentalPractitionersFormulary",
-	"drug",
-	"guidance",
-	"medicalDevice",
-	"nursePrescribersFormulary",
-	"treatmentSummaries",
-	"woundManagement",
-] as const;
+const landingPageNodeTypes: BnfNodeType[] = [
+	BnfNode.DentalPractitionersFormulary,
+	BnfNode.NursePrescribersFormularyIntroduction,
+	BnfNode.WoundManagementIntroduction,
+];
 
-export type EntityType = typeof entityTypes[number];
-
-const receivedPathToNode = new Map<EntityType, BnfNodeType>([
+const receivedPathToNode = new Map<string, BnfNodeType>([
 	["about", BnfNode.AboutSection],
 	["cautionaryAndAdvisoryLabels", BnfNode.CautionaryAndAdvisoryGuidance],
 	["dentalPractitionersFormulary", BnfNode.DentalPractitionersFormulary],
@@ -55,7 +49,7 @@ const receivedPathToNode = new Map<EntityType, BnfNodeType>([
 	["medicalDevice", BnfNode.MedicalDevice],
 	["nursePrescribersFormulary", BnfNode.NursePrescribersFormularyIntroduction],
 	["treatmentSummaries", BnfNode.TreatmentSummary],
-	["woundManagement", BnfNode.WoundManagementTaxonomy], // TODO: How do we handle wound management taxonomy links?
+	["woundManagement", BnfNode.WoundManagementIntroduction],
 ]);
 
 const anchorReplacer =
@@ -63,88 +57,72 @@ const anchorReplacer =
 	(
 		anchorHTML: string,
 		href: string,
-		entityType: EntityType,
+		entityType: string,
 		taxonomy: "taxonomy" | null,
 		id: SID | PHPID,
-		sectionId: `section${SID}-${number}` | null
+		sectionId: SectionID | null
 	): string => {
-		// Check the first path of the URL path is a thing we know about.
-		// If we don't then something's changed in the feed and we want to know about it
-		if (!entityTypes.includes(entityType))
-			throw Error(
-				`Unknown type of '${entityType}' found in link ${anchorHTML}`
-			);
-
 		// It would be weird if the taxonomy part of the URL was present for anything but wound management
 		if (taxonomy && entityType !== "woundManagement")
 			throw Error(
 				`Taxonomy found for type of '${entityType}' in link ${anchorHTML}. Only wound management links can have a taxonomy path.`
 			);
 
-		// We don't support a section id hash on every type of content
-		if (
-			sectionId &&
-			entityType !== "dentalPractitionersFormulary" &&
-			entityType !== "treatmentSummaries"
-		)
+		const nodeType = taxonomy
+			? BnfNode.WoundManagementTaxonomy
+			: receivedPathToNode.get(entityType);
+
+		// Check the first path of the URL path is a thing we know about.
+		// If we don't then something's changed in the feed and we want to know about it
+		if (!nodeType)
 			throw Error(
-				`Section id of ${sectionId} found for type of '${entityType}' in link ${anchorHTML}. Only treatment summaries and dental practitioners can have a section id hash.`
+				`Unknown type of '${entityType}' found in link ${anchorHTML}`
 			);
 
-		if (entityType === "woundManagement") {
-			// TODO Taxonomy page?
-			return "";
-		}
-
 		// Look for the GraphQL node based on the SID/PHP ID in the parsed URL
-		const nodeType = receivedPathToNode.get(entityType),
-			node = nodeModel.getNodeById<TitledNodeInput>({
-				id,
-				type: nodeType,
-			});
+		const node = nodeModel.getNodeById<CustomNodeInput>({
+			id,
+			type: nodeType,
+		});
+
 		if (!node) {
 			throw Error(
 				`Couldn't find ${nodeType} node with id ${id} in link ${anchorHTML}`
 			);
 		}
 
-		// Look for the record section by ID from the parsed hash, if there is one, e.g. `section_266958834-1`
-		let sectionSlug = "";
-		if (sectionId) {
-			const sections = (node as SectionsNodeInput).sections || [],
-				sectionNode = sections.find(({ id }) => id === sectionId);
+		const { title, internal } = node,
+			basePath = nodeTypePathMap.get(internal.type);
 
-			if (!sectionNode)
-				throw Error(
-					`Couldn't find section with id ${sectionId} on node ${node.title} in link ${anchorHTML}`
-				);
-
-			sectionSlug = slugify(sectionNode.title);
-		}
+		if (basePath === undefined)
+			throw Error(
+				`Node '${title}' has unsupported type '${internal.type}' for mapping to a path in link ${anchorHTML}`
+			);
 
 		// Turn the node into a URL path
 		let newPath: string;
-		if (entityType === "dentalPractitionersFormulary") {
-			newPath = "/dental-practitioners-formulary/";
-		} else if (entityType === "nursePrescribersFormulary") {
-			newPath = "/nurse-prescribers-formulary/";
-			// TODO: Handle links to NPF treatment summaries in the future?
+		if (nodeType === BnfNode.WoundManagementTaxonomy) {
+			// TODO: What will the URL structure of wound management pages be?
+			newPath = `${basePath}/`;
+		} else if (landingPageNodeTypes.includes(nodeType)) {
+			newPath = `${basePath}/`;
 		} else {
-			const { title, internal } = node,
-				basePath = nodeTypePathMap.get(internal.type);
-
-			if (basePath === undefined)
-				throw Error(
-					`Node '${title}' has unsupported type '${internal.type}' for mapping to a path in link ${anchorHTML}`
-				);
-
 			newPath = `${basePath}/${slugify(title)}/`;
 		}
 
-		return anchorHTML.replace(
-			href,
-			newPath + (sectionSlug ? `#${sectionSlug}` : "")
+		if (!sectionId) return anchorHTML.replace(href, newPath);
+
+		// Look for the record section by ID from the parsed hash, if there is one, e.g. `section_266958834-1`
+		const sectionNode = (node.sections || []).find(
+			({ id }) => id === sectionId
 		);
+
+		if (!sectionNode)
+			throw Error(
+				`Couldn't find section with id ${sectionId} on node ${node.title} in link ${anchorHTML}`
+			);
+
+		return anchorHTML.replace(href, `${newPath}#${slugify(sectionNode.title)}`);
 	};
 
 export const replaceRelativeAnchors = (

@@ -81,14 +81,14 @@ const HomePage: FC = () => {
 			</p>
 			<p>
 				<Link to="/dental-practitioners-formulary/">
-					Dental Practitioners’ Formulary
+					Dental Practitioners&apos; Formulary
 				</Link>
 			</p>
 			<p>
 				<Link to="/medical-devices/">Medical devices</Link>
 			</p>
 			<p>
-				<Link to="/wound-management-products-and-elasticated-garments/">
+				<Link to="/wound-management/">
 					Wound management products and elasticated garments
 				</Link>
 			</p>

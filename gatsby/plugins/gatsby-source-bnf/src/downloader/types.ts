@@ -33,7 +33,8 @@ export type PHPID = `PHP${number}`;
 /** A BNF SID in the format `^_[0-9]{9,12}$` */
 export type SID = `_${number}`;
 
-export type BNFID = PHPID | SID;
+/** The ID of a record section e.g. `section_320704649-0` or `sectionPHP107699-0` */
+export type SectionID = `section${SID | PHPID}-${number}`;
 
 export interface FeedClassification {
 	id: string;
@@ -212,7 +213,7 @@ export interface FeedLabel {
  */
 export interface FeedSimpleRecord {
 	/** The ID of the record. The ID may be used in anchor links in HTML content elsewhere in the JSON. */
-	id: BNFID;
+	id: SID | PHPID;
 	/** The title of the section. May contain HTML markup. */
 	title: string;
 	/** The review date, if available for this record. The format used is ISO 8601-1:2019 compliant (without a time zone designator), e.g. `2021-07-06T00:37:25.918`. */
@@ -224,7 +225,7 @@ export interface FeedSimpleRecord {
 /** A section of a simple record. */
 export interface FeedRecordSection {
 	/** The ID of the section. The ID may be used in anchor links in HTML content elsewhere in the JSON. The section ID can be used to determine the order of the sections within the parent record. Each ID is of the form `section[parent_id]-[num]` where `[parent_id]` is the ID of the parent record and `[num]` is an integer indicating the ordering of the sections, starting from zero. For example, the ID `sectionPHP101870-0` is the first section within the record with ID `PHP101870`. */
-	id: `section${BNFID}-${number}`;
+	id: SectionID;
 	/** The title of the section. May contain HTML markup. */
 	title: string;
 	/** The review date of the record if available, formatted into a String. The format used is ISO 8601-1:2019 compliant (without a time zone designator), e.g. `2021-07-06T00:37:25.918`. */

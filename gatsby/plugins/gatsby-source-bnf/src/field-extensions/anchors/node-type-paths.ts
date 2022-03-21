@@ -2,29 +2,21 @@ import { type ReadonlyDeep } from "type-fest";
 
 import { BnfNode, type BnfNodeTypes } from "../../node-types";
 
-const map = new Map<BnfNodeTypes, string>();
-
-map.set(BnfNode.Drug, "/drugs");
-map.set(BnfNode.AboutSection, "/about");
-map.set(BnfNode.CautionaryAndAdvisoryGuidance, "/about");
-map.set(BnfNode.TreatmentSummary, "/treatment-summaries");
-map.set(BnfNode.Guidance, "/medicines-guidance");
-map.set(BnfNode.MedicalDevice, "/medical-devices");
-map.set(
-	BnfNode.NursePrescribersFormularyIntroduction,
-	"/nurse-prescribers-formulary"
-);
-map.set(
-	BnfNode.DentalPractitionersFormulary,
-	"/dental-practitioners-formulary"
-);
-
-// TODO: Handle taxonomy links properly when we know the URL structure
-map.set(BnfNode.WoundManagementIntroduction, "");
-map.set(
-	BnfNode.WoundManagementTaxonomy,
-	"/wound-management-products-and-elasticated-garments"
-);
+const map = new Map<BnfNodeTypes, string>([
+	[BnfNode.Drug, "/drugs"],
+	[BnfNode.AboutSection, "/about"],
+	[BnfNode.CautionaryAndAdvisoryGuidance, "/about"],
+	[BnfNode.TreatmentSummary, "/treatment-summaries"],
+	[BnfNode.Guidance, "/medicines-guidance"],
+	[BnfNode.MedicalDevice, "/medical-devices"],
+	[
+		BnfNode.NursePrescribersFormularyIntroduction,
+		"/nurse-prescribers-formulary",
+	],
+	[BnfNode.DentalPractitionersFormulary, "/dental-practitioners-formulary"],
+	[BnfNode.WoundManagementIntroduction, "/wound-management"],
+	[BnfNode.WoundManagementTaxonomy, "/wound-management"],
+]);
 
 /**
  * A mapping of BNF node type to root URL path segment

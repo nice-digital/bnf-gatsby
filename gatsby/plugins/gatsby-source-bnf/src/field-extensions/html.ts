@@ -1,6 +1,6 @@
 import { type FieldResolveContext } from "../node-model";
 
-import { replaceRelativeAnchors } from "./anchors/relative-anchor-replacer";
+import { replaceRelativeAnchors } from "./anchors/anchor-replacer";
 import { replaceXRefs } from "./anchors/xref-replacer";
 
 /**

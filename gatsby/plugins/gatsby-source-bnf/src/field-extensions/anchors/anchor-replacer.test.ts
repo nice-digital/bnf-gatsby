@@ -1,10 +1,7 @@
 import { NodeModel } from "../../node-model";
 import { BnfNode, BnfNodeType } from "../../node-types";
 
-import {
-	replaceRelativeAnchors,
-	type EntityType,
-} from "./relative-anchor-replacer";
+import { replaceRelativeAnchors } from "./anchor-replacer";
 
 describe("replaceRelativeAnchors", () => {
 	const getNodeById = jest.fn();
@@ -35,17 +32,6 @@ describe("replaceRelativeAnchors", () => {
 				);
 			}).toThrow(
 				`Unknown type of 'something' found in link <a href="/something/_395033263">bob</a>`
-			);
-		});
-
-		it("should throw if section id is in URL when it's not a treatment summary or dental practitioners", () => {
-			expect(() => {
-				replaceRelativeAnchors(
-					`a <a href="/drug/_395033263#section_12345-1" title="A drug">drug</a> link`,
-					nodeModel
-				);
-			}).toThrow(
-				`Section id of section_12345-1 found for type of 'drug' in link <a href="/drug/_395033263#section_12345-1" title="A drug">drug</a>. Only treatment summaries and dental practitioners can have a section id hash.`
 			);
 		});
 
@@ -117,12 +103,10 @@ describe("replaceRelativeAnchors", () => {
 
 			expect(
 				replaceRelativeAnchors(
-					`a <a href="/dentalPractitionersFormulary/_258049705" title="DPF">DPF</a> link`,
+					`<a href="/dentalPractitionersFormulary/_258049705" title="DPF">DPF</a>`,
 					nodeModel
 				)
-			).toBe(
-				`a <a href="/dental-practitioners-formulary/" title="DPF">DPF</a> link`
-			);
+			).toBe(`<a href="/dental-practitioners-formulary/" title="DPF">DPF</a>`);
 		});
 
 		it("should replace link to dental practitioners formulary with section hash", () => {
@@ -136,22 +120,109 @@ describe("replaceRelativeAnchors", () => {
 				],
 				internal: { type: BnfNode.DentalPractitionersFormulary },
 			});
-			getNodeById.mockReturnValueOnce({
-				title: "Details of DPF preparations",
-				internal: { type: BnfNode.RecordSection },
-			});
 			expect(
 				replaceRelativeAnchors(
-					`a <a href="/dentalPractitionersFormulary/_123#sectionPHP101868-1" title="A thing">thing</a> link`,
+					`<a href="/dentalPractitionersFormulary/_123#sectionPHP101868-1" title="A thing">thing</a>`,
 					nodeModel
 				)
 			).toBe(
-				`a <a href="/dental-practitioners-formulary/#details-of-dpf-preparations" title="A thing">thing</a> link`
+				`<a href="/dental-practitioners-formulary/#details-of-dpf-preparations" title="A thing">thing</a>`
 			);
 		});
 	});
 
-	it.each<[BnfNodeType, EntityType, string]>([
+	describe("Nurse Prescribers' Formulary", () => {
+		it("should replace link to dental practitioners formulary without section hash", () => {
+			getNodeById.mockReturnValueOnce({
+				title: "Nurse Prescribers' Formulary",
+				internal: { type: BnfNode.NursePrescribersFormularyIntroduction },
+			});
+
+			expect(
+				replaceRelativeAnchors(
+					`<a href="/nursePrescribersFormulary/_129024858" title="NPF">NPF</a>`,
+					nodeModel
+				)
+			).toBe(`<a href="/nurse-prescribers-formulary/" title="NPF">NPF</a>`);
+		});
+
+		it("should replace link to dental practitioners formulary with section hash", () => {
+			getNodeById.mockReturnValueOnce({
+				title: "Nurse Prescribers' Formulary",
+				sections: [
+					{
+						title: "Medicinal Preparations",
+						id: "sectionPHP101869-1",
+					},
+				],
+				internal: { type: BnfNode.NursePrescribersFormularyIntroduction },
+			});
+			expect(
+				replaceRelativeAnchors(
+					`<a href="/nursePrescribersFormulary/_129024858#sectionPHP101869-1" title="NPF Medicinal Preparations">NPF Medicinal Preparations</a>`,
+					nodeModel
+				)
+			).toBe(
+				`<a href="/nurse-prescribers-formulary/#medicinal-preparations" title="NPF Medicinal Preparations">NPF Medicinal Preparations</a>`
+			);
+		});
+	});
+
+	describe("Wound management", () => {
+		it("should replace link to wound management index without section hash", () => {
+			getNodeById.mockReturnValueOnce({
+				title: "Wound management products and elasticated garments",
+				internal: { type: BnfNode.WoundManagementIntroduction },
+			});
+
+			expect(
+				replaceRelativeAnchors(
+					`<a title="Wound management products and elasticated garments" href="/woundManagement/_320704649">Wound management products and elasticated garments</a>`,
+					nodeModel
+				)
+			).toBe(
+				`<a title="Wound management products and elasticated garments" href="/wound-management/">Wound management products and elasticated garments</a>`
+			);
+		});
+
+		it("should replace link to wound management index with section hash", () => {
+			getNodeById.mockReturnValueOnce({
+				title: "Wound management products and elasticated garments",
+				sections: [
+					{
+						title: "Introduction",
+						id: "section_320704649-0",
+					},
+				],
+				internal: { type: BnfNode.WoundManagementIntroduction },
+			});
+			expect(
+				replaceRelativeAnchors(
+					`<a title="Wound management products and elasticated garments" href="/woundManagement/_320704649#section_320704649-0">Wound management products and elasticated garments</a>`,
+					nodeModel
+				)
+			).toBe(
+				`<a title="Wound management products and elasticated garments" href="/wound-management/#introduction">Wound management products and elasticated garments</a>`
+			);
+		});
+
+		it("should replace link to wound management taxonomy", () => {
+			getNodeById.mockReturnValueOnce({
+				title: "Low adherence dressing",
+				internal: { type: BnfNode.WoundManagementTaxonomy },
+			});
+
+			expect(
+				replaceRelativeAnchors(
+					`<a href="/woundManagement/taxonomy/_870221431">Low adherence dressing</a>`,
+					nodeModel
+				)
+				// TODO Update this path here when we know what URL structure wound management will have
+			).toBe(`<a href="/wound-management/">Low adherence dressing</a>`);
+		});
+	});
+
+	it.each<[BnfNodeType, string, string]>([
 		[BnfNode.AboutSection, "about", "about"],
 		[
 			BnfNode.CautionaryAndAdvisoryGuidance,
