@@ -12,5 +12,6 @@ dist
 functional-tests/docker-output
 functional-tests/allure-report
 functional-tests/bnf-website-build
+functional-tests/bnfc-website-build
 
 gatsby/public

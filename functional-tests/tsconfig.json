@@ -11,5 +11,11 @@
     "types": ["node", "webdriverio/async", "@wdio/cucumber-framework"]
   },
   "include": ["./**/*"],
-  "exclude": ["dist", "allure-report", "docker-output", "bnf-website-build/*"]
+  "exclude": [
+    "dist",
+    "allure-report",
+    "docker-output",
+    "bnf-website-build/*",
+    "bnfc-website-build/*"
+  ]
 }

@@ -6,4 +6,5 @@ docker-output
 allure-report
 gatsby/public
 functional-tests/bnf-website-build
+functional-tests/bnfc-website-build
 __mocks__
