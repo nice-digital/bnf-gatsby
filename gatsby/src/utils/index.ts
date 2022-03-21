@@ -1,7 +1,7 @@
 export * from "./types";
 
 /**
- * Returns whether the given object is truthy or not bus casted to the object's type.
+ * Returns whether the given object is truthy or not but casted to the object's type.
  *
  * This casting allows filtering of types that are potentially falsy:
  *
