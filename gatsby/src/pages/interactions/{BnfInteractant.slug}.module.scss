@@ -55,7 +55,7 @@
 .filterInput {
   @include core.mq($from: md) {
     flex: 1 0;
-    margin-bottom: core.rem(2px);
+    margin-bottom: core.rem(core.$nds-spacing-xx-small);
   }
 }
 
@@ -79,11 +79,11 @@
 
 .clearFilterButton {
   background: core.$nds-colour-nice-grey-3;
-  border: 1px solid core.$nds-colour-nice-grey-2;
+  border: 1px solid core.$nds-colour-border;
   cursor: pointer;
 
   svg {
-    font-size: 0.6rem;
+    @include core.nds-font-size(-2);
   }
 }
 
