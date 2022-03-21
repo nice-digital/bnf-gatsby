@@ -197,6 +197,13 @@ exports[`HomePage should match snapshot for BNF 1`] = `
         Nurse Prescribers' Formulary
       </a>
     </p>
+    <p>
+      <a
+        href="/medicines-guidance/"
+      >
+        Medicines guidance
+      </a>
+    </p>
   </div>
 </main>
 `;
@@ -396,6 +403,13 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
         href="/nurse-prescribers-formulary/"
       >
         Nurse Prescribers' Formulary
+      </a>
+    </p>
+    <p>
+      <a
+        href="/medicines-guidance/"
+      >
+        Medicines guidance
       </a>
     </p>
   </div>

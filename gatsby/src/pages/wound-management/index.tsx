@@ -11,15 +11,18 @@ export type WoundManagementIndexPageProps = {
 		bnfWoundManagementIntroduction: {
 			title: string;
 			sections: RecordSection[];
-		};
+		} | null;
 	};
 };
 
 const WoundManagementIndexPage: FC<WoundManagementIndexPageProps> = ({
-	data: {
-		bnfWoundManagementIntroduction: { title, sections },
-	},
+	data: { bnfWoundManagementIntroduction },
 }) => {
+	// There is no wound management section for BNFC so return null but also the page will get deleted in gatsby-node
+	if (!bnfWoundManagementIntroduction) return null;
+
+	const { title, sections } = bnfWoundManagementIntroduction;
+
 	return (
 		<DetailsPageLayout
 			titleHtml={title}

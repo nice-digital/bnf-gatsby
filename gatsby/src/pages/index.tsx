@@ -97,6 +97,9 @@ const HomePage: FC = () => {
 					Nurse Prescribers&apos; Formulary
 				</Link>
 			</p>
+			<p>
+				<Link to="/medicines-guidance/">Medicines guidance</Link>
+			</p>
 		</Layout>
 	);
 };
