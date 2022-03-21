@@ -21,6 +21,8 @@ export interface Feed {
 	interactions: FeedInteractions;
 	/** All the medical device monograph content. Each medical device monograph contains a number of standard sections (called `pots`) which describe the various properties of the medical device when used in a clinical context. */
 	medicalDevices: FeedMedicalDevice[];
+	/** The Nurse Prescribers' Formulary (NPF) and associated treatment summaries. */
+	nursePrescribersFormulary: FeedNursePrescribersFormulary;
 	/** The wound management products and elasticated garments (Appendix 4) content. This will only be present for BNF (and not BNFc). */
 	woundManagement?: FeedWoundManagement;
 }
@@ -437,4 +439,12 @@ export interface WoundManagementProductGroup {
 	description?: string;
 	/** The list of products in the wound management product group. */
 	products?: FeedPrep[];
+}
+
+/** The Nurse Prescribers' Formulary and associated treatment summaries. */
+export interface FeedNursePrescribersFormulary {
+	/** The Nurse Prescribers' Formulary introduction. */
+	introduction: FeedSimpleRecord;
+	/** The Nurse Prescribers' Formulary treatment summaries. */
+	npfTreatmentSummaries: [FeedSimpleRecord, ...FeedSimpleRecord[]];
 }

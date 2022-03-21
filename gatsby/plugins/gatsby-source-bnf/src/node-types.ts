@@ -17,6 +17,10 @@ export const BnfNode = {
 	MedicalDevice: "BnfMedicalDevice",
 	MedicinalForm: "BnfMedicinalForm",
 	MedicinalForms: "BnfMedicinalForms",
+	NursePrescribersFormularyIntroduction:
+		"BnfNursePrescribersFormularyIntroduction",
+	NursePrescribersFormularyTreatmentSummary:
+		"BnfNursePrescribersFormularyTreatmentSummary",
 	Pack: "BnfPack",
 	PatientGroup: "BnfPatientGroup",
 	Prep: "BnfPrep",
