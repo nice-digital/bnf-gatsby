@@ -92,13 +92,13 @@ const DrugPage: FC<DrugPageProps> = ({ data: { bnfDrug } }) => {
 		bnfDrug.treatmentCessation,
 		bnfDrug.directionsForAdministration,
 		bnfDrug.prescribingAndDispensingInformation,
+		bnfDrug.palliativeCare,
 		bnfDrug.handlingAndStorage,
 		bnfDrug.patientAndCarerAdvice,
-		bnfDrug.palliativeCare,
 		bnfDrug.professionSpecificInformation,
 		// TODO: bnfDrug.nationalFunding (BNF-1270)
-		bnfDrug.exceptionsToLegalCategory,
 		bnfDrug.lessSuitableForPrescribing,
+		bnfDrug.exceptionsToLegalCategory,
 		// TODO: medicinalForms (BNF-1267)
 		// TODO: related treatment summaries (BNF-1212)
 		// TODO: other drugs in class (BNF-1244)
