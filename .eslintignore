@@ -4,4 +4,6 @@ coverage
 node_modules
 docker-output
 allure-report
+gatsby/public
+functional-tests/bnf-website-build
 __mocks__
