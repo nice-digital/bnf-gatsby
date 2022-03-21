@@ -10,9 +10,17 @@ map.set(BnfNode.CautionaryAndAdvisoryGuidance, "/about");
 map.set(BnfNode.TreatmentSummary, "/treatment-summaries");
 map.set(BnfNode.Guidance, "/medicines-guidance");
 map.set(BnfNode.MedicalDevice, "/medical-devices");
-map.set(BnfNode.WoundManagementIntroduction, "");
+map.set(
+	BnfNode.NursePrescribersFormularyIntroduction,
+	"/nurse-prescribers-formulary"
+);
+map.set(
+	BnfNode.DentalPractitionersFormulary,
+	"/dental-practitioners-formulary"
+);
 
 // TODO: Handle taxonomy links properly when we know the URL structure
+map.set(BnfNode.WoundManagementIntroduction, "");
 map.set(
 	BnfNode.WoundManagementTaxonomy,
 	"/wound-management-products-and-elasticated-garments"
