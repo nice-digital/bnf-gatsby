@@ -17,6 +17,11 @@ export const BnfNode = {
 	MedicalDevice: "BnfMedicalDevice",
 	MedicinalForm: "BnfMedicinalForm",
 	MedicinalForms: "BnfMedicinalForms",
+	MonitoringPot: "BnfMonitoringPot",
+	MonitoringPotContent: "BnfMonitoringPotContent",
+	NationalFundingDecision: "BnfFundingDecision",
+	NationalFundingPot: "BnfNationalFundingPot",
+	NationalFundingPotContent: "BnfNationalFundingPotContent",
 	NursePrescribersFormularyIntroduction:
 		"BnfNursePrescribersFormularyIntroduction",
 	NursePrescribersFormularyTreatmentSummary:
@@ -27,6 +32,8 @@ export const BnfNode = {
 	RecordSection: "BnfRecordSection",
 	RouteAndPatientGroups: "BnfRouteAndPatientGroups",
 	SimpleRecord: "BnfSimpleRecord",
+	SimplePot: "BnfSimplePot",
+	SimplePotContent: "BnfSimplePotContent",
 	TherapeuticIndication: "BnfTherapeuticIndication",
 	TreatmentSummary: "BnfTreatmentSummary",
 	WoundManagementIntroduction: "BnfWoundManagementIntroduction",

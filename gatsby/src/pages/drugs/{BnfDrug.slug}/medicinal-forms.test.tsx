@@ -15,11 +15,17 @@ const drug: MedicinalFormsPageProps["data"]["bnfDrug"] = {
 			{
 				form: "Tablets",
 				slug: "tablets",
+				cautionaryAndAdvisoryLabels: [],
+				electolytes: null,
+				excipients: null,
 				preps: [],
 			},
 			{
 				form: "Powder",
 				slug: "powder",
+				cautionaryAndAdvisoryLabels: [],
+				electolytes: null,
+				excipients: null,
 				preps: [],
 			},
 		],

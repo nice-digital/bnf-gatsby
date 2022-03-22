@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PotContent should match snapshot 1`] = `
+<div>
+  <section
+    aria-labelledby="simple-pot-anti-d-rh-0-immunoglobulin"
+  >
+    <h3
+      class=""
+      id="simple-pot-anti-d-rh-0-immunoglobulin"
+    >
+      <span
+        class="visually-hidden"
+      >
+        A 
+        <em>
+          simple
+        </em>
+         pot 
+      </span>
+      <span>
+        For Anti-D (RH
+        <sub>
+          0
+        </sub>
+        ) immunoglobulin
+      </span>
+    </h3>
+    <p>
+      Child element
+    </p>
+  </section>
+</div>
+`;

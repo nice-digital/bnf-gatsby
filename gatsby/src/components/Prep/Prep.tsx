@@ -2,8 +2,10 @@ import { type FC } from "react";
 
 import { type FeedPrep } from "@nice-digital/gatsby-source-bnf";
 
+import { type QueryResult } from "@/utils";
+
 export interface PrepProps {
-	prep: FeedPrep;
+	prep: QueryResult<FeedPrep>;
 }
 
 export const Prep: FC<PrepProps> = ({ prep }) => (

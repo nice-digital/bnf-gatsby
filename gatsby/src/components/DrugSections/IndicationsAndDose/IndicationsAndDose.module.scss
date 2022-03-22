@@ -2,6 +2,8 @@
 
 .wrapper {
   border-bottom: 1px solid core.$nds-colour-nice-grey-2;
+  margin-bottom: core.rem(core.$nds-spacing-large);
+  padding-bottom: core.rem(core.$nds-spacing-medium);
 }
 
 .toggleAllButton {

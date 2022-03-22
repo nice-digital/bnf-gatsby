@@ -23,5 +23,12 @@
 .linkList {
   list-style: none;
   margin: 0;
+  max-width: none;
   padding: 0;
+}
+
+@include core.mq($from: md) {
+  .linkList {
+    columns: 2;
+  }
 }
