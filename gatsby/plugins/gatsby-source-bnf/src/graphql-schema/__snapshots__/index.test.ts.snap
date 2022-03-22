@@ -369,35 +369,6 @@ exports[`schema should match snapshot 1`] = `
 	}
 
 
-	type BnfNursePrescribersFormularyIntroduction implements Node & BnfSimpleRecord @dontInfer {
-		\\"The title of the section. May contain HTML markup.\\"
-		title: String!
-
-		\\"The review date of the record, formatted into a string.\\"
-		reviewDate: Date @dateformat
-
-		\\"The slugified and lowercased title, used as a URL path\\"
-		slug: String! @slug(field: \\"title\\")
-
-		\\"The sections of the record.\\"
-		sections: [BnfRecordSection!]!
-	}
-
-	type BnfNursePrescribersFormularyTreatmentSummary implements Node & BnfSimpleRecord @dontInfer {
-		\\"The title of the section. May contain HTML markup.\\"
-		title: String!
-
-		\\"The review date of the record, formatted into a string.\\"
-		reviewDate: Date @dateformat
-
-		\\"The slugified and lowercased title, used as a URL path\\"
-		slug: String! @slug(field: \\"title\\")
-
-		\\"The sections of the record.\\"
-		sections: [BnfRecordSection!]!
-	}
-
-
 	\\"\\"\\"
 	A single section of monitoring requirements content for a BNF drug or medical device. A monograph will include content from relevant drug classes (groups of drugs that share the same properties), the drug itself, and specific preparations where the properties differ from those of the generic drug. This record has these three parts of content in the drugClassContent, drugContent and prepContent fields respectively.
 	\\"\\"\\"
@@ -509,6 +480,35 @@ exports[`schema should match snapshot 1`] = `
 
 		\\"A summary of the decision.\\"
 		approvedForUse: String!
+	}
+
+
+	type BnfNursePrescribersFormularyIntroduction implements Node & BnfSimpleRecord @dontInfer {
+		\\"The title of the section. May contain HTML markup.\\"
+		title: String!
+
+		\\"The review date of the record, formatted into a string.\\"
+		reviewDate: Date @dateformat
+
+		\\"The slugified and lowercased title, used as a URL path\\"
+		slug: String! @slug(field: \\"title\\")
+
+		\\"The sections of the record.\\"
+		sections: [BnfRecordSection!]!
+	}
+
+	type BnfNursePrescribersFormularyTreatmentSummary implements Node & BnfSimpleRecord @dontInfer {
+		\\"The title of the section. May contain HTML markup.\\"
+		title: String!
+
+		\\"The review date of the record, formatted into a string.\\"
+		reviewDate: Date @dateformat
+
+		\\"The slugified and lowercased title, used as a URL path\\"
+		slug: String! @slug(field: \\"title\\")
+
+		\\"The sections of the record.\\"
+		sections: [BnfRecordSection!]!
 	}
 
 
