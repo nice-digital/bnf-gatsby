@@ -1,50 +1,108 @@
 import { graphql, Link } from "gatsby";
-import React, { FC } from "react";
+import React, { useMemo, type ElementType, type FC } from "react";
 import striptags from "striptags";
+import { type Merge, type Except } from "type-fest";
 
+import {
+	type FeedDrug,
+	type FeedBaseNamedPot,
+} from "@nice-digital/gatsby-source-bnf";
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
 import { Grid, GridItem } from "@nice-digital/nds-grid";
 import { PageHeader } from "@nice-digital/nds-page-header";
 import { Panel } from "@nice-digital/nds-panel";
 
 import {
+	SimplePot,
 	IndicationsAndDose,
 	type IndicationsAndDoseProps,
-} from "@/components/IndicationsAndDose/IndicationsAndDose";
+	type BasePot,
+} from "@/components/DrugSections";
 import { Layout } from "@/components/Layout/Layout";
 import { SectionNav } from "@/components/SectionNav/SectionNav";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
+import { isTruthy, type WithSlug } from "@/utils";
+
+/**
+ * Utility type with slug property added to all 'pots' on a drug.
+ *
+ * This ie because we re-use the raw `FeedDrug` type to avoid having to redeclare each and every drug field.
+ * But we add `slug` fields to pots when we create GraphQL nodes, so we add the `slug` property here.
+ *
+ * We also swap `undefined` to `null` because the feed misses out empty properties (`undefined`) but when we query
+ * them with GraphQL they come back as `null` instead.
+ * */
+type DrugWithSluggedPots = {
+	[Key in keyof FeedDrug]-?: FeedDrug[Key] extends FeedBaseNamedPot | undefined
+		? (FeedDrug[Key] & BasePot) | null
+		: FeedDrug[Key];
+};
+
+/** Ignore fields on a drug that we don't query and don't need */
+type IgnoredDrugFields =
+	| "id"
+	| "sid"
+	| "primaryClassification"
+	| "secondaryClassifications"
+	| "reviewDate"
+	| "constituentDrugs";
 
 export interface DrugPageProps {
 	data: {
-		bnfDrug: {
-			title: string;
-			slug: string;
-			interactant: null | {
-				title: string;
-				slug: string;
-			};
-			constituentDrugs: null | {
-				message: string;
-				// TODO This will be non-null when the feed only surfaces existing monograph ids for constituent drugs
-				constituents: (null | {
-					title: string;
-					slug: string;
-				})[];
-			};
-			indicationsAndDose?: IndicationsAndDoseProps["indicationsAndDose"];
-		};
+		bnfDrug: Merge<
+			Except<WithSlug<DrugWithSluggedPots>, IgnoredDrugFields>,
+			{
+				indicationsAndDose: IndicationsAndDoseProps | null;
+			}
+		>;
 	};
 }
 
-const DrugPage: FC<DrugPageProps> = ({
-	data: {
-		bnfDrug: { title, slug, interactant, constituentDrugs, indicationsAndDose },
-	},
-}) => {
+const DrugPage: FC<DrugPageProps> = ({ data: { bnfDrug } }) => {
 	const { siteTitleShort } = useSiteMetadata(),
-		titleNoHtml = striptags(title);
+		titleNoHtml = striptags(bnfDrug.title),
+		/** Sections of a drug that have their own, specific component that isn't a `SimplePot` */
+		nonSimplePotComponents = useMemo(() => {
+			const { indicationsAndDose } = bnfDrug,
+				potMap = new Map<BasePot | null, ElementType>();
+			potMap.set(indicationsAndDose, IndicationsAndDose);
+			return potMap;
+		}, [bnfDrug]);
+
+	const orderedSections: BasePot[] = [
+		// TODO: constituents (BNF-1271)
+		bnfDrug.drugAction,
+		bnfDrug.indicationsAndDose,
+		bnfDrug.unlicensedUse,
+		// TODO bnfDrug.importantSafetyInformation (BNF-1266)
+		bnfDrug.contraIndications,
+		bnfDrug.cautions,
+		// TODO: Interactions (BNF-1268)
+		bnfDrug.sideEffects,
+		bnfDrug.allergyAndCrossSensitivity,
+		bnfDrug.conceptionAndContraception,
+		bnfDrug.pregnancy,
+		bnfDrug.breastFeeding,
+		bnfDrug.hepaticImpairment,
+		bnfDrug.renalImpairment,
+		bnfDrug.preTreatmentScreening,
+		// TODO: bnfDrug.monitoringRequirements (BNF-1269)
+		bnfDrug.effectOnLaboratoryTests,
+		bnfDrug.treatmentCessation,
+		bnfDrug.directionsForAdministration,
+		bnfDrug.prescribingAndDispensingInformation,
+		bnfDrug.palliativeCare,
+		bnfDrug.handlingAndStorage,
+		bnfDrug.patientAndCarerAdvice,
+		bnfDrug.professionSpecificInformation,
+		// TODO: bnfDrug.nationalFunding (BNF-1270)
+		bnfDrug.lessSuitableForPrescribing,
+		bnfDrug.exceptionsToLegalCategory,
+		// TODO: medicinalForms (BNF-1267)
+		// TODO: related treatment summaries (BNF-1212)
+		// TODO: other drugs in class (BNF-1244)
+	].filter(isTruthy);
 
 	return (
 		<Layout>
@@ -66,59 +124,35 @@ const DrugPage: FC<DrugPageProps> = ({
 
 			<PageHeader
 				id="content-start"
-				heading={<span dangerouslySetInnerHTML={{ __html: title }} />}
+				heading={<span dangerouslySetInnerHTML={{ __html: bnfDrug.title }} />}
 			/>
 
 			<Grid gutter="loose">
 				<GridItem cols={12} md={8} lg={9} className="hide-print">
 					<SectionNav
-						sections={[
-							indicationsAndDose && {
-								id: indicationsAndDose.slug,
-								title: indicationsAndDose.potName,
-							},
-						]}
+						sections={orderedSections.map(({ potName, slug }) => ({
+							id: slug,
+							title: potName,
+						}))}
 					/>
 				</GridItem>
 				<GridItem cols={12} md={4} lg={3} className="hide-print">
 					<Panel>Quick links will go here</Panel>
 				</GridItem>
 				<GridItem cols={12} md={8} lg={9}>
-					{indicationsAndDose && (
-						<IndicationsAndDose indicationsAndDose={indicationsAndDose} />
-					)}
+					{orderedSections.map((section) => {
+						// Default to a SimplePot as that's the most common type of section
+						const Component = nonSimplePotComponents.get(section) || SimplePot;
 
-					{interactant && (
-						<p>
-							<Link to={`/interactions/${interactant.slug}/`}>
-								View interactions page for {interactant.title}
-							</Link>
-						</p>
-					)}
-
-					{constituentDrugs && (
-						<section aria-labelledby="constituent-drugs">
-							<h2 id="constituent-drugs">Constituent drugs</h2>
-							<p
-								dangerouslySetInnerHTML={{ __html: constituentDrugs.message }}
+						return (
+							<Component
+								key={section.potName}
+								drugSlug={bnfDrug.slug}
+								drugTitle={bnfDrug.title}
+								{...section}
 							/>
-							<ul aria-labelledby="constituent-drugs">
-								{constituentDrugs.constituents.map((constituent) =>
-									constituent ? (
-										<li key={constituent.slug}>
-											<Link to={`/drugs/${constituent.slug}/`}>
-												{constituent.title}
-											</Link>
-										</li>
-									) : null
-								)}
-							</ul>
-						</section>
-					)}
-
-					<p>
-						<Link to={`/drugs/${slug}/medicinal-forms/`}>Medicinal forms</Link>
-					</p>
+						);
+					})}
 				</GridItem>
 			</Grid>
 		</Layout>
@@ -141,6 +175,42 @@ export const query = graphql`
 					slug
 				}
 			}
+			allergyAndCrossSensitivity {
+				...SimplePot
+			}
+			breastFeeding {
+				...SimplePot
+			}
+			conceptionAndContraception {
+				...SimplePot
+			}
+			contraIndications {
+				...SimplePot
+			}
+			cautions {
+				...SimplePot
+			}
+			directionsForAdministration {
+				...SimplePot
+			}
+			drugAction {
+				...SimplePot
+			}
+			effectOnLaboratoryTests {
+				...SimplePot
+			}
+			exceptionsToLegalCategory {
+				...SimplePot
+			}
+			handlingAndStorage {
+				...SimplePot
+			}
+			hepaticImpairment {
+				...SimplePot
+			}
+			importantSafetyInformation {
+				...SimplePot
+			}
 			indicationsAndDose {
 				potName
 				slug
@@ -153,6 +223,82 @@ export const query = graphql`
 				prepContent {
 					...IndicationsAndDoseContent
 				}
+			}
+			lessSuitableForPrescribing {
+				...SimplePot
+			}
+			medicinalForms {
+				initialStatement
+				specialOrderManufacturersStatement
+				medicinalForms {
+					form
+					slug
+				}
+			}
+			monitoringRequirements {
+				potName
+				slug
+				drugClassContent {
+					contentFor
+					monitoringOfPatientParameters
+					patientMonitoringProgrammes
+					therapeuticDrugMonitoring
+				}
+				drugContent {
+					contentFor
+					monitoringOfPatientParameters
+					patientMonitoringProgrammes
+					therapeuticDrugMonitoring
+				}
+				prepContent {
+					contentFor
+					monitoringOfPatientParameters
+					patientMonitoringProgrammes
+					therapeuticDrugMonitoring
+				}
+			}
+			nationalFunding {
+				potName
+				slug
+				drugClassContent {
+					...NationalFundingContent
+				}
+				drugContent {
+					...NationalFundingContent
+				}
+				prepContent {
+					...NationalFundingContent
+				}
+			}
+			palliativeCare {
+				...SimplePot
+			}
+			patientAndCarerAdvice {
+				...SimplePot
+			}
+			preTreatmentScreening {
+				...SimplePot
+			}
+			pregnancy {
+				...SimplePot
+			}
+			prescribingAndDispensingInformation {
+				...SimplePot
+			}
+			professionSpecificInformation {
+				...SimplePot
+			}
+			renalImpairment {
+				...SimplePot
+			}
+			sideEffects {
+				...SimplePot
+			}
+			treatmentCessation {
+				...SimplePot
+			}
+			unlicensedUse {
+				...SimplePot
 			}
 		}
 	}

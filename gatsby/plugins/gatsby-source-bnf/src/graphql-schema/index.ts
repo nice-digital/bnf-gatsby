@@ -7,8 +7,11 @@ import { guidanceSchema } from "./guidance";
 import { indicationsAndDoseSchema } from "./indications-and-dose";
 import { interactantSchema } from "./interactant";
 import { medicalDeviceSchema } from "./medical-device";
+import { monitoringSchema } from "./monitoring";
+import { nationalFundingSchema } from "./national-funding";
 import { prepSchema } from "./prep";
 import { recordSectionSchema } from "./record-section";
+import { simplePotSchema } from "./simple-pot";
 import { simpleRecordSchema } from "./simple-record";
 import { treamentSummarySchema } from "./treatment-summary";
 import { woundManagementSchema } from "./wound-management";
@@ -29,7 +32,10 @@ export const schema = [
 	indicationsAndDoseSchema,
 	interactantSchema,
 	medicalDeviceSchema,
+	monitoringSchema,
+	nationalFundingSchema,
 	prepSchema,
+	simplePotSchema,
 	recordSectionSchema,
 	simpleRecordSchema,
 	treamentSummarySchema,

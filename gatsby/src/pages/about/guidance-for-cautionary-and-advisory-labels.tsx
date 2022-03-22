@@ -5,8 +5,7 @@ import { AboutSectionMenu } from "@/components/AboutSectionMenu/AboutSectionMenu
 import { DetailsPageLayout } from "@/components/DetailsPageLayout/DetailsPageLayout";
 import { RecordSectionsContent } from "@/components/RecordSectionsContent/RecordSectionsContent";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
-
-import { type RecordSection } from "src/types";
+import { type RecordSection } from "@/utils";
 
 export type CautionaryAdvisoryGuidancePageProps = {
 	data: {
