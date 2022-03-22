@@ -27,3 +27,7 @@ Feature: Treatment summary details page
   Scenario: Heading text
     Then I expect that element "h1" matches the text "Dementia"
 
+  Scenario: On this page jump link to section
+    When I click the "Useful resources" link
+    Then I expect that element "h2#useful-resources" matches the text "Useful resources"
+
