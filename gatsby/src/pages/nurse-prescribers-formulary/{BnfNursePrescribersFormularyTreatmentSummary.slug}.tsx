@@ -3,8 +3,7 @@ import React, { FC } from "react";
 
 import { DetailsPageLayout } from "@/components/DetailsPageLayout/DetailsPageLayout";
 import { RecordSectionsContent } from "@/components/RecordSectionsContent/RecordSectionsContent";
-
-import { type RecordSection } from "src/types";
+import { type RecordSection } from "@/utils";
 
 export type NursePrescribersFormularyTreatmentSummaryPageProps = {
 	data: {

@@ -1,11 +1,9 @@
 import { graphql } from "gatsby";
-import React, { useMemo, type FC } from "react";
+import React, { type FC } from "react";
 
 import { DetailsPageLayout } from "@/components/DetailsPageLayout/DetailsPageLayout";
 import { RecordSectionsContent } from "@/components/RecordSectionsContent/RecordSectionsContent";
-import { useSiteMetadata } from "@/hooks/useSiteMetadata";
-
-import { type RecordSection } from "src/types";
+import { type RecordSection } from "@/utils";
 
 export type AboutSectionPageProps = {
 	data: {
