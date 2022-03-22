@@ -23,7 +23,15 @@ export interface IndicationsAndDoseContentProps {
 }
 
 export const IndicationsAndDoseContent: FC<IndicationsAndDoseContentProps> = ({
-	content: { contentFor, indicationAndDoseGroups },
+	content: {
+		contentFor,
+		indicationAndDoseGroups,
+		doseEquivalence,
+		doseAdjustments,
+		extremesOfBodyWeight,
+		pharmacokinetics,
+		potency,
+	},
 	contentForPrefix = "For",
 	collapsible,
 	defaultOpen,
