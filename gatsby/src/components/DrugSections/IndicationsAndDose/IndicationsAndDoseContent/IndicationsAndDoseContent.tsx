@@ -39,88 +39,176 @@ export const IndicationsAndDoseContent: FC<IndicationsAndDoseContentProps> = ({
 	const slug = slugify(striptags(contentFor));
 
 	const body = useMemo(
-		() =>
-			indicationAndDoseGroups?.map(
-				({ therapeuticIndications, routesAndPatientGroups }, groupIndex) => {
-					const groupId = `${slug}-indication-${groupIndex + 1}`;
+		() => (
+			<>
+				{indicationAndDoseGroups?.map(
+					({ therapeuticIndications, routesAndPatientGroups }, groupIndex) => {
+						const groupId = `${slug}-indication-${groupIndex + 1}`;
 
-					return (
-						<section
-							key={groupIndex}
-							className={styles.indicationWrapper}
-							aria-labelledby={groupId}
-						>
-							<h4 id={groupId} className={styles.indicationHeading}>
-								{therapeuticIndications.map(
-									(
-										{ indication, sctIndication, sctTherapeuticIntent },
-										indicationIndex
-									) => (
-										<Fragment key={indication}>
-											<span
-												dangerouslySetInnerHTML={{
-													__html:
-														indication +
-														(indicationIndex < therapeuticIndications.length - 1
-															? ", "
-															: ""),
-												}}
-												className={styles.indicationText}
-												data-sct-indication={sctIndication}
-												data-sct-therapeutic-intent={sctTherapeuticIntent}
-											/>
-										</Fragment>
+						return (
+							<section
+								key={groupIndex}
+								className={styles.indicationWrapper}
+								aria-labelledby={groupId}
+							>
+								<h4 id={groupId} className={styles.indicationHeading}>
+									{therapeuticIndications.map(
+										(
+											{ indication, sctIndication, sctTherapeuticIntent },
+											indicationIndex
+										) => (
+											<Fragment key={indication}>
+												<span
+													dangerouslySetInnerHTML={{
+														__html:
+															indication +
+															(indicationIndex <
+															therapeuticIndications.length - 1
+																? ", "
+																: ""),
+													}}
+													className={styles.indicationText}
+													data-sct-indication={sctIndication}
+													data-sct-therapeutic-intent={sctTherapeuticIntent}
+												/>
+											</Fragment>
+										)
+									)}
+									<span
+										className="visually-hidden"
+										dangerouslySetInnerHTML={{ __html: ` for ${contentFor}` }}
+									/>
+								</h4>
+								{routesAndPatientGroups.map(
+									({ routeOfAdministration, patientGroups }) => (
+										<section
+											key={routeOfAdministration}
+											className={styles.routeOfAdministration}
+										>
+											<h5 className={styles.routeOfAdministrationHeading}>
+												{routeOfAdministration}
+											</h5>
+											<dl className={styles.patientGroups}>
+												{patientGroups.map(
+													({
+														patientGroup,
+														detailedPatientGroup,
+														doseStatement,
+													}) => (
+														<div
+															key={patientGroup}
+															className={classNames(
+																styles.patientGroupDose,
+																styles[patientGroup]
+															)}
+														>
+															<dt className={styles.patientGroup}>
+																{detailedPatientGroup}
+															</dt>
+															<dd
+																className={styles.doseStatement}
+																dangerouslySetInnerHTML={{
+																	__html: doseStatement,
+																}}
+															/>
+														</div>
+													)
+												)}
+											</dl>
+										</section>
 									)
 								)}
-								<span
-									className="visually-hidden"
-									dangerouslySetInnerHTML={{ __html: ` for ${contentFor}` }}
-								/>
-							</h4>
-							{routesAndPatientGroups.map(
-								({ routeOfAdministration, patientGroups }) => (
-									<section
-										key={routeOfAdministration}
-										className={styles.routeOfAdministration}
-									>
-										<h5 className={styles.routeOfAdministrationHeading}>
-											{routeOfAdministration}
-										</h5>
-										<dl className={styles.patientGroups}>
-											{patientGroups.map(
-												({
-													patientGroup,
-													detailedPatientGroup,
-													doseStatement,
-												}) => (
-													<div
-														key={patientGroup}
-														className={classNames(
-															styles.patientGroupDose,
-															styles[patientGroup]
-														)}
-													>
-														<dt className={styles.patientGroup}>
-															{detailedPatientGroup}
-														</dt>
-														<dd
-															className={styles.doseStatement}
-															dangerouslySetInnerHTML={{
-																__html: doseStatement,
-															}}
-														/>
-													</div>
-												)
-											)}
-										</dl>
-									</section>
-								)
-							)}
-						</section>
-					);
-				}
-			),
-		[indicationAndDoseGroups, slug, contentFor]
+							</section>
+						);
+					}
+				)}
+				{doseAdjustments && (
+					<section aria-labelledby={`${slug}-dose-adjustments`}>
+						<h4 id={`${slug}-dose-adjustments`}>
+							Dose adjustments due to interactions
+							<span
+								className="visually-hidden"
+								dangerouslySetInnerHTML={{ __html: ` for ${contentFor}` }}
+							/>
+						</h4>
+						<div
+							className={styles.supplementary}
+							dangerouslySetInnerHTML={{ __html: doseAdjustments }}
+						/>
+					</section>
+				)}
+				{doseEquivalence && (
+					<section aria-labelledby={`${slug}-dose-equivalence`}>
+						<h4 id={`${slug}-dose-equivalence`}>
+							Dose equivalence and conversion
+							<span
+								className="visually-hidden"
+								dangerouslySetInnerHTML={{ __html: ` for ${contentFor}` }}
+							/>
+						</h4>
+						<div
+							className={styles.supplementary}
+							dangerouslySetInnerHTML={{ __html: doseEquivalence }}
+						/>
+					</section>
+				)}
+				{extremesOfBodyWeight && (
+					<section aria-labelledby={`${slug}-extremes-of-body-weight`}>
+						<h4 id={`${slug}-extremes-of-body-weight`}>
+							Doses at extremes of body-weight
+							<span
+								className="visually-hidden"
+								dangerouslySetInnerHTML={{ __html: ` for ${contentFor}` }}
+							/>
+						</h4>
+						<div
+							className={styles.supplementary}
+							dangerouslySetInnerHTML={{ __html: extremesOfBodyWeight }}
+						/>
+					</section>
+				)}
+				{potency && (
+					<section aria-labelledby={`${slug}-potency`}>
+						<h4 id={`${slug}-potency`}>
+							Potency
+							<span
+								className="visually-hidden"
+								dangerouslySetInnerHTML={{ __html: ` for ${contentFor}` }}
+							/>
+						</h4>
+						<div
+							className={styles.supplementary}
+							dangerouslySetInnerHTML={{ __html: potency }}
+						/>
+					</section>
+				)}
+				{pharmacokinetics && (
+					<section aria-labelledby={`${slug}-pharmacokinetics`}>
+						<h4 id={`${slug}-pharmacokinetics`}>
+							Pharmacokinetics
+							<span
+								className="visually-hidden"
+								dangerouslySetInnerHTML={{ __html: ` for ${contentFor}` }}
+							/>
+						</h4>
+						<div
+							className={styles.supplementary}
+							dangerouslySetInnerHTML={{ __html: pharmacokinetics }}
+						/>
+					</section>
+				)}
+			</>
+		),
+		[
+			indicationAndDoseGroups,
+			slug,
+			contentFor,
+			doseAdjustments,
+			doseEquivalence,
+			extremesOfBodyWeight,
+			potency,
+			pharmacokinetics,
+		]
 	);
 
 	return (
