@@ -1,7 +1,6 @@
 import { useLocation } from "@reach/router";
 import { Link } from "gatsby";
 import { type FC } from "react";
-import { type Except } from "type-fest";
 
 import { SimplePagination } from "@nice-digital/nds-simple-pagination";
 import {

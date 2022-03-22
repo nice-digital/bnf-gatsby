@@ -40,7 +40,7 @@ describe("HTML field extension", () => {
 		it("should replace internal anchors and xrefs", () => {
 			const mockResolveContext = {
 				defaultFieldResolver: () =>
-					`a <a href="/#/content/bnf/PHP999" title="A treatment summary">treatment summary</a><xref type="drug" idref="123">drug</xref> link`,
+					`a <a href="/treatmentSummaries/_123" title="A treatment summary">treatment summary</a><xref type="drug" idref="123">drug</xref> link`,
 				nodeModel: {
 					getNodeById: jest
 						.fn()

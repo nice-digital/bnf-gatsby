@@ -25,7 +25,7 @@ const AboutSectionPage: FC<AboutSectionPageProps> = ({
 	},
 	location: { pathname },
 }) => {
-	const { siteTitleShort, siteTitleLong, isBNF } = useSiteMetadata();
+	const { siteTitleShort, isBNF } = useSiteMetadata();
 
 	const metaDescriptions = useMemo(() => {
 		const metas = new Map<string, string>();
@@ -100,7 +100,7 @@ const AboutSectionPage: FC<AboutSectionPageProps> = ({
 		);
 
 		return metas;
-	}, [siteTitleShort, siteTitleLong, isBNF]);
+	}, [siteTitleShort, isBNF]);
 
 	const metaDesc = metaDescriptions.get(pathname);
 
