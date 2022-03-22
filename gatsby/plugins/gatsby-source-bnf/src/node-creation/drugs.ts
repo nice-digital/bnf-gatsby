@@ -33,7 +33,12 @@ export const createDrugNodes = (
 			phpid: id,
 			constituentDrugs: constituentDrugs && {
 				message: constituentDrugs.message,
-				constituents: constituentDrugs.constituents.map((d) => d.sid),
+				constituents: constituentDrugs.constituents
+					.filter((constituent) =>
+						// Only create constituents that are monographs in their own right
+						drugs.some((drug) => drug.sid === constituent.sid)
+					)
+					.map((d) => d.sid),
 			},
 		};
 
