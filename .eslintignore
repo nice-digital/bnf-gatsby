@@ -5,3 +5,4 @@ node_modules
 docker-output
 allure-report
 __mocks__
+public

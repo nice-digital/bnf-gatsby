@@ -9,6 +9,7 @@ import { interactantSchema } from "./interactant";
 import { medicalDeviceSchema } from "./medical-device";
 import { monitoringSchema } from "./monitoring";
 import { nationalFundingSchema } from "./national-funding";
+import { nursePrescribersSchema } from "./nurse-prescribers-formulary";
 import { prepSchema } from "./prep";
 import { recordSectionSchema } from "./record-section";
 import { simplePotSchema } from "./simple-pot";
@@ -34,6 +35,7 @@ export const schema = [
 	medicalDeviceSchema,
 	monitoringSchema,
 	nationalFundingSchema,
+	nursePrescribersSchema,
 	prepSchema,
 	simplePotSchema,
 	recordSectionSchema,
