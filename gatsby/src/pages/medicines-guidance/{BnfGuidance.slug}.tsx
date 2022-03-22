@@ -5,23 +5,30 @@ import { DetailsPageLayout } from "@/components/DetailsPageLayout/DetailsPageLay
 import { RecordSectionsContent } from "@/components/RecordSectionsContent/RecordSectionsContent";
 import { type RecordSection } from "@/utils";
 
-export type WoundManagementIndexPageProps = {
+export type AboutSectionPageProps = {
 	data: {
-		bnfWoundManagementIntroduction: {
+		currentGuidancePage: {
 			title: string;
 			sections: RecordSection[];
 		};
 	};
+	location: {
+		pathname: string;
+	};
 };
 
-const WoundManagementIndexPage: FC<WoundManagementIndexPageProps> = ({
+const GuidancePage: FC<AboutSectionPageProps> = ({
 	data: {
-		bnfWoundManagementIntroduction: { title, sections },
+		currentGuidancePage: { title, sections },
 	},
 }) => {
 	return (
 		<DetailsPageLayout
 			titleHtml={title}
+			parentTitleParts={["Medicines guidance"]}
+			parentBreadcrumbs={[
+				{ href: "/medicines-guidance/", text: "Medicines guidance" },
+			]}
 			sections={sections.map(({ slug, title }) => ({
 				id: slug,
 				title,
@@ -33,8 +40,8 @@ const WoundManagementIndexPage: FC<WoundManagementIndexPageProps> = ({
 };
 
 export const query = graphql`
-	{
-		bnfWoundManagementIntroduction {
+	query ($id: String) {
+		currentGuidancePage: bnfGuidance(id: { eq: $id }) {
 			title
 			sections {
 				...RecordSection
@@ -43,4 +50,4 @@ export const query = graphql`
 	}
 `;
 
-export default WoundManagementIndexPage;
+export default GuidancePage;

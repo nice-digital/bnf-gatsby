@@ -22,6 +22,10 @@ export const BnfNode = {
 	NationalFundingDecision: "BnfFundingDecision",
 	NationalFundingPot: "BnfNationalFundingPot",
 	NationalFundingPotContent: "BnfNationalFundingPotContent",
+	NursePrescribersFormularyIntroduction:
+		"BnfNursePrescribersFormularyIntroduction",
+	NursePrescribersFormularyTreatmentSummary:
+		"BnfNursePrescribersFormularyTreatmentSummary",
 	Pack: "BnfPack",
 	PatientGroup: "BnfPatientGroup",
 	Prep: "BnfPrep",
