@@ -7,10 +7,12 @@ import { PageHeader } from "@nice-digital/nds-page-header";
 
 import { Layout } from "@/components/Layout/Layout";
 import { SEO } from "@/components/SEO/SEO";
+import { useMedicinesGuidancePages } from "@/hooks/useMedicinesGuidancePages";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
 const GuidanceIndexPage: FC = () => {
-	const { siteTitleShort } = useSiteMetadata();
+	const { siteTitleShort } = useSiteMetadata(),
+		guidancePages = useMedicinesGuidancePages();
 
 	return (
 		<Layout>
@@ -27,7 +29,11 @@ const GuidanceIndexPage: FC = () => {
 			<PageHeader id="content-start" heading="Medicines guidance" />
 
 			<ColumnList aria-label="Pages in the medicines guidance section">
-				TODO
+				{guidancePages.map(({ href, title }) => (
+					<li key={href}>
+						<Link to={href} dangerouslySetInnerHTML={{ __html: title }} />
+					</li>
+				))}
 			</ColumnList>
 		</Layout>
 	);
