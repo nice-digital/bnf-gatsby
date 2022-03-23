@@ -14,9 +14,13 @@ export const Prep: FC<PrepProps> = ({ prep }) => (
 	<Accordion
 		title={
 			<h3 className={styles.prepHeading}>
-				{prep.name}{" "}
-				<span className={styles.manufacturer}>{prep.manufacturer}</span>{" "}
-				{prep.blackTriangle ? "\u25BC" : null}
+				<span className={styles.headingIcons}>
+					{prep.blackTriangle ? "\u25BC" : null}
+				</span>
+				<span className={styles.headingText}>
+					{prep.name}{" "}
+					<span className={styles.manufacturer}>{prep.manufacturer}</span>{" "}
+				</span>
 			</h3>
 		}
 	>
