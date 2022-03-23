@@ -1,7 +1,5 @@
 import { When } from "@cucumber/cucumber";
 
-import { checkIfElementExists } from "@nice-digital/wdio-cucumber-steps/lib/support/lib/checkIfElementExists";
-
 import { scrollInToView } from "../support/action/scrollInToView";
 import { waitForScrollToElement } from "../support/action/waitForScrollToElement";
 import { waitForTitleToChange } from "../support/action/waitForTitleToChange";

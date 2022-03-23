@@ -8,6 +8,11 @@ import {
 
 const content: IndicationsAndDoseContentProps["content"] = {
 	contentFor: "<strong>diazepam</strong>",
+	doseAdjustments: null,
+	doseEquivalence: null,
+	extremesOfBodyWeight: null,
+	pharmacokinetics: null,
+	potency: null,
 	indicationAndDoseGroups: [
 		{
 			therapeuticIndications: [
@@ -18,6 +23,8 @@ const content: IndicationsAndDoseContentProps["content"] = {
 				},
 				{
 					indication: "Control of acute panic attacks",
+					sctIndication: null,
+					sctTherapeuticIntent: null,
 				},
 			],
 			routesAndPatientGroups: [

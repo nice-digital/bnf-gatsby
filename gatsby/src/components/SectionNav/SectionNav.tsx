@@ -3,16 +3,12 @@ import striptags from "striptags";
 
 import styles from "./SectionNav.module.scss";
 
-export interface SectionLink {
-	id: string;
-	title: string;
-}
-
 export interface SectionNavProps {
-	sections: (SectionLink | undefined)[];
+	sections: {
+		id: string;
+		title: string;
+	}[];
 }
-
-const truthy = (link: SectionLink | undefined): link is SectionLink => !!link;
 
 export const SectionNav: FC<SectionNavProps> = ({ sections }) => (
 	<nav aria-labelledby="navigate-to-section" className={styles.nav}>
@@ -23,7 +19,7 @@ export const SectionNav: FC<SectionNavProps> = ({ sections }) => (
 			aria-label="Jump links to sections on this page"
 			className={styles.linkList}
 		>
-			{sections.filter(truthy).map((section) => (
+			{sections.map((section) => (
 				<li key={section.id}>
 					<a href={`#${section.id}`}>{striptags(section.title)}</a>
 				</li>
