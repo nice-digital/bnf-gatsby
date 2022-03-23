@@ -34,17 +34,16 @@ const pageProps: MedicinesGuidancePageProps = {
 		},
 	},
 	location: {
-		pathname: "/about/changes/",
+		pathname: "/medicines-guidance/guidance-on-prescribing/",
 	},
 };
 
 describe("MedicinesGuidancePage", () => {
 	beforeEach(() => {
-		(useLocation as jest.Mock).mockImplementation(
-			() =>
-				new URL(
-					"https://bnf-gatsby-tests.nice.org.uk" + pageProps.location.pathname
-				)
+		(useLocation as jest.Mock).mockReturnValue(
+			new URL(
+				"https://bnf-gatsby-tests.nice.org.uk" + pageProps.location.pathname
+			)
 		);
 
 		(useStaticQuery as jest.Mock).mockReturnValue(mockQueryData);

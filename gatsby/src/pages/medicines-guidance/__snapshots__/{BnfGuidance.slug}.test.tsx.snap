@@ -144,7 +144,7 @@ exports[`MedicinesGuidancePage should match snapshot for page contents 1`] = `
               class="stacked-nav__list-item"
             >
               <a
-                aria-current="false"
+                aria-current="true"
                 href="/medicines-guidance/guidance-on-prescribing/"
               >
                 <span

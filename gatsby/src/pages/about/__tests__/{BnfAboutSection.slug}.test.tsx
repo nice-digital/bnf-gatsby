@@ -13,6 +13,7 @@ import AboutSectionPage, {
 const pageProps: AboutSectionPageProps = {
 	data: {
 		currentAboutPage: {
+			slug: "changes",
 			title: "Changes",
 			sections: [
 				{
@@ -39,11 +40,10 @@ const pageProps: AboutSectionPageProps = {
 
 describe("AboutSectionPage", () => {
 	beforeEach(() => {
-		(useLocation as jest.Mock).mockImplementation(
-			() =>
-				new URL(
-					"https://bnf-gatsby-tests.nice.org.uk" + pageProps.location.pathname
-				)
+		(useLocation as jest.Mock).mockReturnValue(
+			new URL(
+				"https://bnf-gatsby-tests.nice.org.uk" + pageProps.location.pathname
+			)
 		);
 
 		(useStaticQuery as jest.Mock).mockReturnValue(mockAboutPagesQueryData);
@@ -83,7 +83,7 @@ describe("AboutSectionPage", () => {
 
 	it("should set meta description for known path on BNFC", async () => {
 		(useSiteMetadata as jest.Mock).mockImplementationOnce(() => ({
-			siteTitleShort: "BNFC",
+			isBNF: false,
 		}));
 
 		render(<AboutSectionPage {...pageProps} />);
@@ -104,11 +104,18 @@ describe("AboutSectionPage", () => {
 			render(
 				<AboutSectionPage
 					{...pageProps}
+					data={{
+						currentAboutPage: {
+							title: "Unknown",
+							slug: "unknown",
+							sections: [],
+						},
+					}}
 					location={{ pathname: "/about/unknown" }}
 				/>
 			);
 		}).toThrowError(
-			"Couldn't find meta description for page with path /about/unknown"
+			"Couldn't find meta description for page 'Unknown' at path '/about/unknown'. Has the page been added or renamed?"
 		);
 	});
 });

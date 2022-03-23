@@ -5,20 +5,17 @@ import { DetailsPageLayout } from "@/components/DetailsPageLayout/DetailsPageLay
 import { MedicinesGuidanceMenu } from "@/components/MedicinesGuidanceMenu/MedicinesGuidanceMenu";
 import { RecordSectionsContent } from "@/components/RecordSectionsContent/RecordSectionsContent";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
-import { type RecordSection } from "@/utils";
+import {
+	type SlugAndTitle,
+	type RecordSection,
+	type MetaDescriptionsMap,
+} from "@/utils";
 
 import metas from "./{BnfGuidance.slug}.meta-descriptions.json";
 
-const metaDescriptions = metas as Record<
-	string,
-	{ bnf: string | null; bnfc: string | null } | undefined
->;
-
 export type MedicinesGuidancePageProps = {
 	data: {
-		currentGuidancePage: {
-			slug: string;
-			title: string;
+		currentGuidancePage: SlugAndTitle & {
 			sections: RecordSection[];
 		};
 	};
@@ -34,7 +31,9 @@ const MedicinesGuidancePage: FC<MedicinesGuidancePageProps> = ({
 	location: { pathname },
 }) => {
 	const { isBNF } = useSiteMetadata(),
-		metaDescription = metaDescriptions[slug]?.[isBNF ? "bnf" : "bnfc"];
+		metaDescription = (metas as MetaDescriptionsMap)[slug]?.[
+			isBNF ? "bnf" : "bnfc"
+		];
 
 	if (typeof metaDescription !== "string")
 		throw new Error(
