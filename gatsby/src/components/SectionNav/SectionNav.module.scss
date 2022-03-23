@@ -25,3 +25,9 @@
   margin: 0;
   padding: 0;
 }
+
+.twoColumns {
+  @include core.mq($from: md) {
+    column-count: 2;
+  }
+}

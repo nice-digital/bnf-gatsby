@@ -1,0 +1,17 @@
+@use '@nice-digital/nds-core/scss/core';
+
+.asideInfo {
+  border: 1px solid #dedede;
+  margin-bottom: core.rem(core.$nds-spacing-medium);
+  padding: core.rem(core.$nds-spacing-medium);
+
+  h2 {
+    @include core.nds-h4;
+    margin-top: 0;
+  }
+}
+
+.prepList {
+  list-style: none;
+  margin: 0;
+}

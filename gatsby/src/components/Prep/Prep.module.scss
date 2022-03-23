@@ -1,0 +1,38 @@
+@use '@nice-digital/nds-core/scss/core';
+
+.prepHeading {
+  @include core.nds-h4;
+}
+
+.manufacturer {
+  font-style: italic;
+}
+
+.packList {
+  list-style: none;
+  margin: 0;
+}
+
+.packItem + .packItem {
+  border-top: 1px solid core.$nds-colour-border;
+}
+
+.packDefinitionList {
+  dt {
+    font-weight: bold;
+
+    @include core.mq($from: md) {
+      display: inline-block;
+      width: 30%;
+    }
+  }
+
+  dd {
+    margin: 0 0 core.rem(core.$nds-spacing-small) 0;
+
+    @include core.mq($from: md) {
+      display: inline-block;
+      width: 70%;
+    }
+  }
+}

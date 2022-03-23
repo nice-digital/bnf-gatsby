@@ -1,5 +1,10 @@
 import { Link } from "gatsby";
-import React, { useMemo, type ReactNode, type ElementType } from "react";
+import React, {
+	useMemo,
+	type ReactNode,
+	type ElementType,
+	ReactElement,
+} from "react";
 import striptags from "striptags";
 
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
@@ -7,10 +12,13 @@ import { Grid, GridItem } from "@nice-digital/nds-grid";
 import { PageHeader } from "@nice-digital/nds-page-header";
 
 import { Layout } from "@/components/Layout/Layout";
+import {
+	OnThisPage,
+	type OnThisPageProps,
+} from "@/components/OnThisPage/OnThisPage";
+import { SectionNav } from "@/components/SectionNav/SectionNav";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
-
-import { OnThisPage, type OnThisPageProps } from "../OnThisPage/OnThisPage";
 
 import styles from "./DetailsPageLayout.module.scss";
 
@@ -27,6 +35,7 @@ type DetailsPageLayoutProps = {
 	}[];
 	metaDescription?: string;
 	sections: OnThisPageProps["sections"];
+	asideContent?: ReactElement;
 };
 
 /**
@@ -41,6 +50,7 @@ export const DetailsPageLayout: React.FC<DetailsPageLayoutProps> = ({
 	parentBreadcrumbs = [],
 	metaDescription,
 	sections,
+	asideContent,
 }) => {
 	const { siteTitleShort } = useSiteMetadata(),
 		titleNoHtml = striptags(titleHtml),
@@ -90,9 +100,16 @@ export const DetailsPageLayout: React.FC<DetailsPageLayoutProps> = ({
 				<GridItem cols={12} md={Menu ? 8 : 12} lg={Menu ? 9 : 12}>
 					<Grid reverse gutter="loose">
 						<GridItem cols={12} lg={3}>
-							<OnThisPage sections={sections} />
+							{asideContent ? asideContent : <OnThisPage sections={sections} />}
 						</GridItem>
 						<GridItem className={styles.body} cols={12} lg={9}>
+							{asideContent && (
+								<SectionNav
+									className={styles.sectionNav}
+									sections={sections}
+									twoColumns={true}
+								/>
+							)}
 							{children}
 						</GridItem>
 					</Grid>

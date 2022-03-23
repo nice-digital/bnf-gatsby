@@ -10,18 +10,29 @@ export interface SectionLink {
 
 export interface SectionNavProps {
 	sections: (SectionLink | undefined)[];
+	className?: string;
+	twoColumns?: boolean;
 }
 
 const truthy = (link: SectionLink | undefined): link is SectionLink => !!link;
 
-export const SectionNav: FC<SectionNavProps> = ({ sections }) => (
-	<nav aria-labelledby="navigate-to-section" className={styles.nav}>
+export const SectionNav: FC<SectionNavProps> = ({
+	sections,
+	className,
+	twoColumns,
+}) => (
+	<nav
+		aria-labelledby="navigate-to-section"
+		className={[styles.nav, className].join(" ")}
+	>
 		<h2 id="navigate-to-section" className={styles.heading}>
 			Navigate to section
 		</h2>
 		<ol
 			aria-label="Jump links to sections on this page"
-			className={styles.linkList}
+			className={[styles.linkList, twoColumns ? styles.twoColumns : ""].join(
+				" "
+			)}
 		>
 			{sections.filter(truthy).map((section) => (
 				<li key={section.id}>

@@ -2,15 +2,24 @@ import { type FC } from "react";
 
 import { type FeedPrep } from "@nice-digital/gatsby-source-bnf";
 
+import { Accordion } from "@/components/Accordion/Accordion";
+
+import styles from "./Prep.module.scss";
+
 export interface PrepProps {
 	prep: FeedPrep;
 }
 
 export const Prep: FC<PrepProps> = ({ prep }) => (
-	<>
-		<h3>
-			{prep.name} {prep.manufacturer} {prep.blackTriangle ? "\u25BC" : null}
-		</h3>
+	<Accordion
+		title={
+			<h3 className={styles.prepHeading}>
+				{prep.name}{" "}
+				<span className={styles.manufacturer}>{prep.manufacturer}</span>{" "}
+				{prep.blackTriangle ? "\u25BC" : null}
+			</h3>
+		}
+	>
 		{prep.controlledDrugSchedule && <p>{prep.controlledDrugSchedule}</p>}
 		{prep.activeIngredients && prep.activeIngredients?.length > 0 ? (
 			<p
@@ -20,10 +29,10 @@ export const Prep: FC<PrepProps> = ({ prep }) => (
 			/>
 		) : null}
 		{prep.packs?.length ? (
-			<ol>
+			<ol className={styles.packList}>
 				{prep.packs.map((pack) => (
-					<li key={pack.amppId}>
-						<dl>
+					<li className={styles.packItem} key={pack.amppId}>
+						<dl className={styles.packDefinitionList}>
 							{pack.size && (
 								<>
 									<dt>Size</dt>
@@ -65,5 +74,5 @@ export const Prep: FC<PrepProps> = ({ prep }) => (
 				))}
 			</ol>
 		) : null}
-	</>
+	</Accordion>
 );
