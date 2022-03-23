@@ -7,7 +7,7 @@ import { RecordSectionsContent } from "@/components/RecordSectionsContent/Record
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 import { type RecordSection } from "@/utils";
 
-import metas from "./meta-descriptions.json";
+import metas from "./{BnfGuidance.slug}.meta-descriptions.json";
 
 const metaDescriptions = metas as Record<
 	string,

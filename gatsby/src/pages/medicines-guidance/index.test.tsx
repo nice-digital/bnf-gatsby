@@ -10,6 +10,24 @@ import MedicinesGuidanceIndexPage from "./";
 describe("Medicines guidance index page", () => {
 	(useStaticQuery as jest.Mock).mockReturnValue(mockQueryData);
 
+	it("should render the page title with the expected text", async () => {
+		render(<MedicinesGuidanceIndexPage />);
+		await waitFor(() => {
+			expect(document.title).toStartWith("Medicines guidance");
+		});
+	});
+
+	it("should render meta description", async () => {
+		render(<MedicinesGuidanceIndexPage />);
+		await waitFor(() => {
+			// eslint-disable-next-line testing-library/no-node-access
+			expect(document.querySelector("meta[name=description]")).toHaveAttribute(
+				"content",
+				"Browse medicines guidance, prescribing advice and related topics."
+			);
+		});
+	});
+
 	it("should add content start skip link target id to page header", () => {
 		render(<MedicinesGuidanceIndexPage />);
 		const heading1 = screen.getByRole("heading", {
@@ -17,13 +35,6 @@ describe("Medicines guidance index page", () => {
 		});
 		// eslint-disable-next-line testing-library/no-node-access
 		expect(heading1.parentElement).toHaveProperty("id", "content-start");
-	});
-
-	it("should render the page title with the expected text", async () => {
-		render(<MedicinesGuidanceIndexPage />);
-		await waitFor(() => {
-			expect(document.title).toStartWith("Medicines guidance");
-		});
 	});
 
 	it("should render the page heading with the expected text", () => {

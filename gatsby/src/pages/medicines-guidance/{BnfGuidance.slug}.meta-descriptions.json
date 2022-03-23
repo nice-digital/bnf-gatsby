@@ -56,8 +56,12 @@
     "bnfc": "Drugs to be used with caution, that are contraindicated in breastfeeding, or can be prescribed as they are present in milk in amounts too small to be harmful."
   },
   "prescribing-in-the-elderly": {
-    "bnf": "Read BNF advice on pain management and symptom control in end of life care. Includes opioid conversion charts and guidance on continuous subcutaneous infusion.",
+    "bnf": "Guidelines on prescribing for older patients who often receive multiple drugs, and are at risk of additional adverse effects.",
     "bnfc": null
+  },
+  "prescribing-in-palliative-care": {
+    "bnf": "Read BNF advice on pain management and symptom control in end of life care. Includes opioid conversion charts and guidance on continuous subcutaneous infusion.",
+    "bnfc": "Read BNF advice on pain management and symptom control in end of life care. Includes opioid conversion charts and guidance on continuous subcutaneous infusion."
   },
   "prescribing-in-dental-practice": {
     "bnf": "Guidance on drug management of dental and oral conditions. Includes general guidance, medical emergencies and other problems in dental practice.",

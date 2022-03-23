@@ -16,7 +16,10 @@ const GuidanceIndexPage: FC = () => {
 
 	return (
 		<Layout>
-			<SEO title="Medicines guidance" />
+			<SEO
+				title="Medicines guidance"
+				description="Browse medicines guidance, prescribing advice and related topics."
+			/>
 
 			<Breadcrumbs>
 				<Breadcrumb to="https://www.nice.org.uk/">NICE</Breadcrumb>
