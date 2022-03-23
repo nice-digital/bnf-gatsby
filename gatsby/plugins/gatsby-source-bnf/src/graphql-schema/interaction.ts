@@ -39,7 +39,7 @@ export const interactionSchema = `
 	"""
 	type ${BnfNode.InteractionMessage} @dontInfer {
 		"An HTML explanation of the nature of the interaction"
-		message: String!
+		message: String! @html
 
 		"A grading of how severe this interaction might be, e.g. severe/moderate"
 		severity: String!
