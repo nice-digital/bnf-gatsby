@@ -36,6 +36,7 @@ type DetailsPageLayoutProps = {
 	metaDescription?: string;
 	sections: OnThisPageProps["sections"];
 	asideContent?: ReactElement;
+	headerCta?: ReactElement;
 };
 
 /**
@@ -51,6 +52,7 @@ export const DetailsPageLayout: React.FC<DetailsPageLayoutProps> = ({
 	metaDescription,
 	sections,
 	asideContent,
+	headerCta,
 }) => {
 	const { siteTitleShort } = useSiteMetadata(),
 		titleNoHtml = striptags(titleHtml),
@@ -89,6 +91,7 @@ export const DetailsPageLayout: React.FC<DetailsPageLayoutProps> = ({
 					) : undefined
 				}
 				heading={<span dangerouslySetInnerHTML={{ __html: titleHtml }} />}
+				cta={headerCta}
 			/>
 
 			<Grid gutter="loose" data-testid="body">
@@ -104,11 +107,7 @@ export const DetailsPageLayout: React.FC<DetailsPageLayoutProps> = ({
 						</GridItem>
 						<GridItem className={styles.body} cols={12} lg={9}>
 							{asideContent && (
-								<SectionNav
-									className={styles.sectionNav}
-									sections={sections}
-									twoColumns={true}
-								/>
+								<SectionNav className={styles.sectionNav} sections={sections} />
 							)}
 							{children}
 						</GridItem>

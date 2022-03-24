@@ -15,7 +15,6 @@ const drug: MedicinalFormsPageProps["data"]["bnfDrug"] = {
 			{
 				form: "Tablets",
 				slug: "tablets",
-				cautionaryAndAdvisoryLabels: [],
 				electolytes: null,
 				excipients: null,
 				preps: [],
@@ -36,6 +35,7 @@ const drug: MedicinalFormsPageProps["data"]["bnfDrug"] = {
 							englishRecommendation: "<p>Another English recommendation</p>",
 							welshRecommendation: "<p>Another Welsh recommendation</p>",
 						},
+						additionalInfo: null,
 					},
 				],
 			},

@@ -3,9 +3,9 @@ import { type FC } from "react";
 import { type FeedPrep } from "@nice-digital/gatsby-source-bnf";
 
 import { Accordion } from "@/components/Accordion/Accordion";
+import { type QueryResult } from "@/utils";
 
 import styles from "./Prep.module.scss";
-import { type QueryResult } from "@/utils";
 
 export interface PrepProps {
 	prep: QueryResult<FeedPrep>;

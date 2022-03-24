@@ -1,5 +1,9 @@
 @use '@nice-digital/nds-core/scss/core';
 
+.form {
+  margin-bottom: core.rem(core.$nds-spacing-large);
+}
+
 .asideInfo {
   border: 1px solid #dedede;
   margin-bottom: core.rem(core.$nds-spacing-medium);

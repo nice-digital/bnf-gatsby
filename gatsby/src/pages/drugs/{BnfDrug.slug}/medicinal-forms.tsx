@@ -1,4 +1,4 @@
-import { graphql } from "gatsby";
+import { graphql, Link } from "gatsby";
 import { FC, ReactElement } from "react";
 import striptags from "striptags";
 import { type Merge } from "type-fest";
@@ -89,6 +89,11 @@ const MedicinalFormsPage: FC<MedicinalFormsPageProps> = ({
 			title: form,
 		}))}
 		asideContent={asideInfo}
+		headerCta={
+			<Link to={`/drugs/${slug}/`}>
+				View monograph<span className="visually-hidden"> for {title}</span>
+			</Link>
+		}
 	>
 		<p dangerouslySetInnerHTML={{ __html: initialStatement }} />
 		{specialOrderManufacturersStatement && (
@@ -98,7 +103,7 @@ const MedicinalFormsPage: FC<MedicinalFormsPageProps> = ({
 		)}
 		{medicinalForms.map(
 			({ form, slug, preps, cautionaryAndAdvisoryLabels }) => (
-				<section key={form} aria-labelledby={slug}>
+				<section className={styles.form} key={form} aria-labelledby={slug}>
 					<h2 id={slug}>{form}</h2>
 					{cautionaryAndAdvisoryLabels?.length ? (
 						<Accordion

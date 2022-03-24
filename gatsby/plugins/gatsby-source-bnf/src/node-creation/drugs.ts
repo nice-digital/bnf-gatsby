@@ -1,11 +1,12 @@
 import { type SourceNodesArgs } from "gatsby";
-import { type Except } from "type-fest";
+import { type Except, Merge } from "type-fest";
 
 import {
 	type PHPID,
 	type SID,
 	type FeedDrug,
-	type FeedPrep,
+	FeedMedicinalForm,
+	FeedMedicinalForms,
 } from "../downloader/types";
 import { BnfNode } from "../node-types";
 
@@ -25,20 +26,20 @@ export type DrugNodeInput = Except<
 		message: string;
 		constituents: SID[];
 	};
-	medicinalForms: {
-		initialStatement: string;
-		specialOrderManufacturersStatement?: string;
-		medicinalForms?: {
-			form: string;
-			excipients?: string;
-			electolytes?: string;
-			preps: FeedPrep[];
-			cautionaryAndAdvisoryLabels?: {
-				label: number;
-				additionalNotes: string;
-			}[];
-		}[];
-	};
+	medicinalForms: Merge<
+		FeedMedicinalForms,
+		{
+			medicinalForms?: Merge<
+				FeedMedicinalForm,
+				{
+					cautionaryAndAdvisoryLabels?: {
+						label: number;
+						additionalNotes: string;
+					}[];
+				}
+			>[];
+		}
+	>;
 };
 
 export const createDrugNodes = (
