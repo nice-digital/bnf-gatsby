@@ -6,8 +6,35 @@ const drug: DrugPageProps["data"]["bnfDrug"] = {
 	// Note deliberate use of HTML within the title for testing stripping of tags
 	title: "Anti-D (Rh<sub>0</sub>) immunoglobulin",
 	slug: "anti-d-rh0-immunoglobulin",
-	interactant: null,
-	constituentDrugs: null,
+	allergyAndCrossSensitivity: null,
+	breastFeeding: null,
+	cautions: null,
+	conceptionAndContraception: null,
+	contraIndications: null,
+	directionsForAdministration: null,
+	drugAction: null,
+	effectOnLaboratoryTests: null,
+	exceptionsToLegalCategory: null,
+	handlingAndStorage: null,
+	hepaticImpairment: null,
+	importantSafetyInformation: null,
+	indicationsAndDose: null,
+	lessSuitableForPrescribing: null,
+	medicinalForms: {
+		initialStatement: "Nothing to see here",
+	},
+	monitoringRequirements: null,
+	nationalFunding: null,
+	palliativeCare: null,
+	patientAndCarerAdvice: null,
+	preTreatmentScreening: null,
+	pregnancy: null,
+	prescribingAndDispensingInformation: null,
+	renalImpairment: null,
+	professionSpecificInformation: null,
+	sideEffects: null,
+	treatmentCessation: null,
+	unlicensedUse: null,
 };
 
 const dataProp: DrugPageProps["data"] = {
@@ -101,6 +128,52 @@ describe("DrugPage", () => {
 	});
 
 	describe("body", () => {
-		it.todo("body tests");
+		it.each<[keyof typeof drug]>([
+			["allergyAndCrossSensitivity"],
+			["breastFeeding"],
+			["cautions"],
+			["conceptionAndContraception"],
+			["contraIndications"],
+			["directionsForAdministration"],
+			["drugAction"],
+			["effectOnLaboratoryTests"],
+			["exceptionsToLegalCategory"],
+			["handlingAndStorage"],
+			["hepaticImpairment"],
+			["lessSuitableForPrescribing"],
+			["palliativeCare"],
+			["patientAndCarerAdvice"],
+			["preTreatmentScreening"],
+			["pregnancy"],
+			["prescribingAndDispensingInformation"],
+			["professionSpecificInformation"],
+			["renalImpairment"],
+			["sideEffects"],
+		])("should render section for and link to %s", (property) => {
+			render(
+				<DrugPage
+					data={{
+						bnfDrug: {
+							...drug,
+							[property]: {
+								potName: "Some pot name",
+								slug: "some-pot-name",
+								drugClassContent: [],
+								drugContent: [],
+								prepContent: [],
+							},
+						},
+					}}
+				/>
+			);
+
+			expect(
+				screen.getByRole("link", { name: "Some pot name" })
+			).toHaveAttribute("href", "#some-pot-name");
+
+			expect(
+				screen.getByRole("heading", { level: 2, name: "Some pot name" })
+			).toHaveAttribute("id", "some-pot-name");
+		});
 	});
 });

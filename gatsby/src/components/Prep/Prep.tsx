@@ -5,9 +5,10 @@ import { type FeedPrep } from "@nice-digital/gatsby-source-bnf";
 import { Accordion } from "@/components/Accordion/Accordion";
 
 import styles from "./Prep.module.scss";
+import { type QueryResult } from "@/utils";
 
 export interface PrepProps {
-	prep: FeedPrep;
+	prep: QueryResult<FeedPrep>;
 }
 
 export const Prep: FC<PrepProps> = ({ prep }) => (

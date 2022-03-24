@@ -23,7 +23,7 @@ export const SectionNav: FC<SectionNavProps> = ({
 }) => (
 	<nav
 		aria-labelledby="navigate-to-section"
-		className={[styles.nav, className].join(" ")}
+		className={[styles.linkList, className].join(" ")}
 	>
 		<h2 id="navigate-to-section" className={styles.heading}>
 			Navigate to section

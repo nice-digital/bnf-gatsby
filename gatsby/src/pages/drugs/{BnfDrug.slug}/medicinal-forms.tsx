@@ -13,6 +13,7 @@ import { Accordion, AccordionTheme } from "@/components/Accordion/Accordion";
 import labelStyles from "@/components/CautionaryAndAdvisoryLabel/CautionaryAndAdvisoryLabel.module.scss";
 import { DetailsPageLayout } from "@/components/DetailsPageLayout/DetailsPageLayout";
 import { Prep } from "@/components/Prep/Prep";
+import { type QueryResult, type WithSlugDeep } from "@/utils";
 
 import styles from "./medicinal-forms.module.scss";
 
@@ -21,8 +22,8 @@ export interface MedicinalFormsPageProps {
 		bnfDrug: {
 			title: string;
 			slug: string;
-			medicinalForms: Except<FeedMedicinalForms, "medicinalForms"> & {
-				medicinalForms: (Except<
+			medicinalForms: QueryResult<
+				Except<
 					FeedMedicinalForm,
 					"cautionaryAndAdvisoryLabels"
 				> & {
@@ -31,8 +32,8 @@ export interface MedicinalFormsPageProps {
 						label: FeedLabel;
 						additionalInfo?: string;
 					}[];
-				})[];
-			};
+				}
+			>;
 		};
 	};
 }

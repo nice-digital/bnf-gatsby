@@ -3,6 +3,7 @@
 
 # Gatsby cache
 .cache
+public
 
 # Generated test coverage
 coverage

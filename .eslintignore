@@ -8,3 +8,4 @@ gatsby/public
 functional-tests/bnf-website-build
 functional-tests/bnfc-website-build
 __mocks__
+public
