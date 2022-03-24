@@ -69,7 +69,7 @@ export const drugSchema = `
 		slug: String! @slug(field: "form")
 
 		"A list of any cautionary and advisory labels for the medicinal form."
-		cautionaryAndAdvisoryLabels: [${BnfNode.MedicinalFormLabel}]!
+		cautionaryAndAdvisoryLabels: [${BnfNode.MedicinalFormLabel}]
 
 		"A list of any excipients for the medicinal form, provided as a text statement."
 		excipients: String
@@ -85,7 +85,7 @@ export const drugSchema = `
 	A cautionary/advisory label for this form. It differs slightly from the labels used elsewhere, as it also includes some additional notes for this particular medicinal form.
 	"""
 	type ${BnfNode.MedicinalFormLabel} {
-		label: ${BnfNode.CautionaryAndAdvisoryLabel}! @link(by: "number")
+		label: ${BnfNode.CautionaryAndAdvisoryLabel} @link(by: "number")
 		additionalNotes: String
 	}
 `;
