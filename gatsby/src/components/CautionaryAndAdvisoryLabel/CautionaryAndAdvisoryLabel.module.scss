@@ -1,6 +1,7 @@
 @use '@nice-digital/nds-core/scss/core';
 
 .label {
+  background: core.$nds-colour-nice-white;
   border: 2px solid core.$nds-colour-nice-black;
   border-radius: 4px;
   padding: 0 10px;

@@ -58,6 +58,10 @@
   summary:hover & {
     color: core.$nds-colour-link-hover;
   }
+
+  .warningTheme & {
+    color: core.$nds-colour-nice-rich-black;
+  }
 }
 
 .icon {
@@ -68,4 +72,9 @@
   [open] & {
     transform: rotate(-180deg);
   }
+}
+
+.warningTheme {
+  background: #fef5e5; // TODO: Add to design system
+  border: 1px solid #dc8a07; // TODO: Add to design system
 }

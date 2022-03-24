@@ -16,6 +16,25 @@ const drug: MedicinalFormsPageProps["data"]["bnfDrug"] = {
 				form: "Tablets",
 				slug: "tablets",
 				preps: [],
+				cautionaryAndAdvisoryLabels: [
+					{
+						label: {
+							number: 3,
+							description: "<p>Description</p>",
+							englishRecommendation: "<p>English recommendation</p>",
+							welshRecommendation: "<p>Welsh recommendation</p>",
+						},
+						additionalInfo: "test info",
+					},
+					{
+						label: {
+							number: 5,
+							description: "<p>Another description</p>",
+							englishRecommendation: "<p>Another English recommendation</p>",
+							welshRecommendation: "<p>Another Welsh recommendation</p>",
+						},
+					},
+				],
 			},
 			{
 				form: "Powder",
@@ -100,6 +119,20 @@ describe("MedicinalFormsPage", () => {
 			expect(
 				screen.getByRole("region", { name: "Tablets" })
 			).toBeInTheDocument();
+		});
+
+		it("should show cautionary labels when they have been supplied", () => {
+			render(<MedicinalFormsPage data={dataProp} />);
+
+			const labelAccordion = screen.getByRole("group");
+			expect(labelAccordion).toHaveClass("labelAccordion");
+
+			const labelList = within(labelAccordion).getByRole("list");
+			const numberOfLabels =
+				dataProp.bnfDrug.medicinalForms.medicinalForms[0]
+					.cautionaryAndAdvisoryLabels?.length || -1;
+			// eslint-disable-next-line testing-library/no-node-access
+			expect(labelList.children).toHaveLength(numberOfLabels);
 		});
 	});
 });

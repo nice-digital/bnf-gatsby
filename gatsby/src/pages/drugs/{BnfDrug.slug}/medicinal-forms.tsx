@@ -1,12 +1,16 @@
 import { graphql } from "gatsby";
 import { FC, ReactElement } from "react";
 import striptags from "striptags";
+import { type Except } from "type-fest";
 
 import {
 	type FeedMedicinalForms,
 	type FeedMedicinalForm,
+	FeedLabel,
 } from "@nice-digital/gatsby-source-bnf";
 
+import { Accordion, AccordionTheme } from "@/components/Accordion/Accordion";
+import labelStyles from "@/components/CautionaryAndAdvisoryLabel/CautionaryAndAdvisoryLabel.module.scss";
 import { DetailsPageLayout } from "@/components/DetailsPageLayout/DetailsPageLayout";
 import { Prep } from "@/components/Prep/Prep";
 
@@ -17,9 +21,18 @@ export interface MedicinalFormsPageProps {
 		bnfDrug: {
 			title: string;
 			slug: string;
-			medicinalForms: {
-				medicinalForms: (FeedMedicinalForm & { slug: string })[];
-			} & FeedMedicinalForms;
+			medicinalForms: Except<FeedMedicinalForms, "medicinalForms"> & {
+				medicinalForms: (Except<
+					FeedMedicinalForm,
+					"cautionaryAndAdvisoryLabels"
+				> & {
+					slug: string;
+					cautionaryAndAdvisoryLabels?: {
+						label: FeedLabel;
+						additionalInfo?: string;
+					}[];
+				})[];
+			};
 		};
 	};
 }
@@ -79,20 +92,48 @@ const MedicinalFormsPage: FC<MedicinalFormsPageProps> = ({
 				dangerouslySetInnerHTML={{ __html: specialOrderManufacturersStatement }}
 			/>
 		)}
-		{medicinalForms.map(({ form, slug, preps }) => (
-			<section key={form} aria-labelledby={slug}>
-				<h2 id={slug}>{form}</h2>
-				{preps.length ? (
-					<ol className={styles.prepList}>
-						{preps.map((prep) => (
-							<li key={prep.ampId}>
-								<Prep prep={prep} />
-							</li>
-						))}
-					</ol>
-				) : null}
-			</section>
-		))}
+		{medicinalForms.map(
+			({ form, slug, preps, cautionaryAndAdvisoryLabels }) => (
+				<section key={form} aria-labelledby={slug}>
+					<h2 id={slug}>{form}</h2>
+					{cautionaryAndAdvisoryLabels?.length ? (
+						<Accordion
+							className={styles.labelAccordion}
+							theme={AccordionTheme.Warning}
+							title={
+								<span className={styles.labelAccordionHeading}>
+									Cautionary and advisory labels
+								</span>
+							}
+						>
+							<ul className={styles.labelList}>
+								{cautionaryAndAdvisoryLabels.map(({ label }) => (
+									<li
+										className={labelStyles.label}
+										key={`${slug}-label-${label.number}`}
+									>
+										<h3 className={styles.labelHeading}>
+											Label {label.number}
+										</h3>
+										<p>{label.englishRecommendation}</p>
+										<p lang="cy">{label.welshRecommendation}</p>
+									</li>
+								))}
+							</ul>
+						</Accordion>
+					) : null}
+					{preps.length ? (
+						<ol className={styles.prepList}>
+							{preps.map((prep) => (
+								<li key={prep.ampId}>
+									<Prep prep={prep} />
+								</li>
+							))}
+						</ol>
+					) : null}
+				</section>
+			)
+		)}
 	</DetailsPageLayout>
 );
 
@@ -109,6 +150,15 @@ export const query = graphql`
 					slug
 					preps {
 						...FullPrep
+					}
+					cautionaryAndAdvisoryLabels {
+						label {
+							number
+							description
+							englishRecommendation
+							welshRecommendation
+						}
+						additionalNotes
 					}
 				}
 			}

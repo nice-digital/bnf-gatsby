@@ -15,6 +15,15 @@ exports[`MedicinalFormsPage should match snapshot for graphql query 1`] = `
 					preps {
 						...FullPrep
 					}
+					cautionaryAndAdvisoryLabels {
+						label {
+							number
+							description
+							englishRecommendation
+							welshRecommendation
+						}
+						additionalNotes
+					}
 				}
 			}
 		}
