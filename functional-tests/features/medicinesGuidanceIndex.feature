@@ -1,6 +1,6 @@
 Feature: Medicines guidance index page
   As a user of BNF
-  I want to be able to use the BNF medicines guidance idnex page
+  I want to be able to use the BNF medicines guidance index page
 
   Background:
     Given I am using a desktop size browser
