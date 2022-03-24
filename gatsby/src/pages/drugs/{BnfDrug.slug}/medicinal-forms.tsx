@@ -1,7 +1,7 @@
 import { graphql } from "gatsby";
 import { FC, ReactElement } from "react";
 import striptags from "striptags";
-import { type Except } from "type-fest";
+import { type Merge } from "type-fest";
 
 import {
 	type FeedMedicinalForms,
@@ -13,9 +13,19 @@ import { Accordion, AccordionTheme } from "@/components/Accordion/Accordion";
 import labelStyles from "@/components/CautionaryAndAdvisoryLabel/CautionaryAndAdvisoryLabel.module.scss";
 import { DetailsPageLayout } from "@/components/DetailsPageLayout/DetailsPageLayout";
 import { Prep } from "@/components/Prep/Prep";
-import { type QueryResult, type WithSlugDeep } from "@/utils";
+import { type QueryResult, WithSlug } from "@/utils";
 
 import styles from "./medicinal-forms.module.scss";
+
+type queryMedicinalForm = Merge<
+	WithSlug<FeedMedicinalForm>,
+	{
+		cautionaryAndAdvisoryLabels?: {
+			label: FeedLabel;
+			additionalInfo?: string;
+		}[];
+	}
+>;
 
 export interface MedicinalFormsPageProps {
 	data: {
@@ -23,15 +33,8 @@ export interface MedicinalFormsPageProps {
 			title: string;
 			slug: string;
 			medicinalForms: QueryResult<
-				Except<
-					FeedMedicinalForm,
-					"cautionaryAndAdvisoryLabels"
-				> & {
-					slug: string;
-					cautionaryAndAdvisoryLabels?: {
-						label: FeedLabel;
-						additionalInfo?: string;
-					}[];
+				FeedMedicinalForms & {
+					medicinalForms: queryMedicinalForm[];
 				}
 			>;
 		};
