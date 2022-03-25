@@ -26,16 +26,22 @@
 
 .labelAccordionHeading {
   @include core.nds-h4;
+  align-items: center;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
 
-  &::before {
-    content: '\1F6C8';
-    float: right;
-    margin: 0 0 0 core.rem(core.$nds-spacing-small);
+  @include core.mq($from: md) {
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+}
 
-    @include core.mq($from: md) {
-      float: none;
-      margin: 0 core.rem(core.$nds-spacing-small) 0 0;
-    }
+.warningIcon {
+  margin: 0 0 0 core.rem(core.$nds-spacing-small);
+
+  @include core.mq($from: md) {
+    margin: 0 core.rem(core.$nds-spacing-small) 0 0;
   }
 }
 

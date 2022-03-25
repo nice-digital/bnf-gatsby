@@ -8,6 +8,7 @@ import {
 	type FeedMedicinalForm,
 	FeedLabel,
 } from "@nice-digital/gatsby-source-bnf";
+import WarningIcon from "@nice-digital/icons/lib/Warning";
 
 import { Accordion, AccordionTheme } from "@/components/Accordion/Accordion";
 import labelStyles from "@/components/CautionaryAndAdvisoryLabel/CautionaryAndAdvisoryLabel.module.scss";
@@ -111,6 +112,7 @@ const MedicinalFormsPage: FC<MedicinalFormsPageProps> = ({
 							theme={AccordionTheme.Warning}
 							title={
 								<h3 className={styles.labelAccordionHeading}>
+									<WarningIcon className={styles.warningIcon} />
 									Cautionary and advisory labels
 								</h3>
 							}
