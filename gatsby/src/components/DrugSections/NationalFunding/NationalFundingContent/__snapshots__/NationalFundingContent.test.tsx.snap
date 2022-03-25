@@ -1,0 +1,105 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NationalFundingContent should match snapshot 1`] = `
+<section
+  aria-labelledby="nice-decisions"
+>
+  <h4
+    id="nice-decisions"
+  >
+    <strong>
+      NICE
+    </strong>
+     decisions
+  </h4>
+  <ul
+    aria-labelledby="nice-decisions"
+    class="list--unstyled list"
+  >
+    <li>
+      <article
+        class="card"
+      >
+        <header
+          class="card__header"
+        >
+          <p
+            class="card__heading"
+          >
+            <a
+              href="http://www.nice.org.uk/guidance/ta187"
+            >
+              NICE TA187
+            </a>
+          </p>
+        </header>
+        <p
+          class="card__summary"
+        >
+          <span>
+            Infliximab and adalimumab for Crohn’s disease (May 2010)
+          </span>
+        </p>
+        <dl
+          class="card__metadata"
+        >
+          <div
+            class="card__metadatum"
+          >
+            <dt
+              class="visually-hidden"
+            >
+              Funding decision:
+            </dt>
+            <dd>
+              Recommended
+            </dd>
+          </div>
+        </dl>
+      </article>
+    </li>
+    <li>
+      <article
+        class="card"
+      >
+        <header
+          class="card__header"
+        >
+          <p
+            class="card__heading"
+          >
+            <a
+              href="Infliximab, adalimumab and golimumab for treating moderately to severely active ulcerative colitis after the failure of conventional therapy (February 2015)"
+            >
+              NICE TA329
+            </a>
+          </p>
+        </header>
+        <p
+          class="card__summary"
+        >
+          <span>
+            Infliximab, adalimumab and golimumab for treating moderately to severely active ulcerative colitis after the failure of conventional therapy (February 2015)
+          </span>
+        </p>
+        <dl
+          class="card__metadata"
+        >
+          <div
+            class="card__metadatum"
+          >
+            <dt
+              class="visually-hidden"
+            >
+              Funding decision:
+            </dt>
+            <dd>
+              Recommended with restrictions
+            </dd>
+          </div>
+        </dl>
+      </article>
+    </li>
+  </ul>
+</section>
+`;

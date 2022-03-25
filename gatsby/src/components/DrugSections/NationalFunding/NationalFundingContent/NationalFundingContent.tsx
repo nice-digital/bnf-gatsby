@@ -1,4 +1,4 @@
-import { type FC, type ReactNode } from "react";
+import { type FC } from "react";
 
 import { FeedFundingDecision } from "@nice-digital/gatsby-source-bnf";
 import { Card } from "@nice-digital/nds-card";
@@ -10,7 +10,7 @@ import styles from "./NationalFundingContent.module.scss";
 export interface NationalFundingContentProps {
 	decisions: QueryResult<FeedFundingDecision>[];
 	slug: string;
-	heading: ReactNode;
+	heading: string;
 }
 
 export const NationalFundingContent: FC<NationalFundingContentProps> = ({
@@ -19,7 +19,7 @@ export const NationalFundingContent: FC<NationalFundingContentProps> = ({
 	heading,
 }) => (
 	<section aria-labelledby={slug}>
-		<h4 id={slug}>{heading}</h4>
+		<h4 id={slug} dangerouslySetInnerHTML={{ __html: heading }} />
 		<ul className={`list--unstyled ${styles.list}`} aria-labelledby={slug}>
 			{decisions.map(({ fundingIdentifier, url, approvedForUse, title }) => (
 				<li key={fundingIdentifier}>
