@@ -5,7 +5,7 @@
   },
   "prescription-writing": {
     "bnf": "Read the BNF guidance on how to write prescriptions, including recommendations on legal requirements and formatting.",
-    "bnfc": "Read the BNF guidance on how to write prescriptions, including recommendations on legal requirements and formatting."
+    "bnfc": "Read the BNFC guidance on how to write prescriptions, including recommendations on legal requirements and formatting."
   },
   "supply-of-medicines": {
     "bnf": null,
@@ -61,7 +61,7 @@
   },
   "prescribing-in-palliative-care": {
     "bnf": "Read BNF advice on pain management and symptom control in end of life care. Includes opioid conversion charts and guidance on continuous subcutaneous infusion.",
-    "bnfc": "Read BNF advice on pain management and symptom control in end of life care. Includes opioid conversion charts and guidance on continuous subcutaneous infusion."
+    "bnfc": "Read BNFC advice on pain management and symptom control in end of life care. Includes opioid conversion charts and guidance on continuous subcutaneous infusion."
   },
   "prescribing-in-dental-practice": {
     "bnf": "Guidance on drug management of dental and oral conditions. Includes general guidance, medical emergencies and other problems in dental practice.",
@@ -73,7 +73,7 @@
   },
   "index-of-manufacturers": {
     "bnf": "An alphabetical list of manufacturers and other companies referenced in the BNF, with their medicines information or general contact details.",
-    "bnfc": "An alphabetical list of manufacturers and other companies referenced in the BNF, with their medicines information or general contact details."
+    "bnfc": "An alphabetical list of manufacturers and other companies referenced in the BNFC, with their medicines information or general contact details."
   },
   "special-order-manufacturers": {
     "bnf": "Directory of the principal NHS hospital manufacturing units licensed to manufacture ‘special-order’ products as unlicensed medicines.",
