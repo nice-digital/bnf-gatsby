@@ -1,7 +1,7 @@
 import { graphql, Link } from "gatsby";
 import React, { useMemo, type ElementType, type FC } from "react";
 import striptags from "striptags";
-import { type Merge, type Except } from "type-fest";
+import { type Except } from "type-fest";
 
 import {
 	type FeedDrug,
@@ -23,40 +23,32 @@ import { Layout } from "@/components/Layout/Layout";
 import { SectionNav } from "@/components/SectionNav/SectionNav";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
-import { isTruthy, type WithSlug } from "@/utils";
+import {
+	isTruthy,
+	type WithSlug,
+	type WithSlugDeep,
+	type QueryResult,
+} from "@/utils";
 
-/**
- * Utility type with slug property added to all 'pots' on a drug.
- *
- * This ie because we re-use the raw `FeedDrug` type to avoid having to redeclare each and every drug field.
- * But we add `slug` fields to pots when we create GraphQL nodes, so we add the `slug` property here.
- *
- * We also swap `undefined` to `null` because the feed misses out empty properties (`undefined`) but when we query
- * them with GraphQL they come back as `null` instead.
- * */
-type DrugWithSluggedPots = {
-	[Key in keyof FeedDrug]-?: FeedDrug[Key] extends FeedBaseNamedPot | undefined
-		? (FeedDrug[Key] & BasePot) | null
-		: FeedDrug[Key];
-};
-
-/** Ignore fields on a drug that we don't query and don't need */
-type IgnoredDrugFields =
+type IgnoredDrugFields = keyof Pick<
+	FeedDrug,
 	| "id"
 	| "sid"
 	| "primaryClassification"
 	| "secondaryClassifications"
 	| "reviewDate"
-	| "constituentDrugs";
+	| "constituentDrugs"
+	| "indicationsAndDose"
+>;
 
 export interface DrugPageProps {
 	data: {
-		bnfDrug: Merge<
-			Except<WithSlug<DrugWithSluggedPots>, IgnoredDrugFields>,
-			{
+		bnfDrug: QueryResult<
+			WithSlugDeep<Except<FeedDrug, IgnoredDrugFields>, FeedBaseNamedPot>
+		> &
+			WithSlug<{
 				indicationsAndDose: IndicationsAndDoseProps | null;
-			}
-		>;
+			}>;
 	};
 }
 

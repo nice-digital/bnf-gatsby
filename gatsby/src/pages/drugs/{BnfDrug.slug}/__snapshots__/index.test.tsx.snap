@@ -1,5 +1,46 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`DrugPage Important safety information should match snapshot for important safety information section 1`] = `
+<section
+  aria-labelledby="important-safety-information"
+  class="section"
+>
+  <div
+    class="panel panel--primary"
+  >
+    <h2
+      id="important-safety-information"
+    >
+      Important safety information
+    </h2>
+    <section
+      aria-labelledby="important-safety-information-diazepam"
+    >
+      <h3
+        class="visually-hidden"
+        id="important-safety-information-diazepam"
+      >
+        <span
+          class="visually-hidden"
+        >
+          Important safety information 
+        </span>
+        <span>
+          For diazepam
+        </span>
+      </h3>
+      <div
+        class="panelContents"
+      >
+        <p>
+          This is very important safety information right here
+        </p>
+      </div>
+    </section>
+  </div>
+</section>
+`;
+
 exports[`DrugPage should match snapshot for graphql query 1`] = `
 "
 	query ($id: String) {

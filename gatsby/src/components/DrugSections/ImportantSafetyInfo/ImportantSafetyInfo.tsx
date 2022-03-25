@@ -20,7 +20,7 @@ export const ImportantSafetyInfo: FC<ImportantSafetyInfoProps> = ({
 }) => {
 	return (
 		<section aria-labelledby={pot.slug} className={sectionStyles.section}>
-			<Panel variant="primary">
+			<Panel variant="primary" className={styles.panel}>
 				<h2 id={pot.slug} dangerouslySetInnerHTML={{ __html: pot.potName }} />
 
 				{drugClassContent?.map(({ content, contentFor }) => (
