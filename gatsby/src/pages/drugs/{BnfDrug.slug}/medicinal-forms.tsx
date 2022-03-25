@@ -103,7 +103,14 @@ const MedicinalFormsPage: FC<MedicinalFormsPageProps> = ({
 			/>
 		)}
 		{medicinalForms.map(
-			({ form, slug, preps, cautionaryAndAdvisoryLabels }) => (
+			({
+				form,
+				slug,
+				preps,
+				electolytes,
+				excipients,
+				cautionaryAndAdvisoryLabels,
+			}) => (
 				<section className={styles.form} key={form} aria-labelledby={slug}>
 					<h2 id={slug}>{form}</h2>
 					{cautionaryAndAdvisoryLabels?.length ? (
@@ -133,6 +140,18 @@ const MedicinalFormsPage: FC<MedicinalFormsPageProps> = ({
 							</ul>
 						</Accordion>
 					) : null}
+					{electolytes && (
+						<>
+							<h3>Electrolytes</h3>
+							<p>{electolytes}</p>
+						</>
+					)}
+					{excipients && (
+						<>
+							<h3>Excipients</h3>
+							<p>{excipients}</p>
+						</>
+					)}
 					{preps.length ? (
 						<ol className={styles.prepList}>
 							{preps.map((prep) => (
@@ -159,6 +178,8 @@ export const query = graphql`
 				medicinalForms {
 					form
 					slug
+					electolytes
+					excipients
 					preps {
 						...FullPrep
 					}

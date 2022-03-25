@@ -35,7 +35,7 @@
   margin: 0;
 }
 
-.packItem + .packItem {
+.packItem {
   border-top: 1px solid core.$nds-colour-border;
 }
 
@@ -59,4 +59,12 @@
       flex: 1 1 70%;
     }
   }
+}
+
+.sugarFree {
+  @include core.nds-font-size(-2);
+  border: 1px solid core.$nds-colour-border;
+  display: inline-block;
+  padding: core.rem(core.$nds-spacing-xx-small)
+    core.rem(core.$nds-spacing-x-small);
 }

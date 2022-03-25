@@ -17,6 +17,9 @@ export const Prep: FC<PrepProps> = ({ prep }) => (
 			<h3 className={styles.prepHeading}>
 				<span className={styles.headingIcons}>
 					{prep.blackTriangle ? "\u25BC" : null}
+					{prep.sugarFree ? (
+						<span className={styles.sugarFree}>SUGAR FREE</span>
+					) : null}
 				</span>
 				<span className={styles.headingText}>
 					{prep.name}{" "}
@@ -53,7 +56,10 @@ export const Prep: FC<PrepProps> = ({ prep }) => (
 							{pack.nhsIndicativePrice && (
 								<div className={styles.packDefinitionListItem}>
 									<dt>NHS indicative price</dt>
-									<dd>{pack.nhsIndicativePrice}</dd>
+									<dd>
+										{pack.nhsIndicativePrice}{" "}
+										{pack.hospitalOnly && "(Hospital only)"}
+									</dd>
 								</div>
 							)}
 							{pack.drugTariff && (
