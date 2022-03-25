@@ -37,42 +37,42 @@ export const Prep: FC<PrepProps> = ({ prep }) => (
 			<ol className={styles.packList}>
 				{prep.packs.map((pack) => (
 					<li className={styles.packItem} key={pack.amppId}>
-						<dl className={styles.packDefinitionList}>
+						<dl>
 							{pack.size && (
-								<>
+								<div className={styles.packDefinitionListItem}>
 									<dt>Size</dt>
 									<dd>{pack.size}</dd>
-								</>
+								</div>
 							)}
 							{pack.unit && (
-								<>
+								<div className={styles.packDefinitionListItem}>
 									<dt>Unit</dt>
 									<dd>{pack.unit}</dd>
-								</>
+								</div>
 							)}
 							{pack.nhsIndicativePrice && (
-								<>
+								<div className={styles.packDefinitionListItem}>
 									<dt>NHS indicative price</dt>
 									<dd>{pack.nhsIndicativePrice}</dd>
-								</>
+								</div>
 							)}
 							{pack.drugTariff && (
-								<>
+								<div className={styles.packDefinitionListItem}>
 									<dt>Drug tariff</dt>
 									<dd>{pack.drugTariff}</dd>
-								</>
+								</div>
 							)}
 							{pack.drugTariffPrice && (
-								<>
+								<div className={styles.packDefinitionListItem}>
 									<dt>Drug tariff price</dt>
 									<dd>{pack.drugTariffPrice}</dd>
-								</>
+								</div>
 							)}
 							{pack.legalCategory && (
-								<>
+								<div className={styles.packDefinitionListItem}>
 									<dt>Legal category</dt>
 									<dd>{pack.legalCategory}</dd>
-								</>
+								</div>
 							)}
 						</dl>
 					</li>

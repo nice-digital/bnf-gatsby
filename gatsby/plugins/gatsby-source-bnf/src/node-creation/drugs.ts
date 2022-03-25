@@ -65,18 +65,19 @@ export const createDrugNodes = (
 			medicinalForms: {
 				initialStatement,
 				specialOrderManufacturersStatement,
-				medicinalForms: forms?.map((medicinalForm) => {
-					return {
-						...medicinalForm,
-						cautionaryAndAdvisoryLabels:
-							medicinalForm.cautionaryAndAdvisoryLabels?.map((label) => {
-								return {
-									label: label.number,
-									additionalNotes: "TODO",
-								};
-							}),
-					};
-				}),
+				medicinalForms:
+					forms?.map((medicinalForm) => {
+						return {
+							...medicinalForm,
+							cautionaryAndAdvisoryLabels:
+								medicinalForm.cautionaryAndAdvisoryLabels?.map((label) => {
+									return {
+										label: label.number,
+										additionalNotes: "TODO",
+									};
+								}),
+						};
+					}) || [],
 			},
 		};
 

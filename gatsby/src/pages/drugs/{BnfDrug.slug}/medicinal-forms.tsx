@@ -110,9 +110,9 @@ const MedicinalFormsPage: FC<MedicinalFormsPageProps> = ({
 							className={styles.labelAccordion}
 							theme={AccordionTheme.Warning}
 							title={
-								<span className={styles.labelAccordionHeading}>
+								<h3 className={styles.labelAccordionHeading}>
 									Cautionary and advisory labels
-								</span>
+								</h3>
 							}
 						>
 							<ul className={styles.labelList}>
@@ -121,9 +121,9 @@ const MedicinalFormsPage: FC<MedicinalFormsPageProps> = ({
 										className={labelStyles.label}
 										key={`${slug}-label-${label.number}`}
 									>
-										<h3 className={styles.labelHeading}>
+										<h4 className={styles.labelHeading}>
 											Label {label.number}
-										</h3>
+										</h4>
 										<p>{label.englishRecommendation}</p>
 										<p lang="cy">{label.welshRecommendation}</p>
 									</li>
@@ -163,7 +163,6 @@ export const query = graphql`
 					cautionaryAndAdvisoryLabels {
 						label {
 							number
-							description
 							englishRecommendation
 							welshRecommendation
 						}
