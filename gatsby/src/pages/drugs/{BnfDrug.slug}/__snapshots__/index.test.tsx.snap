@@ -6,7 +6,7 @@ exports[`DrugPage Important safety information should match snapshot for importa
   class="section"
 >
   <div
-    class="panel panel--primary"
+    class="panel panel--primary panel"
   >
     <h2
       id="important-safety-information"
