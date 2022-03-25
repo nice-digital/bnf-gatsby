@@ -16,6 +16,7 @@ import {
 	SimplePot,
 	IndicationsAndDose,
 	type IndicationsAndDoseProps,
+	NationalFunding,
 	type BasePot,
 } from "@/components/DrugSections";
 import { Layout } from "@/components/Layout/Layout";
@@ -64,8 +65,9 @@ const DrugPage: FC<DrugPageProps> = ({ data: { bnfDrug } }) => {
 		titleNoHtml = striptags(bnfDrug.title),
 		/** Sections of a drug that have their own, specific component that isn't a `SimplePot` */
 		nonSimplePotComponents = useMemo(() => {
-			const { indicationsAndDose } = bnfDrug,
+			const { indicationsAndDose, nationalFunding } = bnfDrug,
 				potMap = new Map<BasePot | null, ElementType>();
+			potMap.set(nationalFunding, NationalFunding);
 			potMap.set(indicationsAndDose, IndicationsAndDose);
 			return potMap;
 		}, [bnfDrug]);
@@ -96,7 +98,7 @@ const DrugPage: FC<DrugPageProps> = ({ data: { bnfDrug } }) => {
 		bnfDrug.handlingAndStorage,
 		bnfDrug.patientAndCarerAdvice,
 		bnfDrug.professionSpecificInformation,
-		// TODO: bnfDrug.nationalFunding (BNF-1270)
+		bnfDrug.nationalFunding,
 		bnfDrug.lessSuitableForPrescribing,
 		bnfDrug.exceptionsToLegalCategory,
 		// TODO: medicinalForms (BNF-1267)
