@@ -45,6 +45,16 @@ describe("ImportantSafetyInfo", () => {
 			],
 		};
 
+		it(`should match snapshot for ${name} content`, () => {
+			render(<ImportantSafetyInfo {...props} />);
+
+			expect(
+				screen.getByRole("region", {
+					name: "Important safety information",
+				})
+			).toMatchSnapshot();
+		});
+
 		it(`should render heading 3 for each ${name} content`, () => {
 			render(<ImportantSafetyInfo {...props} />);
 
@@ -64,7 +74,10 @@ describe("ImportantSafetyInfo", () => {
 						level: 3,
 					})
 					.map((node) => node.textContent)
-			).toStrictEqual([`${headingPrefix} first`, `${headingPrefix} second`]);
+			).toStrictEqual([
+				`Important safety information ${headingPrefix} first`,
+				`Important safety information ${headingPrefix} second`,
+			]);
 		});
 
 		it("should render visible heading", () => {
@@ -92,7 +105,7 @@ describe("ImportantSafetyInfo", () => {
 
 			expect(
 				screen.getByRole("region", {
-					name: `${headingPrefix} first`,
+					name: `Important safety information ${headingPrefix} first`,
 				})
 			).toBeInTheDocument();
 		});
@@ -112,6 +125,16 @@ describe("ImportantSafetyInfo", () => {
 				content: "<p>Some drug content</p>",
 			},
 		};
+
+		it("should match snapshot for drug content", () => {
+			render(<ImportantSafetyInfo {...drugProps} />);
+
+			expect(
+				screen.getByRole("region", {
+					name: "Important safety information",
+				})
+			).toMatchSnapshot();
+		});
 
 		it("should render heading 3 for drug content", () => {
 			render(<ImportantSafetyInfo {...drugProps} />);
@@ -136,7 +159,12 @@ describe("ImportantSafetyInfo", () => {
 		it("should visually hide drug heading when no drug class or prep content", () => {
 			render(<ImportantSafetyInfo {...drugProps} />);
 
-			expect(screen.getByText("For budesonide")).toHaveClass("visually-hidden");
+			expect(
+				screen.getByText(
+					(_content, node) =>
+						node?.textContent === "Important safety information For budesonide"
+				)
+			).toHaveClass("visually-hidden");
 		});
 
 		it("should not visually hide drug heading when there is at least 1 drug class content", () => {
@@ -184,7 +212,7 @@ describe("ImportantSafetyInfo", () => {
 
 			expect(
 				screen.getByRole("region", {
-					name: "For budesonide",
+					name: "Important safety information For budesonide",
 				})
 			).toBeInTheDocument();
 		});
