@@ -33,7 +33,8 @@ export const Accordion: FC<AccordionProps> = ({
 	return (
 		<details
 			className={[styles.details, className, themeClass].join(" ")}
-			onToggle={() => {
+			onToggle={(e) => {
+				e.stopPropagation(); // Ensure event isn't passed to parent accordions
 				setIsOpen((isOpen) => !isOpen);
 			}}
 			open={defaultOpen}

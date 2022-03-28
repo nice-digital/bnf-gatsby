@@ -110,59 +110,78 @@ const MedicinalFormsPage: FC<MedicinalFormsPageProps> = ({
 				electolytes,
 				excipients,
 				cautionaryAndAdvisoryLabels,
-			}) => (
-				<section className={styles.form} key={form} aria-labelledby={slug}>
-					<h2 id={slug}>{form}</h2>
-					{cautionaryAndAdvisoryLabels?.length ? (
-						<Accordion
-							className={styles.labelAccordion}
-							theme={AccordionTheme.Warning}
-							title={
-								<h3 className={styles.labelAccordionHeading}>
-									<WarningIcon className={styles.warningIcon} />
-									Cautionary and advisory labels
-								</h3>
-							}
-						>
-							<ul className={styles.labelList}>
-								{cautionaryAndAdvisoryLabels.map(({ label }) => (
-									<li
-										className={labelStyles.label}
-										key={`${slug}-label-${label.number}`}
-									>
-										<h4 className={styles.labelHeading}>
-											Label {label.number}
-										</h4>
-										<p>{label.englishRecommendation}</p>
-										<p lang="cy">{label.welshRecommendation}</p>
+			}) => {
+				const labelList = cautionaryAndAdvisoryLabels?.length ? (
+					<ul className={styles.labelList}>
+						{cautionaryAndAdvisoryLabels.map(({ label }) => (
+							<li
+								className={labelStyles.label}
+								key={`${slug}-label-${label.number}`}
+							>
+								<h4 className={styles.labelHeading}>Label {label.number}</h4>
+								<p>{label.englishRecommendation}</p>
+								<p lang="cy">{label.welshRecommendation}</p>
+							</li>
+						))}
+					</ul>
+				) : null;
+
+				return (
+					<section className={styles.form} key={form} aria-labelledby={slug}>
+						<h2 id={slug}>{form}</h2>
+						<p>All products</p>
+						{labelList && (
+							<Accordion
+								className={styles.labelAccordion}
+								theme={AccordionTheme.Warning}
+								title={
+									<h3 className={styles.labelAccordionHeading}>
+										<WarningIcon className={styles.warningIcon} />
+										Cautionary and advisory labels
+									</h3>
+								}
+							>
+								{labelList}
+							</Accordion>
+						)}
+						{electolytes && (
+							<>
+								<h3>Electrolytes</h3>
+								<p>{electolytes}</p>
+							</>
+						)}
+						{excipients && (
+							<>
+								<h3>Excipients</h3>
+								<p>{excipients}</p>
+							</>
+						)}
+						{preps.length ? (
+							<ol className={styles.prepList}>
+								{preps.map((prep) => (
+									<li key={prep.ampId}>
+										<Prep prep={prep}>
+											{labelList && (
+												<Accordion
+													className={styles.labelAccordion}
+													theme={AccordionTheme.Warning}
+													title={
+														<h4 className={styles.nestedLabelAccordionHeading}>
+															Cautionary and advisory labels
+														</h4>
+													}
+												>
+													{labelList}
+												</Accordion>
+											)}
+										</Prep>
 									</li>
 								))}
-							</ul>
-						</Accordion>
-					) : null}
-					{electolytes && (
-						<>
-							<h3>Electrolytes</h3>
-							<p>{electolytes}</p>
-						</>
-					)}
-					{excipients && (
-						<>
-							<h3>Excipients</h3>
-							<p>{excipients}</p>
-						</>
-					)}
-					{preps.length ? (
-						<ol className={styles.prepList}>
-							{preps.map((prep) => (
-								<li key={prep.ampId}>
-									<Prep prep={prep} />
-								</li>
-							))}
-						</ol>
-					) : null}
-				</section>
-			)
+							</ol>
+						) : null}
+					</section>
+				);
+			}
 		)}
 	</DetailsPageLayout>
 );

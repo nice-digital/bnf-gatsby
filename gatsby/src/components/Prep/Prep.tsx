@@ -11,7 +11,7 @@ export interface PrepProps {
 	prep: QueryResult<FeedPrep>;
 }
 
-export const Prep: FC<PrepProps> = ({ prep }) => (
+export const Prep: FC<PrepProps> = ({ prep, children }) => (
 	<Accordion
 		title={
 			<h3 className={styles.prepHeading}>
@@ -28,6 +28,7 @@ export const Prep: FC<PrepProps> = ({ prep }) => (
 			</h3>
 		}
 	>
+		{children}
 		{prep.controlledDrugSchedule && <p>{prep.controlledDrugSchedule}</p>}
 		{prep.activeIngredients && prep.activeIngredients?.length > 0 ? (
 			<p

@@ -24,7 +24,8 @@
   max-width: 66ch; // TODO: Move this into design system? It's used everywhere
 }
 
-.labelAccordionHeading {
+.labelAccordionHeading,
+.nestedLabelAccordionHeading {
   @include core.nds-h4;
   align-items: center;
   display: flex;
@@ -35,6 +36,10 @@
     flex-direction: row;
     justify-content: flex-start;
   }
+}
+
+.nestedLabelAccordionHeading {
+  @include core.nds-h6;
 }
 
 .warningIcon {
