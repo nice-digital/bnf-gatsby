@@ -36,7 +36,21 @@ describe("Prep", () => {
 	it("should render black triangle in heading", () => {
 		render(<Prep prep={{ ...prep, blackTriangle: true }} />);
 		expect(screen.getByRole("heading", { level: 3 })).toHaveTextContent(
-			"Emgality 120mg/1ml solution for injection pre-filled pens Eli Lilly and Company Ltd ▼"
+			"▼Emgality 120mg/1ml solution for injection pre-filled pens Eli Lilly and Company Ltd"
 		);
+	});
+
+	it("should render a 'sugar free' element whenever the prep is sugar free", () => {
+		render(<Prep prep={{ ...prep, sugarFree: true }} />);
+		expect(screen.getByRole("heading", { level: 3 })).toHaveTextContent(
+			"SUGAR FREE Emgality 120mg/1ml solution for injection pre-filled pens Eli Lilly and Company Ltd"
+		);
+	});
+
+	it("should render a controlled drug schedule whenever it exists in the feed", () => {
+		render(
+			<Prep prep={{ ...prep, controlledDrugSchedule: "Schedule 1 (CD Lic)" }} />
+		);
+		expect(screen.getByText("Schedule 1 (CD Lic)")).toBeInTheDocument();
 	});
 });

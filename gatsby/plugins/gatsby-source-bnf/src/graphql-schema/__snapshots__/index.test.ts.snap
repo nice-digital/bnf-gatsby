@@ -206,7 +206,7 @@ exports[`schema should match snapshot 1`] = `
 		slug: String! @slug(field: \\"form\\")
 
 		\\"A list of any cautionary and advisory labels for the medicinal form.\\"
-		cautionaryAndAdvisoryLabels: [String!]
+		cautionaryAndAdvisoryLabels: [BnfMedicinalFormLabel]
 
 		\\"A list of any excipients for the medicinal form, provided as a text statement.\\"
 		excipients: String
@@ -216,6 +216,14 @@ exports[`schema should match snapshot 1`] = `
 
 		\\"The preparations of the drug for the medicinal form.\\"
 		preps: [BnfPrep!]!
+	}
+
+	\\"\\"\\"
+	A cautionary/advisory label for this form. It differs slightly from the labels used elsewhere, as it also includes some additional notes for this particular medicinal form.
+	\\"\\"\\"
+	type BnfMedicinalFormLabel {
+		label: BnfCautionaryAndAdvisoryLabel @link(by: \\"number\\")
+		additionalNotes: String
 	}
 
 

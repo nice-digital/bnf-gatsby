@@ -12,13 +12,14 @@ exports[`MedicinalFormsPage should match snapshot for graphql query 1`] = `
 				medicinalForms {
 					form
 					slug
+					electolytes
+					excipients
 					preps {
 						...FullPrep
 					}
 					cautionaryAndAdvisoryLabels {
 						label {
 							number
-							description
 							englishRecommendation
 							welshRecommendation
 						}

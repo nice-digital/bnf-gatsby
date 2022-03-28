@@ -9,14 +9,14 @@ const drug: MedicinalFormsPageProps["data"]["bnfDrug"] = {
 	title: "Anti-D (Rh<sub>0</sub>) immunoglobulin",
 	slug: "anti-d-rh0-immunoglobulin",
 	medicinalForms: {
-		initialStatement: "",
-		specialOrderManufacturersStatement: "",
+		initialStatement: "Test initial statement",
+		specialOrderManufacturersStatement: "Test special order statement",
 		medicinalForms: [
 			{
 				form: "Tablets",
 				slug: "tablets",
-				electolytes: null,
-				excipients: null,
+				electolytes: "May contain sodium.",
+				excipients: "May contain alcohol, disodium edetate, polysorbates.",
 				preps: [],
 				cautionaryAndAdvisoryLabels: [
 					{
@@ -139,6 +139,37 @@ describe("MedicinalFormsPage", () => {
 					.cautionaryAndAdvisoryLabels?.length || -1;
 			// eslint-disable-next-line testing-library/no-node-access
 			expect(labelList.children).toHaveLength(numberOfLabels);
+		});
+
+		it("should render electrolytes when they exist in the feed data", () => {
+			render(<MedicinalFormsPage data={dataProp} />);
+			expect(
+				screen.getByRole("heading", {
+					level: 3,
+					name: "Electrolytes",
+				})
+			).toBeInTheDocument();
+		});
+		it("should render excipients when they exist in the feed data", () => {
+			render(<MedicinalFormsPage data={dataProp} />);
+			expect(
+				screen.getByRole("heading", {
+					level: 3,
+					name: "Excipients",
+				})
+			).toBeInTheDocument();
+		});
+
+		it("should render an initial statement when it exists in the feed data", () => {
+			render(<MedicinalFormsPage data={dataProp} />);
+			expect(screen.getByText("Test initial statement")).toBeInTheDocument();
+		});
+
+		it("should render a special order manufacturer statement when it exists in the feed data", () => {
+			render(<MedicinalFormsPage data={dataProp} />);
+			expect(
+				screen.getByText("Test special order statement")
+			).toBeInTheDocument();
 		});
 	});
 });
