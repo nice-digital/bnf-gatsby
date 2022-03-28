@@ -2,43 +2,43 @@ import { useLocation } from "@reach/router";
 import { render, screen, waitFor } from "@testing-library/react";
 import { useStaticQuery } from "gatsby";
 
-import { mockAboutPagesQueryData } from "@/hooks/useAboutPages.test";
+import { mockQueryData } from "@/hooks/useMedicinesGuidancePages.test";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
-import AboutSectionPage, {
-	type AboutSectionPageProps,
+import MedicinesGuidancePage, {
+	type MedicinesGuidancePageProps,
 	query,
-} from "../{BnfAboutSection.slug}";
+} from "./{BnfGuidance.slug}";
 
-const pageProps: AboutSectionPageProps = {
+const pageProps: MedicinesGuidancePageProps = {
 	data: {
-		currentAboutPage: {
-			slug: "changes",
-			title: "Changes",
+		currentGuidancePage: {
+			slug: "guidance-on-prescribing",
+			title: "Guidance on prescribing",
 			sections: [
 				{
 					order: 0,
 					content:
-						"<p>Monthly updates are provided online via Medicines Complete and the NHS Evidence portal. The changes listed below are cumulative (from one print edition to the next).</p>",
-					slug: "introduction",
-					title: "Introduction",
+						"<p>Medicines should be prescribed only when they are necessary</p>",
+					slug: "general-guidance",
+					title: "General guidance",
 				},
 				{
 					order: 1,
 					content:
-						"<p>Significant changes made since the release of data for the print edition of BNF 82 (September 2021 — March 2022):</p>",
-					slug: "significant-changes",
-					title: "Significant changes",
+						"<p><b>Biological medicines</b> are medicines that are made by or derived from a biological source</p>",
+					slug: "biological-medicines",
+					title: "Biological medicines",
 				},
 			],
 		},
 	},
 	location: {
-		pathname: "/about/changes/",
+		pathname: "/medicines-guidance/guidance-on-prescribing/",
 	},
 };
 
-describe("AboutSectionPage", () => {
+describe("MedicinesGuidancePage", () => {
 	beforeEach(() => {
 		(useLocation as jest.Mock).mockReturnValue(
 			new URL(
@@ -46,7 +46,7 @@ describe("AboutSectionPage", () => {
 			)
 		);
 
-		(useStaticQuery as jest.Mock).mockReturnValue(mockAboutPagesQueryData);
+		(useStaticQuery as jest.Mock).mockReturnValue(mockQueryData);
 	});
 
 	it("should match snapshot for graphql query", () => {
@@ -54,21 +54,23 @@ describe("AboutSectionPage", () => {
 	});
 
 	it("should match snapshot for page contents", () => {
-		render(<AboutSectionPage {...pageProps} />);
+		render(<MedicinesGuidancePage {...pageProps} />);
 
 		expect(screen.getByRole("main")).toMatchSnapshot();
 	});
 
 	it("should set page title", async () => {
-		render(<AboutSectionPage {...pageProps} />);
+		render(<MedicinesGuidancePage {...pageProps} />);
 
 		await waitFor(() => {
-			expect(document.title).toStartWith("Changes | About | ");
+			expect(document.title).toStartWith(
+				"Guidance on prescribing | Medicines guidance | "
+			);
 		});
 	});
 
 	it("should set meta description for known path on BNF", async () => {
-		render(<AboutSectionPage {...pageProps} />);
+		render(<MedicinesGuidancePage {...pageProps} />);
 
 		await waitFor(() => {
 			expect(
@@ -76,17 +78,17 @@ describe("AboutSectionPage", () => {
 				document.querySelector(`meta[name="description"]`)
 			).toHaveAttribute(
 				"content",
-				"Keep up to date with the latest significant changes in the BNF that are relevant to your clinical practice. Updated monthly."
+				"Read general advice on prescribing, providing patient focused advice, including assessing risks versus benefits of potential prescribing decisions."
 			);
 		});
 	});
 
 	it("should set meta description for known path on BNFC", async () => {
 		(useSiteMetadata as jest.Mock).mockImplementationOnce(() => ({
-			isBNF: false,
+			siteTitleShort: "BNFC",
 		}));
 
-		render(<AboutSectionPage {...pageProps} />);
+		render(<MedicinesGuidancePage {...pageProps} />);
 
 		await waitFor(() => {
 			expect(
@@ -94,7 +96,7 @@ describe("AboutSectionPage", () => {
 				document.querySelector(`meta[name="description"]`)
 			).toHaveAttribute(
 				"content",
-				"Keep up to date with the latest significant changes in the BNFC that are relevant to your clinical practice. Updated monthly."
+				"Read general advice on prescribing, providing patient focused advice, including assessing risks versus benefits of potential prescribing decisions."
 			);
 		});
 	});
@@ -102,12 +104,11 @@ describe("AboutSectionPage", () => {
 	it("should throw error for unknown path", () => {
 		expect(() => {
 			render(
-				<AboutSectionPage
-					{...pageProps}
+				<MedicinesGuidancePage
 					data={{
-						currentAboutPage: {
-							title: "Unknown",
+						currentGuidancePage: {
 							slug: "unknown",
+							title: "Unknown",
 							sections: [],
 						},
 					}}

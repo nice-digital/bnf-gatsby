@@ -1,0 +1,66 @@
+{
+  "changes": {
+    "bnf": "Keep up to date with the latest significant changes in the BNF that are relevant to your clinical practice. Updated monthly.",
+    "bnfc": "Keep up to date with the latest significant changes in the BNFC that are relevant to your clinical practice. Updated monthly."
+  },
+  "publication-information": {
+    "bnf": "Look up publication details, including how to contact the BNF's publishers and how to order a printed copy of the BNF in book format.",
+    "bnfc": "Look up publication details, including how to contact the BNFC's publishers and how to order a printed copy of the BNFC in book format."
+  },
+  "preface": {
+    "bnf": "The British National Formulary is a rapid reference resource for the latest information and advice on prescribing and pharmacology.",
+    "bnfc": "The British National Formulary for Children is a rapid reference resource for the latest information and advice on prescribing and pharmacology in children."
+  },
+  "acknowledgements": {
+    "bnf": "The Joint Formulary Committee is grateful to individuals and organisations that have provided advice and information to the BNF.",
+    "bnfc": "The Paediatric Formulary Committee is grateful to individuals and organisations that have provided advice and information to the BNF for Children."
+  },
+  "bnf-staff": {
+    "bnf": "View the content director, editorial staff and support staff responsible for producing the BNF.",
+    "bnfc": "View the content director, editorial staff and support staff responsible for producing the BNFC."
+  },
+  "joint-formulary-committee": {
+    "bnf": "The Joint Formulary Committee (JFC) is responsible for the content of the BNF. The JFC includes pharmacy, medical, nursing, and lay representatives.",
+    "bnfc": "The Joint Formulary Committee (JFC) is responsible for the content of the BNFC. The JFC includes pharmacy, medical, nursing, and lay representatives."
+  },
+  "dental-advisory-group": {
+    "bnf": "The Dental Advisory Group oversees preparation of advice on the drug management of dental and oral conditions.",
+    "bnfc": "The Dental Advisory Group oversees preparation of advice on the drug management of dental and oral conditions."
+  },
+  "nurse-prescribers-advisory-group": {
+    "bnf": "The Nurse Prescribers' Advisory Group oversees the list of drugs approved for inclusion in the Nurse Prescribers' Formulary.",
+    "bnfc": "The Nurse Prescribers' Advisory Group oversees the list of drugs approved for inclusion in the Nurse Prescribers' Formulary."
+  },
+  "how-bnf-publications-are-constructed": {
+    "bnf": "Read more about the editorial and production processes behind the construction of the BNF and the assessment of evidence used to make recommendations.",
+    "bnfc": "Read more about the editorial and production processes behind the construction of the BNFC and the assessment of evidence used to make recommendations."
+  },
+  "how-to-use-bnf-publications-online": {
+    "bnf": "View the how-to guide for using the online version of the BNF, as found in appendix 1 of the printed edition.",
+    "bnfc": "View the how-to guide for using the online version of the BNFC, as found in appendix 1 of the printed edition."
+  },
+  "frequently-asked-questions-for-the-bnf-and-bnf-for-children-bnfc-general": {
+    "bnf": "Get answers to frequently asked questions about the British National Formulary, including how to cite, or reference, the different versions of the BNF and BNFC.",
+    "bnfc": "Get answers to frequently asked questions about the British National Formulary, including how to cite, or reference, the different versions of the BNF and BNFC."
+  },
+  "frequently-asked-questions-clinical": {
+    "bnf": "View the answers to commonly asked questions that may come up when using the BNF information and guidance on prescribing.",
+    "bnfc": "View the answers to commonly asked questions that may come up when using the BNFC information and guidance on prescribing."
+  },
+  "approximate-conversions-and-units": {
+    "bnf": "Conversions and units tables including growth chart with average weight and height, by gender and age (neonate, child and adult).",
+    "bnfc": "Conversions and units tables including growth chart with average weight and height, by gender and age (neonate, child and adult)."
+  },
+  "abbreviations-and-symbols": {
+    "bnf": "Glossary of symbols and abbreviations, including Latin, medication and dosage abbreviations used in the BNF and prescribing.",
+    "bnfc": "Glossary of symbols and abbreviations, including Latin, medication and dosage abbreviations used in the BNFC and prescribing."
+  },
+  "medicines-information-services": {
+    "bnf": "Find contact details for both regional and national medicines information and advice lines/services in the UK.",
+    "bnfc": "Find contact details for both regional and national medicines information and advice lines/services in the UK."
+  },
+  "paediatric-formulary-committee": {
+    "bnf": "The Paediatric Formulary Committee (PFC) is responsible for the content of BNF. The PFC includes pharmacy, medical, nursing and lay representatives.",
+    "bnfc": "The Paediatric Formulary Committee (PFC) is responsible for the content of BNFC. The PFC includes pharmacy, medical, nursing and lay representatives."
+  }
+}

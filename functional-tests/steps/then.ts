@@ -9,12 +9,12 @@ Then(
 			labelSectionSelector = `section[aria-labelledby="label-${labelNumber}"]`,
 			labelSectionElement = await browser.$(labelSectionSelector),
 			labelHeadingElement = await labelSectionElement.$(`h2`),
-			labelEnglishElement = await labelSectionElement.$(`=${labelText}`);
+			labelEnglishElement = await labelSectionElement.$(`p=${labelText}`);
 
 		await scrollInToView(`h2=${labelHeadingText}`, labelSectionSelector);
 
-		expect(labelHeadingElement).toHaveText(labelHeadingText);
-		expect(labelEnglishElement).toBeExisting();
+		await expect(labelHeadingElement).toHaveText(labelHeadingText);
+		await expect(labelEnglishElement).toBeExisting();
 	}
 );
 
