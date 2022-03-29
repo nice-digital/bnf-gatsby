@@ -14,72 +14,68 @@ export type NationalFundingProps = QueryResult<
 	WithSlug<FeedNationalFundingPot>
 >;
 
-export const NationalFunding: FC<NationalFundingProps> = (props) => {
-	return (
-		<PotSection {...props}>
-			{({
-				content: {
-					contentFor,
-					initialText,
-					niceDecisionsTitle,
-					niceDecisions,
-					smcDecisionsTitle,
-					smcDecisions,
-					awmsgDecisionsTitle,
-					awmsgDecisions,
-					nonNhsTitle,
-					nonNhs,
-				},
-			}) => {
-				const sectionSlugPostfix = slugify(striptags(contentFor));
+export const NationalFunding: FC<NationalFundingProps> = (props) => (
+	<PotSection {...props}>
+		{({
+			content: {
+				contentFor,
+				initialText,
+				niceDecisionsTitle,
+				niceDecisions,
+				smcDecisionsTitle,
+				smcDecisions,
+				awmsgDecisionsTitle,
+				awmsgDecisions,
+				nonNhsTitle,
+				nonNhs,
+			},
+		}) => {
+			const sectionSlugPostfix = slugify(striptags(contentFor));
 
-				return (
-					<>
-						<p dangerouslySetInnerHTML={{ __html: initialText }} />
+			return (
+				<>
+					<p dangerouslySetInnerHTML={{ __html: initialText }} />
 
-						{niceDecisions.length > 0 ? (
-							<NationalFundingContent
-								slug={`nice-decisions-${sectionSlugPostfix}`}
-								heading={niceDecisionsTitle || "NICE decisions"}
-								decisions={niceDecisions}
-							/>
-						) : null}
+					{niceDecisions.length > 0 ? (
+						<NationalFundingContent
+							slug={`nice-decisions-${sectionSlugPostfix}`}
+							heading={niceDecisionsTitle || "NICE decisions"}
+							decisions={niceDecisions}
+						/>
+					) : null}
 
-						{smcDecisions.length > 0 ? (
-							<NationalFundingContent
-								slug={`smc-decisions-${sectionSlugPostfix}`}
-								heading={
-									smcDecisionsTitle ||
-									"Scottish Medicines Consortium (SMC) decisions"
-								}
-								decisions={smcDecisions}
-							/>
-						) : null}
+					{smcDecisions.length > 0 ? (
+						<NationalFundingContent
+							slug={`smc-decisions-${sectionSlugPostfix}`}
+							heading={
+								smcDecisionsTitle ||
+								"Scottish Medicines Consortium (SMC) decisions"
+							}
+							decisions={smcDecisions}
+						/>
+					) : null}
 
-						{awmsgDecisions.length > 0 ? (
-							<NationalFundingContent
-								slug={`awmsg-decisions-${sectionSlugPostfix}`}
-								heading={
-									awmsgDecisionsTitle ||
-									"All Wales Medicines Strategy Group (AWMSG)"
-								}
-								decisions={awmsgDecisions}
-							/>
-						) : null}
+					{awmsgDecisions.length > 0 ? (
+						<NationalFundingContent
+							slug={`awmsg-decisions-${sectionSlugPostfix}`}
+							heading={
+								awmsgDecisionsTitle ||
+								"All Wales Medicines Strategy Group (AWMSG)"
+							}
+							decisions={awmsgDecisions}
+						/>
+					) : null}
 
-						{nonNhs && (
-							<section
-								aria-labelledby={`nhs-restrictions-${sectionSlugPostfix}`}
-							>
-								<h4 id={`nhs-restrictions-${sectionSlugPostfix}`}>
-									{nonNhsTitle || "NHS restrictions"}
-								</h4>
-								<p dangerouslySetInnerHTML={{ __html: nonNhs }} />
-							</section>
-						)}
-					</>
-				);
-			}}
-		</PotSection>
-	);
-};
+					{nonNhs && (
+						<section aria-labelledby={`nhs-restrictions-${sectionSlugPostfix}`}>
+							<h4 id={`nhs-restrictions-${sectionSlugPostfix}`}>
+								{nonNhsTitle || "NHS restrictions"}
+							</h4>
+							<p dangerouslySetInnerHTML={{ __html: nonNhs }} />
+						</section>
+					)}
+				</>
+			);
+		}}
+	</PotSection>
+);
