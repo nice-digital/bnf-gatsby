@@ -13,6 +13,13 @@ export interface MenuPageLink {
 	title: string;
 }
 
+/** Represents the structure of JSON files used for meta descriptions:
+ * a map of URL slug to string descriptions for BNF and BNFC */
+export type MetaDescriptionsMap = Record<
+	string,
+	{ bnf: string | null; bnfc: string | null } | undefined
+>;
+
 export interface Slug {
 	slug: string;
 }

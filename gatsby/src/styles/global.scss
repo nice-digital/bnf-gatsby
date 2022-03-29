@@ -26,6 +26,7 @@ body {
   // We use Roboto for Android devices
   font-family: 'Lato', 'Trebuchet MS', 'Roboto', 'Helvetica Neue', Helvetica,
     Arial, sans-serif;
+  overflow-wrap: break-word; // To avoid really long links breaking out if their container and overlapping other content
   position: relative;
 }
 

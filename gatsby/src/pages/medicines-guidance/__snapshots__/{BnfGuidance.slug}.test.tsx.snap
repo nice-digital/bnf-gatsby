@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AboutSectionPage should match snapshot for graphql query 1`] = `
+exports[`MedicinesGuidancePage should match snapshot for graphql query 1`] = `
 "
 	query ($id: String) {
-		currentAboutPage: bnfAboutSection(id: { eq: $id }) {
+		currentGuidancePage: bnfGuidance(id: { eq: $id }) {
 			slug
 			title
 			sections {
@@ -14,7 +14,7 @@ exports[`AboutSectionPage should match snapshot for graphql query 1`] = `
 "
 `;
 
-exports[`AboutSectionPage should match snapshot for page contents 1`] = `
+exports[`MedicinesGuidancePage should match snapshot for page contents 1`] = `
 <main>
   <div
     class="container"
@@ -48,16 +48,16 @@ exports[`AboutSectionPage should match snapshot for page contents 1`] = `
           class="breadcrumbs__crumb"
         >
           <a
-            href="/about/"
+            href="/medicines-guidance/"
           >
-            About
+            Medicines guidance
           </a>
         </li>
         <li
           class="breadcrumbs__crumb"
         >
           <span>
-            Changes
+            Guidance on prescribing
           </span>
         </li>
       </ol>
@@ -89,15 +89,15 @@ exports[`AboutSectionPage should match snapshot for page contents 1`] = `
       "@type": "ListItem",
       "position": 3,
       "item": {
-        "@id": "/about/",
-        "name": "About"
+        "@id": "/medicines-guidance/",
+        "name": "Medicines guidance"
       }
     },
     {
       "@type": "ListItem",
       "position": 4,
       "item": {
-        "name": "Changes"
+        "name": "Guidance on prescribing"
       }
     }
   ]
@@ -111,7 +111,7 @@ exports[`AboutSectionPage should match snapshot for page contents 1`] = `
         class="page-header__heading"
       >
         <span>
-          Changes
+          Guidance on prescribing
         </span>
       </h1>
     </div>
@@ -124,7 +124,7 @@ exports[`AboutSectionPage should match snapshot for page contents 1`] = `
         data-g="12 md:4 lg:3"
       >
         <nav
-          aria-label="About section pages"
+          aria-label="Medicines guidance pages"
           class="stacked-nav"
         >
           <p
@@ -132,9 +132,9 @@ exports[`AboutSectionPage should match snapshot for page contents 1`] = `
           >
             <a
               aria-current="false"
-              href="/about/"
+              href="/medicines-guidance/"
             >
-              About
+              Medicines guidance
             </a>
           </p>
           <ul
@@ -145,13 +145,13 @@ exports[`AboutSectionPage should match snapshot for page contents 1`] = `
             >
               <a
                 aria-current="true"
-                href="/about/changes/"
+                href="/medicines-guidance/guidance-on-prescribing/"
               >
                 <span
                   class="stacked-nav__content-wrapper"
                 >
                   <span>
-                    Changes
+                    Guidance on prescribing
                   </span>
                 </span>
               </a>
@@ -161,48 +161,13 @@ exports[`AboutSectionPage should match snapshot for page contents 1`] = `
             >
               <a
                 aria-current="false"
-                href="/about/publication-information/"
+                href="/medicines-guidance/prescription-writing/"
               >
                 <span
                   class="stacked-nav__content-wrapper"
                 >
                   <span>
-                    Publication 
-                    <i>
-                      information
-                    </i>
-                  </span>
-                </span>
-              </a>
-            </li>
-            <li
-              class="stacked-nav__list-item"
-            >
-              <a
-                aria-current="false"
-                href="/about/labels/"
-              >
-                <span
-                  class="stacked-nav__content-wrapper"
-                >
-                  <span>
-                    Labels
-                  </span>
-                </span>
-              </a>
-            </li>
-            <li
-              class="stacked-nav__list-item"
-            >
-              <a
-                aria-current="false"
-                href="/about/guidance-for-cautionary-and-advisory-labels/"
-              >
-                <span
-                  class="stacked-nav__content-wrapper"
-                >
-                  <span>
-                    Guidance for cautionary and advisory labels
+                    Prescription writing
                   </span>
                 </span>
               </a>
@@ -235,16 +200,16 @@ exports[`AboutSectionPage should match snapshot for page contents 1`] = `
               >
                 <li>
                   <a
-                    href="#introduction"
+                    href="#general-guidance"
                   >
-                    Introduction
+                    General guidance
                   </a>
                 </li>
                 <li>
                   <a
-                    href="#significant-changes"
+                    href="#biological-medicines"
                   >
-                    Significant changes
+                    Biological medicines
                   </a>
                 </li>
               </ol>
@@ -255,31 +220,34 @@ exports[`AboutSectionPage should match snapshot for page contents 1`] = `
             data-g="12 lg:9"
           >
             <section
-              aria-labelledby="introduction"
+              aria-labelledby="general-guidance"
             >
               <h2
                 class="firstHeading"
-                id="introduction"
+                id="general-guidance"
               >
-                Introduction
+                General guidance
               </h2>
               <div>
                 <p>
-                  Monthly updates are provided online via Medicines Complete and the NHS Evidence portal. The changes listed below are cumulative (from one print edition to the next).
+                  Medicines should be prescribed only when they are necessary
                 </p>
               </div>
             </section>
             <section
-              aria-labelledby="significant-changes"
+              aria-labelledby="biological-medicines"
             >
               <h2
-                id="significant-changes"
+                id="biological-medicines"
               >
-                Significant changes
+                Biological medicines
               </h2>
               <div>
                 <p>
-                  Significant changes made since the release of data for the print edition of BNF 82 (September 2021 — March 2022):
+                  <b>
+                    Biological medicines
+                  </b>
+                   are medicines that are made by or derived from a biological source
                 </p>
               </div>
             </section>

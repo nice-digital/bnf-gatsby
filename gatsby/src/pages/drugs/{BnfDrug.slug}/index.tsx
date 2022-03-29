@@ -19,6 +19,7 @@ import {
 	type BasePot,
 	ImportantSafetyInfo,
 } from "@/components/DrugSections";
+import { Constituents } from "@/components/DrugSections/Constituents/Constituents";
 import { Layout } from "@/components/Layout/Layout";
 import { SectionNav } from "@/components/SectionNav/SectionNav";
 import { SEO } from "@/components/SEO/SEO";
@@ -28,6 +29,7 @@ import {
 	type WithSlug,
 	type WithSlugDeep,
 	type QueryResult,
+	type SlugAndTitle,
 } from "@/utils";
 
 type IgnoredDrugFields = keyof Pick<
@@ -48,6 +50,10 @@ export interface DrugPageProps {
 		> &
 			WithSlug<{
 				indicationsAndDose: IndicationsAndDoseProps | null;
+				constituentDrugs: {
+					message: string;
+					constituents: SlugAndTitle[];
+				} | null;
 			}>;
 	};
 }
@@ -55,17 +61,28 @@ export interface DrugPageProps {
 const DrugPage: FC<DrugPageProps> = ({ data: { bnfDrug } }) => {
 	const { siteTitleShort } = useSiteMetadata(),
 		titleNoHtml = striptags(bnfDrug.title),
+		constituents = useMemo(
+			() =>
+				bnfDrug.constituentDrugs && {
+					slug: "constituent-drugs",
+					potName: "Constituent drugs",
+					...bnfDrug.constituentDrugs,
+				},
+			[bnfDrug.constituentDrugs]
+		),
 		/** Sections of a drug that have their own, specific component that isn't a `SimplePot` */
 		nonSimplePotComponents = useMemo(() => {
 			const { indicationsAndDose, importantSafetyInformation } = bnfDrug,
 				potMap = new Map<BasePot | null, ElementType>();
 			potMap.set(indicationsAndDose, IndicationsAndDose);
 			potMap.set(importantSafetyInformation, ImportantSafetyInfo);
+			// Bespoke sections that aren't "pots" in the feed
+			potMap.set(constituents, Constituents);
 			return potMap;
-		}, [bnfDrug]);
+		}, [bnfDrug, constituents]);
 
 	const orderedSections: BasePot[] = [
-		// TODO: constituents (BNF-1271)
+		constituents,
 		bnfDrug.drugAction,
 		bnfDrug.indicationsAndDose,
 		bnfDrug.unlicensedUse,
