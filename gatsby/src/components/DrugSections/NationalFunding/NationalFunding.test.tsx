@@ -109,4 +109,33 @@ describe("NationalFunding", () => {
 			})
 		).toBeInTheDocument();
 	});
+
+	it("should render NHS restrictions section", () => {
+		render(
+			<NationalFunding
+				{...minimumProps}
+				drugContent={{
+					...drugContent,
+					nonNhs: "This is not prescribable in NHS primary care",
+				}}
+			/>
+		);
+
+		expect(
+			screen.getByRole("heading", {
+				name: "NHS restrictions",
+				level: 4,
+			})
+		).toBeInTheDocument();
+
+		expect(
+			screen.getByRole("region", {
+				name: "NHS restrictions",
+			})
+		).toBeInTheDocument();
+
+		expect(
+			screen.getByText("This is not prescribable in NHS primary care")
+		).toHaveProperty("tagName", "P");
+	});
 });
