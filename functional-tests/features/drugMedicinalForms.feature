@@ -10,7 +10,6 @@ Feature: Drug medicinal forms page
 
   # Checking for accessiblity issues in awkward edge cases:
   # - Galantamine (no forms, just labels)
-  # - Co-codamol (massive page)
   # - Abemaciclib (black triangle, cautionary labels)
   Scenario Outline: <pageName> at <screenSize> accessibility issues
     Given I am using a <screenSize> size browser
@@ -20,7 +19,5 @@ Feature: Drug medicinal forms page
       | pageName                    | screenSize |
       | galantamine medicinal forms | mobile     |
       | galantamine medicinal forms | desktop    |
-      | co-codamol medicinal forms  | mobile     |
-      | co-codamol medicinal forms  | desktop    |
       | abemaciclib medicinal forms | mobile     |
       | abemaciclib medicinal forms | desktop    |
