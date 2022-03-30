@@ -3,6 +3,11 @@
 export { type BasePot } from "./types";
 
 export {
+	Constituents,
+	type ConstituentsProps,
+} from "./Constituents/Constituents";
+
+export {
 	IndicationsAndDose,
 	type IndicationsAndDoseProps,
 } from "./IndicationsAndDose/IndicationsAndDose";
