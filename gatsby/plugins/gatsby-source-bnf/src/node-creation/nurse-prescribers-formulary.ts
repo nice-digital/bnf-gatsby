@@ -31,15 +31,16 @@ export const createNursePrescribersNodes = (
 		sourceNodesArgs
 	);
 
-	createSimpleRecordNodes(
-		npfTreatmentSummaries.map((npfTreatmentSummary) => ({
-			...npfTreatmentSummary,
-			title: npfTreatmentSummary.title.replace(
-				npfTreatmentSummaryTitlePrefix,
-				""
-			),
-		})),
-		BnfNode.NursePrescribersFormularyTreatmentSummary,
-		sourceNodesArgs
-	);
+	if (npfTreatmentSummaries)
+		createSimpleRecordNodes(
+			npfTreatmentSummaries.map((npfTreatmentSummary) => ({
+				...npfTreatmentSummary,
+				title: npfTreatmentSummary.title.replace(
+					npfTreatmentSummaryTitlePrefix,
+					""
+				),
+			})),
+			BnfNode.NursePrescribersFormularyTreatmentSummary,
+			sourceNodesArgs
+		);
 };
