@@ -88,8 +88,86 @@ exports[`schema should match snapshot 1`] = `
 		\\"The constituent drugs. This will be populated if the drug is a combination (e.g. 'tramadol with paracetamol') where each constituent exists in the BNF as a monograph in its own right.\\"
 		constituentDrugs: BnfConstituentDrugs
 
+		\\"The allergy and cross-sensitivity section for the drug, including any relevant drug classes and preparations.\\"
+		allergyAndCrossSensitivity: BnfSimplePot
+
+		\\"The breast feeding section for the drug, including any relevant drug classes and preparations.\\"
+		breastFeeding: BnfSimplePot
+
+		\\"The cautions section for the drug, including any relevant drug classes and preparations.\\"
+		cautions: BnfSimplePot
+
+		\\"The conception and contraception section for the drug, including any relevant drug classes and preparations.\\"
+		conceptionAndContraception: BnfSimplePot
+
+		\\"The contra-indications section for the drug, including any relevant drug classes and preparations.\\"
+		contraIndications: BnfSimplePot
+
+		\\"The directions for administration section for the drug, including any relevant drug classes and preparations.\\"
+		directionsForAdministration: BnfSimplePot
+
+		\\"The drug action section for the drug, including any relevant drug classes and preparations\\"
+		drugAction: BnfSimplePot
+
+		\\"The effect on laboratory tests section for the drug, including any relevant drug classes and preparations.\\"
+		effectOnLaboratoryTests: BnfSimplePot
+
+		\\"The exceptions to legal category section for the drug, including any relevant drug classes and preparations.\\"
+		exceptionsToLegalCategory: BnfSimplePot
+
+		\\"The handling and storage section for the drug, including any relevant drug classes and preparations.\\"
+		handlingAndStorage: BnfSimplePot
+
+		\\"The hepatic impairment section for the drug, including any relevant drug classes and preparations.\\"
+		hepaticImpairment: BnfSimplePot
+
+		\\"The important safety information section for the drug, including any relevant drug classes and preparations.\\"
+		importantSafetyInformation: BnfSimplePot
+
+		\\"The less suitable for prescribing section for the drug, including any relevant drug classes and preparations.\\"
+		lessSuitableForPrescribing: BnfSimplePot
+
+		\\"The indications and dose section for the drug, including any relevant drug classes and preparations.\\"
+		indicationsAndDose: BnfIndicationsAndDose
+
 		\\"The medicinal forms for the drug.\\"
 		medicinalForms: BnfMedicinalForms!
+
+		\\"The monitoring requirements section for the drug, including any relevant drug classes and preparations.\\"
+		monitoringRequirements: BnfMonitoringPot
+
+		\\"The national funding section for the drug, including any relevant drug classes and preparations.\\"
+		nationalFunding: BnfNationalFundingPot
+
+		\\"The palliative care section for the drug, including any relevant drug classes and preparations.\\"
+		palliativeCare: BnfSimplePot
+
+		\\"The patient and carer advice section for the drug, including any relevant drug classes and preparations.\\"
+		patientAndCarerAdvice: BnfSimplePot
+
+		\\"The pregnancy section for the drug, including any relevant drug classes and preparations.\\"
+		pregnancy: BnfSimplePot
+
+		\\"The prescribing and dispensing information section for the drug, including any relevant drug classes and preparations. Note that this section used to contain information about prescribing and dispensing in palliative care, but this will now appear in the palliative care section.\\"
+		prescribingAndDispensingInformation: BnfSimplePot
+
+		\\"The profession specific information section for the drug, including any relevant drug classes and preparations.\\"
+		professionSpecificInformation: BnfSimplePot
+
+		\\"The pre-treatment screening section for the drug, including any relevant drug classes and preparations.\\"
+		preTreatmentScreening: BnfSimplePot
+
+		\\"The renal impairment section for the drug, including any relevant drug classes and preparations.\\"
+		renalImpairment: BnfSimplePot
+
+		\\"The side effects section for the drug, including any relevant drug classes and preparations.\\"
+		sideEffects: BnfSimplePot
+
+		\\"The treatment cessation section for the drug, including any relevant drug classes and preparations.\\"
+		treatmentCessation: BnfSimplePot
+
+		\\"The unlicensed use section for the drug, including any relevant drug classes and preparations.\\"
+		unlicensedUse: BnfSimplePot
 	}
 
 	\\"\\"\\"
@@ -99,8 +177,8 @@ exports[`schema should match snapshot 1`] = `
 		\\"The standard message to be included with the constituent drugs.\\"
 		message: String!
 
-		\\"The constituents of the combination drug. TODO: Make this non-nullable when the feed is fixed (currently it shows constituents that aren't themselves drug monographs)\\"
-		constituents: [BnfDrug]! @link(by: \\"sid\\")
+		\\"The constituents of the combination drug.\\"
+		constituents: [BnfDrug!]! @link(by: \\"sid\\")
 	}
 
 	\\"\\"\\"
@@ -121,9 +199,6 @@ exports[`schema should match snapshot 1`] = `
 	The properties for a medicinal form. This contains all the preparations and packs for a specific medicinal form for a drug, as well as information about applicable cautionary and advisory labels, excipients and electrolytes.
 	\\"\\"\\"
 	type BnfMedicinalForm {
-		\\"The 0-based order (or index) of the form within the drugs\\"
-		order: Int!
-
 		\\"The name of the medicinal form.\\"
 		form: String!
 
@@ -158,6 +233,103 @@ exports[`schema should match snapshot 1`] = `
 
 		\\"The sections of the record.\\"
 		sections: [BnfRecordSection!]!
+	}
+
+
+	\\"\\"\\"
+	A single section of simple (unstructured) content for a BNF drug or medical device. A monograph will include content from relevant drug classes (groups of drugs that share the same properties), the drug itself, and specific preparations where the properties differ from those of the generic drug. This record has these three parts of content in the drugClassContent, drugContent and prepContent fields respectively.
+	\\"\\"\\"
+	type BnfIndicationsAndDose @dontInfer {
+		\\"The name/title of the pot.\\"
+		potName: String!
+
+		\\"The slugified and lowercased pot name, used as a DOM ID and hash target\\"
+		slug: String! @slug(field: \\"potName\\")
+
+		\\"The indications and dose pot content that relates to relevant drug classes for the drug. This field will contain more than one entry when the drug belongs to multiple drug classes with relevant content for the pot.\\"
+		drugClassContent: [BnfIndicationsAndDoseContent]
+
+		\\"The indications and dose pot content that relates to the drug.\\"
+		drugContent: BnfIndicationsAndDoseContent
+
+		\\"Any indications and dose pot content that relates to specific preparations. This field will contain more than one entry when the drug has multiple preparations with specific relevant content for the pot.\\"
+		prepContent: [BnfIndicationsAndDoseContent]
+	}
+
+	\\"\\"\\"
+	The details of the indications and doses for a drug, drug class or preparation.
+	\\"\\"\\"
+	type BnfIndicationsAndDoseContent @dontInfer {
+		\\"What the content is for (the name of a drug class, drug or preparation). May contain HTML mark-up\\"
+		contentFor: String! @html
+
+		\\"The indication and dose groups.\\"
+		indicationAndDoseGroups: [BnfIndicationAndDoseGroup!]!
+
+		\\"Dose adjustments due to interactions content. May contain HTML mark-up.\\"
+		doseAdjustments: String @html
+
+		\\"Extremes of body weight content. May contain HTML mark-up.\\"
+		extremesOfBodyWeight: String @html
+
+		\\"dose equivalence and conversion content. May contain HTML mark-up.\\"
+		doseEquivalence: String @html
+
+		\\"Potency content. May contain HTML mark-up.\\"
+		potency: String @html
+
+		\\"Pharmacokinetics content. May contain HTML mark-up.\\"
+		pharmacokinetics: String @html
+	}
+
+	\\"\\"\\"
+	A grouping of one or more indications and the doses relevant for those indications.
+	\\"\\"\\"
+	type BnfIndicationAndDoseGroup @dontInfer {
+		\\"The therapeutic indications.\\"
+		therapeuticIndications: [BnfTherapeuticIndication!]!
+
+		\\"The routes, indications, patient groups and doses statements.\\"
+		routesAndPatientGroups: [BnfRouteAndPatientGroups!]!
+	}
+
+	\\"\\"\\"
+	The therapeutic indication, including SNOMED CT coding where available.
+	\\"\\"\\"
+	type BnfTherapeuticIndication @dontInfer {
+		\\"If available, the SNOMED CT identifier that encodes the indication. This value is a should be represented as a 64-bit integer, but it is represented as a String in this JSON to avoid any potential problems of 32-bit integer overflows.\\"
+		sctIndication: String
+
+		\\"If available, the English preferred name of the SNOMED CT concept that encodes the therapeutic intent of the indication.\\"
+		sctTherapeuticIntent: String
+
+		\\"The indication. May contain HTML mark-up.\\"
+		indication: String! @html
+	}
+
+	\\"\\"\\"
+	The route of administration and one or more patient groups with doses for that route.
+	\\"\\"\\"
+	type BnfRouteAndPatientGroups @dontInfer {
+		\\"The route of administration.\\"
+		routeOfAdministration: String!
+
+		\\"The patient groups and dose statements for the given route of administration.\\"
+		patientGroups: [BnfPatientGroup!]!
+	}
+
+	\\"\\"\\"
+	A dose statement and the patient group that the dose applies to (e.g. adult or child).
+	\\"\\"\\"
+	type BnfPatientGroup @dontInfer {
+		\\"The patient group that the dose applies to which can only be adult, child, or neonate.\\"
+		patientGroup: String!
+
+		\\"Details of the patient group that the dose applies to (e.g. adult or child).\\"
+		detailedPatientGroup: String!
+
+		\\"The dose statement. May contain HTML mark-up.\\"
+		doseStatement: String! @html
 	}
 
 
@@ -198,12 +370,152 @@ exports[`schema should match snapshot 1`] = `
 
 
 	\\"\\"\\"
+	A single section of monitoring requirements content for a BNF drug or medical device. A monograph will include content from relevant drug classes (groups of drugs that share the same properties), the drug itself, and specific preparations where the properties differ from those of the generic drug. This record has these three parts of content in the drugClassContent, drugContent and prepContent fields respectively.
+	\\"\\"\\"
+	type BnfMonitoringPot {
+		\\"The name/title of the pot.\\"
+		potName: String!
+
+		\\"The slugified and lowercased pot name, used as an ID/hash link\\"
+		slug: String! @slug(field: \\"potName\\")
+
+		\\"The monitoring requirements pot content that relates to relevant drug classes for the drug. This field will contain more than one entry when the drug belongs to multiple drug classes with relevant content for the pot.\\"
+		drugClassContent: [BnfMonitoringPotContent!]!
+
+		\\"The monitoring requirements pot content that relates to the drug.\\"
+		drugContent: BnfMonitoringPotContent
+
+		\\"Any monitoring requirements pot content that relates to specific preparations. This field will contain more than one entry when the drug has multiple preparations with specific relevant content for the pot.\\"
+		prepContent: [BnfMonitoringPotContent!]!
+	}
+
+	\\"\\"\\"
+	The sections covering monitoring requirements.
+	\\"\\"\\"
+	type BnfMonitoringPotContent {
+		\\"What the content is for (the name of a drug class, drug or preparation). May contain HTML mark-up\\"
+		contentFor: String!
+
+		\\"The therapeutic drug monitoring section. May contain HTML mark-up\\"
+		therapeuticDrugMonitoring: String
+
+		\\"The monitoring of patient parameters section. May contain HTML mark-up\\"
+		monitoringOfPatientParameters: String
+
+		\\"The patient monitoring programmes section. May contain HTML mark-up\\"
+		patientMonitoringProgrammes: String
+	}
+
+
+	\\"\\"\\"
+	A single section of national funding content for a BNF drug or medical device. A monograph will include content from relevant drug classes (groups of drugs that share the same properties), the drug itself, and specific preparations where the properties differ from those of the generic drug. This record has these three parts of content in the drugClassContent, drugContent and prepContent fields respectively.
+	\\"\\"\\"
+	type BnfNationalFundingPot {
+		\\"The name/title of the pot.\\"
+		potName: String!
+
+		\\"The slugified and lowercased pot name, used as an ID/hash link\\"
+		slug: String! @slug(field: \\"potName\\")
+
+		\\"The national funding pot content that relates to relevant drug classes for the drug. This field will contain more than one entry when the drug belongs to multiple drug classes with relevant content for the pot.\\"
+		drugClassContent: [BnfNationalFundingPotContent!]!
+
+		\\"The national funding pot content that relates to the drug.\\"
+		drugContent: BnfNationalFundingPotContent
+
+		\\"Any national funding pot content that relates to specific preparations. This field will contain more than one entry when the drug has multiple preparations with specific relevant content for the pot.\\"
+		prepContent: [BnfNationalFundingPotContent!]!
+	}
+
+	\\"\\"\\"
+	The relevant decisions from NICE, SMC and AWMSG as well as NHS restrictions.
+	\\"\\"\\"
+	type BnfNationalFundingPotContent {
+		\\"What the content is for (the name of a drug class, drug or preparation). May contain HTML mark-up\\"
+		contentFor: String!
+
+		\\"The initial paragraph of text at the start of the national funding pot. May contain HTML mark-up\\"
+		initialText: String!
+
+		\\"Title for the NICE funding decisions.\\"
+		niceDecisionsTitle: String
+
+		\\"The NICE funding decisions.\\"
+		niceDecisions: [BnfFundingDecision!]!
+
+		\\"Title for the SMC funding decisions.\\"
+		smcDecisionsTitle: String
+
+		\\"The SMC funding decisions.\\"
+		smcDecisions: [BnfFundingDecision!]!
+
+		\\"Title for the AWMSG funding decisions.\\"
+		awmsgDecisionsTitle: String
+
+		\\"The AWMSG funding decisions.\\"
+		awmsgDecisions: [BnfFundingDecision!]!
+
+		\\"Title for the non-NHS content.\\"
+		nonNhsTitle: String
+
+		\\"Whether the drug can be accessed through the NHS, based on whether it is approved for national funding. May contain HTML mark-up.\\"
+		nonNhs: String
+	}
+
+	\\"\\"\\"
+	A specific funding decision.
+	\\"\\"\\"
+	type BnfFundingDecision {
+		\\"The funding identifier (e.g. TA177)\\"
+		fundingIdentifier: String!
+
+		\\"The slugified and lowercased funding identifier, used as an ID/hash link\\"
+		slug: String! @slug(field: \\"fundingIdentifier\\")
+
+		\\"The title of the funding decision, usually including the date that the decision was published. May contain HTML mark-up\\"
+		title: String
+
+		\\"The URL to the relevant funding body's decision.\\"
+		url: String!
+
+		\\"A summary of the decision.\\"
+		approvedForUse: String!
+	}
+
+
+	type BnfNursePrescribersFormularyIntroduction implements Node & BnfSimpleRecord @dontInfer {
+		\\"The title of the section. May contain HTML markup.\\"
+		title: String!
+
+		\\"The review date of the record, formatted into a string.\\"
+		reviewDate: Date @dateformat
+
+		\\"The slugified and lowercased title, used as a URL path\\"
+		slug: String! @slug(field: \\"title\\")
+
+		\\"The sections of the record.\\"
+		sections: [BnfRecordSection!]!
+	}
+
+	type BnfNursePrescribersFormularyTreatmentSummary implements Node & BnfSimpleRecord @dontInfer {
+		\\"The title of the section. May contain HTML markup.\\"
+		title: String!
+
+		\\"The review date of the record, formatted into a string.\\"
+		reviewDate: Date @dateformat
+
+		\\"The slugified and lowercased title, used as a URL path\\"
+		slug: String! @slug(field: \\"title\\")
+
+		\\"The sections of the record.\\"
+		sections: [BnfRecordSection!]!
+	}
+
+
+	\\"\\"\\"
 	The properties for a preparation. Context is provided by this object being given in the 'preps' field of MedicinalForm, or on a Medical Device.
 	\\"\\"\\"
 	type BnfPrep @dontInfer {
-		\\"The 0-based order (or index) of the prep within the form\\"
-		order: Int!
-
 		\\"The name of the preparation, for example, 'Anadin Paracetamol 500mg tablets'.\\"
 		name: String!
 
@@ -233,9 +545,6 @@ exports[`schema should match snapshot 1`] = `
 	The properties for a specific pack of a preparation.
 	\\"\\"\\"
 	type BnfPack @dontInfer {
-		\\"The 0-based order (or index) of the pack within the prep\\"
-		order: Int!
-
 		\\"The dm+d AMPP ID for this pack, if available. This value is a SNOMED CT identifier, which should be represented as a 64-bit integer, but it is represented as a String in this JSON to avoid any potential problems of 32-bit integer overflows.\\"
 		amppId: ID
 
@@ -262,6 +571,38 @@ exports[`schema should match snapshot 1`] = `
 
 		\\"The colour of the preparation, if available. This will only ever be present for wound management preparations.\\"
 		colour: String
+	}
+
+
+	\\"\\"\\"
+	A single section of simple (unstructured) content for a BNF drug or medical device. A monograph will include content from relevant drug classes (groups of drugs that share the same properties), the drug itself, and specific preparations where the properties differ from those of the generic drug. This record has these three parts of content in the drugClassContent, drugContent and prepContent fields respectively.
+	\\"\\"\\"
+	type BnfSimplePot {
+		\\"The name/title of the pot.\\"
+		potName: String!
+
+		\\"The slugified and lowercased pot name, used as an ID/hash link\\"
+		slug: String! @slug(field: \\"potName\\")
+
+		\\"The simple pot content that relates to relevant drug classes for the drug. This field will contain more than one entry when the drug belongs to multiple drug classes with relevant content for the pot.\\"
+		drugClassContent: [BnfSimplePotContent!]!
+
+		\\"The simple pot content that relates to the drug.\\"
+		drugContent: BnfSimplePotContent
+
+		\\"Any simple pot content that relates to specific preparations. This field will contain more than one entry when the drug has multiple preparations with specific relevant content for the pot.\\"
+		prepContent: [BnfSimplePotContent!]!
+	}
+
+	\\"\\"\\"
+	Content for use within a BnfSimplePot
+	\\"\\"\\"
+	type BnfSimplePotContent {
+		\\"What the content is for (the name of a drug class, drug or preparation). May contain HTML mark-up\\"
+		contentFor: String! @html
+
+		\\"The content. May contain HTML mark-up.\\"
+		content: String! @html
 	}
 
 

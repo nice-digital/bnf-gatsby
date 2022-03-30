@@ -173,7 +173,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
       <a
         href="/dental-practitioners-formulary/"
       >
-        Dental Practitioners’ Formulary
+        Dental Practitioners' Formulary
       </a>
     </p>
     <p>
@@ -185,9 +185,23 @@ exports[`HomePage should match snapshot for BNF 1`] = `
     </p>
     <p>
       <a
-        href="/wound-management-products-and-elasticated-garments/"
+        href="/wound-management/"
       >
         Wound management products and elasticated garments
+      </a>
+    </p>
+    <p>
+      <a
+        href="/nurse-prescribers-formulary/"
+      >
+        Nurse Prescribers' Formulary
+      </a>
+    </p>
+    <p>
+      <a
+        href="/medicines-guidance/"
+      >
+        Medicines guidance
       </a>
     </p>
   </div>
@@ -367,7 +381,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
       <a
         href="/dental-practitioners-formulary/"
       >
-        Dental Practitioners’ Formulary
+        Dental Practitioners' Formulary
       </a>
     </p>
     <p>
@@ -379,9 +393,23 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
     </p>
     <p>
       <a
-        href="/wound-management-products-and-elasticated-garments/"
+        href="/wound-management/"
       >
         Wound management products and elasticated garments
+      </a>
+    </p>
+    <p>
+      <a
+        href="/nurse-prescribers-formulary/"
+      >
+        Nurse Prescribers' Formulary
+      </a>
+    </p>
+    <p>
+      <a
+        href="/medicines-guidance/"
+      >
+        Medicines guidance
       </a>
     </p>
   </div>

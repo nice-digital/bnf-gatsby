@@ -23,5 +23,6 @@
     "noEmit": true
   },
   "files": [],
-  "references": [{ "path": "gatsby" }, { "path": "functional-tests" }]
+  "references": [{ "path": "gatsby" }, { "path": "functional-tests" }],
+  "exclude": ["node_modules/*", "**.vscode/*"]
 }

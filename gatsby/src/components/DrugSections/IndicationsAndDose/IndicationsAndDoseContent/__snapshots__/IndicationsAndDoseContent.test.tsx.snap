@@ -1,0 +1,119 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IndicationsAndDoseContent should match snapshot 1`] = `
+<section
+  aria-labelledby="diazepam-indications-and-dose"
+>
+  <h3
+    class="visually-hidden"
+    id="diazepam-indications-and-dose"
+  >
+    For 
+    <strong>
+      diazepam
+    </strong>
+  </h3>
+  <section
+    aria-labelledby="diazepam-indication-1"
+    class="indicationWrapper"
+  >
+    <h4
+      class="indicationHeading"
+      id="diazepam-indication-1"
+    >
+      <span
+        class="indicationText"
+        data-sct-indication="197480006"
+        data-sct-therapeutic-intent="262202000"
+      >
+        Severe acute anxiety, 
+      </span>
+      <span
+        class="indicationText"
+      >
+        Control of acute panic attacks
+      </span>
+      <span
+        class="visually-hidden"
+      >
+         for 
+        <strong>
+          diazepam
+        </strong>
+      </span>
+    </h4>
+    <section
+      class="routeOfAdministration"
+    >
+      <h5
+        class="routeOfAdministrationHeading"
+      >
+        By mouth
+      </h5>
+      <dl
+        class="patientGroups"
+      >
+        <div
+          class="patientGroupDose child"
+        >
+          <dt
+            class="patientGroup"
+          >
+            Child 1–11 months
+          </dt>
+          <dd
+            class="doseStatement"
+          >
+            Initially 250 micrograms/kg twice daily.
+          </dd>
+        </div>
+        <div
+          class="patientGroupDose child"
+        >
+          <dt
+            class="patientGroup"
+          >
+            Child 1–4 years
+          </dt>
+          <dd
+            class="doseStatement"
+          >
+            Initially 2.5 mg twice daily.
+          </dd>
+        </div>
+      </dl>
+    </section>
+    <section
+      class="routeOfAdministration"
+    >
+      <h5
+        class="routeOfAdministrationHeading"
+      >
+        By intramuscular injection, or by slow intravenous injection
+      </h5>
+      <dl
+        class="patientGroups"
+      >
+        <div
+          class="patientGroupDose adult"
+        >
+          <dt
+            class="patientGroup"
+          >
+            Adult
+          </dt>
+          <dd
+            class="doseStatement"
+          >
+            10 mg, then 10 mg after at least 4 hours if required, intravenous injection to be administered into a large vein, at a rate of 
+            <em>
+              not
+            </em>
+             more than 5 mg/minute.
+          </dd>
+        </div>
+      </dl>
+    </section>
+  </section>
+</section>
+`;

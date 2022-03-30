@@ -1,3 +1,5 @@
+@use '@nice-digital/nds-core/scss/core';
+
 $nds-include-spacing-modifiers: false;
 $nds-output-text-classes: false;
 $nds-output-visibility-classes: false;
@@ -9,6 +11,8 @@ $nds-output-visibility-classes: false;
 html {
   overflow-x: visible; // Override the overflow from NDS, otherwise position sticky doesn't work
   scroll-behavior: smooth;
+  // TODO: Add scroll padding when we have sticky navs etc. Note: this will break functional tests because they look for an element scrolling to the top of the viewport
+  //scroll-padding-top: core.rem(core.$nds-spacing-large);
 
   @media (prefers-reduced-motion) {
     scroll-behavior: auto;
@@ -22,6 +26,7 @@ body {
   // We use Roboto for Android devices
   font-family: 'Lato', 'Trebuchet MS', 'Roboto', 'Helvetica Neue', Helvetica,
     Arial, sans-serif;
+  overflow-wrap: break-word; // To avoid really long links breaking out if their container and overlapping other content
   position: relative;
 }
 
@@ -45,4 +50,10 @@ body {
 
 footer {
   margin-top: 0 !important;
+}
+
+/* stylelint-disable selector-class-pattern -- Classes coming from the feed HTML */
+.evidence-grading-label {
+  // Hide evidence grading until we decide whether we're keeping them
+  display: none;
 }

@@ -1,87 +1,44 @@
 import { type SourceNodesArgs } from "gatsby";
-import { type Except } from "type-fest";
+import { type Merge } from "type-fest";
 
-import {
-	type PHPID,
-	type SID,
-	type FeedDrug,
-	type FeedMedicinalForms,
-	type FeedMedicinalForm,
-	type FeedPrep,
-	type FeedPack,
-} from "../downloader/types";
+import { type PHPID, type SID, type FeedDrug } from "../downloader/types";
 import { BnfNode } from "../node-types";
 
 import { createBnfNode } from "./utils";
 
-type OrderedMedicinalForm = FeedMedicinalForm & {
-	order: number;
-	preps: OrderedPrep[];
-};
-type OrderedPrep = FeedPrep & { order: number; packs: OrderedPack[] };
-type OrderedPack = FeedPack & { order: number };
-
-export type DrugNodeInput = Except<
+export type DrugNodeInput = Merge<
 	FeedDrug,
-	| "id"
-	| "primaryClassification"
-	| "secondaryClassifications"
-	| "constituentDrugs"
-	| "medicinalForms"
-> & {
-	id: SID;
-	phpid: PHPID;
-	constituentDrugs?: {
-		message: string;
-		constituents: string[];
-	};
-	medicinalForms: FeedMedicinalForms & {
-		medicinalForms: OrderedMedicinalForm[];
-	};
-};
+	{
+		id: SID;
+		phpid: PHPID;
+		constituentDrugs?: {
+			message: string;
+			constituents: SID[];
+		};
+	}
+>;
 
 export const createDrugNodes = (
 	drugs: FeedDrug[],
 	sourceNodesArgs: SourceNodesArgs
 ): void => {
-	drugs.forEach(
-		({
-			constituentDrugs,
-			id,
+	drugs.forEach(({ constituentDrugs, id, sid, ...drug }) => {
+		const nodeContent: DrugNodeInput = {
+			...drug,
+			id: sid,
 			sid,
-			medicinalForms: { medicinalForms, ...medicinalFormsProps },
-			...drug
-		}) => {
-			const nodeContent: DrugNodeInput = {
-				...drug,
-				id: sid,
-				sid,
-				phpid: id,
-				constituentDrugs: constituentDrugs && {
-					message: constituentDrugs.message,
-					constituents: constituentDrugs.constituents.map((d) => d.sid),
-				},
-				medicinalForms: {
-					...medicinalFormsProps,
-					// Add an order (index) property onto each form, prep and pack so we can present them in a consistent order
-					medicinalForms:
-						medicinalForms?.map((form, order) => ({
-							...form,
-							order,
-							preps: form.preps.map((prep, order) => ({
-								...prep,
-								order,
-								packs:
-									prep.packs?.map((pack, order) => ({
-										...pack,
-										order,
-									})) || [],
-							})),
-						})) || [],
-				},
-			};
+			phpid: id,
+			constituentDrugs: constituentDrugs && {
+				message: constituentDrugs.message,
+				constituents: constituentDrugs.constituents
+					.filter((constituent) =>
+						// Only create constituents that are monographs in their own right
+						drugs.some((drug) => drug.sid === constituent.sid)
+					)
+					.map((d) => d.sid),
+			},
+		};
 
-			createBnfNode(nodeContent, BnfNode.Drug, sourceNodesArgs);
-		}
-	);
+		createBnfNode(nodeContent, BnfNode.Drug, sourceNodesArgs);
+	});
 };

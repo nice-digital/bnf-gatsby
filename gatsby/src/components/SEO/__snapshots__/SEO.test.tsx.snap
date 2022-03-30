@@ -16,12 +16,12 @@ exports[`SEO should set default title and description when none provided 1`] = `
     rel="canonical"
   />
   <meta
-    content="Free online access to the UK BNF (British National Formulary content published by NICE"
+    content="Free online access to the UK BNF (British National Formulary) content published by NICE"
     data-react-helmet="true"
     name="description"
   />
   <meta
-    content="Free online access to the UK BNF (British National Formulary content published by NICE"
+    content="Free online access to the UK BNF (British National Formulary) content published by NICE"
     data-react-helmet="true"
     property="og:description"
   />

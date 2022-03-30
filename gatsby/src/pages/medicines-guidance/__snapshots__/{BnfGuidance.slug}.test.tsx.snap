@@ -1,0 +1,260 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MedicinesGuidancePage should match snapshot for graphql query 1`] = `
+"
+	query ($id: String) {
+		currentGuidancePage: bnfGuidance(id: { eq: $id }) {
+			slug
+			title
+			sections {
+				...RecordSection
+			}
+		}
+	}
+"
+`;
+
+exports[`MedicinesGuidancePage should match snapshot for page contents 1`] = `
+<main>
+  <div
+    class="container"
+  >
+    <nav
+      aria-label="Breadcrumbs"
+      role="navigation"
+    >
+      <ol
+        class="breadcrumbs"
+      >
+        <li
+          class="breadcrumbs__crumb"
+        >
+          <a
+            href="https://www.nice.org.uk/"
+          >
+            NICE
+          </a>
+        </li>
+        <li
+          class="breadcrumbs__crumb"
+        >
+          <a
+            href="/"
+          >
+            BNF
+          </a>
+        </li>
+        <li
+          class="breadcrumbs__crumb"
+        >
+          <a
+            href="/medicines-guidance/"
+          >
+            Medicines guidance
+          </a>
+        </li>
+        <li
+          class="breadcrumbs__crumb"
+        >
+          <span>
+            Guidance on prescribing
+          </span>
+        </li>
+      </ol>
+    </nav>
+    <script
+      type="application/ld+json"
+    >
+      {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@id": "https://www.nice.org.uk/",
+        "name": "NICE"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@id": "/",
+        "name": "BNF"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@id": "/medicines-guidance/",
+        "name": "Medicines guidance"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "item": {
+        "name": "Guidance on prescribing"
+      }
+    }
+  ]
+}
+    </script>
+    <div
+      class="page-header"
+      id="content-start"
+    >
+      <h1
+        class="page-header__heading"
+      >
+        <span>
+          Guidance on prescribing
+        </span>
+      </h1>
+    </div>
+    <div
+      class="grid grid--loose"
+      data-testid="body"
+    >
+      <div
+        class="hide-print"
+        data-g="12 md:4 lg:3"
+      >
+        <nav
+          aria-label="Medicines guidance pages"
+          class="stacked-nav"
+        >
+          <p
+            class="stacked-nav__root"
+          >
+            <a
+              aria-current="false"
+              href="/medicines-guidance/"
+            >
+              Medicines guidance
+            </a>
+          </p>
+          <ul
+            class="stacked-nav__list"
+          >
+            <li
+              class="stacked-nav__list-item"
+            >
+              <a
+                aria-current="true"
+                href="/medicines-guidance/guidance-on-prescribing/"
+              >
+                <span
+                  class="stacked-nav__content-wrapper"
+                >
+                  <span>
+                    Guidance on prescribing
+                  </span>
+                </span>
+              </a>
+            </li>
+            <li
+              class="stacked-nav__list-item"
+            >
+              <a
+                aria-current="false"
+                href="/medicines-guidance/prescription-writing/"
+              >
+                <span
+                  class="stacked-nav__content-wrapper"
+                >
+                  <span>
+                    Prescription writing
+                  </span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div
+        data-g="12 md:8 lg:9"
+      >
+        <div
+          class="grid grid--rev grid--loose"
+        >
+          <div
+            data-g="12 lg:3"
+          >
+            <nav
+              aria-labelledby="on-this-page"
+              class="wrapper"
+            >
+              <h2
+                class="heading"
+                id="on-this-page"
+              >
+                On this page
+              </h2>
+              <ol
+                aria-label="Jump links to sections on this page"
+                class="list"
+              >
+                <li>
+                  <a
+                    href="#general-guidance"
+                  >
+                    General guidance
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#biological-medicines"
+                  >
+                    Biological medicines
+                  </a>
+                </li>
+              </ol>
+            </nav>
+          </div>
+          <div
+            class="body"
+            data-g="12 lg:9"
+          >
+            <section
+              aria-labelledby="general-guidance"
+            >
+              <h2
+                class="firstHeading"
+                id="general-guidance"
+              >
+                General guidance
+              </h2>
+              <div>
+                <p>
+                  Medicines should be prescribed only when they are necessary
+                </p>
+              </div>
+            </section>
+            <section
+              aria-labelledby="biological-medicines"
+            >
+              <h2
+                id="biological-medicines"
+              >
+                Biological medicines
+              </h2>
+              <div>
+                <p>
+                  <b>
+                    Biological medicines
+                  </b>
+                   are medicines that are made by or derived from a biological source
+                </p>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+`;

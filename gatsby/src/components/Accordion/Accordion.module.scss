@@ -1,0 +1,71 @@
+@use '@nice-digital/nds-core/scss/core';
+
+.details {
+  background: core.$nds-colour-nice-grey-3;
+  border: 1px solid core.$nds-colour-nice-grey-2;
+  margin: core.rem(core.$nds-spacing-medium 0);
+  padding: core.rem(core.$nds-spacing-medium);
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+.summary {
+  cursor: pointer;
+  display: block;
+  list-style: none;
+
+  &::marker,
+  &::-webkit-details-marker {
+    display: none;
+  }
+
+  > :first-child {
+    margin: 0;
+  }
+
+  [open] & {
+    margin-bottom: core.rem(core.$nds-spacing-medium);
+  }
+
+  // Hack for IE11 whilst we still support it: https://css-tricks.com/two-issues-styling-the-details-element-and-how-to-solve-them/
+  @supports not (-ms-ime-align: auto) {
+    cursor: pointer;
+
+    &:focus {
+      @include core.nds-default-focus-style;
+    }
+
+    &:focus:not(:focus-visible) {
+      outline: none;
+    }
+
+    &:focus-visible {
+      @include core.nds-default-focus-style;
+    }
+  }
+}
+
+.toggleLabel {
+  align-items: center;
+  color: core.$nds-colour-link;
+  display: flex;
+  flex-wrap: nowrap;
+  margin-top: core.rem(core.$nds-spacing-x-small);
+  text-decoration: underline;
+
+  summary:hover & {
+    color: core.$nds-colour-link-hover;
+  }
+}
+
+.icon {
+  display: block;
+  margin-right: core.rem(core.$nds-spacing-small);
+  transition: all 0.25s ease;
+
+  [open] & {
+    transform: rotate(-180deg);
+  }
+}

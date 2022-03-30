@@ -6,8 +6,36 @@ const drug: DrugPageProps["data"]["bnfDrug"] = {
 	// Note deliberate use of HTML within the title for testing stripping of tags
 	title: "Anti-D (Rh<sub>0</sub>) immunoglobulin",
 	slug: "anti-d-rh0-immunoglobulin",
-	interactant: null,
+	allergyAndCrossSensitivity: null,
+	breastFeeding: null,
+	cautions: null,
+	conceptionAndContraception: null,
+	contraIndications: null,
 	constituentDrugs: null,
+	directionsForAdministration: null,
+	drugAction: null,
+	effectOnLaboratoryTests: null,
+	exceptionsToLegalCategory: null,
+	handlingAndStorage: null,
+	hepaticImpairment: null,
+	importantSafetyInformation: null,
+	indicationsAndDose: null,
+	lessSuitableForPrescribing: null,
+	medicinalForms: {
+		initialStatement: "Nothing to see here",
+	},
+	monitoringRequirements: null,
+	nationalFunding: null,
+	palliativeCare: null,
+	patientAndCarerAdvice: null,
+	preTreatmentScreening: null,
+	pregnancy: null,
+	prescribingAndDispensingInformation: null,
+	renalImpairment: null,
+	professionSpecificInformation: null,
+	sideEffects: null,
+	treatmentCessation: null,
+	unlicensedUse: null,
 };
 
 const dataProp: DrugPageProps["data"] = {
@@ -101,6 +129,165 @@ describe("DrugPage", () => {
 	});
 
 	describe("body", () => {
-		it.todo("body tests");
+		describe("Constituent drugs", () => {
+			const constituentDrugs: DrugPageProps["data"]["bnfDrug"]["constituentDrugs"] =
+				{
+					message:
+						"The properties listed on this page are those particular to the combination only. For the properties of the components please consider the following;",
+					constituents: [
+						{
+							slug: "emtricitabine",
+							title: "Emtricitabine",
+						},
+						{
+							slug: "tenofovir-alafenamide",
+							title: "Tenofovir alafenamide",
+						},
+					],
+				};
+
+			it("should not render constituent drugs when not present in the feed", () => {
+				render(
+					<DrugPage
+						data={{
+							bnfDrug: drug,
+						}}
+					/>
+				);
+
+				expect(
+					screen.queryByRole("link", { name: "Constituent drugs" })
+				).toBeNull();
+
+				expect(
+					screen.queryByRole("heading", { level: 2, name: "Constituent drugs" })
+				).toBeNull();
+
+				expect(
+					screen.queryByRole("region", { name: "Constituent drugs" })
+				).toBeNull();
+			});
+
+			it("should render constituent drugs section when present in the feed", () => {
+				render(
+					<DrugPage
+						data={{
+							bnfDrug: {
+								...drug,
+								constituentDrugs,
+							},
+						}}
+					/>
+				);
+
+				expect(
+					screen.getByRole("link", { name: "Constituent drugs" })
+				).toHaveAttribute("href", "#constituent-drugs");
+
+				expect(
+					screen.getByRole("heading", { level: 2, name: "Constituent drugs" })
+				).toHaveAttribute("id", "constituent-drugs");
+
+				expect(
+					screen.getByRole("region", { name: "Constituent drugs" })
+				).toBeInTheDocument();
+			});
+
+			it("should match snapshot for constituent drugs section", () => {
+				render(
+					<DrugPage
+						data={{
+							bnfDrug: {
+								...drug,
+								constituentDrugs,
+							},
+						}}
+					/>
+				);
+
+				expect(
+					screen.getByRole("region", { name: "Constituent drugs" })
+				).toMatchSnapshot();
+			});
+		});
+
+		describe.each<[keyof typeof drug]>([
+			["allergyAndCrossSensitivity"],
+			["breastFeeding"],
+			["cautions"],
+			["conceptionAndContraception"],
+			["contraIndications"],
+			["directionsForAdministration"],
+			["drugAction"],
+			["effectOnLaboratoryTests"],
+			["exceptionsToLegalCategory"],
+			["handlingAndStorage"],
+			["hepaticImpairment"],
+			["lessSuitableForPrescribing"],
+			["palliativeCare"],
+			["patientAndCarerAdvice"],
+			["preTreatmentScreening"],
+			["pregnancy"],
+			["prescribingAndDispensingInformation"],
+			["professionSpecificInformation"],
+			["renalImpairment"],
+			["sideEffects"],
+		])("Simple pot section for %s", (drugProperty) => {
+			it(`should not render section for ${drugProperty} when not present in the feed`, () => {
+				render(
+					<DrugPage
+						data={{
+							bnfDrug: {
+								...drug,
+								[drugProperty]: null,
+							},
+						}}
+					/>
+				);
+
+				expect(
+					screen.queryByRole("link", { name: "Some pot name" })
+				).toBeNull();
+
+				expect(
+					screen.queryByRole("heading", { level: 2, name: "Some pot name" })
+				).toBeNull;
+
+				expect(
+					screen.queryByRole("region", { name: "Some pot name" })
+				).toBeNull();
+			});
+
+			it(`should render section for ${drugProperty} when present in the feed`, () => {
+				render(
+					<DrugPage
+						data={{
+							bnfDrug: {
+								...drug,
+								[drugProperty]: {
+									potName: "Some pot name",
+									slug: "some-pot-name",
+									drugClassContent: [],
+									drugContent: [],
+									prepContent: [],
+								},
+							},
+						}}
+					/>
+				);
+
+				expect(
+					screen.getByRole("link", { name: "Some pot name" })
+				).toHaveAttribute("href", "#some-pot-name");
+
+				expect(
+					screen.getByRole("heading", { level: 2, name: "Some pot name" })
+				).toHaveAttribute("id", "some-pot-name");
+
+				expect(
+					screen.getByRole("region", { name: "Some pot name" })
+				).toBeInTheDocument();
+			});
+		});
 	});
 });

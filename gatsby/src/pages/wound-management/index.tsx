@@ -3,23 +3,25 @@ import React, { type FC } from "react";
 
 import { DetailsPageLayout } from "@/components/DetailsPageLayout/DetailsPageLayout";
 import { RecordSectionsContent } from "@/components/RecordSectionsContent/RecordSectionsContent";
-
-import { type RecordSection } from "../../types";
+import { type RecordSection } from "@/utils";
 
 export type WoundManagementIndexPageProps = {
 	data: {
 		bnfWoundManagementIntroduction: {
 			title: string;
 			sections: RecordSection[];
-		};
+		} | null;
 	};
 };
 
 const WoundManagementIndexPage: FC<WoundManagementIndexPageProps> = ({
-	data: {
-		bnfWoundManagementIntroduction: { title, sections },
-	},
+	data: { bnfWoundManagementIntroduction },
 }) => {
+	// There is no wound management section for BNFC so return null but also the page will get deleted in gatsby-node
+	if (!bnfWoundManagementIntroduction) return null;
+
+	const { title, sections } = bnfWoundManagementIntroduction;
+
 	return (
 		<DetailsPageLayout
 			titleHtml={title}

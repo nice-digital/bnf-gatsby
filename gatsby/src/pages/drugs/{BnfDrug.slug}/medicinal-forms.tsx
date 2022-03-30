@@ -2,24 +2,23 @@ import { graphql } from "gatsby";
 import { FC } from "react";
 import striptags from "striptags";
 
+import {
+	type FeedMedicinalForms,
+	type FeedMedicinalForm,
+} from "@nice-digital/gatsby-source-bnf";
+
 import { DetailsPageLayout } from "@/components/DetailsPageLayout/DetailsPageLayout";
-import { Prep, type PrepProps } from "@/components/Prep/Prep";
+import { Prep } from "@/components/Prep/Prep";
+import { type QueryResult, type WithSlugDeep } from "@/utils";
 
 export interface MedicinalFormsPageProps {
 	data: {
 		bnfDrug: {
 			title: string;
 			slug: string;
-			medicinalForms: {
-				initialStatement: string;
-				specialOrderManufacturersStatement: null | string;
-				medicinalForms: {
-					order: number;
-					form: string;
-					slug: string;
-					preps: PrepProps["prep"][];
-				}[];
-			};
+			medicinalForms: QueryResult<
+				WithSlugDeep<FeedMedicinalForms, FeedMedicinalForm>
+			>;
 		};
 	};
 }
@@ -62,24 +61,20 @@ const MedicinalFormsPage: FC<MedicinalFormsPageProps> = ({
 				dangerouslySetInnerHTML={{ __html: specialOrderManufacturersStatement }}
 			/>
 		)}
-		{medicinalForms
-			.sort((a, b) => a.order - b.order)
-			.map(({ form, slug, preps }) => (
-				<section key={form} aria-labelledby={slug}>
-					<h2 id={slug}>{form}</h2>
-					{preps.length ? (
-						<ol>
-							{preps
-								.sort((a, b) => a.order - b.order)
-								.map((prep) => (
-									<li key={prep.ampId}>
-										<Prep prep={prep} />
-									</li>
-								))}
-						</ol>
-					) : null}
-				</section>
-			))}
+		{medicinalForms.map(({ form, slug, preps }) => (
+			<section key={form} aria-labelledby={slug}>
+				<h2 id={slug}>{form}</h2>
+				{preps.length ? (
+					<ol>
+						{preps.map((prep) => (
+							<li key={prep.ampId}>
+								<Prep prep={prep} />
+							</li>
+						))}
+					</ol>
+				) : null}
+			</section>
+		))}
 	</DetailsPageLayout>
 );
 
@@ -92,7 +87,6 @@ export const query = graphql`
 				initialStatement
 				specialOrderManufacturersStatement
 				medicinalForms {
-					order
 					form
 					slug
 					preps {

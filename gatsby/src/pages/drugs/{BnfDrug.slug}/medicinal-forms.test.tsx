@@ -12,17 +12,20 @@ const drug: MedicinalFormsPageProps["data"]["bnfDrug"] = {
 		initialStatement: "",
 		specialOrderManufacturersStatement: "",
 		medicinalForms: [
-			// Note: deliberately not in order to tests the sorting logic
 			{
 				form: "Tablets",
-				order: 1,
 				slug: "tablets",
+				cautionaryAndAdvisoryLabels: [],
+				electolytes: null,
+				excipients: null,
 				preps: [],
 			},
 			{
 				form: "Powder",
-				order: 0,
 				slug: "powder",
+				cautionaryAndAdvisoryLabels: [],
+				electolytes: null,
+				excipients: null,
 				preps: [],
 			},
 		],
@@ -95,16 +98,6 @@ describe("MedicinalFormsPage", () => {
 			expect(
 				screen.getAllByRole("heading", { level: 2, name: /Tablets|Powder/ })
 			).toHaveLength(2);
-		});
-
-		it("should order forms by order property", () => {
-			render(<MedicinalFormsPage data={dataProp} />);
-
-			expect(
-				screen
-					.getAllByRole("heading", { level: 2, name: /Tablets|Powder/ })
-					.map(({ textContent }) => textContent)
-			).toStrictEqual(["Powder", "Tablets"]);
 		});
 
 		it("should create a labelled section", () => {
