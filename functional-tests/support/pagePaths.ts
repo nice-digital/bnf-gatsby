@@ -7,7 +7,7 @@ export const pagePaths = {
 	changes: "/about/changes/",
 	labels: "/about/labels/",
 	"guidance for cautionary and advisory labels":
-		"/about/about/guidance-for-cautionary-and-advisory-labels/",
+		"/about/guidance-for-cautionary-and-advisory-labels/",
 	"abbreviations and symbols": "/about/abbreviations-and-symbols/",
 	"approximate conversions and units":
 		"/about/approximate-conversions-and-units/",
@@ -19,6 +19,12 @@ export const pagePaths = {
 	"co-codamol drug": "/drugs/co-codamol/",
 	"abacavir medicinal forms": "/drugs/abacavir/medicinal-forms/",
 	"dementia treatment summary": "/treatment-summaries/dementia/",
+	"medicines guidance": "/medicines-guidance/",
+	// Medicines guidance
+	"guidance on prescribing": "/medicines-guidance/guidance-on-prescribing/",
+	"prescription writing": "/medicines-guidance/prescription-writing/",
+	"prescribing in dental practice":
+		"/medicines-guidance/prescribing-in-dental-practice/",
 } as const;
 
 export type PageName = keyof typeof pagePaths;

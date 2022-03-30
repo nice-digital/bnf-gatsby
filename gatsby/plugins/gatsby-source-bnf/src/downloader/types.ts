@@ -56,11 +56,11 @@ export interface FeedDrug {
 	reviewDate?: string;
 	/** The constituent drugs. This will be populated if the drug is a combination (e.g. 'tramadol with paracetamol') where each constituent exists in the BNF as a monograph in its own right. */
 	constituentDrugs?: FeedConstituentDrugs;
-
-	/** Note: not all 'drugs' have a primary classification, e.g. "St John's wort", "cranberry", "dairy products", "enteral feeds" etc */
+	/** The primary classifications for a drug, as a small taxonomy, represented as a tree data structure. These classifications correlate with the 'classifications' field in the root of the JSON document.
+	 * Note: not all 'drugs' have a primary classification, e.g. "St John's wort", "cranberry", "dairy products", "enteral feeds" etc */
 	primaryClassification?: FeedClassification;
-	secondaryClassifications: FeedClassification[];
-
+	/** The secondary classifications for a drug, as a small taxonomy, represented as a tree data structure. These classifications correlate with the \" +'classifications' field in the root of the JSON document. */
+	secondaryClassifications?: FeedClassification[];
 	/* The allergy and cross-sensitivity section for the drug, including any relevant drug classes and preparations.*/
 	allergyAndCrossSensitivity?: FeedSimplePot;
 	/** The breast feeding section for the drug, including any relevant drug classes and preparations.*/
@@ -560,5 +560,5 @@ export interface FeedNursePrescribersFormulary {
 	/** The Nurse Prescribers' Formulary introduction. */
 	introduction: FeedSimpleRecord;
 	/** The Nurse Prescribers' Formulary treatment summaries. */
-	npfTreatmentSummaries: [FeedSimpleRecord, ...FeedSimpleRecord[]];
+	npfTreatmentSummaries?: [FeedSimpleRecord, ...FeedSimpleRecord[]];
 }

@@ -1,0 +1,94 @@
+{
+  "guidance-on-prescribing": {
+    "bnf": "Read general advice on prescribing, providing patient focused advice, including assessing risks versus benefits of potential prescribing decisions.",
+    "bnfc": "Read general advice on prescribing, providing patient focused advice, including assessing risks versus benefits of potential prescribing decisions."
+  },
+  "prescription-writing": {
+    "bnf": "Read the BNF guidance on how to write prescriptions, including recommendations on legal requirements and formatting.",
+    "bnfc": "Read the BNFC guidance on how to write prescriptions, including recommendations on legal requirements and formatting."
+  },
+  "supply-of-medicines": {
+    "bnf": null,
+    "bnfc": "Guidance on supply of medicines, covering safety in the home, labelling of prescribed medicines, unlicensed medicines, and extemporaneous preparations."
+  },
+  "emergency-supply-of-medicines": {
+    "bnf": "Read guidance on who can request and issue emergency supply of prescription only medicines and controlled drugs, and under what conditions.",
+    "bnfc": "Read guidance on who can request and issue emergency supply of prescription only medicines and controlled drugs, and under what conditions."
+  },
+  "controlled-drugs-and-drug-dependence": {
+    "bnf": "Regulations on controlled drug schedules and drug classes. Includes guidance on travelling abroad, drugs likely to cause dependence or misuse.",
+    "bnfc": "Regulations on controlled drug schedules and drug classes. Includes guidance on travelling abroad, drugs likely to cause dependence or misuse."
+  },
+  "adverse-reactions-to-drugs": {
+    "bnf": "Information on the yellow card and black triangle schemes as well as how to report side effects and suspected adverse drug reactions.",
+    "bnfc": "Information on the yellow card and black triangle schemes as well as how to report side effects and suspected adverse drug reactions."
+  },
+  "guidance-on-intravenous-infusions": {
+    "bnf": "Guidance on the administration and preparation of medications via intravenous (IV) infusion.",
+    "bnfc": "Guidance on the administration and preparation of medications via intravenous (IV) infusion."
+  },
+  "medicines-optimisation": {
+    "bnf": "Medicines optimisation helps to ensure that medicines are taken as intended, supporting management of long-term conditions and appropriate polypharmacy.",
+    "bnfc": "Medicines optimisation helps to ensure that medicines are taken as intended, supporting management of long-term conditions and appropriate polypharmacy."
+  },
+  "antimicrobial-stewardship": {
+    "bnf": "Guidelines on antimicrobial or antibiotic prescribing to support the judicious use of antimicrobials to preserve their future effectiveness.",
+    "bnfc": "Guidelines on antimicrobial or antibiotic prescribing to support the judicious use of antimicrobials to preserve their future effectiveness."
+  },
+  "prescribing-in-children": {
+    "bnf": "",
+    "bnfc": null
+  },
+  "prescribing-in-hepatic-impairment": {
+    "bnf": "Hepatic impairment may alter responses to drugs. Prescribing advice for patients with liver diseases such as jaundice, ascites, or evidence of encephalopathy.",
+    "bnfc": "Hepatic impairment may alter responses to drugs. Prescribing advice for patients with liver diseases such as jaundice, ascites, or evidence of encephalopathy."
+  },
+  "prescribing-in-renal-impairment": {
+    "bnf": "Prescribing in patients with AKI, CKD, and reduced kidney function. Read about dosage adjustment and estimating renal function, GFR, eGFR, creatinine clearance.",
+    "bnfc": "Prescribing in patients with AKI, CKD, and reduced kidney function. Read about dosage adjustment and estimating renal function, GFR, eGFR, creatinine clearance."
+  },
+  "prescribing-in-pregnancy": {
+    "bnf": "Drugs can have harmful effects on the embryo or fetus at any time during pregnancy. This page looks at medicines with teratogenic potential and other risks.",
+    "bnfc": "Drugs can have harmful effects on the embryo or fetus at any time during pregnancy. This page looks at medicines with teratogenic potential and other risks."
+  },
+  "prescribing-in-breast-feeding": {
+    "bnf": "Drugs to be used with caution, that are contraindicated in breastfeeding, or can be prescribed as they are present in milk in amounts too small to be harmful.",
+    "bnfc": "Drugs to be used with caution, that are contraindicated in breastfeeding, or can be prescribed as they are present in milk in amounts too small to be harmful."
+  },
+  "prescribing-in-the-elderly": {
+    "bnf": "Guidelines on prescribing for older patients who often receive multiple drugs, and are at risk of additional adverse effects.",
+    "bnfc": null
+  },
+  "prescribing-in-palliative-care": {
+    "bnf": "Read BNF advice on pain management and symptom control in end of life care. Includes opioid conversion charts and guidance on continuous subcutaneous infusion.",
+    "bnfc": "Read BNFC advice on pain management and symptom control in end of life care. Includes opioid conversion charts and guidance on continuous subcutaneous infusion."
+  },
+  "prescribing-in-dental-practice": {
+    "bnf": "Guidance on drug management of dental and oral conditions. Includes general guidance, medical emergencies and other problems in dental practice.",
+    "bnfc": "Guidance on drug management of dental and oral conditions. Includes general guidance, medical emergencies and other problems in dental practice."
+  },
+  "drugs-and-sport": {
+    "bnf": "Doctors who prescribe drugs or treatment with the intention of improperly enhancing an individual's performance in sport contravene the GMC's guidance.",
+    "bnfc": "Doctors who prescribe drugs or treatment with the intention of improperly enhancing an individual's performance in sport contravene the GMC's guidance."
+  },
+  "index-of-manufacturers": {
+    "bnf": "An alphabetical list of manufacturers and other companies referenced in the BNF, with their medicines information or general contact details.",
+    "bnfc": "An alphabetical list of manufacturers and other companies referenced in the BNFC, with their medicines information or general contact details."
+  },
+  "special-order-manufacturers": {
+    "bnf": "Directory of the principal NHS hospital manufacturing units licensed to manufacture ‘special-order’ products as unlicensed medicines.",
+    "bnfc": "Directory of the principal NHS hospital manufacturing units licensed to manufacture ‘special-order’ products as unlicensed medicines."
+  },
+  "body-surface-area-in-children-image": {
+    "bnf": null,
+    "bnfc": "Images of tables mapping body weight to body surface area in children, using the Boyd equation."
+  },
+  "life-support-algorithm-image": {
+    "bnf": "Graphical representation of adult advanced life support algorithm.",
+    "bnfc": "Graphical representation of advanced life support algorithm for children."
+  },
+  "non-medical-prescribing": {
+    "bnf": "A range of non-medical healthcare professionals can prescribe medicines for patients as either Independent or Supplementary Prescribers.",
+    "bnfc": "A range of non-medical healthcare professionals can prescribe medicines for patients as either Independent or Supplementary Prescribers."
+  }
+}
