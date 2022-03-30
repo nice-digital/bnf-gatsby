@@ -560,5 +560,5 @@ export interface FeedNursePrescribersFormulary {
 	/** The Nurse Prescribers' Formulary introduction. */
 	introduction: FeedSimpleRecord;
 	/** The Nurse Prescribers' Formulary treatment summaries. */
-	npfTreatmentSummaries: [FeedSimpleRecord, ...FeedSimpleRecord[]];
+	npfTreatmentSummaries?: [FeedSimpleRecord, ...FeedSimpleRecord[]];
 }
