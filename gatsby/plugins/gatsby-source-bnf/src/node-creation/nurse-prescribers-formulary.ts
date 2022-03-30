@@ -31,15 +31,18 @@ export const createNursePrescribersNodes = (
 		sourceNodesArgs
 	);
 
-	createSimpleRecordNodes(
-		npfTreatmentSummaries.map((npfTreatmentSummary) => ({
-			...npfTreatmentSummary,
-			title: npfTreatmentSummary.title.replace(
-				npfTreatmentSummaryTitlePrefix,
-				""
-			),
-		})),
-		BnfNode.NursePrescribersFormularyTreatmentSummary,
-		sourceNodesArgs
-	);
+	// BNFC has no treatment summaries, so we need to check if they exist before adding the nodes
+	if (npfTreatmentSummaries) {
+		createSimpleRecordNodes(
+			npfTreatmentSummaries.map((npfTreatmentSummary) => ({
+				...npfTreatmentSummary,
+				title: npfTreatmentSummary.title.replace(
+					npfTreatmentSummaryTitlePrefix,
+					""
+				),
+			})),
+			BnfNode.NursePrescribersFormularyTreatmentSummary,
+			sourceNodesArgs
+		);
+	}
 };
