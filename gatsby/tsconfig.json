@@ -28,5 +28,5 @@
     }
   },
   "include": ["./**/*", "./**/*.json", "../jest.config.js"],
-  "exclude": ["dist/*", ".gatsby/*", "public/*", "node_modules/*"]
+  "exclude": ["dist/*", ".gatsby/*", "node_modules/*", "./**/*.json"]
 }
