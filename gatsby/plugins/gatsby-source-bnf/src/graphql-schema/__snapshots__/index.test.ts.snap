@@ -223,7 +223,7 @@ exports[`schema should match snapshot 1`] = `
 	\\"\\"\\"
 	type BnfMedicinalFormLabel {
 		label: BnfCautionaryAndAdvisoryLabel @link(by: \\"number\\")
-		additionalNotes: String
+		qualifier: String
 	}
 
 

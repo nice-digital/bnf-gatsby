@@ -23,7 +23,7 @@ exports[`MedicinalFormsPage should match snapshot for graphql query 1`] = `
 							englishRecommendation
 							welshRecommendation
 						}
-						additionalNotes
+						qualifier
 					}
 				}
 			}

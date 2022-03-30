@@ -22,19 +22,19 @@ export type DrugNodeInput = Merge<
 			constituents: SID[];
 		};
 		medicinalForms: Merge<
-		FeedMedicinalForms,
-		{
-			medicinalForms?: Merge<
-				FeedMedicinalForm,
-				{
-					cautionaryAndAdvisoryLabels?: {
-						label: number;
-						additionalNotes: string;
-					}[];
-				}
-			>[];
-		}
-	>;
+			FeedMedicinalForms,
+			{
+				medicinalForms?: Merge<
+					FeedMedicinalForm,
+					{
+						cautionaryAndAdvisoryLabels?: {
+							label: number;
+							qualifier: string;
+						}[];
+					}
+				>[];
+			}
+		>;
 	}
 >;
 
@@ -74,7 +74,7 @@ export const createDrugNodes = (
 								medicinalForm.cautionaryAndAdvisoryLabels?.map((label) => {
 									return {
 										label: label.number,
-										additionalNotes: "TODO",
+										qualifier: "TODO",
 									};
 								}),
 						};

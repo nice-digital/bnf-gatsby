@@ -161,6 +161,6 @@ export const drugSchema = `
 	"""
 	type ${BnfNode.MedicinalFormLabel} {
 		label: ${BnfNode.CautionaryAndAdvisoryLabel} @link(by: "number")
-		additionalNotes: String
+		qualifier: String
 	}
 `;

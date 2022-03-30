@@ -22,20 +22,18 @@ const drug: MedicinalFormsPageProps["data"]["bnfDrug"] = {
 					{
 						label: {
 							number: 3,
-							description: "<p>Description</p>",
 							englishRecommendation: "<p>English recommendation</p>",
 							welshRecommendation: "<p>Welsh recommendation</p>",
 						},
-						additionalInfo: "test info",
+						qualifier: "test info",
 					},
 					{
 						label: {
 							number: 5,
-							description: "<p>Another description</p>",
 							englishRecommendation: "<p>Another English recommendation</p>",
 							welshRecommendation: "<p>Another Welsh recommendation</p>",
 						},
-						additionalInfo: null,
+						qualifier: null,
 					},
 				],
 			},

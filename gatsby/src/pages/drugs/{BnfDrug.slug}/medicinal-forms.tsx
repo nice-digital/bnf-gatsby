@@ -1,7 +1,7 @@
 import { graphql, Link } from "gatsby";
 import { FC, ReactElement } from "react";
 import striptags from "striptags";
-import { type Merge } from "type-fest";
+import { type Merge, type Except } from "type-fest";
 
 import {
 	type FeedMedicinalForms,
@@ -22,8 +22,8 @@ type queryMedicinalForm = Merge<
 	WithSlug<FeedMedicinalForm>,
 	{
 		cautionaryAndAdvisoryLabels?: {
-			label: FeedLabel;
-			additionalInfo?: string;
+			label: Except<FeedLabel, "description">;
+			qualifier?: string;
 		}[];
 	}
 >;
@@ -92,7 +92,11 @@ const MedicinalFormsPage: FC<MedicinalFormsPageProps> = ({
 		asideContent={asideInfo}
 		headerCta={
 			<Link to={`/drugs/${slug}/`}>
-				View monograph<span className="visually-hidden"> for {title}</span>
+				View monograph
+				<span className="visually-hidden">
+					{" "}
+					for <span dangerouslySetInnerHTML={{ __html: title }}></span>
+				</span>
 			</Link>
 		}
 	>
@@ -208,7 +212,7 @@ export const query = graphql`
 							englishRecommendation
 							welshRecommendation
 						}
-						additionalNotes
+						qualifier
 					}
 				}
 			}

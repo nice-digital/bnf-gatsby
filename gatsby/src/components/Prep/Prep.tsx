@@ -18,12 +18,12 @@ export const Prep: FC<PrepProps> = ({ prep, children }) => (
 				<span className={styles.headingIcons}>
 					{prep.blackTriangle ? "\u25BC" : null}
 					{prep.sugarFree ? (
-						<span className={styles.sugarFree}>SUGAR FREE </span>
+						<span className={styles.sugarFree}>Sugar free </span>
 					) : null}
 				</span>
 				<span className={styles.headingText}>
 					{prep.name}{" "}
-					<span className={styles.manufacturer}>{prep.manufacturer}</span>{" "}
+					<span className={styles.manufacturer}>{prep.manufacturer}</span>
 				</span>
 			</h3>
 		}
