@@ -4,6 +4,7 @@ exports[`AboutSectionPage should match snapshot for graphql query 1`] = `
 "
 	query ($id: String) {
 		currentAboutPage: bnfAboutSection(id: { eq: $id }) {
+			slug
 			title
 			sections {
 				...RecordSection

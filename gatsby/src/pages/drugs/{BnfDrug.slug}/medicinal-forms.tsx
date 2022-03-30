@@ -9,15 +9,16 @@ import {
 
 import { DetailsPageLayout } from "@/components/DetailsPageLayout/DetailsPageLayout";
 import { Prep } from "@/components/Prep/Prep";
+import { type QueryResult, type WithSlugDeep } from "@/utils";
 
 export interface MedicinalFormsPageProps {
 	data: {
 		bnfDrug: {
 			title: string;
 			slug: string;
-			medicinalForms: {
-				medicinalForms: (FeedMedicinalForm & { slug: string })[];
-			} & FeedMedicinalForms;
+			medicinalForms: QueryResult<
+				WithSlugDeep<FeedMedicinalForms, FeedMedicinalForm>
+			>;
 		};
 	};
 }

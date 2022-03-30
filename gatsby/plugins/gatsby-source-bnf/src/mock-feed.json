@@ -168,5 +168,31 @@
       ]
     },
     "taxonomy": []
+  },
+  "nursePrescribersFormulary": {
+    "introduction": {
+      "id": "_129024858",
+      "title": "Approved list for prescribing by Community Practitioner Nurse Prescribers (NPF)",
+      "sections": [
+        {
+          "id": "sectionPHP101869-0",
+          "title": "Nurse Prescribers’ Formulary for Community Practitioners",
+          "content": "<p>The Nurse Prescribers’ Formulary for Community Practitioners is...</p>"
+        }
+      ]
+    },
+    "npfTreatmentSummaries": [
+      {
+        "id": "_218172116",
+        "title": "Nurse Prescribers' Formulary—Analgesics",
+        "sections": [
+          {
+            "id": "section_218172116-0",
+            "title": "Analgesics",
+            "content": "<p>The <b>non-opioid</b> analgesics <b><a title=\"aspirin\" href=\"/drug/_456850132\">aspirin</a></b>...</p>"
+          }
+        ]
+      }
+    ]
   }
 }

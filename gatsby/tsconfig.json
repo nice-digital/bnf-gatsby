@@ -23,9 +23,10 @@
       "@/field-extensions/*": ["src/field-extensions/*"],
       "@/hooks/*": ["src/hooks/*"],
       "@/mockdata/*": ["src/__mockdata__/*"],
+      "@/utils": ["src/utils/index"],
       "@nice-digital/gatsby-source-bnf": ["plugins/gatsby-source-bnf/index"]
     }
   },
   "include": ["./**/*", "./**/*.json", "../jest.config.js"],
-  "exclude": ["dist", ".gatsby"]
+  "exclude": ["dist/*", ".gatsby/*", "node_modules/*", "./**/*.json"]
 }

@@ -21,6 +21,8 @@ export interface Feed {
 	interactions: FeedInteractions;
 	/** All the medical device monograph content. Each medical device monograph contains a number of standard sections (called `pots`) which describe the various properties of the medical device when used in a clinical context. */
 	medicalDevices: FeedMedicalDevice[];
+	/** The Nurse Prescribers' Formulary (NPF) and associated treatment summaries. */
+	nursePrescribersFormulary: FeedNursePrescribersFormulary;
 	/** The wound management products and elasticated garments (Appendix 4) content. This will only be present for BNF (and not BNFc). */
 	woundManagement?: FeedWoundManagement;
 }
@@ -31,7 +33,8 @@ export type PHPID = `PHP${number}`;
 /** A BNF SID in the format `^_[0-9]{9,12}$` */
 export type SID = `_${number}`;
 
-export type BNFID = PHPID | SID;
+/** The ID of a record section e.g. `section_320704649-0` or `sectionPHP107699-0` */
+export type SectionID = `section${SID | PHPID}-${number}`;
 
 export interface FeedClassification {
 	id: string;
@@ -53,14 +56,65 @@ export interface FeedDrug {
 	reviewDate?: string;
 	/** The constituent drugs. This will be populated if the drug is a combination (e.g. 'tramadol with paracetamol') where each constituent exists in the BNF as a monograph in its own right. */
 	constituentDrugs?: FeedConstituentDrugs;
-
-	/** Note: not all 'drugs' have a primary classification, e.g. "St John's wort", "cranberry", "dairy products", "enteral feeds" etc */
+	/** The primary classifications for a drug, as a small taxonomy, represented as a tree data structure. These classifications correlate with the 'classifications' field in the root of the JSON document.
+	 * Note: not all 'drugs' have a primary classification, e.g. "St John's wort", "cranberry", "dairy products", "enteral feeds" etc */
 	primaryClassification?: FeedClassification;
-	secondaryClassifications: FeedClassification[];
+	/** The secondary classifications for a drug, as a small taxonomy, represented as a tree data structure. These classifications correlate with the \" +'classifications' field in the root of the JSON document. */
+	secondaryClassifications?: FeedClassification[];
+	/* The allergy and cross-sensitivity section for the drug, including any relevant drug classes and preparations.*/
+	allergyAndCrossSensitivity?: FeedSimplePot;
+	/** The breast feeding section for the drug, including any relevant drug classes and preparations.*/
+	breastFeeding?: FeedSimplePot;
+	/** TODO: Will cautions be a string array or object array? */
+	cautions?: FeedSimplePot;
+	/** The conception and contraception section for the drug, including any relevant drug classes and preparations.*/
+	conceptionAndContraception?: FeedSimplePot;
+	/** The contra-indications section for the drug, including any relevant drug classes and preparations. */
+	contraIndications?: FeedSimplePot;
+	/** The drug action section for the drug, including any relevant drug classes and preparations*/
+	drugAction?: FeedSimplePot;
+	/** The directions for administration section for the drug, including any relevant drug classes and preparations.*/
+	directionsForAdministration?: FeedSimplePot;
+	/** The effect on laboratory tests section for the drug, including any relevant drug classes and preparations.*/
+	effectOnLaboratoryTests?: FeedSimplePot;
+	/** The exceptions to legal category section for the drug, including any relevant drug classes and preparations.*/
+	exceptionsToLegalCategory?: FeedSimplePot;
+	/** The handling and storage section for the drug, including any relevant drug classes and preparations.*/
+	handlingAndStorage?: FeedSimplePot;
+	/** The hepatic impairment section for the drug, including any relevant drug classes and preparations.*/
+	hepaticImpairment?: FeedSimplePot;
+	/** The important safety information section for the drug, including any relevant drug classes and preparations. */
+	importantSafetyInformation?: FeedSimplePot;
 	/** The indications and dose section for the drug, including any relevant drug classes and preparations. */
 	indicationsAndDose?: FeedIndicationsAndDosePot;
+	/** The less suitable for prescribing section for the drug, including any relevant drug classes and preparations. */
+	lessSuitableForPrescribing?: FeedSimplePot;
 	/** The medicinal forms for the drug. */
 	medicinalForms: FeedMedicinalForms;
+	/** The monitoring requirements section for the drug, including any relevant drug classes and preparations. */
+	monitoringRequirements?: FeedMonitoringPot;
+	/** The national funding section for the drug, including any relevant drug classes and preparations. */
+	nationalFunding?: FeedNationalFundingPot;
+	/** The palliative care section for the drug, including any relevant drug classes and preparations.*/
+	palliativeCare?: FeedSimplePot;
+	/** The patient and carer advice section for the drug, including any relevant drug classes and preparations.*/
+	patientAndCarerAdvice?: FeedSimplePot;
+	/** The pregnancy section for the drug, including any relevant drug classes and preparations.*/
+	pregnancy?: FeedSimplePot;
+	/** The prescribing and dispensing information section for the drug, including any relevant drug classes and preparations. Note that this section used to contain information about prescribing and dispensing in palliative care, but this will now appear in the palliative care section.*/
+	prescribingAndDispensingInformation?: FeedSimplePot;
+	/** The pre-treatment screening section for the drug, including any relevant drug classes and preparations.*/
+	preTreatmentScreening?: FeedSimplePot;
+	/** The profession specific information section for the drug, including any relevant drug classes and preparations.*/
+	professionSpecificInformation?: FeedSimplePot;
+	/** The renal impairment section for the drug, including any relevant drug classes and preparations.*/
+	renalImpairment?: FeedSimplePot;
+	/** The side effects section for the drug, including any relevant drug classes and preparations. */
+	sideEffects?: FeedSimplePot;
+	/** The treatment cessation section for the drug, including any relevant drug classes and preparations.*/
+	treatmentCessation?: FeedSimplePot;
+	/** The unlicensed use section for the drug, including any relevant drug classes and preparations. */
+	unlicensedUse?: FeedSimplePot;
 }
 
 /** A wrapper for the constituent drugs of a combination drug. */
@@ -81,9 +135,13 @@ export interface FeedConstituentDrug {
 	title: string;
 }
 
-export interface FeedBasePot<TPotContent extends FeedBasePotContent> {
+export interface FeedBaseNamedPot {
 	/** The name/title of the pot. */
 	potName: string;
+}
+
+export interface FeedBasePot<TPotContent extends FeedBasePotContent>
+	extends FeedBaseNamedPot {
 	/** The pot content that relates to relevant drug classes for the drug. This field will contain more than one entry when the drug belongs to multiple drug classes with relevant content for the pot. */
 	drugClassContent?: TPotContent[];
 	/** The pot content that relates to the drug. */
@@ -187,6 +245,70 @@ export interface FeedMedicinalForm {
 	preps: FeedPrep[];
 }
 
+/** A single section of simple (unstructured) content for a BNF drug or medical device. A monograph will include content from relevant drug classes (groups of drugs that share the same properties), the drug itself, and specific preparations where the properties differ from those of the generic drug. This record has these three parts of content in the `drugClassContent`, `drugContent` and `prepContent` fields respectively. */
+export type FeedSimplePot = FeedBasePot<FeedFeedSimplePotContent>;
+
+/** The details of the indications and doses for a drug, drug class or preparation. */
+export interface FeedFeedSimplePotContent extends FeedBasePotContent {
+	/** What the content is for (the name of a drug class, drug or preparation). May contain HTML mark-up */
+	contentFor: string;
+	/** The content. May contain HTML mark-up. */
+	content: string;
+}
+
+/** A single section of monitoring requirements content for a BNF drug or medical device. A monograph will include content from relevant drug classes (groups of drugs that share the same properties), the drug itself, and specific preparations where the properties differ from those of the generic drug. This record has these three parts of content in the `drugClassContent`, `drugContent` and `prepContent` fields respectively. */
+export type FeedMonitoringPot = FeedBasePot<FeedMonitoringPotContent>;
+
+/** The sections covering monitoring requirements. */
+export interface FeedMonitoringPotContent extends FeedBasePotContent {
+	/** The therapeutic drug monitoring section. May contain HTML mark-up */
+	therapeuticDrugMonitoring?: string;
+	/** The monitoring of patient parameters section. May contain HTML mark-up */
+	monitoringOfPatientParameters?: string;
+	/** The patient monitoring programmes section. May contain HTML mark-up */
+	patientMonitoringProgrammes?: string;
+}
+
+/** A single section of national funding content for a BNF drug or medical device. A monograph will include content from relevant drug classes (groups of drugs that share the same properties), the drug itself, and specific preparations where the properties differ from those of the generic drug. This record has these three parts of content in the `drugClassContent`, `drugContent` and `prepContent` fields respectively. */
+export type FeedNationalFundingPot = FeedBasePot<FeedNationalFundingPotContent>;
+
+/** The relevant decisions from NICE, SMC and AWMSG. */
+export interface FeedNationalFundingPotContent extends FeedBasePotContent {
+	/** The initial paragraph of text at the start of the national funding pot. May contain HTML mark-up */
+	initialText: string;
+	/** Title for the NICE funding decisions. */
+	niceDecisionsTitle?: string;
+	/** The NICE funding decisions. */
+	niceDecisions?: FeedFundingDecision[];
+	/** Title for the SMC funding decisions. */
+	smcDecisionsTitle?: string;
+	/** The SMC funding decisions. */
+	smcDecisions?: FeedFundingDecision[];
+	/** Title for the AWMSG funding decisions. */
+	awmsgDecisionsTitle?: string;
+	/** The AWMSG funding decisions. */
+	awmsgDecisions?: FeedFundingDecision[];
+	/** Title for the non-NHS content. */
+	nonNhsTitle?: string;
+	/** Whether the drug can be accessed through the NHS, based on whether it is approved for national funding. May contain HTML mark-up. */
+	nonNhs?: string;
+}
+
+/** A specific funding decision. */
+export interface FeedFundingDecision {
+	/** The funding identifier (e.g. `TA177`) */
+	fundingIdentifier: string;
+	/** The title of the funding decision, usually including the date that the decision was published. May contain HTML mark-up */
+	title?: string;
+	/** The URL to the relevant funding body's decision. */
+	url: string;
+	/** A summary of the decision. */
+	approvedForUse:
+		| "Not recommended"
+		| "Recommended"
+		| "Recommended with restrictions";
+}
+
 export interface FeedCautionaryAndAdvisoryLabels {
 	guidance: FeedSimpleRecord;
 	labels: FeedLabel[];
@@ -210,7 +332,7 @@ export interface FeedLabel {
  */
 export interface FeedSimpleRecord {
 	/** The ID of the record. The ID may be used in anchor links in HTML content elsewhere in the JSON. */
-	id: BNFID;
+	id: SID | PHPID;
 	/** The title of the section. May contain HTML markup. */
 	title: string;
 	/** The review date, if available for this record. The format used is ISO 8601-1:2019 compliant (without a time zone designator), e.g. `2021-07-06T00:37:25.918`. */
@@ -222,7 +344,7 @@ export interface FeedSimpleRecord {
 /** A section of a simple record. */
 export interface FeedRecordSection {
 	/** The ID of the section. The ID may be used in anchor links in HTML content elsewhere in the JSON. The section ID can be used to determine the order of the sections within the parent record. Each ID is of the form `section[parent_id]-[num]` where `[parent_id]` is the ID of the parent record and `[num]` is an integer indicating the ordering of the sections, starting from zero. For example, the ID `sectionPHP101870-0` is the first section within the record with ID `PHP101870`. */
-	id: `section${BNFID}-${number}`;
+	id: SectionID;
 	/** The title of the section. May contain HTML markup. */
 	title: string;
 	/** The review date of the record if available, formatted into a String. The format used is ISO 8601-1:2019 compliant (without a time zone designator), e.g. `2021-07-06T00:37:25.918`. */
@@ -401,12 +523,6 @@ export interface FeedClinicalMedicalDeviceInformationGroup {
 	deviceDescription?: FeedSimplePot;
 }
 
-/** A single section of simple (unstructured) content for a BNF drug or medical device. A monograph will include content from relevant drug classes (groups of drugs that share the same properties), the drug itself, and specific preparations where the properties differ from those of the generic drug. This record has these three parts of content in the \"drugClassContent\", \"drugContent\" and \"prepContent\" fields respectively. */
-export interface FeedSimplePot {
-	/** The name/title of the pot. */
-	potName: string;
-}
-
 /** The wound management products and elasticated garments (Appendix 4) content in the BNF. The content is presented as a taxonomy which uses a tree structure, alongside the introductory content. */
 export interface FeedWoundManagement {
 	/** The wound management introduction. */
@@ -437,4 +553,12 @@ export interface WoundManagementProductGroup {
 	description?: string;
 	/** The list of products in the wound management product group. */
 	products?: FeedPrep[];
+}
+
+/** The Nurse Prescribers' Formulary and associated treatment summaries. */
+export interface FeedNursePrescribersFormulary {
+	/** The Nurse Prescribers' Formulary introduction. */
+	introduction: FeedSimpleRecord;
+	/** The Nurse Prescribers' Formulary treatment summaries. */
+	npfTreatmentSummaries?: [FeedSimpleRecord, ...FeedSimpleRecord[]];
 }

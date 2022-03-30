@@ -26,6 +26,7 @@ body {
   // We use Roboto for Android devices
   font-family: 'Lato', 'Trebuchet MS', 'Roboto', 'Helvetica Neue', Helvetica,
     Arial, sans-serif;
+  overflow-wrap: break-word; // To avoid really long links breaking out if their container and overlapping other content
   position: relative;
 }
 
@@ -49,4 +50,10 @@ body {
 
 footer {
   margin-top: 0 !important;
+}
+
+/* stylelint-disable selector-class-pattern -- Classes coming from the feed HTML */
+.evidence-grading-label {
+  // Hide evidence grading until we decide whether we're keeping them
+  display: none;
 }

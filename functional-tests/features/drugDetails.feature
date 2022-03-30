@@ -34,4 +34,4 @@ Feature: Drug details page
 
   Scenario: Heading text
     When I open the abacavir drug page
-    Then I expect that element "h1" matches the text "abacavir"
+    Then I expect that element "h1" matches the text "Abacavir"

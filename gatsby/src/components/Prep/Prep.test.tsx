@@ -9,6 +9,7 @@ const prep: PrepProps["prep"] = {
 	blackTriangle: false,
 	sugarFree: false,
 	activeIngredients: ["Galcanezumab 120&#x2009;mg per 1&#x2009;ml"],
+	controlledDrugSchedule: null,
 	packs: [
 		{
 			amppId: "37499811000001109",
@@ -17,6 +18,9 @@ const prep: PrepProps["prep"] = {
 			nhsIndicativePrice: "£450.00",
 			legalCategory: "POM",
 			hospitalOnly: false,
+			colour: null,
+			drugTariff: null,
+			drugTariffPrice: null,
 		},
 	],
 };

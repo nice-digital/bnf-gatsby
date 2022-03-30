@@ -1,5 +1,39 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`DrugPage body Constituent drugs should match snapshot for constituent drugs section 1`] = `
+<section
+  aria-labelledby="constituent-drugs"
+  class="section"
+>
+  <h2
+    id="constituent-drugs"
+  >
+    Constituent drugs
+  </h2>
+  <p>
+    The properties listed on this page are those particular to the combination only. For the properties of the components please consider the following;
+  </p>
+  <ul
+    aria-labelledby="constituent-drugs"
+  >
+    <li>
+      <a
+        href="/drugs/emtricitabine/"
+      >
+        Emtricitabine
+      </a>
+    </li>
+    <li>
+      <a
+        href="/drugs/tenofovir-alafenamide/"
+      >
+        Tenofovir alafenamide
+      </a>
+    </li>
+  </ul>
+</section>
+`;
+
 exports[`DrugPage should match snapshot for graphql query 1`] = `
 "
 	query ($id: String) {
@@ -17,6 +51,42 @@ exports[`DrugPage should match snapshot for graphql query 1`] = `
 					slug
 				}
 			}
+			allergyAndCrossSensitivity {
+				...SimplePot
+			}
+			breastFeeding {
+				...SimplePot
+			}
+			conceptionAndContraception {
+				...SimplePot
+			}
+			contraIndications {
+				...SimplePot
+			}
+			cautions {
+				...SimplePot
+			}
+			directionsForAdministration {
+				...SimplePot
+			}
+			drugAction {
+				...SimplePot
+			}
+			effectOnLaboratoryTests {
+				...SimplePot
+			}
+			exceptionsToLegalCategory {
+				...SimplePot
+			}
+			handlingAndStorage {
+				...SimplePot
+			}
+			hepaticImpairment {
+				...SimplePot
+			}
+			importantSafetyInformation {
+				...SimplePot
+			}
 			indicationsAndDose {
 				potName
 				slug
@@ -29,6 +99,82 @@ exports[`DrugPage should match snapshot for graphql query 1`] = `
 				prepContent {
 					...IndicationsAndDoseContent
 				}
+			}
+			lessSuitableForPrescribing {
+				...SimplePot
+			}
+			medicinalForms {
+				initialStatement
+				specialOrderManufacturersStatement
+				medicinalForms {
+					form
+					slug
+				}
+			}
+			monitoringRequirements {
+				potName
+				slug
+				drugClassContent {
+					contentFor
+					monitoringOfPatientParameters
+					patientMonitoringProgrammes
+					therapeuticDrugMonitoring
+				}
+				drugContent {
+					contentFor
+					monitoringOfPatientParameters
+					patientMonitoringProgrammes
+					therapeuticDrugMonitoring
+				}
+				prepContent {
+					contentFor
+					monitoringOfPatientParameters
+					patientMonitoringProgrammes
+					therapeuticDrugMonitoring
+				}
+			}
+			nationalFunding {
+				potName
+				slug
+				drugClassContent {
+					...NationalFundingContent
+				}
+				drugContent {
+					...NationalFundingContent
+				}
+				prepContent {
+					...NationalFundingContent
+				}
+			}
+			palliativeCare {
+				...SimplePot
+			}
+			patientAndCarerAdvice {
+				...SimplePot
+			}
+			preTreatmentScreening {
+				...SimplePot
+			}
+			pregnancy {
+				...SimplePot
+			}
+			prescribingAndDispensingInformation {
+				...SimplePot
+			}
+			professionSpecificInformation {
+				...SimplePot
+			}
+			renalImpairment {
+				...SimplePot
+			}
+			sideEffects {
+				...SimplePot
+			}
+			treatmentCessation {
+				...SimplePot
+			}
+			unlicensedUse {
+				...SimplePot
 			}
 		}
 	}
