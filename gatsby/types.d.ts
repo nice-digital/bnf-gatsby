@@ -2,6 +2,10 @@
 export type DataLayerEntry = {
 	location?: string;
 	event?: string;
+	eventCallback?: () => void;
+	eventTimeout?: number;
+	eventValue?: number;
+	[key: string]: unknown;
 };
 
 declare global {
