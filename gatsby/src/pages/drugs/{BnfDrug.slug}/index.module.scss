@@ -14,7 +14,7 @@ $gutter: core.rem(core.$nds-spacing-large);
   $right-col-width: percentage(math.div(4, 12));
 
   // IE11/non-grid fallback
-  .body {
+  .contentWrapper {
     padding-right: calc($right-col-width + $gutter);
     position: relative;
   }
@@ -27,7 +27,7 @@ $gutter: core.rem(core.$nds-spacing-large);
   }
 
   @supports (display: grid) {
-    .body {
+    .contentWrapper {
       display: grid;
       gap: $gutter;
       grid-template-areas:
@@ -61,7 +61,7 @@ $gutter: core.rem(core.$nds-spacing-large);
 @include core.mq($from: lg) {
   $right-col-width: percentage(math.div(3, 12));
 
-  .body {
+  .contentWrapper {
     grid-template-columns: auto $right-col-width;
     padding-right: calc($right-col-width + $gutter);
   }
@@ -71,7 +71,7 @@ $gutter: core.rem(core.$nds-spacing-large);
   }
 
   @supports (display: grid) {
-    .body {
+    .contentWrapper {
       padding: 0;
     }
 

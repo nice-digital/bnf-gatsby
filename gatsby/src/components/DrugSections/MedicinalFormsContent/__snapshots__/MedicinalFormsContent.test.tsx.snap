@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MedicinalFormsContent forms should match snapshot 1`] = `
+<div>
+  <p>
+    <em>
+      No
+    </em>
+     licensed medicines listed.
+  </p>
+  <p>
+    <a
+      href="/drugs/anti-d-rh0-immunoglobulin/medicinal-forms/"
+      id="medicinal-forms-link"
+    >
+      View medicinal forms and pricing information
+    </a>
+  </p>
+  <p>
+    Or jump straight to:
+  </p>
+  <ul
+    aria-label="Links to each medicinal form"
+  >
+    <li>
+      <a
+        href="/drugs/anti-d-rh0-immunoglobulin/medicinal-forms/#tablets"
+      >
+        Tablets
+      </a>
+    </li>
+    <li>
+      <a
+        href="/drugs/anti-d-rh0-immunoglobulin/medicinal-forms/#eye-drops"
+      >
+        Eye drops
+      </a>
+    </li>
+  </ul>
+</div>
+`;

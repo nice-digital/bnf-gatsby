@@ -22,7 +22,9 @@ const drug: DrugPageProps["data"]["bnfDrug"] = {
 	indicationsAndDose: null,
 	lessSuitableForPrescribing: null,
 	medicinalForms: {
-		initialStatement: "Nothing to see here",
+		initialStatement: "No licensed medicines listed.",
+		specialOrderManufacturersStatement: null,
+		medicinalForms: [],
 	},
 	monitoringRequirements: null,
 	nationalFunding: null,
@@ -208,6 +210,60 @@ describe("DrugPage", () => {
 				expect(
 					screen.getByRole("region", { name: "Constituent drugs" })
 				).toMatchSnapshot();
+			});
+		});
+
+		describe("Medicinal forms", () => {
+			it("should render shortcut link to medicinal forms section", () => {
+				render(
+					<DrugPage
+						data={{
+							bnfDrug: drug,
+						}}
+					/>
+				);
+
+				expect(
+					screen.getByRole("link", { name: "Medicinal forms" })
+				).toHaveAttribute("href", "#medicinal-forms");
+			});
+
+			it("should render medicinal forms section", () => {
+				render(
+					<DrugPage
+						data={{
+							bnfDrug: drug,
+						}}
+					/>
+				);
+
+				expect(
+					screen.getByRole("heading", {
+						level: 2,
+						name: "Medicinal forms",
+					})
+				).toHaveAttribute("id", "medicinal-forms");
+
+				expect(
+					screen.getByRole("region", { name: "Medicinal forms" })
+				).toBeInTheDocument();
+			});
+
+			it("should render medicinal forms shortcut panel section", () => {
+				render(
+					<DrugPage
+						data={{
+							bnfDrug: drug,
+						}}
+					/>
+				);
+
+				expect(
+					screen.getByRole("heading", {
+						level: 2,
+						name: "Medicinal forms and\xa0pricing",
+					})
+				).toBeInTheDocument();
 			});
 		});
 

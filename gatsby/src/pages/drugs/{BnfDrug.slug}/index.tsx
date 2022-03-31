@@ -8,7 +8,6 @@ import {
 	type FeedBaseNamedPot,
 } from "@nice-digital/gatsby-source-bnf";
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
-import { Grid, GridItem } from "@nice-digital/nds-grid";
 import { PageHeader } from "@nice-digital/nds-page-header";
 import { Panel } from "@nice-digital/nds-panel";
 
@@ -19,6 +18,7 @@ import {
 	type IndicationsAndDoseProps,
 	MedicinalForms,
 	type BasePot,
+	MedicinalFormsContent,
 } from "@/components/DrugSections";
 import { Layout } from "@/components/Layout/Layout";
 import { SectionNav } from "@/components/SectionNav/SectionNav";
@@ -66,9 +66,13 @@ export interface DrugPageProps {
 	};
 }
 
-const DrugPage: FC<DrugPageProps> = ({ data: { bnfDrug } }) => {
+const DrugPage: FC<DrugPageProps> = ({
+	data: {
+		bnfDrug: { slug, title, ...bnfDrug },
+	},
+}) => {
 	const { siteTitleShort } = useSiteMetadata(),
-		titleNoHtml = striptags(bnfDrug.title),
+		titleNoHtml = striptags(title),
 		constituents = useMemo(
 			() =>
 				bnfDrug.constituentDrugs && {
@@ -151,10 +155,10 @@ const DrugPage: FC<DrugPageProps> = ({ data: { bnfDrug } }) => {
 
 			<PageHeader
 				id="content-start"
-				heading={<span dangerouslySetInnerHTML={{ __html: bnfDrug.title }} />}
+				heading={<span dangerouslySetInnerHTML={{ __html: title }} />}
 			/>
 
-			<div className={styles.body}>
+			<div className={styles.contentWrapper}>
 				<div className={styles.sectionNav}>
 					<SectionNav
 						sections={orderedSections.map(({ potName, slug }) => ({
@@ -166,37 +170,7 @@ const DrugPage: FC<DrugPageProps> = ({ data: { bnfDrug } }) => {
 				<div className={styles.aside}>
 					<Panel>
 						<h2 className="h5">Medicinal forms and&nbsp;pricing</h2>
-						<p
-							dangerouslySetInnerHTML={{
-								__html: bnfDrug.medicinalForms.initialStatement,
-							}}
-						/>
-						{bnfDrug.medicinalForms.medicinalForms.length > 0 ? (
-							<>
-								<p>
-									<Link
-										to={`/drugs/${bnfDrug.slug}/medicinal-forms/`}
-										id="medicinal-forms-link"
-									>
-										View all medicinal forms and pricing information
-									</Link>{" "}
-								</p>
-								<p>Or jump straight to:</p>
-								<ul aria-labelledby="medicinal-forms-link">
-									{bnfDrug.medicinalForms.medicinalForms.map(
-										({ form, slug }) => (
-											<li key={form}>
-												<Link
-													to={`/drugs/${bnfDrug.slug}/medicinal-forms/#${slug}`}
-												>
-													{form}
-												</Link>
-											</li>
-										)
-									)}
-								</ul>
-							</>
-						) : null}
+						<MedicinalFormsContent drug={{ slug, title }} {...medicinalForms} />
 					</Panel>
 				</div>
 				<div className={styles.sections}>
@@ -207,8 +181,7 @@ const DrugPage: FC<DrugPageProps> = ({ data: { bnfDrug } }) => {
 						return (
 							<Component
 								key={section.potName}
-								drugSlug={bnfDrug.slug}
-								drugTitle={bnfDrug.title}
+								drug={{ slug, title }}
 								{...section}
 							/>
 						);

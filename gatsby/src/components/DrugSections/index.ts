@@ -17,4 +17,9 @@ export {
 	type MedicinalFormsProps,
 } from "./MedicinalForms/MedicinalForms";
 
+export {
+	MedicinalFormsContent,
+	type MedicinalFormsContentProps,
+} from "./MedicinalFormsContent/MedicinalFormsContent";
+
 export { SimplePot, type SimplePotProps } from "./SimplePot/SimplePot";
