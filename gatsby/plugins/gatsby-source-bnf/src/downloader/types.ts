@@ -240,7 +240,7 @@ export interface FeedMedicinalForm {
 	/** A list of any excipients for the medicinal form, provided as a text statement. */
 	excipients?: string;
 	/** A list of any electrolytes for the medicinal form, provided as a text statement. */
-	electolytes?: string;
+	electrolytes?: string;
 	/** The preparations of the drug for the medicinal form. */
 	preps: FeedPrep[];
 }

@@ -111,7 +111,7 @@ const MedicinalFormsPage: FC<MedicinalFormsPageProps> = ({
 				form,
 				slug,
 				preps,
-				electolytes,
+				electrolytes,
 				excipients,
 				cautionaryAndAdvisoryLabels,
 			}) => {
@@ -148,10 +148,10 @@ const MedicinalFormsPage: FC<MedicinalFormsPageProps> = ({
 								{labelList}
 							</Accordion>
 						)}
-						{electolytes && (
+						{electrolytes && (
 							<>
 								<h3>Electrolytes</h3>
-								<p>{electolytes}</p>
+								<p>{electrolytes}</p>
 							</>
 						)}
 						{excipients && (
@@ -201,7 +201,7 @@ export const query = graphql`
 				medicinalForms {
 					form
 					slug
-					electolytes
+					electrolytes
 					excipients
 					preps {
 						...FullPrep

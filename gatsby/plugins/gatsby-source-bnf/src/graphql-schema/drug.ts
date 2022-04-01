@@ -150,7 +150,7 @@ export const drugSchema = `
 		excipients: String
 
 		"A list of any electrolytes for the medicinal form, provided as a text statement."
-		electolytes: String
+		electrolytes: String
 
 		"The preparations of the drug for the medicinal form."
 		preps: [${BnfNode.Prep}!]!

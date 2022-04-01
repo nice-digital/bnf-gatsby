@@ -15,7 +15,7 @@ const drug: MedicinalFormsPageProps["data"]["bnfDrug"] = {
 			{
 				form: "Tablets",
 				slug: "tablets",
-				electolytes: "May contain sodium.",
+				electrolytes: "May contain sodium.",
 				excipients: "May contain alcohol, disodium edetate, polysorbates.",
 				preps: [],
 				cautionaryAndAdvisoryLabels: [
@@ -41,7 +41,7 @@ const drug: MedicinalFormsPageProps["data"]["bnfDrug"] = {
 				form: "Powder",
 				slug: "powder",
 				cautionaryAndAdvisoryLabels: [],
-				electolytes: null,
+				electrolytes: null,
 				excipients: null,
 				preps: [],
 			},
