@@ -71,7 +71,7 @@ export const NationalFunding: FC<NationalFundingProps> = (props) => (
 							<h4 id={`nhs-restrictions-${sectionSlugPostfix}`}>
 								{nonNhsTitle || "NHS restrictions"}
 							</h4>
-							<p dangerouslySetInnerHTML={{ __html: nonNhs }} />
+							<div dangerouslySetInnerHTML={{ __html: nonNhs }} />
 						</section>
 					)}
 				</>

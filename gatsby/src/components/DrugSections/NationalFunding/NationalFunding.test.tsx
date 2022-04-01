@@ -116,7 +116,8 @@ describe("NationalFunding", () => {
 				{...minimumProps}
 				drugContent={{
 					...drugContent,
-					nonNhs: "This is not prescribable in NHS primary care",
+					nonNhs:
+						"<p>Alprazolam tablets are not prescribable in NHS primary care.</p>",
 				}}
 			/>
 		);
@@ -135,7 +136,9 @@ describe("NationalFunding", () => {
 		).toBeInTheDocument();
 
 		expect(
-			screen.getByText("This is not prescribable in NHS primary care")
+			screen.getByText(
+				"Alprazolam tablets are not prescribable in NHS primary care."
+			)
 		).toHaveProperty("tagName", "P");
 	});
 });
