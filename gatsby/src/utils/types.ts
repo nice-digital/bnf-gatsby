@@ -51,10 +51,12 @@ export type WithSlugDeep<
 		{
 			[Key in keyof Base]: Base[Key] extends (infer U)[] | undefined
 				? U extends object
-					? WithSlug<U>[] | undefined
+					? WithSlugDeep<U, SlugTypes>[] | undefined
 					: Base[Key]
 				: Base[Key] extends object
 				? WithSlugDeep<Base[Key], SlugTypes>
+				: Base[Key] extends object | undefined
+				? WithSlugDeep<NonNullable<Base[Key]>, SlugTypes> | undefined
 				: Base[Key];
 		}
 	>
