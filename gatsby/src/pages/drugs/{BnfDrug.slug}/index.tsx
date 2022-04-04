@@ -18,6 +18,7 @@ import {
 	type IndicationsAndDoseProps,
 	type BasePot,
 	ImportantSafetyInfo,
+	RelatedTreatmentSummaries,
 } from "@/components/DrugSections";
 import { Constituents } from "@/components/DrugSections/Constituents/Constituents";
 import { Layout } from "@/components/Layout/Layout";
@@ -54,6 +55,7 @@ export interface DrugPageProps {
 					message: string;
 					constituents: SlugAndTitle[];
 				} | null;
+				relatedTreatmentSummaries: SlugAndTitle[];
 			}>;
 	};
 }
@@ -70,6 +72,17 @@ const DrugPage: FC<DrugPageProps> = ({ data: { bnfDrug } }) => {
 				},
 			[bnfDrug.constituentDrugs]
 		),
+		relatedTreatmentSummaries = useMemo(
+			() =>
+				bnfDrug.relatedTreatmentSummaries.length > 0
+					? {
+							slug: "related-treatment-summaries",
+							potName: "Related treatment summaries",
+							relatedTreatmentSummaries: bnfDrug.relatedTreatmentSummaries,
+					  }
+					: null,
+			[bnfDrug.relatedTreatmentSummaries]
+		),
 		/** Sections of a drug that have their own, specific component that isn't a `SimplePot` */
 		nonSimplePotComponents = useMemo(() => {
 			const { indicationsAndDose, importantSafetyInformation } = bnfDrug,
@@ -78,8 +91,9 @@ const DrugPage: FC<DrugPageProps> = ({ data: { bnfDrug } }) => {
 			potMap.set(importantSafetyInformation, ImportantSafetyInfo);
 			// Bespoke sections that aren't "pots" in the feed
 			potMap.set(constituents, Constituents);
+			potMap.set(relatedTreatmentSummaries, RelatedTreatmentSummaries);
 			return potMap;
-		}, [bnfDrug, constituents]);
+		}, [bnfDrug, constituents, relatedTreatmentSummaries]);
 
 	const orderedSections: BasePot[] = [
 		constituents,
@@ -111,7 +125,7 @@ const DrugPage: FC<DrugPageProps> = ({ data: { bnfDrug } }) => {
 		bnfDrug.lessSuitableForPrescribing,
 		bnfDrug.exceptionsToLegalCategory,
 		// TODO: medicinalForms (BNF-1267)
-		// TODO: related treatment summaries (BNF-1212)
+		relatedTreatmentSummaries,
 		// TODO: other drugs in class (BNF-1244)
 	].filter(isTruthy);
 
@@ -307,6 +321,10 @@ export const query = graphql`
 			}
 			treatmentCessation {
 				...SimplePot
+			}
+			relatedTreatmentSummaries {
+				title
+				slug
 			}
 			unlicensedUse {
 				...SimplePot

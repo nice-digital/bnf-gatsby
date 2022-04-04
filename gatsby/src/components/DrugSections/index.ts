@@ -12,4 +12,9 @@ export {
 	type IndicationsAndDoseProps,
 } from "./IndicationsAndDose/IndicationsAndDose";
 
+export {
+	RelatedTreatmentSummaries,
+	type RelatedTreatmentSummariesProps,
+} from "./RelatedTreatmentSummaries/RelatedTreatmentSummaries";
+
 export { SimplePot, type SimplePotProps } from "./SimplePot/SimplePot";
