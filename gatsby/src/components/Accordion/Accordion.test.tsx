@@ -175,15 +175,17 @@ describe("Accordion", () => {
 				<p>Body content</p>
 			</Accordion>
 		);
-		expect(screen.getByText(/show/i)).toHaveAttribute("data-tracking", "Show");
 
-		userEvent.click(screen.getByText(/show/i));
+		const summaryElement = screen.getByText(
+			(_, node) => node?.className === "summary"
+		);
+
+		expect(summaryElement).toHaveAttribute("data-tracking", "Show");
+
+		userEvent.click(summaryElement);
 
 		await waitFor(() => {
-			expect(screen.getByText(/hide/i)).toHaveAttribute(
-				"data-tracking",
-				"Hide"
-			);
+			expect(summaryElement).toHaveAttribute("data-tracking", "Hide");
 		});
 	});
 });

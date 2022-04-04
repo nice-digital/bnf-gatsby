@@ -29,16 +29,16 @@ export const Accordion: FC<AccordionProps> = ({
 			}}
 			open={defaultOpen}
 		>
-			<summary className={styles.summary}>
+			<summary
+				className={styles.summary}
+				data-tracking={isOpen ? hideLabel : showLabel}
+			>
 				{typeof title === "string" || typeof title === "number" ? (
 					<span>{title}</span>
 				) : (
 					title
 				)}
-				<span
-					className={styles.toggleLabel}
-					data-tracking={isOpen ? hideLabel : showLabel}
-				>
+				<span className={styles.toggleLabel}>
 					<ChevronDownIcon className={styles.icon} />{" "}
 					{isOpen ? hideLabel : showLabel}
 				</span>
