@@ -168,4 +168,22 @@ describe("Accordion", () => {
 			expect(summary).toHaveTextContent("Test Show");
 		});
 	});
+
+	it("should have appropriate data tracking attribute", async () => {
+		render(
+			<Accordion title="Test" defaultOpen={false}>
+				<p>Body content</p>
+			</Accordion>
+		);
+		expect(screen.getByText(/show/i)).toHaveAttribute("data-tracking", "Show");
+
+		userEvent.click(screen.getByText(/show/i));
+
+		await waitFor(() => {
+			expect(screen.getByText(/hide/i)).toHaveAttribute(
+				"data-tracking",
+				"Hide"
+			);
+		});
+	});
 });

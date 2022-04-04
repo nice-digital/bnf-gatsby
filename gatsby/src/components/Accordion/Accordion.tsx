@@ -35,7 +35,10 @@ export const Accordion: FC<AccordionProps> = ({
 				) : (
 					title
 				)}
-				<span className={styles.toggleLabel}>
+				<span
+					className={styles.toggleLabel}
+					data-tracking={isOpen ? hideLabel : showLabel}
+				>
 					<ChevronDownIcon className={styles.icon} />{" "}
 					{isOpen ? hideLabel : showLabel}
 				</span>
