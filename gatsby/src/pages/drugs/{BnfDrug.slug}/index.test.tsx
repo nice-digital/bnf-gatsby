@@ -130,6 +130,91 @@ describe("DrugPage", () => {
 		});
 	});
 
+	describe("Important safety information", () => {
+		const importantSafetyInformation: DrugPageProps["data"]["bnfDrug"]["importantSafetyInformation"] =
+			{
+				potName: "Important safety information",
+				slug: "important-safety-information",
+				drugClassContent: [],
+				drugContent: {
+					contentFor: "diazepam",
+					content:
+						"<p>This is very important safety information right here</p>",
+				},
+				prepContent: [],
+			};
+
+		it("should not render important info section when not present in the feed", () => {
+			render(
+				<DrugPage
+					data={{
+						bnfDrug: drug,
+					}}
+				/>
+			);
+
+			expect(
+				screen.queryByRole("link", { name: "Important safety information" })
+			).toBeNull();
+
+			expect(
+				screen.queryByRole("heading", {
+					level: 2,
+					name: "Important safety information",
+				})
+			).toBeNull();
+
+			expect(
+				screen.queryByRole("region", { name: "Important safety information" })
+			).toBeNull();
+		});
+
+		it("should render important safety information section when present in the feed", () => {
+			render(
+				<DrugPage
+					data={{
+						bnfDrug: {
+							...drug,
+							importantSafetyInformation,
+						},
+					}}
+				/>
+			);
+
+			expect(
+				screen.getByRole("link", { name: "Important safety information" })
+			).toHaveAttribute("href", "#important-safety-information");
+
+			expect(
+				screen.getByRole("heading", {
+					level: 2,
+					name: "Important safety information",
+				})
+			).toHaveAttribute("id", "important-safety-information");
+
+			expect(
+				screen.getByRole("region", { name: "Important safety information" })
+			).toBeInTheDocument();
+		});
+
+		it("should match snapshot for important safety information section", () => {
+			render(
+				<DrugPage
+					data={{
+						bnfDrug: {
+							...drug,
+							importantSafetyInformation,
+						},
+					}}
+				/>
+			);
+
+			expect(
+				screen.getByRole("region", { name: "Important safety information" })
+			).toMatchSnapshot();
+		});
+	});
+
 	describe("body", () => {
 		describe("Constituent drugs", () => {
 			const constituentDrugs: DrugPageProps["data"]["bnfDrug"]["constituentDrugs"] =

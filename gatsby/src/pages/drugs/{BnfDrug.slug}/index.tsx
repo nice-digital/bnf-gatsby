@@ -19,6 +19,7 @@ import {
 	MedicinalForms,
 	type BasePot,
 	MedicinalFormsContent,
+	ImportantSafetyInfo,
 } from "@/components/DrugSections";
 import { Layout } from "@/components/Layout/Layout";
 import { SectionNav } from "@/components/SectionNav/SectionNav";
@@ -26,10 +27,10 @@ import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 import {
 	isTruthy,
+	type WithSlug,
+	type WithSlugDeep,
 	type QueryResult,
 	type SlugAndTitle,
-	type WithSlugDeep,
-	type WithSlug,
 } from "@/utils";
 
 import styles from "./index.module.scss";
@@ -92,9 +93,10 @@ const DrugPage: FC<DrugPageProps> = ({
 		),
 		/** Sections of a drug that have their own, specific component that isn't a `SimplePot` */
 		nonSimplePotComponents = useMemo(() => {
-			const { indicationsAndDose } = bnfDrug,
+			const { indicationsAndDose, importantSafetyInformation } = bnfDrug,
 				potMap = new Map<BasePot | null, ElementType>();
 			potMap.set(indicationsAndDose, IndicationsAndDose);
+			potMap.set(importantSafetyInformation, ImportantSafetyInfo);
 			// Bespoke sections that aren't "pots" in the feed
 			potMap.set(constituents, Constituents);
 			potMap.set(medicinalForms, MedicinalForms);
@@ -106,7 +108,7 @@ const DrugPage: FC<DrugPageProps> = ({
 		bnfDrug.drugAction,
 		bnfDrug.indicationsAndDose,
 		bnfDrug.unlicensedUse,
-		// TODO bnfDrug.importantSafetyInformation (BNF-1266)
+		bnfDrug.importantSafetyInformation,
 		bnfDrug.contraIndications,
 		bnfDrug.cautions,
 		// TODO: Interactions (BNF-1268)
