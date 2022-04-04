@@ -1,7 +1,7 @@
 import { graphql, Link } from "gatsby";
 import React, { useMemo, type ElementType, type FC } from "react";
 import striptags from "striptags";
-import { type Merge, type Except } from "type-fest";
+import { type Except } from "type-fest";
 
 import {
 	type FeedDrug,
@@ -17,50 +17,44 @@ import {
 	IndicationsAndDose,
 	type IndicationsAndDoseProps,
 	type BasePot,
+	ImportantSafetyInfo,
 } from "@/components/DrugSections";
 import { Constituents } from "@/components/DrugSections/Constituents/Constituents";
 import { Layout } from "@/components/Layout/Layout";
 import { SectionNav } from "@/components/SectionNav/SectionNav";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
-import { isTruthy, SlugAndTitle, type WithSlug } from "@/utils";
+import {
+	isTruthy,
+	type WithSlug,
+	type WithSlugDeep,
+	type QueryResult,
+	type SlugAndTitle,
+} from "@/utils";
 
-/**
- * Utility type with slug property added to all 'pots' on a drug.
- *
- * This ie because we re-use the raw `FeedDrug` type to avoid having to redeclare each and every drug field.
- * But we add `slug` fields to pots when we create GraphQL nodes, so we add the `slug` property here.
- *
- * We also swap `undefined` to `null` because the feed misses out empty properties (`undefined`) but when we query
- * them with GraphQL they come back as `null` instead.
- * */
-type DrugWithSluggedPots = {
-	[Key in keyof FeedDrug]-?: FeedDrug[Key] extends FeedBaseNamedPot | undefined
-		? (FeedDrug[Key] & BasePot) | null
-		: FeedDrug[Key];
-};
-
-/** Ignore fields on a drug that we don't query and don't need */
-type IgnoredDrugFields =
+type IgnoredDrugFields = keyof Pick<
+	FeedDrug,
 	| "id"
 	| "sid"
 	| "primaryClassification"
 	| "secondaryClassifications"
 	| "reviewDate"
-	| "constituentDrugs";
+	| "constituentDrugs"
+	| "indicationsAndDose"
+>;
 
 export interface DrugPageProps {
 	data: {
-		bnfDrug: Merge<
-			Except<WithSlug<DrugWithSluggedPots>, IgnoredDrugFields>,
-			{
+		bnfDrug: QueryResult<
+			WithSlugDeep<Except<FeedDrug, IgnoredDrugFields>, FeedBaseNamedPot>
+		> &
+			WithSlug<{
 				indicationsAndDose: IndicationsAndDoseProps | null;
 				constituentDrugs: {
 					message: string;
 					constituents: SlugAndTitle[];
 				} | null;
-			}
-		>;
+			}>;
 	};
 }
 
@@ -78,9 +72,10 @@ const DrugPage: FC<DrugPageProps> = ({ data: { bnfDrug } }) => {
 		),
 		/** Sections of a drug that have their own, specific component that isn't a `SimplePot` */
 		nonSimplePotComponents = useMemo(() => {
-			const { indicationsAndDose } = bnfDrug,
+			const { indicationsAndDose, importantSafetyInformation } = bnfDrug,
 				potMap = new Map<BasePot | null, ElementType>();
 			potMap.set(indicationsAndDose, IndicationsAndDose);
+			potMap.set(importantSafetyInformation, ImportantSafetyInfo);
 			// Bespoke sections that aren't "pots" in the feed
 			potMap.set(constituents, Constituents);
 			return potMap;
@@ -91,7 +86,7 @@ const DrugPage: FC<DrugPageProps> = ({ data: { bnfDrug } }) => {
 		bnfDrug.drugAction,
 		bnfDrug.indicationsAndDose,
 		bnfDrug.unlicensedUse,
-		// TODO bnfDrug.importantSafetyInformation (BNF-1266)
+		bnfDrug.importantSafetyInformation,
 		bnfDrug.contraIndications,
 		bnfDrug.cautions,
 		// TODO: Interactions (BNF-1268)

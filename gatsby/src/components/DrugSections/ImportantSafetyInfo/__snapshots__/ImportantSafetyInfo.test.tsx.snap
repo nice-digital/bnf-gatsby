@@ -1,0 +1,172 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ImportantSafetyInfo drug class content should match snapshot for drug class content 1`] = `
+<section
+  aria-labelledby="important-safety-information"
+  class="section"
+>
+  <div
+    class="panel panel--primary panel"
+  >
+    <h2
+      id="important-safety-information"
+    >
+      Important safety information
+    </h2>
+    <section
+      aria-labelledby="important-safety-information-first"
+    >
+      <h3
+        class=""
+        id="important-safety-information-first"
+      >
+        <span
+          class="visually-hidden"
+        >
+          Important safety information 
+        </span>
+        <span>
+          For all first
+        </span>
+      </h3>
+      <div
+        class="panelContents"
+      >
+        <p>
+          Some content
+        </p>
+      </div>
+    </section>
+    <section
+      aria-labelledby="important-safety-information-second"
+    >
+      <h3
+        class=""
+        id="important-safety-information-second"
+      >
+        <span
+          class="visually-hidden"
+        >
+          Important safety information 
+        </span>
+        <span>
+          For all second
+        </span>
+      </h3>
+      <div
+        class="panelContents"
+      >
+        <p>
+          Some more content
+        </p>
+      </div>
+    </section>
+  </div>
+</section>
+`;
+
+exports[`ImportantSafetyInfo drug content should match snapshot for drug content 1`] = `
+<section
+  aria-labelledby="important-safety-information"
+  class="section"
+>
+  <div
+    class="panel panel--primary panel"
+  >
+    <h2
+      id="important-safety-information"
+    >
+      Important safety information
+    </h2>
+    <section
+      aria-labelledby="important-safety-information-budesonide"
+    >
+      <h3
+        class="visually-hidden"
+        id="important-safety-information-budesonide"
+      >
+        <span
+          class="visually-hidden"
+        >
+          Important safety information 
+        </span>
+        <span>
+          For budesonide
+        </span>
+      </h3>
+      <div
+        class="panelContents"
+      >
+        <p>
+          Some drug content
+        </p>
+      </div>
+    </section>
+  </div>
+</section>
+`;
+
+exports[`ImportantSafetyInfo prep content should match snapshot for prep content 1`] = `
+<section
+  aria-labelledby="important-safety-information"
+  class="section"
+>
+  <div
+    class="panel panel--primary panel"
+  >
+    <h2
+      id="important-safety-information"
+    >
+      Important safety information
+    </h2>
+    <section
+      aria-labelledby="important-safety-information-first"
+    >
+      <h3
+        class=""
+        id="important-safety-information-first"
+      >
+        <span
+          class="visually-hidden"
+        >
+          Important safety information 
+        </span>
+        <span>
+          For first
+        </span>
+      </h3>
+      <div
+        class="panelContents"
+      >
+        <p>
+          Some content
+        </p>
+      </div>
+    </section>
+    <section
+      aria-labelledby="important-safety-information-second"
+    >
+      <h3
+        class=""
+        id="important-safety-information-second"
+      >
+        <span
+          class="visually-hidden"
+        >
+          Important safety information 
+        </span>
+        <span>
+          For second
+        </span>
+      </h3>
+      <div
+        class="panelContents"
+      >
+        <p>
+          Some more content
+        </p>
+      </div>
+    </section>
+  </div>
+</section>
+`;
