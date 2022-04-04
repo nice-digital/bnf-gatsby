@@ -157,10 +157,13 @@ export const drugSchema = `
 	}
 
 	"""
-	A cautionary/advisory label for this form. It differs slightly from the labels used elsewhere, as it also includes some additional notes for this particular medicinal form.
+	A cautionary/advisory label for this form. It differs slightly from the labels used elsewhere, as it also includes a qualifier for this particular medicinal form.
 	"""
 	type ${BnfNode.MedicinalFormLabel} {
+		"A label for this medicinal form"
 		label: ${BnfNode.CautionaryAndAdvisoryLabel} @link(by: "number")
+
+		"A qualifying statement that elaborates on this label"
 		qualifier: String
 	}
 `;

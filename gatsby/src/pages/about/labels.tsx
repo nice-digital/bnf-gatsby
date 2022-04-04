@@ -1,5 +1,8 @@
 import { Link, graphql } from "gatsby";
 import React, { FC } from "react";
+import { Except } from "type-fest";
+
+import { FeedLabel } from "@nice-digital/gatsby-source-bnf";
 
 import { AboutSectionMenu } from "@/components/AboutSectionMenu/AboutSectionMenu";
 import {
@@ -13,12 +16,7 @@ import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 export type CautionaryAdvisoryLabelsPageProps = {
 	data: {
 		allBnfCautionaryAndAdvisoryLabel: {
-			advisoryLabels: {
-				description: string;
-				englishRecommendation: string;
-				welshRecommendation: string;
-				number: number;
-			}[];
+			advisoryLabels: Except<FeedLabel, "qualifier">[];
 		};
 	};
 };

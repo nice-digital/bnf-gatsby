@@ -29,7 +29,6 @@ export type DrugNodeInput = Merge<
 					{
 						cautionaryAndAdvisoryLabels?: {
 							label: number;
-							qualifier: string;
 						}[];
 					}
 				>[];
@@ -74,7 +73,7 @@ export const createDrugNodes = (
 								medicinalForm.cautionaryAndAdvisoryLabels?.map((label) => {
 									return {
 										label: label.number,
-										qualifier: "TODO",
+										qualifier: label.qualifier,
 									};
 								}),
 						};

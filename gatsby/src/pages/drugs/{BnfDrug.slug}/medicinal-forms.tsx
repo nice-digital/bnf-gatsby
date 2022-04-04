@@ -22,8 +22,8 @@ type queryMedicinalForm = Merge<
 	WithSlug<FeedMedicinalForm>,
 	{
 		cautionaryAndAdvisoryLabels?: {
-			label: Except<FeedLabel, "description">;
-			qualifier?: string;
+			label: Except<FeedLabel, "description" | "qualifier">;
+			qualifier: string | null;
 		}[];
 	}
 >;
@@ -117,12 +117,14 @@ const MedicinalFormsPage: FC<MedicinalFormsPageProps> = ({
 			}) => {
 				const labelList = cautionaryAndAdvisoryLabels?.length ? (
 					<ul className={styles.labelList}>
-						{cautionaryAndAdvisoryLabels.map(({ label }) => (
+						{cautionaryAndAdvisoryLabels.map(({ label, qualifier }) => (
 							<li
 								className={labelStyles.label}
 								key={`${slug}-label-${label.number}`}
 							>
-								<h4 className={styles.labelHeading}>Label {label.number}</h4>
+								<h4 className={styles.labelHeading}>
+									Label {label.number} {qualifier && `(${qualifier})`}
+								</h4>
 								<p>{label.englishRecommendation}</p>
 								<p lang="cy">{label.welshRecommendation}</p>
 							</li>

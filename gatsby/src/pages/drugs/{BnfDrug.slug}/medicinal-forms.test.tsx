@@ -25,7 +25,7 @@ const drug: MedicinalFormsPageProps["data"]["bnfDrug"] = {
 							englishRecommendation: "<p>English recommendation</p>",
 							welshRecommendation: "<p>Welsh recommendation</p>",
 						},
-						qualifier: "test info",
+						qualifier: "test qualifier",
 					},
 					{
 						label: {
@@ -167,6 +167,13 @@ describe("MedicinalFormsPage", () => {
 			render(<MedicinalFormsPage data={dataProp} />);
 			expect(
 				screen.getByText("Test special order statement")
+			).toBeInTheDocument();
+		});
+
+		it("should render a qualifier when it exists in the feed data", () => {
+			render(<MedicinalFormsPage data={dataProp} />);
+			expect(
+				screen.getByRole("heading", { name: "Label 3 (test qualifier)" })
 			).toBeInTheDocument();
 		});
 	});

@@ -324,6 +324,8 @@ export interface FeedLabel {
 	englishRecommendation: string;
 	/** The Welsh translation of the label recommendation. */
 	welshRecommendation: string;
+	/** A qualifying statement that elaborates on this label */
+	qualifier?: string;
 }
 
 /**
