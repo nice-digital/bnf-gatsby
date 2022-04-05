@@ -13,6 +13,11 @@ export {
 } from "./IndicationsAndDose/IndicationsAndDose";
 
 export {
+	NationalFunding,
+	type NationalFundingProps,
+} from "./NationalFunding/NationalFunding";
+
+export {
 	RelatedTreatmentSummaries,
 	type RelatedTreatmentSummariesProps,
 } from "./RelatedTreatmentSummaries/RelatedTreatmentSummaries";
