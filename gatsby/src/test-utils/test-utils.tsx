@@ -4,7 +4,7 @@ import {
 	LocationProvider,
 	History,
 } from "@reach/router";
-import { render, RenderResult, MatcherFunction } from "@testing-library/react";
+import { render, RenderResult } from "@testing-library/react";
 import React, { ReactElement } from "react";
 
 export type RenderWithRouterResult = { history: History } & RenderResult;
@@ -21,8 +21,3 @@ export const renderWithRouter = (
 	// this to test implementation details).
 	history,
 });
-
-export const textContentMatcher =
-	(text: string): MatcherFunction =>
-	(_, element): boolean =>
-		element?.textContent?.trim() == text;
