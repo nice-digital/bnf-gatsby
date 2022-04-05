@@ -35,6 +35,7 @@ const drug: DrugPageProps["data"]["bnfDrug"] = {
 	prescribingAndDispensingInformation: null,
 	renalImpairment: null,
 	professionSpecificInformation: null,
+	relatedTreatmentSummaries: [],
 	sideEffects: null,
 	treatmentCessation: null,
 	unlicensedUse: null,

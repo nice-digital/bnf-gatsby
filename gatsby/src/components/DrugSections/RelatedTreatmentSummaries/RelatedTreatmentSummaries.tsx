@@ -5,7 +5,7 @@ import { TagList, Tag } from "@/components/TagList/TagList";
 import { type SlugAndTitle } from "@/utils";
 
 import styles from "../DrugSection.module.scss";
-import { BasePot } from "../types";
+import { type BasePot } from "../types";
 
 export type RelatedTreatmentSummariesProps = BasePot & {
 	relatedTreatmentSummaries: SlugAndTitle[];
@@ -23,7 +23,9 @@ export const RelatedTreatmentSummaries: FC<RelatedTreatmentSummariesProps> = ({
 			{relatedTreatmentSummaries
 				.sort((a, b) => a.slug.localeCompare(b.slug))
 				.map(({ slug, title }) => (
-					<Tag key={slug} href={`/treatment-summaries/${slug}/`} text={title} />
+					<Tag key={slug} href={`/treatment-summaries/${slug}/`}>
+						{title}
+					</Tag>
 				))}
 		</TagList>
 	</section>

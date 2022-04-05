@@ -1,14 +1,14 @@
 import { Link } from "gatsby";
-import { type ReactElement, type FC } from "react";
+import { type ReactElement, type VFC } from "react";
 
 import styles from "./TagList.module.scss";
 
 export interface TagListProps {
-	children: ReactElement<TagProps>[];
+	children: ReactElement<TagProps> | ReactElement<TagProps>[];
 	[prop: string]: unknown;
 }
 
-export const TagList: FC<TagListProps> = ({ children, ...attrs }) => (
+export const TagList: VFC<TagListProps> = ({ children, ...attrs }) => (
 	<ol className={styles.list} {...attrs}>
 		{children}
 	</ol>
@@ -16,15 +16,15 @@ export const TagList: FC<TagListProps> = ({ children, ...attrs }) => (
 
 export interface TagProps {
 	href: string;
-	text: string;
+	children: string;
 }
 
-export const Tag: FC<TagProps> = ({ href, text }) => (
+export const Tag: VFC<TagProps> = ({ href, children }) => (
 	<li>
 		<Link
 			className={styles.tag}
 			to={href}
-			dangerouslySetInnerHTML={{ __html: text }}
+			dangerouslySetInnerHTML={{ __html: children }}
 		/>
 	</li>
 );
