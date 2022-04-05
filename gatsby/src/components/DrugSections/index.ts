@@ -27,4 +27,9 @@ export {
 	type MedicinalFormsContentProps,
 } from "./MedicinalFormsContent/MedicinalFormsContent";
 
+export {
+	NationalFunding,
+	type NationalFundingProps,
+} from "./NationalFunding/NationalFunding";
+
 export { SimplePot, type SimplePotProps } from "./SimplePot/SimplePot";
