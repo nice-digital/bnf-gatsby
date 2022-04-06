@@ -1,5 +1,4 @@
 import { type SourceNodesArgs } from "gatsby";
-import { type Except } from "type-fest";
 
 import {
 	type FeedInteractions,
@@ -14,7 +13,7 @@ export type InteractantNodeInput = FeedInteractant & {
 };
 
 export const createInteractionNodes = (
-	{ introduction, interactants, messages }: FeedInteractions,
+	{ interactants }: FeedInteractions,
 	sourceNodesArgs: SourceNodesArgs
 ): void => {
 	interactants.forEach(({ sid, title }) => {
