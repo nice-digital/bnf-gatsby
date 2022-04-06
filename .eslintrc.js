@@ -40,6 +40,14 @@ module.exports = {
 					"./functional-tests/tsconfig.json",
 				],
 			},
+			node: {
+				extensions: [".ts", ".tsx"],
+				moduleDirectory: [
+					"./gatsby/src",
+					"./gatsby/src/node_modules",
+					"node_modules",
+				],
+			},
 		},
 	},
 	rules: {
