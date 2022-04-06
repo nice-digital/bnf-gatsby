@@ -16,17 +16,6 @@ import styles from "./index.module.scss";
 
 const alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
 
-// type IndexProps = {
-// 	data: {
-// 		allTopicNames: {
-// 			distinct: string[];
-// 		};
-// 		allTopicNameAliases: {
-// 			distinct: string[];
-// 		};
-// 	};
-// };
-
 type IndexProps = {
 	data: {
 		allDrugNames: {

@@ -14,6 +14,7 @@ import { createCautionaryAndAdvisoryLabelsNodes } from "./node-creation/cautiona
 import { createDrugNodes } from "./node-creation/drugs";
 import { createInteractionNodes } from "./node-creation/interactions";
 import { createMedicalDeviceNodes } from "./node-creation/medical-devices";
+import { createMetadataNode } from "./node-creation/metadata";
 import { createNursePrescribersNodes } from "./node-creation/nurse-prescribers-formulary";
 import { createSimpleRecordNodes } from "./node-creation/utils";
 import { createWoundManagementNodes } from "./node-creation/wound-management";
@@ -62,6 +63,8 @@ export const sourceNodes = async (
 	createDrugNodes(feedData.drugs, sourceNodesArgs);
 
 	// TODO call createMetadataNode function meta data node (singular)
+
+	createMetadataNode(feedData.metadata, sourceNodesArgs);
 
 	// Simple records nodes:
 	createSimpleRecordNodes(

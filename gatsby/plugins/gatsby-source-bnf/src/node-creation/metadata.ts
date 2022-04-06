@@ -1,14 +1,20 @@
 import { type SourceNodesArgs } from "gatsby";
-import { type Except } from "type-fest";
 
-import { type FeedCautionaryAndAdvisoryLabels } from "../downloader/types";
+import { type FeedMetaData } from "../downloader/types";
 import { BnfNode } from "../node-types";
 
-import { createBnfNode, SimpleRecordNodeInput } from "./utils";
+import { createBnfNode } from "./utils";
 
-export const createMetadateNode = (
-	{ guidance, labels }: FeedCautionaryAndAdvisoryLabels,
+export const createMetadataNode = (
+	{ exportStarted }: FeedMetaData,
 	sourceNodesArgs: SourceNodesArgs
 ): void => {
-	//TODO - create nodes
+	createBnfNode(
+		{
+			id: sourceNodesArgs.createNodeId("1"),
+			exportStarted,
+		},
+		BnfNode.Metadata,
+		sourceNodesArgs
+	);
 };

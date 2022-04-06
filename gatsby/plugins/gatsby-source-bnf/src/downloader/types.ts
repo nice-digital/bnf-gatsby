@@ -1,5 +1,6 @@
 export interface Feed {
 	/** TODO add meta data property and type */
+	metadata: FeedMetaData;
 	/** All about records in the BNF, in a consistent order. */
 	about: FeedSimpleRecord[];
 	/** All the treatment summaries. A treatment summary provides guidance on
@@ -26,6 +27,12 @@ export interface Feed {
 	nursePrescribersFormulary: FeedNursePrescribersFormulary;
 	/** The wound management products and elasticated garments (Appendix 4) content. This will only be present for BNF (and not BNFc). */
 	woundManagement?: FeedWoundManagement;
+}
+
+// TODO export interface for metadata
+export interface FeedMetaData {
+	/** "The date and time that the export that produced this output started. The format used is ISO 8601-1:2019 compliant (without a time zone designator), e.g. \"2021-07-06T00:37:25.918\"." */
+	exportStarted: string;
 }
 
 /** A BNF PHP ID in the format `^PHP[0-9]+$` */
