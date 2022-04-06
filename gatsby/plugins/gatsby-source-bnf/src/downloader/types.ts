@@ -1,4 +1,5 @@
 export interface Feed {
+	/** TODO add meta data property and type */
 	/** All about records in the BNF, in a consistent order. */
 	about: FeedSimpleRecord[];
 	/** All the treatment summaries. A treatment summary provides guidance on

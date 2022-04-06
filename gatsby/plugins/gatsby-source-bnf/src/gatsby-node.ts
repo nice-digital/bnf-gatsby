@@ -61,6 +61,8 @@ export const sourceNodes = async (
 	// Create all of our different nodes
 	createDrugNodes(feedData.drugs, sourceNodesArgs);
 
+	// TODO call createMetadataNode function meta data node (singular)
+
 	// Simple records nodes:
 	createSimpleRecordNodes(
 		feedData.about,

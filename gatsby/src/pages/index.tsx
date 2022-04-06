@@ -1,6 +1,7 @@
-import { Link } from "gatsby";
-import { FC } from "react";
+import { graphql, Link } from "gatsby";
+import { FC, useMemo } from "react";
 
+import { Alphabet, Letter } from "@nice-digital/nds-alphabet";
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
 import { Button } from "@nice-digital/nds-button";
 import { Grid, GridItem } from "@nice-digital/nds-grid";
@@ -11,14 +12,97 @@ import { Layout } from "@/components/Layout/Layout";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
-const HomePage: FC = () => {
-	const { siteTitleShort, siteTitleLong, isBNF } = useSiteMetadata();
+import styles from "./index.module.scss";
 
+const alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
+
+// type IndexProps = {
+// 	data: {
+// 		allTopicNames: {
+// 			distinct: string[];
+// 		};
+// 		allTopicNameAliases: {
+// 			distinct: string[];
+// 		};
+// 	};
+// };
+
+type IndexProps = {
+	data: {
+		allDrugNames: {
+			distinct: string[];
+		};
+	};
+};
+
+const HomePage: FC<IndexProps> = ({
+	data: {
+		allDrugNames: { distinct: drugNames },
+	},
+}: IndexProps) => {
+	const { siteTitleShort, siteTitleLong, isBNF } = useSiteMetadata();
+	const linkableLetters = useMemo(
+		() => [...drugNames].map((name) => name[0].toLowerCase()),
+		[drugNames]
+	);
 	return (
 		<Layout>
 			<SEO />
+			<div className={isBNF ? "bnf-layout" : "bnfc-layout"}>
+				<Hero
+					id="content-start"
+					title={
+						isBNF
+							? "British National Formulary (BNF)"
+							: "British National Formulary for Children (BNFC)"
+					}
+					intro="Key information on the selection, prescribing, dispensing and administration of medicines."
+					header={
+						<Breadcrumbs>
+							<Breadcrumb to="https://www.nice.org.uk/">NICE</Breadcrumb>
+							<Breadcrumb>{siteTitleShort}</Breadcrumb>
+						</Breadcrumbs>
+					}
+				/>
+
+				<Grid gutter="none">
+					<GridItem md={6} cols={12} className={styles.topicsColumn}>
+						<h2 id="drugs-a-to-z">Drugs A to Z</h2>
+						<p id="drugs-a-to-z-desc">
+							Drug monographs describe the uses, doses, safety issues, medicinal
+							forms and other considerations involved in the use of a drug.
+						</p>
+
+						<Alphabet
+							chunky
+							aria-labelledby="drugs-a-to-z"
+							aria-describedby="drugs-a-to-z-desc"
+							data-tracking="drugs-a-to-z"
+						>
+							{alphabet.map((letter) => (
+								<Letter
+									key={`alphabet_${letter}`}
+									to={linkableLetters.has(letter) && `/topics/#${letter}`}
+								>
+									{letter.toUpperCase()}
+								</Letter>
+							))}
+						</Alphabet>
+
+						<h3 id="frequently-visited-topics">ytyty&nbsp;etete</h3>
+					</GridItem>
+
+					<GridItem md={6} cols={12} className={styles.specialitiesColumn}>
+						<h2 id="specialities">rtrtr</h2>
+
+						<p>trtrtrtrtr&nbsp;trtrrtr.</p>
+					</GridItem>
+				</Grid>
+			</div>
+
+			{/* OLD PAGE BELOW*/}
 			<Hero
-				id="content-start"
+				id="content-start-OLD"
 				title={`${siteTitleLong}`}
 				intro={
 					isBNF
@@ -105,3 +189,20 @@ const HomePage: FC = () => {
 };
 
 export default HomePage;
+
+// export const query = graphql`
+// 	{
+// 		allSpecialities: allCksSpeciality(sort: { fields: name }) {
+// 			nodes {
+// 				...PartialSpeciality
+// 			}
+// 		}
+// 		allTopicNames: allCksTopic {
+// 			distinct(field: topicName)
+// 		}
+// 		allTopicNameAliases: allCksTopic {
+// 			# GraphQL flattens this array of arrays for us
+// 			distinct(field: aliases)
+// 		}
+// 	}
+// `;
