@@ -377,5 +377,85 @@ describe("DrugPage", () => {
 				).toBeInTheDocument();
 			});
 		});
+
+		describe("Related treatment summaries", () => {
+			it("should not render related treatments section when there are none", () => {
+				render(
+					<DrugPage
+						data={{
+							bnfDrug: { ...drug, relatedTreatmentSummaries: [] },
+						}}
+					/>
+				);
+
+				expect(
+					screen.queryByRole("link", { name: "Related treatment summaries" })
+				).toBeNull();
+
+				expect(
+					screen.queryByRole("heading", {
+						level: 2,
+						name: "Related treatment summaries",
+					})
+				).toBeNull;
+
+				expect(
+					screen.queryByRole("region", { name: "Related treatment summaries" })
+				).toBeNull();
+			});
+
+			it("should render related treatment summaries section and heading", () => {
+				render(
+					<DrugPage
+						data={{
+							bnfDrug: {
+								...drug,
+								relatedTreatmentSummaries: [
+									{
+										slug: "acne",
+										title: "Acne",
+									},
+								],
+							},
+						}}
+					/>
+				);
+
+				expect(
+					screen.getByRole("heading", {
+						level: 2,
+						name: "Related treatment summaries",
+					})
+				).toHaveAttribute("id", "related-treatment-summaries");
+
+				expect(
+					screen.getByRole("region", { name: "Related treatment summaries" })
+				).toBeInTheDocument();
+			});
+
+			it("should render link to related treatment summary", () => {
+				render(
+					<DrugPage
+						data={{
+							bnfDrug: {
+								...drug,
+								relatedTreatmentSummaries: [
+									{
+										slug: "acne",
+										title: "Acne",
+									},
+								],
+							},
+						}}
+					/>
+				);
+
+				expect(
+					screen.getByRole("link", {
+						name: "Acne",
+					})
+				).toHaveAttribute("href", "/treatment-summaries/acne/");
+			});
+		});
 	});
 });
