@@ -105,6 +105,13 @@ const InteractantPage: FC<InteractantPageProps> = ({
 		);
 	}, [interactions, sortBySeverity, searchFilterTerm]);
 
+	const handleKeyDown = (e: KeyboardEvent) => {
+		if (e.key === "Enter") {
+			e.preventDefault();
+			setSearchFilterTerm(filterTerm);
+		}
+	};
+
 	return (
 		<Layout>
 			<SEO
@@ -170,6 +177,7 @@ const InteractantPage: FC<InteractantPageProps> = ({
 									onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
 										setFilterTerm(e.target.value)
 									}
+									onKeyDown={handleKeyDown}
 									name="drugNameInput"
 									value={filterTerm}
 								/>
@@ -224,35 +232,31 @@ const InteractantPage: FC<InteractantPageProps> = ({
 					)}
 
 					{interactionsList.length ? (
-						<>
+						<section aria-live="polite">
+							<h2 className="visually-hidden" id="interactions-list-heading">
+								List of interactions for{" "}
+								<span dangerouslySetInnerHTML={{ __html: drug?.title || "" }} />
+							</h2>
 							<div className={styles.resultCount}>
 								Showing {interactionsList.length} of {interactions.length}
 							</div>
-							<section aria-live="polite">
-								<h2 className="visually-hidden" id="interactions-list-heading">
-									List of interactions for{" "}
-									<span
-										dangerouslySetInnerHTML={{ __html: drug?.title || "" }}
-									/>
-								</h2>
-								<ol
-									className={styles.interactionsList}
-									aria-labelledby="interactions-list-heading"
-								>
-									{interactionsList.map(({ interactant, messages }) => (
-										<li
-											className={styles.interactionsListItem}
-											key={interactant.title}
-										>
-											<Interaction
-												interactant={interactant}
-												messages={messages}
-											/>
-										</li>
-									))}
-								</ol>
-							</section>
-						</>
+							<ol
+								className={styles.interactionsList}
+								aria-labelledby="interactions-list-heading"
+							>
+								{interactionsList.map(({ interactant, messages }) => (
+									<li
+										className={styles.interactionsListItem}
+										key={interactant.title}
+									>
+										<Interaction
+											interactant={interactant}
+											messages={messages}
+										/>
+									</li>
+								))}
+							</ol>
+						</section>
 					) : (
 						<>
 							<h2 className={styles.noResultsHeading}>No results found</h2>
