@@ -31,7 +31,8 @@ export const MedicinalFormsContent: FC<MedicinalFormsContentProps> = ({
 			{medicinalForms.length > 0 ? (
 				<p>
 					<Link to={medicinalFormsPagePath}>
-						View medicinal forms and pricing&nbsp;information
+						View {medicinalForms.length > 1 ? "all " : ""}medicinal forms and
+						pricing&nbsp;information
 					</Link>
 				</p>
 			) : null}

@@ -65,11 +65,34 @@ describe("MedicinalFormsContent", () => {
 			],
 		};
 
-		it("should render Gatsby link to medicinal forms page for HTML drug name", () => {
-			render(<MedicinalFormsContent {...propsWithForms} />);
+		it("should render Gatsby link to medicinal forms page with only 1 form", () => {
+			render(
+				<MedicinalFormsContent
+					{...minimumProps}
+					medicinalForms={[{ form: "Any", slug: "any" }]}
+				/>
+			);
 
 			const link = screen.getByRole("link", {
 				name: "View medicinal forms and pricing\xa0information",
+			});
+
+			userEvent.click(link);
+
+			expect(link).toHaveAttribute(
+				"href",
+				"/drugs/anti-d-rh0-immunoglobulin/medicinal-forms/"
+			);
+			expect(navigate).toHaveBeenCalledWith(
+				"/drugs/anti-d-rh0-immunoglobulin/medicinal-forms/"
+			);
+		});
+
+		it("should render Gatsby link to medicinal forms page with 2 or more forms", () => {
+			render(<MedicinalFormsContent {...propsWithForms} />);
+
+			const link = screen.getByRole("link", {
+				name: "View all medicinal forms and pricing\xa0information",
 			});
 
 			userEvent.click(link);
