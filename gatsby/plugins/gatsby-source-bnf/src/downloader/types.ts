@@ -1,6 +1,6 @@
 export interface Feed {
-	/** TODO add meta data property and type */
-	metadata: FeedMetaData;
+	/** The metadata for the export that produced the version of the BNF content contained in this JSON file. */
+	metadata: FeedPublicationMetadata;
 	/** All about records in the BNF, in a consistent order. */
 	about: FeedSimpleRecord[];
 	/** All the treatment summaries. A treatment summary provides guidance on
@@ -29,10 +29,13 @@ export interface Feed {
 	woundManagement?: FeedWoundManagement;
 }
 
-// TODO export interface for metadata
-export interface FeedMetaData {
-	/** "The date and time that the export that produced this output started. The format used is ISO 8601-1:2019 compliant (without a time zone designator), e.g. \"2021-07-06T00:37:25.918\"." */
+/** The metadata relating to the export that produced the app JSON output. An export is a job that is run to collate all of the published BNF content at a particular point in time (the \"content cut\" date). */
+export interface FeedPublicationMetadata {
+	/** The date and time that the export that produced this output started. The format used is ISO 8601-1:2019 compliant (without a time zone designator), e.g. `2021-07-06T00:37:25.918`. */
 	exportStarted: string;
+
+	/** The exporter run-tag of the publication. This is the internal RPS designator for the export that generated this output. This value should be given to RPS if there is a problem with this JSON so that we can correlate the content in our systems. */
+	runTag: string;
 }
 
 /** A BNF PHP ID in the format `^PHP[0-9]+$` */

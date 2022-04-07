@@ -18,26 +18,30 @@ const alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
 
 type IndexProps = {
 	data: {
-		allDrugNames: {
-			distinct: string[];
+		bnfMetadata: {
+			lastUpdatedDate: string;
+			lastUpdatedDateFormatted: string;
+			runTag: string;
 		};
 	};
 };
 
 const HomePage: FC<IndexProps> = ({
 	data: {
-		allDrugNames: { distinct: drugNames },
+		bnfMetadata: { lastUpdatedDate, lastUpdatedDateFormatted, runTag },
 	},
 }: IndexProps) => {
 	const { siteTitleShort, siteTitleLong, isBNF } = useSiteMetadata();
-	const linkableLetters = useMemo(
-		() => [...drugNames].map((name) => name[0].toLowerCase()),
-		[drugNames]
-	);
+	const linkableLetters = ["A", "B"];
+	// const linkableLetters = useMemo(
+	// 	() => [...drugNames].map((name) => name[0].toLowerCase()),
+	// 	[drugNames]
+	// );
 	return (
 		<Layout>
 			<SEO />
 			<div className={isBNF ? "bnf-layout" : "bnfc-layout"}>
+				<time dateTime={lastUpdatedDate}>{lastUpdatedDateFormatted}</time>
 				<Hero
 					id="content-start"
 					title={
@@ -62,7 +66,7 @@ const HomePage: FC<IndexProps> = ({
 							forms and other considerations involved in the use of a drug.
 						</p>
 
-						<Alphabet
+						{/* <Alphabet
 							chunky
 							aria-labelledby="drugs-a-to-z"
 							aria-describedby="drugs-a-to-z-desc"
@@ -76,7 +80,7 @@ const HomePage: FC<IndexProps> = ({
 									{letter.toUpperCase()}
 								</Letter>
 							))}
-						</Alphabet>
+						</Alphabet> */}
 
 						<h3 id="frequently-visited-topics">ytyty&nbsp;etete</h3>
 					</GridItem>
@@ -179,19 +183,12 @@ const HomePage: FC<IndexProps> = ({
 
 export default HomePage;
 
-// export const query = graphql`
-// 	{
-// 		allSpecialities: allCksSpeciality(sort: { fields: name }) {
-// 			nodes {
-// 				...PartialSpeciality
-// 			}
-// 		}
-// 		allTopicNames: allCksTopic {
-// 			distinct(field: topicName)
-// 		}
-// 		allTopicNameAliases: allCksTopic {
-// 			# GraphQL flattens this array of arrays for us
-// 			distinct(field: aliases)
-// 		}
-// 	}
-// `;
+export const query = graphql`
+	{
+		bnfMetadata {
+			lastUpdatedDateFormatted: exportStarted(formatString: "D MMMM YYYY")
+			lastUpdatedDate: exportStarted
+			runTag
+		}
+	}
+`;
