@@ -113,6 +113,7 @@ exports[`InteractantPage body should match snapshot for page body 1`] = `
         class="page-header__lead"
       >
         <a
+          class="p"
           href="/drugs/acarbose/"
         >
           View 
@@ -153,7 +154,7 @@ exports[`InteractantPage body should match snapshot for page body 1`] = `
           <p
             class="severeMessage"
           >
-            Severe interactions are highlighted with a red marker
+            Severe interactions are highlighted with a red marker.
           </p>
           <p>
             <a
