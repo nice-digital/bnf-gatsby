@@ -112,6 +112,21 @@ const InteractantPage: FC<InteractantPageProps> = ({
 		}
 	};
 
+	const RemoveFilterButton: FC = () => (
+		<div className={styles.clearFilterWrapper}>
+			<button
+				onClick={clearFilters}
+				type="button"
+				className={styles.clearFilterButton}
+			>
+				{searchFilterTerm} <RemoveIcon />
+				<span className="visually-hidden">
+					Remove {searchFilterTerm} filter
+				</span>
+			</button>
+		</div>
+	);
+
 	return (
 		<Layout>
 			<SEO
@@ -216,21 +231,6 @@ const InteractantPage: FC<InteractantPageProps> = ({
 						</section>
 					)}
 
-					{searchFilterTerm != "" && (
-						<div className={styles.clearFilterWrapper}>
-							<button
-								onClick={clearFilters}
-								type="button"
-								className={styles.clearFilterButton}
-							>
-								{searchFilterTerm} <RemoveIcon />
-								<span className="visually-hidden">
-									Remove {searchFilterTerm} filter
-								</span>
-							</button>
-						</div>
-					)}
-
 					{interactionsList.length ? (
 						<section aria-live="polite">
 							<h2 className="visually-hidden" id="interactions-list-heading">
@@ -238,7 +238,16 @@ const InteractantPage: FC<InteractantPageProps> = ({
 								<span dangerouslySetInnerHTML={{ __html: drug?.title || "" }} />
 							</h2>
 							<div className={styles.resultCount}>
-								Showing {interactionsList.length} of {interactions.length}
+								{interactionsList.length}{" "}
+								{interactionsList.length === 1
+									? "interaction "
+									: "interactions "}{" "}
+								{searchFilterTerm != "" && (
+									<>
+										for:
+										<RemoveFilterButton />
+									</>
+								)}
 							</div>
 							<ol
 								className={styles.interactionsList}
@@ -259,7 +268,9 @@ const InteractantPage: FC<InteractantPageProps> = ({
 						</section>
 					) : (
 						<>
-							<h2 className={styles.noResultsHeading}>No results found</h2>
+							<div className={styles.resultCount}>
+								No interactions found for: <RemoveFilterButton />
+							</div>
 							<p>
 								We couldn&apos;t find any results that matched your filter. Try{" "}
 								<button
