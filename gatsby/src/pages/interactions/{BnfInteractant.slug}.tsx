@@ -129,7 +129,7 @@ const InteractantPage: FC<InteractantPageProps> = ({
 				heading="Interactions"
 				lead={
 					drug ? (
-						<Link to={`/drugs/${drug.slug}/`}>
+						<Link className="p" to={`/drugs/${drug.slug}/`}>
 							View <span dangerouslySetInnerHTML={{ __html: drug.title }} />{" "}
 							monograph page
 						</Link>
@@ -149,7 +149,7 @@ const InteractantPage: FC<InteractantPageProps> = ({
 							Drug interaction information
 						</h2>
 						<p className={interactionStyles.severeMessage}>
-							Severe interactions are highlighted with a red marker
+							Severe interactions are highlighted with a red marker.
 						</p>
 						<p>
 							<Link to="/interactions/introduction/">
