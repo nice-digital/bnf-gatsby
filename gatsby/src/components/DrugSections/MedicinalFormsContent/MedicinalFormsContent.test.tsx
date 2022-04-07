@@ -83,7 +83,18 @@ describe("MedicinalFormsContent", () => {
 			);
 		});
 
-		it("should render labelled list of medicinal forms", () => {
+		it("should not render forms list when there is only 1 form", () => {
+			render(
+				<MedicinalFormsContent
+					{...minimumProps}
+					medicinalForms={[{ form: "Any", slug: "any" }]}
+				/>
+			);
+
+			expect(screen.queryByRole("list")).toBeNull();
+		});
+
+		it("should render labelled list of medicinal forms when there are 2 or more forms", () => {
 			render(<MedicinalFormsContent {...propsWithForms} />);
 
 			const list = screen.getByRole("list", {

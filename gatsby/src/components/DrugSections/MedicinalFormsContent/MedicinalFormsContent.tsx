@@ -29,12 +29,14 @@ export const MedicinalFormsContent: FC<MedicinalFormsContentProps> = ({
 				/>
 			)}
 			{medicinalForms.length > 0 ? (
+				<p>
+					<Link to={medicinalFormsPagePath}>
+						View medicinal forms and pricing&nbsp;information
+					</Link>
+				</p>
+			) : null}
+			{medicinalForms.length > 1 ? (
 				<>
-					<p>
-						<Link to={medicinalFormsPagePath}>
-							View medicinal forms and pricing&nbsp;information
-						</Link>
-					</p>
 					<p>Or jump straight to:</p>
 					<ul aria-label={`Links to each medicinal form`}>
 						{medicinalForms.map(({ form, slug }) => (
