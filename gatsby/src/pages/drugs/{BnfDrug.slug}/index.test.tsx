@@ -22,7 +22,9 @@ const drug: DrugPageProps["data"]["bnfDrug"] = {
 	indicationsAndDose: null,
 	lessSuitableForPrescribing: null,
 	medicinalForms: {
-		initialStatement: "Nothing to see here",
+		initialStatement: "No licensed medicines listed.",
+		specialOrderManufacturersStatement: null,
+		medicinalForms: [],
 	},
 	monitoringRequirements: null,
 	nationalFunding: null,
@@ -128,6 +130,91 @@ describe("DrugPage", () => {
 		});
 	});
 
+	describe("Important safety information", () => {
+		const importantSafetyInformation: DrugPageProps["data"]["bnfDrug"]["importantSafetyInformation"] =
+			{
+				potName: "Important safety information",
+				slug: "important-safety-information",
+				drugClassContent: [],
+				drugContent: {
+					contentFor: "diazepam",
+					content:
+						"<p>This is very important safety information right here</p>",
+				},
+				prepContent: [],
+			};
+
+		it("should not render important info section when not present in the feed", () => {
+			render(
+				<DrugPage
+					data={{
+						bnfDrug: drug,
+					}}
+				/>
+			);
+
+			expect(
+				screen.queryByRole("link", { name: "Important safety information" })
+			).toBeNull();
+
+			expect(
+				screen.queryByRole("heading", {
+					level: 2,
+					name: "Important safety information",
+				})
+			).toBeNull();
+
+			expect(
+				screen.queryByRole("region", { name: "Important safety information" })
+			).toBeNull();
+		});
+
+		it("should render important safety information section when present in the feed", () => {
+			render(
+				<DrugPage
+					data={{
+						bnfDrug: {
+							...drug,
+							importantSafetyInformation,
+						},
+					}}
+				/>
+			);
+
+			expect(
+				screen.getByRole("link", { name: "Important safety information" })
+			).toHaveAttribute("href", "#important-safety-information");
+
+			expect(
+				screen.getByRole("heading", {
+					level: 2,
+					name: "Important safety information",
+				})
+			).toHaveAttribute("id", "important-safety-information");
+
+			expect(
+				screen.getByRole("region", { name: "Important safety information" })
+			).toBeInTheDocument();
+		});
+
+		it("should match snapshot for important safety information section", () => {
+			render(
+				<DrugPage
+					data={{
+						bnfDrug: {
+							...drug,
+							importantSafetyInformation,
+						},
+					}}
+				/>
+			);
+
+			expect(
+				screen.getByRole("region", { name: "Important safety information" })
+			).toMatchSnapshot();
+		});
+	});
+
 	describe("body", () => {
 		describe("Constituent drugs", () => {
 			const constituentDrugs: DrugPageProps["data"]["bnfDrug"]["constituentDrugs"] =
@@ -208,6 +295,60 @@ describe("DrugPage", () => {
 				expect(
 					screen.getByRole("region", { name: "Constituent drugs" })
 				).toMatchSnapshot();
+			});
+		});
+
+		describe("Medicinal forms", () => {
+			it("should render shortcut link to medicinal forms section", () => {
+				render(
+					<DrugPage
+						data={{
+							bnfDrug: drug,
+						}}
+					/>
+				);
+
+				expect(
+					screen.getByRole("link", { name: "Medicinal forms" })
+				).toHaveAttribute("href", "#medicinal-forms");
+			});
+
+			it("should render medicinal forms section", () => {
+				render(
+					<DrugPage
+						data={{
+							bnfDrug: drug,
+						}}
+					/>
+				);
+
+				expect(
+					screen.getByRole("heading", {
+						level: 2,
+						name: "Medicinal forms",
+					})
+				).toHaveAttribute("id", "medicinal-forms");
+
+				expect(
+					screen.getByRole("region", { name: "Medicinal forms" })
+				).toBeInTheDocument();
+			});
+
+			it("should render medicinal forms shortcut panel section", () => {
+				render(
+					<DrugPage
+						data={{
+							bnfDrug: drug,
+						}}
+					/>
+				);
+
+				expect(
+					screen.getByRole("heading", {
+						level: 2,
+						name: "Medicinal forms and\xa0pricing",
+					})
+				).toBeInTheDocument();
 			});
 		});
 
