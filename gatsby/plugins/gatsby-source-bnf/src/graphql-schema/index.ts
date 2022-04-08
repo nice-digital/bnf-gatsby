@@ -5,7 +5,7 @@ import { dentalPractitionersFormularySchema } from "./dental-practitioners-formu
 import { drugSchema } from "./drug";
 import { guidanceSchema } from "./guidance";
 import { indicationsAndDoseSchema } from "./indications-and-dose";
-import { interactantSchema } from "./interactant";
+import { interactionSchema } from "./interaction";
 import { medicalDeviceSchema } from "./medical-device";
 import { monitoringSchema } from "./monitoring";
 import { nationalFundingSchema } from "./national-funding";
@@ -31,7 +31,7 @@ export const schema = [
 	drugSchema,
 	guidanceSchema,
 	indicationsAndDoseSchema,
-	interactantSchema,
+	interactionSchema,
 	medicalDeviceSchema,
 	monitoringSchema,
 	nationalFundingSchema,

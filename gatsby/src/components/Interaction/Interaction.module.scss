@@ -1,0 +1,42 @@
+@use '@nice-digital/nds-core/scss/core';
+
+.messageList {
+  list-style: none;
+  margin: 0;
+}
+
+.interactantTitle {
+  @include core.nds-h6();
+}
+
+.message {
+  margin-bottom: core.rem(core.$nds-spacing-medium);
+}
+
+.message + .message {
+  border-top: 2px dashed core.$nds-colour-nice-grey-1;
+  padding-top: core.rem(core.$nds-spacing-medium);
+
+  p:first-of-type {
+    margin-top: 0;
+  }
+}
+
+.severeMessage {
+  border-left: core.rem(core.$nds-spacing-small) solid core.$nds-colour-error;
+  padding-left: core.rem(core.$nds-spacing-medium);
+}
+
+.supplementaryInfo {
+  margin-top: core.rem(core.$nds-spacing-medium);
+
+  dt,
+  dd {
+    display: inline;
+    margin: 0 core.rem(core.$nds-spacing-small) 0 0;
+  }
+
+  dd + dt {
+    margin-left: core.rem(core.$nds-spacing-small);
+  }
+}

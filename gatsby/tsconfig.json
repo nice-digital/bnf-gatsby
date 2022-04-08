@@ -26,6 +26,6 @@
       "@nice-digital/gatsby-source-bnf": ["plugins/gatsby-source-bnf/index"]
     }
   },
-  "include": ["./**/*", "./**/*.json", "../jest.config.js"],
+  "include": ["./**/*", "../jest.config.js"],
   "exclude": ["dist/*", ".gatsby/*", "node_modules/*", "./**/*.json"]
 }
