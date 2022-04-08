@@ -28,5 +28,14 @@ Feature: Interactions details page
     Then I expect that element "h1" contains the text "Interactions"
 
   Scenario: Link to matching drug monograph
-    When I click the "View drug monograph for Abacavir" link
+    When I click the "View Abacavir monograph page" link
     Then I expect that the path is "/drugs/abacavir/"
+
+  Scenario: Link to interactant
+    When I click the "Carbamazepine" link
+    Then I expect that the path is "/drugs/carbamazepine/"
+
+# TODO: enable this test once the introductions page has been built
+# Scenario: Link to introduction page
+#    When I click the "Find out more about BNF interactions information" link
+#    Then I expect that the path is "/interactions/introduction/"
