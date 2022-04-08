@@ -93,7 +93,7 @@ export const DetailsPageLayout: React.FC<DetailsPageLayoutProps> = ({
 				<GridItem cols={12} md={Menu ? 8 : 12} lg={Menu ? 9 : 12}>
 					<Grid reverse={!SectionsNav} gutter="loose">
 						{SectionsNav && (
-							<GridItem cols={12} md={8} lg={9} className="hide-print">
+							<GridItem cols={12} md={8} lg={10} className="hide-print">
 								<SectionNav sections={SectionsNav} />
 							</GridItem>
 						)}
