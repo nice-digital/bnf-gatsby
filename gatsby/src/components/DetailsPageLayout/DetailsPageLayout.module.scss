@@ -1,5 +1,11 @@
+@use '@nice-digital/nds-core/scss/core';
+
 .body {
   > :first-child {
     margin-top: 0;
   }
+}
+
+.sectionNav {
+  max-width: core.$nds-readable-width;
 }

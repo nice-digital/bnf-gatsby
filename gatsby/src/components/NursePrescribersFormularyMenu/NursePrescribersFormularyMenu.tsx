@@ -13,8 +13,8 @@ export const NursePrescribersFormularyMenu: FC = () => {
 	return (
 		<StackedNav
 			aria-label="Nurse Prescribers' Formulary"
-			label="Nurse Prescribers' Formulary treatment summaries"
-			link={{ destination: "/Nurse-Prescribers-Formulary/", elementType: Link }}
+			label="Nurse Prescribers' Formulary"
+			link={{ destination: "/nurse-prescribers-formulary/", elementType: Link }}
 		>
 			{nursePrescribers.map(({ href, title }) => (
 				<StackedNavLink

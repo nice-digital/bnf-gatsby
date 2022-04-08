@@ -8,10 +8,14 @@ export interface SectionNavProps {
 		id: string;
 		title: string;
 	}[];
+	className?: string;
 }
 
-export const SectionNav: FC<SectionNavProps> = ({ sections }) => (
-	<nav aria-labelledby="navigate-to-section" className={styles.nav}>
+export const SectionNav: FC<SectionNavProps> = ({ sections, className }) => (
+	<nav
+		aria-labelledby="navigate-to-section"
+		className={[styles.nav, className].join(" ")}
+	>
 		<h2 id="navigate-to-section" className={styles.heading}>
 			Navigate to section
 		</h2>

@@ -1,5 +1,10 @@
 import { Link } from "gatsby";
-import React, { useMemo, type ReactNode, type ElementType } from "react";
+import React, {
+	useMemo,
+	type ReactNode,
+	type ElementType,
+	ReactElement,
+} from "react";
 import striptags from "striptags";
 
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
@@ -21,7 +26,6 @@ type DetailsPageLayoutProps = {
 	titleHtml: string;
 	preheading?: string;
 	menu?: ElementType;
-	sectionsNav: OnThisPageProps["sections"];
 	children: ReactNode;
 	parentBreadcrumbs?: {
 		href: string;
@@ -29,6 +33,7 @@ type DetailsPageLayoutProps = {
 	}[];
 	metaDescription?: string;
 	sections: OnThisPageProps["sections"];
+	asideContent?: ReactElement;
 };
 
 /**
@@ -40,10 +45,10 @@ export const DetailsPageLayout: React.FC<DetailsPageLayoutProps> = ({
 	titleHtml,
 	preheading,
 	menu: Menu,
-	sectionsNav: SectionsNav,
 	parentBreadcrumbs = [],
 	metaDescription,
 	sections,
+	asideContent,
 }) => {
 	const { siteTitleShort } = useSiteMetadata(),
 		titleNoHtml = striptags(titleHtml),
@@ -91,22 +96,14 @@ export const DetailsPageLayout: React.FC<DetailsPageLayoutProps> = ({
 					</GridItem>
 				)}
 				<GridItem cols={12} md={Menu ? 8 : 12} lg={Menu ? 9 : 12}>
-					<Grid reverse={!SectionsNav} gutter="loose">
-						{SectionsNav && (
-							<GridItem cols={12} md={8} lg={10} className="hide-print">
-								<SectionNav sections={SectionsNav} />
-							</GridItem>
-						)}
-						{!SectionsNav && (
-							<GridItem cols={12} lg={3}>
-								<OnThisPage sections={sections} />
-							</GridItem>
-						)}
-						<GridItem
-							className={styles.body}
-							cols={12}
-							lg={SectionsNav ? 12 : 9}
-						>
+					<Grid reverse gutter="loose">
+						<GridItem cols={12} lg={3}>
+							{asideContent ? asideContent : <OnThisPage sections={sections} />}
+						</GridItem>
+						<GridItem className={styles.body} cols={12} lg={9}>
+							{asideContent && (
+								<SectionNav className={styles.sectionNav} sections={sections} />
+							)}
 							{children}
 						</GridItem>
 					</Grid>

@@ -27,10 +27,7 @@ const NursePrescribersFormularyTreatmentSummaryPage: FC<
 			titleHtml={title}
 			parentTitleParts={["Nurse Prescribers' Formulary"]}
 			menu={NursePrescribersFormularyMenu}
-			sectionsNav={sections.map(({ slug, title }) => ({
-				id: slug,
-				title,
-			}))}
+			asideContent={<></>}
 			parentBreadcrumbs={[
 				{
 					href: "/nurse-prescribers-formulary/",
