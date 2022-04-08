@@ -13,8 +13,11 @@ exports[`MedicinalFormsContent forms should match snapshot 1`] = `
       href="/drugs/anti-d-rh0-immunoglobulin/medicinal-forms/"
     >
       View 
-      all 
-      medicinal forms and pricing information
+      all
+       medicinal
+       
+      forms
+       and pricing information
     </a>
   </p>
   <p>

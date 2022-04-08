@@ -74,7 +74,7 @@ describe("MedicinalFormsContent", () => {
 			);
 
 			const link = screen.getByRole("link", {
-				name: "View medicinal forms and pricing\xa0information",
+				name: "View medicinal form and pricing\xa0information",
 			});
 
 			userEvent.click(link);
