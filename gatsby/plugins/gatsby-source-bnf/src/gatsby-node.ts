@@ -1,11 +1,20 @@
+import { createHash } from "crypto";
+import { writeFile, mkdir } from "fs/promises";
+import path from "path";
+
 import {
 	type SourceNodesArgs,
 	type CreateSchemaCustomizationArgs,
 	type PluginOptionsSchemaArgs,
 } from "gatsby";
 import { type Schema } from "gatsby-plugin-utils";
+import JSZip from "jszip";
 
-import { downloadFeed, type PluginOptions } from "./downloader/downloader";
+import {
+	downloadFeed,
+	downloadImages,
+	type PluginOptions,
+} from "./downloader/downloader";
 import { type Feed } from "./downloader/types";
 import { htmlFieldExtension } from "./field-extensions/html";
 import { slugFieldExtension } from "./field-extensions/slug";
@@ -32,6 +41,65 @@ export const createSchemaCustomization = ({
 	createFieldExtension(htmlFieldExtension);
 };
 
+/** Download the ZIP of images from the feed and extracts it to the public folder.
+ *
+ * @returns The relative base path for the extracted images.
+ */
+const getAndExtractImages = async (
+	activityTimer: SourceNodesArgs["reporter"]["activityTimer"],
+	options: PluginOptions
+): Promise<string> => {
+	const getImageZipActivity = activityTimer(`Download images zip`);
+	getImageZipActivity.start();
+
+	let imageZip: Buffer;
+	try {
+		imageZip = await downloadImages(options);
+
+		const zipSize = Math.round(Buffer.byteLength(imageZip) / Math.pow(1024, 2));
+
+		getImageZipActivity.setStatus(`Downloaded ${zipSize}MB ZIP file of images`);
+		getImageZipActivity.end();
+	} catch (e) {
+		getImageZipActivity.panic("Error downloading images zip file", e);
+		return "";
+	}
+
+	const zipHash = createHash("md4").update(imageZip).digest("hex"),
+		baseImagesPath = path.join(process.cwd(), "public", "img", zipHash),
+		zip = await JSZip().loadAsync(imageZip);
+
+	const extractActivity = activityTimer(`Extract images`);
+	extractActivity.start();
+	try {
+		extractActivity.setStatus(`Making path ${baseImagesPath}`);
+		await mkdir(baseImagesPath, { recursive: true });
+
+		const files = Object.keys(zip.files);
+		for (const fileName of files) {
+			const fileBuffer = await zip.files[fileName].async("nodebuffer"),
+				outputPath = path.join(baseImagesPath, fileName);
+
+			extractActivity.setStatus(`Writing ${fileName}`);
+			await writeFile(outputPath, fileBuffer, {
+				flag: "w",
+			});
+		}
+		extractActivity.setStatus(
+			`Extracted ${files.length} files to ${baseImagesPath}`
+		);
+
+		extractActivity.end();
+	} catch (e) {
+		extractActivity.panic("Error extracting zip file of images", e);
+		return "";
+	}
+
+	// This is the base path of images, served within a img folder that we can use for a long-cache time, but with a hashed path from the ZIP contents.
+	// This means getting a new URL when there's a change to the ZIP file contents
+	return `/img/${zipHash}/`;
+};
+
 /**
  * Gatsby hook for creating nodes from a plugin.
  * See https://www.gatsbyjs.com/docs/how-to/plugins-and-themes/creating-a-source-plugin/#source-data-and-create-nodes
@@ -44,19 +112,22 @@ export const sourceNodes = async (
 		reporter: { activityTimer },
 	} = sourceNodesArgs;
 
-	const { start, setStatus, end, panic } = activityTimer(
-		`Download data and creating BNF nodes`
-	);
-	start();
+	const imagesBasePath = await getAndExtractImages(activityTimer, options);
 
+	const feedActivity = activityTimer(`Download feed JSON`);
 	let feedData: Feed;
 	try {
+		feedActivity.start();
 		feedData = await downloadFeed(options);
-		setStatus(`Downloaded feed data`);
+		feedActivity.setStatus(`Downloaded feed data`);
+		feedActivity.end();
 	} catch (e) {
-		panic(e);
+		feedActivity.panic("Error downloading ifeed JSON", e);
 		return;
 	}
+
+	const createNodesActivity = activityTimer(`Creating custom GraphQL nodes`);
+	createNodesActivity.start();
 
 	// Create all of our different nodes
 	createDrugNodes(feedData.drugs, sourceNodesArgs);
@@ -97,8 +168,8 @@ export const sourceNodes = async (
 	if (feedData.woundManagement)
 		createWoundManagementNodes(feedData.woundManagement, sourceNodesArgs);
 
-	setStatus(`Created all nodes`);
-	end();
+	createNodesActivity.setStatus(`Created all nodes`);
+	createNodesActivity.end();
 
 	return;
 };
