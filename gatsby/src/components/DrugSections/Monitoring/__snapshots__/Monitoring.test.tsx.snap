@@ -17,7 +17,14 @@ exports[`Monitoring outer section should match snapshot 1`] = `
       class=""
       id="monitoring-requirements-corticosteroids"
     >
-      For all corticosteroids
+      <span
+        class="visually-hidden"
+      >
+        Monitoring requirements 
+      </span>
+      <span>
+        For all corticosteroids
+      </span>
     </h3>
     <section
       aria-labelledby="patient-programmes-corticosteroids"
@@ -41,7 +48,14 @@ exports[`Monitoring outer section should match snapshot 1`] = `
       class=""
       id="monitoring-requirements-opioids"
     >
-      For all opioids
+      <span
+        class="visually-hidden"
+      >
+        Monitoring requirements 
+      </span>
+      <span>
+        For all opioids
+      </span>
     </h3>
     <section
       aria-labelledby="patient-parameters-opioids"
@@ -65,7 +79,14 @@ exports[`Monitoring outer section should match snapshot 1`] = `
       class=""
       id="monitoring-requirements-co-codamol"
     >
-      For co-codamol
+      <span
+        class="visually-hidden"
+      >
+        Monitoring requirements 
+      </span>
+      <span>
+        For co-codamol
+      </span>
     </h3>
     <section
       aria-labelledby="therapeutic-drug-co-codamol"
@@ -89,7 +110,14 @@ exports[`Monitoring outer section should match snapshot 1`] = `
       class=""
       id="monitoring-requirements-solpadol-caplets"
     >
-      For Solpadol® caplets
+      <span
+        class="visually-hidden"
+      >
+        Monitoring requirements 
+      </span>
+      <span>
+        For Solpadol® caplets
+      </span>
     </h3>
     <section
       aria-labelledby="patient-programmes-solpadol-caplets"
