@@ -298,6 +298,83 @@ describe("DrugPage", () => {
 			});
 		});
 
+		describe("Monitoring requirements", () => {
+			const constituentDrugs: DrugPageProps["data"]["bnfDrug"]["constituentDrugs"] =
+				{
+					message:
+						"The properties listed on this page are those particular to the combination only. For the properties of the components please consider the following;",
+					constituents: [
+						{
+							slug: "emtricitabine",
+							title: "Emtricitabine",
+						},
+						{
+							slug: "tenofovir-alafenamide",
+							title: "Tenofovir alafenamide",
+						},
+					],
+				};
+
+			it("should not render monitoring requirements when not present in the feed", () => {
+				render(
+					<DrugPage
+						data={{
+							bnfDrug: drug,
+						}}
+					/>
+				);
+
+				expect(
+					screen.queryByRole("link", { name: "Monitoring requirements" })
+				).toBeNull();
+
+				expect(
+					screen.queryByRole("heading", {
+						level: 2,
+						name: "Monitoring requirements",
+					})
+				).toBeNull();
+
+				expect(
+					screen.queryByRole("region", { name: "Monitoring requirements" })
+				).toBeNull();
+			});
+
+			it("should render monitoring requirements section when present in the feed", () => {
+				render(
+					<DrugPage
+						data={{
+							bnfDrug: {
+								...drug,
+								monitoringRequirements: {
+									potName: "Monitoring requirements",
+									slug: "monitoring-requirements",
+									drugClassContent: [],
+									drugContent: null,
+									prepContent: [],
+								},
+							},
+						}}
+					/>
+				);
+
+				expect(
+					screen.getByRole("link", { name: "Monitoring requirements" })
+				).toHaveAttribute("href", "#monitoring-requirements");
+
+				expect(
+					screen.getByRole("heading", {
+						level: 2,
+						name: "Monitoring requirements",
+					})
+				).toHaveAttribute("id", "monitoring-requirements");
+
+				expect(
+					screen.getByRole("region", { name: "Monitoring requirements" })
+				).toBeInTheDocument();
+			});
+		});
+
 		describe("Medicinal forms", () => {
 			it("should render shortcut link to medicinal forms section", () => {
 				render(
