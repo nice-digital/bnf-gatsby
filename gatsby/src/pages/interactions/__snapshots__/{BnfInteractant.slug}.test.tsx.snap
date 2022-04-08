@@ -1,5 +1,474 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`InteractantPage body should match snapshot for page body 1`] = `
+<main>
+  <div
+    class="container"
+  >
+    <nav
+      aria-label="Breadcrumbs"
+      role="navigation"
+    >
+      <ol
+        class="breadcrumbs"
+      >
+        <li
+          class="breadcrumbs__crumb"
+        >
+          <a
+            href="https://www.nice.org.uk/"
+          >
+            NICE
+          </a>
+        </li>
+        <li
+          class="breadcrumbs__crumb"
+        >
+          <a
+            href="/"
+          >
+            BNF
+          </a>
+        </li>
+        <li
+          class="breadcrumbs__crumb"
+        >
+          <a
+            href="/interactions/"
+          >
+            Interactions
+          </a>
+        </li>
+        <li
+          class="breadcrumbs__crumb"
+        >
+          <span>
+            Anti-D (Rh0) immunoglobulin
+          </span>
+        </li>
+      </ol>
+    </nav>
+    <script
+      type="application/ld+json"
+    >
+      {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@id": "https://www.nice.org.uk/",
+        "name": "NICE"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@id": "/",
+        "name": "BNF"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@id": "/interactions/",
+        "name": "Interactions"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "item": {
+        "name": "Anti-D (Rh0) immunoglobulin"
+      }
+    }
+  ]
+}
+    </script>
+    <div
+      class="page-header"
+      id="content-start"
+    >
+      <h1
+        class="page-header__heading"
+      >
+        <span
+          class="page-header__pre-heading"
+        >
+          <span>
+            Anti-D (Rh
+            <sub>
+              0
+            </sub>
+            ) immunoglobulin 
+          </span>
+        </span>
+        Interactions
+      </h1>
+      <p
+        class="page-header__lead"
+      >
+        <a
+          class="p"
+          href="/drugs/acarbose/"
+        >
+          View 
+          <span>
+            acarbose
+          </span>
+           
+          monograph page
+        </a>
+      </p>
+    </div>
+    <p
+      class="interactionInformation"
+    >
+      <span>
+        Anti-D (Rh
+        <sub>
+          0
+        </sub>
+        ) immunoglobulin
+      </span>
+       has the following interaction information:
+    </p>
+    <div
+      class="grid"
+    >
+      <div
+        class="rightCol"
+      >
+        <div
+          class="informationPanel"
+        >
+          <h2
+            class="informationPanelHeading"
+          >
+            Drug interaction information
+          </h2>
+          <p
+            class="severeMessage"
+          >
+            Severe interactions are highlighted with a red marker.
+          </p>
+          <p>
+            <a
+              href="/interactions/introduction/"
+            >
+              Find out more about BNF interactions information
+            </a>
+          </p>
+        </div>
+      </div>
+      <div
+        class="leftCol"
+      >
+        <section
+          class="filterPanel hide-print"
+        >
+          <h2
+            class="visually-hidden"
+          >
+            Filters and sorting
+          </h2>
+          <form
+            class="filterForm"
+          >
+            <div
+              class="input filterInput"
+            >
+              <label
+                class="input__label"
+                for="drugNameInput"
+              >
+                Filter by drug name
+              </label>
+              <input
+                class="input__input"
+                id="drugNameInput"
+                name="drugNameInput"
+                placeholder="Enter drug name"
+                type="text"
+                value=""
+              />
+            </div>
+            <button
+              class="btn btn--secondary filterButton"
+              type="button"
+            >
+              Filter
+            </button>
+          </form>
+          <div
+            class="sortControls"
+          >
+            <strong>
+              Sorted by: 
+            </strong>
+            <span
+              class="sortButtonLabel"
+            >
+              Name | 
+            </span>
+            <button
+              class="sortButton"
+            >
+              Sort by: Severity
+            </button>
+          </div>
+        </section>
+        <section
+          aria-live="polite"
+        >
+          <h2
+            class="visually-hidden"
+            id="interactions-list-heading"
+          >
+            List of interactions for
+             
+            <span>
+              acarbose
+            </span>
+          </h2>
+          <div
+            class="resultCount"
+          >
+            3
+             
+            interactions 
+             
+          </div>
+          <ol
+            aria-labelledby="interactions-list-heading"
+            class="interactionsList"
+          >
+            <li
+              class="interactionsListItem"
+            >
+              <h3
+                class="interactantTitle"
+              >
+                <a
+                  href="/drugs/canagliflozin/"
+                >
+                  Canagliflozin test
+                </a>
+              </h3>
+              <ul
+                class="messageList"
+              >
+                <li
+                  class="message"
+                >
+                  <div
+                    class=""
+                  >
+                    <div>
+                      <p>
+                        Both 
+                        <span
+                          class="substance-primary"
+                          data-monograph-sid="_426793441"
+                          data-sid="_426793441"
+                        >
+                          acarbose
+                        </span>
+                         and 
+                        <span
+                          class="substance-primary"
+                          data-monograph-sid="_629412592"
+                          data-sid="_629412592"
+                        >
+                          canagliflozin
+                        </span>
+                         can increase the risk of hypoglycaemia.
+                      </p>
+                    </div>
+                    <dl
+                      class="supplementaryInfo"
+                    >
+                      <dt>
+                        <strong>
+                          Severity:
+                        </strong>
+                      </dt>
+                      <dd>
+                        <strong>
+                          Normal
+                        </strong>
+                      </dd>
+                    </dl>
+                  </div>
+                </li>
+              </ul>
+            </li>
+            <li
+              class="interactionsListItem"
+            >
+              <h3
+                class="interactantTitle"
+              >
+                <a
+                  href="/drugs/pancreatin/"
+                >
+                  Pancreatin
+                </a>
+              </h3>
+              <ul
+                class="messageList"
+              >
+                <li
+                  class="message"
+                >
+                  <div
+                    class=""
+                  >
+                    <div>
+                      <span
+                        class="substance-primary"
+                        data-monograph-sid="_743802912"
+                        data-sid="_743802912"
+                      >
+                        pancreatin
+                      </span>
+                       
+                      <span
+                        class="effectQualifier"
+                      >
+                        is predicted to
+                      </span>
+                       
+                      <span
+                        class="effect"
+                      >
+                        decrease
+                      </span>
+                       
+                      <span
+                        class="parameter"
+                      >
+                        the effects of
+                      </span>
+                       
+                      <span
+                        class="substance-primary"
+                        data-monograph-sid="_426793441"
+                        data-sid="_426793441"
+                      >
+                        acarbose
+                      </span>
+                      . 
+                      <span
+                        class="action"
+                      >
+                        Manufacturer advises avoid
+                      </span>
+                      .  
+                    </div>
+                    <dl
+                      class="supplementaryInfo"
+                    >
+                      <dt>
+                        <strong>
+                          Severity:
+                        </strong>
+                      </dt>
+                      <dd>
+                        <strong>
+                          Moderate
+                        </strong>
+                      </dd>
+                      <dt>
+                        Evidence:
+                      </dt>
+                      <dd>
+                        Theoretical
+                      </dd>
+                    </dl>
+                  </div>
+                </li>
+              </ul>
+            </li>
+            <li
+              class="interactionsListItem"
+            >
+              <h3
+                class="interactantTitle"
+              >
+                <a
+                  href="/drugs/testinteractant/"
+                >
+                  Test interactant
+                </a>
+              </h3>
+              <ul
+                class="messageList"
+              >
+                <li
+                  class="message"
+                >
+                  <div
+                    class=""
+                  >
+                    <div>
+                      Test message 1
+                    </div>
+                    <dl
+                      class="supplementaryInfo"
+                    >
+                      <dt>
+                        <strong>
+                          Severity:
+                        </strong>
+                      </dt>
+                      <dd>
+                        <strong>
+                          Normal
+                        </strong>
+                      </dd>
+                    </dl>
+                  </div>
+                </li>
+                <li
+                  class="message"
+                >
+                  <div
+                    class="severeMessage"
+                  >
+                    <div>
+                      Test message 2 (severe)
+                    </div>
+                    <dl
+                      class="supplementaryInfo"
+                    >
+                      <dt>
+                        <strong>
+                          Severity:
+                        </strong>
+                      </dt>
+                      <dd>
+                        <strong>
+                          Severe
+                        </strong>
+                      </dd>
+                    </dl>
+                  </div>
+                </li>
+              </ul>
+            </li>
+          </ol>
+        </section>
+      </div>
+    </div>
+  </div>
+</main>
+`;
+
 exports[`InteractantPage should match snapshot for graphql query 1`] = `
 "
 	query ($id: String) {
@@ -8,6 +477,21 @@ exports[`InteractantPage should match snapshot for graphql query 1`] = `
 			drug {
 				title
 				slug
+			}
+			interactions {
+				interactant {
+					title
+					drug {
+						slug
+					}
+				}
+				messages {
+					additiveEffect
+					evidence
+					message
+					severity
+					severityOrder
+				}
 			}
 		}
 	}
