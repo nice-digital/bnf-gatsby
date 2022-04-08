@@ -1,0 +1,82 @@
+{
+  "analgesics": {
+    "bnf": "Read non-opioid analgesic prescribing information for nurse prescribers, including aspirin, ibuprofen; and paracetamol for mild-to-moderate pain relief.",
+    "bnfc": null
+  },
+  "appliances-and-reagents-for-diabetes": {
+    "bnf": "Read nurse prescriber information about hypodermic equipment disposal and monitoring agents for urinalysis and blood monitoring in patients with diabetes.",
+    "bnfc": null
+  },
+  "contraceptives-non-hormonal": {
+    "bnf": "Read nurse prescriber information about non-hormonal contraceptives including spermicides, such as nonoxinol and intra-uterine devices (IUDs).",
+    "bnfc": null
+  },
+  "disinfection-and-cleansing": {
+    "bnf": "Read information about solutions for general cleansing or skin disinfection, including use of sodium chloride solution, chlorhexidine, and povidone–iodine.",
+    "bnfc": null
+  },
+  "drugs-for-scabies-and-head-lice": {
+    "bnf": "Read advice on scabies and head lice treatments for nurse prescribers, covering dimeticone, malathion, permethrin as well as wet combing methods.",
+    "bnfc": null
+  },
+  "drugs-for-the-mouth": {
+    "bnf": "Read advice for nurse prescribers on oral conditions; covers oral thrush, stomatitis, ulceration, inflammation, dry mouth and taste disturbances.",
+    "bnfc": null
+  },
+  "drugs-for-threadworms": {
+    "bnf": "Read advice for nurse prescribers for treating threadworm infections (enterobiasis) with anthelmintics (mebendazole).",
+    "bnfc": null
+  },
+  "emollient-and-barrier-preparations": {
+    "bnf": "Read advice for nurse prescribers offering emollients and barrier preparations for dry skin disorders and nappy rash.",
+    "bnfc": null
+  },
+  "eye-drop-dispensers": {
+    "bnf": null,
+    "bnfc": null
+  },
+  "general-guidance": {
+    "bnf": null,
+    "bnfc": null
+  },
+  "laxatives": {
+    "bnf": null,
+    "bnfc": null
+  },
+  "local-anaesthetics": {
+    "bnf": null,
+    "bnfc": null
+  },
+  "nicotine-replacement-therapy": {
+    "bnf": null,
+    "bnfc": null
+  },
+  "other-skin-conditions": {
+    "bnf": null,
+    "bnfc": null
+  },
+  "peak-flow-meters": {
+    "bnf": null,
+    "bnfc": null
+  },
+  "prevention-of-neural-tube-defects": {
+    "bnf": null,
+    "bnfc": null
+  },
+  "removal-of-earwax": {
+    "bnf": "Read advice on removing ear wax for nurse prescribers, covers olive oil, almond oil and sodium bicarbonate ear drops as well as water irrigation.",
+    "bnfc": "Read advice on removing ear wax for nurse prescribers, covers olive oil, almond oil and sodium bicarbonate ear drops as well as water irrigation."
+  },
+  "stoma-appliances": {
+    "bnf": "Read advice on stoma bags, flanges and other accessories for nurses, includes drug tariff information.",
+    "bnfc": "Read advice on stoma bags, flanges and other accessories for nurses, includes drug tariff information."
+  },
+  "stoma-care": {
+    "bnf": "Read advice on stoma care for nurse prescribers, covers colostomy, ileostomy, urostomy and prescribing for patients with stoma.",
+    "bnfc": "Read advice on stoma care for nurse prescribers, covers colostomy, ileostomy, urostomy and prescribing for patients with stoma."
+  },
+  "urinary-catheters-and-appliances": {
+    "bnf": "Read advice on urinary catheters and urinary appliances for nurse prescribers, covers the maintenance of catheters and drug tariff information.",
+    "bnfc": "Read advice on urinary catheters and urinary appliances for nurse prescribers, covers the maintenance of catheters and drug tariff information."
+  }
+}
