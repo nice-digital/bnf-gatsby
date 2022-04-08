@@ -7,6 +7,7 @@ import { Grid, GridItem } from "@nice-digital/nds-grid";
 import { PageHeader } from "@nice-digital/nds-page-header";
 
 import { Layout } from "@/components/Layout/Layout";
+import { SectionNav } from "@/components/SectionNav/SectionNav";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
@@ -20,6 +21,7 @@ type DetailsPageLayoutProps = {
 	titleHtml: string;
 	preheading?: string;
 	menu?: ElementType;
+	sectionsNav: OnThisPageProps["sections"];
 	children: ReactNode;
 	parentBreadcrumbs?: {
 		href: string;
@@ -38,6 +40,7 @@ export const DetailsPageLayout: React.FC<DetailsPageLayoutProps> = ({
 	titleHtml,
 	preheading,
 	menu: Menu,
+	sectionsNav: SectionsNav,
 	parentBreadcrumbs = [],
 	metaDescription,
 	sections,
@@ -88,11 +91,22 @@ export const DetailsPageLayout: React.FC<DetailsPageLayoutProps> = ({
 					</GridItem>
 				)}
 				<GridItem cols={12} md={Menu ? 8 : 12} lg={Menu ? 9 : 12}>
-					<Grid reverse gutter="loose">
-						<GridItem cols={12} lg={3}>
-							<OnThisPage sections={sections} />
-						</GridItem>
-						<GridItem className={styles.body} cols={12} lg={9}>
+					<Grid reverse={!SectionsNav} gutter="loose">
+						{SectionsNav && (
+							<GridItem cols={12} md={8} lg={9} className="hide-print">
+								<SectionNav sections={SectionsNav} />
+							</GridItem>
+						)}
+						{!SectionsNav && (
+							<GridItem cols={12} lg={3}>
+								<OnThisPage sections={sections} />
+							</GridItem>
+						)}
+						<GridItem
+							className={styles.body}
+							cols={12}
+							lg={SectionsNav ? 12 : 9}
+						>
 							{children}
 						</GridItem>
 					</Grid>

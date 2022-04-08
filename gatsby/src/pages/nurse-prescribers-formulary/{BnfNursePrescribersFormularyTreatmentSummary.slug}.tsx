@@ -4,7 +4,6 @@ import React, { FC } from "react";
 import { DetailsPageLayout } from "@/components/DetailsPageLayout/DetailsPageLayout";
 import { NursePrescribersFormularyMenu } from "@/components/NursePrescribersFormularyMenu/NursePrescribersFormularyMenu";
 import { RecordSectionsContent } from "@/components/RecordSectionsContent/RecordSectionsContent";
-import { SectionNav } from "@/components/SectionNav/SectionNav";
 import { type RecordSection } from "@/utils";
 
 export type NursePrescribersFormularyTreatmentSummaryPageProps = {
@@ -28,6 +27,10 @@ const NursePrescribersFormularyTreatmentSummaryPage: FC<
 			titleHtml={title}
 			parentTitleParts={["Nurse Prescribers' Formulary"]}
 			menu={NursePrescribersFormularyMenu}
+			sectionsNav={sections.map(({ slug, title }) => ({
+				id: slug,
+				title,
+			}))}
 			parentBreadcrumbs={[
 				{
 					href: "/nurse-prescribers-formulary/",
