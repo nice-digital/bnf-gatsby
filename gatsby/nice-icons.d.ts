@@ -35,3 +35,13 @@ declare module "@nice-digital/icons/lib/ChevronUp" {
 
 	export default ChevronUpIcon;
 }
+declare module "@nice-digital/icons/lib/Remove" {
+	export interface IconProps {
+		colour?: string;
+		[key: string]: unknown;
+	}
+
+	const RemoveIcon: FC<IconProps>;
+
+	export default RemoveIcon;
+}
