@@ -3,8 +3,12 @@ import { useStaticQuery, graphql } from "gatsby";
 import { SlugAndTitle, type MenuPageLink } from "@/utils";
 
 export interface NursePrescribers {
-	bnfNursePrescribersFormularyTreatmentSummary: SlugAndTitle[];
-	bnfNursePrescribersFormularyIntroduction: SlugAndTitle[];
+	allBnfNursePrescribersFormularyIntroduction: {
+		introduction: SlugAndTitle[];
+	};
+	allBnfNursePrescribersFormularyTreatmentSummary: {
+		summaries: SlugAndTitle[];
+	};
 }
 
 const slugToHref = ({ title, slug }: SlugAndTitle): MenuPageLink => ({
@@ -22,25 +26,31 @@ const slugToHref = ({ title, slug }: SlugAndTitle): MenuPageLink => ({
  */
 export const useNursePrescribers = (): MenuPageLink[] => {
 	const {
-		bnfNursePrescribersFormularyTreatmentSummary,
-		bnfNursePrescribersFormularyIntroduction,
+		allBnfNursePrescribersFormularyIntroduction,
+		allBnfNursePrescribersFormularyTreatmentSummary,
 	} = useStaticQuery<NursePrescribers>(
 		graphql`
 			query NursePrescribers {
-				bnfNursePrescribersFormularyTreatmentSummary {
-					title
-					slug
+				allBnfNursePrescribersFormularyIntroduction {
+					introduction: nodes {
+						slug
+						title
+					}
 				}
-				bnfNursePrescribersFormularyIntroduction {
-					title
-					slug
+				allBnfNursePrescribersFormularyTreatmentSummary {
+					summaries: nodes {
+						slug
+						title
+					}
 				}
 			}
 		`
 	);
 
 	return [
-		...bnfNursePrescribersFormularyTreatmentSummary.map(slugToHref),
-		...bnfNursePrescribersFormularyIntroduction.map(slugToHref),
+		...allBnfNursePrescribersFormularyTreatmentSummary.summaries.map(
+			slugToHref
+		),
+		...allBnfNursePrescribersFormularyIntroduction.introduction.map(slugToHref),
 	];
 };
