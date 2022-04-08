@@ -21,7 +21,7 @@ export type InteractionNodeInput = {
 };
 
 export const createInteractionNodes = (
-	{ interactants }: FeedInteractions,
+	{ introduction, interactants, messages }: FeedInteractions,
 	sourceNodesArgs: SourceNodesArgs
 ): void => {
 	createBnfNode(
