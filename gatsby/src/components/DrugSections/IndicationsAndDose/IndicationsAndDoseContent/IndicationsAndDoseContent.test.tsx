@@ -1,5 +1,6 @@
 /* eslint-disable testing-library/no-node-access */
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
+import { type Except } from "type-fest";
 
 import {
 	IndicationsAndDoseContent,
@@ -288,5 +289,42 @@ describe("IndicationsAndDoseContent", () => {
 				);
 			});
 		});
+
+		it.each<
+			[
+				keyof Except<typeof content, "indicationAndDoseGroups" | "contentFor">,
+				string
+			]
+		>([
+			["doseAdjustments", "Dose adjustments due to interactions"],
+			["doseEquivalence", "Dose equivalence and conversion"],
+			["extremesOfBodyWeight", "Doses at extremes of body-weight"],
+			["potency", "Potency"],
+			["pharmacokinetics", "Pharmacokinetics"],
+		])(
+			"should render %s field in %s section",
+			(propertyName, expectedHeadingPrefix) => {
+				render(
+					<IndicationsAndDoseContent
+						content={{ ...content, [propertyName]: "<p>Some content</p>" }}
+						defaultOpen={false}
+						collapsible={false}
+					/>
+				);
+
+				const section = screen.getByRole("region", {
+					name: `${expectedHeadingPrefix} for diazepam`,
+				});
+
+				expect(
+					within(section).getByRole("heading", { level: 4 })
+				).toHaveTextContent(`${expectedHeadingPrefix} for diazepam`);
+
+				expect(within(section).getByText("Some content")).toHaveProperty(
+					"tagName",
+					"P"
+				);
+			}
+		);
 	});
 });

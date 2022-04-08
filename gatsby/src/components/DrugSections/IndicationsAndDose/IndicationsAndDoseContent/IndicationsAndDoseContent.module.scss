@@ -90,3 +90,9 @@
 .doseStatement {
   margin: 0;
 }
+
+.supplementary {
+  > :last-child {
+    margin-bottom: 0;
+  }
+}
