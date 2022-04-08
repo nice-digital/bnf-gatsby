@@ -76,6 +76,6 @@
 }
 
 .warningTheme {
-  background: #fef5e5; // TODO: Add to design system
-  border: 1px solid #dc8a07; // TODO: Add to design system
+  background: core.$nds-colour-caution-background;
+  border: 1px solid core.$nds-colour-caution;
 }

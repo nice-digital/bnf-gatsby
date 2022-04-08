@@ -144,7 +144,7 @@ export const drugSchema = `
 		slug: String! @slug(field: "form")
 
 		"A list of any cautionary and advisory labels for the medicinal form."
-		cautionaryAndAdvisoryLabels: [${BnfNode.MedicinalFormLabel}]
+		cautionaryAndAdvisoryLabels: [${BnfNode.MedicinalFormLabel}!]!
 
 		"A list of any excipients for the medicinal form, provided as a text statement."
 		excipients: String
@@ -161,7 +161,7 @@ export const drugSchema = `
 	"""
 	type ${BnfNode.MedicinalFormLabel} {
 		"A label for this medicinal form"
-		label: ${BnfNode.CautionaryAndAdvisoryLabel} @link(by: "number")
+		label: ${BnfNode.CautionaryAndAdvisoryLabel}! @link(by: "number")
 
 		"A qualifying statement that elaborates on this label"
 		qualifier: String

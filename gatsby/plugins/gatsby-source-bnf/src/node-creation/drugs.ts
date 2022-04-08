@@ -29,6 +29,7 @@ export type DrugNodeInput = Merge<
 					{
 						cautionaryAndAdvisoryLabels?: {
 							label: number;
+							qualifier?: string;
 						}[];
 					}
 				>[];

@@ -206,7 +206,7 @@ exports[`schema should match snapshot 1`] = `
 		slug: String! @slug(field: \\"form\\")
 
 		\\"A list of any cautionary and advisory labels for the medicinal form.\\"
-		cautionaryAndAdvisoryLabels: [BnfMedicinalFormLabel]
+		cautionaryAndAdvisoryLabels: [BnfMedicinalFormLabel!]!
 
 		\\"A list of any excipients for the medicinal form, provided as a text statement.\\"
 		excipients: String
@@ -223,7 +223,7 @@ exports[`schema should match snapshot 1`] = `
 	\\"\\"\\"
 	type BnfMedicinalFormLabel {
 		\\"A label for this medicinal form\\"
-		label: BnfCautionaryAndAdvisoryLabel @link(by: \\"number\\")
+		label: BnfCautionaryAndAdvisoryLabel! @link(by: \\"number\\")
 
 		\\"A qualifying statement that elaborates on this label\\"
 		qualifier: String
