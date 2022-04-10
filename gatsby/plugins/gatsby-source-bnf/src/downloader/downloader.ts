@@ -1,5 +1,5 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
-import { Reporter } from "gatsby";
+import axios, { type AxiosRequestConfig, type AxiosResponse } from "axios";
+import { type Reporter } from "gatsby";
 
 import type { Feed } from "./types";
 
@@ -17,8 +17,8 @@ export interface PluginOptions {
 export const downloadFeed = async (
 	{ site, feedURL, userKey }: PluginOptions,
 	imagesBasePath: string,
-	{ activityTimer }: Reporter
-): Promise<Feed> => {
+	{ activityTimer }: Pick<Reporter, "activityTimer">
+): Promise<Feed | null> => {
 	const activity = activityTimer(`Download feed JSON`);
 	activity.start();
 
@@ -41,7 +41,7 @@ export const downloadFeed = async (
 		axiosResponse = await axios.get<Feed>(url, requestConfig);
 	} catch (e) {
 		activity.panic("Error downloading feed JSON", e);
-		throw "Error downloading feed JSON";
+		return null;
 	}
 
 	const sizeMB = Math.round(
@@ -56,8 +56,8 @@ export const downloadFeed = async (
 /** Downloads the ZIP file of images from the feed as a buffer */
 export const downloadImageZIP = async (
 	{ site, feedURL, userKey }: PluginOptions,
-	{ activityTimer }: Reporter
-): Promise<Buffer> => {
+	{ activityTimer }: Pick<Reporter, "activityTimer">
+): Promise<Buffer | null> => {
 	const activity = activityTimer(`Download images ZIP`);
 	activity.start();
 
@@ -76,7 +76,7 @@ export const downloadImageZIP = async (
 		axiosResponse = await axios.get<Buffer>(url, requestConfig);
 	} catch (e) {
 		activity.panic("Error downloading images ZIP", e);
-		throw "Error downloading images ZIP";
+		return null;
 	}
 
 	const sizeMB = Math.round(

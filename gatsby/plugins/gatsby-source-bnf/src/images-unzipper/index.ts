@@ -13,7 +13,7 @@ export type ImagesBasePath = `/img/${string}/`;
  */
 export const extractImageZIP = async (
 	zipBuffer: Buffer,
-	{ activityTimer }: Reporter
+	{ activityTimer }: Pick<Reporter, "activityTimer">
 ): Promise<ImagesBasePath> => {
 	// Create a hash of the file contents for a long-cacheable URL path
 	const zipHashFolder = createHash("md4").update(zipBuffer).digest("hex"),

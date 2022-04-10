@@ -46,12 +46,23 @@ export const sourceNodes = async (
 ): Promise<undefined> => {
 	const { reporter } = sourceNodesArgs;
 
-	const zip = await downloadImageZIP(pluginOptions, reporter),
-		imagesBasePath = await extractImageZIP(zip, reporter),
+	const zip = await downloadImageZIP(pluginOptions, reporter);
+
+	if (!zip) {
+		reporter.panic("Image ZIP is null");
+		return;
+	}
+
+	const imagesBasePath = await extractImageZIP(zip, reporter),
 		feedData = await downloadFeed(pluginOptions, imagesBasePath, reporter);
 
 	const createNodesActivity = reporter.activityTimer(`Creating GraphQL nodes`);
 	createNodesActivity.start();
+
+	if (!feedData) {
+		reporter.panic("Feed is null");
+		return;
+	}
 
 	// Create all of our different nodes
 	createDrugNodes(feedData.drugs, sourceNodesArgs);
