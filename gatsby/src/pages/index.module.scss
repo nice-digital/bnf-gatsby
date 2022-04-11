@@ -1,2 +1,16 @@
 @use 'sass:color';
 @use '@nice-digital/nds-core/scss/core';
+
+// @use '@nice-digital/nds-core/scss/typography/_typography-helpers';
+
+// @import '~@nice-digital/nds-core/scss/core';
+// @use '@nice-digital/nds-core/scss/typography/_typography-helpers';
+
+.inlineList {
+  margin-left: 0;
+
+  li {
+    display: inline-block;
+    margin-right: core.rem(core.$nds-spacing-small);
+  }
+}

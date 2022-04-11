@@ -1,5 +1,8 @@
+import { listenerCount } from "process";
+
+import classnames from "classnames";
 import { graphql, Link } from "gatsby";
-import { FC, useMemo } from "react";
+import { FC } from "react";
 
 import { Alphabet, Letter } from "@nice-digital/nds-alphabet";
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
@@ -32,16 +35,16 @@ const HomePage: FC<IndexProps> = ({
 	},
 }: IndexProps) => {
 	const { siteTitleShort, siteTitleLong, isBNF } = useSiteMetadata();
-	const linkableLetters = ["A", "B"];
-	// const linkableLetters = useMemo(
-	// 	() => [...drugNames].map((name) => name[0].toLowerCase()),
-	// 	[drugNames]
-	// );
+
 	return (
 		<Layout>
 			<SEO />
 			<div className={isBNF ? "bnf-layout" : "bnfc-layout"}>
-				<time dateTime={lastUpdatedDate}>{lastUpdatedDateFormatted}</time>
+				<div id="lastupdated">
+					<h2>Last updated: </h2>
+					<time dateTime={lastUpdatedDate}>{lastUpdatedDateFormatted}</time>
+					<Link to="">See whats changed</Link>
+				</div>
 				<Hero
 					id="content-start"
 					title={
@@ -58,43 +61,180 @@ const HomePage: FC<IndexProps> = ({
 					}
 				/>
 
-				<Grid gutter="none">
+				<Grid gutter="loose">
 					<GridItem md={6} cols={12} className={styles.topicsColumn}>
 						<h2 id="drugs-a-to-z">Drugs A to Z</h2>
 						<p id="drugs-a-to-z-desc">
 							Drug monographs describe the uses, doses, safety issues, medicinal
 							forms and other considerations involved in the use of a drug.
 						</p>
-
-						{/* <Alphabet
+						<h3 id="browse drugs">Browse drugs</h3>
+						<Alphabet
 							chunky
 							aria-labelledby="drugs-a-to-z"
 							aria-describedby="drugs-a-to-z-desc"
 							data-tracking="drugs-a-to-z"
+							elementType={Link}
 						>
 							{alphabet.map((letter) => (
-								<Letter
-									key={`alphabet_${letter}`}
-									to={linkableLetters.has(letter) && `/topics/#${letter}`}
-								>
+								<Letter key={`alphabet_${letter}`} to={`/topics/#${letter}`}>
 									{letter.toUpperCase()}
 								</Letter>
 							))}
-						</Alphabet> */}
-
-						<h3 id="frequently-visited-topics">ytyty&nbsp;etete</h3>
+						</Alphabet>
 					</GridItem>
 
-					<GridItem md={6} cols={12} className={styles.specialitiesColumn}>
-						<h2 id="specialities">rtrtr</h2>
+					<GridItem md={6} cols={12}>
+						<h2 id="interactions">Treatment summaries</h2>
 
-						<p>trtrtrtrtr&nbsp;trtrrtr.</p>
+						<p>
+							Browse an A-Z list of treatment summaries covering: - drug use
+							related to a particular body system - drug management or treatment
+							of common conditions - comparisons between groups of drugs.
+						</p>
+						<Button
+							to="/treatment-summaries/"
+							variant="primary"
+							elementType={Link}
+						>
+							View treatment summaries A-Z
+						</Button>
+
+						<h2 id="interactions">Interactions</h2>
+
+						<p>
+							Check for drug interactions. Includes information on the severity
+							of an interaction and the type of evidence to support it.
+						</p>
+						<Button to="/interactions/" variant="primary" elementType={Link}>
+							View interactions A-Z
+						</Button>
 					</GridItem>
 				</Grid>
+
+				<Grid>
+					<GridItem md={6} cols={12}>
+						<h2 id="medicinesguidance">
+							<Link to="/medicines-guidance/">Medicines guidance</Link>
+						</h2>
+
+						<p>
+							General guidance on prescribing and the use of medicines. Includes
+							guidance on <Link to>prescribing in palliative care</Link>,{" "}
+							<Link to>prescription writing</Link> and{" "}
+							<Link to>prescribing in renal impairment</Link>.
+						</p>
+					</GridItem>
+
+					<GridItem md={6} cols={12}>
+						<h2 id="woundmanagement">
+							<Link to="/wound-management/">Wound management</Link>
+						</h2>
+
+						<p>
+							Wound management products and elasticated garments. Browse by
+							wound type or product type.
+						</p>
+					</GridItem>
+
+					<GridItem md={6} cols={12}>
+						<h2 id="medicaldevices">
+							<Link to="/medical-devices/">Medical devices</Link>
+						</h2>
+
+						<p>
+							Indication, dose and medicinal product information for medical
+							devices. Browse devices by type.
+						</p>
+					</GridItem>
+
+					<GridItem md={6} cols={12}>
+						<h2 id="borderlinesubstances">
+							<Link>Borderline substances</Link>
+						</h2>
+
+						<p>
+							Foods and toilet preparations, that in certain conditions have the
+							characteristics of drugs.
+						</p>
+					</GridItem>
+				</Grid>
+				<hr />
+				<Grid gutter="loose">
+					<GridItem md={6} cols={12}>
+						<h2 id="nurseprescribersformulary">
+							<Link to="/nurse-prescribers-formulary/">
+								Nurse prescribers formulary
+							</Link>
+						</h2>
+
+						<p>
+							Medicines approved by the NHS for Nurse Practitioner prescribing.
+						</p>
+					</GridItem>
+
+					<GridItem md={6} cols={12}>
+						<h2 id="dentalpractitionersformulary">
+							<Link to="/dental-practitioners-formulary/">
+								Dental practitioners formulary
+							</Link>
+						</h2>
+
+						<p>Medicines approved by the NHS for dental prescribing. </p>
+					</GridItem>
+				</Grid>
+				<hr />
+				<Grid>
+					<GridItem cols={12} sm={6} md={4}>
+						<h2 id="conversions">
+							<Link>Approximate conversions and units</Link>
+						</h2>
+
+						<p>
+							Conversions and units tables. Includes growth chart with average
+							weight and height, by gender and age (neonate, child and adult).
+						</p>
+					</GridItem>
+
+					<GridItem cols={12} sm={6} md={4}>
+						<h2 id="labels">
+							<Link>Cautionary and advisory labels</Link>
+						</h2>
+
+						<p>
+							Cautionary, warning and advisory labels applied to medications
+							used in the BNF.
+						</p>
+					</GridItem>
+
+					<GridItem cols={12} sm={6} md={4}>
+						<h2 id="labels">
+							<Link>Abbreviations and symbols</Link>
+						</h2>
+
+						<p>
+							Glossary of symbols and abbreviations. Includes Latin, medication
+							and dosage abbreviations used in the BNF and prescribing.
+						</p>
+					</GridItem>
+				</Grid>
+
+				<hr />
+				<ul
+					className={classnames(styles.inlineList, "mt--d")}
+					data-tracking={`${isBNF ? "BNF" : "BNFC"} home footer`}
+				>
+					<li>
+						<Link>What&apos;s changed?</Link>
+					</li>
+					<li>
+						<Link>About {isBNF ? "BNF" : "BNFC"}</Link>
+					</li>
+				</ul>
 			</div>
 
 			{/* OLD PAGE BELOW*/}
-			<Hero
+			{/* <Hero
 				id="content-start-OLD"
 				title={`${siteTitleLong}`}
 				intro={
@@ -113,70 +253,7 @@ const HomePage: FC<IndexProps> = ({
 						Browse drugs
 					</Button>
 				}
-			/>
-
-			<Grid gutter="loose">
-				<GridItem cols={12} sm={6} md={4}>
-					<Panel variant="impact-alt">
-						<h2 className="h3">Drugs A&nbsp;to&nbsp;Z</h2>
-						<p>Browse the list of drug monographs, arranged alphabetically.</p>
-						<Button to="/drugs/" variant="cta" elementType={Link}>
-							Browse drugs
-						</Button>
-					</Panel>
-				</GridItem>
-				<GridItem cols={12} sm={6} md={4}>
-					<Panel variant="primary">
-						<h2 className="h3">Interactions</h2>
-						<p>
-							Browse the list of drug interactions, arranged alphabetically.
-						</p>
-						<Button to="/interactions/" variant="inverse" elementType={Link}>
-							Browse interactions
-						</Button>
-					</Panel>
-				</GridItem>
-				<GridItem cols={12} sm={6} md={4}>
-					<Panel variant="impact-alt">
-						<h2 className="h3">Treatment summaries</h2>
-						<p>
-							Browse the list of treatment summaries, arranged alphabetically.
-						</p>
-						<Button
-							to="/treatment-summaries/"
-							variant="secondary"
-							elementType={Link}
-						>
-							Browse treatment summaries
-						</Button>
-					</Panel>
-				</GridItem>
-			</Grid>
-
-			<p>
-				<Link to="/about/">About</Link>
-			</p>
-			<p>
-				<Link to="/dental-practitioners-formulary/">
-					Dental Practitioners&apos; Formulary
-				</Link>
-			</p>
-			<p>
-				<Link to="/medical-devices/">Medical devices</Link>
-			</p>
-			<p>
-				<Link to="/wound-management/">
-					Wound management products and elasticated garments
-				</Link>
-			</p>
-			<p>
-				<Link to="/nurse-prescribers-formulary/">
-					Nurse Prescribers&apos; Formulary
-				</Link>
-			</p>
-			<p>
-				<Link to="/medicines-guidance/">Medicines guidance</Link>
-			</p>
+			/> */}
 		</Layout>
 	);
 };
@@ -189,12 +266,6 @@ export const query = graphql`
 			lastUpdatedDateFormatted: exportStarted(formatString: "D MMMM YYYY")
 			lastUpdatedDate: exportStarted
 			runTag
-			publication
-			contentCut
-			dmdVersion
-			snomedInternationalVersion
-			snomedUKExtensionVersion
-			snomedUKDrugExtensionVersion
 		}
 	}
 `;

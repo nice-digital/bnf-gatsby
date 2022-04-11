@@ -38,7 +38,7 @@ export interface FeedPublicationMetadata {
 	runTag: string;
 
 	/** The publication. A value of 'bnf' shows that the JSON contains the British National Formulary content, while a value of 'bnfc' shows that the JSON contains the BNF for Children content. */
-	publication: string | string[];
+	publication: "bnf" | "bnfc";
 
 	/** The output will contain records published in the CMS up to this date and time. The format used is ISO 8601-1:2019 compliant (without a time zone designator), e.g. `2021-07-06T00:37:25.918`. */
 	contentCut: string;
