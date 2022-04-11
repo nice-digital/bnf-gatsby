@@ -7,7 +7,7 @@
 // @use '@nice-digital/nds-core/scss/typography/_typography-helpers';
 
 .inlineList {
-  margin-left: 0;
+  margin-left: 0; /* TODO typography helpers instead? */
 
   li {
     display: inline-block;
