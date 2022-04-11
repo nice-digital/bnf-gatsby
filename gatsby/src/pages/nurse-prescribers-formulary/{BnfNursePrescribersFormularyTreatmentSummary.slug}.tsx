@@ -5,15 +5,17 @@ import { DetailsPageLayout } from "@/components/DetailsPageLayout/DetailsPageLay
 import { NursePrescribersFormularyMenu } from "@/components/NursePrescribersFormularyMenu/NursePrescribersFormularyMenu";
 import { RecordSectionsContent } from "@/components/RecordSectionsContent/RecordSectionsContent";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
-import { type RecordSection, type MetaDescriptionsMap } from "@/utils";
+import {
+	type RecordSection,
+	type MetaDescriptionsMap,
+	type SlugAndTitle,
+} from "@/utils";
 
 import metas from "./{BnfNursePrescribersFormularyTreatmentSummary.slug}.meta-descriptions.json";
 
 export type NursePrescribersFormularyTreatmentSummaryPageProps = {
 	data: {
-		bnfNursePrescribersFormularyTreatmentSummary: {
-			title: string;
-			slug: string;
+		bnfNursePrescribersFormularyTreatmentSummary: SlugAndTitle & {
 			sections: RecordSection[];
 		};
 	};
@@ -56,6 +58,7 @@ const NursePrescribersFormularyTreatmentSummaryPage: FC<
 				id: slug,
 				title,
 			}))}
+			metaDescription={metaDescription}
 		>
 			<RecordSectionsContent sections={sections} />
 		</DetailsPageLayout>

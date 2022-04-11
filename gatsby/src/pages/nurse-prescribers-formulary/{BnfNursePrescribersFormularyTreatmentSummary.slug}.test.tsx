@@ -13,6 +13,7 @@ const pageProps: NursePrescribersFormularyTreatmentSummaryPageProps = {
 	data: {
 		bnfNursePrescribersFormularyTreatmentSummary: {
 			title: "Analgesics",
+			slug: "analgesics",
 			sections: [
 				{
 					order: 0,
@@ -28,6 +29,9 @@ const pageProps: NursePrescribersFormularyTreatmentSummaryPageProps = {
 				},
 			],
 		},
+	},
+	location: {
+		pathname: "/nurse-prescribers-formulary/analgesics/",
 	},
 };
 
@@ -84,14 +88,18 @@ describe("NursePrescribersFormularyTreatmentSummaryPage", () => {
 				<NursePrescribersFormularyTreatmentSummaryPage
 					data={{
 						bnfNursePrescribersFormularyTreatmentSummary: {
+							slug: "unknown",
 							title: "Unknown",
 							sections: [],
 						},
 					}}
+					location={{
+						pathname: "/nurse-prescribers-formulary/unknown/",
+					}}
 				/>
 			);
 		}).toThrowError(
-			"Couldn't find meta description for page 'Unknown' at path '/nurse-prescribers-formulary/unknown'. Has the page been added or renamed?"
+			"Couldn't find meta description for page 'Unknown' at path '/nurse-prescribers-formulary/unknown/'. Has the page been added or renamed?"
 		);
 	});
 });
