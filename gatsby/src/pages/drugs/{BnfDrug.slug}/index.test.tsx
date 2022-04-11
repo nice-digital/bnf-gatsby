@@ -22,7 +22,7 @@ const drug: DrugPageProps["data"]["bnfDrug"] = {
 	indicationsAndDose: null,
 	lessSuitableForPrescribing: null,
 	medicinalForms: {
-		initialStatement: "Nothing to see here",
+		initialStatement: "No licensed medicines listed.",
 		specialOrderManufacturersStatement: null,
 		medicinalForms: [],
 	},
@@ -35,6 +35,7 @@ const drug: DrugPageProps["data"]["bnfDrug"] = {
 	prescribingAndDispensingInformation: null,
 	renalImpairment: null,
 	professionSpecificInformation: null,
+	relatedTreatmentSummaries: [],
 	sideEffects: null,
 	treatmentCessation: null,
 	unlicensedUse: null,
@@ -298,6 +299,60 @@ describe("DrugPage", () => {
 			});
 		});
 
+		describe("Medicinal forms", () => {
+			it("should render shortcut link to medicinal forms section", () => {
+				render(
+					<DrugPage
+						data={{
+							bnfDrug: drug,
+						}}
+					/>
+				);
+
+				expect(
+					screen.getByRole("link", { name: "Medicinal forms" })
+				).toHaveAttribute("href", "#medicinal-forms");
+			});
+
+			it("should render medicinal forms section", () => {
+				render(
+					<DrugPage
+						data={{
+							bnfDrug: drug,
+						}}
+					/>
+				);
+
+				expect(
+					screen.getByRole("heading", {
+						level: 2,
+						name: "Medicinal forms",
+					})
+				).toHaveAttribute("id", "medicinal-forms");
+
+				expect(
+					screen.getByRole("region", { name: "Medicinal forms" })
+				).toBeInTheDocument();
+			});
+
+			it("should render medicinal forms shortcut panel section", () => {
+				render(
+					<DrugPage
+						data={{
+							bnfDrug: drug,
+						}}
+					/>
+				);
+
+				expect(
+					screen.getByRole("heading", {
+						level: 2,
+						name: "Medicinal forms and\xa0pricing",
+					})
+				).toBeInTheDocument();
+			});
+		});
+
 		describe.each<[keyof typeof drug]>([
 			["allergyAndCrossSensitivity"],
 			["breastFeeding"],
@@ -374,6 +429,86 @@ describe("DrugPage", () => {
 				expect(
 					screen.getByRole("region", { name: "Some pot name" })
 				).toBeInTheDocument();
+			});
+		});
+
+		describe("Related treatment summaries", () => {
+			it("should not render related treatments section when there are none", () => {
+				render(
+					<DrugPage
+						data={{
+							bnfDrug: { ...drug, relatedTreatmentSummaries: [] },
+						}}
+					/>
+				);
+
+				expect(
+					screen.queryByRole("link", { name: "Related treatment summaries" })
+				).toBeNull();
+
+				expect(
+					screen.queryByRole("heading", {
+						level: 2,
+						name: "Related treatment summaries",
+					})
+				).toBeNull;
+
+				expect(
+					screen.queryByRole("region", { name: "Related treatment summaries" })
+				).toBeNull();
+			});
+
+			it("should render related treatment summaries section and heading", () => {
+				render(
+					<DrugPage
+						data={{
+							bnfDrug: {
+								...drug,
+								relatedTreatmentSummaries: [
+									{
+										slug: "acne",
+										title: "Acne",
+									},
+								],
+							},
+						}}
+					/>
+				);
+
+				expect(
+					screen.getByRole("heading", {
+						level: 2,
+						name: "Related treatment summaries",
+					})
+				).toHaveAttribute("id", "related-treatment-summaries");
+
+				expect(
+					screen.getByRole("region", { name: "Related treatment summaries" })
+				).toBeInTheDocument();
+			});
+
+			it("should render link to related treatment summary", () => {
+				render(
+					<DrugPage
+						data={{
+							bnfDrug: {
+								...drug,
+								relatedTreatmentSummaries: [
+									{
+										slug: "acne",
+										title: "Acne",
+									},
+								],
+							},
+						}}
+					/>
+				);
+
+				expect(
+					screen.getByRole("link", {
+						name: "Acne",
+					})
+				).toHaveAttribute("href", "/treatment-summaries/acne/");
 			});
 		});
 	});

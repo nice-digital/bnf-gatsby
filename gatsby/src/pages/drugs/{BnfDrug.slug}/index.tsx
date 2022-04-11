@@ -8,19 +8,21 @@ import {
 	type FeedBaseNamedPot,
 } from "@nice-digital/gatsby-source-bnf";
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
-import { Grid, GridItem } from "@nice-digital/nds-grid";
 import { PageHeader } from "@nice-digital/nds-page-header";
 import { Panel } from "@nice-digital/nds-panel";
 
 import {
+	Constituents,
 	SimplePot,
 	IndicationsAndDose,
 	type IndicationsAndDoseProps,
+	MedicinalForms,
 	NationalFunding,
 	type BasePot,
+	MedicinalFormsContent,
 	ImportantSafetyInfo,
+	RelatedTreatmentSummaries,
 } from "@/components/DrugSections";
-import { Constituents } from "@/components/DrugSections/Constituents/Constituents";
 import { Layout } from "@/components/Layout/Layout";
 import { SectionNav } from "@/components/SectionNav/SectionNav";
 import { SEO } from "@/components/SEO/SEO";
@@ -33,6 +35,8 @@ import {
 	type SlugAndTitle,
 } from "@/utils";
 
+import styles from "./index.module.scss";
+
 type IgnoredDrugFields = keyof Pick<
 	FeedDrug,
 	| "id"
@@ -41,6 +45,7 @@ type IgnoredDrugFields = keyof Pick<
 	| "secondaryClassifications"
 	| "reviewDate"
 	| "constituentDrugs"
+	| "medicinalForms"
 	| "indicationsAndDose"
 >;
 
@@ -55,13 +60,23 @@ export interface DrugPageProps {
 					message: string;
 					constituents: SlugAndTitle[];
 				} | null;
+				relatedTreatmentSummaries: SlugAndTitle[];
+				medicinalForms: {
+					initialStatement: string;
+					specialOrderManufacturersStatement: string | null;
+					medicinalForms: WithSlug<{ form: string }>[];
+				};
 			}>;
 	};
 }
 
-const DrugPage: FC<DrugPageProps> = ({ data: { bnfDrug } }) => {
+const DrugPage: FC<DrugPageProps> = ({
+	data: {
+		bnfDrug: { slug, title, ...bnfDrug },
+	},
+}) => {
 	const { siteTitleShort } = useSiteMetadata(),
-		titleNoHtml = striptags(bnfDrug.title),
+		titleNoHtml = striptags(title),
 		constituents = useMemo(
 			() =>
 				bnfDrug.constituentDrugs && {
@@ -70,6 +85,25 @@ const DrugPage: FC<DrugPageProps> = ({ data: { bnfDrug } }) => {
 					...bnfDrug.constituentDrugs,
 				},
 			[bnfDrug.constituentDrugs]
+		),
+		medicinalForms = useMemo(
+			() => ({
+				slug: "medicinal-forms",
+				potName: "Medicinal forms",
+				...bnfDrug.medicinalForms,
+			}),
+			[bnfDrug.medicinalForms]
+		),
+		relatedTreatmentSummaries = useMemo(
+			() =>
+				bnfDrug.relatedTreatmentSummaries.length > 0
+					? {
+							slug: "related-treatment-summaries",
+							potName: "Related treatment summaries",
+							relatedTreatmentSummaries: bnfDrug.relatedTreatmentSummaries,
+					  }
+					: null,
+			[bnfDrug.relatedTreatmentSummaries]
 		),
 		/** Sections of a drug that have their own, specific component that isn't a `SimplePot` */
 		nonSimplePotComponents = useMemo(() => {
@@ -84,8 +118,10 @@ const DrugPage: FC<DrugPageProps> = ({ data: { bnfDrug } }) => {
 			potMap.set(importantSafetyInformation, ImportantSafetyInfo);
 			// Bespoke sections that aren't "pots" in the feed
 			potMap.set(constituents, Constituents);
+			potMap.set(medicinalForms, MedicinalForms);
+			potMap.set(relatedTreatmentSummaries, RelatedTreatmentSummaries);
 			return potMap;
-		}, [bnfDrug, constituents]);
+		}, [bnfDrug, constituents, medicinalForms, relatedTreatmentSummaries]);
 
 	const orderedSections: BasePot[] = [
 		constituents,
@@ -116,8 +152,8 @@ const DrugPage: FC<DrugPageProps> = ({ data: { bnfDrug } }) => {
 		bnfDrug.nationalFunding,
 		bnfDrug.lessSuitableForPrescribing,
 		bnfDrug.exceptionsToLegalCategory,
-		// TODO: medicinalForms (BNF-1267)
-		// TODO: related treatment summaries (BNF-1212)
+		medicinalForms,
+		relatedTreatmentSummaries,
 		// TODO: other drugs in class (BNF-1244)
 	].filter(isTruthy);
 
@@ -141,22 +177,25 @@ const DrugPage: FC<DrugPageProps> = ({ data: { bnfDrug } }) => {
 
 			<PageHeader
 				id="content-start"
-				heading={<span dangerouslySetInnerHTML={{ __html: bnfDrug.title }} />}
+				heading={<span dangerouslySetInnerHTML={{ __html: title }} />}
 			/>
 
-			<Grid gutter="loose">
-				<GridItem cols={12} md={8} lg={9} className="hide-print">
+			<div className={styles.contentWrapper}>
+				<div className={styles.sectionNav}>
 					<SectionNav
 						sections={orderedSections.map(({ potName, slug }) => ({
 							id: slug,
 							title: potName,
 						}))}
 					/>
-				</GridItem>
-				<GridItem cols={12} md={4} lg={3} className="hide-print">
-					<Panel>Quick links will go here</Panel>
-				</GridItem>
-				<GridItem cols={12} md={8} lg={9}>
+				</div>
+				<div className={styles.aside}>
+					<Panel>
+						<h2 className="h5">Medicinal forms and&nbsp;pricing</h2>
+						<MedicinalFormsContent drug={{ slug, title }} {...medicinalForms} />
+					</Panel>
+				</div>
+				<div className={styles.sections}>
 					{orderedSections.map((section) => {
 						// Default to a SimplePot as that's the most common type of section
 						const Component = nonSimplePotComponents.get(section) || SimplePot;
@@ -164,14 +203,13 @@ const DrugPage: FC<DrugPageProps> = ({ data: { bnfDrug } }) => {
 						return (
 							<Component
 								key={section.potName}
-								drugSlug={bnfDrug.slug}
-								drugTitle={bnfDrug.title}
+								drug={{ slug, title }}
 								{...section}
 							/>
 						);
 					})}
-				</GridItem>
-			</Grid>
+				</div>
+			</div>
 		</Layout>
 	);
 };
@@ -313,6 +351,10 @@ export const query = graphql`
 			}
 			treatmentCessation {
 				...SimplePot
+			}
+			relatedTreatmentSummaries {
+				title
+				slug
 			}
 			unlicensedUse {
 				...SimplePot
