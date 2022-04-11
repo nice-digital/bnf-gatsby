@@ -1,5 +1,5 @@
 import * as fsPromises from "fs/promises";
-import path from "path";
+import path, { sep } from "path";
 
 import { extractImageZIP } from "./";
 
@@ -41,7 +41,7 @@ describe("images-unzipper", () => {
 
 			expect(mocked.writeFile).toHaveBeenCalledTimes(2);
 			expect(mocked.writeFile.mock.calls[0][0]).toEndWith(
-				"\\img\\d06535079bdf2fd3013f95f9d8830ee8\\blue.png"
+				`${sep}img${sep}d06535079bdf2fd3013f95f9d8830ee8${sep}blue.png`
 			);
 		});
 	});
