@@ -1,7 +1,12 @@
 import { type SourceNodesArgs } from "gatsby";
 import { type Merge } from "type-fest";
 
-import { type PHPID, type SID, type FeedDrug } from "../downloader/types";
+import {
+	type PHPID,
+	type SID,
+	type FeedDrug,
+	type FeedSimpleRecord,
+} from "../downloader/types";
 import { BnfNode } from "../node-types";
 
 import { createBnfNode } from "./utils";
@@ -15,11 +20,17 @@ export type DrugNodeInput = Merge<
 			message: string;
 			constituents: SID[];
 		};
+		relatedTreatmentSummaries: string[];
 	}
 >;
 
+export interface DrugCreationArgs {
+	drugs: FeedDrug[];
+	treatmentSummaries: FeedSimpleRecord[];
+}
+
 export const createDrugNodes = (
-	drugs: FeedDrug[],
+	{ drugs, treatmentSummaries }: DrugCreationArgs,
 	sourceNodesArgs: SourceNodesArgs
 ): void => {
 	drugs.forEach(({ constituentDrugs, id, sid, ...drug }) => {
@@ -37,6 +48,11 @@ export const createDrugNodes = (
 					)
 					.map((d) => d.sid),
 			},
+			relatedTreatmentSummaries: treatmentSummaries
+				.filter(({ sections }) =>
+					sections.some((section) => section.content.includes(`/drug/${sid}`))
+				)
+				.map((treatmentSummary) => treatmentSummary.id),
 		};
 
 		createBnfNode(nodeContent, BnfNode.Drug, sourceNodesArgs);
