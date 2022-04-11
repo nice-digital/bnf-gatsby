@@ -236,11 +236,11 @@ export interface FeedMedicinalForm {
 	/** The name of the medicinal form. */
 	form: string;
 	/** A list of any cautionary and advisory labels for the medicinal form. */
-	cautionaryAndAdvisoryLabels?: string[]; // TODO: Hoping this changes from as string array to an array of objects to include welsh translation and label number
+	cautionaryAndAdvisoryLabels?: FeedLabel[];
 	/** A list of any excipients for the medicinal form, provided as a text statement. */
 	excipients?: string;
 	/** A list of any electrolytes for the medicinal form, provided as a text statement. */
-	electolytes?: string;
+	electrolytes?: string;
 	/** The preparations of the drug for the medicinal form. */
 	preps: FeedPrep[];
 }
@@ -324,6 +324,8 @@ export interface FeedLabel {
 	englishRecommendation: string;
 	/** The Welsh translation of the label recommendation. */
 	welshRecommendation: string;
+	/** A qualifying statement that elaborates on this label */
+	qualifier?: string;
 }
 
 /**

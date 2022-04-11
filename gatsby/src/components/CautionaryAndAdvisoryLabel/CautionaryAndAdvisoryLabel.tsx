@@ -1,13 +1,11 @@
 import React from "react";
+import { Except } from "type-fest";
+
+import { FeedLabel } from "@nice-digital/gatsby-source-bnf";
 
 import styles from "./CautionaryAndAdvisoryLabel.module.scss";
 
-export type CautionaryAndAdvisoryLabelProps = {
-	description: string;
-	englishRecommendation: string;
-	welshRecommendation: string;
-	number: number;
-};
+export type CautionaryAndAdvisoryLabelProps = Except<FeedLabel, "qualifier">;
 
 export const generateTitle = (labelNumber: number): string => {
 	return `Label ${labelNumber}`;

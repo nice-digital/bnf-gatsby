@@ -35,6 +35,18 @@ declare module "@nice-digital/icons/lib/ChevronUp" {
 
 	export default ChevronUpIcon;
 }
+
+declare module "@nice-digital/icons/lib/Warning" {
+	export interface IconProps {
+		colour?: string;
+		[key: string]: unknown;
+	}
+
+	const WarningIcon: FC<IconProps>;
+
+	export default WarningIcon;
+}
+
 declare module "@nice-digital/icons/lib/Remove" {
 	export interface IconProps {
 		colour?: string;

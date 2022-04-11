@@ -12,11 +12,13 @@ import { Grid, GridItem } from "@nice-digital/nds-grid";
 import { PageHeader } from "@nice-digital/nds-page-header";
 
 import { Layout } from "@/components/Layout/Layout";
+import {
+	OnThisPage,
+	type OnThisPageProps,
+} from "@/components/OnThisPage/OnThisPage";
 import { SectionNav } from "@/components/SectionNav/SectionNav";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
-
-import { OnThisPage, type OnThisPageProps } from "../OnThisPage/OnThisPage";
 
 import styles from "./DetailsPageLayout.module.scss";
 
@@ -34,6 +36,7 @@ type DetailsPageLayoutProps = {
 	metaDescription?: string;
 	sections: OnThisPageProps["sections"];
 	asideContent?: ReactElement;
+	headerCta?: ReactElement;
 };
 
 /**
@@ -49,6 +52,7 @@ export const DetailsPageLayout: React.FC<DetailsPageLayoutProps> = ({
 	metaDescription,
 	sections,
 	asideContent,
+	headerCta,
 }) => {
 	const { siteTitleShort } = useSiteMetadata(),
 		titleNoHtml = striptags(titleHtml),
@@ -87,6 +91,7 @@ export const DetailsPageLayout: React.FC<DetailsPageLayoutProps> = ({
 					) : undefined
 				}
 				heading={<span dangerouslySetInnerHTML={{ __html: titleHtml }} />}
+				cta={headerCta}
 			/>
 
 			<Grid gutter="loose" data-testid="body">

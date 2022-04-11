@@ -25,7 +25,7 @@
     margin: 0;
   }
 
-  [open] & {
+  [open] > & {
     margin-bottom: core.rem(core.$nds-spacing-medium);
   }
 
@@ -58,6 +58,10 @@
   summary:hover & {
     color: core.$nds-colour-link-hover;
   }
+
+  .warningTheme & {
+    color: core.$nds-colour-nice-rich-black;
+  }
 }
 
 .icon {
@@ -65,7 +69,13 @@
   margin-right: core.rem(core.$nds-spacing-small);
   transition: all 0.25s ease;
 
-  [open] & {
+  /* stylelint-disable-next-line selector-max-compound-selectors */
+  [open] > summary > .toggleLabel & {
     transform: rotate(-180deg);
   }
+}
+
+.warningTheme {
+  background: core.$nds-colour-caution-background;
+  border: 1px solid core.$nds-colour-caution;
 }

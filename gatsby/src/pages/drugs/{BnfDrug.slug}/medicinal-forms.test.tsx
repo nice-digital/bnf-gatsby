@@ -9,22 +9,39 @@ const drug: MedicinalFormsPageProps["data"]["bnfDrug"] = {
 	title: "Anti-D (Rh<sub>0</sub>) immunoglobulin",
 	slug: "anti-d-rh0-immunoglobulin",
 	medicinalForms: {
-		initialStatement: "",
-		specialOrderManufacturersStatement: "",
+		initialStatement: "Test initial statement",
+		specialOrderManufacturersStatement: "Test special order statement",
 		medicinalForms: [
 			{
 				form: "Tablets",
 				slug: "tablets",
-				cautionaryAndAdvisoryLabels: [],
-				electolytes: null,
-				excipients: null,
+				electrolytes: "May contain sodium.",
+				excipients: "May contain alcohol, disodium edetate, polysorbates.",
 				preps: [],
+				cautionaryAndAdvisoryLabels: [
+					{
+						label: {
+							number: 3,
+							englishRecommendation: "<p>English recommendation</p>",
+							welshRecommendation: "<p>Welsh recommendation</p>",
+						},
+						qualifier: "test qualifier",
+					},
+					{
+						label: {
+							number: 5,
+							englishRecommendation: "<p>Another English recommendation</p>",
+							welshRecommendation: "<p>Another Welsh recommendation</p>",
+						},
+						qualifier: null,
+					},
+				],
 			},
 			{
 				form: "Powder",
 				slug: "powder",
 				cautionaryAndAdvisoryLabels: [],
-				electolytes: null,
+				electrolytes: null,
 				excipients: null,
 				preps: [],
 			},
@@ -105,6 +122,58 @@ describe("MedicinalFormsPage", () => {
 
 			expect(
 				screen.getByRole("region", { name: "Tablets" })
+			).toBeInTheDocument();
+		});
+
+		it("should show cautionary labels when they have been supplied", () => {
+			render(<MedicinalFormsPage data={dataProp} />);
+
+			const labelAccordion = screen.getByRole("group");
+			expect(labelAccordion).toHaveClass("labelAccordion");
+
+			const labelList = within(labelAccordion).getByRole("list");
+			const numberOfLabels =
+				dataProp.bnfDrug.medicinalForms.medicinalForms[0]
+					.cautionaryAndAdvisoryLabels?.length || -1;
+			// eslint-disable-next-line testing-library/no-node-access
+			expect(labelList.children).toHaveLength(numberOfLabels);
+		});
+
+		it("should render electrolytes when they exist in the feed data", () => {
+			render(<MedicinalFormsPage data={dataProp} />);
+			expect(
+				screen.getByRole("heading", {
+					level: 3,
+					name: "Electrolytes",
+				})
+			).toBeInTheDocument();
+		});
+		it("should render excipients when they exist in the feed data", () => {
+			render(<MedicinalFormsPage data={dataProp} />);
+			expect(
+				screen.getByRole("heading", {
+					level: 3,
+					name: "Excipients",
+				})
+			).toBeInTheDocument();
+		});
+
+		it("should render an initial statement when it exists in the feed data", () => {
+			render(<MedicinalFormsPage data={dataProp} />);
+			expect(screen.getByText("Test initial statement")).toBeInTheDocument();
+		});
+
+		it("should render a special order manufacturer statement when it exists in the feed data", () => {
+			render(<MedicinalFormsPage data={dataProp} />);
+			expect(
+				screen.getByText("Test special order statement")
+			).toBeInTheDocument();
+		});
+
+		it("should render a qualifier when it exists in the feed data", () => {
+			render(<MedicinalFormsPage data={dataProp} />);
+			expect(
+				screen.getByRole("heading", { name: "Label 3 (test qualifier)" })
 			).toBeInTheDocument();
 		});
 	});

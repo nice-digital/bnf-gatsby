@@ -1,7 +1,13 @@
 import { type SourceNodesArgs } from "gatsby";
 import { type Merge } from "type-fest";
 
-import { type PHPID, type SID, type FeedDrug } from "../downloader/types";
+import {
+	type PHPID,
+	type SID,
+	type FeedDrug,
+	FeedMedicinalForm,
+	FeedMedicinalForms,
+} from "../downloader/types";
 import { BnfNode } from "../node-types";
 
 import { createBnfNode } from "./utils";
@@ -15,6 +21,20 @@ export type DrugNodeInput = Merge<
 			message: string;
 			constituents: SID[];
 		};
+		medicinalForms: Merge<
+			FeedMedicinalForms,
+			{
+				medicinalForms?: Merge<
+					FeedMedicinalForm,
+					{
+						cautionaryAndAdvisoryLabels?: {
+							label: number;
+							qualifier?: string;
+						}[];
+					}
+				>[];
+			}
+		>;
 	}
 >;
 
@@ -22,7 +42,13 @@ export const createDrugNodes = (
 	drugs: FeedDrug[],
 	sourceNodesArgs: SourceNodesArgs
 ): void => {
-	drugs.forEach(({ constituentDrugs, id, sid, ...drug }) => {
+	drugs.forEach(({ medicinalForms, constituentDrugs, id, sid, ...drug }) => {
+		const {
+			initialStatement,
+			specialOrderManufacturersStatement,
+			medicinalForms: forms,
+		} = medicinalForms;
+
 		const nodeContent: DrugNodeInput = {
 			...drug,
 			id: sid,
@@ -36,6 +62,23 @@ export const createDrugNodes = (
 						drugs.some((drug) => drug.sid === constituent.sid)
 					)
 					.map((d) => d.sid),
+			},
+			medicinalForms: {
+				initialStatement,
+				specialOrderManufacturersStatement,
+				medicinalForms:
+					forms?.map((medicinalForm) => {
+						return {
+							...medicinalForm,
+							cautionaryAndAdvisoryLabels:
+								medicinalForm.cautionaryAndAdvisoryLabels?.map((label) => {
+									return {
+										label: label.number,
+										qualifier: label.qualifier,
+									};
+								}),
+						};
+					}) || [],
 			},
 		};
 

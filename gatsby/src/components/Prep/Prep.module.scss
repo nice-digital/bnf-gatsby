@@ -1,0 +1,71 @@
+@use '@nice-digital/nds-core/scss/core';
+
+.prepHeading {
+  @include core.nds-h4;
+
+  @include core.mq($from: md) {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+}
+
+.headingIcons {
+  display: block;
+
+  @include core.mq($from: md) {
+    flex: 0 1 20%;
+    text-align: right;
+  }
+}
+
+.headingText {
+  display: block;
+
+  @include core.mq($from: md) {
+    flex: 1 1 80%;
+  }
+}
+
+.manufacturer {
+  font-style: italic;
+}
+
+.packList {
+  list-style: none;
+  margin: 0;
+}
+
+.packItem {
+  border-top: 1px solid core.$nds-colour-border;
+}
+
+.packDefinitionListItem {
+  @include core.mq($from: md) {
+    display: flex;
+  }
+
+  dt {
+    font-weight: bold;
+
+    @include core.mq($from: md) {
+      flex: 1 1 30%;
+    }
+  }
+
+  dd {
+    margin: 0 0 core.rem(core.$nds-spacing-small) 0;
+
+    @include core.mq($from: md) {
+      flex: 1 1 70%;
+    }
+  }
+}
+
+.sugarFree {
+  @include core.nds-font-size(-2);
+  border: 1px solid core.$nds-colour-border;
+  display: inline-block;
+  padding: core.rem(core.$nds-spacing-xx-small)
+    core.rem(core.$nds-spacing-x-small);
+  text-transform: uppercase;
+}
