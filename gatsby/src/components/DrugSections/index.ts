@@ -34,4 +34,9 @@ export {
 	type NationalFundingProps,
 } from "./NationalFunding/NationalFunding";
 
+export {
+	RelatedTreatmentSummaries,
+	type RelatedTreatmentSummariesProps,
+} from "./RelatedTreatmentSummaries/RelatedTreatmentSummaries";
+
 export { SimplePot, type SimplePotProps } from "./SimplePot/SimplePot";
