@@ -21,6 +21,7 @@ import {
 	type BasePot,
 	MedicinalFormsContent,
 	ImportantSafetyInfo,
+	RelatedTreatmentSummaries,
 } from "@/components/DrugSections";
 import { Layout } from "@/components/Layout/Layout";
 import { SectionNav } from "@/components/SectionNav/SectionNav";
@@ -59,6 +60,7 @@ export interface DrugPageProps {
 					message: string;
 					constituents: SlugAndTitle[];
 				} | null;
+				relatedTreatmentSummaries: SlugAndTitle[];
 				medicinalForms: {
 					initialStatement: string;
 					specialOrderManufacturersStatement: string | null;
@@ -92,6 +94,17 @@ const DrugPage: FC<DrugPageProps> = ({
 			}),
 			[bnfDrug.medicinalForms]
 		),
+		relatedTreatmentSummaries = useMemo(
+			() =>
+				bnfDrug.relatedTreatmentSummaries.length > 0
+					? {
+							slug: "related-treatment-summaries",
+							potName: "Related treatment summaries",
+							relatedTreatmentSummaries: bnfDrug.relatedTreatmentSummaries,
+					  }
+					: null,
+			[bnfDrug.relatedTreatmentSummaries]
+		),
 		/** Sections of a drug that have their own, specific component that isn't a `SimplePot` */
 		nonSimplePotComponents = useMemo(() => {
 			const {
@@ -106,8 +119,9 @@ const DrugPage: FC<DrugPageProps> = ({
 			// Bespoke sections that aren't "pots" in the feed
 			potMap.set(constituents, Constituents);
 			potMap.set(medicinalForms, MedicinalForms);
+			potMap.set(relatedTreatmentSummaries, RelatedTreatmentSummaries);
 			return potMap;
-		}, [bnfDrug, constituents, medicinalForms]);
+		}, [bnfDrug, constituents, medicinalForms, relatedTreatmentSummaries]);
 
 	const orderedSections: BasePot[] = [
 		constituents,
@@ -139,7 +153,7 @@ const DrugPage: FC<DrugPageProps> = ({
 		bnfDrug.lessSuitableForPrescribing,
 		bnfDrug.exceptionsToLegalCategory,
 		medicinalForms,
-		// TODO: related treatment summaries (BNF-1212)
+		relatedTreatmentSummaries,
 		// TODO: other drugs in class (BNF-1244)
 	].filter(isTruthy);
 
@@ -337,6 +351,10 @@ export const query = graphql`
 			}
 			treatmentCessation {
 				...SimplePot
+			}
+			relatedTreatmentSummaries {
+				title
+				slug
 			}
 			unlicensedUse {
 				...SimplePot
