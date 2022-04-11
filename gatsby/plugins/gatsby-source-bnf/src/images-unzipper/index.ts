@@ -42,16 +42,15 @@ export const extractImageZIP = async (
 		}
 
 		await Promise.all(fileWritePromises);
-
-		extractActivity.setStatus(
-			`Extracted ${files.length} files to ${baseImagesPath}`
-		);
-
-		extractActivity.end();
 	} catch (e) {
 		extractActivity.panic("Error extracting zip file of images", e);
 		throw "Error extracting zip file of images";
 	}
+
+	extractActivity.setStatus(
+		`Extracted ${files.length} files to ${baseImagesPath}`
+	);
+	extractActivity.end();
 
 	// This is the base path of images, served within a img folder that we can use for a long-cache time, but with a hashed path from the ZIP contents.
 	// This results in a new URL when there's a change to the ZIP file contents
