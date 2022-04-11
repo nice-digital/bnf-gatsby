@@ -9,6 +9,7 @@ const drugs: FeedDrug[] = [
 		title: "Drug 1",
 		id: "PHP123",
 		sid: "_234",
+		interactants: [],
 		medicinalForms: {
 			initialStatement: "No forms listed",
 		},
@@ -17,6 +18,12 @@ const drugs: FeedDrug[] = [
 		title: "Drug 2",
 		id: "PHP987",
 		sid: "_876",
+		interactants: [
+			{
+				sid: "_987",
+				title: "An interactant",
+			},
+		],
 		constituentDrugs: {
 			message:
 				"The properties listed below are those particular to the combination only. For the properties of the components please consider",
@@ -75,6 +82,14 @@ describe("createDrugNodes", () => {
 			message:
 				"The properties listed below are those particular to the combination only. For the properties of the components please consider",
 		});
+	});
+
+	it("should map interactants to sid", () => {
+		createDrugNodes({ drugs, treatmentSummaries: [] }, sourceNodesArgs);
+
+		const nodeInput = createNode.mock.calls[1][0] as DrugNodeInput;
+
+		expect(nodeInput.interactants).toStrictEqual(["_987"]);
 	});
 
 	it("should link treatment summaries that contain a link to the drug", () => {

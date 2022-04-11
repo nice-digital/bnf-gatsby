@@ -21,6 +21,7 @@ export type DrugNodeInput = Merge<
 			constituents: SID[];
 		};
 		relatedTreatmentSummaries: string[];
+		interactants: SID[];
 	}
 >;
 
@@ -33,7 +34,7 @@ export const createDrugNodes = (
 	{ drugs, treatmentSummaries }: DrugCreationArgs,
 	sourceNodesArgs: SourceNodesArgs
 ): void => {
-	drugs.forEach(({ constituentDrugs, id, sid, ...drug }) => {
+	drugs.forEach(({ constituentDrugs, interactants, id, sid, ...drug }) => {
 		const nodeContent: DrugNodeInput = {
 			...drug,
 			id: sid,
@@ -53,6 +54,7 @@ export const createDrugNodes = (
 					sections.some((section) => section.content.includes(`/drug/${sid}`))
 				)
 				.map((treatmentSummary) => treatmentSummary.id),
+			interactants: interactants.map((interactant) => interactant.sid),
 		};
 
 		createBnfNode(nodeContent, BnfNode.Drug, sourceNodesArgs);

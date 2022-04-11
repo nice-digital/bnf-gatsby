@@ -18,6 +18,16 @@ export {
 } from "./IndicationsAndDose/IndicationsAndDose";
 
 export {
+	Interactions,
+	type InteractionsProps,
+} from "./Interactions/Interactions";
+
+export {
+	InteractionsContent,
+	type InteractionsContentProps,
+} from "./InteractionsContent/InteractionsContent";
+
+export {
 	MedicinalForms,
 	type MedicinalFormsProps,
 } from "./MedicinalForms/MedicinalForms";

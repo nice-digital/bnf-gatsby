@@ -87,6 +87,8 @@ export interface FeedDrug {
 	importantSafetyInformation?: FeedSimplePot;
 	/** The indications and dose section for the drug, including any relevant drug classes and preparations. */
 	indicationsAndDose?: FeedIndicationsAndDosePot;
+	/** The list of individual interactants for the substance(s) in this drug. These can be correlated with the `messages` and `supplementaryInformation` fields in the `interactions` (at the root of the JSON model) by matching the `interactant1` or `interactant2` of an `Interaction` or the `interactantSid` of a `SupplementaryInteractionsInformation` An empty list indicates that there are no interactants associated with this drug. */
+	interactants: FeedInteractant[];
 	/** The less suitable for prescribing section for the drug, including any relevant drug classes and preparations. */
 	lessSuitableForPrescribing?: FeedSimplePot;
 	/** The medicinal forms for the drug. */
@@ -368,7 +370,7 @@ export interface FeedInteractions {
  */
 export interface FeedInteractant {
 	/** "The SID of the interactant. Where the interactant represents a drug monograph, the value of this field will match the value of the \"sid\" field of  the relevant Drug. */
-	sid: string;
+	sid: SID;
 	/** The title of the interactant. May contain HTML mark-up. */
 	title: string;
 }
