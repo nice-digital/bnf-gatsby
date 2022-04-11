@@ -189,6 +189,12 @@ export const query = graphql`
 			lastUpdatedDateFormatted: exportStarted(formatString: "D MMMM YYYY")
 			lastUpdatedDate: exportStarted
 			runTag
+			publication
+			contentCut
+			dmdVersion
+			snomedInternationalVersion
+			snomedUKExtensionVersion
+			snomedUKDrugExtensionVersion
 		}
 	}
 `;
