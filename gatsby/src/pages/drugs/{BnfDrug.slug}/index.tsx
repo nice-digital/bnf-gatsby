@@ -80,8 +80,11 @@ const DrugPage: FC<DrugPageProps> = ({
 			slug,
 			title,
 			constituentDrugs,
+			importantSafetyInformation,
+			indicationsAndDose,
 			interactants,
 			medicinalForms,
+			nationalFunding,
 			relatedTreatmentSummaries,
 			...bnfDrug
 		},
@@ -130,12 +133,7 @@ const DrugPage: FC<DrugPageProps> = ({
 		),
 		/** Sections of a drug that have their own, specific component that isn't a `SimplePot` */
 		nonSimplePotComponents = useMemo(() => {
-			const {
-					importantSafetyInformation,
-					indicationsAndDose,
-					nationalFunding,
-				} = bnfDrug,
-				potMap = new Map<BasePot | null, ElementType>();
+			const potMap = new Map<BasePot | null, ElementType>();
 			potMap.set(nationalFunding, NationalFunding);
 			potMap.set(indicationsAndDose, IndicationsAndDose);
 			potMap.set(importantSafetyInformation, ImportantSafetyInfo);
@@ -146,19 +144,21 @@ const DrugPage: FC<DrugPageProps> = ({
 			potMap.set(relatedTreatmentSummariesSection, RelatedTreatmentSummaries);
 			return potMap;
 		}, [
-			bnfDrug,
 			constituentsSection,
+			importantSafetyInformation,
+			indicationsAndDose,
 			interactionsSection,
 			medicinalFormsSection,
+			nationalFunding,
 			relatedTreatmentSummariesSection,
 		]);
 
 	const orderedSections: BasePot[] = [
 		constituentsSection,
 		bnfDrug.drugAction,
-		bnfDrug.indicationsAndDose,
+		indicationsAndDose,
 		bnfDrug.unlicensedUse,
-		bnfDrug.importantSafetyInformation,
+		importantSafetyInformation,
 		bnfDrug.contraIndications,
 		bnfDrug.cautions,
 		interactionsSection,
@@ -179,7 +179,7 @@ const DrugPage: FC<DrugPageProps> = ({
 		bnfDrug.handlingAndStorage,
 		bnfDrug.patientAndCarerAdvice,
 		bnfDrug.professionSpecificInformation,
-		bnfDrug.nationalFunding,
+		nationalFunding,
 		bnfDrug.lessSuitableForPrescribing,
 		bnfDrug.exceptionsToLegalCategory,
 		medicinalFormsSection,
@@ -260,17 +260,6 @@ export const query = graphql`
 		bnfDrug(id: { eq: $id }) {
 			title
 			slug
-			interactant {
-				title
-				slug
-			}
-			constituentDrugs {
-				message
-				constituents {
-					title
-					slug
-				}
-			}
 			allergyAndCrossSensitivity {
 				...SimplePot
 			}
@@ -285,6 +274,13 @@ export const query = graphql`
 			}
 			cautions {
 				...SimplePot
+			}
+			constituentDrugs {
+				message
+				constituents {
+					title
+					slug
+				}
 			}
 			directionsForAdministration {
 				...SimplePot
