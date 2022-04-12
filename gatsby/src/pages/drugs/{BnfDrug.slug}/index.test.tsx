@@ -371,6 +371,114 @@ describe("DrugPage", () => {
 					).toHaveAttribute("id", "interactions");
 				});
 
+				it("should match snapshot for interactions section", () => {
+					render(
+						<DrugPage
+							data={{
+								bnfDrug: {
+									...drug,
+									interactants: interactants,
+								},
+							}}
+						/>
+					);
+
+					const mainBodySection = screen.getByRole("region", {
+						name: "Interactions",
+					});
+
+					expect(mainBodySection).toMatchSnapshot();
+				});
+
+				it("should render interactions shortcut panel section", () => {
+					render(
+						<DrugPage
+							data={{
+								bnfDrug: {
+									...drug,
+									interactants: interactants,
+								},
+							}}
+						/>
+					);
+
+					expect(
+						screen.getAllByRole("heading", {
+							level: 2,
+							name: "Interactions",
+						})
+					).toHaveLength(2);
+				});
+			});
+
+			describe("Multiple interactants", () => {
+				const interactants = [
+					{ slug: "abacavir", title: "Abacavir" },
+					{ slug: "lamivudine", title: "Lamivudine" },
+				];
+
+				it("should render shortcut link to interactions section", () => {
+					render(
+						<DrugPage
+							data={{
+								bnfDrug: {
+									...drug,
+									interactants: interactants,
+								},
+							}}
+						/>
+					);
+
+					expect(
+						screen.getByRole("link", { name: "Interactions" })
+					).toHaveAttribute("href", "#interactions");
+				});
+
+				it("should render interactions section", () => {
+					render(
+						<DrugPage
+							data={{
+								bnfDrug: {
+									...drug,
+									interactants: interactants,
+								},
+							}}
+						/>
+					);
+
+					const mainBodySection = screen.getByRole("region", {
+						name: "Interactions",
+					});
+
+					expect(mainBodySection).toBeInTheDocument();
+
+					expect(
+						within(mainBodySection).getByRole("heading", {
+							level: 2,
+							name: "Interactions",
+						})
+					).toHaveAttribute("id", "interactions");
+				});
+
+				it("should match snapshot for interactions section", () => {
+					render(
+						<DrugPage
+							data={{
+								bnfDrug: {
+									...drug,
+									interactants: interactants,
+								},
+							}}
+						/>
+					);
+
+					const mainBodySection = screen.getByRole("region", {
+						name: "Interactions",
+					});
+
+					expect(mainBodySection).toMatchSnapshot();
+				});
+
 				it("should render interactions shortcut panel section", () => {
 					render(
 						<DrugPage

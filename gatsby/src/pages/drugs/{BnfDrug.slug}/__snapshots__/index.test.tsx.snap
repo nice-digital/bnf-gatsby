@@ -75,6 +75,64 @@ exports[`DrugPage body Constituent drugs should match snapshot for constituent d
 </section>
 `;
 
+exports[`DrugPage body Interactions Multiple interactants should match snapshot for interactions section 1`] = `
+<section
+  aria-labelledby="interactions"
+  class="section"
+>
+  <h2
+    id="interactions"
+  >
+    Interactions
+  </h2>
+  <p>
+    View interactions for:
+  </p>
+  <ul
+    aria-label="Links to each interactant"
+  >
+    <li>
+      <a
+        href="/interactions/abacavir/"
+      >
+        Abacavir
+      </a>
+    </li>
+    <li>
+      <a
+        href="/interactions/lamivudine/"
+      >
+        Lamivudine
+      </a>
+    </li>
+  </ul>
+</section>
+`;
+
+exports[`DrugPage body Interactions Single interactant should match snapshot for interactions section 1`] = `
+<section
+  aria-labelledby="interactions"
+  class="section"
+>
+  <h2
+    id="interactions"
+  >
+    Interactions
+  </h2>
+  <p>
+    <a
+      href="/interactions/abacavir/"
+    >
+      View interactions for
+       
+      <span>
+        Abacavir
+      </span>
+    </a>
+  </p>
+</section>
+`;
+
 exports[`DrugPage should match snapshot for graphql query 1`] = `
 "
 	query ($id: String) {
