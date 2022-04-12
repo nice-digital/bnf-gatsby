@@ -5,8 +5,7 @@ import {
 	type PHPID,
 	type SID,
 	type FeedDrug,
-	FeedMedicinalForm,
-	FeedMedicinalForms,
+	type FeedSimpleRecord,
 } from "../downloader/types";
 import { BnfNode } from "../node-types";
 
@@ -21,25 +20,17 @@ export type DrugNodeInput = Merge<
 			message: string;
 			constituents: SID[];
 		};
-		medicinalForms: Merge<
-			FeedMedicinalForms,
-			{
-				medicinalForms?: Merge<
-					FeedMedicinalForm,
-					{
-						cautionaryAndAdvisoryLabels?: {
-							label: number;
-							qualifier?: string;
-						}[];
-					}
-				>[];
-			}
-		>;
+		relatedTreatmentSummaries: string[];
 	}
 >;
 
+export interface DrugCreationArgs {
+	drugs: FeedDrug[];
+	treatmentSummaries: FeedSimpleRecord[];
+}
+
 export const createDrugNodes = (
-	drugs: FeedDrug[],
+	{ drugs, treatmentSummaries }: DrugCreationArgs,
 	sourceNodesArgs: SourceNodesArgs
 ): void => {
 	drugs.forEach(({ medicinalForms, constituentDrugs, id, sid, ...drug }) => {
@@ -63,23 +54,11 @@ export const createDrugNodes = (
 					)
 					.map((d) => d.sid),
 			},
-			medicinalForms: {
-				initialStatement,
-				specialOrderManufacturersStatement,
-				medicinalForms:
-					forms?.map((medicinalForm) => {
-						return {
-							...medicinalForm,
-							cautionaryAndAdvisoryLabels:
-								medicinalForm.cautionaryAndAdvisoryLabels?.map((label) => {
-									return {
-										label: label.number,
-										qualifier: label.qualifier,
-									};
-								}),
-						};
-					}) || [],
-			},
+			relatedTreatmentSummaries: treatmentSummaries
+				.filter(({ sections }) =>
+					sections.some((section) => section.content.includes(`/drug/${sid}`))
+				)
+				.map((treatmentSummary) => treatmentSummary.id),
 		};
 
 		createBnfNode(nodeContent, BnfNode.Drug, sourceNodesArgs);

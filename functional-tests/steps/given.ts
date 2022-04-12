@@ -12,7 +12,7 @@ Given(/^I open the (.*) page$/, async (pageName: PageName) => {
 	await waitForReact();
 
 	// Make sure the cookie banner is dismissed before we continue, as it's an overlay so blocks clicks
-	//await acceptCookieBanner();
+	await acceptCookieBanner();
 });
 
 Given(/^I am using a desktop size browser$/, () =>

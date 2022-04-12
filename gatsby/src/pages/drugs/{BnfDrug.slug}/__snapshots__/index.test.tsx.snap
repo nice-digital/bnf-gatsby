@@ -214,6 +214,10 @@ exports[`DrugPage should match snapshot for graphql query 1`] = `
 			treatmentCessation {
 				...SimplePot
 			}
+			relatedTreatmentSummaries {
+				title
+				slug
+			}
 			unlicensedUse {
 				...SimplePot
 			}
