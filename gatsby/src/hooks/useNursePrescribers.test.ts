@@ -39,7 +39,7 @@ export const mockNursePrescribersPagesQueryData: NursePrescribers = {
 );
 
 describe("useNursePrescribers", () => {
-	const [menuList, approvedList, treatmentSummariesList] =
+	const { menuList, approvedList, treatmentSummariesList } =
 		useNursePrescribers();
 
 	it("should return correct number of links for the menu", () => {

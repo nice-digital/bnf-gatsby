@@ -12,7 +12,7 @@ import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
 const NursePrescribersFormularyIndexPage: FC = () => {
 	const { siteTitleShort } = useSiteMetadata(),
-		[menuList, approvedList, treatmentSummariesList] = useNursePrescribers();
+		{ approvedList, treatmentSummariesList } = useNursePrescribers();
 
 	return (
 		<Layout>
@@ -22,7 +22,7 @@ const NursePrescribersFormularyIndexPage: FC = () => {
 				<Breadcrumb to="/" elementType={Link}>
 					{siteTitleShort}
 				</Breadcrumb>
-				<Breadcrumb>Nurse Prescribers' Formulary</Breadcrumb>
+				<Breadcrumb>Nurse Prescribers`&lsquo;` Formulary</Breadcrumb>
 			</Breadcrumbs>
 			<PageHeader id="content-start" heading={`Nurse Prescribers' Formulary`} />
 

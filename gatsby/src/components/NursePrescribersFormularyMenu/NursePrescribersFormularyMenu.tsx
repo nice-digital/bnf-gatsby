@@ -8,7 +8,7 @@ import { useNursePrescribers } from "@/hooks/useNursePrescribers";
 
 export const NursePrescribersFormularyMenu: FC = () => {
 	const { pathname } = useLocation(),
-		[menuList] = useNursePrescribers();
+		{ menuList } = useNursePrescribers();
 
 	return (
 		<StackedNav

@@ -24,11 +24,11 @@ const slugToHref = ({ title, slug }: SlugAndTitle): MenuPageLink => ({
  *
  * @returns The consolidated list of about pages
  */
-export const useNursePrescribers = (): [
-	menuList: MenuPageLink[],
-	approvedList: MenuPageLink[],
-	treatmentSummaryList: MenuPageLink[]
-] => {
+export const useNursePrescribers = (): {
+	menuList: MenuPageLink[];
+	approvedList: MenuPageLink[];
+	treatmentSummariesList: MenuPageLink[];
+} => {
 	const {
 		allBnfNursePrescribersFormularyIntroduction,
 		allBnfNursePrescribersFormularyTreatmentSummary,
@@ -68,5 +68,5 @@ export const useNursePrescribers = (): [
 		),
 	];
 
-	return [menuList, approvedList, treatmentSummariesList];
+	return { menuList, approvedList, treatmentSummariesList };
 };
