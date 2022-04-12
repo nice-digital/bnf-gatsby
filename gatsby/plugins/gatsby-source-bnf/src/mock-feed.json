@@ -16,6 +16,7 @@
     {
       "id": "drug-1",
       "title": "Drug 1",
+      "interactants": [],
       "medicinalForms": {
         "initialStatement": "There can be variation in the licensing of different medicines containing the same drug.",
         "medicinalForms": [

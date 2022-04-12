@@ -81,17 +81,6 @@ exports[`DrugPage should match snapshot for graphql query 1`] = `
 		bnfDrug(id: { eq: $id }) {
 			title
 			slug
-			interactant {
-				title
-				slug
-			}
-			constituentDrugs {
-				message
-				constituents {
-					title
-					slug
-				}
-			}
 			allergyAndCrossSensitivity {
 				...SimplePot
 			}
@@ -106,6 +95,13 @@ exports[`DrugPage should match snapshot for graphql query 1`] = `
 			}
 			cautions {
 				...SimplePot
+			}
+			constituentDrugs {
+				message
+				constituents {
+					title
+					slug
+				}
 			}
 			directionsForAdministration {
 				...SimplePot
@@ -140,6 +136,10 @@ exports[`DrugPage should match snapshot for graphql query 1`] = `
 				prepContent {
 					...IndicationsAndDoseContent
 				}
+			}
+			interactants {
+				title
+				slug
 			}
 			lessSuitableForPrescribing {
 				...SimplePot

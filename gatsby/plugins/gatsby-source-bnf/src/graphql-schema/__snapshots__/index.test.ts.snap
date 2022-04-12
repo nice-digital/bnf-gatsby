@@ -85,6 +85,9 @@ exports[`schema should match snapshot 1`] = `
 		\\"The interactant with the same sid as this drug, if it exists, otherwise null\\"
 		interactant: BnfInteractant @link(by: \\"sid\\", from: \\"sid\\")
 
+		\\"The list of individual interactants for the substance(s) in this drug. An empty list indicates that there are no interactants associated with this drug.\\"
+		interactants: [BnfInteractant!]! @link(by: \\"sid\\")
+
 		\\"Any treatment summaries that contain a link to back this drug\\"
 		relatedTreatmentSummaries: [BnfTreatmentSummary!]! @link
 
