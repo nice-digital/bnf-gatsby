@@ -493,6 +493,10 @@ exports[`InteractantPage should match snapshot for graphql query 1`] = `
 					severityOrder
 				}
 			}
+			supplementaryInformation {
+				title
+				information
+			}
 		}
 	}
 "

@@ -3,6 +3,7 @@ import React, { FC, useState, useEffect } from "react";
 import striptags from "striptags";
 
 import RemoveIcon from "@nice-digital/icons/lib/Remove";
+import { Alert } from "@nice-digital/nds-alert";
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
 import { Button } from "@nice-digital/nds-button";
 import { Input } from "@nice-digital/nds-input";
@@ -18,6 +19,8 @@ import { SEO } from "@/components/SEO/SEO";
 import { useIsClient } from "@/hooks/useIsClient";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
+import { type InteractionSupplementaryInformationNodeInput } from "plugins/gatsby-source-bnf/src/node-creation/interactions";
+
 import styles from "./{BnfInteractant.slug}.module.scss";
 
 export interface InteractantPageProps {
@@ -29,6 +32,7 @@ export interface InteractantPageProps {
 				slug: string;
 			};
 			interactions: InteractionProps[];
+			supplementaryInformation: InteractionSupplementaryInformationNodeInput | null;
 		};
 	};
 }
@@ -80,7 +84,7 @@ const sortInteractions = (
 
 const InteractantPage: FC<InteractantPageProps> = ({
 	data: {
-		bnfInteractant: { title, drug, interactions },
+		bnfInteractant: { title, drug, interactions, supplementaryInformation },
 	},
 }) => {
 	const isClient = useIsClient();
@@ -158,6 +162,17 @@ const InteractantPage: FC<InteractantPageProps> = ({
 					) : null
 				}
 			/>
+
+			{supplementaryInformation && (
+				<Alert type="info">
+					<h2 className="h4">{supplementaryInformation.title}</h2>
+					<div
+						dangerouslySetInnerHTML={{
+							__html: supplementaryInformation.information,
+						}}
+					></div>
+				</Alert>
+			)}
 
 			<p className={styles.interactionInformation}>
 				<span dangerouslySetInnerHTML={{ __html: title }} /> has the following
@@ -312,6 +327,10 @@ export const query = graphql`
 					severity
 					severityOrder
 				}
+			}
+			supplementaryInformation {
+				title
+				information
 			}
 		}
 	}

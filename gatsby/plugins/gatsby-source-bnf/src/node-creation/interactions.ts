@@ -1,8 +1,10 @@
 import { type SourceNodesArgs } from "gatsby";
+import { type Except } from "type-fest";
 
 import {
 	type FeedInteractionMessage,
 	type FeedInteractions,
+	type FeedSupplementaryInformation,
 } from "../downloader/types";
 import { BnfNode } from "../node-types";
 
@@ -13,6 +15,7 @@ export type InteractantNodeInput = {
 	sid: string;
 	interactions: InteractionNodeInput[];
 	title: string;
+	supplementaryInformation: InteractionSupplementaryInformationNodeInput | null;
 };
 
 export type InteractionNodeInput = {
@@ -20,8 +23,18 @@ export type InteractionNodeInput = {
 	messages: FeedInteractionMessage[];
 };
 
+export type InteractionSupplementaryInformationNodeInput = Except<
+	FeedSupplementaryInformation,
+	"interactantSid"
+>;
+
 export const createInteractionNodes = (
-	{ introduction, interactants, messages }: FeedInteractions,
+	{
+		introduction,
+		interactants,
+		messages,
+		supplementaryInformation,
+	}: FeedInteractions,
 	sourceNodesArgs: SourceNodesArgs
 ): void => {
 	createBnfNode(
@@ -41,11 +54,21 @@ export const createInteractionNodes = (
 
 		// Only create a node if there are some constituent interactions
 		if (interactions.length > 0) {
+			const supplementaryInfo = supplementaryInformation.find(
+				(i) => i.interactantSid === sid
+			);
+
 			const nodeContent: InteractantNodeInput = {
 				id: sourceNodesArgs.createNodeId(sid),
 				interactions,
 				sid,
 				title: title.trim(),
+				supplementaryInformation: supplementaryInfo
+					? {
+							title: supplementaryInfo.title,
+							information: supplementaryInfo.information,
+					  }
+					: null,
 			};
 
 			createBnfNode(nodeContent, BnfNode.Interactant, sourceNodesArgs);
