@@ -8,7 +8,7 @@ import { useNursePrescribers } from "@/hooks/useNursePrescribers";
 
 export const NursePrescribersFormularyMenu: FC = () => {
 	const { pathname } = useLocation(),
-		nursePrescribers = useNursePrescribers();
+		[menuList] = useNursePrescribers();
 
 	return (
 		<StackedNav
@@ -16,7 +16,7 @@ export const NursePrescribersFormularyMenu: FC = () => {
 			label="Nurse Prescribers' Formulary"
 			link={{ destination: "/nurse-prescribers-formulary/", elementType: Link }}
 		>
-			{nursePrescribers.map(({ href, title }) => (
+			{menuList.map(({ href, title }) => (
 				<StackedNavLink
 					key={href}
 					destination={href}

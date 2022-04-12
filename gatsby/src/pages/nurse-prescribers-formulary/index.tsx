@@ -1,4 +1,4 @@
-import { graphql, Link } from "gatsby";
+import { Link } from "gatsby";
 import React, { type FC } from "react";
 
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
@@ -9,26 +9,10 @@ import { Layout } from "@/components/Layout/Layout";
 import { SEO } from "@/components/SEO/SEO";
 import { useNursePrescribers } from "@/hooks/useNursePrescribers";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
-import { type RecordSection } from "@/utils";
 
-export type NursePrescribersFormularyIndexPageProps = {
-	data: {
-		bnfNursePrescribersFormularyIntroduction: {
-			title: string;
-			sections: RecordSection[];
-		};
-	};
-};
-
-const NursePrescribersFormularyIndexPage: FC<
-	NursePrescribersFormularyIndexPageProps
-> = ({
-	data: {
-		bnfNursePrescribersFormularyIntroduction: { title, sections },
-	},
-}) => {
+const NursePrescribersFormularyIndexPage: FC = () => {
 	const { siteTitleShort } = useSiteMetadata(),
-		treatmentSummaries = useNursePrescribers();
+		[menuList, approvedList, treatmentSummariesList] = useNursePrescribers();
 
 	return (
 		<Layout>
@@ -41,15 +25,18 @@ const NursePrescribersFormularyIndexPage: FC<
 				<Breadcrumb>Nurse Prescribers' Formulary</Breadcrumb>
 			</Breadcrumbs>
 			<PageHeader id="content-start" heading={`Nurse Prescribers' Formulary`} />
-			{/* TODO get this properly */}
-			<Link to={`/`}>
-				Approved list for prescribing by Community Practitioner Nurse
-				Prescribers
-			</Link>
-			{/* TODO split treatmentSummaries to not have the approved list */}
+
+			<ol className="list--unstyled">
+				{approvedList.map(({ href, title }) => (
+					<li key={href}>
+						<Link to={href} dangerouslySetInnerHTML={{ __html: title }} />
+					</li>
+				))}
+			</ol>
+
 			<h2>Treatment summaries</h2>
 			<ColumnList aria-label="Pages in the about section">
-				{treatmentSummaries.map(({ href, title }) => (
+				{treatmentSummariesList.map(({ href, title }) => (
 					<li key={href}>
 						<Link to={href} dangerouslySetInnerHTML={{ __html: title }} />
 					</li>
@@ -58,16 +45,5 @@ const NursePrescribersFormularyIndexPage: FC<
 		</Layout>
 	);
 };
-
-export const query = graphql`
-	{
-		bnfNursePrescribersFormularyIntroduction {
-			title
-			sections {
-				...RecordSection
-			}
-		}
-	}
-`;
 
 export default NursePrescribersFormularyIndexPage;
