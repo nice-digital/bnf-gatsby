@@ -39,33 +39,42 @@ export const mockNursePrescribersPagesQueryData: NursePrescribers = {
 );
 
 describe("useNursePrescribers", () => {
-	const nursePrescribers = useNursePrescribers();
+	const [menuList, approvedList, treatmentSummariesList] =
+		useNursePrescribers();
 
-	it("should return correct number of links", () => {
-		expect(nursePrescribers).toHaveLength(4);
+	it("should return correct number of links for the menu", () => {
+		expect(menuList).toHaveLength(4);
+	});
+
+	it("should return a single link for the approved prescription list", () => {
+		expect(approvedList).toHaveLength(1);
+	});
+
+	it("should return correct number of treatment summaries links", () => {
+		expect(treatmentSummariesList).toHaveLength(3);
 	});
 
 	it("should prefix slugs with about section path", () => {
-		expect(nursePrescribers[0]).toHaveProperty(
+		expect(menuList[0]).toHaveProperty(
 			"href",
 			"/nurse-prescribers-formulary/analgesics/"
 		);
 	});
 
 	it("should return pages from nurse prescribers feed section as first links in array", () => {
-		expect(nursePrescribers[0]).toStrictEqual({
+		expect(menuList[0]).toStrictEqual({
 			title: "Analgesics",
 			href: "/nurse-prescribers-formulary/analgesics/",
 		});
 
-		expect(nursePrescribers[1]).toStrictEqual({
+		expect(menuList[1]).toStrictEqual({
 			title: "Appliances and reagents for diabetes",
 			href: "/nurse-prescribers-formulary/appliances-and-reagents-for-diabetes/",
 		});
 	});
 
-	it("should return link to approved list page after about section links", () => {
-		expect(nursePrescribers[3]).toStrictEqual({
+	it("should return link to approved list page after about section links for the menu", () => {
+		expect(menuList[3]).toStrictEqual({
 			title:
 				"Approved list for prescribing by Community Practitioner Nurse Prescribers (NPF)",
 			href: "/nurse-prescribers-formulary/approved-list-for-prescribing-by-community-practitioner-nurse-prescribers-npf/",
