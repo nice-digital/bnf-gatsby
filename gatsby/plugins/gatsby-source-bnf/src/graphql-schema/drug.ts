@@ -20,6 +20,12 @@ export const drugSchema = `
 		"The review date, if available for this record."
 		reviewDate: Date @dateformat
 
+		"The lowest level primary classification to which this drug belongs. Note: it's nullable because not all drugs have a primary classification, e.g. Cranberry"
+		primaryClassification: ${BnfNode.Classification} @link
+
+		"The lowest level secondary classifications to which this drug belongs."
+		secondaryClassifications: [${BnfNode.Classification}!]! @link
+
 		"The interactant with the same sid as this drug, if it exists, otherwise null"
 		interactant: ${BnfNode.Interactant} @link(by: "sid", from: "sid")
 

@@ -66,13 +66,27 @@ export interface DrugPageProps {
 					specialOrderManufacturersStatement: string | null;
 					medicinalForms: WithSlug<{ form: string }>[];
 				};
+				primaryClassification: {
+					name: string;
+					allDrugs: SlugAndTitle[];
+				};
+				secondaryClassifications: {
+					name: string;
+					allDrugs: SlugAndTitle[];
+				}[];
 			}>;
 	};
 }
 
 const DrugPage: FC<DrugPageProps> = ({
 	data: {
-		bnfDrug: { slug, title, ...bnfDrug },
+		bnfDrug: {
+			slug,
+			title,
+			primaryClassification,
+			secondaryClassifications,
+			...bnfDrug
+		},
 	},
 }) => {
 	const { siteTitleShort } = useSiteMetadata(),
@@ -219,6 +233,20 @@ export const query = graphql`
 		bnfDrug(id: { eq: $id }) {
 			title
 			slug
+			primaryClassification {
+				name
+				allDrugs {
+					title
+					slug
+				}
+			}
+			secondaryClassifications {
+				name
+				allDrugs {
+					title
+					slug
+				}
+			}
 			interactant {
 				title
 				slug
