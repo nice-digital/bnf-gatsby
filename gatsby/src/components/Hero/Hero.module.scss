@@ -1,0 +1,91 @@
+@use '~@nice-digital/nds-core/scss/core';
+
+$nds-colour-hero-background: #fff;
+$nds-colour-text-inverse: #222;
+
+$nds-container-max-width: 1170; /* TODO settings */
+$nds-container-gutter: core.$nds-spacing-medium; /* TODO settings */
+
+/* TODO import mixins */
+@mixin nds-clearfix {
+  &::before,
+  &::after {
+    content: ' ';
+    display: table;
+  }
+
+  &::after {
+    clear: both;
+  }
+}
+
+@mixin nds-container {
+  margin: auto;
+  max-width: rem($nds-container-max-width);
+  width: 96%; // IE11 support for calc not consistent https://caniuse.com/calc (See "Known issues")
+  width: calc(100% - #{rem($nds-container-gutter * 2)});
+}
+
+.hero {
+  @include core.nds-links-inverse;
+  @include core.nds-inverse-button-focus;
+  background: $nds-colour-hero-background;
+  color: $nds-colour-text-inverse;
+  left: calc(50%);
+  margin-bottom: core.rem(core.$nds-spacing-large);
+  margin-left: -50vw;
+  margin-right: -50vw;
+  overflow: hidden;
+  position: relative;
+  right: calc(50%);
+  width: 100vw;
+
+  &__container {
+    @include nds-container;
+  }
+
+  &__body {
+    @include nds-clearfix;
+    margin-top: core.rem(core.$nds-spacing-large);
+    padding: core.rem(0 0 core.$nds-spacing-large);
+  }
+
+  // Container for title, lead and actions
+  &__copy {
+    margin-bottom: core.rem(core.$nds-spacing-large);
+  }
+
+  &__title {
+    @include core.nds-h1;
+  }
+
+  &__intro {
+    @include core.nds-lead;
+  }
+
+  // Optional footer
+  &__footer {
+    border-top: core.rem(core.$nds-spacing-xx-small) solid
+      core.$nds-colour-hero-border;
+    padding: core.rem(core.$nds-spacing-medium 0);
+
+    p,
+    ul {
+      margin: 0;
+      max-width: 100%;
+    }
+  }
+
+  @include core.mq($from: md) {
+    &__copy {
+      float: left;
+      margin-bottom: 0;
+      width: 55%;
+    }
+
+    &__extra {
+      float: right;
+      width: 35%;
+    }
+  }
+}
