@@ -37,7 +37,7 @@ const HomePage: FC<IndexProps> = ({
 
 			<div className={styles.hero} id="content-start">
 				<div className={styles.heroContainer}>
-					<div className={styles.titleIntro}>
+					<div className={styles.titleAndIntro}>
 						<h1 className={styles.title}>
 							{isBNF
 								? "British National Formulary (BNF)"
@@ -59,13 +59,13 @@ const HomePage: FC<IndexProps> = ({
 			</div>
 
 			<Grid gutter="loose">
-				<GridItem md={6} cols={12} className={styles.topicsColumn}>
+				<GridItem md={7} cols={12} className={styles.drugsColumn}>
 					<h2>Drugs A to Z</h2>
 					<p>
 						Drug monographs describe the uses, doses, safety issues, medicinal
 						forms and other considerations involved in the use of a drug.
 					</p>
-					<h3>Browse drugs</h3>
+					<h3 className="h4">Browse drugs</h3>
 					<Alphabet chunky data-tracking="drugs-a-to-z" elementType={Link}>
 						{alphabet.map((letter) => (
 							<Letter key={`alphabet_${letter}`} to={`/drugs/#${letter}`}>
@@ -75,31 +75,35 @@ const HomePage: FC<IndexProps> = ({
 					</Alphabet>
 				</GridItem>
 
-				<GridItem md={6} cols={12}>
-					<h2 id="interactions">Treatment summaries</h2>
+				<GridItem md={5} cols={12}>
+					<div className={styles.treatmentSummariesContainer}>
+						<h2 id="interactions">Treatment summaries</h2>
 
-					<p>
-						Browse an A-Z list of treatment summaries covering: - drug use
-						related to a particular body system - drug management or treatment
-						of common conditions - comparisons between groups of drugs.
-					</p>
-					<Button
-						to="/treatment-summaries/"
-						variant="primary"
-						elementType={Link}
-					>
-						View treatment summaries A-Z
-					</Button>
+						<p>
+							Browse an A-Z list of treatment summaries covering: - drug use
+							related to a particular body system - drug management or treatment
+							of common conditions - comparisons between groups of drugs.
+						</p>
+						<Button
+							to="/treatment-summaries/"
+							variant="primary"
+							elementType={Link}
+						>
+							View treatment summaries A-Z
+						</Button>
+					</div>
 
-					<h2 id="interactions">Interactions</h2>
+					<div className={styles.interactionsContainer}>
+						<h2 id="interactions">Interactions</h2>
 
-					<p>
-						Check for drug interactions. Includes information on the severity of
-						an interaction and the type of evidence to support it.
-					</p>
-					<Button to="/interactions/" variant="primary" elementType={Link}>
-						View interactions A-Z
-					</Button>
+						<p>
+							Check for drug interactions. Includes information on the severity
+							of an interaction and the type of evidence to support it.
+						</p>
+						<Button to="/interactions/" variant="primary" elementType={Link}>
+							View interactions A-Z
+						</Button>
+					</div>
 				</GridItem>
 			</Grid>
 
