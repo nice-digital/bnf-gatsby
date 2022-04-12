@@ -1,6 +1,6 @@
 import { type SourceNodesArgs } from "gatsby";
 
-import { type FeedDrug } from "../downloader/types";
+import { type FeedDrug, type FeedInteraction } from "../downloader/types";
 
 import { createDrugNodes, type DrugNodeInput } from "./drugs";
 
@@ -22,6 +22,10 @@ const drugs: FeedDrug[] = [
 			{
 				sid: "_987",
 				title: "An interactant",
+			},
+			{
+				sid: "_999999",
+				title: "No interactions for this interactant",
 			},
 		],
 		constituentDrugs: {
@@ -47,6 +51,14 @@ const drugs: FeedDrug[] = [
 	},
 ];
 
+const interactions: FeedInteraction[] = [
+	{
+		interactant1: "_987",
+		interactant2: "_111",
+		messages: [],
+	},
+];
+
 describe("createDrugNodes", () => {
 	const createNode = jest.fn();
 
@@ -58,13 +70,19 @@ describe("createDrugNodes", () => {
 	} as unknown as SourceNodesArgs;
 
 	it("should create node for every drug", () => {
-		createDrugNodes({ drugs, treatmentSummaries: [] }, sourceNodesArgs);
+		createDrugNodes(
+			{ drugs, treatmentSummaries: [], interactions },
+			sourceNodesArgs
+		);
 
 		expect(createNode).toHaveBeenCalledTimes(2);
 	});
 
 	it("should use drug id as phpid and sid as node id", () => {
-		createDrugNodes({ drugs, treatmentSummaries: [] }, sourceNodesArgs);
+		createDrugNodes(
+			{ drugs, treatmentSummaries: [], interactions },
+			sourceNodesArgs
+		);
 
 		const nodeInput = createNode.mock.calls[0][0] as DrugNodeInput;
 
@@ -73,7 +91,10 @@ describe("createDrugNodes", () => {
 	});
 
 	it("should map constituents to sid and exclude constituents that aren't drug monographs", () => {
-		createDrugNodes({ drugs, treatmentSummaries: [] }, sourceNodesArgs);
+		createDrugNodes(
+			{ drugs, treatmentSummaries: [], interactions },
+			sourceNodesArgs
+		);
 
 		const nodeInput = createNode.mock.calls[1][0] as DrugNodeInput;
 
@@ -85,7 +106,10 @@ describe("createDrugNodes", () => {
 	});
 
 	it("should map interactants to sid", () => {
-		createDrugNodes({ drugs, treatmentSummaries: [] }, sourceNodesArgs);
+		createDrugNodes(
+			{ drugs, treatmentSummaries: [], interactions },
+			sourceNodesArgs
+		);
 
 		const nodeInput = createNode.mock.calls[1][0] as DrugNodeInput;
 
@@ -136,6 +160,7 @@ describe("createDrugNodes", () => {
 						],
 					},
 				],
+				interactions,
 			},
 			sourceNodesArgs
 		);

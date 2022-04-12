@@ -6,6 +6,7 @@ import {
 	type SID,
 	type FeedDrug,
 	type FeedSimpleRecord,
+	type FeedInteraction,
 } from "../downloader/types";
 import { BnfNode } from "../node-types";
 
@@ -28,10 +29,11 @@ export type DrugNodeInput = Merge<
 export interface DrugCreationArgs {
 	drugs: FeedDrug[];
 	treatmentSummaries: FeedSimpleRecord[];
+	interactions: FeedInteraction[];
 }
 
 export const createDrugNodes = (
-	{ drugs, treatmentSummaries }: DrugCreationArgs,
+	{ drugs, treatmentSummaries, interactions }: DrugCreationArgs,
 	sourceNodesArgs: SourceNodesArgs
 ): void => {
 	drugs.forEach(({ constituentDrugs, interactants, id, sid, ...drug }) => {
@@ -54,7 +56,14 @@ export const createDrugNodes = (
 					sections.some((section) => section.content.includes(`/drug/${sid}`))
 				)
 				.map((treatmentSummary) => treatmentSummary.id),
-			interactants: interactants.map((interactant) => interactant.sid),
+			interactants: interactants
+				.filter((interactant) =>
+					// Only create links to interactants that have at least 1 interaction
+					interactions.some(({ interactant1, interactant2 }) =>
+						[interactant1, interactant2].includes(interactant.sid)
+					)
+				)
+				.map((interactant) => interactant.sid),
 		};
 
 		createBnfNode(nodeContent, BnfNode.Drug, sourceNodesArgs);

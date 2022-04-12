@@ -378,9 +378,9 @@ export interface FeedInteractant {
 /** The set of interactions between two interactants. */
 export interface FeedInteraction {
 	/** The SID of the first interactant. The SID can be found in the \"interactants\" field of Interactions and, where the interactant represents a drug monograph, the \"sid\" field of Drug. */
-	interactant1: string;
+	interactant1: SID;
 	/** The SID of the second interactant. The SID can be found in the \"interactants\" field of Interactions and, where the interactant represents a drug monograph, the \"sid\" field of Drug. */
-	interactant2: string;
+	interactant2: SID;
 	/** The interaction messages for the two given interactants. */
 	messages: FeedInteractionMessage[];
 }
