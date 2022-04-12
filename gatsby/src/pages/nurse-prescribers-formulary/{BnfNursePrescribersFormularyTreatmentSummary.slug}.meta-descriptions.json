@@ -32,35 +32,35 @@
     "bnfc": null
   },
   "eye-drop-dispensers": {
-    "bnf": null,
+    "bnf": "Read advice on eye drop dispensers for nurse prescribers, covers use cases and drug tariff information.",
     "bnfc": null
   },
   "general-guidance": {
-    "bnf": null,
+    "bnf": "Read general guidance for nurse prescribers; including children's prescriptions, excipients, adverse effects, medicines safety at home, and duplicate medicines.",
     "bnfc": null
   },
   "laxatives": {
-    "bnf": null,
+    "bnf": "Read advice on laxatives, covers bulk-forming laxatives, stimulant laxatives, faecal softeners, osmotic laxatives plus general advice on constipation.",
     "bnfc": null
   },
   "local-anaesthetics": {
-    "bnf": null,
+    "bnf": "Read advice on Lidocaine hydrochloride (lignocaine) as a local anaesthetic for nurse prescribers.",
     "bnfc": null
   },
   "nicotine-replacement-therapy": {
-    "bnf": null,
+    "bnf": "Read advice on nicotine replacement therapy for nurse prescribers covers nicotine patches, gum, lozenges, tablets, inhalator, nasal and oral sprays.",
     "bnfc": null
   },
   "other-skin-conditions": {
-    "bnf": null,
+    "bnf": "Read advice on treating skin conditions for nurse prescribers, covers pruritus (itchy skin), fungal infections and boils. Includes crotamiton and clotrimazole.",
     "bnfc": null
   },
   "peak-flow-meters": {
-    "bnf": null,
+    "bnf": "Read advice on peak flow meters for managing asthma in adults and children, covers standard-range and low-range flow meters and peak flow charts.",
     "bnfc": null
   },
   "prevention-of-neural-tube-defects": {
-    "bnf": null,
+    "bnf": "Read advice on folic acid supplements taken before and during pregnancy for the prevention of neural tube defects.",
     "bnfc": null
   },
   "removal-of-earwax": {
