@@ -5,6 +5,8 @@ import {
 	type PHPID,
 	type SID,
 	type FeedDrug,
+	FeedMedicinalForm,
+	FeedMedicinalForms,
 	type FeedSimpleRecord,
 } from "../downloader/types";
 import { BnfNode } from "../node-types";
@@ -20,6 +22,20 @@ export type DrugNodeInput = Merge<
 			message: string;
 			constituents: SID[];
 		};
+		medicinalForms: Merge<
+			FeedMedicinalForms,
+			{
+				medicinalForms?: Merge<
+					FeedMedicinalForm,
+					{
+						cautionaryAndAdvisoryLabels?: {
+							label: number;
+							qualifier?: string;
+						}[];
+					}
+				>[];
+			}
+		>;
 		relatedTreatmentSummaries: string[];
 	}
 >;
@@ -53,6 +69,23 @@ export const createDrugNodes = (
 						drugs.some((drug) => drug.sid === constituent.sid)
 					)
 					.map((d) => d.sid),
+			},
+			medicinalForms: {
+				initialStatement,
+				specialOrderManufacturersStatement,
+				medicinalForms:
+					forms?.map((medicinalForm) => {
+						return {
+							...medicinalForm,
+							cautionaryAndAdvisoryLabels:
+								medicinalForm.cautionaryAndAdvisoryLabels?.map((label) => {
+									return {
+										label: label.number,
+										qualifier: label.qualifier,
+									};
+								}),
+						};
+					}) || [],
 			},
 			relatedTreatmentSummaries: treatmentSummaries
 				.filter(({ sections }) =>
