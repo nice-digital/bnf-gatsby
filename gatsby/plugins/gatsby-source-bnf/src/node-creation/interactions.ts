@@ -54,7 +54,7 @@ export const createInteractionNodes = (
 
 		// Only create a node if there are some constituent interactions
 		if (interactions.length > 0) {
-			const supplementaryInfo = supplementaryInformation.find(
+			const supplementaryInfo = supplementaryInformation?.find(
 				(i) => i.interactantSid === sid
 			);
 
