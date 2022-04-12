@@ -4,6 +4,8 @@ $nds-include-spacing-modifiers: false;
 $nds-output-text-classes: false;
 $nds-output-visibility-classes: false;
 
+@import './settings';
+
 @import './lato';
 
 @import '~@nice-digital/design-system/scss/base';
@@ -56,4 +58,14 @@ footer {
 .evidence-grading-label {
   // Hide evidence grading until we decide whether we're keeping them
   display: none;
+}
+
+/* branding stripe for bnf/bnfc */
+
+.site-bnf main {
+  border-top: 10px solid $bnf-brand-colour;
+}
+
+.site-bnfc main {
+  border-top: 10px solid $bnfc-brand-colour;
 }

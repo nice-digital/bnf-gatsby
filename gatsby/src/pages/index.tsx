@@ -1,17 +1,11 @@
-import { listenerCount } from "process";
-
 import classnames from "classnames";
 import { graphql, Link } from "gatsby";
 import { FC } from "react";
 
 import { Alphabet, Letter } from "@nice-digital/nds-alphabet";
-import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
 import { Button } from "@nice-digital/nds-button";
 import { Grid, GridItem } from "@nice-digital/nds-grid";
-// import { Hero as NDSHero } from "@nice-digital/nds-hero";
-import { Panel } from "@nice-digital/nds-panel";
 
-import { Hero } from "@/components/Hero/Hero";
 import { Layout } from "@/components/Layout/Layout";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
@@ -41,21 +35,28 @@ const HomePage: FC<IndexProps> = ({
 		<Layout>
 			<SEO />
 
-			<div>
-				<h2>Last updated: </h2>
-				<time dateTime={lastUpdatedDate}>{lastUpdatedDateFormatted}</time>
-				<Link to="">See whats changed</Link>
+			<div className={styles.hero} id="content-start">
+				<div className={styles.heroContainer}>
+					<div className={styles.titleIntro}>
+						<h1 className={styles.title}>
+							{isBNF
+								? "British National Formulary (BNF)"
+								: "British National Formulary for Children (BNFC)"}
+						</h1>
+						<p className={styles.intro}>
+							Key information on the selection, prescribing, dispensing and
+							administration of medicines.
+						</p>
+					</div>
+					<div className={styles.lastUpdated}>
+						<h2 className="h5 mt--0">Last updated: </h2>
+						<time className="h3" dateTime={lastUpdatedDate}>
+							<strong>{lastUpdatedDateFormatted}</strong>
+						</time>
+						<Link to="">See what&apos;s changed</Link>
+					</div>
+				</div>
 			</div>
-
-			<Hero
-				id="content-start"
-				title={
-					isBNF
-						? "British National Formulary (BNF)"
-						: "British National Formulary for Children (BNFC)"
-				}
-				intro="Key information on the selection, prescribing, dispensing and administration of medicines."
-			/>
 
 			<Grid gutter="loose">
 				<GridItem md={6} cols={12} className={styles.topicsColumn}>
@@ -67,7 +68,7 @@ const HomePage: FC<IndexProps> = ({
 					<h3>Browse drugs</h3>
 					<Alphabet chunky data-tracking="drugs-a-to-z" elementType={Link}>
 						{alphabet.map((letter) => (
-							<Letter key={`alphabet_${letter}`} to={`/topics/#${letter}`}>
+							<Letter key={`alphabet_${letter}`} to={`/drugs/#${letter}`}>
 								{letter.toUpperCase()}
 							</Letter>
 						))}
@@ -110,9 +111,9 @@ const HomePage: FC<IndexProps> = ({
 
 					<p>
 						General guidance on prescribing and the use of medicines. Includes
-						guidance on <Link to>prescribing in palliative care</Link>,{" "}
-						<Link to>prescription writing</Link> and{" "}
-						<Link to>prescribing in renal impairment</Link>.
+						guidance on <Link to="">prescribing in palliative care</Link>,{" "}
+						<Link to="">prescription writing</Link> and{" "}
+						<Link to="">prescribing in renal impairment</Link>.
 					</p>
 				</GridItem>
 
