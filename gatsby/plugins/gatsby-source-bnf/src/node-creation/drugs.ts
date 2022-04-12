@@ -7,6 +7,7 @@ import {
 	type FeedDrug,
 	FeedMedicinalForm,
 	FeedMedicinalForms,
+	type FeedSimpleRecord,
 } from "../downloader/types";
 import { BnfNode } from "../node-types";
 
@@ -35,11 +36,17 @@ export type DrugNodeInput = Merge<
 				>[];
 			}
 		>;
+		relatedTreatmentSummaries: string[];
 	}
 >;
 
+export interface DrugCreationArgs {
+	drugs: FeedDrug[];
+	treatmentSummaries: FeedSimpleRecord[];
+}
+
 export const createDrugNodes = (
-	drugs: FeedDrug[],
+	{ drugs, treatmentSummaries }: DrugCreationArgs,
 	sourceNodesArgs: SourceNodesArgs
 ): void => {
 	drugs.forEach(({ medicinalForms, constituentDrugs, id, sid, ...drug }) => {
@@ -80,6 +87,11 @@ export const createDrugNodes = (
 						};
 					}) || [],
 			},
+			relatedTreatmentSummaries: treatmentSummaries
+				.filter(({ sections }) =>
+					sections.some((section) => section.content.includes(`/drug/${sid}`))
+				)
+				.map((treatmentSummary) => treatmentSummary.id),
 		};
 
 		createBnfNode(nodeContent, BnfNode.Drug, sourceNodesArgs);

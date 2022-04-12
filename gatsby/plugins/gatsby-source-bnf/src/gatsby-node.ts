@@ -5,11 +5,15 @@ import {
 } from "gatsby";
 import { type Schema } from "gatsby-plugin-utils";
 
-import { downloadFeed, type PluginOptions } from "./downloader/downloader";
-import { type Feed } from "./downloader/types";
+import {
+	downloadFeed,
+	downloadImageZIP,
+	type PluginOptions,
+} from "./downloader/downloader";
 import { htmlFieldExtension } from "./field-extensions/html";
 import { slugFieldExtension } from "./field-extensions/slug";
 import { schema } from "./graphql-schema";
+import { extractImageZIP } from "./images-unzipper";
 import { createCautionaryAndAdvisoryLabelsNodes } from "./node-creation/cautionary-advisory";
 import { createDrugNodes } from "./node-creation/drugs";
 import { createInteractionNodes } from "./node-creation/interactions";
@@ -38,28 +42,33 @@ export const createSchemaCustomization = ({
  */
 export const sourceNodes = async (
 	sourceNodesArgs: SourceNodesArgs,
-	options: PluginOptions
+	pluginOptions: PluginOptions
 ): Promise<undefined> => {
-	const {
-		reporter: { activityTimer },
-	} = sourceNodesArgs;
+	const { reporter } = sourceNodesArgs;
 
-	const { start, setStatus, end, panic } = activityTimer(
-		`Download data and creating BNF nodes`
-	);
-	start();
+	const zip = await downloadImageZIP(pluginOptions, reporter);
 
-	let feedData: Feed;
-	try {
-		feedData = await downloadFeed(options);
-		setStatus(`Downloaded feed data`);
-	} catch (e) {
-		panic(e);
+	if (!zip) {
+		reporter.panic("Image ZIP is null");
+		return;
+	}
+
+	const imagesBasePath = await extractImageZIP(zip, reporter),
+		feedData = await downloadFeed(pluginOptions, imagesBasePath, reporter);
+
+	const createNodesActivity = reporter.activityTimer(`Creating GraphQL nodes`);
+	createNodesActivity.start();
+
+	if (!feedData) {
+		reporter.panic("Feed is null");
 		return;
 	}
 
 	// Create all of our different nodes
-	createDrugNodes(feedData.drugs, sourceNodesArgs);
+	createDrugNodes(
+		{ drugs: feedData.drugs, treatmentSummaries: feedData.treatmentSummaries },
+		sourceNodesArgs
+	);
 
 	// Simple records nodes:
 	createSimpleRecordNodes(
@@ -97,8 +106,8 @@ export const sourceNodes = async (
 	if (feedData.woundManagement)
 		createWoundManagementNodes(feedData.woundManagement, sourceNodesArgs);
 
-	setStatus(`Created all nodes`);
-	end();
+	createNodesActivity.setStatus(`Created all nodes`);
+	createNodesActivity.end();
 
 	return;
 };

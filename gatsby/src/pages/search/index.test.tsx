@@ -278,6 +278,7 @@ describe("Search Page", () => {
 				expect(
 					screen.getByText(
 						(_, node) =>
+							node?.tagName === "P" &&
 							node?.textContent === "Showing 1 to 10 of 234 for aspirin"
 					)
 				).toHaveClass("page-header__lead");
