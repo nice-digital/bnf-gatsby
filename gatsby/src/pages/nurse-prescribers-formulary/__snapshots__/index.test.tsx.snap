@@ -34,7 +34,7 @@ exports[`NursePrescribersFormularyTreatmentSummaryPage should match snapshot for
           class="breadcrumbs__crumb"
         >
           <span>
-            Nurse Prescribers\`‘\` Formulary
+            Nurse Prescribers’ Formulary
           </span>
         </li>
       </ol>
@@ -66,7 +66,7 @@ exports[`NursePrescribersFormularyTreatmentSummaryPage should match snapshot for
       "@type": "ListItem",
       "position": 3,
       "item": {
-        "name": "Nurse Prescribers\`‘\` Formulary"
+        "name": "Nurse Prescribers’ Formulary"
       }
     }
   ]
