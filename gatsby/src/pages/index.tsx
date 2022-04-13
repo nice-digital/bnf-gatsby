@@ -6,6 +6,7 @@ import { Alphabet, Letter } from "@nice-digital/nds-alphabet";
 import { Button } from "@nice-digital/nds-button";
 import { Grid, GridItem } from "@nice-digital/nds-grid";
 
+import { LastUpdated } from "@/components/LastUpdated/LastUpdated";
 import { Layout } from "@/components/Layout/Layout";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
@@ -48,6 +49,7 @@ const HomePage: FC<IndexProps> = ({
 							administration of medicines.
 						</p>
 					</div>
+					<LastUpdated />
 					<div className={styles.lastUpdated}>
 						<h2 className="h5 mt--0">Last updated: </h2>
 						<time className="h3" dateTime={lastUpdatedDate}>
