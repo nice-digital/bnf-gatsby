@@ -22,6 +22,7 @@ import {
 	MedicinalFormsContent,
 	ImportantSafetyInfo,
 	RelatedTreatmentSummaries,
+	DrugsInClass,
 } from "@/components/DrugSections";
 import { Layout } from "@/components/Layout/Layout";
 import { SectionNav } from "@/components/SectionNav/SectionNav";
@@ -119,6 +120,23 @@ const DrugPage: FC<DrugPageProps> = ({
 					: null,
 			[bnfDrug.relatedTreatmentSummaries]
 		),
+		otherDrugsInClassSections = useMemo(
+			() => [
+				{
+					potName: "Other drugs in the class " + primaryClassification.name,
+					slug: primaryClassification.name,
+					drugs: primaryClassification.allDrugs,
+				},
+				...secondaryClassifications
+					.sort((a, b) => a.name.localeCompare(b.name))
+					.map((classification) => ({
+						potName: "Other drugs in the class " + classification.name,
+						slug: classification.name,
+						drugs: classification.allDrugs,
+					})),
+			],
+			[primaryClassification, secondaryClassifications]
+		),
 		/** Sections of a drug that have their own, specific component that isn't a `SimplePot` */
 		nonSimplePotComponents = useMemo(() => {
 			const {
@@ -134,8 +152,17 @@ const DrugPage: FC<DrugPageProps> = ({
 			potMap.set(constituents, Constituents);
 			potMap.set(medicinalForms, MedicinalForms);
 			potMap.set(relatedTreatmentSummaries, RelatedTreatmentSummaries);
+			otherDrugsInClassSections.forEach((classification) => {
+				potMap.set(classification, DrugsInClass);
+			});
 			return potMap;
-		}, [bnfDrug, constituents, medicinalForms, relatedTreatmentSummaries]);
+		}, [
+			bnfDrug,
+			constituents,
+			medicinalForms,
+			relatedTreatmentSummaries,
+			otherDrugsInClassSections,
+		]);
 
 	const orderedSections: BasePot[] = [
 		constituents,
@@ -168,7 +195,7 @@ const DrugPage: FC<DrugPageProps> = ({
 		bnfDrug.exceptionsToLegalCategory,
 		medicinalForms,
 		relatedTreatmentSummaries,
-		// TODO: other drugs in class (BNF-1244)
+		...otherDrugsInClassSections,
 	].filter(isTruthy);
 
 	return (
