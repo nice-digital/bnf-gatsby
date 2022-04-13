@@ -94,7 +94,7 @@ describe("NationalFunding", () => {
 			/>
 		);
 
-		const expectedHeading = drugContent[`${fieldName}Title`] as string;
+		const expectedHeading = drugContent[`${fieldName}Title`] + " For diazepam";
 
 		expect(
 			screen.getByRole("heading", {

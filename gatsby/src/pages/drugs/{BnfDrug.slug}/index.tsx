@@ -17,6 +17,7 @@ import {
 	IndicationsAndDose,
 	type IndicationsAndDoseProps,
 	MedicinalForms,
+	Monitoring,
 	NationalFunding,
 	type BasePot,
 	MedicinalFormsContent,
@@ -110,12 +111,14 @@ const DrugPage: FC<DrugPageProps> = ({
 			const {
 					importantSafetyInformation,
 					indicationsAndDose,
+					monitoringRequirements,
 					nationalFunding,
 				} = bnfDrug,
 				potMap = new Map<BasePot | null, ElementType>();
 			potMap.set(nationalFunding, NationalFunding);
 			potMap.set(indicationsAndDose, IndicationsAndDose);
 			potMap.set(importantSafetyInformation, ImportantSafetyInfo);
+			potMap.set(monitoringRequirements, Monitoring);
 			// Bespoke sections that aren't "pots" in the feed
 			potMap.set(constituents, Constituents);
 			potMap.set(medicinalForms, MedicinalForms);
@@ -140,7 +143,7 @@ const DrugPage: FC<DrugPageProps> = ({
 		bnfDrug.hepaticImpairment,
 		bnfDrug.renalImpairment,
 		bnfDrug.preTreatmentScreening,
-		// TODO: bnfDrug.monitoringRequirements (BNF-1269)
+		bnfDrug.monitoringRequirements,
 		bnfDrug.effectOnLaboratoryTests,
 		bnfDrug.treatmentCessation,
 		bnfDrug.directionsForAdministration,
