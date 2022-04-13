@@ -31,6 +31,34 @@ describe("slug field extension", () => {
 				"nurse-prescribers-formulary-analgesics"
 			);
 		});
+
+		it("should strip HTML and brackets", () => {
+			expect(
+				slugify("<span>Anti-D (Rh<sub>0</sub>) immunoglobulin</span>")
+			).toBe("anti-d-rh0-immunoglobulin");
+		});
+
+		it("should retain letter number combos", () => {
+			expect(slugify("C1-esterase inhibitor")).toBe("c1-esterase-inhibitor");
+		});
+
+		it("should replace apostrophes with hyphens", () => {
+			expect(slugify("Parkinson's disease")).toBe("parkinsons-disease");
+		});
+
+		it("should replace curly apostrophes with hyphens", () => {
+			expect(slugify("Parkinson’s disease")).toBe("parkinsons-disease");
+		});
+
+		it("should replace commas with hyphens", () => {
+			expect(slugify("Pain, Chronic")).toBe("pain-chronic");
+		});
+
+		it("should replace roman numerals without hyphens", () => {
+			expect(slugify("Factor VIIa (recombinant)")).toBe(
+				"factor-viia-recombinant"
+			);
+		});
 	});
 
 	describe("slugFieldExtension", () => {

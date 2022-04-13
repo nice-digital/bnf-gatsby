@@ -12,7 +12,13 @@ export const slugify = (toBeSlugified: string): string => {
 
 	// Some titles (e.g. `Frequently asked questions for the BNF and BNF <i>for Children</i> (BNFC)—general`)
 	// have HTML tags in so strip these before we slugify
-	return baseSlugify(striptags(toBeSlugified));
+	return baseSlugify(striptags(toBeSlugified), {
+		decamelize: false,
+		customReplacements: [
+			["'", ""],
+			["’", ""],
+		],
+	});
 };
 
 type SlugFieldExtensionOptions = {
