@@ -4,83 +4,12 @@
 
 // @use '@nice-digital/nds-core/scss/typography/_typography-helpers';
 
-@mixin nds-container {
-  margin: auto;
-  max-width: core.rem(core.$nds-container-max-width);
-  width: 96%; // IE11 support for calc not consistent https://caniuse.com/calc (See "Known issues")
-  width: calc(100% - #{core.rem(core.$nds-container-gutter * 2)});
-}
-
 .inlineList {
   margin-left: 0; /* TODO use typography helpers instead? */
 
   li {
     display: inline-block;
     margin-right: core.rem(core.$nds-spacing-small);
-  }
-}
-
-.hero {
-  @include core.nds-links-inverse;
-  @include core.nds-inverse-button-focus;
-  background: $nds-colour-hero-background;
-  color: $nds-colour-text-inverse;
-  left: calc(50%);
-  margin-bottom: core.rem(core.$nds-spacing-large);
-  margin-left: -50vw;
-  margin-right: -50vw;
-  overflow: hidden;
-
-  padding-bottom: core.rem(core.$nds-spacing-large);
-  padding-top: core.rem(core.$nds-spacing-large);
-
-  position: relative;
-  right: calc(50%);
-  width: 100vw;
-
-  a {
-    color: $nds-colour-text-inverse;
-
-    &:link,
-    &:visited {
-      color: core.$nds-colour-link;
-    }
-
-    &:hover {
-      color: core.$nds-colour-link-hover;
-    }
-
-    &:active {
-      color: $nds-colour-text-inverse;
-    }
-  }
-
-  .heroContainer {
-    @include nds-container;
-  }
-
-  .title {
-    @include core.nds-h1;
-  }
-
-  .intro {
-    @include core.nds-lead;
-    max-width: unset;
-  }
-
-  .lastUpdated {
-    background-color: #e9e9e9;
-    padding: core.rem(core.$nds-spacing-medium);
-
-    h2 {
-      font-weight: lighter;
-      margin: 0;
-    }
-
-    time {
-      display: block;
-      font-weight: 900;
-    }
   }
 }
 
@@ -97,26 +26,4 @@
 
 .treatmentSummariesContainer {
   margin-bottom: core.rem(core.$nds-spacing-large);
-}
-
-@include core.mq($from: md) {
-  .heroContainer {
-    border: 10px solid pink;
-    display: flex;
-    flex-flow: row;
-  }
-
-  .text {
-    // flex-basis: 80%;
-    // flex-grow: 3;
-    // flex: 3 1 auto;
-    flex-grow: 1;
-  }
-
-  .lastUpdated {
-    border: 10px solid red;
-    // flex-basis: 20%;
-    // flex-grow: 1;
-    // flex: 1 1 auto;
-  }
 }
