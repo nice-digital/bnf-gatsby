@@ -17,6 +17,8 @@ export {
 	type IndicationsAndDoseProps,
 } from "./IndicationsAndDose/IndicationsAndDose";
 
+export { Monitoring, type MonitoringProps } from "./Monitoring/Monitoring";
+
 export {
 	Interactions,
 	type InteractionsProps,

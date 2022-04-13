@@ -74,8 +74,7 @@
 }
 
 .clearFilterWrapper {
-  margin: 0 0 core.rem(core.$nds-spacing-medium)
-    core.rem(core.$nds-spacing-small);
+  margin: 0 0 0 core.rem(core.$nds-spacing-small);
 }
 
 .clearFilterButton {
@@ -116,6 +115,7 @@
 .resultCount {
   display: flex;
   font-weight: bold;
+  margin: 0 0 core.rem(core.$nds-spacing-large) 0;
 }
 
 .noResultsHeading {

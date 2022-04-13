@@ -2,18 +2,25 @@
 
 exports[`NationalFundingContent should match snapshot 1`] = `
 <section
-  aria-labelledby="nice-decisions"
+  aria-labelledby="nice-decisions-budesonide"
 >
   <h4
-    id="nice-decisions"
+    id="nice-decisions-budesonide"
   >
-    <strong>
-      NICE
-    </strong>
-     decisions
+    <span>
+      <strong>
+        NICE
+      </strong>
+       decisions
+    </span>
+    <span
+      class="visually-hidden"
+    >
+       For budesonide
+    </span>
   </h4>
   <ul
-    aria-labelledby="nice-decisions"
+    aria-labelledby="nice-decisions-budesonide"
     class="list--unstyled list"
   >
     <li>
