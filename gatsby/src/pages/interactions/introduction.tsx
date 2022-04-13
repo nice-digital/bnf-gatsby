@@ -11,7 +11,7 @@ import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 export interface InteractionsIntroductionPageProps {
 	data: {
 		bnfInteractionsIntroduction: {
-			sections: { content: string }[];
+			sections: { id: string; content: string }[];
 		};
 	};
 }
@@ -41,11 +41,9 @@ const InteractionsIndexPage: FC<InteractionsIntroductionPageProps> = ({
 
 			<PageHeader id="content-start" heading="Interactions: Introduction" />
 
-			<div
-				dangerouslySetInnerHTML={{
-					__html: data.bnfInteractionsIntroduction.sections[0].content,
-				}}
-			></div>
+			{data.bnfInteractionsIntroduction.sections.map(({ id, content }) => (
+				<div key={id} dangerouslySetInnerHTML={{ __html: content }}></div>
+			))}
 		</Layout>
 	);
 };
@@ -54,7 +52,7 @@ export const query = graphql`
 	{
 		bnfInteractionsIntroduction {
 			sections {
-				content
+				...RecordSection
 			}
 		}
 	}

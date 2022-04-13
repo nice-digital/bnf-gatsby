@@ -9,7 +9,10 @@ const props: InteractionsIntroductionPageProps = {
 	data: {
 		bnfInteractionsIntroduction: {
 			sections: [
-				{ content: "<p>I am some content for the introductions page</p>" },
+				{
+					id: "test-id",
+					content: "<p>I am some content for the introductions page</p>",
+				},
 			],
 		},
 	},
