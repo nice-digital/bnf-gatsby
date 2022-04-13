@@ -90,13 +90,15 @@ describe("Monitoring", () => {
 
 		it(`should render section for ${heading} with accessible name`, () => {
 			render(<Monitoring {...props} />);
-			expect(screen.getByRole("region", { name: heading })).toBeInTheDocument();
+			expect(
+				screen.getByRole("region", { name: `${heading} For furosemide` })
+			).toBeInTheDocument();
 		});
 
 		it(`should render heading 4 for ${heading}`, () => {
 			render(<Monitoring {...props} />);
 			expect(screen.getByRole("heading", { level: 4 })).toHaveTextContent(
-				heading
+				`${heading} For furosemide`
 			);
 		});
 

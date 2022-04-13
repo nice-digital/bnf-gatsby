@@ -33,6 +33,11 @@ exports[`Monitoring outer section should match snapshot 1`] = `
         id="patient-programmes-corticosteroids"
       >
         Patient monitoring programmes
+        <span
+          class="visually-hidden"
+        >
+           For all corticosteroids
+        </span>
       </h4>
       <div>
         <p>
@@ -64,6 +69,11 @@ exports[`Monitoring outer section should match snapshot 1`] = `
         id="patient-parameters-opioids"
       >
         Monitoring of patient parameters
+        <span
+          class="visually-hidden"
+        >
+           For all opioids
+        </span>
       </h4>
       <div>
         <p>
@@ -95,6 +105,11 @@ exports[`Monitoring outer section should match snapshot 1`] = `
         id="therapeutic-drug-co-codamol"
       >
         Therapeutic drug monitoring
+        <span
+          class="visually-hidden"
+        >
+           For co-codamol
+        </span>
       </h4>
       <div>
         <p>
@@ -126,6 +141,11 @@ exports[`Monitoring outer section should match snapshot 1`] = `
         id="patient-programmes-solpadol-caplets"
       >
         Patient monitoring programmes
+        <span
+          class="visually-hidden"
+        >
+           For Solpadol® caplets
+        </span>
       </h4>
       <div>
         <p>

@@ -14,6 +14,7 @@ export const Monitoring: FC<MonitoringProps> = (props) => {
 	return (
 		<PotSection {...props}>
 			{({
+				contentForPrefix,
 				content: {
 					contentFor,
 					monitoringOfPatientParameters,
@@ -31,6 +32,12 @@ export const Monitoring: FC<MonitoringProps> = (props) => {
 							>
 								<h4 id={`therapeutic-drug-${sectionSlugPostfix}`}>
 									Therapeutic drug monitoring
+									<span
+										className="visually-hidden"
+										dangerouslySetInnerHTML={{
+											__html: ` ${contentForPrefix} ${contentFor}`,
+										}}
+									/>
 								</h4>
 								<div
 									dangerouslySetInnerHTML={{
@@ -46,6 +53,12 @@ export const Monitoring: FC<MonitoringProps> = (props) => {
 							>
 								<h4 id={`patient-parameters-${sectionSlugPostfix}`}>
 									Monitoring of patient parameters
+									<span
+										className="visually-hidden"
+										dangerouslySetInnerHTML={{
+											__html: ` ${contentForPrefix} ${contentFor}`,
+										}}
+									/>
 								</h4>
 								<div
 									dangerouslySetInnerHTML={{
@@ -61,6 +74,12 @@ export const Monitoring: FC<MonitoringProps> = (props) => {
 							>
 								<h4 id={`patient-programmes-${sectionSlugPostfix}`}>
 									Patient monitoring programmes
+									<span
+										className="visually-hidden"
+										dangerouslySetInnerHTML={{
+											__html: ` ${contentForPrefix} ${contentFor}`,
+										}}
+									/>
 								</h4>
 								<div
 									dangerouslySetInnerHTML={{
