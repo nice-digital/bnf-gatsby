@@ -53,7 +53,7 @@ const HomePage: FC<IndexProps> = ({
 						<time className="h3" dateTime={lastUpdatedDate}>
 							<strong>{lastUpdatedDateFormatted}</strong>
 						</time>
-						<Link to="">See what&apos;s changed</Link>
+						<Link to="/about/changes/">See what&apos;s changed</Link>
 					</div>
 				</div>
 			</div>
@@ -115,9 +115,19 @@ const HomePage: FC<IndexProps> = ({
 
 					<p>
 						General guidance on prescribing and the use of medicines. Includes
-						guidance on <Link to="">prescribing in palliative care</Link>,{" "}
-						<Link to="">prescription writing</Link> and{" "}
-						<Link to="">prescribing in renal impairment</Link>.
+						guidance on{" "}
+						<Link to="/guidance/prescribing-in-palliative-care/">
+							prescribing in palliative care
+						</Link>
+						,
+						<Link to="/guidance/prescription-writing/">
+							prescription writing
+						</Link>
+						and
+						<Link to="/guidance/prescribing-in-renal-impairment/">
+							prescribing in renal impairment
+						</Link>
+						.
 					</p>
 				</GridItem>
 
@@ -145,7 +155,9 @@ const HomePage: FC<IndexProps> = ({
 
 				<GridItem md={6} cols={12}>
 					<h2>
-						<Link>Borderline substances</Link>
+						<Link to="/borderline-substance-taxonomy/">
+							Borderline substances
+						</Link>
 					</h2>
 
 					<p>
@@ -182,7 +194,9 @@ const HomePage: FC<IndexProps> = ({
 			<Grid gutter="loose">
 				<GridItem cols={12} sm={6} md={4}>
 					<h2 className="h3">
-						<Link>Approximate conversions and units</Link>
+						<Link to="/about/approximate-conversions-and-units/">
+							Approximate conversions and units
+						</Link>
 					</h2>
 
 					<p>
@@ -193,7 +207,7 @@ const HomePage: FC<IndexProps> = ({
 
 				<GridItem cols={12} sm={6} md={4}>
 					<h2 className="h3">
-						<Link>Cautionary and advisory labels</Link>
+						<Link to="/about/labels/">Cautionary and advisory labels</Link>
 					</h2>
 
 					<p>
@@ -204,7 +218,9 @@ const HomePage: FC<IndexProps> = ({
 
 				<GridItem cols={12} sm={6} md={4}>
 					<h2 className="h3">
-						<Link>Abbreviations and symbols</Link>
+						<Link to="/about/abbreviations-and-symbols/">
+							Abbreviations and symbols
+						</Link>
 					</h2>
 
 					<p>
@@ -220,10 +236,10 @@ const HomePage: FC<IndexProps> = ({
 				data-tracking={`${isBNF ? "BNF" : "BNFC"} home footer`}
 			>
 				<li>
-					<Link>What&apos;s changed?</Link>
+					<Link to="/about/changes/">What&apos;s changed?</Link>
 				</li>
 				<li>
-					<Link>About {isBNF ? "BNF" : "BNFC"}</Link>
+					<Link to="/about/">About {isBNF ? "BNF" : "BNFC"}</Link>
 				</li>
 			</ul>
 		</Layout>
