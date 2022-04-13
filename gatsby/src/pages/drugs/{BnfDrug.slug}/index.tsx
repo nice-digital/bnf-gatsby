@@ -23,6 +23,7 @@ import {
 	ImportantSafetyInfo,
 	RelatedTreatmentSummaries,
 	DrugsInClass,
+	Classification,
 } from "@/components/DrugSections";
 import { Layout } from "@/components/Layout/Layout";
 import { SectionNav } from "@/components/SectionNav/SectionNav";
@@ -67,14 +68,8 @@ export interface DrugPageProps {
 					specialOrderManufacturersStatement: string | null;
 					medicinalForms: WithSlug<{ form: string }>[];
 				};
-				primaryClassification: {
-					name: string;
-					allDrugs: SlugAndTitle[];
-				};
-				secondaryClassifications: {
-					name: string;
-					allDrugs: SlugAndTitle[];
-				}[];
+				primaryClassification: Classification | null;
+				secondaryClassifications: Classification[];
 			}>;
 	};
 }
@@ -120,21 +115,16 @@ const DrugPage: FC<DrugPageProps> = ({
 					: null,
 			[bnfDrug.relatedTreatmentSummaries]
 		),
-		otherDrugsInClassSections = useMemo(
-			() => [
-				{
-					potName: "Other drugs in the class " + primaryClassification.name,
-					slug: primaryClassification.name,
-					drugs: primaryClassification.allDrugs,
-				},
-				...secondaryClassifications
-					.sort((a, b) => a.name.localeCompare(b.name))
-					.map((classification) => ({
-						potName: "Other drugs in the class " + classification.name,
-						slug: classification.name,
-						drugs: classification.allDrugs,
-					})),
-			],
+		otherDrugsInClassSection = useMemo(
+			() =>
+				primaryClassification || secondaryClassifications.length > 0
+					? {
+							potName: "Other drugs in class",
+							slug: "other-drugs-in-class",
+							primaryClassification,
+							secondaryClassifications,
+					  }
+					: null,
 			[primaryClassification, secondaryClassifications]
 		),
 		/** Sections of a drug that have their own, specific component that isn't a `SimplePot` */
@@ -152,16 +142,14 @@ const DrugPage: FC<DrugPageProps> = ({
 			potMap.set(constituents, Constituents);
 			potMap.set(medicinalForms, MedicinalForms);
 			potMap.set(relatedTreatmentSummaries, RelatedTreatmentSummaries);
-			otherDrugsInClassSections.forEach((classification) => {
-				potMap.set(classification, DrugsInClass);
-			});
+			potMap.set(otherDrugsInClassSection, DrugsInClass);
 			return potMap;
 		}, [
 			bnfDrug,
 			constituents,
 			medicinalForms,
 			relatedTreatmentSummaries,
-			otherDrugsInClassSections,
+			otherDrugsInClassSection,
 		]);
 
 	const orderedSections: BasePot[] = [
@@ -195,7 +183,7 @@ const DrugPage: FC<DrugPageProps> = ({
 		bnfDrug.exceptionsToLegalCategory,
 		medicinalForms,
 		relatedTreatmentSummaries,
-		...otherDrugsInClassSections,
+		otherDrugsInClassSection,
 	].filter(isTruthy);
 
 	return (
@@ -261,15 +249,17 @@ export const query = graphql`
 			title
 			slug
 			primaryClassification {
-				name
-				allDrugs {
+				title: name
+				slug
+				drugs {
 					title
 					slug
 				}
 			}
 			secondaryClassifications {
-				name
-				allDrugs {
+				title: name
+				slug
+				drugs {
 					title
 					slug
 				}

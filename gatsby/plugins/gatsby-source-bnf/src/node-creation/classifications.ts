@@ -15,9 +15,7 @@ export type ClassificationNodeInput = {
 	moreSpecificClassifications: SID[];
 	parentClassification: SID | null;
 	rootClassification: SID;
-	allDrugs: SID[];
-	primaryDrugs: SID[];
-	secondaryDrugs: SID[];
+	drugs: SID[];
 };
 
 export interface ClassificationsCreationArgs {
@@ -41,7 +39,7 @@ export const createClassificationNodes = (
 				moreSpecificClassifications?.map((s) => s.id) || [],
 			parentClassification,
 			rootClassification,
-			allDrugs: drugs
+			drugs: drugs
 				.filter(
 					(drug) =>
 						hasLeafClassification(drug.primaryClassification, id) ||
@@ -49,19 +47,7 @@ export const createClassificationNodes = (
 							hasLeafClassification(classification, id)
 						)
 				)
-				.map(toSID),
-			primaryDrugs: drugs
-				.filter(({ primaryClassification }) =>
-					hasLeafClassification(primaryClassification, id)
-				)
-				.map(toSID),
-			secondaryDrugs: drugs
-				.filter(({ secondaryClassifications }) =>
-					secondaryClassifications?.some((classification) =>
-						hasLeafClassification(classification, id)
-					)
-				)
-				.map(toSID),
+				.map((drug) => drug.sid),
 		};
 
 		createBnfNode(nodeInput, BnfNode.Classification, sourceNodesArgs);
@@ -76,8 +62,6 @@ export const createClassificationNodes = (
 		createClassificationNode(classification, classification.id)
 	);
 };
-
-const toSID = (drug: FeedDrug) => drug.sid;
 
 const hasLeafClassification = (
 	drugClassification: FeedClassification | undefined,

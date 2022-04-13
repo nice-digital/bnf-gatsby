@@ -2,11 +2,14 @@ import { BnfNode } from "../node-types";
 
 export const classificationSchema = `
 	"""
-	All the properties for a single medical device monograph.
+	The classifications for a drug, as a small taxonomy, represented as a tree data structure.
 	"""
 	type ${BnfNode.Classification} implements Node @dontInfer {
 		"The name of the classification. May contain HTML mark-up."
 		name: String!
+
+		"The slugified and lowercased name"
+		slug: String! @slug(field: "name")
 
 		"The more specific classifications where available. For example, 'HIV-integrase inhibitors' is a more specific classification of 'antivirals'"
 		moreSpecificClassifications: [${BnfNode.Classification}!]! @link
@@ -18,12 +21,6 @@ export const classificationSchema = `
 		rootClassification: ${BnfNode.Classification}! @link
 
 		"All drugs in this class, regardless of whether they're primary or secondary"
-		allDrugs: [${BnfNode.Drug}!]! @link
-
-		"The drugs for which this classification is the primary"
-		primaryDrugs: [${BnfNode.Drug}!]! @link
-
-		"The drugs for which this classification is one of the secondaries"
-		secondaryDrugs: [${BnfNode.Drug}!]! @link
+		drugs: [${BnfNode.Drug}!]! @link
 	}
 `;

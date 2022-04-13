@@ -10,6 +10,7 @@ export {
 export {
 	DrugsInClass,
 	type DrugsInClassProps,
+	type Classification,
 } from "./DrugsInClass/DrugsInClass";
 
 export {
