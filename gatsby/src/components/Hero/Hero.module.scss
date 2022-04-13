@@ -1,12 +1,5 @@
 @use '~@nice-digital/nds-core/scss/core';
 
-// @mixin nds-container {
-//   margin: auto;
-//   max-width: core.rem(core.$nds-container-max-width);
-//   width: 96%; // IE11 support for calc not consistent https://caniuse.com/calc (See "Known issues")
-//   width: calc(100% - #{core.rem(core.$nds-container-gutter * 2)});
-// }
-
 .hero {
   @include core.nds-links-inverse;
   @include core.nds-inverse-button-focus;
@@ -54,9 +47,6 @@
   }
 
   .lastUpdated {
-    background-color: core.$nds-colour-nice-grey-3;
-    padding: core.rem(core.$nds-spacing-medium);
-
     h2 {
       @include core.nds-h5;
       margin: 0;
@@ -66,14 +56,14 @@
       @include core.nds-h3;
       display: block;
       font-weight: 900;
-      margin: 0;
+      margin: 0 0 core.rem(core.$nds-spacing-medium);
     }
   }
 }
 
 @include core.mq($from: md) {
   .heroContainer {
-    border: 10px solid pink;
+    align-items: center;
     display: flex;
     flex-flow: row;
   }
@@ -83,6 +73,7 @@
   }
 
   .lastUpdated {
-    border: 10px solid red;
+    background-color: core.$nds-colour-nice-grey-3;
+    padding: core.rem(core.$nds-spacing-medium);
   }
 }

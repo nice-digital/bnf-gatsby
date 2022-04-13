@@ -1,4 +1,4 @@
-import { graphql, Link } from "gatsby";
+import { Link } from "gatsby";
 import { FC } from "react";
 
 import { Alphabet, Letter } from "@nice-digital/nds-alphabet";
@@ -14,51 +14,13 @@ import styles from "./index.module.scss";
 
 const alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
 
-type IndexProps = {
-	data: {
-		bnfMetadata: {
-			lastUpdatedDate: string;
-			lastUpdatedDateFormatted: string;
-			runTag: string;
-		};
-	};
-};
-
-const HomePage: FC<IndexProps> = ({
-	data: {
-		bnfMetadata: { lastUpdatedDate, lastUpdatedDateFormatted, runTag },
-	},
-}: IndexProps) => {
+const HomePage: FC = () => {
 	const { isBNF } = useSiteMetadata();
 
 	return (
 		<Layout>
 			<SEO />
 			<Hero isBNF={isBNF} />
-
-			{/* <div className={styles.hero} id="content-start">
-				<div className={styles.heroContainer}>
-					<div className={styles.text}>
-						<h1 className={styles.title}>
-							{isBNF
-								? "British National Formulary (BNF)"
-								: "British National Formulary for Children (BNFC)"}
-						</h1>
-						<p className={styles.intro}>
-							Key information on the selection, prescribing, dispensing and
-							administration of medicines.
-						</p>
-					</div>
-					<div className={styles.lastUpdated}>
-						<h2 className="h5">Last updated: </h2>
-						<time className="h3" dateTime={lastUpdatedDate}>
-							<strong>{lastUpdatedDateFormatted}</strong>
-						</time>
-						<Link to="/about/changes/">See what&apos;s changed</Link>
-					</div>
-				</div>
-			</div> */}
-
 			<Grid gutter="loose">
 				<GridItem md={7} cols={12} className={styles.drugsColumn}>
 					<h2>Drugs A to Z</h2>
@@ -120,11 +82,11 @@ const HomePage: FC<IndexProps> = ({
 						<Link to="/guidance/prescribing-in-palliative-care/">
 							prescribing in palliative care
 						</Link>
-						,
+						,{" "}
 						<Link to="/guidance/prescription-writing/">
 							prescription writing
-						</Link>
-						and
+						</Link>{" "}
+						and{" "}
 						<Link to="/guidance/prescribing-in-renal-impairment/">
 							prescribing in renal impairment
 						</Link>
@@ -232,6 +194,7 @@ const HomePage: FC<IndexProps> = ({
 			</Grid>
 
 			<hr />
+
 			<ul
 				className={styles.inlineList}
 				data-tracking={`${isBNF ? "BNF" : "BNFC"} home footer`}
@@ -248,13 +211,3 @@ const HomePage: FC<IndexProps> = ({
 };
 
 export default HomePage;
-
-export const query = graphql`
-	{
-		bnfMetadata {
-			lastUpdatedDateFormatted: exportStarted(formatString: "D MMMM YYYY")
-			lastUpdatedDate: exportStarted
-			runTag
-		}
-	}
-`;
