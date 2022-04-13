@@ -1,25 +1,36 @@
-import React from "react";
+import { Link, graphql, useStaticQuery } from "gatsby";
+import * as React from "react";
 
-import styles from "./Hero.module.scss";
-
-type HeroProps = {
-	id: string;
-	title: string;
-	intro: string;
+type LastUpdatedDataQueryResult = {
+	bnfMetadata: {
+		lastUpdatedDate: string;
+		lastUpdatedDateFormatted: string;
+		runTag: string;
+	};
 };
 
-export const Hero: React.FC<HeroProps> = (props: HeroProps) => {
-	const { id, title, intro } = props;
+const query = graphql`
+	query LastUpdatedQuery {
+		bnfMetadata {
+			lastUpdatedDateFormatted: exportStarted(formatString: "D MMMM YYYY")
+			lastUpdatedDate: exportStarted
+			runTag
+		}
+	}
+`;
+
+export const Hero: React.FC = () => {
+	const {
+		bnfMetadata: { lastUpdatedDate, lastUpdatedDateFormatted },
+	} = useStaticQuery<LastUpdatedDataQueryResult>(query);
+
 	return (
-		<div className={styles.hero} id={id}>
-			<div className={styles.hero_container}>
-				<div className={styles.hero__body}>
-					<div className={styles.hero__copy}>
-						<h1 className={styles.hero__title}>{title}</h1>
-						{intro && <p className={styles.hero__intro}>{intro}</p>}
-					</div>
-				</div>
-			</div>
+		<div className="">
+			<h2 className="h5 mt--0">Last updated: </h2>
+			<time className="h3" dateTime={lastUpdatedDate}>
+				{lastUpdatedDateFormatted}
+			</time>
+			<Link to="/about/changes/">See what&apos;s changed</Link>
 		</div>
 	);
 };

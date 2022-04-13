@@ -63,9 +63,9 @@ footer {
 /* branding stripe for bnf/bnfc */
 
 .site-bnf main {
-  border-top: 10px solid $bnf-brand-colour;
+  border-top: core.rem(core.$nds-spacing-small) solid $bnf-brand-colour;
 }
 
 .site-bnfc main {
-  border-top: 10px solid $bnfc-brand-colour;
+  border-top: core.rem(core.$nds-spacing-small) solid $bnfc-brand-colour;
 }

@@ -1,4 +1,3 @@
-import classnames from "classnames";
 import { graphql, Link } from "gatsby";
 import { FC } from "react";
 
@@ -6,7 +5,7 @@ import { Alphabet, Letter } from "@nice-digital/nds-alphabet";
 import { Button } from "@nice-digital/nds-button";
 import { Grid, GridItem } from "@nice-digital/nds-grid";
 
-import { LastUpdated } from "@/components/LastUpdated/LastUpdated";
+import { Hero } from "@/components/Hero/Hero";
 import { Layout } from "@/components/Layout/Layout";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
@@ -35,10 +34,11 @@ const HomePage: FC<IndexProps> = ({
 	return (
 		<Layout>
 			<SEO />
+			<Hero isBNF={isBNF} />
 
-			<div className={styles.hero} id="content-start">
+			{/* <div className={styles.hero} id="content-start">
 				<div className={styles.heroContainer}>
-					<div className={styles.titleAndIntro}>
+					<div className={styles.text}>
 						<h1 className={styles.title}>
 							{isBNF
 								? "British National Formulary (BNF)"
@@ -49,16 +49,15 @@ const HomePage: FC<IndexProps> = ({
 							administration of medicines.
 						</p>
 					</div>
-					<LastUpdated />
 					<div className={styles.lastUpdated}>
-						<h2 className="h5 mt--0">Last updated: </h2>
+						<h2 className="h5">Last updated: </h2>
 						<time className="h3" dateTime={lastUpdatedDate}>
 							<strong>{lastUpdatedDateFormatted}</strong>
 						</time>
 						<Link to="/about/changes/">See what&apos;s changed</Link>
 					</div>
 				</div>
-			</div>
+			</div> */}
 
 			<Grid gutter="loose">
 				<GridItem md={7} cols={12} className={styles.drugsColumn}>
@@ -234,7 +233,7 @@ const HomePage: FC<IndexProps> = ({
 
 			<hr />
 			<ul
-				className={classnames(styles.inlineList, "mt--d")}
+				className={styles.inlineList}
 				data-tracking={`${isBNF ? "BNF" : "BNFC"} home footer`}
 			>
 				<li>

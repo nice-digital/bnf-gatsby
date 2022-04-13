@@ -106,16 +106,17 @@
     flex-flow: row;
   }
 
-  .titleAndIntro {
+  .text {
     // flex-basis: 80%;
     // flex-grow: 3;
-    flex: 3 1 auto;
+    // flex: 3 1 auto;
+    flex-grow: 1;
   }
 
   .lastUpdated {
     border: 10px solid red;
     // flex-basis: 20%;
     // flex-grow: 1;
-    flex: 1 1 auto;
+    // flex: 1 1 auto;
   }
 }
