@@ -3,6 +3,7 @@ import { Given } from "@cucumber/cucumber";
 import { openWebsite } from "@nice-digital/wdio-cucumber-steps/lib/support/action/openWebsite";
 import { setWindowSize } from "@nice-digital/wdio-cucumber-steps/lib/support/action/setWindowSize";
 
+import { acceptCookieBanner } from "../support/action/acceptCookieBanner";
 import { waitForReact } from "../support/action/waitForReact";
 import { getPath, PageName } from "../support/pagePaths";
 
