@@ -42,11 +42,11 @@ describe("slug field extension", () => {
 			expect(slugify("C1-esterase inhibitor")).toBe("c1-esterase-inhibitor");
 		});
 
-		it("should replace apostrophes with hyphens", () => {
+		it("should remove apostrophes", () => {
 			expect(slugify("Parkinson's disease")).toBe("parkinsons-disease");
 		});
 
-		it("should replace curly apostrophes with hyphens", () => {
+		it("should remove apostrophes", () => {
 			expect(slugify("Parkinson’s disease")).toBe("parkinsons-disease");
 		});
 
