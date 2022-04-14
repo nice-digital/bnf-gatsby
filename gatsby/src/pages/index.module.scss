@@ -2,10 +2,8 @@
 @use '@nice-digital/nds-core/scss/core';
 @import '../styles/settings';
 
-// @use '@nice-digital/nds-core/scss/typography/_typography-helpers';
-
 .inlineList {
-  margin-left: 0; /* TODO use typography helpers instead? */
+  margin-left: 0;
 
   li {
     display: inline-block;
@@ -14,16 +12,36 @@
 }
 
 .drugsColumn,
-.treatmentSummariesContainer,
-.interactionsContainer {
-  background-color: #fff;
-  padding: core.rem(core.$nds-spacing-large);
+.featureColumn {
+  margin-bottom: core.rem(core.$nds-spacing-large);
 
   h2 {
     margin-top: 0;
   }
 }
 
-.treatmentSummariesContainer {
-  margin-bottom: core.rem(core.$nds-spacing-large);
+.drugsColumn {
+  background-color: core.$nds-colour-nice-white;
+  border: 1px solid core.$nds-colour-nice-grey-2;
+  padding: core.rem(core.$nds-spacing-large);
+}
+
+.featureColumn {
+  display: flex;
+  flex-direction: column;
+
+  :first-child {
+    margin-bottom: core.rem(core.$nds-spacing-large);
+  }
+
+  > * {
+    background-color: core.$nds-colour-nice-white;
+    border: 1px solid core.$nds-colour-nice-grey-2;
+    flex-grow: 1;
+    padding: core.rem(core.$nds-spacing-large);
+
+    .btn {
+      margin-bottom: 0;
+    }
+  }
 }

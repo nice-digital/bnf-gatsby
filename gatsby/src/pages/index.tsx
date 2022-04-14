@@ -22,14 +22,19 @@ const HomePage: FC = () => {
 			<SEO />
 			<Hero isBNF={isBNF} />
 			<Grid gutter="loose">
-				<GridItem md={7} cols={12} className={styles.drugsColumn}>
+				<GridItem md={6} cols={12} className={styles.drugsColumn}>
 					<h2>Drugs A to Z</h2>
 					<p>
 						Drug monographs describe the uses, doses, safety issues, medicinal
 						forms and other considerations involved in the use of a drug.
 					</p>
 					<h3 className="h4">Browse drugs</h3>
-					<Alphabet chunky data-tracking="drugs-a-to-z" elementType={Link}>
+					<Alphabet
+						chunky
+						data-tracking="drugs-a-to-z"
+						elementType={Link}
+						className={styles.alphabet}
+					>
 						{alphabet.map((letter) => (
 							<Letter key={`alphabet_${letter}`} to={`/drugs/#${letter}`}>
 								{letter.toUpperCase()}
@@ -38,8 +43,8 @@ const HomePage: FC = () => {
 					</Alphabet>
 				</GridItem>
 
-				<GridItem md={5} cols={12}>
-					<div className={styles.treatmentSummariesContainer}>
+				<GridItem md={6} cols={12} className={styles.featureColumn}>
+					<div>
 						<h2 id="interactions">Treatment summaries</h2>
 
 						<p>
@@ -56,7 +61,7 @@ const HomePage: FC = () => {
 						</Button>
 					</div>
 
-					<div className={styles.interactionsContainer}>
+					<div>
 						<h2 id="interactions">Interactions</h2>
 
 						<p>
@@ -69,6 +74,8 @@ const HomePage: FC = () => {
 					</div>
 				</GridItem>
 			</Grid>
+
+			<hr />
 
 			<Grid gutter="loose">
 				<GridItem md={6} cols={12}>
