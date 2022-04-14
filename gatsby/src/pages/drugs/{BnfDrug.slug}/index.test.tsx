@@ -6,6 +6,8 @@ const drug: DrugPageProps["data"]["bnfDrug"] = {
 	// Note deliberate use of HTML within the title for testing stripping of tags
 	title: "Anti-D (Rh<sub>0</sub>) immunoglobulin",
 	slug: "anti-d-rh0-immunoglobulin",
+	primaryClassification: null,
+	secondaryClassifications: [],
 	allergyAndCrossSensitivity: null,
 	breastFeeding: null,
 	cautions: null,
@@ -586,6 +588,68 @@ describe("DrugPage", () => {
 						name: "Acne",
 					})
 				).toHaveAttribute("href", "/treatment-summaries/acne/");
+			});
+		});
+
+		describe("Other drugs in class", () => {
+			const primaryClassification = {
+				title: "Antacids",
+				slug: "antacids",
+				drugs: [
+					{
+						title: "Bismuth subsalicylate",
+						slug: "bismuth-subsalicylate",
+					},
+				],
+			};
+
+			it("should not render other drugs in class when there are none", () => {
+				render(
+					<DrugPage
+						data={{
+							bnfDrug: drug,
+						}}
+					/>
+				);
+
+				expect(
+					screen.queryByRole("link", { name: "Other drugs in class" })
+				).toBeNull();
+
+				expect(
+					screen.queryByRole("heading", {
+						level: 2,
+						name: "Other drugs in class",
+					})
+				).toBeNull;
+
+				expect(
+					screen.queryByRole("region", { name: "Other drugs in class" })
+				).toBeNull();
+			});
+
+			it("should render other drugs in class section and heading", () => {
+				render(
+					<DrugPage
+						data={{
+							bnfDrug: {
+								...drug,
+								primaryClassification,
+							},
+						}}
+					/>
+				);
+
+				expect(
+					screen.getByRole("heading", {
+						level: 2,
+						name: "Other drugs in class",
+					})
+				).toHaveAttribute("id", "other-drugs-in-class");
+
+				expect(
+					screen.getByRole("region", { name: "Other drugs in class" })
+				).toBeInTheDocument();
 			});
 		});
 	});

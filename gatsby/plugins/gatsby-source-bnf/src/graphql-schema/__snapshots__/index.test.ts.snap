@@ -48,6 +48,30 @@ exports[`schema should match snapshot 1`] = `
 	}
 
 
+	\\"\\"\\"
+	The classifications for a drug, as a small taxonomy, represented as a tree data structure.
+	\\"\\"\\"
+	type BnfClassification implements Node @dontInfer {
+		\\"The name of the classification. May contain HTML mark-up.\\"
+		name: String!
+
+		\\"The slugified and lowercased name\\"
+		slug: String! @slug(field: \\"name\\")
+
+		\\"The more specific classifications where available. For example, 'HIV-integrase inhibitors' is a more specific classification of 'antivirals'\\"
+		moreSpecificClassifications: [BnfClassification!]! @link
+
+		\\"The classification that's the direct parent, e.g. 'antivirals' is the parent of 'HIV-integrase inhibitors'\\"
+		parentClassification: BnfClassification @link
+
+		\\"The classification that's at the root of this taxonomy\\"
+		rootClassification: BnfClassification! @link
+
+		\\"All drugs in this class, regardless of whether they're primary or secondary\\"
+		drugs: [BnfDrug!]! @link
+	}
+
+
 	type BnfDentalPractitionersFormulary implements Node & BnfSimpleRecord @dontInfer {
 		\\"The title of the section. May contain HTML markup.\\"
 		title: String!
@@ -81,6 +105,12 @@ exports[`schema should match snapshot 1`] = `
 
 		\\"The review date, if available for this record.\\"
 		reviewDate: Date @dateformat
+
+		\\"The lowest level primary classification to which this drug belongs. Note: it's nullable because not all drugs have a primary classification, e.g. Cranberry\\"
+		primaryClassification: BnfClassification @link
+
+		\\"The lowest level secondary classifications to which this drug belongs.\\"
+		secondaryClassifications: [BnfClassification!]! @link
 
 		\\"The interactant with the same sid as this drug, if it exists, otherwise null\\"
 		interactant: BnfInteractant @link(by: \\"sid\\", from: \\"sid\\")

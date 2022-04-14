@@ -194,5 +194,21 @@
         ]
       }
     ]
-  }
+  },
+  "classifications": [
+    {
+      "id": "_656472841",
+      "name": "Drugs for neuromuscular disorders"
+    },
+    {
+      "id": "_779447034",
+      "name": "Drugs acting on the renin-angiotensin system",
+      "moreSpecificClassifications": [
+        {
+          "id": "_241907176",
+          "name": "ACE inhibitors"
+        }
+      ]
+    }
+  ]
 }
