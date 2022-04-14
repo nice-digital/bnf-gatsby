@@ -1,6 +1,6 @@
 import { type SourceNodesArgs } from "gatsby";
 
-import { type FeedDrug, type FeedInteraction } from "../downloader/types";
+import { type FeedDrug, type FeedInteractions } from "../downloader/types";
 
 import { createDrugNodes, type DrugNodeInput } from "./drugs";
 
@@ -51,13 +51,37 @@ const drugs: FeedDrug[] = [
 	},
 ];
 
-const interactions: FeedInteraction[] = [
-	{
-		interactant1: "_987",
-		interactant2: "_111",
-		messages: [],
+const interactions: FeedInteractions = {
+	interactants: [
+		{
+			sid: "_987",
+			title: "An interactant",
+		},
+		{
+			sid: "_111",
+			title: "An empty interactant",
+		},
+	],
+	messages: [
+		{
+			interactant1: "_987",
+			interactant2: "_111",
+			messages: [],
+		},
+	],
+	introduction: {
+		id: "PHP12",
+		title: "Interactions intro",
+		sections: [],
 	},
-];
+	supplementaryInformation: [
+		{
+			interactantSid: "_987",
+			title: "Some supplementary info",
+			information: "<p>Supplementary body</p>",
+		},
+	],
+};
 
 describe("createDrugNodes", () => {
 	const createNode = jest.fn();

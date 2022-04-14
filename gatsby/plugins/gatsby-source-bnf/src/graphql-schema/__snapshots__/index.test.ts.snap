@@ -357,6 +357,9 @@ exports[`schema should match snapshot 1`] = `
 
 		\\"An array of interactions related to this particular interactant\\"
 		interactions: [BnfInteraction!]!
+
+		\\"Additional information regarding specific interactants\\"
+		supplementaryInformation: [BnfInteractionSupplementaryInformation!]!
 	}
 
 	\\"\\"\\"
@@ -390,6 +393,16 @@ exports[`schema should match snapshot 1`] = `
 
 		\\"Whether the interaction is an additive effect (true) or not (false).\\"
 		additiveEffect: Boolean!
+	}
+
+	\\"\\"\\"
+	Additional information regarding specific interactants
+	\\"\\"\\"
+	type BnfInteractionSupplementaryInformation @dontInfer {
+		\\"The title of this piece of supplementary information\\"
+		title: String!
+		\\"An HTML block containing the body of this piece of supplementary information\\"
+		information: String!
 	}
 
 

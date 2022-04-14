@@ -146,6 +146,13 @@
         "sid": "_149824369",
         "title": "Abatacept"
       }
+    ],
+    "supplementaryInformation": [
+      {
+        "interactantSid": "_149824369",
+        "title": "Abatacept supplementary",
+        "information": "<p>Supplementary information body</p>"
+      }
     ]
   },
   "medicalDevices": [
