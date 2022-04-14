@@ -97,7 +97,7 @@ exports[`NursePrescribersFormularyTreatmentSummaryPage should match snapshot for
       Treatment summaries
     </h2>
     <ol
-      aria-label="Pages in the about section"
+      aria-label="Treatment summary pages"
       class="column-list column-list--boxed"
     >
       <li>

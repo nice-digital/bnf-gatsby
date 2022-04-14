@@ -22,7 +22,7 @@ const slugToHref = ({ title, slug }: SlugAndTitle): MenuPageLink => ({
  * - introduction
  * from the feed.
  *
- * @returns The consolidated list of about pages
+ * @returns both the consolidated list for the details page menu, and two separate lists for the index page.
  */
 export const useNursePrescribers = (): {
 	menuList: MenuPageLink[];

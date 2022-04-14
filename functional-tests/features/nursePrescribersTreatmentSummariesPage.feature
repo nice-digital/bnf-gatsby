@@ -5,16 +5,16 @@ Feature: Nurse prescribers formulary treatment summaries pages
   Background:
     Given I am using a desktop size browser
 
-  Scenario: Laxatives heading
+  Scenario: Stoma care heading
     When I open the stoma care page
     Then I expect that element "h1" matches the text "Stoma care"
 
-  Scenario: Laxatives left hand nav link
+  Scenario: Stoma care left hand nav link
     When I open the stoma care page
     And I click the "Local anaesthetics" link
     Then I expect that the path is "/nurse-prescribers-formulary/local-anaesthetics/"
 
-  Scenario: Laxatives breadcrumb
+  Scenario: Stoma Care breadcrumb
     Given I open the stoma care page
     When I click the Nurse Prescribers' Formulary breadcrumb
     Then I expect that the path is "/nurse-prescribers-formulary/"

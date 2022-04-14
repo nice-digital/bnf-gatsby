@@ -54,7 +54,7 @@ describe("useNursePrescribers", () => {
 		expect(treatmentSummariesList).toHaveLength(3);
 	});
 
-	it("should prefix slugs with about section path", () => {
+	it("should prefix slugs with nurse prescribers formulary section path", () => {
 		expect(menuList[0]).toHaveProperty(
 			"href",
 			"/nurse-prescribers-formulary/analgesics/"
@@ -73,7 +73,7 @@ describe("useNursePrescribers", () => {
 		});
 	});
 
-	it("should return link to approved list page after about section links for the menu", () => {
+	it("should return link to approved list page after treatment summary links for the menu", () => {
 		expect(menuList[3]).toStrictEqual({
 			title:
 				"Approved list for prescribing by Community Practitioner Nurse Prescribers (NPF)",

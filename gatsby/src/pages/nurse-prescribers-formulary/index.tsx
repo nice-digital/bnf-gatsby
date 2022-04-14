@@ -35,7 +35,7 @@ const NursePrescribersFormularyIndexPage: FC = () => {
 			</ol>
 
 			<h2>Treatment summaries</h2>
-			<ColumnList aria-label="Pages in the about section">
+			<ColumnList aria-label="Treatment summary pages">
 				{treatmentSummariesList.map(({ href, title }) => (
 					<li key={href}>
 						<Link to={href} dangerouslySetInnerHTML={{ __html: title }} />

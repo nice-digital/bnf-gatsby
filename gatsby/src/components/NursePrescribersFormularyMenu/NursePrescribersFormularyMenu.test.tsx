@@ -27,7 +27,7 @@ describe("NursePrescribersMenu", () => {
 		).toHaveAttribute("href", "/nurse-prescribers-formulary/");
 	});
 
-	it("should render anchor for each about page record from feed", () => {
+	it("should render anchor for each item from feed", () => {
 		render(<NursePrescribersFormularyMenu />);
 
 		expect(screen.getByRole("link", { name: "Analgesics" })).toHaveAttribute(
