@@ -3,7 +3,7 @@ import * as React from "react";
 
 import styles from "./Hero.module.scss";
 
-type LastUpdatedDataQueryResult = {
+export type LastUpdatedDataQueryResult = {
 	bnfMetadata: {
 		lastUpdatedDate: string;
 		lastUpdatedDateFormatted: string;

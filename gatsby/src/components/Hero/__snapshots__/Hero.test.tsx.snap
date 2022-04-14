@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Hero should match snapshot for BNFC 1`] = `
+<h1
+  class="title"
+>
+  British National Formulary for Children (BNFC)
+</h1>
+`;
+
+exports[`Hero test query args? 1`] = `"useStaticQuery"`;
