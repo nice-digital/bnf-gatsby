@@ -1,8 +1,9 @@
 import { graphql, Link } from "gatsby";
-import React, { FC, useState, useEffect } from "react";
+import React, { type FC, useState, useEffect } from "react";
 import striptags from "striptags";
 
 import RemoveIcon from "@nice-digital/icons/lib/Remove";
+import { Alert } from "@nice-digital/nds-alert";
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
 import { Button } from "@nice-digital/nds-button";
 import { Input } from "@nice-digital/nds-input";
@@ -10,7 +11,7 @@ import { PageHeader } from "@nice-digital/nds-page-header";
 
 import {
 	Interaction,
-	InteractionProps,
+	type InteractionProps,
 } from "@/components/Interaction/Interaction";
 import interactionStyles from "@/components/Interaction/Interaction.module.scss";
 import { Layout } from "@/components/Layout/Layout";
@@ -29,6 +30,7 @@ export interface InteractantPageProps {
 				slug: string;
 			};
 			interactions: InteractionProps[];
+			supplementaryInformation: { title: string; information: string }[];
 		};
 	};
 }
@@ -80,7 +82,7 @@ const sortInteractions = (
 
 const InteractantPage: FC<InteractantPageProps> = ({
 	data: {
-		bnfInteractant: { title, drug, interactions },
+		bnfInteractant: { title, drug, interactions, supplementaryInformation },
 	},
 }) => {
 	const isClient = useIsClient();
@@ -158,6 +160,18 @@ const InteractantPage: FC<InteractantPageProps> = ({
 					) : null
 				}
 			/>
+
+			{supplementaryInformation.map((supInf) => (
+				<Alert type="info" key={supInf.title}>
+					<h2 className="h4">{supInf.title}</h2>
+					<div
+						className={styles.alertText}
+						dangerouslySetInnerHTML={{
+							__html: supInf.information,
+						}}
+					></div>
+				</Alert>
+			))}
 
 			<p className={styles.interactionInformation}>
 				<span dangerouslySetInnerHTML={{ __html: title }} /> has the following
@@ -312,6 +326,10 @@ export const query = graphql`
 					severity
 					severityOrder
 				}
+			}
+			supplementaryInformation {
+				title
+				information
 			}
 		}
 	}

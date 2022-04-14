@@ -363,6 +363,18 @@ export interface FeedInteractions {
 	interactants: FeedInteractant[];
 	/** The interactant messages. */
 	messages: FeedInteraction[];
+	/** Additional information regarding specific interactants */
+	supplementaryInformation: FeedSupplementaryInformation[];
+}
+
+/** Additional information regarding specific interactants */
+export interface FeedSupplementaryInformation {
+	/** The SID of the interactant. The SID can be found in the \"interactants\" field of Interactions and, where the interactant represents a drug monograph, the \"sid\" field of Drug. */
+	interactantSid: SID;
+	/** The title of this piece of supplementary information */
+	title: string;
+	/** An HTML block containing the body of this piece of supplementary information */
+	information: string;
 }
 
 /**

@@ -75,6 +75,7 @@ const interactant: InteractantPageProps["data"]["bnfInteractant"] = {
 			],
 		},
 	],
+	supplementaryInformation: [],
 };
 
 const dataProp: InteractantPageProps["data"] = {
@@ -293,6 +294,51 @@ describe("InteractantPage", () => {
 					.getAllByRole("heading", { level: 3 })
 					.map((heading) => heading.textContent)
 			).toStrictEqual(["Test interactant", "Canagliflozin test"]);
+		});
+
+		it("should render supplementary information when supplied", () => {
+			render(
+				<InteractantPage
+					data={{
+						bnfInteractant: {
+							...interactant,
+							supplementaryInformation: [
+								{
+									title: "Test supplementary info 1",
+									information:
+										"<p>Supplementary info test information element 1</p>",
+								},
+								{
+									title: "Test supplementary info 2",
+									information:
+										"<p>Supplementary info test information element 2</p>",
+								},
+							],
+						},
+					}}
+				/>
+			);
+
+			expect(
+				screen.getByRole("heading", {
+					level: 2,
+					name: "Test supplementary info 1",
+				})
+			).toBeInTheDocument();
+
+			expect(
+				screen.getByRole("heading", {
+					level: 2,
+					name: "Test supplementary info 2",
+				})
+			).toBeInTheDocument();
+
+			expect(
+				screen.getByText("Supplementary info test information element 1")
+			).toBeInTheDocument();
+			expect(
+				screen.getByText("Supplementary info test information element 2")
+			).toBeInTheDocument();
 		});
 	});
 });

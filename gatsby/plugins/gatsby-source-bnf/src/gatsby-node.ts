@@ -69,7 +69,7 @@ export const sourceNodes = async (
 		{
 			drugs: feedData.drugs,
 			treatmentSummaries: feedData.treatmentSummaries,
-			interactions: feedData.interactions.messages,
+			interactions: feedData.interactions,
 		},
 		sourceNodesArgs
 	);
