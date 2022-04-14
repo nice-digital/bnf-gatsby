@@ -23,6 +23,8 @@ import {
 	MedicinalFormsContent,
 	ImportantSafetyInfo,
 	RelatedTreatmentSummaries,
+	Interactions,
+	InteractionsContent,
 } from "@/components/DrugSections";
 import { Layout } from "@/components/Layout/Layout";
 import { SectionNav } from "@/components/SectionNav/SectionNav";
@@ -46,6 +48,7 @@ type IgnoredDrugFields = keyof Pick<
 	| "secondaryClassifications"
 	| "reviewDate"
 	| "constituentDrugs"
+	| "interactants"
 	| "medicinalForms"
 	| "indicationsAndDose"
 >;
@@ -67,74 +70,102 @@ export interface DrugPageProps {
 					specialOrderManufacturersStatement: string | null;
 					medicinalForms: WithSlug<{ form: string }>[];
 				};
+				interactants: SlugAndTitle[];
 			}>;
 	};
 }
 
 const DrugPage: FC<DrugPageProps> = ({
 	data: {
-		bnfDrug: { slug, title, ...bnfDrug },
+		bnfDrug: {
+			slug,
+			title,
+			constituentDrugs,
+			importantSafetyInformation,
+			indicationsAndDose,
+			interactants,
+			medicinalForms,
+			monitoringRequirements,
+			nationalFunding,
+			relatedTreatmentSummaries,
+			...bnfDrug
+		},
 	},
 }) => {
 	const { siteTitleShort } = useSiteMetadata(),
 		titleNoHtml = striptags(title),
-		constituents = useMemo(
+		constituentsSection = useMemo(
 			() =>
-				bnfDrug.constituentDrugs && {
+				constituentDrugs && {
 					slug: "constituent-drugs",
 					potName: "Constituent drugs",
-					...bnfDrug.constituentDrugs,
+					...constituentDrugs,
 				},
-			[bnfDrug.constituentDrugs]
+			[constituentDrugs]
 		),
-		medicinalForms = useMemo(
+		interactionsSection = useMemo(
+			() =>
+				interactants.length > 0
+					? {
+							slug: "interactions",
+							potName: "Interactions",
+							interactants,
+					  }
+					: null,
+			[interactants]
+		),
+		medicinalFormsSection = useMemo(
 			() => ({
 				slug: "medicinal-forms",
 				potName: "Medicinal forms",
-				...bnfDrug.medicinalForms,
+				...medicinalForms,
 			}),
-			[bnfDrug.medicinalForms]
+			[medicinalForms]
 		),
-		relatedTreatmentSummaries = useMemo(
+		relatedTreatmentSummariesSection = useMemo(
 			() =>
-				bnfDrug.relatedTreatmentSummaries.length > 0
+				relatedTreatmentSummaries.length > 0
 					? {
 							slug: "related-treatment-summaries",
 							potName: "Related treatment summaries",
-							relatedTreatmentSummaries: bnfDrug.relatedTreatmentSummaries,
+							relatedTreatmentSummaries,
 					  }
 					: null,
-			[bnfDrug.relatedTreatmentSummaries]
+			[relatedTreatmentSummaries]
 		),
 		/** Sections of a drug that have their own, specific component that isn't a `SimplePot` */
 		nonSimplePotComponents = useMemo(() => {
-			const {
-					importantSafetyInformation,
-					indicationsAndDose,
-					monitoringRequirements,
-					nationalFunding,
-				} = bnfDrug,
-				potMap = new Map<BasePot | null, ElementType>();
+			const potMap = new Map<BasePot | null, ElementType>();
 			potMap.set(nationalFunding, NationalFunding);
 			potMap.set(indicationsAndDose, IndicationsAndDose);
 			potMap.set(importantSafetyInformation, ImportantSafetyInfo);
 			potMap.set(monitoringRequirements, Monitoring);
 			// Bespoke sections that aren't "pots" in the feed
-			potMap.set(constituents, Constituents);
-			potMap.set(medicinalForms, MedicinalForms);
-			potMap.set(relatedTreatmentSummaries, RelatedTreatmentSummaries);
+			potMap.set(constituentsSection, Constituents);
+			potMap.set(interactionsSection, Interactions);
+			potMap.set(medicinalFormsSection, MedicinalForms);
+			potMap.set(relatedTreatmentSummariesSection, RelatedTreatmentSummaries);
 			return potMap;
-		}, [bnfDrug, constituents, medicinalForms, relatedTreatmentSummaries]);
+		}, [
+			constituentsSection,
+			importantSafetyInformation,
+			indicationsAndDose,
+			interactionsSection,
+			medicinalFormsSection,
+			monitoringRequirements,
+			nationalFunding,
+			relatedTreatmentSummariesSection,
+		]);
 
 	const orderedSections: BasePot[] = [
-		constituents,
+		constituentsSection,
 		bnfDrug.drugAction,
-		bnfDrug.indicationsAndDose,
+		indicationsAndDose,
 		bnfDrug.unlicensedUse,
-		bnfDrug.importantSafetyInformation,
+		importantSafetyInformation,
 		bnfDrug.contraIndications,
 		bnfDrug.cautions,
-		// TODO: Interactions (BNF-1268)
+		interactionsSection,
 		bnfDrug.sideEffects,
 		bnfDrug.allergyAndCrossSensitivity,
 		bnfDrug.conceptionAndContraception,
@@ -143,7 +174,7 @@ const DrugPage: FC<DrugPageProps> = ({
 		bnfDrug.hepaticImpairment,
 		bnfDrug.renalImpairment,
 		bnfDrug.preTreatmentScreening,
-		bnfDrug.monitoringRequirements,
+		monitoringRequirements,
 		bnfDrug.effectOnLaboratoryTests,
 		bnfDrug.treatmentCessation,
 		bnfDrug.directionsForAdministration,
@@ -152,11 +183,11 @@ const DrugPage: FC<DrugPageProps> = ({
 		bnfDrug.handlingAndStorage,
 		bnfDrug.patientAndCarerAdvice,
 		bnfDrug.professionSpecificInformation,
-		bnfDrug.nationalFunding,
+		nationalFunding,
 		bnfDrug.lessSuitableForPrescribing,
 		bnfDrug.exceptionsToLegalCategory,
-		medicinalForms,
-		relatedTreatmentSummaries,
+		medicinalFormsSection,
+		relatedTreatmentSummariesSection,
 		// TODO: other drugs in class (BNF-1244)
 	].filter(isTruthy);
 
@@ -193,9 +224,20 @@ const DrugPage: FC<DrugPageProps> = ({
 					/>
 				</div>
 				<div className={styles.aside}>
+					{interactionsSection ? (
+						<Panel>
+							<h2 className="h5">Interactions</h2>
+							<InteractionsContent
+								interactants={interactionsSection.interactants}
+							/>
+						</Panel>
+					) : null}
 					<Panel>
 						<h2 className="h5">Medicinal forms and&nbsp;pricing</h2>
-						<MedicinalFormsContent drug={{ slug, title }} {...medicinalForms} />
+						<MedicinalFormsContent
+							drug={{ slug, title }}
+							{...medicinalFormsSection}
+						/>
 					</Panel>
 				</div>
 				<div className={styles.sections}>
@@ -222,17 +264,6 @@ export const query = graphql`
 		bnfDrug(id: { eq: $id }) {
 			title
 			slug
-			interactant {
-				title
-				slug
-			}
-			constituentDrugs {
-				message
-				constituents {
-					title
-					slug
-				}
-			}
 			allergyAndCrossSensitivity {
 				...SimplePot
 			}
@@ -247,6 +278,13 @@ export const query = graphql`
 			}
 			cautions {
 				...SimplePot
+			}
+			constituentDrugs {
+				message
+				constituents {
+					title
+					slug
+				}
 			}
 			directionsForAdministration {
 				...SimplePot
@@ -281,6 +319,10 @@ export const query = graphql`
 				prepContent {
 					...IndicationsAndDoseContent
 				}
+			}
+			interactants {
+				title
+				slug
 			}
 			lessSuitableForPrescribing {
 				...SimplePot
