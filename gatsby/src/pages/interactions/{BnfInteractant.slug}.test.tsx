@@ -171,6 +171,21 @@ describe("InteractantPage", () => {
 	});
 
 	describe("body", () => {
+		it("should render 'has no specific interactions information' when there are no interactions", () => {
+			render(
+				<InteractantPage
+					data={{ bnfInteractant: { ...interactant, interactions: [] } }}
+				/>
+			);
+			expect(
+				screen.getByText(
+					(_content, node) =>
+						node?.textContent ===
+						"Anti-D (Rh0) immunoglobulin has no specific interactions information."
+				)
+			).toBeInTheDocument();
+		});
+
 		it("should match snapshot for page body", () => {
 			render(<InteractantPage data={dataProp} />);
 			expect(screen.getByRole("main")).toMatchSnapshot();
