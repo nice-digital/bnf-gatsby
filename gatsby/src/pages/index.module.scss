@@ -39,9 +39,9 @@
     border: 1px solid core.$nds-colour-nice-grey-2;
     flex-grow: 1;
     padding: core.rem(core.$nds-spacing-large);
+  }
 
-    .btn {
-      margin-bottom: 0;
-    }
+  a {
+    margin-bottom: 0;
   }
 }
