@@ -16,6 +16,7 @@
     {
       "id": "drug-1",
       "title": "Drug 1",
+      "interactants": [],
       "medicinalForms": {
         "initialStatement": "There can be variation in the licensing of different medicines containing the same drug.",
         "medicinalForms": [
@@ -144,6 +145,13 @@
       {
         "sid": "_149824369",
         "title": "Abatacept"
+      }
+    ],
+    "supplementaryInformation": [
+      {
+        "interactantSid": "_149824369",
+        "title": "Abatacept supplementary",
+        "information": "<p>Supplementary information body</p>"
       }
     ]
   },
