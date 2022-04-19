@@ -54,5 +54,25 @@ describe("HomePage", () => {
 			const linkElementZ = screen.getByText("Z");
 			expect(linkElementZ).toHaveAttribute("href", "/drugs/#z");
 		});
+
+		it("should render 'Drugs A to Z' level 2 heading", () => {
+			render(<HomePage />);
+			const drugsAtoZHeading = screen.getByRole("heading", {
+				name: /drugs a to z/i,
+				level: 2,
+			});
+
+			expect(drugsAtoZHeading).toBeInTheDocument();
+		});
+
+		it("should render 'browse drugs' level 3 heading", () => {
+			render(<HomePage />);
+			const browseDrugsHeading = screen.getByRole("heading", {
+				name: /browse drugs/i,
+				level: 3,
+			});
+
+			expect(browseDrugsHeading).toBeInTheDocument();
+		});
 	});
 });

@@ -38,7 +38,12 @@ describe("Hero", () => {
 		).toMatchSnapshot();
 	});
 
-	it.only("should match snapshot for query", async () => {
+	it("should render the last updated date in the correct format", () => {
+		render(<Hero isBNF={false} />);
+		expect(screen.getByText("6 April 2022")).toBeInTheDocument();
+	});
+
+	it("should match snapshot for query", async () => {
 		render(<Hero isBNF={false} />);
 		const calls = useStaticQuery.mock.calls[0][0];
 		expect(calls).toMatchInlineSnapshot(`
