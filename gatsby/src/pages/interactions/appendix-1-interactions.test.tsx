@@ -3,15 +3,17 @@ import striptags from "striptags";
 
 import InteractionsIntroductionPage, {
 	type InteractionsIntroductionPageProps,
-} from "./introduction";
+} from "./appendix-1-interactions";
 
 const props: InteractionsIntroductionPageProps = {
 	data: {
 		bnfInteractionsIntroduction: {
+			title: "Test intro title",
 			sections: [
 				{
 					id: "test-id",
 					content: "<p>I am some content for the introductions page</p>",
+					title: "Test section title",
 				},
 			],
 		},
@@ -22,7 +24,7 @@ describe("InteractionsIntroductionPage", () => {
 	it("should set page title", async () => {
 		render(<InteractionsIntroductionPage {...props} />);
 		await waitFor(() => {
-			expect(document.title).toStartWith("Introduction");
+			expect(document.title).toStartWith("Appendix 1 Interactions");
 		});
 	});
 

@@ -11,20 +11,23 @@ import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 export interface InteractionsIntroductionPageProps {
 	data: {
 		bnfInteractionsIntroduction: {
-			sections: { id: string; content: string }[];
+			title: string;
+			sections: { id: string; content: string; title: string }[];
 		};
 	};
 }
 
 const InteractionsIndexPage: FC<InteractionsIntroductionPageProps> = ({
-	data,
+	data: {
+		bnfInteractionsIntroduction: { title, sections },
+	},
 }) => {
 	const { siteTitleShort } = useSiteMetadata();
 
 	return (
 		<Layout>
 			<SEO
-				title="Introduction | Interactions"
+				title="Appendix 1 Interactions | Interactions"
 				description="Read about how pharmacodynamic and pharmacokinetic interactions can occur, potential effects of these interactions, and how their severity is graded in the BNF."
 			/>
 
@@ -36,13 +39,16 @@ const InteractionsIndexPage: FC<InteractionsIntroductionPageProps> = ({
 				<Breadcrumb to="/interactions/" elementType={Link}>
 					Interactions
 				</Breadcrumb>
-				<Breadcrumb>Introduction</Breadcrumb>
+				<Breadcrumb>Appendix 1 Interactions</Breadcrumb>
 			</Breadcrumbs>
 
-			<PageHeader id="content-start" heading="Interactions: Introduction" />
+			<PageHeader id="content-start" heading={title} />
 
-			{data.bnfInteractionsIntroduction.sections.map(({ id, content }) => (
-				<div key={id} dangerouslySetInnerHTML={{ __html: content }}></div>
+			{sections.map(({ id, content, title }) => (
+				<section key={id}>
+					<h2>{title}</h2>
+					<div dangerouslySetInnerHTML={{ __html: content }}></div>
+				</section>
 			))}
 		</Layout>
 	);
@@ -51,9 +57,11 @@ const InteractionsIndexPage: FC<InteractionsIntroductionPageProps> = ({
 export const query = graphql`
 	{
 		bnfInteractionsIntroduction {
+			title
 			sections {
 				id
 				content
+				title
 			}
 		}
 	}

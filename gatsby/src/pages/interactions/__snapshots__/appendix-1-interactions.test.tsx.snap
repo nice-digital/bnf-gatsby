@@ -43,7 +43,7 @@ exports[`InteractionsIntroductionPage should match snapshot for page body 1`] = 
           class="breadcrumbs__crumb"
         >
           <span>
-            Introduction
+            Appendix 1 Interactions
           </span>
         </li>
       </ol>
@@ -83,7 +83,7 @@ exports[`InteractionsIntroductionPage should match snapshot for page body 1`] = 
       "@type": "ListItem",
       "position": 4,
       "item": {
-        "name": "Introduction"
+        "name": "Appendix 1 Interactions"
       }
     }
   ]
@@ -96,14 +96,19 @@ exports[`InteractionsIntroductionPage should match snapshot for page body 1`] = 
       <h1
         class="page-header__heading"
       >
-        Interactions: Introduction
+        Test intro title
       </h1>
     </div>
-    <div>
-      <p>
-        I am some content for the introductions page
-      </p>
-    </div>
+    <section>
+      <h2>
+        Test section title
+      </h2>
+      <div>
+        <p>
+          I am some content for the introductions page
+        </p>
+      </div>
+    </section>
   </div>
 </main>
 `;

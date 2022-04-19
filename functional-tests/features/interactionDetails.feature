@@ -37,4 +37,4 @@ Feature: Interactions details page
 
   Scenario: Link to introduction page
     When I click the "Find out more about BNF interactions information" link
-    Then I expect that the path is "/interactions/introduction/"
+    Then I expect that the path is "/interactions/appendix-1-interactions/"
