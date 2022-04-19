@@ -1,4 +1,14 @@
 {
+  "metadata": {
+    "publication": "bnf",
+    "runTag": "2022_04_05_0037_bnf",
+    "contentCut": "2022-04-05T00:37:35.532",
+    "exportStarted": "2022-04-05T00:39:02.86",
+    "dmdVersion": "2022.2.3",
+    "snomedInternationalVersion": "20210131 [R] (January 2021 Release)",
+    "snomedUKExtensionVersion": "32.7.0_20211124000001",
+    "snomedUKDrugExtensionVersion": "32.7.0_20211124000001"
+  },
   "about": [
     {
       "id": "about-1",

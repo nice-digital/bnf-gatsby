@@ -409,6 +409,37 @@ exports[`schema should match snapshot 1`] = `
 
 
 	\\"\\"\\"
+	A simple record that just contains a list of sections.
+	For example, treatment summaries, about and guidance records, interactions introduction, etc.
+	\\"\\"\\"
+	type BnfMetadata implements Node @dontInfer {
+		\\"The date and time that the export that produced this output started.\\"
+		exportStarted: Date! @dateformat
+
+		\\"The exporter run-tag of the publication. This is the internal RPS designator for the export that generated this output. This value should be given to RPS if there is a problem with this JSON so that we can correlate the content in our systems.\\"
+		runTag: String!
+
+		\\"The publication. A value of 'bnf' shows that the JSON contains the British National Formulary content, while a value of 'bnfc' shows that the JSON contains the BNF for Children content.\\"
+		publication: String!
+
+		\\"The output will contain records published in the CMS up to this date and time. The format used is ISO 8601-1:2019 compliant (without a time zone designator), e.g. '2021-07-06T00:37:25.918'.\\"
+		contentCut: Date! @dateformat
+
+		\\"The version of the Dictionary of Medicines and Devices (dm+d) dataset (which contains preparation data) used by the export that produced this output. The value is presented in yyyy.m.w format, e.g. '2021.5.4'.\\"
+		dmdVersion: String!
+
+		\\"The version of the international edition of SNOMED CT used by the export that produced this output.\\"
+		snomedInternationalVersion: String!
+
+		\\"The version of the UK clinical extension of SNOMED CT used by the export that produced this output.\\"
+		snomedUKExtensionVersion: String!
+
+		\\"The version of the UK drug extension of SNOMED CT used by the export that produced this output.\\"
+		snomedUKDrugExtensionVersion: String!
+	}
+
+
+	\\"\\"\\"
 	A single section of monitoring requirements content for a BNF drug or medical device. A monograph will include content from relevant drug classes (groups of drugs that share the same properties), the drug itself, and specific preparations where the properties differ from those of the generic drug. This record has these three parts of content in the drugClassContent, drugContent and prepContent fields respectively.
 	\\"\\"\\"
 	type BnfMonitoringPot {

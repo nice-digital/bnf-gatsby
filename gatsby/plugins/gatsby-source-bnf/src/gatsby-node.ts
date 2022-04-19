@@ -71,8 +71,6 @@ export const sourceNodes = async (
 		sourceNodesArgs
 	);
 
-	// TODO call createMetadataNode function meta data node (singular)
-
 	createMetadataNode(feedData.metadata, sourceNodesArgs);
 
 	// Simple records nodes:

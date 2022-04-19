@@ -1,18 +1,7 @@
 import { render, screen } from "@testing-library/react";
-// import { graphql } from "gatsby";
 import * as Gatsby from "gatsby";
 
 import { Hero, type LastUpdatedDataQueryResult } from "@/components/Hero/Hero";
-
-// export const mockLastUpdatedDataQueryData: LastUpdatedDataQueryResult = {
-// 	bnfMetadata: {
-// 		lastUpdatedDate: "2022-04-06T00:38:57.911",
-// 		lastUpdatedDateFormatted: "6 April 2022",
-// 		runTag: "2022_04_06_0037_bnf",
-// 	},
-// };
-
-// (useStaticQuery as jest.Mock).mockReturnValue(mockLastUpdatedDataQueryData);
 
 const metaDataQueryResult: LastUpdatedDataQueryResult = {
 	bnfMetadata: {
@@ -24,7 +13,9 @@ const metaDataQueryResult: LastUpdatedDataQueryResult = {
 
 const useStaticQuery = jest.spyOn(Gatsby, "useStaticQuery");
 
-useStaticQuery.mockImplementation(() => metaDataQueryResult);
+beforeAll(() => {
+	useStaticQuery.mockImplementation(() => metaDataQueryResult);
+});
 
 beforeEach(() => {
 	jest.clearAllMocks();
@@ -37,7 +28,6 @@ describe("Hero", () => {
 			name: /british national formulary \(bnf\)/i,
 		});
 	});
-	it.todo("test query args?");
 
 	it("should match snapshot for BNFC", () => {
 		render(<Hero isBNF={false} />);
@@ -48,9 +38,20 @@ describe("Hero", () => {
 		).toMatchSnapshot();
 	});
 
-	it.only("test query args?", async () => {
+	it.only("should match snapshot for query", async () => {
 		render(<Hero isBNF={false} />);
-		expect(useStaticQuery).toHaveBeenCalledWith({ bob: "bob" });
+		const calls = useStaticQuery.mock.calls[0][0];
+		expect(calls).toMatchInlineSnapshot(`
+		"
+			query LastUpdatedQuery {
+				bnfMetadata {
+					lastUpdatedDateFormatted: exportStarted(formatString: \\"D MMMM YYYY\\")
+					lastUpdatedDate: exportStarted
+					runTag
+				}
+			}
+		"
+	`);
 		expect(useStaticQuery).toMatchSnapshot();
 	});
 });
