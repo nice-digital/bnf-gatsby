@@ -32,7 +32,7 @@ export const SEO: FC<SEOProps> = ({
 		<>
 			<Helmet
 				title={title}
-				titleTemplate={`%s | ${siteTitleShort} content published by NICE`}
+				titleTemplate={`%s | ${siteTitleShort} | NICE`}
 				defaultTitle={`${siteTitleShort} (${siteTitleLong}) | NICE`}
 			>
 				<html lang="en-GB" className={globalCSSClassName} />
