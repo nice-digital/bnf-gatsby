@@ -56,64 +56,66 @@ export const createDrugNodes = (
 	}: DrugCreationArgs,
 	sourceNodesArgs: SourceNodesArgs
 ): void => {
-	drugs.forEach(({ medicinalForms, interactants, constituentDrugs, id, sid, ...drug }) => {
-		const {
-			initialStatement,
-			specialOrderManufacturersStatement,
-			medicinalForms: forms,
-		} = medicinalForms;
-
-		const nodeContent: DrugNodeInput = {
-			...drug,
-			id: sid,
-			sid,
-			phpid: id,
-			constituentDrugs: constituentDrugs && {
-				message: constituentDrugs.message,
-				constituents: constituentDrugs.constituents
-					.filter((constituent) =>
-						// Only create constituents that are monographs in their own right
-						drugs.some((drug) => drug.sid === constituent.sid)
-					)
-					.map((d) => d.sid),
-			},
-			medicinalForms: {
+	drugs.forEach(
+		({ medicinalForms, interactants, constituentDrugs, id, sid, ...drug }) => {
+			const {
 				initialStatement,
 				specialOrderManufacturersStatement,
-				medicinalForms:
-					forms?.map((medicinalForm) => {
-						return {
-							...medicinalForm,
-							cautionaryAndAdvisoryLabels:
-								medicinalForm.cautionaryAndAdvisoryLabels?.map((label) => {
-									return {
-										label: label.number,
-										qualifier: label.qualifier,
-									};
-								}),
-						};
-					}) || [],
-			},
-			relatedTreatmentSummaries: treatmentSummaries
-				.filter(({ sections }) =>
-					sections.some((section) => section.content.includes(`/drug/${sid}`))
-				)
-				.map((treatmentSummary) => treatmentSummary.id),
-			interactants: interactants
-				.filter(
-					(interactant) =>
-						// Only create links to interactants that have at least 1 interaction...
-						messages.some(({ interactant1, interactant2 }) =>
-							[interactant1, interactant2].includes(interactant.sid)
-						) ||
-						// ... Or have supplementary info associated. E.g. "Bowel cleansing preparations" has "Separation of administration" supplementary info
-						supplementaryInformation.some(
-							(s) => s.interactantSid === interactant.sid
-						)
-				)
-				.map((interactant) => interactant.sid),
-		};
+				medicinalForms: forms,
+			} = medicinalForms;
 
-		createBnfNode(nodeContent, BnfNode.Drug, sourceNodesArgs);
-	});
+			const nodeContent: DrugNodeInput = {
+				...drug,
+				id: sid,
+				sid,
+				phpid: id,
+				constituentDrugs: constituentDrugs && {
+					message: constituentDrugs.message,
+					constituents: constituentDrugs.constituents
+						.filter((constituent) =>
+							// Only create constituents that are monographs in their own right
+							drugs.some((drug) => drug.sid === constituent.sid)
+						)
+						.map((d) => d.sid),
+				},
+				medicinalForms: {
+					initialStatement,
+					specialOrderManufacturersStatement,
+					medicinalForms:
+						forms?.map((medicinalForm) => {
+							return {
+								...medicinalForm,
+								cautionaryAndAdvisoryLabels:
+									medicinalForm.cautionaryAndAdvisoryLabels?.map((label) => {
+										return {
+											label: label.number,
+											qualifier: label.qualifier,
+										};
+									}),
+							};
+						}) || [],
+				},
+				relatedTreatmentSummaries: treatmentSummaries
+					.filter(({ sections }) =>
+						sections.some((section) => section.content.includes(`/drug/${sid}`))
+					)
+					.map((treatmentSummary) => treatmentSummary.id),
+				interactants: interactants
+					.filter(
+						(interactant) =>
+							// Only create links to interactants that have at least 1 interaction...
+							messages.some(({ interactant1, interactant2 }) =>
+								[interactant1, interactant2].includes(interactant.sid)
+							) ||
+							// ... Or have supplementary info associated. E.g. "Bowel cleansing preparations" has "Separation of administration" supplementary info
+							supplementaryInformation.some(
+								(s) => s.interactantSid === interactant.sid
+							)
+					)
+					.map((interactant) => interactant.sid),
+			};
+
+			createBnfNode(nodeContent, BnfNode.Drug, sourceNodesArgs);
+		}
+	);
 };
