@@ -4,24 +4,40 @@ import React, { FC } from "react";
 import { DetailsPageLayout } from "@/components/DetailsPageLayout/DetailsPageLayout";
 import { NursePrescribersFormularyMenu } from "@/components/NursePrescribersFormularyMenu/NursePrescribersFormularyMenu";
 import { RecordSectionsContent } from "@/components/RecordSectionsContent/RecordSectionsContent";
-import { type RecordSection } from "@/utils";
+import { useSiteMetadata } from "@/hooks/useSiteMetadata";
+import { MetaDescriptionsMap, SlugAndTitle, type RecordSection } from "@/utils";
 
-export type NursePrescribersFormularyIntroductionPageProps = {
+import metas from "./{BnfNursePrescribersFormularyApprovedList.slug}.meta-descriptions.json";
+
+export type NursePrescribersFormularyApprovedListPageProps = {
 	data: {
-		bnfNursePrescribersFormularyIntroduction: {
-			title: string;
+		bnfNursePrescribersFormularyIntroduction: SlugAndTitle & {
 			sections: RecordSection[];
 		};
 	};
+	location: {
+		pathname: string;
+	};
 };
 
-const NursePrescribersFormularyIntroductionPage: FC<
-	NursePrescribersFormularyIntroductionPageProps
+const NursePrescribersFormularyApprovedListPage: FC<
+	NursePrescribersFormularyApprovedListPageProps
 > = ({
 	data: {
-		bnfNursePrescribersFormularyIntroduction: { title, sections },
+		bnfNursePrescribersFormularyIntroduction: { title, sections, slug },
 	},
+	location: { pathname },
 }) => {
+	const { isBNF } = useSiteMetadata(),
+		metaDescription = (metas as MetaDescriptionsMap)[slug]?.[
+			isBNF ? "bnf" : "bnfc"
+		];
+
+	if (typeof metaDescription !== "string")
+		throw new Error(
+			`Couldn't find meta description for page '${title}' at path '${pathname}'. Has the page been added or renamed?`
+		);
+
 	return (
 		<DetailsPageLayout
 			titleHtml={title}
@@ -38,6 +54,7 @@ const NursePrescribersFormularyIntroductionPage: FC<
 				id: slug,
 				title,
 			}))}
+			metaDescription={metaDescription}
 		>
 			<RecordSectionsContent sections={sections} />
 		</DetailsPageLayout>
@@ -48,6 +65,7 @@ export const query = graphql`
 	query {
 		bnfNursePrescribersFormularyIntroduction {
 			title
+			slug
 			sections {
 				...RecordSection
 			}
@@ -55,4 +73,4 @@ export const query = graphql`
 	}
 `;
 
-export default NursePrescribersFormularyIntroductionPage;
+export default NursePrescribersFormularyApprovedListPage;
