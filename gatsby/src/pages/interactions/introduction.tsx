@@ -52,7 +52,8 @@ export const query = graphql`
 	{
 		bnfInteractionsIntroduction {
 			sections {
-				...RecordSection
+				id
+				content
 			}
 		}
 	}
