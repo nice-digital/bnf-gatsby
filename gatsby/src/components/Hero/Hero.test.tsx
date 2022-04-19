@@ -40,7 +40,7 @@ describe("Hero", () => {
 
 	it("should render the last updated date in the correct format", () => {
 		render(<Hero isBNF={false} />);
-		expect(screen.getByText("6 April 2022")).toBeInTheDocument();
+		expect(screen.getByText(/6 april 2022/i)).toBeInTheDocument();
 	});
 
 	it("should match snapshot for query", async () => {
