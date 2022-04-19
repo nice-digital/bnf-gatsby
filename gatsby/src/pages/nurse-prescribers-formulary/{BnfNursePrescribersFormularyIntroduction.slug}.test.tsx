@@ -7,7 +7,7 @@ import { mockNursePrescribersPagesQueryData } from "@/hooks/useNursePrescribers.
 import NursePrescribersFormularyApprovedListPage, {
 	type NursePrescribersFormularyApprovedListPageProps,
 	query,
-} from "./{BnfNursePrescribersFormularyApprovedList.slug}";
+} from "./{BnfNursePrescribersFormularyIntroduction.slug}";
 
 const pageProps: NursePrescribersFormularyApprovedListPageProps = {
 	data: {

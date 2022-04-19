@@ -7,7 +7,7 @@ import { RecordSectionsContent } from "@/components/RecordSectionsContent/Record
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 import { MetaDescriptionsMap, SlugAndTitle, type RecordSection } from "@/utils";
 
-import metas from "./{BnfNursePrescribersFormularyApprovedList.slug}.meta-descriptions.json";
+import metas from "./{BnfNursePrescribersFormularyIntroduction.slug}.meta-descriptions.json";
 
 export type NursePrescribersFormularyApprovedListPageProps = {
 	data: {
