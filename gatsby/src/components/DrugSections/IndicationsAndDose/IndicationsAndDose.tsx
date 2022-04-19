@@ -41,6 +41,7 @@ export const IndicationsAndDose: FC<IndicationsAndDoseProps> = ({
 				<button
 					type="button"
 					className={styles.toggleAllButton}
+					data-tracking={`${defaultOpen ? "Hide" : "Show"} all sections`}
 					onClick={toggleAllSectionsClickHandler}
 				>
 					{defaultOpen ? "Hide" : "Show"} all {numberOfSections} sections

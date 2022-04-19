@@ -293,14 +293,10 @@ exports[`InteractantPage body should match snapshot for page body 1`] = `
                       class="supplementaryInfo"
                     >
                       <dt>
-                        <strong>
-                          Severity:
-                        </strong>
+                        Severity:
                       </dt>
                       <dd>
-                        <strong>
-                          Normal
-                        </strong>
+                        Normal
                       </dd>
                     </dl>
                   </div>
@@ -374,14 +370,10 @@ exports[`InteractantPage body should match snapshot for page body 1`] = `
                       class="supplementaryInfo"
                     >
                       <dt>
-                        <strong>
-                          Severity:
-                        </strong>
+                        Severity:
                       </dt>
                       <dd>
-                        <strong>
-                          Moderate
-                        </strong>
+                        Moderate
                       </dd>
                       <dt>
                         Evidence:
@@ -422,14 +414,10 @@ exports[`InteractantPage body should match snapshot for page body 1`] = `
                       class="supplementaryInfo"
                     >
                       <dt>
-                        <strong>
-                          Severity:
-                        </strong>
+                        Severity:
                       </dt>
                       <dd>
-                        <strong>
-                          Normal
-                        </strong>
+                        Normal
                       </dd>
                     </dl>
                   </div>
@@ -447,14 +435,10 @@ exports[`InteractantPage body should match snapshot for page body 1`] = `
                       class="supplementaryInfo"
                     >
                       <dt>
-                        <strong>
-                          Severity:
-                        </strong>
+                        Severity:
                       </dt>
                       <dd>
-                        <strong>
-                          Severe
-                        </strong>
+                        Severe
                       </dd>
                     </dl>
                   </div>
@@ -492,6 +476,10 @@ exports[`InteractantPage should match snapshot for graphql query 1`] = `
 					severity
 					severityOrder
 				}
+			}
+			supplementaryInformation {
+				title
+				information
 			}
 		}
 	}

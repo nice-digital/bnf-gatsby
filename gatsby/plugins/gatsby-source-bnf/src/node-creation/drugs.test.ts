@@ -1,6 +1,6 @@
 import { type SourceNodesArgs } from "gatsby";
 
-import { type FeedDrug } from "../downloader/types";
+import { type FeedDrug, type FeedInteractions } from "../downloader/types";
 
 import { createDrugNodes, type DrugNodeInput } from "./drugs";
 
@@ -9,6 +9,7 @@ const drugs: FeedDrug[] = [
 		title: "Drug 1",
 		id: "PHP123",
 		sid: "_234",
+		interactants: [],
 		medicinalForms: {
 			initialStatement: "No forms listed",
 		},
@@ -17,6 +18,16 @@ const drugs: FeedDrug[] = [
 		title: "Drug 2",
 		id: "PHP987",
 		sid: "_876",
+		interactants: [
+			{
+				sid: "_987",
+				title: "An interactant",
+			},
+			{
+				sid: "_999999",
+				title: "No interactions for this interactant",
+			},
+		],
 		constituentDrugs: {
 			message:
 				"The properties listed below are those particular to the combination only. For the properties of the components please consider",
@@ -40,6 +51,38 @@ const drugs: FeedDrug[] = [
 	},
 ];
 
+const interactions: FeedInteractions = {
+	interactants: [
+		{
+			sid: "_987",
+			title: "An interactant",
+		},
+		{
+			sid: "_111",
+			title: "An empty interactant",
+		},
+	],
+	messages: [
+		{
+			interactant1: "_987",
+			interactant2: "_111",
+			messages: [],
+		},
+	],
+	introduction: {
+		id: "PHP12",
+		title: "Interactions intro",
+		sections: [],
+	},
+	supplementaryInformation: [
+		{
+			interactantSid: "_987",
+			title: "Some supplementary info",
+			information: "<p>Supplementary body</p>",
+		},
+	],
+};
+
 describe("createDrugNodes", () => {
 	const createNode = jest.fn();
 
@@ -51,13 +94,19 @@ describe("createDrugNodes", () => {
 	} as unknown as SourceNodesArgs;
 
 	it("should create node for every drug", () => {
-		createDrugNodes({ drugs, treatmentSummaries: [] }, sourceNodesArgs);
+		createDrugNodes(
+			{ drugs, treatmentSummaries: [], interactions },
+			sourceNodesArgs
+		);
 
 		expect(createNode).toHaveBeenCalledTimes(2);
 	});
 
 	it("should use drug id as phpid and sid as node id", () => {
-		createDrugNodes({ drugs, treatmentSummaries: [] }, sourceNodesArgs);
+		createDrugNodes(
+			{ drugs, treatmentSummaries: [], interactions },
+			sourceNodesArgs
+		);
 
 		const nodeInput = createNode.mock.calls[0][0] as DrugNodeInput;
 
@@ -66,7 +115,10 @@ describe("createDrugNodes", () => {
 	});
 
 	it("should map constituents to sid and exclude constituents that aren't drug monographs", () => {
-		createDrugNodes({ drugs, treatmentSummaries: [] }, sourceNodesArgs);
+		createDrugNodes(
+			{ drugs, treatmentSummaries: [], interactions },
+			sourceNodesArgs
+		);
 
 		const nodeInput = createNode.mock.calls[1][0] as DrugNodeInput;
 
@@ -75,6 +127,17 @@ describe("createDrugNodes", () => {
 			message:
 				"The properties listed below are those particular to the combination only. For the properties of the components please consider",
 		});
+	});
+
+	it("should map interactants to sid", () => {
+		createDrugNodes(
+			{ drugs, treatmentSummaries: [], interactions },
+			sourceNodesArgs
+		);
+
+		const nodeInput = createNode.mock.calls[1][0] as DrugNodeInput;
+
+		expect(nodeInput.interactants).toStrictEqual(["_987"]);
 	});
 
 	it("should link treatment summaries that contain a link to the drug", () => {
@@ -121,6 +184,7 @@ describe("createDrugNodes", () => {
 						],
 					},
 				],
+				interactions,
 			},
 			sourceNodesArgs
 		);
