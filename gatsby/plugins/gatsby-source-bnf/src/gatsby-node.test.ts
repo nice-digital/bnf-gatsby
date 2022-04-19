@@ -108,7 +108,7 @@ describe("gatsby-node", () => {
 
 		it("should create Dental Practitioners’ Formulary node", async () => {
 			await sourceNodes(sourceNodesArgs, pluginOptions);
-			expect(sourceNodesArgs.actions.createNode).toHaveBeenNthCalledWith(5, {
+			expect(sourceNodesArgs.actions.createNode).toHaveBeenNthCalledWith(6, {
 				...mockFeed.dentalPractitionersFormulary,
 				sections: [
 					{
