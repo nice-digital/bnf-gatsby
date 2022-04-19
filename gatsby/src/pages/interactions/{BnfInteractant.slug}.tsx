@@ -1,8 +1,9 @@
 import { graphql, Link } from "gatsby";
-import React, { FC, useState, useEffect } from "react";
+import React, { type FC, useState, useEffect } from "react";
 import striptags from "striptags";
 
 import RemoveIcon from "@nice-digital/icons/lib/Remove";
+import { Alert } from "@nice-digital/nds-alert";
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
 import { Button } from "@nice-digital/nds-button";
 import { Input } from "@nice-digital/nds-input";
@@ -10,7 +11,7 @@ import { PageHeader } from "@nice-digital/nds-page-header";
 
 import {
 	Interaction,
-	InteractionProps,
+	type InteractionProps,
 } from "@/components/Interaction/Interaction";
 import interactionStyles from "@/components/Interaction/Interaction.module.scss";
 import { Layout } from "@/components/Layout/Layout";
@@ -29,6 +30,7 @@ export interface InteractantPageProps {
 				slug: string;
 			};
 			interactions: InteractionProps[];
+			supplementaryInformation: { title: string; information: string }[];
 		};
 	};
 }
@@ -80,7 +82,7 @@ const sortInteractions = (
 
 const InteractantPage: FC<InteractantPageProps> = ({
 	data: {
-		bnfInteractant: { title, drug, interactions },
+		bnfInteractant: { title, drug, interactions, supplementaryInformation },
 	},
 }) => {
 	const isClient = useIsClient();
@@ -159,133 +161,162 @@ const InteractantPage: FC<InteractantPageProps> = ({
 				}
 			/>
 
-			<p className={styles.interactionInformation}>
-				<span dangerouslySetInnerHTML={{ __html: title }} /> has the following
-				interaction information:
-			</p>
+			{supplementaryInformation.map((supInf) => (
+				<Alert type="info" key={supInf.title}>
+					<h2 className="h4">{supInf.title}</h2>
+					<div
+						className={styles.alertText}
+						dangerouslySetInnerHTML={{
+							__html: supInf.information,
+						}}
+					></div>
+				</Alert>
+			))}
 
-			<div className={styles.grid}>
-				<div className={styles.rightCol}>
-					<div className={styles.informationPanel}>
-						<h2 className={styles.informationPanelHeading}>
-							Drug interaction information
-						</h2>
-						<p className={interactionStyles.severeMessage}>
-							Severe interactions are highlighted with a red marker.
-						</p>
-						<p>
-							<Link to="/interactions/appendix-1-interactions/">
-								Find out more about BNF interactions information
-							</Link>
-						</p>
-					</div>
-				</div>
-				<div className={styles.leftCol}>
-					{isClient && (
-						<section className={`${styles.filterPanel} hide-print`}>
-							<h2 className="visually-hidden">Filters and sorting</h2>
-							<form className={styles.filterForm}>
-								<Input
-									className={styles.filterInput}
-									label="Filter by drug name"
-									placeholder="Enter drug name"
-									onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-										setFilterTerm(e.target.value)
-									}
-									onKeyDown={handleKeyDown}
-									name="drugNameInput"
-									value={filterTerm}
-								/>
-								<Button
-									onClick={() => setSearchFilterTerm(filterTerm)}
-									variant={Button.variants.secondary}
-									className={styles.filterButton}
-								>
-									Filter
-								</Button>
-							</form>
-							<div className={styles.sortControls}>
-								<strong>Sorted by: </strong>
-								{sortBySeverity ? (
-									<>
-										<span className={styles.sortButtonLabel}>Severity | </span>
-										<button
-											className={styles.sortButton}
-											onClick={() => setSortBySeverity(false)}
-										>
-											Sort by: Name
-										</button>
-									</>
-								) : (
-									<>
-										<span className={styles.sortButtonLabel}>Name | </span>
-										<button
-											className={styles.sortButton}
-											onClick={() => setSortBySeverity(true)}
-										>
-											Sort by: Severity
-										</button>
-									</>
-								)}
-							</div>
-						</section>
-					)}
+			{interactions.length === 0 ? (
+				<p>
+					<span dangerouslySetInnerHTML={{ __html: title }} /> has no specific
+					interactions information.
+				</p>
+			) : (
+				<>
+					<p className={styles.interactionInformation}>
+						<span dangerouslySetInnerHTML={{ __html: title }} /> has the
+						following interaction information:
+					</p>
 
-					{interactionsList.length ? (
-						<section aria-live="polite">
-							<h2 className="visually-hidden" id="interactions-list-heading">
-								List of interactions for{" "}
-								<span dangerouslySetInnerHTML={{ __html: drug?.title || "" }} />
-							</h2>
-							<div className={styles.resultCount}>
-								{interactionsList.length}{" "}
-								{interactionsList.length === 1
-									? "interaction "
-									: "interactions "}{" "}
-								{searchFilterTerm != "" && (
-									<>
-										for:
-										<RemoveFilterButton />
-									</>
-								)}
+					<div className={styles.grid}>
+						<div className={styles.rightCol}>
+							<div className={styles.informationPanel}>
+								<h2 className={styles.informationPanelHeading}>
+									Drug interaction information
+								</h2>
+								<p className={interactionStyles.severeMessage}>
+									Severe interactions are highlighted with a red marker.
+								</p>
+								<p>
+									<Link to="/interactions/appendix-1-interactions/">
+										Find out more about BNF interactions information
+									</Link>
+								</p>
 							</div>
-							<ol
-								className={styles.interactionsList}
-								aria-labelledby="interactions-list-heading"
-							>
-								{interactionsList.map(({ interactant, messages }) => (
-									<li
-										className={styles.interactionsListItem}
-										key={interactant.title}
-									>
-										<Interaction
-											interactant={interactant}
-											messages={messages}
+						</div>
+						<div className={styles.leftCol}>
+							{isClient && (
+								<section className={`${styles.filterPanel} hide-print`}>
+									<h2 className="visually-hidden">Filters and sorting</h2>
+									<form className={styles.filterForm}>
+										<Input
+											className={styles.filterInput}
+											label="Filter by drug name"
+											placeholder="Enter drug name"
+											onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+												setFilterTerm(e.target.value)
+											}
+											onKeyDown={handleKeyDown}
+											name="drugNameInput"
+											value={filterTerm}
 										/>
-									</li>
-								))}
-							</ol>
-						</section>
-					) : (
-						<>
-							<div className={styles.resultCount}>
-								No interactions found for: <RemoveFilterButton />
-							</div>
-							<p>
-								We couldn&apos;t find any results that matched your filter. Try{" "}
-								<button
-									type="button"
-									className={styles.linkButton}
-									onClick={clearFilters}
-								>
-									clearing your filters
-								</button>{" "}
-								and starting again.
-							</p>
-						</>
-					)}
-				</div>
-			</div>
+										<Button
+											onClick={() => setSearchFilterTerm(filterTerm)}
+											variant={Button.variants.secondary}
+											className={styles.filterButton}
+										>
+											Filter
+										</Button>
+									</form>
+									<div className={styles.sortControls}>
+										<strong>Sorted by: </strong>
+										{sortBySeverity ? (
+											<>
+												<span className={styles.sortButtonLabel}>
+													Severity |{" "}
+												</span>
+												<button
+													className={styles.sortButton}
+													onClick={() => setSortBySeverity(false)}
+												>
+													Sort by: Name
+												</button>
+											</>
+										) : (
+											<>
+												<span className={styles.sortButtonLabel}>Name | </span>
+												<button
+													className={styles.sortButton}
+													onClick={() => setSortBySeverity(true)}
+												>
+													Sort by: Severity
+												</button>
+											</>
+										)}
+									</div>
+								</section>
+							)}
+
+							{interactionsList.length ? (
+								<section aria-live="polite">
+									<h2
+										className="visually-hidden"
+										id="interactions-list-heading"
+									>
+										List of interactions for{" "}
+										<span
+											dangerouslySetInnerHTML={{ __html: drug?.title || "" }}
+										/>
+									</h2>
+									<div className={styles.resultCount}>
+										{interactionsList.length}{" "}
+										{interactionsList.length === 1
+											? "interaction "
+											: "interactions "}{" "}
+										{searchFilterTerm != "" && (
+											<>
+												for:
+												<RemoveFilterButton />
+											</>
+										)}
+									</div>
+									<ol
+										className={styles.interactionsList}
+										aria-labelledby="interactions-list-heading"
+									>
+										{interactionsList.map(({ interactant, messages }) => (
+											<li
+												className={styles.interactionsListItem}
+												key={interactant.title}
+											>
+												<Interaction
+													interactant={interactant}
+													messages={messages}
+												/>
+											</li>
+										))}
+									</ol>
+								</section>
+							) : (
+								<>
+									<div className={styles.resultCount}>
+										No interactions found for: <RemoveFilterButton />
+									</div>
+									<p>
+										We couldn&apos;t find any results that matched your filter.
+										Try{" "}
+										<button
+											type="button"
+											className={styles.linkButton}
+											onClick={clearFilters}
+										>
+											clearing your filters
+										</button>{" "}
+										and starting again.
+									</p>
+								</>
+							)}
+						</div>
+					</div>
+				</>
+			)}
 		</Layout>
 	);
 };
@@ -312,6 +343,10 @@ export const query = graphql`
 					severity
 					severityOrder
 				}
+			}
+			supplementaryInformation {
+				title
+				information
 			}
 		}
 	}
