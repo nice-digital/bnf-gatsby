@@ -66,11 +66,7 @@ export const sourceNodes = async (
 
 	// Create all of our different nodes
 	createDrugNodes(
-		{
-			drugs: feedData.drugs,
-			treatmentSummaries: feedData.treatmentSummaries,
-			interactions: feedData.interactions,
-		},
+		{ drugs: feedData.drugs, treatmentSummaries: feedData.treatmentSummaries },
 		sourceNodesArgs
 	);
 

@@ -8,7 +8,7 @@ import {
 describe("NationalFundingContent", () => {
 	const props: NationalFundingContentProps = {
 		heading: "<strong>NICE</strong> decisions",
-		slug: "nice-decisions-budesonide",
+		slug: "nice-decisions",
 		decisions: [
 			{
 				fundingIdentifier: "NICE TA187",
@@ -24,8 +24,6 @@ describe("NationalFundingContent", () => {
 				approvedForUse: "Recommended with restrictions",
 			},
 		],
-		contentFor: "budesonide",
-		contentForPrefix: "For",
 	};
 
 	beforeEach(() => {
@@ -35,19 +33,19 @@ describe("NationalFundingContent", () => {
 
 	it("should render section with accessible name", () => {
 		expect(
-			screen.getByRole("region", { name: "NICE decisions For budesonide" })
+			screen.getByRole("region", { name: "NICE decisions" })
 		).toBeInTheDocument();
 	});
 
 	it("should render heading 4 with heading content", () => {
 		expect(screen.getByRole("heading", { level: 4 })).toHaveTextContent(
-			"NICE decisions For budesonide"
+			"NICE decisions"
 		);
 	});
 
 	it("should render list decision list with accessible name", () => {
 		expect(
-			screen.getByRole("list", { name: "NICE decisions For budesonide" })
+			screen.getByRole("list", { name: "NICE decisions" })
 		).toBeInTheDocument();
 	});
 
@@ -68,7 +66,7 @@ describe("NationalFundingContent", () => {
 
 	it("should match snapshot", () => {
 		expect(
-			screen.getByRole("region", { name: "NICE decisions For budesonide" })
+			screen.getByRole("region", { name: "NICE decisions" })
 		).toMatchSnapshot();
 	});
 });

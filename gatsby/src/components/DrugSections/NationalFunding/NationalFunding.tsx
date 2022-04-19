@@ -17,7 +17,6 @@ export type NationalFundingProps = QueryResult<
 export const NationalFunding: FC<NationalFundingProps> = (props) => (
 	<PotSection {...props}>
 		{({
-			contentForPrefix,
 			content: {
 				contentFor,
 				initialText,
@@ -42,8 +41,6 @@ export const NationalFunding: FC<NationalFundingProps> = (props) => (
 							slug={`nice-decisions-${sectionSlugPostfix}`}
 							heading={niceDecisionsTitle || "NICE decisions"}
 							decisions={niceDecisions}
-							contentFor={contentFor}
-							contentForPrefix={contentForPrefix}
 						/>
 					) : null}
 
@@ -55,8 +52,6 @@ export const NationalFunding: FC<NationalFundingProps> = (props) => (
 								"Scottish Medicines Consortium (SMC) decisions"
 							}
 							decisions={smcDecisions}
-							contentFor={contentFor}
-							contentForPrefix={contentForPrefix}
 						/>
 					) : null}
 
@@ -68,8 +63,6 @@ export const NationalFunding: FC<NationalFundingProps> = (props) => (
 								"All Wales Medicines Strategy Group (AWMSG)"
 							}
 							decisions={awmsgDecisions}
-							contentFor={contentFor}
-							contentForPrefix={contentForPrefix}
 						/>
 					) : null}
 

@@ -39,10 +39,7 @@ export const Accordion: FC<AccordionProps> = ({
 			}}
 			open={defaultOpen}
 		>
-			<summary
-				className={styles.summary}
-				data-tracking={isOpen ? hideLabel : showLabel}
-			>
+			<summary className={styles.summary}>
 				{typeof title === "string" || typeof title === "number" ? (
 					<span>{title}</span>
 				) : (

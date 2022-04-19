@@ -1,15 +1,5 @@
 @use '@nice-digital/nds-core/scss/core';
 
-.alertText {
-  > :last-child {
-    margin-bottom: 0;
-  }
-
-  p {
-    font-weight: normal;
-  }
-}
-
 .grid {
   @include core.mq($from: md) {
     display: flex;
@@ -84,7 +74,8 @@
 }
 
 .clearFilterWrapper {
-  margin: 0 0 0 core.rem(core.$nds-spacing-small);
+  margin: 0 0 core.rem(core.$nds-spacing-medium)
+    core.rem(core.$nds-spacing-small);
 }
 
 .clearFilterButton {
@@ -125,7 +116,6 @@
 .resultCount {
   display: flex;
   font-weight: bold;
-  margin: 0 0 core.rem(core.$nds-spacing-large) 0;
 }
 
 .noResultsHeading {

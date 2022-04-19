@@ -87,8 +87,6 @@ export interface FeedDrug {
 	importantSafetyInformation?: FeedSimplePot;
 	/** The indications and dose section for the drug, including any relevant drug classes and preparations. */
 	indicationsAndDose?: FeedIndicationsAndDosePot;
-	/** The list of individual interactants for the substance(s) in this drug. These can be correlated with the `messages` and `supplementaryInformation` fields in the `interactions` (at the root of the JSON model) by matching the `interactant1` or `interactant2` of an `Interaction` or the `interactantSid` of a `SupplementaryInteractionsInformation` An empty list indicates that there are no interactants associated with this drug. */
-	interactants: FeedInteractant[];
 	/** The less suitable for prescribing section for the drug, including any relevant drug classes and preparations. */
 	lessSuitableForPrescribing?: FeedSimplePot;
 	/** The medicinal forms for the drug. */
@@ -365,18 +363,6 @@ export interface FeedInteractions {
 	interactants: FeedInteractant[];
 	/** The interactant messages. */
 	messages: FeedInteraction[];
-	/** Additional information regarding specific interactants */
-	supplementaryInformation: FeedSupplementaryInformation[];
-}
-
-/** Additional information regarding specific interactants */
-export interface FeedSupplementaryInformation {
-	/** The SID of the interactant. The SID can be found in the \"interactants\" field of Interactions and, where the interactant represents a drug monograph, the \"sid\" field of Drug. */
-	interactantSid: SID;
-	/** The title of this piece of supplementary information */
-	title: string;
-	/** An HTML block containing the body of this piece of supplementary information */
-	information: string;
 }
 
 /**
@@ -384,7 +370,7 @@ export interface FeedSupplementaryInformation {
  */
 export interface FeedInteractant {
 	/** "The SID of the interactant. Where the interactant represents a drug monograph, the value of this field will match the value of the \"sid\" field of  the relevant Drug. */
-	sid: SID;
+	sid: string;
 	/** The title of the interactant. May contain HTML mark-up. */
 	title: string;
 }
@@ -392,9 +378,9 @@ export interface FeedInteractant {
 /** The set of interactions between two interactants. */
 export interface FeedInteraction {
 	/** The SID of the first interactant. The SID can be found in the \"interactants\" field of Interactions and, where the interactant represents a drug monograph, the \"sid\" field of Drug. */
-	interactant1: SID;
+	interactant1: string;
 	/** The SID of the second interactant. The SID can be found in the \"interactants\" field of Interactions and, where the interactant represents a drug monograph, the \"sid\" field of Drug. */
-	interactant2: SID;
+	interactant2: string;
 	/** The interaction messages for the two given interactants. */
 	messages: FeedInteractionMessage[];
 }

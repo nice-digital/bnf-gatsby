@@ -183,28 +183,6 @@ describe("IndicationsAndDose", () => {
 			).toSatisfyAll((open) => open);
 		});
 
-		it("should have appropriate data tracking attribute on the expand/collapse all sections button", () => {
-			render(<IndicationsAndDose {...props} />);
-
-			expect(
-				screen.getByRole("button", {
-					name: /show all 3 sections/i,
-				})
-			).toHaveAttribute("data-tracking", "Show all sections");
-
-			userEvent.click(
-				screen.getByRole("button", {
-					name: /show all 3 sections/i,
-				})
-			);
-
-			expect(
-				screen.getByRole("button", {
-					name: /hide all 3 sections/i,
-				})
-			).toHaveAttribute("data-tracking", "Hide all sections");
-		});
-
 		it("should toggle button text on button click", () => {
 			render(<IndicationsAndDose {...props} />);
 

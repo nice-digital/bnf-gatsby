@@ -8,7 +8,6 @@ import {
 	FeedMedicinalForm,
 	FeedMedicinalForms,
 	type FeedSimpleRecord,
-	type FeedInteractions,
 } from "../downloader/types";
 import { BnfNode } from "../node-types";
 
@@ -38,25 +37,25 @@ export type DrugNodeInput = Merge<
 			}
 		>;
 		relatedTreatmentSummaries: string[];
-		interactants: SID[];
 	}
 >;
 
 export interface DrugCreationArgs {
 	drugs: FeedDrug[];
 	treatmentSummaries: FeedSimpleRecord[];
-	interactions: FeedInteractions;
 }
 
 export const createDrugNodes = (
-	{
-		drugs,
-		treatmentSummaries,
-		interactions: { messages, supplementaryInformation },
-	}: DrugCreationArgs,
+	{ drugs, treatmentSummaries }: DrugCreationArgs,
 	sourceNodesArgs: SourceNodesArgs
 ): void => {
-	drugs.forEach(({ constituentDrugs, interactants, id, sid, ...drug }) => {
+	drugs.forEach(({ medicinalForms, constituentDrugs, id, sid, ...drug }) => {
+		const {
+			initialStatement,
+			specialOrderManufacturersStatement,
+			medicinalForms: forms,
+		} = medicinalForms;
+
 		const nodeContent: DrugNodeInput = {
 			...drug,
 			id: sid,
@@ -93,19 +92,6 @@ export const createDrugNodes = (
 					sections.some((section) => section.content.includes(`/drug/${sid}`))
 				)
 				.map((treatmentSummary) => treatmentSummary.id),
-			interactants: interactants
-				.filter(
-					(interactant) =>
-						// Only create links to interactants that have at least 1 interaction...
-						messages.some(({ interactant1, interactant2 }) =>
-							[interactant1, interactant2].includes(interactant.sid)
-						) ||
-						// ... Or have supplementary info associated. E.g. "Bowel cleansing preparations" has "Separation of administration" supplementary info
-						supplementaryInformation.some(
-							(s) => s.interactantSid === interactant.sid
-						)
-				)
-				.map((interactant) => interactant.sid),
 		};
 
 		createBnfNode(nodeContent, BnfNode.Drug, sourceNodesArgs);

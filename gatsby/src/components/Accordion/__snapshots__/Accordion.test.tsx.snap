@@ -6,7 +6,6 @@ exports[`Accordion should match snapshot 1`] = `
 >
   <summary
     class="summary"
-    data-tracking="Show"
   >
     <h3>
       Some title
