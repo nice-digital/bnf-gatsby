@@ -101,16 +101,18 @@ const HomePage: FC = () => {
 					</p>
 				</GridItem>
 
-				<GridItem md={6} cols={12}>
-					<h2>
-						<Link to="/wound-management/">Wound management</Link>
-					</h2>
+				{isBNF && (
+					<GridItem md={6} cols={12}>
+						<h2>
+							<Link to="/wound-management/">Wound management</Link>
+						</h2>
 
-					<p>
-						Wound management products and elasticated garments. Browse by wound
-						type or product type.
-					</p>
-				</GridItem>
+						<p>
+							Wound management products and elasticated garments. Browse by
+							wound type or product type.
+						</p>
+					</GridItem>
+				)}
 
 				<GridItem md={6} cols={12}>
 					<h2>

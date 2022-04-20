@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import * as Gatsby from "gatsby";
+import { useStaticQuery } from "gatsby";
 
 import { Hero, type LastUpdatedDataQueryResult } from "@/components/Hero/Hero";
 
@@ -11,21 +11,17 @@ const metaDataQueryResult: LastUpdatedDataQueryResult = {
 	},
 };
 
-const useStaticQuery = jest.spyOn(Gatsby, "useStaticQuery");
+const useStaticQueryMock = useStaticQuery as jest.Mock;
 
 beforeAll(() => {
-	useStaticQuery.mockImplementation(() => metaDataQueryResult);
-});
-
-beforeEach(() => {
-	jest.clearAllMocks();
+	useStaticQueryMock.mockReturnValue(metaDataQueryResult);
 });
 
 describe("Hero", () => {
 	it("should match snapshot for BNF", () => {
 		render(<Hero isBNF={true} />);
 		screen.getByRole("heading", {
-			name: /british national formulary \(bnf\)/i,
+			name: "British National Formulary (BNF)",
 		});
 	});
 
@@ -33,27 +29,28 @@ describe("Hero", () => {
 		render(<Hero isBNF={false} />);
 		expect(
 			screen.getByRole("heading", {
-				name: /british national formulary for children \(bnfc\)/i,
+				name: "British National Formulary for Children (BNFC)",
 			})
 		).toMatchSnapshot();
 	});
 
 	it("should render the last updated date", () => {
 		render(<Hero isBNF={false} />);
-		expect(screen.getByText(/6 april 2022/i)).toBeInTheDocument();
+		expect(screen.getByText("6 April 2022")).toHaveProperty("tagName", "TIME");
 	});
 
-	it("should render the last updated date in the correct format", () => {
+	it("should render the last updated date datetime attribute", () => {
 		render(<Hero isBNF={false} />);
-		const dateElement = screen.getByText(/april/i);
-		const dateElementText = dateElement.innerHTML;
-		expect(dateElementText).toMatch(/^([1-9][0-9]*)(\s[a-zA-Z]*)(\s)(\d{4})$/);
+		expect(screen.getByText("6 April 2022")).toHaveAttribute(
+			"datetime",
+			metaDataQueryResult.bnfMetadata.lastUpdatedDate
+		);
 	});
 
 	it("should match snapshot for query", async () => {
 		render(<Hero isBNF={false} />);
-		const calls = useStaticQuery.mock.calls[0][0];
-		expect(calls).toMatchInlineSnapshot(`
+		const queryArgument = useStaticQueryMock.mock.calls[0][0];
+		expect(queryArgument).toMatchInlineSnapshot(`
 		"
 			query LastUpdatedQuery {
 				bnfMetadata {
@@ -64,6 +61,5 @@ describe("Hero", () => {
 			}
 		"
 	`);
-		expect(useStaticQuery).toMatchSnapshot();
 	});
 });

@@ -25,7 +25,7 @@ describe("HomePage", () => {
 	it("should match snapshot for BNFC", () => {
 		(useSiteMetadata as jest.Mock).mockReturnValueOnce({
 			isBNF: false,
-			siteTitleShort: "BNF",
+			siteTitleShort: "BNFC",
 			siteTitleLong: "British National Formulary for Children",
 		});
 
@@ -58,7 +58,7 @@ describe("HomePage", () => {
 		it("should render 'Drugs A to Z' level 2 heading", () => {
 			render(<HomePage />);
 			const drugsAtoZHeading = screen.getByRole("heading", {
-				name: /drugs a to z/i,
+				name: "Drugs A to Z",
 				level: 2,
 			});
 
@@ -68,11 +68,59 @@ describe("HomePage", () => {
 		it("should render 'browse drugs' level 3 heading", () => {
 			render(<HomePage />);
 			const browseDrugsHeading = screen.getByRole("heading", {
-				name: /browse drugs/i,
+				name: "Browse drugs",
 				level: 3,
 			});
 
 			expect(browseDrugsHeading).toBeInTheDocument();
+		});
+	});
+
+	describe("Headings", () => {
+		it.each([
+			["Drugs A to Z", 2],
+			["Browse drugs", 3],
+			["Treatment summaries", 2],
+			["Interactions", 2],
+			["Medicines guidance", 2],
+			["Wound management", 2],
+			["Medical devices", 2],
+			["Borderline substances", 2],
+			["Nurse prescribers formulary", 2],
+			["Dental practitioners formulary", 2],
+			["Approximate conversions and units", 2],
+			["Cautionary and advisory labels", 2],
+			["Abbreviations and symbols", 2],
+		])("should render a '%s' level %d heading", (name, level) => {
+			render(<HomePage />);
+
+			expect(screen.getByRole("heading", { name, level })).toBeInTheDocument();
+		});
+	});
+
+	describe("Wound management rendering per site", () => {
+		it("should render wound management section for BNF ", () => {
+			render(<HomePage />);
+
+			expect(
+				screen.getByRole("link", {
+					name: "Wound management",
+				})
+			).toHaveAttribute("href", "/wound-management/");
+		});
+
+		it("should not render wound management section for BNFC query by role", () => {
+			(useSiteMetadata as jest.Mock).mockReturnValueOnce({
+				isBNF: false,
+				siteTitleShort: "BNFC",
+				siteTitleLong: "British National Formulary for Children",
+			});
+
+			render(<HomePage />);
+
+			expect(
+				screen.queryByRole("link", { name: "Wound management" })
+			).toBeNull();
 		});
 	});
 });

@@ -7,33 +7,3 @@ exports[`Hero should match snapshot for BNFC 1`] = `
   British National Formulary for Children (BNFC)
 </h1>
 `;
-
-exports[`Hero should match snapshot for query 2`] = `
-[MockFunction] {
-  "calls": Array [
-    Array [
-      "
-	query LastUpdatedQuery {
-		bnfMetadata {
-			lastUpdatedDateFormatted: exportStarted(formatString: \\"D MMMM YYYY\\")
-			lastUpdatedDate: exportStarted
-			runTag
-		}
-	}
-",
-    ],
-  ],
-  "results": Array [
-    Object {
-      "type": "return",
-      "value": Object {
-        "bnfMetadata": Object {
-          "lastUpdatedDate": "2022-04-06T00:38:57.911",
-          "lastUpdatedDateFormatted": "6 April 2022",
-          "runTag": "2022_04_06_0037_bnf",
-        },
-      },
-    },
-  ],
-}
-`;

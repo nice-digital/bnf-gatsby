@@ -75,8 +75,6 @@ export const sourceNodes = async (
 		sourceNodesArgs
 	);
 
-	createMetadataNode(feedData.metadata, sourceNodesArgs);
-
 	// Simple records nodes:
 	createSimpleRecordNodes(
 		feedData.about,
@@ -112,6 +110,8 @@ export const sourceNodes = async (
 	// Wound management only exists in BNF and not BNFC
 	if (feedData.woundManagement)
 		createWoundManagementNodes(feedData.woundManagement, sourceNodesArgs);
+
+	createMetadataNode(feedData.metadata, sourceNodesArgs);
 
 	createNodesActivity.setStatus(`Created all nodes`);
 	createNodesActivity.end();

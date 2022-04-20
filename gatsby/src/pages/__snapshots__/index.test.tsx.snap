@@ -468,9 +468,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
         data-g="12 md:6"
       >
         <div>
-          <h2
-            id="interactions"
-          >
+          <h2>
             Treatment summaries
           </h2>
           <p>
@@ -484,9 +482,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
           </a>
         </div>
         <div>
-          <h2
-            id="interactions"
-          >
+          <h2>
             Interactions
           </h2>
           <p>
@@ -1163,9 +1159,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
         data-g="12 md:6"
       >
         <div>
-          <h2
-            id="interactions"
-          >
+          <h2>
             Treatment summaries
           </h2>
           <p>
@@ -1179,9 +1173,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
           </a>
         </div>
         <div>
-          <h2
-            id="interactions"
-          >
+          <h2>
             Interactions
           </h2>
           <p>
@@ -1234,20 +1226,6 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
             prescribing in renal impairment
           </a>
           .
-        </p>
-      </div>
-      <div
-        data-g="12 md:6"
-      >
-        <h2>
-          <a
-            href="/wound-management/"
-          >
-            Wound management
-          </a>
-        </h2>
-        <p>
-          Wound management products and elasticated garments. Browse by wound type or product type.
         </p>
       </div>
       <div
