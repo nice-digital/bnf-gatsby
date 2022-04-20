@@ -8,6 +8,8 @@ import TreatmentSummaryPage, {
 const treatmentSummary: TreatmentSummaryPageProps["data"]["bnfTreatmentSummary"] =
 	{
 		title: "Acne",
+		relatedDrugs: [],
+		relatedTreatmentSummaries: [],
 		sections: [],
 	};
 

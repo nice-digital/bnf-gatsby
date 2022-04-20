@@ -114,16 +114,7 @@ describe("utils", () => {
 				id: "PHP123",
 				title: "Changes",
 				reviewDate: undefined,
-				sections: [
-					{
-						order: 0,
-						...mockRecordSection,
-					},
-					{
-						order: 1,
-						...mockRecordSection,
-					},
-				],
+				sections: [mockRecordSection, mockRecordSection],
 				internal: {
 					type: BnfNode.AboutSection,
 					content: expect.any(String),

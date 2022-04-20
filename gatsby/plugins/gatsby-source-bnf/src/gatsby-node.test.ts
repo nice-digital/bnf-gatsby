@@ -110,13 +110,6 @@ describe("gatsby-node", () => {
 			await sourceNodes(sourceNodesArgs, pluginOptions);
 			expect(sourceNodesArgs.actions.createNode).toHaveBeenNthCalledWith(5, {
 				...mockFeed.dentalPractitionersFormulary,
-				sections: [
-					{
-						order: 0,
-						reviewDate: undefined,
-						...mockFeed.dentalPractitionersFormulary.sections[0],
-					},
-				],
 				order: 0,
 				internal: expect.objectContaining({
 					type: BnfNode.DentalPractitionersFormulary,

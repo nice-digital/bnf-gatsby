@@ -665,8 +665,6 @@ exports[`schema should match snapshot 1`] = `
 	A section of a simple record.
 	\\"\\"\\"
 	type BnfRecordSection @dontInfer {
-		order: Int!
-
 		\\"The title of the section. May contain HTML markup.\\"
 		title: String!
 
@@ -701,8 +699,6 @@ exports[`schema should match snapshot 1`] = `
 
 
 	type BnfTreatmentSummary implements Node & BnfSimpleRecord @dontInfer {
-		order: Int!
-
 		\\"The title of the section. May contain HTML markup.\\"
 		title: String!
 
@@ -714,6 +710,12 @@ exports[`schema should match snapshot 1`] = `
 
 		\\"The sections of the record.\\"
 		sections: [BnfRecordSection!]!
+
+		\\"Any treatment summaries that contain a link from or to this treatment summary\\"
+		relatedTreatmentSummaries: [BnfTreatmentSummary!]! @link
+
+		\\"Any drugs linked from this treatment summary\\"
+		relatedDrugs: [BnfDrug!]! @link
 	}
 
 
