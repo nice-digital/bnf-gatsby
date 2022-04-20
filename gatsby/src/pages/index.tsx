@@ -45,7 +45,7 @@ const HomePage: FC = () => {
 
 				<GridItem md={6} cols={12} className={styles.featureColumn}>
 					<div>
-						<h2 id="interactions">Treatment summaries</h2>
+						<h2>Treatment summaries</h2>
 
 						<p>
 							Browse an A-Z list of treatment summaries covering: - drug use
@@ -62,7 +62,7 @@ const HomePage: FC = () => {
 					</div>
 
 					<div>
-						<h2 id="interactions">Interactions</h2>
+						<h2>Interactions</h2>
 
 						<p>
 							Check for drug interactions. Includes information on the severity
