@@ -1193,7 +1193,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
       class="grid grid--loose"
     >
       <div
-        data-g="12 md:6"
+        data-g="12 md:4"
       >
         <h2>
           <a
@@ -1229,7 +1229,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
         </p>
       </div>
       <div
-        data-g="12 md:6"
+        data-g="12 md:4"
       >
         <h2>
           <a
@@ -1243,7 +1243,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
         </p>
       </div>
       <div
-        data-g="12 md:6"
+        data-g="12 md:4"
       >
         <h2>
           <a
