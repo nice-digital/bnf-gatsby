@@ -133,7 +133,7 @@ const InteractantPage: FC<InteractantPageProps> = ({
 		<Layout>
 			<SEO
 				title={`${titleNoHtml} | Interactions`}
-				description={`A list of drugs that interact with ${titleNoHtml}`}
+				description={`See the list of drugs that interact with ${titleNoHtml}. Includes information on severity of interaction and the level of evidence for it.`}
 			/>
 
 			<Breadcrumbs>

@@ -22,7 +22,7 @@ const InteractionsIndexPage: FC<InteractionsIndexPageProps> = ({
 	<AtoZListPage
 		title="Interactions"
 		path="interactions"
-		metaDescription="Look up a drug to see which other drugs it interacts with and how serious those interactions are."
+		metaDescription="Use the interactions A-Z to look up a drug and see which other drugs it interacts with and how serious those interactions are."
 		letters={letters}
 	/>
 );
