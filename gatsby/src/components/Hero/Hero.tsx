@@ -49,7 +49,7 @@ export const Hero: React.FC<HeroProps> = (props) => {
 				<div className={styles.lastUpdated}>
 					<h2 className="h5">Last updated: </h2>
 					<time className="h3" dateTime={lastUpdatedDate}>
-						<strong>{lastUpdatedDateFormatted}</strong>
+						{lastUpdatedDateFormatted}
 					</time>
 					<Link to="/about/changes/">See what&apos;s changed</Link>
 				</div>

@@ -38,9 +38,16 @@ describe("Hero", () => {
 		).toMatchSnapshot();
 	});
 
-	it("should render the last updated date in the correct format", () => {
+	it("should render the last updated date", () => {
 		render(<Hero isBNF={false} />);
 		expect(screen.getByText(/6 april 2022/i)).toBeInTheDocument();
+	});
+
+	it("should render the last updated date in the correct format", () => {
+		render(<Hero isBNF={false} />);
+		const dateElement = screen.getByText(/april/i);
+		const dateElementText = dateElement.innerHTML;
+		expect(dateElementText).toMatch(/^([1-9][0-9]*)(\s[a-zA-Z]*)(\s)(\d{4})$/);
 	});
 
 	it("should match snapshot for query", async () => {

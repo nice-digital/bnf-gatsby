@@ -38,9 +38,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
             class="h3"
             datetime="2022-04-06T00:38:57.911"
           >
-            <strong>
-              6 April 2022
-            </strong>
+            6 April 2022
           </time>
           <a
             href="/about/changes/"
@@ -735,9 +733,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
             class="h3"
             datetime="2022-04-06T00:38:57.911"
           >
-            <strong>
-              6 April 2022
-            </strong>
+            6 April 2022
           </time>
           <a
             href="/about/changes/"
