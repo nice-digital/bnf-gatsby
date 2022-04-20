@@ -64,6 +64,7 @@
 @include core.mq($from: md) {
   .heroContainer {
     align-items: center;
+    column-gap: core.rem(core.$nds-spacing-medium);
     display: flex;
     flex-flow: row;
   }
@@ -75,5 +76,11 @@
   .lastUpdated {
     background-color: core.$nds-colour-nice-grey-3;
     padding: core.rem(core.$nds-spacing-medium);
+    padding-left: core.rem(core.$nds-spacing-medium);
+    padding-right: core.rem(core.$nds-spacing-large);
+  }
+
+  .lastUpdated * {
+    white-space: nowrap;
   }
 }

@@ -78,7 +78,7 @@ const HomePage: FC = () => {
 			<hr />
 
 			<Grid gutter="loose">
-				<GridItem md={6} cols={12}>
+				<GridItem md={isBNF ? 6 : 4} cols={12}>
 					<h2>
 						<Link to="/medicines-guidance/">Medicines guidance</Link>
 					</h2>
@@ -114,7 +114,7 @@ const HomePage: FC = () => {
 					</GridItem>
 				)}
 
-				<GridItem md={6} cols={12}>
+				<GridItem md={isBNF ? 6 : 4} cols={12}>
 					<h2>
 						<Link to="/medical-devices/">Medical devices</Link>
 					</h2>
@@ -125,7 +125,7 @@ const HomePage: FC = () => {
 					</p>
 				</GridItem>
 
-				<GridItem md={6} cols={12}>
+				<GridItem md={isBNF ? 6 : 4} cols={12}>
 					<h2>
 						<Link to="/borderline-substance-taxonomy/">
 							Borderline substances
