@@ -1,6 +1,32 @@
 import { BnfNode } from "../node-types";
 
 export const interactionSchema = `
+
+	"""
+	An introduction page for the interactants section
+	"""
+	type ${BnfNode.InteractionsIntroduction} implements Node @dontInfer {
+		"The title of the introduction page"
+		title: String!
+
+		"The content sections for the introduction page"
+		sections: [${BnfNode.InteractionsIntroductionSection}!]!
+	}
+
+	"""
+	A content section within the interaction introduction
+	"""
+	type ${BnfNode.InteractionsIntroductionSection} @dontInfer {
+		"The title of the section"
+		title: String!
+
+		"The unique ID of the section."
+		id: String!
+
+		"The content for the section. May contain HTML markup. "
+		content: String! @html
+	}
+
 	"""
 	An interactant, which is a substance against which interaction messages are authored. Interactions are generally authored against moieties while some drug monographs are authored against salts (e.g. 'warfarin' and 'warfarin sodium').
 	"""

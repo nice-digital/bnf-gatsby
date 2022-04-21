@@ -18,7 +18,7 @@
     "node": "14.18.2"
   },
   "devDependencies": {
-    "@nice-digital/wdio-cucumber-steps": "^2.0.2",
+    "@nice-digital/wdio-cucumber-steps": "^2.0.3",
     "@wdio/allure-reporter": "^7.17.3",
     "@wdio/cli": "^7.17.4",
     "@wdio/cucumber-framework": "^7.17.3",

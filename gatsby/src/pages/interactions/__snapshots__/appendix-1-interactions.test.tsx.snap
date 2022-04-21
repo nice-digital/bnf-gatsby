@@ -1,0 +1,114 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InteractionsIntroductionPage should match snapshot for page body 1`] = `
+<main>
+  <div
+    class="container"
+  >
+    <nav
+      aria-label="Breadcrumbs"
+      role="navigation"
+    >
+      <ol
+        class="breadcrumbs"
+      >
+        <li
+          class="breadcrumbs__crumb"
+        >
+          <a
+            href="https://www.nice.org.uk/"
+          >
+            NICE
+          </a>
+        </li>
+        <li
+          class="breadcrumbs__crumb"
+        >
+          <a
+            href="/"
+          >
+            BNF
+          </a>
+        </li>
+        <li
+          class="breadcrumbs__crumb"
+        >
+          <a
+            href="/interactions/"
+          >
+            Interactions
+          </a>
+        </li>
+        <li
+          class="breadcrumbs__crumb"
+        >
+          <span>
+            Appendix 1 Interactions
+          </span>
+        </li>
+      </ol>
+    </nav>
+    <script
+      type="application/ld+json"
+    >
+      {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@id": "https://www.nice.org.uk/",
+        "name": "NICE"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@id": "/",
+        "name": "BNF"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@id": "/interactions/",
+        "name": "Interactions"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "item": {
+        "name": "Appendix 1 Interactions"
+      }
+    }
+  ]
+}
+    </script>
+    <div
+      class="page-header"
+      id="content-start"
+    >
+      <h1
+        class="page-header__heading"
+      >
+        Test intro title
+      </h1>
+    </div>
+    <section>
+      <h2>
+        Test section title
+      </h2>
+      <div>
+        <p>
+          I am some content for the introductions page
+        </p>
+      </div>
+    </section>
+  </div>
+</main>
+`;

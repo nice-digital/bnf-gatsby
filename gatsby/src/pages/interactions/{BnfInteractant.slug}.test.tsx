@@ -75,6 +75,7 @@ const interactant: InteractantPageProps["data"]["bnfInteractant"] = {
 			],
 		},
 	],
+	supplementaryInformation: [],
 };
 
 const dataProp: InteractantPageProps["data"] = {
@@ -107,7 +108,7 @@ describe("InteractantPage", () => {
 						.querySelector("meta[name='description']")
 				).toHaveAttribute(
 					"content",
-					"A list of drugs that interact with Anti-D (Rh0) immunoglobulin"
+					"See the list of drugs that interact with Anti-D (Rh0) immunoglobulin. Includes information on severity of interaction and the level of evidence for it."
 				);
 			});
 		});
@@ -170,6 +171,21 @@ describe("InteractantPage", () => {
 	});
 
 	describe("body", () => {
+		it("should render 'has no specific interactions information' when there are no interactions", () => {
+			render(
+				<InteractantPage
+					data={{ bnfInteractant: { ...interactant, interactions: [] } }}
+				/>
+			);
+			expect(
+				screen.getByText(
+					(_content, node) =>
+						node?.textContent ===
+						"Anti-D (Rh0) immunoglobulin has no specific interactions information."
+				)
+			).toBeInTheDocument();
+		});
+
 		it("should match snapshot for page body", () => {
 			render(<InteractantPage data={dataProp} />);
 			expect(screen.getByRole("main")).toMatchSnapshot();
@@ -293,6 +309,51 @@ describe("InteractantPage", () => {
 					.getAllByRole("heading", { level: 3 })
 					.map((heading) => heading.textContent)
 			).toStrictEqual(["Test interactant", "Canagliflozin test"]);
+		});
+
+		it("should render supplementary information when supplied", () => {
+			render(
+				<InteractantPage
+					data={{
+						bnfInteractant: {
+							...interactant,
+							supplementaryInformation: [
+								{
+									title: "Test supplementary info 1",
+									information:
+										"<p>Supplementary info test information element 1</p>",
+								},
+								{
+									title: "Test supplementary info 2",
+									information:
+										"<p>Supplementary info test information element 2</p>",
+								},
+							],
+						},
+					}}
+				/>
+			);
+
+			expect(
+				screen.getByRole("heading", {
+					level: 2,
+					name: "Test supplementary info 1",
+				})
+			).toBeInTheDocument();
+
+			expect(
+				screen.getByRole("heading", {
+					level: 2,
+					name: "Test supplementary info 2",
+				})
+			).toBeInTheDocument();
+
+			expect(
+				screen.getByText("Supplementary info test information element 1")
+			).toBeInTheDocument();
+			expect(
+				screen.getByText("Supplementary info test information element 2")
+			).toBeInTheDocument();
 		});
 	});
 });

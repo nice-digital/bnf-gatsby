@@ -158,7 +158,7 @@ exports[`InteractantPage body should match snapshot for page body 1`] = `
           </p>
           <p>
             <a
-              href="/interactions/introduction/"
+              href="/interactions/appendix-1-interactions/"
             >
               Find out more about BNF interactions information
             </a>
@@ -492,6 +492,10 @@ exports[`InteractantPage should match snapshot for graphql query 1`] = `
 					severity
 					severityOrder
 				}
+			}
+			supplementaryInformation {
+				title
+				information
 			}
 		}
 	}

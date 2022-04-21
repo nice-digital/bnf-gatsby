@@ -176,5 +176,10 @@ describe("MedicinalFormsPage", () => {
 				screen.getByRole("heading", { name: "Label 3 (test qualifier)" })
 			).toBeInTheDocument();
 		});
+
+		it("should match snapshot for page body", () => {
+			render(<MedicinalFormsPage data={dataProp} />);
+			expect(screen.getByRole("main")).toMatchSnapshot();
+		});
 	});
 });

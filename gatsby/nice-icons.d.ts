@@ -52,8 +52,6 @@ declare module "@nice-digital/icons/lib/Remove" {
 		colour?: string;
 		[key: string]: unknown;
 	}
-
 	const RemoveIcon: FC<IconProps>;
-
 	export default RemoveIcon;
 }
