@@ -23,12 +23,12 @@ const HomePage: FC = () => {
 			<Hero isBNF={isBNF} />
 			<Grid gutter="loose">
 				<GridItem md={6} cols={12} className={styles.drugsColumn}>
-					<h2>Drugs A to Z</h2>
+					<h2>Drugs</h2>
 					<p>
 						Drug monographs describe the uses, doses, safety issues, medicinal
 						forms and other considerations involved in the use of a drug.
 					</p>
-					<h3 className="h4">Browse drugs</h3>
+					<h3 className="h4">Browse drugs by A-Z</h3>
 					<Alphabet
 						chunky
 						data-tracking="drugs-a-to-z"
@@ -46,12 +46,12 @@ const HomePage: FC = () => {
 				<GridItem md={6} cols={12} className={styles.featureColumn}>
 					<div>
 						<h2>Treatment summaries</h2>
-
-						<p>
-							Browse an A-Z list of treatment summaries covering: - drug use
-							related to a particular body system - drug management or treatment
-							of common conditions - comparisons between groups of drugs.
-						</p>
+						<p>Browse an A-Z list of treatment summaries covering:</p>
+						<ul>
+							<li>drug use related to a particular body system</li>
+							<li>drug management or treatment of common conditions</li>
+							<li>comparisons between groups of drugs</li>
+						</ul>
 						<Button
 							to="/treatment-summaries/"
 							variant="primary"

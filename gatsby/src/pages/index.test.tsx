@@ -58,8 +58,8 @@ describe("HomePage", () => {
 
 	describe("Headings", () => {
 		it.each([
-			["Drugs A to Z", 2],
-			["Browse drugs", 3],
+			["Drugs", 2],
+			["Browse drugs by A-Z", 3],
 			["Treatment summaries", 2],
 			["Interactions", 2],
 			["Medicines guidance", 2],

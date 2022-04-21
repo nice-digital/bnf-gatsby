@@ -56,7 +56,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
         data-g="12 md:6"
       >
         <h2>
-          Drugs A to Z
+          Drugs
         </h2>
         <p>
           Drug monographs describe the uses, doses, safety issues, medicinal forms and other considerations involved in the use of a drug.
@@ -64,7 +64,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
         <h3
           class="h4"
         >
-          Browse drugs
+          Browse drugs by A-Z
         </h3>
         <ol
           class="alphabet alphabet--chunky alphabet"
@@ -472,8 +472,19 @@ exports[`HomePage should match snapshot for BNF 1`] = `
             Treatment summaries
           </h2>
           <p>
-            Browse an A-Z list of treatment summaries covering: - drug use related to a particular body system - drug management or treatment of common conditions - comparisons between groups of drugs.
+            Browse an A-Z list of treatment summaries covering:
           </p>
+          <ul>
+            <li>
+              drug use related to a particular body system
+            </li>
+            <li>
+              drug management or treatment of common conditions
+            </li>
+            <li>
+              comparisons between groups of drugs
+            </li>
+          </ul>
           <a
             class="btn"
             href="/treatment-summaries/"
@@ -747,7 +758,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
         data-g="12 md:6"
       >
         <h2>
-          Drugs A to Z
+          Drugs
         </h2>
         <p>
           Drug monographs describe the uses, doses, safety issues, medicinal forms and other considerations involved in the use of a drug.
@@ -755,7 +766,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
         <h3
           class="h4"
         >
-          Browse drugs
+          Browse drugs by A-Z
         </h3>
         <ol
           class="alphabet alphabet--chunky alphabet"
@@ -1163,8 +1174,19 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
             Treatment summaries
           </h2>
           <p>
-            Browse an A-Z list of treatment summaries covering: - drug use related to a particular body system - drug management or treatment of common conditions - comparisons between groups of drugs.
+            Browse an A-Z list of treatment summaries covering:
           </p>
+          <ul>
+            <li>
+              drug use related to a particular body system
+            </li>
+            <li>
+              drug management or treatment of common conditions
+            </li>
+            <li>
+              comparisons between groups of drugs
+            </li>
+          </ul>
           <a
             class="btn"
             href="/treatment-summaries/"
