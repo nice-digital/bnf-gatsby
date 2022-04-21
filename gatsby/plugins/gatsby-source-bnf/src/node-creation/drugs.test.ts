@@ -46,6 +46,10 @@ const drugs: FeedDrug[] = [
 					},
 				],
 			},
+			{
+				id: "_990",
+				name: "Softening drugs",
+			},
 		],
 	},
 	{
@@ -251,6 +255,6 @@ describe("createDrugNodes", () => {
 
 		const nodeInput = createNode.mock.calls[0][0] as DrugNodeInput;
 
-		expect(nodeInput.secondaryClassifications).toStrictEqual(["_92"]);
+		expect(nodeInput.secondaryClassifications).toStrictEqual(["_92", "_990"]);
 	});
 });

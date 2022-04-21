@@ -141,8 +141,11 @@ const DrugPage: FC<DrugPageProps> = ({
 		),
 		otherDrugsInClassSection = useMemo(
 			() =>
-				(primaryClassification && primaryClassification.drugs.length > 0) ||
-				secondaryClassifications.some((sC) => sC.drugs.length > 0)
+				(primaryClassification &&
+					primaryClassification.drugs.some((d) => d.slug !== slug)) ||
+				secondaryClassifications.some((sC) =>
+					sC.drugs.some((d) => d.slug !== slug)
+				)
 					? {
 							potName: "Other drugs in class",
 							slug: "other-drugs-in-class",
@@ -150,7 +153,7 @@ const DrugPage: FC<DrugPageProps> = ({
 							secondaryClassifications,
 					  }
 					: null,
-			[primaryClassification, secondaryClassifications]
+			[primaryClassification, secondaryClassifications, slug]
 		),
 		/** Sections of a drug that have their own, specific component that isn't a `SimplePot` */
 		nonSimplePotComponents = useMemo(() => {
