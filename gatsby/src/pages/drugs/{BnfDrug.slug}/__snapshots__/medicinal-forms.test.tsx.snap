@@ -302,6 +302,7 @@ exports[`MedicinalFormsPage Body should match snapshot for page body 1`] = `
                       &lt;p&gt;English recommendation&lt;/p&gt;
                     </p>
                     <p
+                      class="welsh"
                       lang="cy"
                     >
                       &lt;p&gt;Welsh recommendation&lt;/p&gt;
@@ -321,6 +322,7 @@ exports[`MedicinalFormsPage Body should match snapshot for page body 1`] = `
                       &lt;p&gt;Another English recommendation&lt;/p&gt;
                     </p>
                     <p
+                      class="welsh"
                       lang="cy"
                     >
                       &lt;p&gt;Another Welsh recommendation&lt;/p&gt;
