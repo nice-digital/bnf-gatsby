@@ -1,4 +1,4 @@
-import { render, screen, within } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { useStaticQuery } from "gatsby";
 
 import { type LastUpdatedDataQueryResult } from "@/components/Hero/Hero";
