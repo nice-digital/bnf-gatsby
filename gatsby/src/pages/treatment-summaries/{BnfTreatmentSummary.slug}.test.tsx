@@ -1,5 +1,7 @@
 import { render, waitFor, screen, within } from "@testing-library/react";
 
+import { SlugAndTitle } from "@/utils";
+
 import TreatmentSummaryPage, {
 	query,
 	type TreatmentSummaryPageProps,
@@ -13,8 +15,10 @@ const treatmentSummary: TreatmentSummaryPageProps["data"]["bnfTreatmentSummary"]
 		sections: [],
 	};
 
-const dataProp: TreatmentSummaryPageProps["data"] = {
-	bnfTreatmentSummary: treatmentSummary,
+const minimumProps: TreatmentSummaryPageProps = {
+	data: {
+		bnfTreatmentSummary: treatmentSummary,
+	},
 };
 
 describe("TreatmentSummaryPage", () => {
@@ -24,7 +28,7 @@ describe("TreatmentSummaryPage", () => {
 
 	describe("SEO", () => {
 		it("should set page title from treatment summary title", async () => {
-			render(<TreatmentSummaryPage data={dataProp} />);
+			render(<TreatmentSummaryPage {...minimumProps} />);
 
 			await waitFor(() => {
 				expect(document.title).toStartWith("Acne | Treatment summaries |");
@@ -32,7 +36,7 @@ describe("TreatmentSummaryPage", () => {
 		});
 
 		it("should set templated meta description", async () => {
-			render(<TreatmentSummaryPage data={dataProp} />);
+			render(<TreatmentSummaryPage {...minimumProps} />);
 
 			await waitFor(() => {
 				expect(
@@ -49,7 +53,7 @@ describe("TreatmentSummaryPage", () => {
 
 	describe("Page header", () => {
 		it("should add content start skip link target id to page header", () => {
-			render(<TreatmentSummaryPage data={dataProp} />);
+			render(<TreatmentSummaryPage {...minimumProps} />);
 			const heading1 = screen.getByRole("heading", {
 				level: 1,
 			});
@@ -58,7 +62,7 @@ describe("TreatmentSummaryPage", () => {
 		});
 
 		it("should render heading 1 with current page title", () => {
-			render(<TreatmentSummaryPage data={dataProp} />);
+			render(<TreatmentSummaryPage {...minimumProps} />);
 			const heading1 = screen.getByRole("heading", {
 				level: 1,
 			});
@@ -74,7 +78,7 @@ describe("TreatmentSummaryPage", () => {
 		])(
 			"should render default '(%s)' breadcrumb",
 			(breadcrumbText, expectedHref) => {
-				render(<TreatmentSummaryPage data={dataProp} />);
+				render(<TreatmentSummaryPage {...minimumProps} />);
 
 				const breadcrumbNav = screen.getByRole("navigation", {
 					name: "Breadcrumbs",
@@ -88,7 +92,7 @@ describe("TreatmentSummaryPage", () => {
 		);
 
 		it("should render current page breadcrumb without link", () => {
-			render(<TreatmentSummaryPage data={dataProp} />);
+			render(<TreatmentSummaryPage {...minimumProps} />);
 
 			const breadcrumbNav = screen.getByRole("navigation", {
 				name: "Breadcrumbs",
@@ -101,25 +105,111 @@ describe("TreatmentSummaryPage", () => {
 
 	describe("body", () => {
 		describe.each([
-			["Related drugs", "relatedDrugs", "/drugs/"],
+			["Related drugs", "relatedDrugs" as const, "related-drugs", "drugs"],
 			[
 				"Related treatment summaries",
-				"relatedTreatmentSummaries",
-				"/treatment-summaries/",
+				"relatedTreatmentSummaries" as const,
+				"related-treatment-summaries",
+				"treatment-summaries",
 			],
-		])("%s", (sectionName, propertyName, expectedBasePath) => {
+		])("%s", (sectionName, propertyName, expectedId, expectedBasePath) => {
 			describe(`No ${sectionName}`, () => {
-				it.todo(
-					`should not render ${sectionName} hash link when there are no ${sectionName}`
-				);
+				it(`should not render ${sectionName} hash link when there are no ${sectionName}`, () => {
+					render(<TreatmentSummaryPage {...minimumProps} />);
+					expect(screen.queryByRole("link", { name: sectionName })).toBeNull();
+				});
 
-				it.todo(
-					`should not render ${sectionName} secttion when there are no ${sectionName}`
-				);
+				it(`should not render ${sectionName} secttion when there are no ${sectionName}`, () => {
+					render(<TreatmentSummaryPage {...minimumProps} />);
+					expect(
+						screen.queryByRole("region", { name: sectionName })
+					).toBeNull();
+				});
 			});
 
 			describe(`${sectionName} with content`, () => {
-				it.todo("should do something");
+				const relatedThings: SlugAndTitle[] = [
+					{
+						title: "Thing 1",
+						slug: "thing-1",
+					},
+					{
+						title: "Thing 2",
+						slug: "thing-2",
+					},
+				];
+
+				const props: TreatmentSummaryPageProps = {
+					data: {
+						bnfTreatmentSummary: {
+							...treatmentSummary,
+							[propertyName]: relatedThings,
+						},
+					},
+				};
+
+				it(`should render ${sectionName} hash link`, () => {
+					render(<TreatmentSummaryPage {...props} />);
+
+					expect(
+						screen.queryByRole("link", { name: sectionName })
+					).toHaveAttribute("href", `#${expectedId}`);
+				});
+
+				it(`should render ${sectionName} section with accessible name`, () => {
+					render(<TreatmentSummaryPage {...props} />);
+
+					expect(
+						screen.getByRole("region", { name: sectionName })
+					).toBeInTheDocument();
+				});
+
+				it(`should render list of ${sectionName} with accessible name`, () => {
+					render(<TreatmentSummaryPage {...props} />);
+
+					expect(
+						screen.getByRole("list", { name: sectionName })
+					).toBeInTheDocument();
+				});
+
+				it(`should render list item per related item`, () => {
+					render(<TreatmentSummaryPage {...props} />);
+
+					const relatedItemsList = screen.getByRole("list", {
+						name: sectionName,
+					});
+
+					expect(
+						within(relatedItemsList).getAllByRole("listitem")
+					).toHaveLength(2);
+				});
+
+				it(`should render anchor per related item`, () => {
+					render(<TreatmentSummaryPage {...props} />);
+
+					const relatedItemsList = screen.getByRole("list", {
+						name: sectionName,
+					});
+
+					expect(within(relatedItemsList).getAllByRole("link")).toHaveLength(2);
+				});
+
+				it(`should render related item title as link text`, () => {
+					render(<TreatmentSummaryPage {...props} />);
+
+					expect(
+						screen.getByRole("link", { name: "Thing 1" })
+					).toBeInTheDocument();
+				});
+
+				it(`should render related item title as link text`, () => {
+					render(<TreatmentSummaryPage {...props} />);
+
+					expect(screen.getByRole("link", { name: "Thing 1" })).toHaveAttribute(
+						"href",
+						`/${expectedBasePath}/thing-1/`
+					);
+				});
 			});
 		});
 	});
