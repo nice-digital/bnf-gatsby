@@ -1,20 +1,27 @@
 import { type FC } from "react";
 
-import { type FeedPrep } from "@nice-digital/gatsby-source-bnf";
+import {
+	type FeedPrep,
+	type FeedControlledDrugSchedule,
+	type FeedLegalCategory,
+} from "@nice-digital/gatsby-source-bnf";
 
 import { Accordion } from "@/components/Accordion/Accordion";
 import { type QueryResult } from "@/utils";
 
 import styles from "./Prep.module.scss";
 
-export const resolveSchedule = (schedule: string): string => {
+export const resolveSchedule = (
+	schedule: FeedControlledDrugSchedule
+): string => {
 	switch (schedule) {
 		case "Schedule 1 (CD Lic)":
 		case "Schedule 1 (CD)":
 			return "CD1";
+		case "Schedule 2 (CD)":
 		case "Schedule 2 (CD Exempt Safe Custody)":
-		case "Schedule 3 (CD No Register)":
 			return "CD2";
+		case "Schedule 3 (CD No Register)":
 		case "Schedule 3 (CD No Register Exempt Safe Custody)":
 		case "Schedule 3 (CD No Register Phenobarbital)":
 		case "Schedule 3 (CD No Register Temazepam)":
@@ -26,7 +33,24 @@ export const resolveSchedule = (schedule: string): string => {
 		case "Schedule 5 (CD Inv)":
 			return "CD5";
 		default:
-			return "";
+			throw Error(`Could not find mapping for schedule ${schedule}`);
+	}
+};
+
+export const resolveLegalCategory = (
+	legalCategory: FeedLegalCategory
+): string | null => {
+	switch (legalCategory) {
+		case "GSL":
+			return "General sales list";
+		case "P":
+			return "Pharmacy only medicine";
+		case "POM":
+			return "Prescription-only medicine";
+		case "Not Applicable":
+			return null;
+		default:
+			throw Error(`Could not find mapping for legal category ${legalCategory}`);
 	}
 };
 
@@ -40,13 +64,23 @@ export const Prep: FC<PrepProps> = ({ prep, children }) => (
 			<h3 className={styles.prepHeading}>
 				<span className={styles.headingIcons}>
 					{prep.controlledDrugSchedule ? (
-						<span className={styles.controlledScheduleCode}>
-							{resolveSchedule(prep.controlledDrugSchedule)}
+						<abbr
+							className={styles.controlledScheduleCode}
+							title={prep.controlledDrugSchedule}
+						>
+							{resolveSchedule(prep.controlledDrugSchedule)}{" "}
+							<span className="visually-hidden">
+								({prep.controlledDrugSchedule})
+							</span>
+						</abbr>
+					) : null}
+					{prep.blackTriangle ? (
+						<span title="Black triangle">
+							&#9660;<span className="visually-hidden"> (black triangle) </span>
 						</span>
 					) : null}
-					{prep.blackTriangle ? "\u25BC" : null}
 					{prep.sugarFree ? (
-						<span className={styles.sugarFree}>Sugar free </span>
+						<span className={styles.sugarFree}> Sugar free </span>
 					) : null}
 				</span>
 				<span className={styles.headingText}>
@@ -74,61 +108,71 @@ export const Prep: FC<PrepProps> = ({ prep, children }) => (
 		) : null}
 		{prep.packs?.length ? (
 			<ol className={styles.packList}>
-				{prep.packs.map((pack) => (
-					<li className={styles.packItem} key={pack.amppId}>
-						<dl>
-							{pack.size && (
-								<div className={styles.packDefinitionListItem}>
-									<dt>Size</dt>
-									<dd>{pack.size}</dd>
-								</div>
-							)}
-							{pack.unit && (
-								<div className={styles.packDefinitionListItem}>
-									<dt>Unit</dt>
-									<dd>
-										{pack.unit}
-										{pack.legalCategory && (
-											<>
-												{" "}
-												<span className={styles.legalCategory}>
-													{pack.legalCategory}
-												</span>
-											</>
-										)}
-									</dd>
-								</div>
-							)}
-							{pack.nhsIndicativePrice && (
+				{prep.packs.map((pack) => {
+					const legalCategoryFullText = pack.legalCategory
+						? resolveLegalCategory(pack.legalCategory)
+						: null;
+
+					return (
+						<li className={styles.packItem} key={pack.amppId}>
+							<dl>
+								{pack.size && (
+									<div className={styles.packDefinitionListItem}>
+										<dt>Size</dt>
+										<dd>{pack.size}</dd>
+									</div>
+								)}
+								{pack.unit && (
+									<div className={styles.packDefinitionListItem}>
+										<dt>Unit</dt>
+										<dd>{pack.unit}</dd>
+									</div>
+								)}
 								<div className={styles.packDefinitionListItem}>
 									<dt>NHS indicative price</dt>
 									<dd>
-										{pack.nhsIndicativePrice}{" "}
-										{pack.hospitalOnly && "(Hospital only)"}
+										{pack.nhsIndicativePrice
+											? pack.nhsIndicativePrice
+											: "No NHS indicative price available"}
+										{pack.hospitalOnly && " (Hospital only)"}
 									</dd>
 								</div>
-							)}
-							{pack.drugTariff && (
-								<div className={styles.packDefinitionListItem}>
-									<dt>Drug tariff</dt>
-									<dd>{pack.drugTariff}</dd>
-								</div>
-							)}
-							{pack.drugTariffPrice && (
-								<div className={styles.packDefinitionListItem}>
-									<dt>Drug tariff price</dt>
-									<dd>{pack.drugTariffPrice}</dd>
-								</div>
-							)}
-							{pack.legalCategory && (
-								<div className={styles.packDefinitionListItem}>
-									<dt>Legal category</dt>
-									<dd>{pack.legalCategory}</dd>
-								</div>
-							)}
-						</dl>
-					</li>
-				))}
+								{pack.drugTariff && (
+									<div className={styles.packDefinitionListItem}>
+										<dt>Drug tariff</dt>
+										<dd>{pack.drugTariff}</dd>
+									</div>
+								)}
+								{pack.drugTariffPrice && (
+									<div className={styles.packDefinitionListItem}>
+										<dt>Drug tariff price</dt>
+										<dd>{pack.drugTariffPrice}</dd>
+									</div>
+								)}
+								{pack.legalCategory && (
+									<div className={styles.packDefinitionListItem}>
+										<dt>Legal category</dt>
+										<dd>
+											{legalCategoryFullText ? (
+												<>
+													<span
+														className={styles.legalCategory}
+														title={legalCategoryFullText}
+													>
+														{pack.legalCategory}
+													</span>
+													&ensp;({legalCategoryFullText})
+												</>
+											) : (
+												pack.legalCategory
+											)}
+										</dd>
+									</div>
+								)}
+							</dl>
+						</li>
+					);
+				})}
 			</ol>
 		) : null}
 	</Accordion>
