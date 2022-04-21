@@ -133,7 +133,7 @@ const InteractantPage: FC<InteractantPageProps> = ({
 		<Layout>
 			<SEO
 				title={`${titleNoHtml} | Interactions`}
-				description={`A list of drugs that interact with ${titleNoHtml}`}
+				description={`See the list of drugs that interact with ${titleNoHtml}. Includes information on severity of interaction and the level of evidence for it.`}
 			/>
 
 			<Breadcrumbs>
@@ -195,7 +195,7 @@ const InteractantPage: FC<InteractantPageProps> = ({
 									Severe interactions are highlighted with a red marker.
 								</p>
 								<p>
-									<Link to="/interactions/introduction/">
+									<Link to="/interactions/appendix-1-interactions/">
 										Find out more about BNF interactions information
 									</Link>
 								</p>
