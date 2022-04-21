@@ -100,6 +100,27 @@ describe("TreatmentSummaryPage", () => {
 	});
 
 	describe("body", () => {
-		it.todo("body tests");
+		describe.each([
+			["Related drugs", "relatedDrugs", "/drugs/"],
+			[
+				"Related treatment summaries",
+				"relatedTreatmentSummaries",
+				"/treatment-summaries/",
+			],
+		])("%s", (sectionName, propertyName, expectedBasePath) => {
+			describe(`No ${sectionName}`, () => {
+				it.todo(
+					`should not render ${sectionName} hash link when there are no ${sectionName}`
+				);
+
+				it.todo(
+					`should not render ${sectionName} secttion when there are no ${sectionName}`
+				);
+			});
+
+			describe(`${sectionName} with content`, () => {
+				it.todo("should do something");
+			});
+		});
 	});
 });
