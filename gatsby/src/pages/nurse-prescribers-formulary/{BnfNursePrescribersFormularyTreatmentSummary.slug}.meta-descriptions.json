@@ -65,18 +65,18 @@
   },
   "removal-of-earwax": {
     "bnf": "Read advice on removing ear wax for nurse prescribers, covers olive oil, almond oil and sodium bicarbonate ear drops as well as water irrigation.",
-    "bnfc": "Read advice on removing ear wax for nurse prescribers, covers olive oil, almond oil and sodium bicarbonate ear drops as well as water irrigation."
+    "bnfc": null
   },
   "stoma-appliances": {
     "bnf": "Read advice on stoma bags, flanges and other accessories for nurses, includes drug tariff information.",
-    "bnfc": "Read advice on stoma bags, flanges and other accessories for nurses, includes drug tariff information."
+    "bnfc": null
   },
   "stoma-care": {
     "bnf": "Read advice on stoma care for nurse prescribers, covers colostomy, ileostomy, urostomy and prescribing for patients with stoma.",
-    "bnfc": "Read advice on stoma care for nurse prescribers, covers colostomy, ileostomy, urostomy and prescribing for patients with stoma."
+    "bnfc": null
   },
   "urinary-catheters-and-appliances": {
     "bnf": "Read advice on urinary catheters and urinary appliances for nurse prescribers, covers the maintenance of catheters and drug tariff information.",
-    "bnfc": "Read advice on urinary catheters and urinary appliances for nurse prescribers, covers the maintenance of catheters and drug tariff information."
+    "bnfc": null
   }
 }
