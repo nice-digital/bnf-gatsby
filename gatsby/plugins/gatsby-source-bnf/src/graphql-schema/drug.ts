@@ -23,6 +23,12 @@ export const drugSchema = `
 		"The interactant with the same sid as this drug, if it exists, otherwise null"
 		interactant: ${BnfNode.Interactant} @link(by: "sid", from: "sid")
 
+		"The list of individual interactants for the substance(s) in this drug. An empty list indicates that there are no interactants associated with this drug."
+		interactants: [${BnfNode.Interactant}!]! @link(by: "sid")
+
+		"Any treatment summaries that contain a link to back this drug"
+		relatedTreatmentSummaries: [${BnfNode.TreatmentSummary}!]! @link
+
 		"The constituent drugs. This will be populated if the drug is a combination (e.g. 'tramadol with paracetamol') where each constituent exists in the BNF as a monograph in its own right."
 		constituentDrugs: ${BnfNode.ConstituentDrugs}
 

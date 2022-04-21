@@ -12,7 +12,11 @@ export interface PotSectionProps<TContent extends FeedBasePotContent>
 	drugClassContent: TContent[];
 	drugContent: TContent | null;
 	prepContent: TContent[];
-	children: (renderArgs: { content: TContent; pot: BasePot }) => ReactElement;
+	children: (renderArgs: {
+		contentForPrefix: string;
+		content: TContent;
+		pot: BasePot;
+	}) => ReactElement;
 }
 
 export const PotSection = <TPotContent extends FeedBasePotContent>({
@@ -34,7 +38,7 @@ export const PotSection = <TPotContent extends FeedBasePotContent>({
 					contentForPrefix="For all"
 					showHeading={true}
 				>
-					{renderPotContent({ content, pot })}
+					{renderPotContent({ contentForPrefix: "For all", content, pot })}
 				</PotContent>
 			))}
 
@@ -49,7 +53,11 @@ export const PotSection = <TPotContent extends FeedBasePotContent>({
 						(!!drugClassContent && drugClassContent.length > 0)
 					}
 				>
-					{renderPotContent({ content: drugContent, pot })}
+					{renderPotContent({
+						contentForPrefix: "For",
+						content: drugContent,
+						pot,
+					})}
 				</PotContent>
 			)}
 
@@ -61,7 +69,7 @@ export const PotSection = <TPotContent extends FeedBasePotContent>({
 					contentForPrefix="For"
 					showHeading={true}
 				>
-					{renderPotContent({ content, pot })}
+					{renderPotContent({ contentForPrefix: "For", content, pot })}
 				</PotContent>
 			))}
 		</section>

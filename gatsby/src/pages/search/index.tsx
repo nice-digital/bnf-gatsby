@@ -103,6 +103,18 @@ const SearchIndexPage: FC = () => {
 		if (loading) setAnnouncement("Loading search results");
 
 		if (data && !data.failed) {
+			if (!loading && window.dataLayer) {
+				window.dataLayer.push({ location: document.location.href });
+				if ("requestAnimationFrame" in window) {
+					requestAnimationFrame(() => {
+						requestAnimationFrame(() => {
+							window.dataLayer.push({
+								event: "search.resultsLoaded",
+							});
+						});
+					});
+				}
+			}
 			const summary = `Showing ${data.firstResult} to ${data.lastResult} of ${data.resultCount}`;
 			const spellcheck = data.finalSearchText
 				? ` for ${data.finalSearchText}`
@@ -169,7 +181,14 @@ const SearchIndexPage: FC = () => {
 					loading ? (
 						"Loading search results…"
 					) : data ? (
-						<SummaryText {...data} />
+						<div
+							id="search-results-summary"
+							data-original-search-text={data.originalSearch?.searchText || ""}
+							data-final-search-text={data.finalSearchText}
+							data-result-count={data.resultCount}
+						>
+							<SummaryText {...data} />
+						</div>
 					) : null
 				}
 			/>

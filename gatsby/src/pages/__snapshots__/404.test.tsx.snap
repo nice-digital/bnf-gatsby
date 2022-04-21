@@ -1,0 +1,124 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`404 should match snapshot 1`] = `
+<div>
+  <main>
+    <div
+      class="container"
+    >
+      <nav
+        aria-label="Breadcrumbs"
+        role="navigation"
+      >
+        <ol
+          class="breadcrumbs"
+        >
+          <li
+            class="breadcrumbs__crumb"
+          >
+            <a
+              href="https://www.nice.org.uk/"
+            >
+              NICE
+            </a>
+          </li>
+          <li
+            class="breadcrumbs__crumb"
+          >
+            <a
+              href="/"
+            >
+              BNFC
+            </a>
+          </li>
+          <li
+            class="breadcrumbs__crumb"
+          >
+            <span>
+              Page not found
+            </span>
+          </li>
+        </ol>
+      </nav>
+      <script
+        type="application/ld+json"
+      >
+        {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@id": "https://www.nice.org.uk/",
+        "name": "NICE"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@id": "/",
+        "name": "BNFC"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "name": "Page not found"
+      }
+    }
+  ]
+}
+      </script>
+      <div
+        class="page-header"
+      >
+        <h1
+          class="page-header__heading"
+        >
+          We can't find this page
+        </h1>
+        <p
+          class="page-header__lead"
+        >
+          Check that the web address has been typed correctly.
+        </p>
+      </div>
+      <p>
+        You can also try:
+      </p>
+      <ul>
+        <li>
+          looking for it using the search box
+        </li>
+        <li>
+          browsing for it from the
+           
+          <a
+            href="/"
+          >
+            BNFC
+             homepage
+          </a>
+          .
+        </li>
+      </ul>
+      <h2>
+        Contact us
+      </h2>
+      <p>
+        <a
+          href="https://www.nice.org.uk/get-involved/contact-us"
+        >
+          Get in touch
+        </a>
+         
+        if you think there is a problem.
+      </p>
+    </div>
+  </main>
+</div>
+`;

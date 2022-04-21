@@ -57,9 +57,7 @@ describe("SEO", () => {
 			).toEqual("Custom title | BNF content published by NICE");
 		});
 
-		expect(document.title).toEqual(
-			"Custom title | BNF content published by NICE"
-		);
+		expect(document.title).toEqual("Custom title | BNF | NICE");
 
 		expect(
 			document

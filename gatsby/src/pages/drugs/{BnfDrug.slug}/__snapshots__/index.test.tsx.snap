@@ -1,5 +1,46 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`DrugPage Important safety information should match snapshot for important safety information section 1`] = `
+<section
+  aria-labelledby="important-safety-information"
+  class="section"
+>
+  <div
+    class="panel panel--primary panel"
+  >
+    <h2
+      id="important-safety-information"
+    >
+      Important safety information
+    </h2>
+    <section
+      aria-labelledby="important-safety-information-diazepam"
+    >
+      <h3
+        class="visually-hidden"
+        id="important-safety-information-diazepam"
+      >
+        <span
+          class="visually-hidden"
+        >
+          Important safety information 
+        </span>
+        <span>
+          For diazepam
+        </span>
+      </h3>
+      <div
+        class="panelContents"
+      >
+        <p>
+          This is very important safety information right here
+        </p>
+      </div>
+    </section>
+  </div>
+</section>
+`;
+
 exports[`DrugPage body Constituent drugs should match snapshot for constituent drugs section 1`] = `
 <section
   aria-labelledby="constituent-drugs"
@@ -34,23 +75,70 @@ exports[`DrugPage body Constituent drugs should match snapshot for constituent d
 </section>
 `;
 
+exports[`DrugPage body Interactions Multiple interactants should match snapshot for interactions section 1`] = `
+<section
+  aria-labelledby="interactions"
+  class="section"
+>
+  <h2
+    id="interactions"
+  >
+    Interactions
+  </h2>
+  <p>
+    View interactions for:
+  </p>
+  <ul
+    aria-label="Links to each interactant"
+  >
+    <li>
+      <a
+        href="/interactions/abacavir/"
+      >
+        Abacavir
+      </a>
+    </li>
+    <li>
+      <a
+        href="/interactions/lamivudine/"
+      >
+        Lamivudine
+      </a>
+    </li>
+  </ul>
+</section>
+`;
+
+exports[`DrugPage body Interactions Single interactant should match snapshot for interactions section 1`] = `
+<section
+  aria-labelledby="interactions"
+  class="section"
+>
+  <h2
+    id="interactions"
+  >
+    Interactions
+  </h2>
+  <p>
+    <a
+      href="/interactions/abacavir/"
+    >
+      View interactions for
+       
+      <span>
+        Abacavir
+      </span>
+    </a>
+  </p>
+</section>
+`;
+
 exports[`DrugPage should match snapshot for graphql query 1`] = `
 "
 	query ($id: String) {
 		bnfDrug(id: { eq: $id }) {
 			title
 			slug
-			interactant {
-				title
-				slug
-			}
-			constituentDrugs {
-				message
-				constituents {
-					title
-					slug
-				}
-			}
 			allergyAndCrossSensitivity {
 				...SimplePot
 			}
@@ -65,6 +153,13 @@ exports[`DrugPage should match snapshot for graphql query 1`] = `
 			}
 			cautions {
 				...SimplePot
+			}
+			constituentDrugs {
+				message
+				constituents {
+					title
+					slug
+				}
 			}
 			directionsForAdministration {
 				...SimplePot
@@ -99,6 +194,10 @@ exports[`DrugPage should match snapshot for graphql query 1`] = `
 				prepContent {
 					...IndicationsAndDoseContent
 				}
+			}
+			interactants {
+				title
+				slug
 			}
 			lessSuitableForPrescribing {
 				...SimplePot
@@ -172,6 +271,10 @@ exports[`DrugPage should match snapshot for graphql query 1`] = `
 			}
 			treatmentCessation {
 				...SimplePot
+			}
+			relatedTreatmentSummaries {
+				title
+				slug
 			}
 			unlicensedUse {
 				...SimplePot

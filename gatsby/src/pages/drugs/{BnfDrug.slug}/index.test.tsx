@@ -20,9 +20,12 @@ const drug: DrugPageProps["data"]["bnfDrug"] = {
 	hepaticImpairment: null,
 	importantSafetyInformation: null,
 	indicationsAndDose: null,
+	interactants: [],
 	lessSuitableForPrescribing: null,
 	medicinalForms: {
-		initialStatement: "Nothing to see here",
+		initialStatement: "No licensed medicines listed.",
+		specialOrderManufacturersStatement: null,
+		medicinalForms: [],
 	},
 	monitoringRequirements: null,
 	nationalFunding: null,
@@ -33,6 +36,7 @@ const drug: DrugPageProps["data"]["bnfDrug"] = {
 	prescribingAndDispensingInformation: null,
 	renalImpairment: null,
 	professionSpecificInformation: null,
+	relatedTreatmentSummaries: [],
 	sideEffects: null,
 	treatmentCessation: null,
 	unlicensedUse: null,
@@ -128,6 +132,91 @@ describe("DrugPage", () => {
 		});
 	});
 
+	describe("Important safety information", () => {
+		const importantSafetyInformation: DrugPageProps["data"]["bnfDrug"]["importantSafetyInformation"] =
+			{
+				potName: "Important safety information",
+				slug: "important-safety-information",
+				drugClassContent: [],
+				drugContent: {
+					contentFor: "diazepam",
+					content:
+						"<p>This is very important safety information right here</p>",
+				},
+				prepContent: [],
+			};
+
+		it("should not render important info section when not present in the feed", () => {
+			render(
+				<DrugPage
+					data={{
+						bnfDrug: drug,
+					}}
+				/>
+			);
+
+			expect(
+				screen.queryByRole("link", { name: "Important safety information" })
+			).toBeNull();
+
+			expect(
+				screen.queryByRole("heading", {
+					level: 2,
+					name: "Important safety information",
+				})
+			).toBeNull();
+
+			expect(
+				screen.queryByRole("region", { name: "Important safety information" })
+			).toBeNull();
+		});
+
+		it("should render important safety information section when present in the feed", () => {
+			render(
+				<DrugPage
+					data={{
+						bnfDrug: {
+							...drug,
+							importantSafetyInformation,
+						},
+					}}
+				/>
+			);
+
+			expect(
+				screen.getByRole("link", { name: "Important safety information" })
+			).toHaveAttribute("href", "#important-safety-information");
+
+			expect(
+				screen.getByRole("heading", {
+					level: 2,
+					name: "Important safety information",
+				})
+			).toHaveAttribute("id", "important-safety-information");
+
+			expect(
+				screen.getByRole("region", { name: "Important safety information" })
+			).toBeInTheDocument();
+		});
+
+		it("should match snapshot for important safety information section", () => {
+			render(
+				<DrugPage
+					data={{
+						bnfDrug: {
+							...drug,
+							importantSafetyInformation,
+						},
+					}}
+				/>
+			);
+
+			expect(
+				screen.getByRole("region", { name: "Important safety information" })
+			).toMatchSnapshot();
+		});
+	});
+
 	describe("body", () => {
 		describe("Constituent drugs", () => {
 			const constituentDrugs: DrugPageProps["data"]["bnfDrug"]["constituentDrugs"] =
@@ -211,6 +300,322 @@ describe("DrugPage", () => {
 			});
 		});
 
+		describe("Interactions", () => {
+			describe("No interactants", () => {
+				it("should not render interactions sections when there are no interactants", () => {
+					render(
+						<DrugPage
+							data={{
+								bnfDrug: drug,
+							}}
+						/>
+					);
+
+					expect(
+						screen.queryByRole("link", { name: "Interactions" })
+					).toBeNull();
+
+					expect(
+						screen.queryByRole("heading", { level: 2, name: "Interactions" })
+					).toBeNull();
+
+					expect(
+						screen.queryByRole("region", { name: "Interactions" })
+					).toBeNull();
+				});
+			});
+
+			describe("Single interactant", () => {
+				const interactants = [{ slug: "abacavir", title: "Abacavir" }];
+
+				it("should render shortcut link to interactions section", () => {
+					render(
+						<DrugPage
+							data={{
+								bnfDrug: {
+									...drug,
+									interactants: interactants,
+								},
+							}}
+						/>
+					);
+
+					expect(
+						screen.getByRole("link", { name: "Interactions" })
+					).toHaveAttribute("href", "#interactions");
+				});
+
+				it("should render interactions section", () => {
+					render(
+						<DrugPage
+							data={{
+								bnfDrug: {
+									...drug,
+									interactants: interactants,
+								},
+							}}
+						/>
+					);
+
+					const mainBodySection = screen.getByRole("region", {
+						name: "Interactions",
+					});
+
+					expect(mainBodySection).toBeInTheDocument();
+
+					expect(
+						within(mainBodySection).getByRole("heading", {
+							level: 2,
+							name: "Interactions",
+						})
+					).toHaveAttribute("id", "interactions");
+				});
+
+				it("should match snapshot for interactions section", () => {
+					render(
+						<DrugPage
+							data={{
+								bnfDrug: {
+									...drug,
+									interactants: interactants,
+								},
+							}}
+						/>
+					);
+
+					const mainBodySection = screen.getByRole("region", {
+						name: "Interactions",
+					});
+
+					expect(mainBodySection).toMatchSnapshot();
+				});
+
+				it("should render interactions shortcut panel section", () => {
+					render(
+						<DrugPage
+							data={{
+								bnfDrug: {
+									...drug,
+									interactants: interactants,
+								},
+							}}
+						/>
+					);
+
+					expect(
+						screen.getAllByRole("heading", {
+							level: 2,
+							name: "Interactions",
+						})
+					).toHaveLength(2);
+				});
+			});
+
+			describe("Multiple interactants", () => {
+				const interactants = [
+					{ slug: "abacavir", title: "Abacavir" },
+					{ slug: "lamivudine", title: "Lamivudine" },
+				];
+
+				it("should render shortcut link to interactions section", () => {
+					render(
+						<DrugPage
+							data={{
+								bnfDrug: {
+									...drug,
+									interactants: interactants,
+								},
+							}}
+						/>
+					);
+
+					expect(
+						screen.getByRole("link", { name: "Interactions" })
+					).toHaveAttribute("href", "#interactions");
+				});
+
+				it("should render interactions section", () => {
+					render(
+						<DrugPage
+							data={{
+								bnfDrug: {
+									...drug,
+									interactants: interactants,
+								},
+							}}
+						/>
+					);
+
+					const mainBodySection = screen.getByRole("region", {
+						name: "Interactions",
+					});
+
+					expect(mainBodySection).toBeInTheDocument();
+
+					expect(
+						within(mainBodySection).getByRole("heading", {
+							level: 2,
+							name: "Interactions",
+						})
+					).toHaveAttribute("id", "interactions");
+				});
+
+				it("should match snapshot for interactions section", () => {
+					render(
+						<DrugPage
+							data={{
+								bnfDrug: {
+									...drug,
+									interactants: interactants,
+								},
+							}}
+						/>
+					);
+
+					const mainBodySection = screen.getByRole("region", {
+						name: "Interactions",
+					});
+
+					expect(mainBodySection).toMatchSnapshot();
+				});
+
+				it("should render interactions shortcut panel section", () => {
+					render(
+						<DrugPage
+							data={{
+								bnfDrug: {
+									...drug,
+									interactants: interactants,
+								},
+							}}
+						/>
+					);
+
+					expect(
+						screen.getAllByRole("heading", {
+							level: 2,
+							name: "Interactions",
+						})
+					).toHaveLength(2);
+				});
+			});
+		});
+
+		describe("Monitoring requirements", () => {
+			it("should not render monitoring requirements when not present in the feed", () => {
+				render(
+					<DrugPage
+						data={{
+							bnfDrug: drug,
+						}}
+					/>
+				);
+
+				expect(
+					screen.queryByRole("link", { name: "Monitoring requirements" })
+				).toBeNull();
+
+				expect(
+					screen.queryByRole("heading", {
+						level: 2,
+						name: "Monitoring requirements",
+					})
+				).toBeNull();
+
+				expect(
+					screen.queryByRole("region", { name: "Monitoring requirements" })
+				).toBeNull();
+			});
+
+			it("should render monitoring requirements section when present in the feed", () => {
+				render(
+					<DrugPage
+						data={{
+							bnfDrug: {
+								...drug,
+								monitoringRequirements: {
+									potName: "Monitoring requirements",
+									slug: "monitoring-requirements",
+									drugClassContent: [],
+									drugContent: null,
+									prepContent: [],
+								},
+							},
+						}}
+					/>
+				);
+
+				expect(
+					screen.getByRole("link", { name: "Monitoring requirements" })
+				).toHaveAttribute("href", "#monitoring-requirements");
+
+				expect(
+					screen.getByRole("heading", {
+						level: 2,
+						name: "Monitoring requirements",
+					})
+				).toHaveAttribute("id", "monitoring-requirements");
+
+				expect(
+					screen.getByRole("region", { name: "Monitoring requirements" })
+				).toBeInTheDocument();
+			});
+		});
+
+		describe("Medicinal forms", () => {
+			it("should render shortcut link to medicinal forms section", () => {
+				render(
+					<DrugPage
+						data={{
+							bnfDrug: drug,
+						}}
+					/>
+				);
+
+				expect(
+					screen.getByRole("link", { name: "Medicinal forms" })
+				).toHaveAttribute("href", "#medicinal-forms");
+			});
+
+			it("should render medicinal forms section", () => {
+				render(
+					<DrugPage
+						data={{
+							bnfDrug: drug,
+						}}
+					/>
+				);
+
+				expect(
+					screen.getByRole("heading", {
+						level: 2,
+						name: "Medicinal forms",
+					})
+				).toHaveAttribute("id", "medicinal-forms");
+
+				expect(
+					screen.getByRole("region", { name: "Medicinal forms" })
+				).toBeInTheDocument();
+			});
+
+			it("should render medicinal forms shortcut panel section", () => {
+				render(
+					<DrugPage
+						data={{
+							bnfDrug: drug,
+						}}
+					/>
+				);
+
+				expect(
+					screen.getByRole("heading", {
+						level: 2,
+						name: "Medicinal forms and\xa0pricing",
+					})
+				).toBeInTheDocument();
+			});
+		});
+
 		describe.each<[keyof typeof drug]>([
 			["allergyAndCrossSensitivity"],
 			["breastFeeding"],
@@ -287,6 +692,86 @@ describe("DrugPage", () => {
 				expect(
 					screen.getByRole("region", { name: "Some pot name" })
 				).toBeInTheDocument();
+			});
+		});
+
+		describe("Related treatment summaries", () => {
+			it("should not render related treatments section when there are none", () => {
+				render(
+					<DrugPage
+						data={{
+							bnfDrug: { ...drug, relatedTreatmentSummaries: [] },
+						}}
+					/>
+				);
+
+				expect(
+					screen.queryByRole("link", { name: "Related treatment summaries" })
+				).toBeNull();
+
+				expect(
+					screen.queryByRole("heading", {
+						level: 2,
+						name: "Related treatment summaries",
+					})
+				).toBeNull;
+
+				expect(
+					screen.queryByRole("region", { name: "Related treatment summaries" })
+				).toBeNull();
+			});
+
+			it("should render related treatment summaries section and heading", () => {
+				render(
+					<DrugPage
+						data={{
+							bnfDrug: {
+								...drug,
+								relatedTreatmentSummaries: [
+									{
+										slug: "acne",
+										title: "Acne",
+									},
+								],
+							},
+						}}
+					/>
+				);
+
+				expect(
+					screen.getByRole("heading", {
+						level: 2,
+						name: "Related treatment summaries",
+					})
+				).toHaveAttribute("id", "related-treatment-summaries");
+
+				expect(
+					screen.getByRole("region", { name: "Related treatment summaries" })
+				).toBeInTheDocument();
+			});
+
+			it("should render link to related treatment summary", () => {
+				render(
+					<DrugPage
+						data={{
+							bnfDrug: {
+								...drug,
+								relatedTreatmentSummaries: [
+									{
+										slug: "acne",
+										title: "Acne",
+									},
+								],
+							},
+						}}
+					/>
+				);
+
+				expect(
+					screen.getByRole("link", {
+						name: "Acne",
+					})
+				).toHaveAttribute("href", "/treatment-summaries/acne/");
 			});
 		});
 	});

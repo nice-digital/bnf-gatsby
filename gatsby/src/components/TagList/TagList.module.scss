@@ -1,0 +1,24 @@
+@use '@nice-digital/nds-core/scss/core';
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  max-width: none;
+  padding: 0;
+}
+
+.tag {
+  background: core.$nds-colour-nice-white;
+  border: 1px solid core.$nds-colour-border;
+  border-radius: core.rem(core.$nds-spacing-small);
+  display: block;
+  margin: core.rem(0 core.$nds-spacing-x-small core.$nds-spacing-x-small 0);
+  padding: core.rem(core.$nds-spacing-x-small core.$nds-spacing-medium);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

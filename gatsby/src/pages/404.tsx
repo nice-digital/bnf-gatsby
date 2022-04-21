@@ -1,30 +1,47 @@
 import { Link } from "gatsby";
-import { FC } from "react";
+import React from "react";
 
-// markup
-const NotFoundPage: FC = () => {
+import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
+import { PageHeader } from "@nice-digital/nds-page-header";
+
+import { Layout } from "../components/Layout/Layout";
+import { SEO } from "../components/SEO/SEO";
+
+import { isBNF } from "./../site";
+
+const NotFoundPage: React.FC = () => {
 	return (
-		<main>
-			<title>Not found</title>
-			<h1>Page not found</h1>
+		<Layout>
+			<SEO title="Page not found" noIndex={true} />
+			<Breadcrumbs>
+				<Breadcrumb to="https://www.nice.org.uk/">NICE</Breadcrumb>
+				<Breadcrumb to="/" elementType={Link}>
+					{isBNF ? "BNF" : "BNFC"}
+				</Breadcrumb>
+				<Breadcrumb>Page not found</Breadcrumb>
+			</Breadcrumbs>
+
+			<PageHeader
+				heading={"We can't find this page"}
+				lead={"Check that the web address has been typed correctly."}
+			/>
+
+			<p>You can also try:</p>
+			<ul>
+				<li>looking for it using the search box</li>
+				<li>
+					browsing for it from the{" "}
+					<Link to="/">{isBNF ? "BNF" : "BNFC"} homepage</Link>.
+				</li>
+			</ul>
+			<h2>Contact us</h2>
 			<p>
-				Sorry{" "}
-				<span role="img" aria-label="Pensive emoji">
-					😔
-				</span>{" "}
-				we couldn’t find what you were looking for.
-				<br />
-				{process.env.NODE_ENV === "development" ? (
-					<>
-						<br />
-						Try creating a page in <code>src/pages/</code>.
-						<br />
-					</>
-				) : null}
-				<br />
-				<Link to="/">Go home</Link>.
+				<a href="https://www.nice.org.uk/get-involved/contact-us">
+					Get in touch
+				</a>{" "}
+				if you think there is a problem.
 			</p>
-		</main>
+		</Layout>
 	);
 };
 
