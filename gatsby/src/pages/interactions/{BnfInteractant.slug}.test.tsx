@@ -108,7 +108,7 @@ describe("InteractantPage", () => {
 						.querySelector("meta[name='description']")
 				).toHaveAttribute(
 					"content",
-					"A list of drugs that interact with Anti-D (Rh0) immunoglobulin"
+					"See the list of drugs that interact with Anti-D (Rh0) immunoglobulin. Includes information on severity of interaction and the level of evidence for it."
 				);
 			});
 		});
