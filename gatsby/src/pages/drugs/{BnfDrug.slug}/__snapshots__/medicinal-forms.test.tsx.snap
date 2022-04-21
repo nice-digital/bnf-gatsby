@@ -238,6 +238,7 @@ exports[`MedicinalFormsPage Body should match snapshot for page body 1`] = `
               >
                 <summary
                   class="summary"
+                  data-tracking="Show"
                 >
                   <h3
                     class="labelAccordionHeading"

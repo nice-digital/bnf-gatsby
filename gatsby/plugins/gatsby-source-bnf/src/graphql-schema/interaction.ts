@@ -45,6 +45,9 @@ export const interactionSchema = `
 
 		"An array of interactions related to this particular interactant"
 		interactions: [${BnfNode.Interaction}!]!
+
+		"Additional information regarding specific interactants"
+		supplementaryInformation: [${BnfNode.InteractionSupplementaryInformation}!]!
 	}
 
 	"""
@@ -78,5 +81,15 @@ export const interactionSchema = `
 
 		"Whether the interaction is an additive effect (true) or not (false)."
 		additiveEffect: Boolean!
+	}
+
+	"""
+	Additional information regarding specific interactants
+	"""
+	type ${BnfNode.InteractionSupplementaryInformation} @dontInfer {
+		"The title of this piece of supplementary information"
+		title: String!
+		"An HTML block containing the body of this piece of supplementary information"
+		information: String!
 	}
 `;

@@ -47,12 +47,8 @@ export const Interaction: React.FC<InteractionProps> = ({
 								>
 									<div dangerouslySetInnerHTML={{ __html: message }}></div>
 									<dl className={styles.supplementaryInfo}>
-										<dt>
-											<strong>Severity:</strong>
-										</dt>
-										<dd>
-											<strong>{severity}</strong>
-										</dd>
+										<dt>Severity:</dt>
+										<dd>{severity}</dd>
 										{evidence !== null && (
 											<>
 												<dt>Evidence:</dt>

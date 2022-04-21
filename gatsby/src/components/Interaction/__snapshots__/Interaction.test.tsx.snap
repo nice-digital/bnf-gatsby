@@ -28,14 +28,10 @@ exports[`Interaction Should match the snapshot 1`] = `
             class="supplementaryInfo"
           >
             <dt>
-              <strong>
-                Severity:
-              </strong>
+              Severity:
             </dt>
             <dd>
-              <strong>
-                Severe
-              </strong>
+              Severe
             </dd>
             <dt>
               Evidence:
@@ -61,14 +57,10 @@ exports[`Interaction Should match the snapshot 1`] = `
             class="supplementaryInfo"
           >
             <dt>
-              <strong>
-                Severity:
-              </strong>
+              Severity:
             </dt>
             <dd>
-              <strong>
-                Normal
-              </strong>
+              Normal
             </dd>
             <dt>
               Evidence:

@@ -85,6 +85,9 @@ exports[`schema should match snapshot 1`] = `
 		\\"The interactant with the same sid as this drug, if it exists, otherwise null\\"
 		interactant: BnfInteractant @link(by: \\"sid\\", from: \\"sid\\")
 
+		\\"The list of individual interactants for the substance(s) in this drug. An empty list indicates that there are no interactants associated with this drug.\\"
+		interactants: [BnfInteractant!]! @link(by: \\"sid\\")
+
 		\\"Any treatment summaries that contain a link to back this drug\\"
 		relatedTreatmentSummaries: [BnfTreatmentSummary!]! @link
 
@@ -391,6 +394,9 @@ exports[`schema should match snapshot 1`] = `
 
 		\\"An array of interactions related to this particular interactant\\"
 		interactions: [BnfInteraction!]!
+
+		\\"Additional information regarding specific interactants\\"
+		supplementaryInformation: [BnfInteractionSupplementaryInformation!]!
 	}
 
 	\\"\\"\\"
@@ -424,6 +430,16 @@ exports[`schema should match snapshot 1`] = `
 
 		\\"Whether the interaction is an additive effect (true) or not (false).\\"
 		additiveEffect: Boolean!
+	}
+
+	\\"\\"\\"
+	Additional information regarding specific interactants
+	\\"\\"\\"
+	type BnfInteractionSupplementaryInformation @dontInfer {
+		\\"The title of this piece of supplementary information\\"
+		title: String!
+		\\"An HTML block containing the body of this piece of supplementary information\\"
+		information: String!
 	}
 
 
