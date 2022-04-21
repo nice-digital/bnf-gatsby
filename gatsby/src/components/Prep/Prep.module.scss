@@ -28,6 +28,7 @@
 
 .manufacturer {
   font-style: italic;
+  font-weight: normal;
 }
 
 .packList {
@@ -61,11 +62,18 @@
   }
 }
 
-.sugarFree {
+.sugarFree,
+.controlledScheduleCode,
+.legalCategory {
   @include core.nds-font-size(-2);
   border: 1px solid core.$nds-colour-border;
   display: inline-block;
   padding: core.rem(core.$nds-spacing-xx-small)
     core.rem(core.$nds-spacing-x-small);
   text-transform: uppercase;
+}
+
+.controlledScheduleCode,
+.legalCategory {
+  border-radius: 30% 0 0;
 }

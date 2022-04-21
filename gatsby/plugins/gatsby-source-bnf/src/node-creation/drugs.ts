@@ -57,7 +57,7 @@ export const createDrugNodes = (
 	sourceNodesArgs: SourceNodesArgs
 ): void => {
 	drugs.forEach(
-		({ medicinalForms, constituentDrugs, interactants, id, sid, ...drug }) => {
+		({ medicinalForms, interactants, constituentDrugs, id, sid, ...drug }) => {
 			const {
 				initialStatement,
 				specialOrderManufacturersStatement,

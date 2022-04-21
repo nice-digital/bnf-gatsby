@@ -22,8 +22,8 @@ type queryMedicinalForm = Merge<
 	WithSlug<FeedMedicinalForm>,
 	{
 		cautionaryAndAdvisoryLabels?: {
-			label: Except<FeedLabel, "description">;
-			qualifier?: string;
+			label: Except<FeedLabel, "description" | "qualifier">;
+			qualifier: string | null;
 		}[];
 	}
 >;
@@ -111,18 +111,20 @@ const MedicinalFormsPage: FC<MedicinalFormsPageProps> = ({
 				form,
 				slug,
 				preps,
-				electolytes,
+				electrolytes,
 				excipients,
 				cautionaryAndAdvisoryLabels,
 			}) => {
 				const labelList = cautionaryAndAdvisoryLabels?.length ? (
 					<ul className={styles.labelList}>
-						{cautionaryAndAdvisoryLabels.map(({ label }) => (
+						{cautionaryAndAdvisoryLabels.map(({ label, qualifier }) => (
 							<li
 								className={labelStyles.label}
 								key={`${slug}-label-${label.number}`}
 							>
-								<h4 className={styles.labelHeading}>Label {label.number}</h4>
+								<h4 className={styles.labelHeading}>
+									Label {label.number} {qualifier && `(${qualifier})`}
+								</h4>
 								<p>{label.englishRecommendation}</p>
 								<p lang="cy">{label.welshRecommendation}</p>
 							</li>
@@ -148,10 +150,10 @@ const MedicinalFormsPage: FC<MedicinalFormsPageProps> = ({
 								{labelList}
 							</Accordion>
 						)}
-						{electolytes && (
+						{electrolytes && (
 							<>
 								<h3>Electrolytes</h3>
-								<p>{electolytes}</p>
+								<p>{electrolytes}</p>
 							</>
 						)}
 						{excipients && (
@@ -201,7 +203,7 @@ export const query = graphql`
 				medicinalForms {
 					form
 					slug
-					electolytes
+					electrolytes
 					excipients
 					preps {
 						...FullPrep

@@ -21,7 +21,7 @@
 }
 
 .labelAccordion {
-  max-width: 66ch; // TODO: Move this into design system? It's used everywhere
+  max-width: core.$nds-readable-width;
 }
 
 .labelAccordionHeading,

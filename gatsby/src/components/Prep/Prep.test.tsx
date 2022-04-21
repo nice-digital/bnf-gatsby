@@ -69,7 +69,7 @@ describe("Prep", () => {
 	it("should render a definition list for each pack, with a number of terms matching the data supplied", () => {
 		render(<Prep prep={prep} />);
 		const allTerms = screen.getAllByRole("term");
-		expect(allTerms.length).toBe(4);
+		expect(allTerms.length).toBe(5);
 	});
 
 	it("should render the pack size", () => {

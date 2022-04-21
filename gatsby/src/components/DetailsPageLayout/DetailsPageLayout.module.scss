@@ -1,3 +1,5 @@
+@use '@nice-digital/nds-core/scss/core';
+
 .body {
   > :first-child {
     margin-top: 0;
@@ -5,5 +7,5 @@
 }
 
 .sectionNav {
-  max-width: 66ch; // TODO: Move into design system?
+  max-width: core.$nds-readable-width;
 }

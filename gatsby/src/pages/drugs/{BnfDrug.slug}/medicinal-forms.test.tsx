@@ -15,7 +15,7 @@ const drug: MedicinalFormsPageProps["data"]["bnfDrug"] = {
 			{
 				form: "Tablets",
 				slug: "tablets",
-				electolytes: "May contain sodium.",
+				electrolytes: "May contain sodium.",
 				excipients: "May contain alcohol, disodium edetate, polysorbates.",
 				preps: [],
 				cautionaryAndAdvisoryLabels: [
@@ -25,7 +25,7 @@ const drug: MedicinalFormsPageProps["data"]["bnfDrug"] = {
 							englishRecommendation: "<p>English recommendation</p>",
 							welshRecommendation: "<p>Welsh recommendation</p>",
 						},
-						qualifier: "test info",
+						qualifier: "test qualifier",
 					},
 					{
 						label: {
@@ -41,7 +41,7 @@ const drug: MedicinalFormsPageProps["data"]["bnfDrug"] = {
 				form: "Powder",
 				slug: "powder",
 				cautionaryAndAdvisoryLabels: [],
-				electolytes: null,
+				electrolytes: null,
 				excipients: null,
 				preps: [],
 			},
@@ -168,6 +168,18 @@ describe("MedicinalFormsPage", () => {
 			expect(
 				screen.getByText("Test special order statement")
 			).toBeInTheDocument();
+		});
+
+		it("should render a qualifier when it exists in the feed data", () => {
+			render(<MedicinalFormsPage data={dataProp} />);
+			expect(
+				screen.getByRole("heading", { name: "Label 3 (test qualifier)" })
+			).toBeInTheDocument();
+		});
+
+		it("should match snapshot for page body", () => {
+			render(<MedicinalFormsPage data={dataProp} />);
+			expect(screen.getByRole("main")).toMatchSnapshot();
 		});
 	});
 });
