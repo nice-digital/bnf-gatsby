@@ -5,7 +5,8 @@
 }
 
 .asideInfo {
-  border: 1px solid #dedede;
+  background: core.$nds-colour-nice-white;
+  border: 1px solid core.$nds-colour-nice-grey-2;
   margin-bottom: core.rem(core.$nds-spacing-medium);
   padding: core.rem(core.$nds-spacing-medium);
 
@@ -13,15 +14,16 @@
     @include core.nds-h4;
     margin-top: 0;
   }
+
+  > :last-child {
+    margin-bottom: 0;
+  }
 }
 
 .prepList {
   list-style: none;
   margin: 0;
-}
-
-.labelAccordion {
-  max-width: core.$nds-readable-width;
+  max-width: none;
 }
 
 .labelAccordionHeading,
@@ -57,6 +59,7 @@
 .labelList {
   list-style: none;
   margin: 0;
+  max-width: none;
 
   li {
     margin-bottom: core.rem(core.$nds-spacing-medium);
@@ -65,4 +68,8 @@
       margin-bottom: 0;
     }
   }
+}
+
+.labelWelsh {
+  font-style: italic;
 }

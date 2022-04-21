@@ -126,7 +126,9 @@ const MedicinalFormsPage: FC<MedicinalFormsPageProps> = ({
 									Label {label.number} {qualifier && `(${qualifier})`}
 								</h4>
 								<p>{label.englishRecommendation}</p>
-								<p lang="cy">{label.welshRecommendation}</p>
+								<p lang="cy" className={labelStyles.welsh}>
+									{label.welshRecommendation}
+								</p>
 							</li>
 						))}
 					</ul>

@@ -479,17 +479,7 @@ export interface FeedPrep {
 	/** A flag to indicate whether (true) or not (false) this preparation is subject to additional monitoring as required by the European Medicines Agency (EMA). If this flag is true, then an inverted black triangle symbol should be shown (Unicode character U+25BC: ▼). */
 	blackTriangle: boolean;
 	/** The controlled drug category for the preparation. If this value is not given then the preparation has no controlled drug status. */
-	controlledDrugSchedule?:
-		| "Schedule 1 (CD Lic)"
-		| "Schedule 2 (CD)"
-		| "Schedule 2 (CD Exempt Safe Custody)"
-		| "Schedule 3 (CD No Register)"
-		| "Schedule 3 (CD No Register Exempt Safe Custody)"
-		| "Schedule 3 (CD No Register Phenobarbital)"
-		| "Schedule 3 (CD No Register Temazepam)"
-		| "Schedule 4 (CD Anab)"
-		| "Schedule 4 (CD Benz)"
-		| "Schedule 5 (CD Inv)";
+	controlledDrugSchedule?: FeedControlledDrugSchedule;
 	/** A marker to indicate whether the preparation is sugar-free or not. This field will not be populated for borderline substance and wound management preparations. */
 	sugarFree?: boolean;
 	/** A list of the active ingredients for the preparation. */
@@ -497,6 +487,19 @@ export interface FeedPrep {
 	/** A list of the packs for the preparation. For a borderline substance preparation, the packs are sorted by the \"size\" field of the pack as a double-precision floating point number, in ascending order. */
 	packs?: FeedPack[];
 }
+
+export type FeedControlledDrugSchedule =
+	| "Schedule 1 (CD)"
+	| "Schedule 1 (CD Lic)"
+	| "Schedule 2 (CD)"
+	| "Schedule 2 (CD Exempt Safe Custody)"
+	| "Schedule 3 (CD No Register)"
+	| "Schedule 3 (CD No Register Exempt Safe Custody)"
+	| "Schedule 3 (CD No Register Phenobarbital)"
+	| "Schedule 3 (CD No Register Temazepam)"
+	| "Schedule 4 (CD Anab)"
+	| "Schedule 4 (CD Benz)"
+	| "Schedule 5 (CD Inv)";
 
 /** The properties for a specific pack of a preparation. Context is provided by this object being given in the `packs` field of `Prep`. */
 export interface FeedPack {
@@ -509,7 +512,7 @@ export interface FeedPack {
 	/** The NHS indicative price, if available, for example, `£377.00` or `£225,513.09`. For wound management preparations, this field may contain the drug tariff price if no NHS indicative price exists. */
 	nhsIndicativePrice?: string;
 	/** The legal category, if available. Will not be present for wound management preparations. Can only be `POM`, `P`, `GSL`, or `Not Applicable`. */
-	legalCategory?: "POM" | "P" | "GSL" | "Not Applicable";
+	legalCategory?: FeedLegalCategory;
 	/** A flag to indicate whether (`true`) or not (`false`) this pack is only available through hospital ordering. Will not be present for wound management preparations. */
 	hospitalOnly?: boolean;
 	/** The drug tariff payment category, if available, for example, `Part VIIIA Category A`. */
@@ -532,6 +535,8 @@ export interface FeedPack {
 	/** The colour of the preparation, if available. This will only ever be present for wound management preparations. */
 	colour?: string;
 }
+
+export type FeedLegalCategory = "POM" | "P" | "GSL" | "Not Applicable";
 
 /** This object contains content that is relevant to a set of medical device preparations. */
 export interface FeedClinicalMedicalDeviceInformationGroup {
