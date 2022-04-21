@@ -59,13 +59,3 @@ footer {
   // Hide evidence grading until we decide whether we're keeping them
   display: none;
 }
-
-/* branding stripe for bnf/bnfc */
-
-.site-bnf main {
-  border-top: core.rem(core.$nds-spacing-small) solid $bnf-brand-colour;
-}
-
-.site-bnfc main {
-  border-top: core.rem(core.$nds-spacing-small) solid $bnfc-brand-colour;
-}

@@ -2,21 +2,22 @@
 @use '@nice-digital/nds-core/scss/core';
 @import '../styles/settings';
 
+.homeWrapper {
+  h2 {
+    margin-top: 0;
+  }
+
+  p {
+    margin-bottom: 0;
+  }
+}
+
 .inlineList {
   margin-left: 0;
 
   li {
     display: inline-block;
     margin-right: core.rem(core.$nds-spacing-medium);
-  }
-}
-
-.drugsColumn,
-.featureColumn {
-  margin-bottom: core.rem(core.$nds-spacing-large);
-
-  h2 {
-    margin-top: 0;
   }
 }
 
@@ -44,4 +45,15 @@
   a {
     margin-bottom: 0;
   }
+}
+
+.drugsColumn,
+.featureColumn {
+  p {
+    margin-bottom: core.rem(core.$nds-spacing-medium);
+  }
+}
+
+.grid {
+  row-gap: core.rem(core.$nds-spacing-large);
 }
