@@ -141,7 +141,8 @@ const DrugPage: FC<DrugPageProps> = ({
 		),
 		otherDrugsInClassSection = useMemo(
 			() =>
-				primaryClassification || secondaryClassifications.length > 0
+				(primaryClassification && primaryClassification.drugs.length > 0) ||
+				secondaryClassifications.some((sC) => sC.drugs.length > 0)
 					? {
 							potName: "Other drugs in class",
 							slug: "other-drugs-in-class",

@@ -105,7 +105,7 @@ const findLeafClassification = (classification: FeedClassification): SID => {
 	if (!moreSpecificClassifications || moreSpecificClassifications.length === 0)
 		return classification.id;
 
-	return moreSpecificClassifications.find(
-		(subClassification) => findLeafClassification(subClassification) != null
-	)?.id as SID;
+	return moreSpecificClassifications.map((subClassification) =>
+		findLeafClassification(subClassification)
+	)[0];
 };
