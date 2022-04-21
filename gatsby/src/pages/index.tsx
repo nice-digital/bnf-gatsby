@@ -50,7 +50,7 @@ const HomePage: FC = () => {
 						<ul>
 							<li>drug use related to a particular body system</li>
 							<li>drug management or treatment of common conditions</li>
-							<li>comparisons between groups of drugs</li>
+							<li>comparisons between groups of drugs.</li>
 						</ul>
 						<Button
 							to="/treatment-summaries/"
