@@ -18,7 +18,9 @@ export const pagePaths = {
 	"abacavir drug": "/drugs/abacavir/",
 	"co-codamol drug": "/drugs/co-codamol/",
 	"abacavir medicinal forms": "/drugs/abacavir/medicinal-forms/",
+	"acne treatment summary": "/treatment-summaries/acne/",
 	"dementia treatment summary": "/treatment-summaries/dementia/",
+	"diabetes treatment summary": "/treatment-summaries/diabetes/",
 	"medicines guidance": "/medicines-guidance/",
 	// Medicines guidance
 	"guidance on prescribing": "/medicines-guidance/guidance-on-prescribing/",
