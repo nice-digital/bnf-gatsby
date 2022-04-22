@@ -24,6 +24,7 @@ const DrugsIndexPage: FC<DrugsIndexPageProps> = ({
 		path="drugs"
 		metaDescription="Browse the complete list of drugs, alphabetically."
 		letters={letters}
+		pageDescription="Browse drug monographs by A-Z. Drug monographs describe the uses, doses, safety issues, medicinal forms and other considerations involved in the use of a drug."
 	/>
 );
 
