@@ -142,6 +142,7 @@ exports[`DrugPage should match snapshot for graphql query 1`] = `
 			primaryClassification {
 				title: name
 				slug
+				order
 				drugs {
 					title
 					slug
@@ -150,6 +151,7 @@ exports[`DrugPage should match snapshot for graphql query 1`] = `
 			secondaryClassifications {
 				title: name
 				slug
+				order
 				drugs {
 					title
 					slug

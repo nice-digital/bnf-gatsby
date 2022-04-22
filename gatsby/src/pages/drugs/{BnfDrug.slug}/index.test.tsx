@@ -781,6 +781,7 @@ describe("DrugPage", () => {
 			const primaryClassification = {
 				title: "Antacids",
 				slug: "antacids",
+				order: 0,
 				drugs: [
 					{
 						title: "Bismuth subsalicylate",
