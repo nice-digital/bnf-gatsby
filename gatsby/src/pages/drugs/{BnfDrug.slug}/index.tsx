@@ -291,6 +291,7 @@ export const query = graphql`
 			primaryClassification {
 				title: name
 				slug
+				order
 				drugs {
 					title
 					slug
@@ -299,6 +300,7 @@ export const query = graphql`
 			secondaryClassifications {
 				title: name
 				slug
+				order
 				drugs {
 					title
 					slug

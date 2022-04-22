@@ -51,12 +51,13 @@ describe("createClassificationNodes", () => {
 		  "drugs": Array [],
 		  "id": "_123",
 		  "internal": Object {
-		    "content": "{\\"id\\":\\"_123\\",\\"name\\":\\"Root\\",\\"moreSpecificClassifications\\":[],\\"parentClassification\\":null,\\"rootClassification\\":\\"_123\\",\\"drugs\\":[]}",
+		    "content": "{\\"id\\":\\"_123\\",\\"order\\":0,\\"name\\":\\"Root\\",\\"moreSpecificClassifications\\":[],\\"parentClassification\\":null,\\"rootClassification\\":\\"_123\\",\\"drugs\\":[]}",
 		    "contentDigest": undefined,
 		    "type": "BnfClassification",
 		  },
 		  "moreSpecificClassifications": Array [],
 		  "name": "Root",
+		  "order": 0,
 		  "parentClassification": null,
 		  "rootClassification": "_123",
 		}
@@ -73,7 +74,7 @@ describe("createClassificationNodes", () => {
 		  "drugs": Array [],
 		  "id": "_456",
 		  "internal": Object {
-		    "content": "{\\"id\\":\\"_456\\",\\"name\\":\\"Root with children\\",\\"moreSpecificClassifications\\":[\\"_789\\"],\\"parentClassification\\":null,\\"rootClassification\\":\\"_456\\",\\"drugs\\":[]}",
+		    "content": "{\\"id\\":\\"_456\\",\\"order\\":1,\\"name\\":\\"Root with children\\",\\"moreSpecificClassifications\\":[\\"_789\\"],\\"parentClassification\\":null,\\"rootClassification\\":\\"_456\\",\\"drugs\\":[]}",
 		    "contentDigest": undefined,
 		    "type": "BnfClassification",
 		  },
@@ -81,6 +82,7 @@ describe("createClassificationNodes", () => {
 		    "_789",
 		  ],
 		  "name": "Root with children",
+		  "order": 1,
 		  "parentClassification": null,
 		  "rootClassification": "_456",
 		}
@@ -99,12 +101,13 @@ describe("createClassificationNodes", () => {
 		  ],
 		  "id": "_789",
 		  "internal": Object {
-		    "content": "{\\"id\\":\\"_789\\",\\"name\\":\\"Sub\\",\\"moreSpecificClassifications\\":[],\\"parentClassification\\":\\"_456\\",\\"rootClassification\\":\\"_456\\",\\"drugs\\":[\\"_543\\"]}",
+		    "content": "{\\"id\\":\\"_789\\",\\"order\\":2,\\"name\\":\\"Sub\\",\\"moreSpecificClassifications\\":[],\\"parentClassification\\":\\"_456\\",\\"rootClassification\\":\\"_456\\",\\"drugs\\":[\\"_543\\"]}",
 		    "contentDigest": undefined,
 		    "type": "BnfClassification",
 		  },
 		  "moreSpecificClassifications": Array [],
 		  "name": "Sub",
+		  "order": 2,
 		  "parentClassification": "_456",
 		  "rootClassification": "_456",
 		}

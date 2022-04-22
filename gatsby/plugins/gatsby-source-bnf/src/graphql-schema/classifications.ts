@@ -8,6 +8,9 @@ export const classificationSchema = `
 		"The name of the classification. May contain HTML mark-up."
 		name: String!
 
+		"The order of this classifications within the tree structure"
+		order: Int!
+
 		"The slugified and lowercased name"
 		slug: String! @slug(field: "name")
 

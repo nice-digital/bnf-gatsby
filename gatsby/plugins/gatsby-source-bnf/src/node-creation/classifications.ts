@@ -11,6 +11,7 @@ import { createBnfNode } from "./utils";
 
 export type ClassificationNodeInput = {
 	id: SID;
+	order: number;
 	name: string;
 	moreSpecificClassifications: SID[];
 	parentClassification: SID | null;
@@ -30,10 +31,12 @@ export const createClassificationNodes = (
 	const createClassificationNode = (
 		{ id, name, moreSpecificClassifications }: FeedClassification,
 		rootClassification: SID,
-		parentClassification: SID | null = null
+		parentClassification: SID | null,
+		order: number
 	) => {
 		const nodeInput: ClassificationNodeInput = {
 			id,
+			order,
 			name,
 			moreSpecificClassifications:
 				moreSpecificClassifications?.map((s) => s.id) || [],
@@ -53,13 +56,18 @@ export const createClassificationNodes = (
 		createBnfNode(nodeInput, BnfNode.Classification, sourceNodesArgs);
 
 		if (moreSpecificClassifications)
-			moreSpecificClassifications.forEach((classification) => {
-				createClassificationNode(classification, rootClassification, id);
+			moreSpecificClassifications.forEach((classification, i) => {
+				createClassificationNode(
+					classification,
+					rootClassification,
+					id,
+					order + i + 1
+				);
 			});
 	};
 
-	classifications.forEach((classification) =>
-		createClassificationNode(classification, classification.id)
+	classifications.forEach((classification, i) =>
+		createClassificationNode(classification, classification.id, null, i)
 	);
 };
 

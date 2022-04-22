@@ -8,7 +8,10 @@ import { type SlugAndTitle } from "@/utils";
 import styles from "../DrugSection.module.scss";
 import { type BasePot } from "../types";
 
-export type Classification = SlugAndTitle & { drugs: SlugAndTitle[] };
+export type Classification = SlugAndTitle & {
+	order: number;
+	drugs: SlugAndTitle[];
+};
 
 type ClassificationSectionProps = {
 	classification: Classification;
@@ -69,7 +72,7 @@ export const DrugsInClass: FC<DrugsInClassProps> = ({
 		) : null}
 
 		{secondaryClassifications
-			.sort((a, b) => a.title.localeCompare(b.title))
+			.sort((a, b) => a.order - b.order)
 			.map((classification) => (
 				<ClassificationSection
 					key={classification.title}
