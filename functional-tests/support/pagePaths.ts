@@ -20,6 +20,7 @@ export const pagePaths = {
 	"abacavir medicinal forms": "/drugs/abacavir/medicinal-forms/",
 	"dementia treatment summary": "/treatment-summaries/dementia/",
 	"medicines guidance": "/medicines-guidance/",
+	"medical devices": "/medical-devices/",
 	// Medicines guidance
 	"guidance on prescribing": "/medicines-guidance/guidance-on-prescribing/",
 	"prescription writing": "/medicines-guidance/prescription-writing/",
