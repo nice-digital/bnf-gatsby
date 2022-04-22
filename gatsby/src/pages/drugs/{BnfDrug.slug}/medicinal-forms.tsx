@@ -103,7 +103,8 @@ const MedicinalFormsPage: FC<MedicinalFormsPageProps> = ({
 			asideContent={asideInfo}
 			headerCta={
 				<Link to={`/drugs/${slug}/`}>
-					View {title} drug monograph
+					View <span dangerouslySetInnerHTML={{ __html: title }}></span> drug
+					monograph
 					<span className="visually-hidden">
 						{" "}
 						for <span dangerouslySetInnerHTML={{ __html: title }}></span>
