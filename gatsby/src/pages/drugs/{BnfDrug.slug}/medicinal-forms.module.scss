@@ -42,6 +42,7 @@
 
 .nestedLabelAccordionHeading {
   @include core.nds-h6;
+  flex-direction: row;
 }
 
 .warningIcon {
