@@ -19,6 +19,9 @@ exports[`schema should match snapshot 1`] = `
 	}
 
 
+	\\"\\"\\"
+	The borderline substances introduction record.
+	\\"\\"\\"
 	type BnfBorderlineSubstancesIntroduction implements Node & BnfSimpleRecord @dontInfer {
 		\\"The title of the section. May contain HTML markup.\\"
 		title: String!
@@ -46,7 +49,7 @@ exports[`schema should match snapshot 1`] = `
 		\\"The review date of the record, formatted into a string.\\"
 		reviewDate: Date @dateformat
 
-		\\"The borderline substances that are applicable for this point in the borderline substances taxonomy.
+		\\"The borderline substances that are applicable for this point in the borderline substances taxonomy.\\"
 		substances: [BnfBorderlineSubstance!]!
 
 		\\"Any children records of the borderline substances taxonomy.\\"

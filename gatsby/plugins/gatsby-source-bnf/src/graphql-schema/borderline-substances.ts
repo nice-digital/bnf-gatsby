@@ -1,6 +1,9 @@
 import { BnfNode } from "../node-types";
 
 export const borderlineSubstancesSchema = `
+	"""
+	The borderline substances introduction record.
+	"""
 	type ${BnfNode.BorderlineSubstancesIntroduction} implements Node & ${BnfNode.SimpleRecord} @dontInfer {
 		"The title of the section. May contain HTML markup."
 		title: String!
@@ -28,7 +31,7 @@ export const borderlineSubstancesSchema = `
 		"The review date of the record, formatted into a string."
 		reviewDate: Date @dateformat
 
-		"The borderline substances that are applicable for this point in the borderline substances taxonomy.
+		"The borderline substances that are applicable for this point in the borderline substances taxonomy."
 		substances: [${BnfNode.BorderlineSubstance}!]!
 
 		"Any children records of the borderline substances taxonomy."
