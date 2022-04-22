@@ -5,17 +5,17 @@ Feature: Nurse prescribers formulary treatment summaries pages
   Background:
     Given I am using a desktop size browser
 
-  Scenario: Stoma care heading
-    When I open the stoma care page
-    Then I expect that element "h1" matches the text "Stoma care"
+  Scenario: Laxatives heading
+    When I open the laxatives page
+    Then I expect that element "h1" matches the text "Laxatives"
 
-  Scenario: Stoma care left hand nav link
-    When I open the stoma care page
+  Scenario: Laxatives left hand nav link
+    When I open the laxatives page
     And I click the "Local anaesthetics" link
     Then I expect that the path is "/nurse-prescribers-formulary/local-anaesthetics/"
 
-  Scenario: Stoma Care breadcrumb
-    Given I open the stoma care page
+  Scenario: Laxatives breadcrumb
+    Given I open the laxatives page
     When I click the Nurse Prescribers' Formulary breadcrumb
     Then I expect that the path is "/nurse-prescribers-formulary/"
 
@@ -25,8 +25,8 @@ Feature: Nurse prescribers formulary treatment summaries pages
     Then the page should have no accessibility issues
     Examples:
       | pageName           | screenSize |
-      | stoma care         | mobile     |
-      | stoma care         | desktop    |
+      | laxatives          | mobile     |
+      | laxatives          | desktop    |
       | general guidance   | mobile     |
       | general guidance   | desktop    |
       | local anaesthetics | mobile     |

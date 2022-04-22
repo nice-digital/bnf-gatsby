@@ -29,7 +29,7 @@ export const pagePaths = {
 	"prescribing in dental practice":
 		"/medicines-guidance/prescribing-in-dental-practice/",
 	"nurse prescribers formulary": "/nurse-prescribers-formulary/",
-	"stoma care": "/nurse-prescribers-formulary/stoma-care/",
+	laxatives: "/nurse-prescribers-formulary/laxatives/",
 	"general guidance": "/nurse-prescribers-formulary/general-guidance/",
 	"local anaesthetics": "/nurse-prescribers-formulary/local-anaesthetics/",
 } as const;
