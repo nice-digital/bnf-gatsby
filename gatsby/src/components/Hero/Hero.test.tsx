@@ -20,9 +20,11 @@ beforeAll(() => {
 describe("Hero", () => {
 	it("should match snapshot for BNF", () => {
 		render(<Hero isBNF={true} />);
-		screen.getByRole("heading", {
-			name: "British National Formulary (BNF)",
-		});
+		expect(
+			screen.getByRole("heading", {
+				name: "British National Formulary (BNF)",
+			})
+		).toMatchSnapshot();
 	});
 
 	it("should match snapshot for BNFC", () => {
