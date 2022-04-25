@@ -201,7 +201,7 @@ exports[`InteractantPage body should match snapshot for page body 1`] = `
             </div>
             <button
               class="btn btn--secondary filterButton"
-              type="button"
+              type="sumbit"
             >
               Filter
             </button>

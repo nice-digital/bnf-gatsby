@@ -1,4 +1,10 @@
-import { render, waitFor, screen, within } from "@testing-library/react";
+import {
+	render,
+	waitFor,
+	screen,
+	within,
+	fireEvent,
+} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import InteractantPage, {
@@ -216,6 +222,10 @@ describe("InteractantPage", () => {
 	});
 
 	describe("sorting", () => {
+		beforeEach(() => {
+			window.dataLayer = [];
+		});
+
 		it("should toggle between the two different sorting buttons whenever one is pressed", () => {
 			render(<InteractantPage data={dataProp} />);
 
@@ -354,6 +364,23 @@ describe("InteractantPage", () => {
 			expect(
 				screen.getByText("Supplementary info test information element 2")
 			).toBeInTheDocument();
+		});
+	});
+
+	describe("filtering", () => {
+		it("should push a formSubmit event to the data layer when filter button submits form", () => {
+			window.dataLayer = [];
+			render(<InteractantPage data={dataProp} />);
+
+			const submitButton = screen.getByRole("button", {
+				name: "Filter",
+			});
+
+			fireEvent.click(submitButton);
+
+			expect(window.dataLayer[0]).toStrictEqual({
+				event: "formSubmit",
+			});
 		});
 	});
 });
