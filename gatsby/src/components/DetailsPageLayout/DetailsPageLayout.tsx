@@ -11,6 +11,7 @@ import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
 import { OnThisPage, type OnThisPageProps } from "../OnThisPage/OnThisPage";
+import { SectionNav } from "../SectionNav/SectionNav";
 
 import styles from "./DetailsPageLayout.module.scss";
 
@@ -27,6 +28,7 @@ type DetailsPageLayoutProps = {
 	}[];
 	metaDescription?: string;
 	sections: OnThisPageProps["sections"];
+	useSectionNav?: boolean;
 };
 
 /**
@@ -41,6 +43,7 @@ export const DetailsPageLayout: React.FC<DetailsPageLayoutProps> = ({
 	parentBreadcrumbs = [],
 	metaDescription,
 	sections,
+	useSectionNav,
 }) => {
 	const { siteTitleShort } = useSiteMetadata(),
 		titleNoHtml = striptags(titleHtml),
@@ -89,12 +92,25 @@ export const DetailsPageLayout: React.FC<DetailsPageLayoutProps> = ({
 				)}
 				<GridItem cols={12} md={Menu ? 8 : 12} lg={Menu ? 9 : 12}>
 					<Grid reverse gutter="loose">
-						<GridItem cols={12} lg={3}>
-							<OnThisPage sections={sections} />
-						</GridItem>
-						<GridItem className={styles.body} cols={12} lg={9}>
-							{children}
-						</GridItem>
+						{useSectionNav ? (
+							<>
+								<GridItem cols={12}>
+									<SectionNav sections={sections} />
+								</GridItem>
+								<GridItem className={styles.body} cols={12}>
+									{children}
+								</GridItem>
+							</>
+						) : (
+							<>
+								<GridItem cols={12} lg={3}>
+									<OnThisPage sections={sections} />
+								</GridItem>
+								<GridItem className={styles.body} cols={12} lg={9}>
+									{children}
+								</GridItem>
+							</>
+						)}
 					</Grid>
 				</GridItem>
 			</Grid>
