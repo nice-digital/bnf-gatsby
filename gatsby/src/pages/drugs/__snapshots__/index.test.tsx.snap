@@ -82,6 +82,11 @@ exports[`DrugsIndexPage should match snapshot for page body 1`] = `
         Drugs
          A to Z
       </h1>
+      <p
+        class="page-header__lead"
+      >
+        Browse drug monographs by A-Z. Drug monographs describe the uses, doses, safety issues, medicinal forms and other considerations involved in the use of a drug.
+      </p>
     </div>
     <ol
       class="alphabet  "
