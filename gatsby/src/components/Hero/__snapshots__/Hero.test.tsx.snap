@@ -1,5 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Hero should match snapshot for BNF 1`] = `
+<h1
+  class="title"
+>
+  British National Formulary (BNF)
+</h1>
+`;
+
 exports[`Hero should match snapshot for BNFC 1`] = `
 <h1
   class="title"
