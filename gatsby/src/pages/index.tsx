@@ -100,6 +100,9 @@ const HomePage: FC = () => {
 			<p>
 				<Link to="/medicines-guidance/">Medicines guidance</Link>
 			</p>
+			<p>
+				<Link to="/borderline-substances/">Borderline substances</Link>
+			</p>
 		</Layout>
 	);
 };
