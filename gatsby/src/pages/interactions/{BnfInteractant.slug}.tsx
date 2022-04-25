@@ -129,6 +129,11 @@ const InteractantPage: FC<InteractantPageProps> = ({
 		</div>
 	);
 
+	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		window.dataLayer.push({ event: "formSubmit" });
+	};
+
 	return (
 		<Layout>
 			<SEO
@@ -212,7 +217,7 @@ const InteractantPage: FC<InteractantPageProps> = ({
 							{isClient && (
 								<section className={`${styles.filterPanel} hide-print`}>
 									<h2 className="visually-hidden">Filters and sorting</h2>
-									<form className={styles.filterForm}>
+									<form className={styles.filterForm} onSubmit={handleSubmit}>
 										<Input
 											className={styles.filterInput}
 											label="Filter by drug name"
@@ -228,6 +233,7 @@ const InteractantPage: FC<InteractantPageProps> = ({
 											onClick={() => setSearchFilterTerm(filterTerm)}
 											variant={Button.variants.secondary}
 											className={styles.filterButton}
+											type="sumbit"
 										>
 											Filter
 										</Button>
