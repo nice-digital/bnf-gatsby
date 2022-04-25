@@ -114,6 +114,7 @@ exports[`InteractantPage body should match snapshot for page body 1`] = `
       >
         <a
           class="p"
+          data-tracking="own-monograph"
           href="/drugs/acarbose/"
         >
           View 
@@ -148,6 +149,7 @@ exports[`InteractantPage body should match snapshot for page body 1`] = `
         >
           <h2
             class="informationPanelHeading"
+            data-tracking="interaction-information"
           >
             Drug interaction information
           </h2>
@@ -206,6 +208,7 @@ exports[`InteractantPage body should match snapshot for page body 1`] = `
           </form>
           <div
             class="sortControls"
+            data-tracking="sort"
           >
             <strong>
               Sorted by: 
