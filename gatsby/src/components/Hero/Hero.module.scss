@@ -5,7 +5,7 @@
   @include core.nds-inverse-button-focus;
   background: core.$nds-colour-nice-white;
   color: core.$nds-colour-text;
-  left: calc(50%);
+  left: 50%;
   margin-bottom: core.rem(core.$nds-spacing-large);
   margin-left: -50vw;
   margin-right: -50vw;
@@ -15,7 +15,7 @@
   padding-top: core.rem(core.$nds-spacing-large);
 
   position: relative;
-  right: calc(50%);
+  right: 50%;
   width: 100vw;
 
   a {
