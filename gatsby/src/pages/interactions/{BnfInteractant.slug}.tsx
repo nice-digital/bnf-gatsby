@@ -233,7 +233,7 @@ const InteractantPage: FC<InteractantPageProps> = ({
 											onClick={() => setSearchFilterTerm(filterTerm)}
 											variant={Button.variants.secondary}
 											className={styles.filterButton}
-											type="sumbit"
+											type="submit"
 										>
 											Filter
 										</Button>
