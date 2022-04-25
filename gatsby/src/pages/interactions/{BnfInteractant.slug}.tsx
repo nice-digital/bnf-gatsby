@@ -153,7 +153,11 @@ const InteractantPage: FC<InteractantPageProps> = ({
 				heading="Interactions"
 				lead={
 					drug ? (
-						<Link className="p" to={`/drugs/${drug.slug}/`}>
+						<Link
+							className="p"
+							to={`/drugs/${drug.slug}/`}
+							data-tracking="own-monograph"
+						>
 							View <span dangerouslySetInnerHTML={{ __html: drug.title }} />{" "}
 							monograph page
 						</Link>
@@ -188,7 +192,10 @@ const InteractantPage: FC<InteractantPageProps> = ({
 					<div className={styles.grid}>
 						<div className={styles.rightCol}>
 							<div className={styles.informationPanel}>
-								<h2 className={styles.informationPanelHeading}>
+								<h2
+									className={styles.informationPanelHeading}
+									data-tracking="interaction-information"
+								>
 									Drug interaction information
 								</h2>
 								<p className={interactionStyles.severeMessage}>
@@ -225,7 +232,7 @@ const InteractantPage: FC<InteractantPageProps> = ({
 											Filter
 										</Button>
 									</form>
-									<div className={styles.sortControls}>
+									<div className={styles.sortControls} data-tracking="sort">
 										<strong>Sorted by: </strong>
 										{sortBySeverity ? (
 											<>
