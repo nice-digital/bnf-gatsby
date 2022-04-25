@@ -3,9 +3,15 @@ export type BnfNodeType = `Bnf${string}`;
 
 export const BnfNode = {
 	AboutSection: "BnfAboutSection",
+	BorderlineSubstance: "BnfBorderlineSubstance",
+	BorderlineSubstancesIntroduction: "BnfBorderlineSubstancesIntroduction",
+	BorderlineSubstancePresentation: "BnfBorderlineSubstancePresentation",
+	BorderlineSubstancesTaxonomy: "BnfBorderlineSubstancesTaxonomy",
 	CautionaryAndAdvisoryGuidance: "BnfCautionaryAndAdvisoryGuidance",
 	CautionaryAndAdvisoryLabel: "BnfCautionaryAndAdvisoryLabel",
 	Classification: "BnfClassification",
+	ClinicalMedicalDeviceInformationGroup:
+		"BnfClinicalMedicalDeviceInformationGroup",
 	ConstituentDrugs: "BnfConstituentDrugs",
 	DentalPractitionersFormulary: "BnfDentalPractitionersFormulary",
 	Drug: "BnfDrug",
@@ -20,6 +26,8 @@ export const BnfNode = {
 	InteractionsIntroductionSection: "BnfInteractionsIntroductionSection",
 	InteractionSupplementaryInformation: "BnfInteractionSupplementaryInformation",
 	MedicalDevice: "BnfMedicalDevice",
+	MedicalDeviceType: "BnfMedicalDeviceType",
+	MedicalDeviceSimplePot: "BnfMedicalDeviceSimplePot",
 	MedicinalForm: "BnfMedicinalForm",
 	MedicinalForms: "BnfMedicinalForms",
 	MonitoringPot: "BnfMonitoringPot",
