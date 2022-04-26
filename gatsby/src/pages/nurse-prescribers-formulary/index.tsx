@@ -24,15 +24,23 @@ const NursePrescribersFormularyIndexPage: FC = () => {
 				</Breadcrumb>
 				<Breadcrumb>Nurse Prescribers&rsquo; Formulary</Breadcrumb>
 			</Breadcrumbs>
-			<PageHeader id="content-start" heading={`Nurse Prescribers' Formulary`} />
-
-			<ol className="list--unstyled">
-				{approvedList.map(({ href, title }) => (
-					<li key={href}>
-						<Link to={href} dangerouslySetInnerHTML={{ __html: title }} />
-					</li>
-				))}
-			</ol>
+			<PageHeader
+				id="content-start"
+				heading={`Nurse Prescribers' Formulary`}
+				lead={
+					<ol className="list--unstyled">
+						{approvedList.map(({ href, title }) => (
+							<li key={href}>
+								<Link
+									className="p"
+									to={href}
+									dangerouslySetInnerHTML={{ __html: title }}
+								/>
+							</li>
+						))}
+					</ol>
+				}
+			/>
 
 			<h2>Treatment summaries</h2>
 			<ColumnList aria-label="Treatment summary pages">
