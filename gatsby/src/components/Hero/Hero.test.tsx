@@ -2,6 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { useStaticQuery } from "gatsby";
 
 import { Hero, type LastUpdatedDataQueryResult } from "@/components/Hero/Hero";
+import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
 const metaDataQueryResult: LastUpdatedDataQueryResult = {
 	bnfMetadata: {
@@ -12,6 +13,7 @@ const metaDataQueryResult: LastUpdatedDataQueryResult = {
 };
 
 const useStaticQueryMock = useStaticQuery as jest.Mock;
+const useSiteMetadataMock = useSiteMetadata as jest.Mock;
 
 beforeAll(() => {
 	useStaticQueryMock.mockReturnValue(metaDataQueryResult);
@@ -19,7 +21,7 @@ beforeAll(() => {
 
 describe("Hero", () => {
 	it("should match snapshot for BNF", () => {
-		render(<Hero isBNF={true} />);
+		render(<Hero />);
 		expect(
 			screen.getByRole("heading", {
 				name: "British National Formulary (BNF)",
@@ -28,7 +30,11 @@ describe("Hero", () => {
 	});
 
 	it("should match snapshot for BNFC", () => {
-		render(<Hero isBNF={false} />);
+		useSiteMetadataMock.mockReturnValueOnce({
+			isBNF: false,
+		});
+
+		render(<Hero />);
 		expect(
 			screen.getByRole("heading", {
 				name: "British National Formulary for Children (BNFC)",
@@ -37,12 +43,12 @@ describe("Hero", () => {
 	});
 
 	it("should render the last updated date", () => {
-		render(<Hero isBNF={false} />);
+		render(<Hero />);
 		expect(screen.getByText("6 April 2022")).toHaveProperty("tagName", "TIME");
 	});
 
 	it("should render the last updated date datetime attribute", () => {
-		render(<Hero isBNF={false} />);
+		render(<Hero />);
 		expect(screen.getByText("6 April 2022")).toHaveAttribute(
 			"datetime",
 			metaDataQueryResult.bnfMetadata.lastUpdatedDate
@@ -50,7 +56,7 @@ describe("Hero", () => {
 	});
 
 	it("should match snapshot for query", async () => {
-		render(<Hero isBNF={false} />);
+		render(<Hero />);
 		const queryArgument = useStaticQueryMock.mock.calls[0][0];
 		expect(queryArgument).toMatchInlineSnapshot(`
 		"

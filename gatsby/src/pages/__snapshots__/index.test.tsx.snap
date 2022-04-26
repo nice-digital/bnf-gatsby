@@ -67,7 +67,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
           <h3
             class="h4"
           >
-            Browse drugs by A-Z
+            Browse drugs by A to Z
           </h3>
           <ol
             class="alphabet alphabet--chunky alphabet"
@@ -475,7 +475,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
               Treatment summaries
             </h2>
             <p>
-              Browse an A-Z list of treatment summaries covering:
+              Browse an A to Z list of treatment summaries covering:
             </p>
             <ul>
               <li>
@@ -492,7 +492,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
               class="btn"
               href="/treatment-summaries/"
             >
-              View treatment summaries A-Z
+              View treatment summaries A to Z
             </a>
           </div>
           <div>
@@ -506,7 +506,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
               class="btn"
               href="/interactions/"
             >
-              View interactions A-Z
+              View interactions A to Z
             </a>
           </div>
         </div>
@@ -727,7 +727,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
             <h1
               class="title"
             >
-              British National Formulary for Children (BNFC)
+              British National Formulary (BNF)
             </h1>
             <p
               class="intro"
@@ -773,7 +773,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
           <h3
             class="h4"
           >
-            Browse drugs by A-Z
+            Browse drugs by A to Z
           </h3>
           <ol
             class="alphabet alphabet--chunky alphabet"
@@ -1181,7 +1181,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
               Treatment summaries
             </h2>
             <p>
-              Browse an A-Z list of treatment summaries covering:
+              Browse an A to Z list of treatment summaries covering:
             </p>
             <ul>
               <li>
@@ -1198,7 +1198,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
               class="btn"
               href="/treatment-summaries/"
             >
-              View treatment summaries A-Z
+              View treatment summaries A to Z
             </a>
           </div>
           <div>
@@ -1212,7 +1212,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
               class="btn"
               href="/interactions/"
             >
-              View interactions A-Z
+              View interactions A to Z
             </a>
           </div>
         </div>

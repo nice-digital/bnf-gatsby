@@ -34,7 +34,7 @@ describe("HomePage", () => {
 	});
 
 	describe("Drug list", () => {
-		it("should render an A-Z link for all letters", () => {
+		it("should render an A to Z link for all letters", () => {
 			render(<HomePage />);
 			expect(screen.queryByText("A")?.tagName).toBe("A");
 			expect(screen.queryByText("B")?.tagName).toBe("A");
@@ -59,7 +59,7 @@ describe("HomePage", () => {
 	describe("Headings", () => {
 		it.each([
 			["Drugs", 2],
-			["Browse drugs by A-Z", 3],
+			["Browse drugs by A to Z", 3],
 			["Treatment summaries", 2],
 			["Interactions", 2],
 			["Medicines guidance", 2],

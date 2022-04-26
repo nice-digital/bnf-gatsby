@@ -21,7 +21,7 @@ const HomePage: FC = () => {
 		<Layout>
 			<div className={styles.homeWrapper}>
 				<SEO />
-				<Hero isBNF={isBNF} />
+				<Hero />
 				<Grid gutter="loose" className={styles.grid}>
 					<GridItem md={6} cols={12} className={styles.drugsColumn}>
 						<h2>Drugs</h2>
@@ -29,7 +29,7 @@ const HomePage: FC = () => {
 							Drug monographs describe the uses, doses, safety issues, medicinal
 							forms and other considerations involved in the use of a drug.
 						</p>
-						<h3 className="h4">Browse drugs by A-Z</h3>
+						<h3 className="h4">Browse drugs by A to Z</h3>
 						<Alphabet
 							chunky
 							data-tracking="drugs-a-to-z"
@@ -47,7 +47,7 @@ const HomePage: FC = () => {
 					<GridItem md={6} cols={12} className={styles.featureColumn}>
 						<div>
 							<h2>Treatment summaries</h2>
-							<p>Browse an A-Z list of treatment summaries covering:</p>
+							<p>Browse an A to Z list of treatment summaries covering:</p>
 							<ul>
 								<li>drug use related to a particular body system</li>
 								<li>drug management or treatment of common conditions</li>
@@ -58,7 +58,7 @@ const HomePage: FC = () => {
 								variant="primary"
 								elementType={Link}
 							>
-								View treatment summaries A-Z
+								View treatment summaries A to Z
 							</Button>
 						</div>
 
@@ -71,7 +71,7 @@ const HomePage: FC = () => {
 								it.
 							</p>
 							<Button to="/interactions/" variant="primary" elementType={Link}>
-								View interactions A-Z
+								View interactions A to Z
 							</Button>
 						</div>
 					</GridItem>

@@ -1,6 +1,8 @@
 import { Link, graphql, useStaticQuery } from "gatsby";
 import * as React from "react";
 
+import { useSiteMetadata } from "@/hooks/useSiteMetadata";
+
 import styles from "./Hero.module.scss";
 
 export type LastUpdatedDataQueryResult = {
@@ -9,10 +11,6 @@ export type LastUpdatedDataQueryResult = {
 		lastUpdatedDateFormatted: string;
 		runTag: string;
 	};
-};
-
-type HeroProps = {
-	isBNF: boolean;
 };
 
 const query = graphql`
@@ -25,12 +23,12 @@ const query = graphql`
 	}
 `;
 
-export const Hero: React.FC<HeroProps> = (props) => {
+export const Hero: React.FC = () => {
 	const {
 		bnfMetadata: { lastUpdatedDate, lastUpdatedDateFormatted },
 	} = useStaticQuery<LastUpdatedDataQueryResult>(query);
 
-	const { isBNF } = props;
+	const { isBNF } = useSiteMetadata();
 
 	return (
 		<div className={styles.hero} id="content-start">

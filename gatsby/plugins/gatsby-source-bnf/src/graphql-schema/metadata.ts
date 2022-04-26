@@ -2,8 +2,7 @@ import { BnfNode } from "../node-types";
 
 export const metadataSchema = `
 	"""
-	A simple record that just contains a list of sections.
-	For example, treatment summaries, about and guidance records, interactions introduction, etc.
+	The metadata relating to the export that produced the app JSON output. An export is a job that is run to collate all of the published BNF content at a particular point in time (the 'content cut' date).
 	"""
 	type ${BnfNode.Metadata} implements Node @dontInfer {
 		"The date and time that the export that produced this output started."
