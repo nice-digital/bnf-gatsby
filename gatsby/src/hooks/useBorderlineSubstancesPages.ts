@@ -11,7 +11,7 @@ export interface BorderlineSubstancesQueryResult {
 			title: string;
 			parentTaxonomy: {
 				id: SID | PHPID;
-			};
+			} | null;
 		}[];
 	};
 }
@@ -26,7 +26,7 @@ const slugToHref = ({ title, slug }: SlugAndTitle): MenuPageLink => ({
  *
  * @returns The consolidated list of borderline substances pages
  */
-export const useBorderlineSubstancesPage = (): MenuPageLink[] => {
+export const useBorderlineSubstancesPages = (): MenuPageLink[] => {
 	const { allBnfBorderlineSubstancesTaxonomy } =
 		useStaticQuery<BorderlineSubstancesQueryResult>(
 			graphql`

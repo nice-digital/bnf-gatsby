@@ -4,11 +4,11 @@ import React, { type FC } from "react";
 
 import { StackedNav, StackedNavLink } from "@nice-digital/nds-stacked-nav";
 
-import { useBorderlineSubstancesPage } from "@/hooks/useBorderlineSubstancesPage";
+import { useBorderlineSubstancesPages } from "@/hooks/useBorderlineSubstancesPages";
 
 export const BorderlineSubstancesMenu: FC = () => {
 	const { pathname } = useLocation(),
-		topLevel = useBorderlineSubstancesPage();
+		topLevel = useBorderlineSubstancesPages();
 
 	return (
 		<StackedNav

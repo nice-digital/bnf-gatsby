@@ -177,6 +177,20 @@
     },
     "taxonomy": []
   },
+  "borderlineSubstances": {
+    "introduction": {
+      "id": "PHP104227",
+      "title": "Borderline substances",
+      "sections": [
+        {
+          "id": "sectionPHP104227-0",
+          "title": "Introduction",
+          "content": "<p>In certain conditions some foods (and toilet preparations) have characteristics of drugs and the Advisory Committee on Borderline Substances (ACBS) advises as to the circumstances in which such substances may be regarded as drugs. Prescriptions issued in accordance with the Committee's advice and endorsed ‘ACBS’ will normally not be investigated.</p>"
+        }
+      ]
+    },
+    "taxonomy": []
+  },
   "nursePrescribersFormulary": {
     "introduction": {
       "id": "_129024858",

@@ -204,6 +204,13 @@ exports[`HomePage should match snapshot for BNF 1`] = `
         Medicines guidance
       </a>
     </p>
+    <p>
+      <a
+        href="/borderline-substances/"
+      >
+        Borderline substances
+      </a>
+    </p>
   </div>
 </main>
 `;
@@ -410,6 +417,13 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
         href="/medicines-guidance/"
       >
         Medicines guidance
+      </a>
+    </p>
+    <p>
+      <a
+        href="/borderline-substances/"
+      >
+        Borderline substances
       </a>
     </p>
   </div>
