@@ -1,5 +1,3 @@
-import { captureRejectionSymbol } from "stream";
-
 import { graphql, Link } from "gatsby";
 import React, { type FC } from "react";
 
@@ -38,10 +36,12 @@ const BorderlineSubstancesSectionPage: FC<
 	},
 }) => {
 	const sections = rootTaxonomy.childTaxonomies;
-
-	// create the content - map childTaxonomies level 2 to h3 and child taxonomies level 3 to links
-	// or if level 2 is lowest level, map level 2 to links
-	// add this content to "sections" so that we can use the record section
+	const isOneLevel = sections.find(
+		(section) =>
+			section.childTaxonomies != null && section.childTaxonomies.length > 0
+	)
+		? false
+		: true;
 
 	return (
 		<DetailsPageLayout
@@ -57,58 +57,24 @@ const BorderlineSubstancesSectionPage: FC<
 			}))}
 			useSectionNav={true}
 		>
-			{/* <RecordSectionsContent sections={sections} /> */}
-			<ol className="list--unstyled">
-				{sections.map((child1) => (
-					<>
-						{child1.childTaxonomies && child1.childTaxonomies.length > 0 ? (
-							<>
-								<h2 key={child1.slug}>{child1.title}</h2>
-								<ol className="list--unstyled">
-									{child1.childTaxonomies.map((child2) => (
-										<>
-											{child2.childTaxonomies &&
-											child2.childTaxonomies.length > 0 ? (
-												<>
-													{" "}
-													<h3 key={child2.slug}>{child2.title}</h3>
-													<ColumnList plain>
-														{child2.childTaxonomies.map((child3) => (
-															<li key={child3.slug}>
-																<Link to={`/interactions/${child3.slug}/`}>
-																	{child3.title}
-																</Link>
-															</li>
-														))}
-													</ColumnList>
-												</>
-											) : (
-												<>
-													{" "}
-													<li key={child2.slug}>
-														<Link to={`/interactions/${child2.slug}/`}>
-															{child2.title}
-														</Link>
-													</li>
-												</>
-											)}
-										</>
-									))}
-								</ol>
-							</>
-						) : (
-							<>
-								{/* {" "}
-								<li key={child1.slug}>
-									<Link to={`/interactions/${child1.slug}/`}>
-										{child1.title}
-									</Link>
-								</li> */}
-							</>
-						)}
-					</>
-				))}
-			</ol>
+			{!isOneLevel && (
+				<ol className="list--unstyled">
+					{sections.map((child1) => (
+						<>
+							<h2 key={child1.slug}>{child1.title}</h2>
+							<ol className="list--unstyled">
+								{child1.childTaxonomies.map((child2) => (
+									<li key={child2.slug}>
+										<Link to={`/interactions/${child2.slug}/`}>
+											{child2.title}
+										</Link>
+									</li>
+								))}
+							</ol>
+						</>
+					))}
+				</ol>
+			)}
 		</DetailsPageLayout>
 	);
 };
