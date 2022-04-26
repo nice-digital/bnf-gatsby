@@ -8,6 +8,10 @@ import { StackedNav, StackedNavLink } from "@nice-digital/nds-stacked-nav";
 
 import { Layout } from "@/components/Layout/Layout";
 import { RecordSectionsContent } from "@/components/RecordSectionsContent/RecordSectionsContent";
+import {
+	SectionNav,
+	type SectionNavProps,
+} from "@/components/SectionNav/SectionNav";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 import { type RecordSection } from "@/utils";
@@ -29,6 +33,31 @@ export type WoundManagementIndexPageProps = {
 	};
 };
 
+const navSections: SectionNavProps = {
+	sections: [
+		{
+			title: "Pink (epitheliasing)",
+			id: "wound-type--154124684",
+		},
+		{
+			title: "Red (granulating)",
+			id: "wound-type-1889862293",
+		},
+		{
+			title: "Yellow (sloughy)(granulating)",
+			id: "wound-type-102222233",
+		},
+		{
+			title: "Black (Necrotic/ Eschar)",
+			id: "wound-type-530708321",
+		},
+		{
+			title: "Wounds with signs of infection",
+			id: "wound-type-592109193",
+		},
+	],
+};
+
 const WoundManagementIndexPage: FC<WoundManagementIndexPageProps> = ({
 	data: {
 		bnfWoundManagementIntroduction,
@@ -43,7 +72,10 @@ const WoundManagementIndexPage: FC<WoundManagementIndexPageProps> = ({
 
 	return (
 		<Layout>
-			<SEO title={title} description="TODO: Add meta description" />
+			<SEO
+				title={title}
+				description="Browse wound management products and elasticated garments, by type."
+			/>
 
 			<Breadcrumbs>
 				<Breadcrumb key="NICE" to="https://www.nice.org.uk/">
@@ -66,7 +98,7 @@ const WoundManagementIndexPage: FC<WoundManagementIndexPageProps> = ({
 						{taxonomies.map(({ slug, title }) => (
 							<StackedNavLink
 								key={slug}
-								destination={`/wound-management/{slug}`}
+								destination={`/wound-management/${slug}`}
 								elementType={Link}
 							>
 								<span dangerouslySetInnerHTML={{ __html: title }} />
@@ -75,6 +107,7 @@ const WoundManagementIndexPage: FC<WoundManagementIndexPageProps> = ({
 					</StackedNav>
 				</GridItem>
 				<GridItem cols={12} md={8} lg={9}>
+					<SectionNav {...navSections} />
 					<RecordSectionsContent
 						sections={sections}
 						className={styles.woundManagementIndex}

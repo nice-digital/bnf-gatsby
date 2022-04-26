@@ -9,10 +9,6 @@
   @media print {
     display: none;
   }
-
-  @include core.mq($from: md) {
-    margin-bottom: 0;
-  }
 }
 
 .heading {
