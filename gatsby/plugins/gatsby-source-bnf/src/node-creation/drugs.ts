@@ -5,6 +5,8 @@ import {
 	type PHPID,
 	type SID,
 	type FeedDrug,
+	type FeedMedicinalForm,
+	type FeedMedicinalForms,
 	type FeedSimpleRecord,
 	type FeedClassification,
 	type FeedInteractions,
@@ -22,6 +24,20 @@ export type DrugNodeInput = Merge<
 			message: string;
 			constituents: SID[];
 		};
+		medicinalForms: Merge<
+			FeedMedicinalForms,
+			{
+				medicinalForms?: Merge<
+					FeedMedicinalForm,
+					{
+						cautionaryAndAdvisoryLabels?: {
+							label: number;
+							qualifier?: string;
+						}[];
+					}
+				>[];
+			}
+		>;
 		relatedTreatmentSummaries: string[];
 		primaryClassification: SID | null;
 		secondaryClassifications: SID[];
@@ -49,10 +65,17 @@ export const createDrugNodes = (
 			interactants,
 			id,
 			sid,
+			medicinalForms,
 			primaryClassification,
 			secondaryClassifications,
 			...drug
 		}) => {
+			const {
+				initialStatement,
+				specialOrderManufacturersStatement,
+				medicinalForms: forms,
+			} = medicinalForms;
+
 			const nodeContent: DrugNodeInput = {
 				...drug,
 				id: sid,
@@ -66,6 +89,23 @@ export const createDrugNodes = (
 							drugs.some((drug) => drug.sid === constituent.sid)
 						)
 						.map((d) => d.sid),
+				},
+				medicinalForms: {
+					initialStatement,
+					specialOrderManufacturersStatement,
+					medicinalForms:
+						forms?.map((medicinalForm) => {
+							return {
+								...medicinalForm,
+								cautionaryAndAdvisoryLabels:
+									medicinalForm.cautionaryAndAdvisoryLabels?.map((label) => {
+										return {
+											label: label.number,
+											qualifier: label.qualifier,
+										};
+									}),
+							};
+						}) || [],
 				},
 				relatedTreatmentSummaries: treatmentSummaries
 					.filter(({ sections }) =>

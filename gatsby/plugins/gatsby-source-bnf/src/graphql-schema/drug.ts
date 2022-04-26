@@ -156,15 +156,26 @@ export const drugSchema = `
 		slug: String! @slug(field: "form")
 
 		"A list of any cautionary and advisory labels for the medicinal form."
-		cautionaryAndAdvisoryLabels: [String!]
+		cautionaryAndAdvisoryLabels: [${BnfNode.MedicinalFormLabel}!]!
 
 		"A list of any excipients for the medicinal form, provided as a text statement."
 		excipients: String
 
 		"A list of any electrolytes for the medicinal form, provided as a text statement."
-		electolytes: String
+		electrolytes: String
 
 		"The preparations of the drug for the medicinal form."
 		preps: [${BnfNode.Prep}!]!
+	}
+
+	"""
+	A cautionary/advisory label for this form. It differs slightly from the labels used elsewhere, as it also includes a qualifier for this particular medicinal form.
+	"""
+	type ${BnfNode.MedicinalFormLabel} {
+		"A label for this medicinal form"
+		label: ${BnfNode.CautionaryAndAdvisoryLabel}! @link(by: "number")
+
+		"A qualifying statement that elaborates on this label"
+		qualifier: String
 	}
 `;
