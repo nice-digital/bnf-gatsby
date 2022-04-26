@@ -81,18 +81,23 @@ exports[`NursePrescribersFormularyTreatmentSummaryPage should match snapshot for
       >
         Nurse Prescribers' Formulary
       </h1>
-    </div>
-    <ol
-      class="list--unstyled"
-    >
-      <li>
-        <a
-          href="/nurse-prescribers-formulary/approved-list-for-prescribing-by-community-practitioner-nurse-prescribers-npf/"
+      <p
+        class="page-header__lead"
+      >
+        <ol
+          class="list--unstyled"
         >
-          Approved list for prescribing by Community Practitioner Nurse Prescribers (NPF)
-        </a>
-      </li>
-    </ol>
+          <li>
+            <a
+              class="p"
+              href="/nurse-prescribers-formulary/approved-list-for-prescribing-by-community-practitioner-nurse-prescribers-npf/"
+            >
+              Approved list for prescribing by Community Practitioner Nurse Prescribers (NPF)
+            </a>
+          </li>
+        </ol>
+      </p>
+    </div>
     <h2>
       Treatment summaries
     </h2>
