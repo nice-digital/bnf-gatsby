@@ -116,7 +116,6 @@ export const DetailsPageLayout: React.FC<DetailsPageLayoutProps> = ({
 						) : (
 							<>
 								<GridItem cols={12} lg={3}>
-									<OnThisPage sections={sections} />
 									{asideContent ? (
 										asideContent
 									) : (
