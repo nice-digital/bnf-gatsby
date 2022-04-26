@@ -1,0 +1,34 @@
+@use '@nice-digital/nds-core/scss/core';
+
+.woundManagementIndex {
+  h2 {
+    text-transform: lowercase;
+
+    &::first-letter {
+      text-transform: capitalize;
+    }
+  }
+
+  table {
+    border-bottom: 1px solid core.$nds-colour-border;
+    border-collapse: separate;
+    padding-bottom: core.rem(core.$nds-spacing-small);
+
+    tr {
+      background: none;
+    }
+
+    th,
+    td {
+      background: none;
+      border: 0;
+      padding: 0 core.rem(core.$nds-spacing-large)
+        core.rem(core.$nds-spacing-small) 0;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+    }
+  }
+}

@@ -6,6 +6,7 @@ import styles from "./RecordSectionsContent.module.scss";
 
 export type RecordSectionsContentProps = {
 	sections: RecordSection[];
+	className?: string;
 };
 
 /**
@@ -16,13 +17,14 @@ export type RecordSectionsContentProps = {
  */
 export const RecordSectionsContent: React.FC<RecordSectionsContentProps> = ({
 	sections,
+	className,
 }) => {
 	sections = sections.sort((a, b) => a.order - b.order);
 
 	return (
 		<>
 			{sections.map(({ slug, title, content }, i) => (
-				<section key={slug} aria-labelledby={slug}>
+				<section key={slug} className={className} aria-labelledby={slug}>
 					<h2
 						id={slug}
 						dangerouslySetInnerHTML={{ __html: title }}
