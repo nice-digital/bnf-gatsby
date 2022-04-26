@@ -1,4 +1,5 @@
 import { aboutSectionSchema } from "./about-section";
+import { borderlineSubstancesSchema } from "./borderline-substances";
 import { cautionaryAndAdvisoryGuidanceSchema } from "./cautionary-advisory-guidance";
 import { cautionaryAndAdvisoryLabelSchema } from "./cautionary-advisory-label";
 import { dentalPractitionersFormularySchema } from "./dental-practitioners-formulary";
@@ -26,6 +27,7 @@ import { woundManagementSchema } from "./wound-management";
  */
 export const schema = [
 	aboutSectionSchema,
+	borderlineSubstancesSchema,
 	cautionaryAndAdvisoryGuidanceSchema,
 	cautionaryAndAdvisoryLabelSchema,
 	dentalPractitionersFormularySchema,

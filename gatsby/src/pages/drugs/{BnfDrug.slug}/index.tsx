@@ -232,7 +232,7 @@ const DrugPage: FC<DrugPageProps> = ({
 							/>
 						</Panel>
 					) : null}
-					<Panel>
+					<Panel data-tracking="medicinal-forms-panel">
 						<h2 className="h5">Medicinal forms and&nbsp;pricing</h2>
 						<MedicinalFormsContent
 							drug={{ slug, title }}

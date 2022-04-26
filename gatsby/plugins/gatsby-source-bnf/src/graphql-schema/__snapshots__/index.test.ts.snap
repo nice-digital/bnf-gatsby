@@ -19,6 +19,117 @@ exports[`schema should match snapshot 1`] = `
 	}
 
 
+	\\"\\"\\"
+	The borderline substances introduction record.
+	\\"\\"\\"
+	type BnfBorderlineSubstancesIntroduction implements Node & BnfSimpleRecord @dontInfer {
+		\\"The title of the section. May contain HTML markup.\\"
+		title: String!
+
+		\\"The review date of the record, formatted into a string.\\"
+		reviewDate: Date @dateformat
+
+		\\"The slugified and lowercased title, used as a URL path\\"
+		slug: String! @slug(field: \\"title\\")
+
+		\\"The sections of the record.\\"
+		sections: [BnfRecordSection!]!
+	}
+
+	\\"\\"\\"
+	The borderline substance taxonomy as a tree structure.
+	\\"\\"\\"
+	type BnfBorderlineSubstancesTaxonomy implements Node @dontInfer {
+		\\"The title of the taxonomy node. May contain HTML mark-up.\\"
+		title: String!
+
+		\\"The slugified and lowercased title, used as a URL path\\"
+		slug: String! @slug(field: \\"title\\")
+
+		\\"The review date of the record, formatted into a string.\\"
+		reviewDate: Date @dateformat
+
+		\\"The borderline substances that are applicable for this point in the borderline substances taxonomy.\\"
+		substances: [BnfBorderlineSubstance!]!
+
+		\\"Any children records of the borderline substances taxonomy.\\"
+		childTaxonomies: [BnfBorderlineSubstancesTaxonomy!]! @link
+
+		\\"The parent taxonomy. Empty for root level taxonomy nodes.\\"
+		parentTaxonomy: BnfBorderlineSubstancesTaxonomy @link
+
+		\\"The root taxonomy\\"
+		rootTaxonomy: BnfBorderlineSubstancesTaxonomy! @link
+	}
+
+	\\"\\"\\"
+	An individual borderline substance. This comprises a number of presentations, each of which may contain zero or more preparations.
+	\\"\\"\\"
+	type BnfBorderlineSubstance {
+		\\"The title of the borderline substance. May contain HTML mark-up.\\"
+		title: String!
+
+		\\"An optional introductory note for the borderline substance. May contain HTML mark-up.\\"
+		introductionNote: String
+
+		\\"The presentation details for the borderline substance.\\"
+		presentations: [BnfBorderlineSubstancePresentation!]!
+	}
+
+	\\"\\"\\"
+	The presentation of a borderline substance, i.e. its formulation and nutritional content. Also comprises zero or more preparations.
+	\\"\\"\\"
+	type BnfBorderlineSubstancePresentation {
+		\\"The formulation of the borderline substance, for example 'Liquid (tube feed) per 100 mL'.\\"
+		formulation: String
+
+		\\"The energy content of the borderline substance in kilojoules.\\"
+		energyKj: String
+
+		\\"The energy content of the borderline substance in kilocalories.\\"
+		energyKCal: String
+
+		\\"The protein content of the borderline substance in grams.\\"
+		proteinGrams: String
+
+		\\"The protein constituents of the borderline substance.\\"
+		proteinConstituents: [String]!
+
+		\\"The carbohydrate content of the borderline substance in grams.\\"
+		carbohydrateGrams: String
+
+		\\"The carbohydrate constituents of the borderline substance.\\"
+		carbohydrateConstituents: [String]!
+
+		\\"The fat content of the borderline substance in grams.\\"
+		fatGrams: String
+
+		\\"The fat constituents of the borderline substance.\\"
+		fatConstituents: [String]!
+
+		\\"The fibre content of the borderline substance in grams.\\"
+		fibreGrams: String
+
+		\\"The fibre constituents of the borderline substance.\\"
+		fibreConstituents: String
+
+		\\"A list of any special characteristics of the borderline substance.\\"
+		specialCharacteristics: [String]!
+
+		\\"A list of the Advisory Committee on Borderline Substances (ACBS) indications. May contain HTML mark-up.\\"
+		acbs: [String]!
+
+		\\"The presentation note for the borderline substance.\\"
+		presentationNote: String
+
+		\\"The Rx advice for the borderline substance.\\"
+		rxAdvice: String
+
+		\\"The preparations for the borderline substance.\\"
+		borderlineSubstancePreps: [BnfPrep!]!
+	}
+
+
 	type BnfCautionaryAndAdvisoryGuidance implements Node & BnfSimpleRecord @dontInfer {
 		\\"The title of the section. May contain HTML markup.\\"
 		title: String!
@@ -212,16 +323,27 @@ exports[`schema should match snapshot 1`] = `
 		slug: String! @slug(field: \\"form\\")
 
 		\\"A list of any cautionary and advisory labels for the medicinal form.\\"
-		cautionaryAndAdvisoryLabels: [String!]
+		cautionaryAndAdvisoryLabels: [BnfMedicinalFormLabel!]!
 
 		\\"A list of any excipients for the medicinal form, provided as a text statement.\\"
 		excipients: String
 
 		\\"A list of any electrolytes for the medicinal form, provided as a text statement.\\"
-		electolytes: String
+		electrolytes: String
 
 		\\"The preparations of the drug for the medicinal form.\\"
 		preps: [BnfPrep!]!
+	}
+
+	\\"\\"\\"
+	A cautionary/advisory label for this form. It differs slightly from the labels used elsewhere, as it also includes a qualifier for this particular medicinal form.
+	\\"\\"\\"
+	type BnfMedicinalFormLabel {
+		\\"A label for this medicinal form\\"
+		label: BnfCautionaryAndAdvisoryLabel! @link(by: \\"number\\")
+
+		\\"A qualifying statement that elaborates on this label\\"
+		qualifier: String
 	}
 
 
@@ -447,6 +569,69 @@ exports[`schema should match snapshot 1`] = `
 
 		\\"The slugified and lowercased title, used as a URL path\\"
 		slug: String! @slug(field: \\"title\\")
+
+		\\"The medical device types. Usually there is only one of these, but theoretically there could be more.\\"
+		medicalDeviceTypes: [BnfMedicalDeviceType!]!
+	}
+
+	\\"\\"\\"
+	An individual medical device. Preparations can appear at this level but they can also appear at the clinical medical device information group level.
+	\\"\\"\\"
+	type BnfMedicalDeviceType @dontInfer {
+		\\"The title for the medical device type. May include HTML mark-up.\\"
+		title: String!
+
+		\\"The general preparations for the medical device type. This will only be present if there are no clinical medical device information groups.\\"
+		preparations: [BnfPrep!]!
+
+		\\"The clinical medical device information groups. These contain preparation-specific content such as device descriptions, compliance standards and prescribing & dispensing information.\\"
+		clinicalMedicalDeviceInformationGroups: [BnfClinicalMedicalDeviceInformationGroup!]!
+	}
+
+	\\"\\"\\"
+	This object contains content that is relevant to a set of medical device preparations.
+	\\"\\"\\"
+	type BnfClinicalMedicalDeviceInformationGroup {
+		\\"The device description for the clinical medical device information group.\\"
+		deviceDescription: BnfMedicalDeviceSimplePot
+
+		\\"The compliance standards for the clinical medical device information group.\\"
+		complianceStandards: BnfMedicalDeviceSimplePot
+
+		\\"The indications and dose section for the clinical medical device information group.\\"
+		indicationsAndDose: BnfIndicationsAndDose
+
+		\\"The allergy and cross-sensitivity section for the clinical medical device information group.\\"
+		allergyAndCrossSensitivity: BnfMedicalDeviceSimplePot
+
+		\\"The treatment cessation section for the clinical medical device information group.\\"
+		treatmentCessation: BnfMedicalDeviceSimplePot
+
+		\\"The prescribing and dispensing information section for the clinical medical device information group.\\"
+		prescribingAndDispensingInformation: BnfMedicalDeviceSimplePot
+
+		\\"The patient and carer advice section for the clinical medical device information group.\\"
+		patientAndCarerAdvice: BnfMedicalDeviceSimplePot
+
+		\\"The profession specific information section for the clinical medical device information group.\\"
+		professionSpecificInformation: BnfMedicalDeviceSimplePot
+
+		\\"The preparations that are relevant to the clinical medical device information group.\\"
+		preparations: [BnfPrep!]!
+	}
+
+	\\"\\"\\"
+	Simple pot content specifically for medical devices
+	\\"\\"\\"
+	type BnfMedicalDeviceSimplePot {
+		\\"The name/title of the pot.\\"
+		potName: String!
+
+		\\"The slugified and lowercased pot name, used as an ID/hash link\\"
+		slug: String! @slug(field: \\"potName\\")
+
+		\\"The simple pot content that relates to the medical device.\\"
+		content: BnfSimplePotContent!
 	}
 
 
@@ -795,6 +980,9 @@ exports[`schema should match snapshot 1`] = `
 		\\"The review date of the record.\\"
 		reviewDate: Date @dateformat
 
+		\\"The text of the taxonomy node. May contain HTML mark-up.\\"
+		text: String
+
 		\\"The wound management product groups and preparations that are applicable for this point in the wound management taxonomy.\\"
 		productGroups: [BnfWoundManagementProductGroup!]!
 
@@ -813,7 +1001,11 @@ exports[`schema should match snapshot 1`] = `
 		\\"The title of the wound management product group.\\"
 		title: String!
 
-		# TODO: Add other wound management product fields here when we implement wound management
+		\\"The description of the wound management product group. May contain HTML mark-up.\\"
+		description: String
+
+		\\"The list of products in the wound management product group.\\"
+		products: [BnfPrep!]!
 	}
 "
 `;
