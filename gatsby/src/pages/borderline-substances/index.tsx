@@ -1,6 +1,7 @@
 import { graphql } from "gatsby";
 import React, { FC } from "react";
 
+import { BorderlineSubstancesMenu } from "@/components/BorderlineSubstancesMenu/BorderlineSubstancesMenu";
 import { DetailsPageLayout } from "@/components/DetailsPageLayout/DetailsPageLayout";
 import { RecordSectionsContent } from "@/components/RecordSectionsContent/RecordSectionsContent";
 import { type RecordSection } from "@/utils";
@@ -35,6 +36,7 @@ const BorderlineSubstanceIntroductionPage: FC<
 				id: slug,
 				title,
 			}))}
+			menu={BorderlineSubstancesMenu}
 		>
 			<RecordSectionsContent sections={sections} />
 		</DetailsPageLayout>

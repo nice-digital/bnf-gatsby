@@ -1,13 +1,27 @@
 import { type SourceNodesArgs } from "gatsby";
 import { type Except } from "type-fest";
 
-import { type FeedBorderlineSubstances } from "../downloader/types";
+import {
+	FeedBorderlineSubstancesTaxonomy,
+	PHPID,
+	SID,
+	type FeedBorderlineSubstances,
+} from "../downloader/types";
 import { BnfNode } from "../node-types";
 
 import { createBnfNode, SimpleRecordNodeInput } from "./utils";
 
+export type TaxonomyNodeInput = Except<
+	FeedBorderlineSubstancesTaxonomy,
+	"substances" | "children"
+> & {
+	parentTaxonomy?: SID | PHPID;
+	rootTaxonomy: SID | PHPID;
+	childTaxonomies: (SID | PHPID)[];
+};
+
 export const createBorderlineSubstancesNodes = (
-	{ introduction }: FeedBorderlineSubstances,
+	{ introduction, taxonomy }: FeedBorderlineSubstances,
 	sourceNodesArgs: SourceNodesArgs
 ): void => {
 	const introductionNodeContent: Except<SimpleRecordNodeInput, "order"> = {
@@ -23,4 +37,30 @@ export const createBorderlineSubstancesNodes = (
 		BnfNode.BorderlineSubstancesIntroduction,
 		sourceNodesArgs
 	);
+
+	const createTaxonomyRecursive = (
+		taxonomies: FeedBorderlineSubstancesTaxonomy[],
+		parent?: FeedBorderlineSubstancesTaxonomy,
+		root?: FeedBorderlineSubstancesTaxonomy
+	) => {
+		taxonomies.forEach((taxonomy) => {
+			const rootTaxonomy = root || taxonomy,
+				{ children, ...taxonomyFields } = taxonomy;
+
+			createBnfNode<TaxonomyNodeInput>(
+				{
+					...taxonomyFields,
+					parentTaxonomy: parent?.id,
+					childTaxonomies: children?.map((t) => t.id) || [],
+					rootTaxonomy: rootTaxonomy.id,
+				},
+				BnfNode.BorderlineSubstancesTaxonomy,
+				sourceNodesArgs
+			);
+
+			if (children) createTaxonomyRecursive(children, taxonomy, rootTaxonomy);
+		});
+	};
+
+	createTaxonomyRecursive(taxonomy);
 };
