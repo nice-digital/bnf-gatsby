@@ -71,14 +71,12 @@ export const DrugsInClass: FC<DrugsInClassProps> = ({
 			/>
 		) : null}
 
-		{secondaryClassifications
-			.sort((a, b) => a.order - b.order)
-			.map((classification) => (
-				<ClassificationSection
-					key={classification.title}
-					classification={classification}
-					drugSlug={drugSlug}
-				/>
-			))}
+		{secondaryClassifications.map((classification) => (
+			<ClassificationSection
+				key={classification.title}
+				classification={classification}
+				drugSlug={drugSlug}
+			/>
+		))}
 	</section>
 );
