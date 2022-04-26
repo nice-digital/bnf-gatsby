@@ -1,5 +1,10 @@
 import { Link } from "gatsby";
-import React, { useMemo, type ReactNode, type ElementType } from "react";
+import React, {
+	useMemo,
+	type ReactNode,
+	type ElementType,
+	ReactElement,
+} from "react";
 import striptags from "striptags";
 
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
@@ -28,6 +33,8 @@ type DetailsPageLayoutProps = {
 	}[];
 	metaDescription?: string;
 	sections: OnThisPageProps["sections"];
+	asideContent?: ReactElement;
+	headerCta?: ReactElement;
 	useSectionNav?: boolean;
 };
 
@@ -43,6 +50,8 @@ export const DetailsPageLayout: React.FC<DetailsPageLayoutProps> = ({
 	parentBreadcrumbs = [],
 	metaDescription,
 	sections,
+	asideContent,
+	headerCta,
 	useSectionNav,
 }) => {
 	const { siteTitleShort } = useSiteMetadata(),
@@ -82,6 +91,7 @@ export const DetailsPageLayout: React.FC<DetailsPageLayoutProps> = ({
 					) : undefined
 				}
 				heading={<span dangerouslySetInnerHTML={{ __html: titleHtml }} />}
+				cta={headerCta}
 			/>
 
 			<Grid gutter="loose" data-testid="body">
@@ -105,8 +115,19 @@ export const DetailsPageLayout: React.FC<DetailsPageLayoutProps> = ({
 							<>
 								<GridItem cols={12} lg={3}>
 									<OnThisPage sections={sections} />
+									{asideContent ? (
+										asideContent
+									) : (
+										<OnThisPage sections={sections} />
+									)}
 								</GridItem>
 								<GridItem className={styles.body} cols={12} lg={9}>
+									{asideContent && (
+										<SectionNav
+											className={styles.sectionNav}
+											sections={sections}
+										/>
+									)}
 									{children}
 								</GridItem>
 							</>
