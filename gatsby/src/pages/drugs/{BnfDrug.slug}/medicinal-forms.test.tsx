@@ -69,7 +69,57 @@ describe("MedicinalFormsPage", () => {
 			});
 		});
 
-		it.todo("Meta description (see BNF-1215");
+		it("Should render the correct meta description for multiple forms", async () => {
+			render(<MedicinalFormsPage data={dataProp} />);
+
+			await waitFor(() => {
+				expect(
+					document
+						// eslint-disable-next-line testing-library/no-node-access
+						.querySelector("meta[name='description']")
+				).toHaveAttribute(
+					"content",
+					"Pricing and pack information for Tablets and Powder forms of Anti-D (Rh0) immunoglobulin"
+				);
+			});
+		});
+
+		it("Should render the correct meta description for a single form", async () => {
+			render(
+				<MedicinalFormsPage
+					data={{
+						bnfDrug: {
+							...drug,
+							medicinalForms: {
+								...drug.medicinalForms,
+								medicinalForms: [
+									{
+										form: "Tablets",
+										slug: "tablets",
+										electrolytes: "May contain sodium.",
+										excipients:
+											"May contain alcohol, disodium edetate, polysorbates.",
+										preps: [],
+										cautionaryAndAdvisoryLabels: [],
+									},
+								],
+							},
+						},
+					}}
+				/>
+			);
+
+			await waitFor(() => {
+				expect(
+					document
+						// eslint-disable-next-line testing-library/no-node-access
+						.querySelector("meta[name='description']")
+				).toHaveAttribute(
+					"content",
+					"Pricing and pack information for Tablets forms of Anti-D (Rh0) immunoglobulin"
+				);
+			});
+		});
 	});
 
 	describe("Breadcrumbs", () => {

@@ -1,8 +1,8 @@
 @use '@nice-digital/nds-core/scss/core';
 
 .details {
-  background: core.$nds-colour-nice-grey-3;
-  border: 1px solid core.$nds-colour-nice-grey-2;
+  background: none;
+  border: 1px solid #8c8c8c; // TODO: add var to design system (nds-colour-border-dark) and replace it here
   margin: core.rem(core.$nds-spacing-medium 0);
   padding: core.rem(core.$nds-spacing-medium);
 

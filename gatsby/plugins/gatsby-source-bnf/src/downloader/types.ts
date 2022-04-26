@@ -1,6 +1,8 @@
 export interface Feed {
 	/** All about records in the BNF, in a consistent order. */
 	about: FeedSimpleRecord[];
+	/** The borderline substances (Appendix 2) content. */
+	borderlineSubstances: FeedBorderlineSubstances;
 	/** All the treatment summaries. A treatment summary provides guidance on
 	 * how to deliver a drugs to particular body systems, comparisons between
 	 * groups of drugs, or overviews of treatment for common conditions. */
@@ -542,6 +544,22 @@ export type FeedLegalCategory = "POM" | "P" | "GSL" | "Not Applicable";
 export interface FeedClinicalMedicalDeviceInformationGroup {
 	/** The device description for the clinical medical device information group. For clinical medical device information groups, the drug class content will always be empty, as will the preparation content. The 'drugContent' will contain the information for the clinical medical device information group. */
 	deviceDescription?: FeedSimplePot;
+	/** The compliance standards for the clinical medical device information group. For clinical medical device information groups, the drug class content will always be empty, as will the preparation content. The 'drugContent' will contain the information for the clinical medical device information group. */
+	complianceStandards?: FeedSimplePot;
+	/** The indications and dose section for the clinical medical device information group. For clinical medical device information groups, the drug class content will always be empty, as will the preparation content. The 'drugContent' will contain the information for the clinical medical device information group. */
+	indicationsAndDose?: FeedIndicationsAndDosePot;
+	/** The allergy and cross-sensitivity section for the clinical medical device information group. For clinical medical device information groups, the drug class content will always be empty, as will the preparation content. The 'drugContent' will contain the information for the clinical medical device information group. */
+	allergyAndCrossSensitivity?: FeedSimplePot;
+	/** The treatment cessation section for the clinical medical device information group. For clinical medical device information groups, the drug class content will always be empty, as will the preparation content. The 'drugContent' will contain the information for the clinical medical device information group. */
+	treatmentCessation?: FeedSimplePot;
+	/** The prescribing and dispensing information section for the clinical medical device information group. For clinical medical device information groups, the drug class content will always be empty, as will the preparation content. The 'drugContent' will contain the information for the clinical medical device information group. */
+	prescribingAndDispensingInformation?: FeedSimplePot;
+	/** The patient and carer advice section for the clinical medical device information group. For clinical medical device information groups, the drug class content will always be empty, as will the preparation content. The 'drugContent' will contain the information for the clinical medical device information group. */
+	patientAndCarerAdvice?: FeedSimplePot;
+	/** The profession specific information section for the clinical medical device information group. For clinical medical device information groups, the drug class content will always be empty, as will the preparation content. The 'drugContent' will contain the information for the clinical medical device information group. */
+	professionSpecificInformation?: FeedSimplePot;
+	/** The preparations that are relevant to the clinical medical device information group. */
+	preparations?: FeedPrep[];
 }
 
 /** The wound management products and elasticated garments (Appendix 4) content in the BNF. The content is presented as a taxonomy which uses a tree structure, alongside the introductory content. */
@@ -560,6 +578,8 @@ export interface FeedWoundManagementTaxonomy {
 	title: string;
 	/** The review date of the record, formatted into a string. The format used is ISO 8601-1:2019 compliant (without a time zone designator), e.g. `2021-07-06T00:37:25.918`. */
 	reviewDate?: string;
+	/** The text of the taxonomy node. May contain HTML mark-up. */
+	text?: string;
 	/** The wound management product groups and preparations that are applicable for this point in the wound management taxonomy. */
 	productGroups?: WoundManagementProductGroup[];
 	/** Any children records of the wound management taxonomy. */
@@ -582,4 +602,77 @@ export interface FeedNursePrescribersFormulary {
 	introduction: FeedSimpleRecord;
 	/** The Nurse Prescribers' Formulary treatment summaries. */
 	npfTreatmentSummaries?: [FeedSimpleRecord, ...FeedSimpleRecord[]];
+}
+
+/** The borderline substances (Appendix 2) in the BNF. They are presented as a taxonomy which uses a tree structure. */
+export interface FeedBorderlineSubstances {
+	/** The borderline substances introduction record. */
+	introduction: FeedSimpleRecord;
+	/** The taxonomy of borderline substances. */
+	taxonomy: [
+		FeedBorderlineSubstancesTaxonomy,
+		...FeedBorderlineSubstancesTaxonomy[]
+	];
+}
+
+/** The borderline substance taxonomy as a tree structure. */
+export interface FeedBorderlineSubstancesTaxonomy {
+	/** The ID of the taxonomy node. */
+	id: SID | PHPID;
+	/** The title of the taxonomy node. May contain HTML mark-up. */
+	title: string;
+	/** The review date of the record, formatted into a string. The format used is ISO 8601-1:2019 compliant (without a time zone designator), e.g. `2021-07-06T00:37:25.918`. */
+	reviewDate?: string;
+	/** The borderline substances that are applicable for this point in the borderline substances taxonomy. */
+	substances?: FeedBorderlineSubstance[];
+	/** Any children records of the borderline substances taxonomy. */
+	children?: FeedBorderlineSubstancesTaxonomy[];
+}
+
+/** An individual borderline substance. This comprises a number of presentations, each of which may contain zero or more preparations. */
+export interface FeedBorderlineSubstance {
+	/** The ID of the borderline substance. */
+	id: SID | PHPID;
+	/** The title of the borderline substance. May contain HTML mark-up. */
+	title: string;
+	/** An optional introductory note for the borderline substance. May contain HTML mark-up. */
+	introductionNote?: string;
+	/** The presentation details for the borderline substance. */
+	presentations?: FeedBorderlineSubstancePresentation[];
+}
+
+/** The presentation of a borderline substance, i.e. its formulation and nutritional content. Also comprises zero or more preparations. */
+export interface FeedBorderlineSubstancePresentation {
+	/** The formulation of the borderline substance, for example `Liquid (tube feed) per 100 mL`. */
+	formulation?: string;
+	/** The energy content of the borderline substance in kilojoules. */
+	energyKj?: string;
+	/** The energy content of the borderline substance in kilocalories. */
+	energyKCal?: string;
+	/** The protein content of the borderline substance in grams. */
+	proteinGrams?: string;
+	/** The protein constituents of the borderline substance. */
+	proteinConstituents?: string[];
+	/** The carbohydrate content of the borderline substance in grams. */
+	carbohydrateGrams?: string;
+	/** The carbohydrate constituents of the borderline substance. */
+	carbohydrateConstituents?: string[];
+	/** The fat content of the borderline substance in grams. */
+	fatGrams?: string;
+	/** The fat constituents of the borderline substance. */
+	fatConstituents?: string[];
+	/** The fibre content of the borderline substance in grams. */
+	fibreGrams?: string;
+	/** The fibre constituents of the borderline substance. */
+	fibreConstituents?: string;
+	/** A list of any special characteristics of the borderline substance. */
+	specialCharacteristics?: string[];
+	/** A list of the Advisory Committee on Borderline Substances (ACBS) indications. May contain HTML mark-up. */
+	acbs?: string[];
+	/** The presentation note for the borderline substance. */
+	presentationNote?: string;
+	/** The Rx advice for the borderline substance. */
+	rxAdvice?: string;
+	/** The preparations for the borderline substance. */
+	borderlineSubstancePreps?: FeedPrep[];
 }

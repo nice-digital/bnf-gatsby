@@ -26,6 +26,7 @@ export interface AtoZListPageProps {
 	metaDescription: string;
 	path: string;
 	letters: AtoZLetter[];
+	pageDescription: string;
 }
 
 const byTitleAlphabetically = (a: AtoZLink, b: AtoZLink) =>
@@ -36,6 +37,7 @@ export const AtoZListPage: FC<AtoZListPageProps> = ({
 	metaDescription,
 	path,
 	letters,
+	pageDescription,
 }) => {
 	const { siteTitleShort } = useSiteMetadata();
 
@@ -61,7 +63,11 @@ export const AtoZListPage: FC<AtoZListPageProps> = ({
 				<Breadcrumb>{`${title} A to Z`}</Breadcrumb>
 			</Breadcrumbs>
 
-			<PageHeader id="content-start" heading={<>{title} A&nbsp;to&nbsp;Z</>} />
+			<PageHeader
+				id="content-start"
+				heading={<>{title} A&nbsp;to&nbsp;Z</>}
+				lead={pageDescription}
+			/>
 
 			<AZList alphabet={alphabet}>
 				{letters.map(({ letter, links }) => (
