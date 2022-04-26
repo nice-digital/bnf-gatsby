@@ -368,18 +368,25 @@ describe("InteractantPage", () => {
 	});
 
 	describe("filtering", () => {
-		it("should push a formSubmit event to the data layer when filter button submits form", () => {
+		it("should push a formSubmit event to the data layer when filter button submits form", async () => {
 			window.dataLayer = [];
 			render(<InteractantPage data={dataProp} />);
+
+			const inputElement = screen.getByLabelText("Filter by drug name");
 
 			const submitButton = screen.getByRole("button", {
 				name: "Filter",
 			});
 
+			userEvent.type(inputElement, "some filter text");
+
 			fireEvent.click(submitButton);
 
-			expect(window.dataLayer[0]).toStrictEqual({
-				event: "formSubmit",
+			await waitFor(() => {
+				expect(window.dataLayer[0]).toStrictEqual({
+					event: "formSubmit",
+					formText: "some filter text",
+				});
 			});
 		});
 	});

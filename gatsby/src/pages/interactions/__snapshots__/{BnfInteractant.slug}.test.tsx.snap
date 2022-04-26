@@ -146,10 +146,10 @@ exports[`InteractantPage body should match snapshot for page body 1`] = `
       >
         <div
           class="informationPanel"
+          data-tracking="interaction-information"
         >
           <h2
             class="informationPanelHeading"
-            data-tracking="interaction-information"
           >
             Drug interaction information
           </h2>

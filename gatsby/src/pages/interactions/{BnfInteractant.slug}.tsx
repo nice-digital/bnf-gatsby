@@ -109,7 +109,6 @@ const InteractantPage: FC<InteractantPageProps> = ({
 
 	const handleKeyDown = (e: KeyboardEvent) => {
 		if (e.key === "Enter") {
-			e.preventDefault();
 			setSearchFilterTerm(filterTerm);
 		}
 	};
@@ -129,9 +128,12 @@ const InteractantPage: FC<InteractantPageProps> = ({
 		</div>
 	);
 
-	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+	const handleSubmit = (
+		e: React.FormEvent<HTMLFormElement>,
+		filterTerm: string
+	) => {
 		e.preventDefault();
-		window.dataLayer.push({ event: "formSubmit" });
+		window.dataLayer.push({ event: "formSubmit", formText: filterTerm });
 	};
 
 	return (
@@ -196,11 +198,11 @@ const InteractantPage: FC<InteractantPageProps> = ({
 
 					<div className={styles.grid}>
 						<div className={styles.rightCol}>
-							<div className={styles.informationPanel}>
-								<h2
-									className={styles.informationPanelHeading}
-									data-tracking="interaction-information"
-								>
+							<div
+								className={styles.informationPanel}
+								data-tracking="interaction-information"
+							>
+								<h2 className={styles.informationPanelHeading}>
 									Drug interaction information
 								</h2>
 								<p className={interactionStyles.severeMessage}>
@@ -217,7 +219,10 @@ const InteractantPage: FC<InteractantPageProps> = ({
 							{isClient && (
 								<section className={`${styles.filterPanel} hide-print`}>
 									<h2 className="visually-hidden">Filters and sorting</h2>
-									<form className={styles.filterForm} onSubmit={handleSubmit}>
+									<form
+										className={styles.filterForm}
+										onSubmit={(e) => handleSubmit(e, filterTerm)}
+									>
 										<Input
 											className={styles.filterInput}
 											label="Filter by drug name"
