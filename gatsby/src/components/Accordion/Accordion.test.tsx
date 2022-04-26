@@ -27,7 +27,7 @@ describe("Accordion", () => {
 			render(
 				<Accordion
 					title={<h3>Some title</h3>}
-					defaultOpen={defaultOpen}
+					open={defaultOpen}
 					showLabel={defaultOpen ? undefined : actualLabel}
 					hideLabel={defaultOpen ? actualLabel : undefined}
 				>
@@ -96,7 +96,7 @@ describe("Accordion", () => {
 
 	it("should update label when expanded", async () => {
 		render(
-			<Accordion title="Test" defaultOpen={false}>
+			<Accordion title="Test" open={false}>
 				<p>Body content</p>
 			</Accordion>
 		);
@@ -117,7 +117,7 @@ describe("Accordion", () => {
 
 	it("should open when default open prop changed from false to true", async () => {
 		const { rerender } = render(
-			<Accordion title="Test" defaultOpen={false}>
+			<Accordion title="Test" open={false}>
 				<p>Body content</p>
 			</Accordion>
 		);
@@ -130,7 +130,7 @@ describe("Accordion", () => {
 		);
 
 		rerender(
-			<Accordion title="Test" defaultOpen={true}>
+			<Accordion title="Test" open={true}>
 				<p>Body content</p>
 			</Accordion>
 		);
@@ -144,7 +144,7 @@ describe("Accordion", () => {
 
 	it("should close when default open prop changed from true to false", async () => {
 		const { rerender } = render(
-			<Accordion title="Test" defaultOpen={true}>
+			<Accordion title="Test" open={true}>
 				<p>Body content</p>
 			</Accordion>
 		);
@@ -157,7 +157,7 @@ describe("Accordion", () => {
 		);
 
 		rerender(
-			<Accordion title="Test" defaultOpen={false}>
+			<Accordion title="Test" open={false}>
 				<p>Body content</p>
 			</Accordion>
 		);
@@ -171,7 +171,7 @@ describe("Accordion", () => {
 
 	it("should have appropriate data tracking attribute", async () => {
 		render(
-			<Accordion title="Test" defaultOpen={false}>
+			<Accordion title="Test" open={false}>
 				<p>Body content</p>
 			</Accordion>
 		);
