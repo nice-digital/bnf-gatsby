@@ -16,6 +16,7 @@ exports[`CautionaryAndAdvisoryLabel should render the correct content within eac
       English test recommendation
     </p>
     <p
+      class="welsh"
       lang="cy"
     >
       Welsh test recommendation

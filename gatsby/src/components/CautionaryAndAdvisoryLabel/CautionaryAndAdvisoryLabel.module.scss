@@ -1,7 +1,20 @@
 @use '@nice-digital/nds-core/scss/core';
 
 .label {
-  border: 2px solid core.$nds-colour-nice-black;
-  border-radius: 4px;
-  padding: 0 10px;
+  background: core.$nds-colour-nice-white;
+  border: 1px solid core.$nds-colour-nice-black;
+  border-radius: core.rem(core.$nds-spacing-x-small);
+  padding: core.rem(core.$nds-spacing-medium);
+
+  > :first-child {
+    margin-top: 0;
+  }
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+.welsh {
+  font-style: italic;
 }

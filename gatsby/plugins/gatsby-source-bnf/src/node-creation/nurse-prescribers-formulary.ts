@@ -18,7 +18,8 @@ export const createNursePrescribersNodes = (
 		sourceNodesArgs
 	);
 
-	if (npfTreatmentSummaries)
+	// BNFC has no treatment summaries, so we need to check if they exist before adding the nodes
+	if (npfTreatmentSummaries) {
 		createSimpleRecordNodes(
 			npfTreatmentSummaries.map((npfTreatmentSummary) => ({
 				...npfTreatmentSummary,
@@ -30,4 +31,5 @@ export const createNursePrescribersNodes = (
 			BnfNode.NursePrescribersFormularyTreatmentSummary,
 			sourceNodesArgs
 		);
+	}
 };
