@@ -26,6 +26,7 @@ const props: AtoZListPageProps = {
 			],
 		},
 	],
+	pageDescription: "Test description",
 };
 
 describe("AtoZListPage", () => {

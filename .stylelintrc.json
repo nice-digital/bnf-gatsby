@@ -11,13 +11,7 @@
         "name": "include",
         "hasBlock": false
       },
-      "declarations",
-      "rules",
-      {
-        "type": "at-rule",
-        "name": "include",
-        "hasBlock": true
-      }
+      "declarations"
     ]
   }
 }
