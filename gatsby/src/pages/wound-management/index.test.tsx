@@ -55,6 +55,11 @@ describe("Medical devices index page", () => {
 		});
 	});
 
+	it("should match page snapshot", () => {
+		render(<WoundManagementIndexPage {...props} />);
+		expect(screen.getByRole("main")).toMatchSnapshot();
+	});
+
 	it("should add content start skip link target id to page header", () => {
 		render(<WoundManagementIndexPage {...props} />);
 		const heading1 = screen.getByRole("heading", {

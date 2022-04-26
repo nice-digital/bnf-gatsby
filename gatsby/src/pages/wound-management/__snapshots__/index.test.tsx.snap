@@ -1,0 +1,220 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Medical devices index page should match page snapshot 1`] = `
+<main>
+  <div
+    class="container"
+  >
+    <nav
+      aria-label="Breadcrumbs"
+      role="navigation"
+    >
+      <ol
+        class="breadcrumbs"
+      >
+        <li
+          class="breadcrumbs__crumb"
+        >
+          <a
+            href="https://www.nice.org.uk/"
+          >
+            NICE
+          </a>
+        </li>
+        <li
+          class="breadcrumbs__crumb"
+        >
+          <a
+            href="/"
+          >
+            BNF
+          </a>
+        </li>
+        <li
+          class="breadcrumbs__crumb"
+        >
+          <span>
+            Wound management products and elasticated garments
+          </span>
+        </li>
+      </ol>
+    </nav>
+    <script
+      type="application/ld+json"
+    >
+      {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@id": "https://www.nice.org.uk/",
+        "name": "NICE"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@id": "/",
+        "name": "BNF"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "name": "Wound management products and elasticated garments"
+      }
+    }
+  ]
+}
+    </script>
+    <div
+      class="page-header"
+      id="content-start"
+    >
+      <h1
+        class="page-header__heading"
+      >
+        Wound management products and elasticated garments
+      </h1>
+    </div>
+    <div
+      class="grid grid--loose"
+      data-testid="body"
+    >
+      <div
+        class="hide-print"
+        data-g="12 md:4 lg:3"
+      >
+        <nav
+          aria-label="Wound management product pages"
+          class="stacked-nav"
+        >
+          <p
+            class="stacked-nav__root"
+          >
+            <a
+              aria-current="false"
+              href="/wound-management/"
+            >
+              Wound management products
+            </a>
+          </p>
+          <ul
+            class="stacked-nav__list"
+          >
+            <li
+              class="stacked-nav__list-item"
+            >
+              <a
+                aria-current="false"
+                href="/wound-management/basic-wound-contact-dressings"
+              >
+                <span
+                  class="stacked-nav__content-wrapper"
+                >
+                  <span>
+                    Basic wound contact dressings
+                  </span>
+                </span>
+              </a>
+            </li>
+            <li
+              class="stacked-nav__list-item"
+            >
+              <a
+                aria-current="false"
+                href="/wound-management/advanced-wound-dressings"
+              >
+                <span
+                  class="stacked-nav__content-wrapper"
+                >
+                  <span>
+                    Advanced wound dressings
+                  </span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div
+        data-g="12 md:8 lg:9"
+      >
+        <nav
+          aria-labelledby="navigate-to-section"
+          class="nav "
+        >
+          <h2
+            class="heading"
+            id="navigate-to-section"
+          >
+            Navigate to section
+          </h2>
+          <ol
+            aria-label="Jump links to sections on this page"
+            class="linkList"
+          >
+            <li>
+              <a
+                href="#wound-type--154124684"
+              >
+                Pink (epitheliasing)
+              </a>
+            </li>
+            <li>
+              <a
+                href="#wound-type-1889862293"
+              >
+                Red (granulating)
+              </a>
+            </li>
+            <li>
+              <a
+                href="#wound-type-102222233"
+              >
+                Yellow (sloughy)(granulating)
+              </a>
+            </li>
+            <li>
+              <a
+                href="#wound-type-530708321"
+              >
+                Black (Necrotic/ Eschar)
+              </a>
+            </li>
+            <li>
+              <a
+                href="#wound-type-592109193"
+              >
+                Wounds with signs of infection
+              </a>
+            </li>
+          </ol>
+        </nav>
+        <section
+          aria-labelledby="introduction"
+          class="woundManagementIndex"
+        >
+          <h2
+            class="firstHeading"
+            id="introduction"
+          >
+            Introduction
+          </h2>
+          <div>
+             
+            <p>
+              The correct dressing for wound management depends not only on the type of wound but also on the stage of the healing process
+            </p>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</main>
+`;
