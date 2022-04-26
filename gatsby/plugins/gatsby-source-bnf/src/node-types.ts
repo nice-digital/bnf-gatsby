@@ -29,6 +29,7 @@ export const BnfNode = {
 	MedicalDeviceType: "BnfMedicalDeviceType",
 	MedicalDeviceSimplePot: "BnfMedicalDeviceSimplePot",
 	MedicinalForm: "BnfMedicinalForm",
+	MedicinalFormLabel: "BnfMedicinalFormLabel",
 	MedicinalForms: "BnfMedicinalForms",
 	MonitoringPot: "BnfMonitoringPot",
 	MonitoringPotContent: "BnfMonitoringPotContent",
