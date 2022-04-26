@@ -281,6 +281,7 @@ exports[`CautionaryAdvisoryLabelsPage should match snapshot for page contents 1`
                       English recommendation 1
                     </p>
                     <p
+                      class="welsh"
                       lang="cy"
                     >
                       Welsh recommendation 1
@@ -309,6 +310,7 @@ exports[`CautionaryAdvisoryLabelsPage should match snapshot for page contents 1`
                       English recommendation 2
                     </p>
                     <p
+                      class="welsh"
                       lang="cy"
                     >
                       Welsh recommendation 2
