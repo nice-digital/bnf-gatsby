@@ -12,11 +12,13 @@ import { Grid, GridItem } from "@nice-digital/nds-grid";
 import { PageHeader } from "@nice-digital/nds-page-header";
 
 import { Layout } from "@/components/Layout/Layout";
+import {
+	OnThisPage,
+	type OnThisPageProps,
+} from "@/components/OnThisPage/OnThisPage";
+import { SectionNav } from "@/components/SectionNav/SectionNav";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
-
-import { OnThisPage, type OnThisPageProps } from "../OnThisPage/OnThisPage";
-import { SectionNav } from "../SectionNav/SectionNav";
 
 import styles from "./DetailsPageLayout.module.scss";
 
