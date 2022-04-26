@@ -107,12 +107,6 @@ const InteractantPage: FC<InteractantPageProps> = ({
 		);
 	}, [interactions, sortBySeverity, searchFilterTerm]);
 
-	const handleKeyDown = (e: KeyboardEvent) => {
-		if (e.key === "Enter") {
-			setSearchFilterTerm(filterTerm);
-		}
-	};
-
 	const RemoveFilterButton: FC = () => (
 		<div className={styles.clearFilterWrapper}>
 			<button
@@ -128,11 +122,9 @@ const InteractantPage: FC<InteractantPageProps> = ({
 		</div>
 	);
 
-	const handleSubmit = (
-		e: React.FormEvent<HTMLFormElement>,
-		filterTerm: string
-	) => {
+	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
+		setSearchFilterTerm(filterTerm);
 		window.dataLayer.push({ event: "formSubmit", formText: filterTerm });
 	};
 
@@ -219,10 +211,7 @@ const InteractantPage: FC<InteractantPageProps> = ({
 							{isClient && (
 								<section className={`${styles.filterPanel} hide-print`}>
 									<h2 className="visually-hidden">Filters and sorting</h2>
-									<form
-										className={styles.filterForm}
-										onSubmit={(e) => handleSubmit(e, filterTerm)}
-									>
+									<form className={styles.filterForm} onSubmit={handleSubmit}>
 										<Input
 											className={styles.filterInput}
 											label="Filter by drug name"
@@ -230,12 +219,10 @@ const InteractantPage: FC<InteractantPageProps> = ({
 											onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
 												setFilterTerm(e.target.value)
 											}
-											onKeyDown={handleKeyDown}
 											name="drugNameInput"
 											value={filterTerm}
 										/>
 										<Button
-											onClick={() => setSearchFilterTerm(filterTerm)}
 											variant={Button.variants.secondary}
 											className={styles.filterButton}
 											type="submit"
