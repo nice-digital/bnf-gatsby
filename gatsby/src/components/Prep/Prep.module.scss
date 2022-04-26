@@ -1,0 +1,102 @@
+@use '@nice-digital/nds-core/scss/core';
+
+.prepHeading {
+  @include core.nds-h4;
+  max-width: none;
+
+  @include core.mq($from: md) {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: row-reverse;
+    gap: core.rem(core.$nds-spacing-large);
+  }
+}
+
+.headingIcons {
+  align-items: center;
+  display: flex;
+  gap: core.rem(core.$nds-spacing-x-small);
+  margin-bottom: core.rem(core.$nds-spacing-small);
+
+  @include core.mq($from: md) {
+    justify-content: flex-end;
+    margin-bottom: 0;
+    text-align: right;
+  }
+}
+
+.headingText {
+  display: block;
+
+  @include core.mq($from: md) {
+    flex-grow: 1;
+  }
+}
+
+.manufacturer {
+  font-style: italic;
+  font-weight: normal;
+}
+
+.packList {
+  list-style: none;
+  margin: 0;
+  max-width: none;
+}
+
+.packItem {
+  border-top: 1px solid core.$nds-colour-border;
+  margin: core.rem(core.$nds-spacing-medium) 0 0 0;
+
+  dl {
+    margin: core.rem(core.$nds-spacing-medium) 0 0 0;
+  }
+}
+
+.packDefinitionListItem {
+  margin-bottom: core.rem(core.$nds-spacing-small);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  @include core.mq($from: md) {
+    display: flex;
+  }
+
+  dt {
+    font-weight: bold;
+
+    @include core.mq($from: md) {
+      flex: 1 1 30%;
+    }
+  }
+
+  dd {
+    margin: 0;
+
+    @include core.mq($from: md) {
+      flex: 1 1 70%;
+    }
+  }
+}
+
+.sugarFree,
+.controlledScheduleCode,
+.legalCategory {
+  @include core.nds-font-size(-2);
+  background: core.$nds-colour-nice-white;
+  border: 1px solid core.$nds-colour-border !important;
+  display: inline-block;
+  font-weight: 700;
+  padding: core.rem(core.$nds-spacing-xx-small)
+    core.rem(core.$nds-spacing-x-small);
+  text-decoration: none !important;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.controlledScheduleCode,
+.legalCategory {
+  border-radius: core.rem(core.$nds-spacing-small) 0 0;
+}
