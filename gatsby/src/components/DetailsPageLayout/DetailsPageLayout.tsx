@@ -37,6 +37,7 @@ type DetailsPageLayoutProps = {
 	sections: OnThisPageProps["sections"];
 	asideContent?: ReactElement;
 	headerCta?: ReactElement;
+	useSectionNav?: boolean;
 };
 
 /**
@@ -53,6 +54,7 @@ export const DetailsPageLayout: React.FC<DetailsPageLayoutProps> = ({
 	sections,
 	asideContent,
 	headerCta,
+	useSectionNav,
 }) => {
 	const { siteTitleShort } = useSiteMetadata(),
 		titleNoHtml = striptags(titleHtml),
@@ -102,15 +104,38 @@ export const DetailsPageLayout: React.FC<DetailsPageLayoutProps> = ({
 				)}
 				<GridItem cols={12} md={Menu ? 8 : 12} lg={Menu ? 9 : 12}>
 					<Grid reverse gutter="loose">
-						<GridItem cols={12} lg={3}>
-							{asideContent ? asideContent : <OnThisPage sections={sections} />}
-						</GridItem>
-						<GridItem className={styles.body} cols={12} lg={9}>
-							{asideContent && (
-								<SectionNav className={styles.sectionNav} sections={sections} />
-							)}
-							{children}
-						</GridItem>
+						{useSectionNav && !asideContent ? (
+							<>
+								<GridItem cols={12}>
+									<SectionNav
+										sections={sections}
+										readableMaxWidth={Menu === undefined}
+									/>
+								</GridItem>
+								<GridItem className={styles.body} cols={12}>
+									{children}
+								</GridItem>
+							</>
+						) : (
+							<>
+								<GridItem cols={12} lg={3}>
+									{asideContent ? (
+										asideContent
+									) : (
+										<OnThisPage sections={sections} />
+									)}
+								</GridItem>
+								<GridItem className={styles.body} cols={12} lg={9}>
+									{asideContent && (
+										<SectionNav
+											className={styles.sectionNav}
+											sections={sections}
+										/>
+									)}
+									{children}
+								</GridItem>
+							</>
+						)}
 					</Grid>
 				</GridItem>
 			</Grid>

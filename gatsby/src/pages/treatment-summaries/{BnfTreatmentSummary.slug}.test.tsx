@@ -12,7 +12,18 @@ const treatmentSummary: TreatmentSummaryPageProps["data"]["bnfTreatmentSummary"]
 		title: "Acne",
 		relatedDrugs: [],
 		relatedTreatmentSummaries: [],
-		sections: [],
+		sections: [
+			{
+				title: "Section 1",
+				slug: "section-1",
+				content: "<p>Content for section 1</p>",
+			},
+			{
+				title: "Section 2",
+				slug: "section-2",
+				content: "<p>Content for section 2</p>",
+			},
+		],
 	};
 
 const minimumProps: TreatmentSummaryPageProps = {
@@ -104,6 +115,28 @@ describe("TreatmentSummaryPage", () => {
 	});
 
 	describe("body", () => {
+		it("should render hash link to each record section", () => {
+			render(<TreatmentSummaryPage {...minimumProps} />);
+			expect(screen.getByRole("link", { name: "Section 1" })).toHaveAttribute(
+				"href",
+				"#section-1"
+			);
+			expect(screen.getByRole("link", { name: "Section 2" })).toHaveAttribute(
+				"href",
+				"#section-2"
+			);
+		});
+
+		it("should render section with accessible name for each record section", () => {
+			render(<TreatmentSummaryPage {...minimumProps} />);
+			expect(
+				screen.getByRole("region", { name: "Section 1" })
+			).toBeInTheDocument();
+			expect(
+				screen.getByRole("region", { name: "Section 2" })
+			).toBeInTheDocument();
+		});
+
 		describe.each([
 			["Related drugs", "relatedDrugs" as const, "related-drugs", "drugs"],
 			[

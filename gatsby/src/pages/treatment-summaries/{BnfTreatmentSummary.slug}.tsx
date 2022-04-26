@@ -32,6 +32,7 @@ const TreatmentSummaryPage: FC<TreatmentSummaryPageProps> = ({
 
 	return (
 		<DetailsPageLayout
+			useSectionNav
 			titleHtml={title}
 			metaDescription={`This treatment summary topic describes ${titleNoHtml}`}
 			parentTitleParts={["Treatment summaries"]}

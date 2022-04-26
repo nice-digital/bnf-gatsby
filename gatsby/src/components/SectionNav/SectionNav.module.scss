@@ -6,12 +6,12 @@
   margin-bottom: core.rem(core.$nds-spacing-large);
   padding: core.rem(core.$nds-spacing-medium);
 
-  @media print {
-    display: none;
+  &.navReadableMaxWidth {
+    max-width: core.$nds-readable-width;
   }
 
-  @include core.mq($from: md) {
-    margin-bottom: 0;
+  @media print {
+    display: none;
   }
 }
 
