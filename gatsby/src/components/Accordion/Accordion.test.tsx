@@ -41,7 +41,7 @@ describe("Accordion", () => {
 			expect(
 				screen.getByText(
 					(_content, element) =>
-						element?.textContent === `Some title ${expectedLabel}`,
+						element?.textContent === `${expectedLabel} Some title`,
 					{
 						selector: "summary",
 					}
@@ -69,7 +69,7 @@ describe("Accordion", () => {
 
 		expect(
 			screen.getByText(
-				(_content, element) => element?.textContent === "Test Show"
+				(_content, element) => element?.textContent === "Show Test"
 			)
 		).toHaveClass("summary");
 	});
@@ -102,7 +102,7 @@ describe("Accordion", () => {
 		);
 
 		const summary = screen.getByText(
-			(_content, element) => element?.textContent === `Test Show`,
+			(_content, element) => element?.textContent === `Show Test`,
 			{
 				selector: "summary",
 			}
@@ -111,7 +111,7 @@ describe("Accordion", () => {
 		userEvent.click(summary);
 
 		await waitFor(() => {
-			expect(summary).toHaveTextContent("Test Hide");
+			expect(summary).toHaveTextContent("Hide Test");
 		});
 	});
 
@@ -123,7 +123,7 @@ describe("Accordion", () => {
 		);
 
 		const summary = screen.getByText(
-			(_content, element) => element?.textContent === `Test Show`,
+			(_content, element) => element?.textContent === `Show Test`,
 			{
 				selector: "summary",
 			}
@@ -138,7 +138,7 @@ describe("Accordion", () => {
 		expect(screen.getByRole("group")).toHaveProperty("open", true);
 
 		await waitFor(() => {
-			expect(summary).toHaveTextContent("Test Hide");
+			expect(summary).toHaveTextContent("Hide Test");
 		});
 	});
 
@@ -150,7 +150,7 @@ describe("Accordion", () => {
 		);
 
 		const summary = screen.getByText(
-			(_content, element) => element?.textContent === `Test Hide`,
+			(_content, element) => element?.textContent === `Hide Test`,
 			{
 				selector: "summary",
 			}
@@ -165,7 +165,7 @@ describe("Accordion", () => {
 		expect(screen.getByRole("group")).toHaveProperty("open", false);
 
 		await waitFor(() => {
-			expect(summary).toHaveTextContent("Test Show");
+			expect(summary).toHaveTextContent("Show Test");
 		});
 	});
 

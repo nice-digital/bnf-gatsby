@@ -13,7 +13,8 @@
 
 .summary {
   cursor: pointer;
-  display: block;
+  display: flex;
+  flex-direction: column-reverse;
   list-style: none;
 
   &::marker,
@@ -21,7 +22,7 @@
     display: none;
   }
 
-  > :first-child {
+  > :last-child {
     margin: 0;
   }
 

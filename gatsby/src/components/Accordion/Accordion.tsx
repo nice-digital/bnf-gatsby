@@ -65,14 +65,14 @@ export const Accordion: FC<AccordionProps> = ({
 				className={styles.summary}
 				data-tracking={isOpen ? hideLabel : showLabel}
 			>
+				<Toggle isOpen={isOpen} className={styles.toggleLabel}>
+					{isOpen ? hideLabel : showLabel}
+				</Toggle>{" "}
 				{typeof title === "string" || typeof title === "number" ? (
 					<span>{title}</span>
 				) : (
 					title
 				)}
-				<Toggle isOpen={isOpen} className={styles.toggleLabel}>
-					{isOpen ? hideLabel : showLabel}
-				</Toggle>
 			</summary>
 			{/* Avoid accordion groups opening nested accordions */}
 			<AccordionGroupProvider isGroupOpen={false}>
