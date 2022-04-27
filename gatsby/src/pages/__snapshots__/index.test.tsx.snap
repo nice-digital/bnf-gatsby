@@ -31,6 +31,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
           </div>
           <div
             class="lastUpdated"
+            data-tracking="last-updated"
           >
             <h2
               class="h5"
@@ -53,6 +54,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
       </div>
       <div
         class="grid grid--loose"
+        data-tracking="browse-a-to-z"
       >
         <div
           class="drugsColumn"
@@ -514,6 +516,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
       <hr />
       <div
         class="grid grid--loose"
+        data-tracking="browse-by-category"
       >
         <div
           data-g="12 md:6"
@@ -597,6 +600,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
       <hr />
       <div
         class="grid grid--loose"
+        data-tracking="formulary"
       >
         <div
           data-g="12 md:6"
@@ -630,6 +634,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
       <hr />
       <div
         class="grid grid--loose"
+        data-tracking="reference-tables"
       >
         <div
           data-g="12 sm:6 md:4"
@@ -737,6 +742,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
           </div>
           <div
             class="lastUpdated"
+            data-tracking="last-updated"
           >
             <h2
               class="h5"
@@ -759,6 +765,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
       </div>
       <div
         class="grid grid--loose"
+        data-tracking="browse-a-to-z"
       >
         <div
           class="drugsColumn"
@@ -1220,6 +1227,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
       <hr />
       <div
         class="grid grid--loose"
+        data-tracking="browse-by-category"
       >
         <div
           data-g="12 md:4"
@@ -1289,6 +1297,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
       <hr />
       <div
         class="grid grid--loose"
+        data-tracking="formulary"
       >
         <div
           data-g="12 md:6"
@@ -1322,6 +1331,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
       <hr />
       <div
         class="grid grid--loose"
+        data-tracking="reference-tables"
       >
         <div
           data-g="12 sm:6 md:4"
