@@ -139,6 +139,31 @@ exports[`DrugPage should match snapshot for graphql query 1`] = `
 		bnfDrug(id: { eq: $id }) {
 			title
 			slug
+			primaryClassification {
+				title: name
+				slug
+				order
+				drugs {
+					title
+					slug
+				}
+			}
+			secondaryClassifications {
+				title: name
+				slug
+				order
+				drugs {
+					title
+					slug
+				}
+			}
+			constituentDrugs {
+				message
+				constituents {
+					title
+					slug
+				}
+			}
 			allergyAndCrossSensitivity {
 				...SimplePot
 			}
