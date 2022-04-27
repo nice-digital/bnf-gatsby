@@ -13,9 +13,12 @@ export interface AccordionGroupProps {
 	onToggle?: (isOpen: boolean) => void;
 }
 
+const defaultToggleTextFn = (isOpen: boolean) =>
+	`${isOpen ? "Hide" : "Show"} all sections`;
+
 export const AccordionGroup: FC<AccordionGroupProps> = ({
 	children,
-	toggleText = (isOpen) => `${isOpen ? "Hide" : "Show"} all sections`,
+	toggleText = defaultToggleTextFn,
 	onToggle,
 }) => {
 	const [isGroupOpen, setIsGroupOpen] = useState(false),
