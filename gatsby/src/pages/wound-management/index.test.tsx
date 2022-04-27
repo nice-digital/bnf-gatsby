@@ -15,7 +15,6 @@ const props: WoundManagementIndexPageProps = {
 					slug: "introduction",
 					content:
 						" <p>The correct dressing for wound management depends not only on the type of wound but also on the stage of the healing process",
-					order: 1,
 				},
 			],
 		},

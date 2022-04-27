@@ -85,7 +85,7 @@ exports[`InteractionsIndexPage should match snapshot for page body 1`] = `
       <p
         class="page-header__lead"
       >
-        Browse drugs by A-Z to check for interactions. Includes information on the severity of an interaction and the type of evidence to support it.
+        Browse drugs by A to Z to check for interactions. Includes information on the severity of an interaction and the type of evidence to support it.
       </p>
     </div>
     <ol

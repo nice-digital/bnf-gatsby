@@ -2,8 +2,6 @@ import { BnfNode } from "../node-types";
 
 export const treamentSummarySchema = `
 	type ${BnfNode.TreatmentSummary} implements Node & ${BnfNode.SimpleRecord} @dontInfer {
-		order: Int!
-
 		"The title of the section. May contain HTML markup."
 		title: String!
 
@@ -15,5 +13,11 @@ export const treamentSummarySchema = `
 
 		"The sections of the record."
 		sections: [${BnfNode.RecordSection}!]!
+
+		"Any treatment summaries that contain a link from or to this treatment summary"
+		relatedTreatmentSummaries: [${BnfNode.TreatmentSummary}!]! @link
+
+		"Any drugs linked from this treatment summary"
+		relatedDrugs: [${BnfNode.Drug}!]! @link
 	}
 `;

@@ -5,8 +5,6 @@ export const recordSectionSchema = `
 	A section of a simple record.
 	"""
 	type ${BnfNode.RecordSection} @dontInfer {
-		order: Int!
-
 		"The title of the section. May contain HTML markup."
 		title: String!
 
