@@ -11,6 +11,7 @@ import {
 import WarningIcon from "@nice-digital/icons/lib/Warning";
 
 import { Accordion, AccordionTheme } from "@/components/Accordion/Accordion";
+import { AccordionGroup } from "@/components/AccordionGroup/AccordionGroup";
 import labelStyles from "@/components/CautionaryAndAdvisoryLabel/CautionaryAndAdvisoryLabel.module.scss";
 import { DetailsPageLayout } from "@/components/DetailsPageLayout/DetailsPageLayout";
 import { Prep } from "@/components/Prep/Prep";
@@ -148,6 +149,30 @@ const MedicinalFormsPage: FC<MedicinalFormsPageProps> = ({
 						</ul>
 					) : null;
 
+					const formBody = (
+						<ol className={styles.prepList}>
+							{preps.map((prep) => (
+								<li key={prep.ampId}>
+									<Prep prep={prep}>
+										{labelList && (
+											<Accordion
+												className={styles.labelAccordion}
+												theme={AccordionTheme.Warning}
+												title={
+													<h4 className={styles.nestedLabelAccordionHeading}>
+														Cautionary and advisory labels
+													</h4>
+												}
+											>
+												{labelList}
+											</Accordion>
+										)}
+									</Prep>
+								</li>
+							))}
+						</ol>
+					);
+
 					return (
 						<section className={styles.form} key={form} aria-labelledby={slug}>
 							<h2 id={slug}>{form}</h2>
@@ -178,30 +203,18 @@ const MedicinalFormsPage: FC<MedicinalFormsPageProps> = ({
 									<p>{excipients}</p>
 								</>
 							)}
-							{preps.length ? (
-								<ol className={styles.prepList}>
-									{preps.map((prep) => (
-										<li key={prep.ampId}>
-											<Prep prep={prep}>
-												{labelList && (
-													<Accordion
-														className={styles.labelAccordion}
-														theme={AccordionTheme.Warning}
-														title={
-															<h4
-																className={styles.nestedLabelAccordionHeading}
-															>
-																Cautionary and advisory labels
-															</h4>
-														}
-													>
-														{labelList}
-													</Accordion>
-												)}
-											</Prep>
-										</li>
-									))}
-								</ol>
+							{preps.length === 1 ? (
+								formBody
+							) : preps.length > 1 ? (
+								<AccordionGroup
+									toggleText={(isOpen) =>
+										`${isOpen ? "Hide" : "Show"} all ${
+											preps.length
+										} ${form} products`
+									}
+								>
+									{formBody}
+								</AccordionGroup>
 							) : null}
 						</section>
 					);
