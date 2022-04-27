@@ -29,6 +29,8 @@ export interface Feed {
 	nursePrescribersFormulary: FeedNursePrescribersFormulary;
 	/** The wound management products and elasticated garments (Appendix 4) content. This will only be present for BNF (and not BNFc). */
 	woundManagement?: FeedWoundManagement;
+	/** The complete hierarchy of classifications, represented as a tree data structure. The classifications correlate with the `primaryClassification` and `secondaryClassification` fields in Drug. */
+	classifications: [FeedClassification, ...FeedClassification[]];
 }
 
 /** The metadata relating to the export that produced the app JSON output. An export is a job that is run to collate all of the published BNF content at a particular point in time (the \"content cut\" date). */
@@ -67,9 +69,13 @@ export type SID = `_${number}`;
 /** The ID of a record section e.g. `section_320704649-0` or `sectionPHP107699-0` */
 export type SectionID = `section${SID | PHPID}-${number}`;
 
+/** The classifications for a drug, as a small taxonomy, represented as a tree data structure. */
 export interface FeedClassification {
-	id: string;
+	/** The ID of the classification. */
+	id: SID;
+	/** The name of the classification. May contain HTML mark-up. */
 	name: string;
+	/** The more specific classifications where available. For example, `HIV-integrase inhibitors` is a more specific classification of `antivirals`. */
 	moreSpecificClassifications?: FeedClassification[];
 }
 

@@ -2,6 +2,7 @@ import { aboutSectionSchema } from "./about-section";
 import { borderlineSubstancesSchema } from "./borderline-substances";
 import { cautionaryAndAdvisoryGuidanceSchema } from "./cautionary-advisory-guidance";
 import { cautionaryAndAdvisoryLabelSchema } from "./cautionary-advisory-label";
+import { classificationSchema } from "./classifications";
 import { dentalPractitionersFormularySchema } from "./dental-practitioners-formulary";
 import { drugSchema } from "./drug";
 import { guidanceSchema } from "./guidance";
@@ -30,6 +31,7 @@ export const schema = [
 	borderlineSubstancesSchema,
 	cautionaryAndAdvisoryGuidanceSchema,
 	cautionaryAndAdvisoryLabelSchema,
+	classificationSchema,
 	dentalPractitionersFormularySchema,
 	drugSchema,
 	guidanceSchema,

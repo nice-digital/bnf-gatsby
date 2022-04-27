@@ -15,6 +15,7 @@ import { slugFieldExtension } from "./field-extensions/slug";
 import { schema } from "./graphql-schema";
 import { extractImageZIP } from "./images-unzipper";
 import { createCautionaryAndAdvisoryLabelsNodes } from "./node-creation/cautionary-advisory";
+import { createClassificationNodes } from "./node-creation/classifications";
 import { createDrugNodes } from "./node-creation/drugs";
 import { createInteractionNodes } from "./node-creation/interactions";
 import { createMedicalDeviceNodes } from "./node-creation/medical-devices";
@@ -104,6 +105,11 @@ export const sourceNodes = async (
 
 	createNursePrescribersNodes(
 		feedData.nursePrescribersFormulary,
+		sourceNodesArgs
+	);
+
+	createClassificationNodes(
+		{ classifications: feedData.classifications, drugs: feedData.drugs },
 		sourceNodesArgs
 	);
 
