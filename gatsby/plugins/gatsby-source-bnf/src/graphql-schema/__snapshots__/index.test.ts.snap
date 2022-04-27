@@ -598,33 +598,51 @@ exports[`schema should match snapshot 1`] = `
 		sid: ID!
 
 		\\"The title for the medical device. May include HTML mark-up.\\"
-		title: String!
+		title: String! @html
 
 		\\"The slugified and lowercased title, used as a URL path\\"
 		slug: String! @slug(field: \\"title\\")
 
 		\\"The medical device types. Usually there is only one of these, but theoretically there could be more.\\"
-		medicalDeviceTypes: [BnfMedicalDeviceType!]!
+		medicalDeviceTypes: [BnfMedicalDeviceType!]! @link
 	}
 
 	\\"\\"\\"
 	An individual medical device. Preparations can appear at this level but they can also appear at the clinical medical device information group level.
 	\\"\\"\\"
-	type BnfMedicalDeviceType @dontInfer {
-		\\"The title for the medical device type. May include HTML mark-up.\\"
-		title: String!
+	type BnfMedicalDeviceType implements Node @dontInfer {
+		\\"The medical device to which this device type belongs\\"
+		medicalDevice: BnfMedicalDevice! @link
+
+		\\"The title for the medical device type. May include HTML mark-up. E.g. 'Hypertonic sodium chloride solutions' or 'Skin adhesives'\\"
+		title: String! @html
+
+		\\"The slugified and lowercased title, used as a URL path\\"
+		slug: String! @slug(field: \\"title\\")
+
+		\\"A flag as to whether this medical device type has preps associated with it or not. A value of true means there are preps  and no clinical medical device information groups.\\"
+		hasPreps: Boolean!
 
 		\\"The general preparations for the medical device type. This will only be present if there are no clinical medical device information groups.\\"
 		preparations: [BnfPrep!]!
 
 		\\"The clinical medical device information groups. These contain preparation-specific content such as device descriptions, compliance standards and prescribing & dispensing information.\\"
-		clinicalMedicalDeviceInformationGroups: [BnfClinicalMedicalDeviceInformationGroup!]!
+		clinicalMedicalDeviceInformationGroups: [BnfClinicalMedicalDeviceInformationGroup!]! @link
 	}
 
 	\\"\\"\\"
 	This object contains content that is relevant to a set of medical device preparations.
 	\\"\\"\\"
-	type BnfClinicalMedicalDeviceInformationGroup {
+	type BnfClinicalMedicalDeviceInformationGroup implements Node @dontInfer {
+		\\"The medical device type to which this CMPI belongs\\"
+		medicalDeviceType: BnfMedicalDeviceType! @link
+
+		\\"The name of the CMPI e.g. 'AS Saliva Orthana® lozenges' or 'MucoClear® 3%', taken from either the device description or the indications and dose\\"
+		title: String! @html
+
+		\\"The slugified and lowercased title, used as a URL path\\"
+		slug: String! @slug(field: \\"title\\")
+
 		\\"The device description for the clinical medical device information group.\\"
 		deviceDescription: BnfMedicalDeviceSimplePot
 
@@ -656,15 +674,18 @@ exports[`schema should match snapshot 1`] = `
 	\\"\\"\\"
 	Simple pot content specifically for medical devices
 	\\"\\"\\"
-	type BnfMedicalDeviceSimplePot {
-		\\"The name/title of the pot.\\"
+	type BnfMedicalDeviceSimplePot @dontInfer {
+		\\"The name/title of the pot. E.g. 'Device description' or 'Prescribing and dispensing information'\\"
 		potName: String!
 
 		\\"The slugified and lowercased pot name, used as an ID/hash link\\"
 		slug: String! @slug(field: \\"potName\\")
 
-		\\"The simple pot content that relates to the medical device.\\"
-		content: BnfSimplePotContent!
+		\\"The name of the medical device e.g. 'A2A Spacer®'. May contain HTML mark-up\\"
+		contentFor: String! @html
+
+		\\"The content. May contain HTML mark-up.\\"
+		content: String! @html
 	}
 
 

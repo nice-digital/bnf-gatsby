@@ -25,6 +25,7 @@ export const pagePaths = {
 	"dementia treatment summary": "/treatment-summaries/dementia/",
 	"diabetes treatment summary": "/treatment-summaries/diabetes/",
 	"medicines guidance": "/medicines-guidance/",
+	"medical devices": "/medical-devices/",
 	// Medicines guidance
 	"guidance on prescribing": "/medicines-guidance/guidance-on-prescribing/",
 	"prescription writing": "/medicines-guidance/prescription-writing/",
