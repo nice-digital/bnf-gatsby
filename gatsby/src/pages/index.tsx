@@ -22,7 +22,11 @@ const HomePage: FC = () => {
 			<div className={styles.homeWrapper}>
 				<SEO />
 				<Hero />
-				<Grid gutter="loose" className={styles.grid}>
+				<Grid
+					gutter="loose"
+					className={styles.grid}
+					data-tracking="browse-a-to-z"
+				>
 					<GridItem md={6} cols={12} className={styles.drugsColumn}>
 						<h2>Drugs</h2>
 						<p>
@@ -79,7 +83,11 @@ const HomePage: FC = () => {
 
 				<hr />
 
-				<Grid gutter="loose" className={styles.grid}>
+				<Grid
+					gutter="loose"
+					className={styles.grid}
+					data-tracking="browse-by-category"
+				>
 					<GridItem md={isBNF ? 6 : 4} cols={12}>
 						<h2>
 							<Link to="/medicines-guidance/">Medicines guidance</Link>
@@ -141,7 +149,7 @@ const HomePage: FC = () => {
 					</GridItem>
 				</Grid>
 				<hr />
-				<Grid gutter="loose" className={styles.grid}>
+				<Grid gutter="loose" className={styles.grid} data-tracking="formulary">
 					<GridItem md={6} cols={12}>
 						<h2>
 							<Link to="/nurse-prescribers-formulary/">
@@ -165,7 +173,11 @@ const HomePage: FC = () => {
 					</GridItem>
 				</Grid>
 				<hr />
-				<Grid gutter="loose" className={styles.grid}>
+				<Grid
+					gutter="loose"
+					className={styles.grid}
+					data-tracking="reference-tables"
+				>
 					<GridItem cols={12} sm={6} md={4}>
 						<h2 className="h3">
 							<Link to="/about/approximate-conversions-and-units/">

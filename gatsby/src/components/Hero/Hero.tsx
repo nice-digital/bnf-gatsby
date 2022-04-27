@@ -44,7 +44,7 @@ export const Hero: React.FC = () => {
 						administration of medicines.
 					</p>
 				</div>
-				<div className={styles.lastUpdated}>
+				<div className={styles.lastUpdated} data-tracking="last-updated">
 					<h2 className="h5">Last updated: </h2>
 					<time className="h3" dateTime={lastUpdatedDate}>
 						{lastUpdatedDateFormatted}
