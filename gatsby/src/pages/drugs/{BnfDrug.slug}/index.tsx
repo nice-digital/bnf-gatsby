@@ -245,6 +245,7 @@ const DrugPage: FC<DrugPageProps> = ({
 							id: slug,
 							title: potName,
 						}))}
+						className={styles.sectionNav}
 					/>
 				</div>
 				<div className={styles.aside}>

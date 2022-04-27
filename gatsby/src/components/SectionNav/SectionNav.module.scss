@@ -6,12 +6,12 @@
   margin-bottom: core.rem(core.$nds-spacing-large);
   padding: core.rem(core.$nds-spacing-medium);
 
-  @media print {
-    display: none;
+  &.navReadableMaxWidth {
+    max-width: core.$nds-readable-width;
   }
 
-  @include core.mq($from: md) {
-    margin-bottom: 0;
+  @media print {
+    display: none;
   }
 }
 
@@ -25,10 +25,20 @@
   margin: 0;
   max-width: none;
   padding: 0;
+
+  li {
+    line-height: 1.3;
+    margin-bottom: core.rem(core.$nds-spacing-small);
+  }
 }
 
 @include core.mq($from: md) {
   .linkList {
+    column-gap: core.rem(core.$nds-spacing-large);
     columns: 2;
+
+    li {
+      break-inside: avoid;
+    }
   }
 }

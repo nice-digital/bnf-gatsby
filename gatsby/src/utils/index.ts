@@ -11,5 +11,6 @@ export * from "./types";
  *  		// Do something
  *  	})
  * */
-export const isTruthy = <TMaybe>(maybeT: TMaybe | null): maybeT is TMaybe =>
-	!!maybeT;
+export const isTruthy = <TMaybe>(
+	maybeT: TMaybe | null | undefined
+): maybeT is TMaybe => !!maybeT;

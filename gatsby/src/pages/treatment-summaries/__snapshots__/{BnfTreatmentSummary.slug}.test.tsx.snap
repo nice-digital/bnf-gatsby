@@ -8,6 +8,14 @@ exports[`TreatmentSummaryPage should match snapshot for graphql query 1`] = `
 			sections {
 				...RecordSection
 			}
+			relatedDrugs {
+				title
+				slug
+			}
+			relatedTreatmentSummaries {
+				title
+				slug
+			}
 		}
 	}
 "
