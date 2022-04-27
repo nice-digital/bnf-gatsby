@@ -23,6 +23,8 @@ import {
 	MedicinalFormsContent,
 	ImportantSafetyInfo,
 	RelatedTreatmentSummaries,
+	DrugsInClass,
+	Classification,
 	Interactions,
 	InteractionsContent,
 } from "@/components/DrugSections";
@@ -70,6 +72,8 @@ export interface DrugPageProps {
 					specialOrderManufacturersStatement: string | null;
 					medicinalForms: WithSlug<{ form: string }>[];
 				};
+				primaryClassification: Classification | null;
+				secondaryClassifications: Classification[];
 				interactants: SlugAndTitle[];
 			}>;
 	};
@@ -80,6 +84,8 @@ const DrugPage: FC<DrugPageProps> = ({
 		bnfDrug: {
 			slug,
 			title,
+			primaryClassification,
+			secondaryClassifications,
 			constituentDrugs,
 			importantSafetyInformation,
 			indicationsAndDose,
@@ -133,6 +139,22 @@ const DrugPage: FC<DrugPageProps> = ({
 					: null,
 			[relatedTreatmentSummaries]
 		),
+		otherDrugsInClassSection = useMemo(
+			() =>
+				(primaryClassification &&
+					primaryClassification.drugs.some((d) => d.slug !== slug)) ||
+				secondaryClassifications.some((sC) =>
+					sC.drugs.some((d) => d.slug !== slug)
+				)
+					? {
+							potName: "Other drugs in class",
+							slug: "other-drugs-in-class",
+							primaryClassification,
+							secondaryClassifications,
+					  }
+					: null,
+			[primaryClassification, secondaryClassifications, slug]
+		),
 		/** Sections of a drug that have their own, specific component that isn't a `SimplePot` */
 		nonSimplePotComponents = useMemo(() => {
 			const potMap = new Map<BasePot | null, ElementType>();
@@ -145,6 +167,7 @@ const DrugPage: FC<DrugPageProps> = ({
 			potMap.set(interactionsSection, Interactions);
 			potMap.set(medicinalFormsSection, MedicinalForms);
 			potMap.set(relatedTreatmentSummariesSection, RelatedTreatmentSummaries);
+			potMap.set(otherDrugsInClassSection, DrugsInClass);
 			return potMap;
 		}, [
 			constituentsSection,
@@ -155,6 +178,7 @@ const DrugPage: FC<DrugPageProps> = ({
 			monitoringRequirements,
 			nationalFunding,
 			relatedTreatmentSummariesSection,
+			otherDrugsInClassSection,
 		]);
 
 	const orderedSections: BasePot[] = [
@@ -188,7 +212,7 @@ const DrugPage: FC<DrugPageProps> = ({
 		bnfDrug.exceptionsToLegalCategory,
 		medicinalFormsSection,
 		relatedTreatmentSummariesSection,
-		// TODO: other drugs in class (BNF-1244)
+		otherDrugsInClassSection,
 	].filter(isTruthy);
 
 	return (
@@ -264,6 +288,31 @@ export const query = graphql`
 		bnfDrug(id: { eq: $id }) {
 			title
 			slug
+			primaryClassification {
+				title: name
+				slug
+				order
+				drugs {
+					title
+					slug
+				}
+			}
+			secondaryClassifications {
+				title: name
+				slug
+				order
+				drugs {
+					title
+					slug
+				}
+			}
+			constituentDrugs {
+				message
+				constituents {
+					title
+					slug
+				}
+			}
 			allergyAndCrossSensitivity {
 				...SimplePot
 			}
