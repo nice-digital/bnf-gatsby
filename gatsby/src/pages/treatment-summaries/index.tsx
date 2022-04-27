@@ -24,7 +24,7 @@ const TreatmentSummariesIndexPage: FC<TreatmentSummariesIndexPageProps> = ({
 		path="treatment-summaries"
 		metaDescription="Browse the complete list of treatment summaries, alphabetically."
 		letters={letters}
-		pageDescription="Browse treatment summaries by A-Z. Treatment summaries cover drug use related to a particular body system, drug management or treatment of common conditions, and comparisons between groups of drugs."
+		pageDescription="Browse treatment summaries by A to Z. Treatment summaries cover drug use related to a particular body system, drug management or treatment of common conditions, and comparisons between groups of drugs."
 	/>
 );
 

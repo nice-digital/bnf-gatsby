@@ -103,37 +103,35 @@ export const DetailsPageLayout: React.FC<DetailsPageLayoutProps> = ({
 					</GridItem>
 				)}
 				<GridItem cols={12} md={Menu ? 8 : 12} lg={Menu ? 9 : 12}>
-					<Grid reverse gutter="loose">
-						{useSectionNav && !asideContent ? (
-							<>
-								<GridItem cols={12}>
-									<SectionNav sections={sections} />
-								</GridItem>
-								<GridItem className={styles.body} cols={12}>
-									{children}
-								</GridItem>
-							</>
-						) : (
-							<>
-								<GridItem cols={12} lg={3}>
-									{asideContent ? (
-										asideContent
-									) : (
-										<OnThisPage sections={sections} />
-									)}
-								</GridItem>
-								<GridItem className={styles.body} cols={12} lg={9}>
-									{asideContent && (
-										<SectionNav
-											className={styles.sectionNav}
-											sections={sections}
-										/>
-									)}
-									{children}
-								</GridItem>
-							</>
-						)}
-					</Grid>
+					{useSectionNav && !asideContent ? (
+						<Grid gutter="loose">
+							<GridItem cols={12} md={8} lg={9}>
+								<SectionNav sections={sections} />
+							</GridItem>
+							<GridItem className={styles.body} cols={12} md={8} lg={9}>
+								{children}
+							</GridItem>
+						</Grid>
+					) : (
+						<Grid reverse gutter="loose">
+							<GridItem cols={12} lg={3}>
+								{asideContent ? (
+									asideContent
+								) : (
+									<OnThisPage sections={sections} />
+								)}
+							</GridItem>
+							<GridItem className={styles.body} cols={12} lg={9}>
+								{asideContent && (
+									<SectionNav
+										className={styles.sectionNav}
+										sections={sections}
+									/>
+								)}
+								{children}
+							</GridItem>
+						</Grid>
+					)}
 				</GridItem>
 			</Grid>
 		</Layout>

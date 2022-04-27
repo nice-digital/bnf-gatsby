@@ -13,6 +13,44 @@ const drugs: FeedDrug[] = [
 		medicinalForms: {
 			initialStatement: "No forms listed",
 		},
+		primaryClassification: {
+			id: "_90",
+			name: "Antivirals",
+			moreSpecificClassifications: [
+				{
+					id: "_91",
+					name: "Antivirals, influenza",
+					moreSpecificClassifications: [
+						{
+							id: "_92",
+							name: "Neuraminidase inhibitors",
+						},
+					],
+				},
+			],
+		},
+		secondaryClassifications: [
+			{
+				id: "_90",
+				name: "Antivirals",
+				moreSpecificClassifications: [
+					{
+						id: "_91",
+						name: "Antivirals, influenza",
+						moreSpecificClassifications: [
+							{
+								id: "_92",
+								name: "Neuraminidase inhibitors",
+							},
+						],
+					},
+				],
+			},
+			{
+				id: "_990",
+				name: "Softening drugs",
+			},
+		],
 	},
 	{
 		title: "Drug 2",
@@ -196,5 +234,27 @@ describe("createDrugNodes", () => {
 			"_268814941",
 			"_158857908",
 		]);
+	});
+
+	it("should set primary classification from lowest leaf node SID", () => {
+		createDrugNodes(
+			{ drugs, treatmentSummaries: [], interactions },
+			sourceNodesArgs
+		);
+
+		const nodeInput = createNode.mock.calls[0][0] as DrugNodeInput;
+
+		expect(nodeInput.primaryClassification).toBe("_92");
+	});
+
+	it("should set secondary classifications from lowest leaf node SIDs", () => {
+		createDrugNodes(
+			{ drugs, treatmentSummaries: [], interactions },
+			sourceNodesArgs
+		);
+
+		const nodeInput = createNode.mock.calls[0][0] as DrugNodeInput;
+
+		expect(nodeInput.secondaryClassifications).toStrictEqual(["_92", "_990"]);
 	});
 });
