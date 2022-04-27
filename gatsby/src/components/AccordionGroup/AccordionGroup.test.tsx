@@ -19,8 +19,6 @@ describe("AccordionGroup", () => {
 		</Accordion>,
 	];
 
-	//const accordionGroup = <AccordionGroup ></AccordionGroup>
-
 	it("should not render toggle button server side", () => {
 		expect(
 			renderToString(<AccordionGroup>{accordions}</AccordionGroup>)
