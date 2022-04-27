@@ -30,5 +30,9 @@
 @include core.mq($from: md) {
   .linkList {
     columns: 2;
+
+    li {
+      break-inside: avoid;
+    }
   }
 }
