@@ -34,7 +34,7 @@ const props: WoundManagementIndexPageProps = {
 	},
 };
 
-describe("Medical devices index page", () => {
+describe("Wound management index page", () => {
 	it("should render the page title with the expected text", async () => {
 		render(<WoundManagementIndexPage {...props} />);
 		await waitFor(() => {
