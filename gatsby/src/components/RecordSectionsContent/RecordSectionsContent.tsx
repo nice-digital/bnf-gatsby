@@ -17,6 +17,7 @@ export type RecordSectionsContentProps = {
  */
 export const RecordSectionsContent: React.FC<RecordSectionsContentProps> = ({
 	sections,
+	className,
 }) => (
 	<>
 		{sections.map(({ slug, title, content }, i) => (
