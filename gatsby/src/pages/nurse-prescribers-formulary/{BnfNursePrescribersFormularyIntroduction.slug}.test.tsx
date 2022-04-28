@@ -17,13 +17,11 @@ const pageProps: NursePrescribersFormularyApprovedListPageProps = {
 			slug: "approved-list-for-prescribing-by-community-practitioner-nurse-prescribers-npf",
 			sections: [
 				{
-					order: 0,
 					content: "<p>Approved list content</p>",
 					slug: "intro-1",
 					title: "Intro 1",
 				},
 				{
-					order: 1,
 					content: "<p>Approved list content 2</p>",
 					slug: "intro-2",
 					title: "Intro 2",

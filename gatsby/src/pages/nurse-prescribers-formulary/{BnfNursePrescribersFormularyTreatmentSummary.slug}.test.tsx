@@ -16,13 +16,11 @@ const pageProps: NursePrescribersFormularyTreatmentSummaryPageProps = {
 			slug: "analgesics",
 			sections: [
 				{
-					order: 0,
 					content: "<p>Analgesic content</p>",
 					slug: "analgesic-1",
 					title: "Analgesic 1",
 				},
 				{
-					order: 1,
 					content: "<p>Analgesic content 2</p>",
 					slug: "analgesic-2",
 					title: "Analgesic 2",
