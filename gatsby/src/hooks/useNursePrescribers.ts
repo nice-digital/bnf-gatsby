@@ -26,7 +26,7 @@ const slugToHref = ({ title, slug }: SlugAndTitle): MenuPageLink => ({
  */
 export const useNursePrescribers = (): {
 	menuList: MenuPageLink[];
-	approvedList: MenuPageLink[];
+	aboutList: MenuPageLink[];
 	treatmentSummariesList: MenuPageLink[];
 } => {
 	const {
@@ -58,7 +58,10 @@ export const useNursePrescribers = (): {
 		...allBnfNursePrescribersFormularyIntroduction.introduction.map(slugToHref),
 	];
 
-	const approvedList = [
+	const aboutList = [
+		...allBnfNursePrescribersFormularyTreatmentSummary.summaries
+			.filter((summary) => summary.slug == "general-guidance")
+			.map(slugToHref),
 		...allBnfNursePrescribersFormularyIntroduction.introduction.map(slugToHref),
 	];
 
@@ -68,5 +71,5 @@ export const useNursePrescribers = (): {
 		),
 	];
 
-	return { menuList, approvedList, treatmentSummariesList };
+	return { menuList, aboutList, treatmentSummariesList };
 };

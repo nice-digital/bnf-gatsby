@@ -11,12 +11,15 @@ import { useNursePrescribers } from "@/hooks/useNursePrescribers";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
 const NursePrescribersFormularyIndexPage: FC = () => {
-	const { siteTitleShort } = useSiteMetadata(),
-		{ approvedList, treatmentSummariesList } = useNursePrescribers();
+	const { siteTitleShort, isBNF } = useSiteMetadata(),
+		{ aboutList, treatmentSummariesList } = useNursePrescribers();
+
+	const metaDescription =
+		"View the list of NPF treatment summaries for drugs, conditions and scenarios managed by Community Practitioner Nurse Prescribers.";
 
 	return (
 		<Layout>
-			<SEO title="Nurse Prescribers' Formulary" />
+			<SEO title="Nurse Prescribers' Formulary" description={metaDescription} />
 			<Breadcrumbs>
 				<Breadcrumb to="https://www.nice.org.uk/">NICE</Breadcrumb>
 				<Breadcrumb to="/" elementType={Link}>
@@ -24,32 +27,33 @@ const NursePrescribersFormularyIndexPage: FC = () => {
 				</Breadcrumb>
 				<Breadcrumb>Nurse Prescribers&rsquo; Formulary</Breadcrumb>
 			</Breadcrumbs>
-			<PageHeader
-				id="content-start"
-				heading={`Nurse Prescribers' Formulary`}
-				lead={
-					<ol className="list--unstyled">
-						{approvedList.map(({ href, title }) => (
-							<li key={href}>
-								<Link
-									className="p"
-									to={href}
-									dangerouslySetInnerHTML={{ __html: title }}
-								/>
-							</li>
-						))}
-					</ol>
-				}
-			/>
+			<PageHeader id="content-start" heading={`Nurse Prescribers' Formulary`} />
 
-			<h2>Treatment summaries</h2>
-			<ColumnList aria-label="Treatment summary pages">
-				{treatmentSummariesList.map(({ href, title }) => (
+			<h2>About the Nurse Prescribers&rsquo; Formulary</h2>
+			<ol className="list--unstyled">
+				{aboutList.map(({ href, title }) => (
 					<li key={href}>
-						<Link to={href} dangerouslySetInnerHTML={{ __html: title }} />
+						<Link
+							className="p"
+							to={href}
+							dangerouslySetInnerHTML={{ __html: title }}
+						/>
 					</li>
 				))}
-			</ColumnList>
+			</ol>
+
+			{isBNF && (
+				<>
+					<h2>Treatment summaries</h2>
+					<ColumnList aria-label="Treatment summary pages">
+						{treatmentSummariesList.map(({ href, title }) => (
+							<li key={href}>
+								<Link to={href} dangerouslySetInnerHTML={{ __html: title }} />
+							</li>
+						))}
+					</ColumnList>
+				</>
+			)}
 		</Layout>
 	);
 };

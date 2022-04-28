@@ -92,13 +92,13 @@ const HomePage: FC = () => {
 					Wound management products and elasticated garments
 				</Link>
 			</p>
-			{isBNF && (
-				<p>
-					<Link to="/nurse-prescribers-formulary/">
-						Nurse Prescribers&apos; Formulary
-					</Link>
-				</p>
-			)}
+
+			<p>
+				<Link to="/nurse-prescribers-formulary/">
+					Nurse Prescribers&apos; Formulary
+				</Link>
+			</p>
+
 			<p>
 				<Link to="/medicines-guidance/">Medicines guidance</Link>
 			</p>

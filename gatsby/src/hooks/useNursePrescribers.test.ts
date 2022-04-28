@@ -18,8 +18,8 @@ export const mockNursePrescribersPagesQueryData: NursePrescribers = {
 				title: "Appliances and reagents for diabetes",
 			},
 			{
-				slug: "contraceptives-non-hormonal",
-				title: "Contraceptives, non-hormonal",
+				slug: "general-guidance",
+				title: "General guidance",
 			},
 		],
 	},
@@ -39,15 +39,14 @@ export const mockNursePrescribersPagesQueryData: NursePrescribers = {
 );
 
 describe("useNursePrescribers", () => {
-	const { menuList, approvedList, treatmentSummariesList } =
-		useNursePrescribers();
+	const { menuList, aboutList, treatmentSummariesList } = useNursePrescribers();
 
 	it("should return correct number of links for the menu", () => {
 		expect(menuList).toHaveLength(4);
 	});
 
-	it("should return a single link for the approved prescription list", () => {
-		expect(approvedList).toHaveLength(1);
+	it("should return two links for the about section", () => {
+		expect(aboutList).toHaveLength(2);
 	});
 
 	it("should return correct number of treatment summaries links", () => {

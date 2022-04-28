@@ -177,13 +177,13 @@ exports[`NursePrescribersFormularyTreatmentSummaryPage should match snapshot for
             >
               <a
                 aria-current="false"
-                href="/nurse-prescribers-formulary/contraceptives-non-hormonal/"
+                href="/nurse-prescribers-formulary/general-guidance/"
               >
                 <span
                   class="stacked-nav__content-wrapper"
                 >
                   <span>
-                    Contraceptives, non-hormonal
+                    General guidance
                   </span>
                 </span>
               </a>
