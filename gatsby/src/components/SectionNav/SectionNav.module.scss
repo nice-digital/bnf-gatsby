@@ -25,10 +25,20 @@
   margin: 0;
   max-width: none;
   padding: 0;
+
+  li {
+    line-height: 1.3;
+    margin-bottom: core.rem(core.$nds-spacing-small);
+  }
 }
 
 @include core.mq($from: md) {
   .linkList {
+    column-gap: core.rem(core.$nds-spacing-large);
     columns: 2;
+
+    li {
+      break-inside: avoid;
+    }
   }
 }

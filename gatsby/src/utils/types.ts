@@ -3,7 +3,6 @@ import { type Primitive, type Merge, type Simplify } from "type-fest";
 export type BuiltIns = Primitive | Date | RegExp;
 
 export interface RecordSection extends Slug {
-	order: number;
 	title: string;
 	content: string;
 }

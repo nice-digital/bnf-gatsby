@@ -15,10 +15,12 @@ import { slugFieldExtension } from "./field-extensions/slug";
 import { schema } from "./graphql-schema";
 import { extractImageZIP } from "./images-unzipper";
 import { createCautionaryAndAdvisoryLabelsNodes } from "./node-creation/cautionary-advisory";
+import { createClassificationNodes } from "./node-creation/classifications";
 import { createDrugNodes } from "./node-creation/drugs";
 import { createInteractionNodes } from "./node-creation/interactions";
 import { createMedicalDeviceNodes } from "./node-creation/medical-devices";
 import { createNursePrescribersNodes } from "./node-creation/nurse-prescribers-formulary";
+import { createTreatmentSummaryNodes } from "./node-creation/treatment-summaries";
 import { createSimpleRecordNodes } from "./node-creation/utils";
 import { createWoundManagementNodes } from "./node-creation/wound-management";
 import { BnfNode } from "./node-types";
@@ -74,15 +76,12 @@ export const sourceNodes = async (
 		sourceNodesArgs
 	);
 
+	createTreatmentSummaryNodes(feedData.treatmentSummaries, sourceNodesArgs);
+
 	// Simple records nodes:
 	createSimpleRecordNodes(
 		feedData.about,
 		BnfNode.AboutSection,
-		sourceNodesArgs
-	);
-	createSimpleRecordNodes(
-		feedData.treatmentSummaries,
-		BnfNode.TreatmentSummary,
 		sourceNodesArgs
 	);
 	createSimpleRecordNodes(feedData.guidance, BnfNode.Guidance, sourceNodesArgs);
@@ -103,6 +102,11 @@ export const sourceNodes = async (
 
 	createNursePrescribersNodes(
 		feedData.nursePrescribersFormulary,
+		sourceNodesArgs
+	);
+
+	createClassificationNodes(
+		{ classifications: feedData.classifications, drugs: feedData.drugs },
 		sourceNodesArgs
 	);
 

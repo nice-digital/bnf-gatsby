@@ -8,6 +8,7 @@ import {
 	type FeedMedicinalForm,
 	type FeedMedicinalForms,
 	type FeedSimpleRecord,
+	type FeedClassification,
 	type FeedInteractions,
 } from "../downloader/types";
 import { BnfNode } from "../node-types";
@@ -38,6 +39,8 @@ export type DrugNodeInput = Merge<
 			}
 		>;
 		relatedTreatmentSummaries: string[];
+		primaryClassification: SID | null;
+		secondaryClassifications: SID[];
 		interactants: SID[];
 	}
 >;
@@ -57,7 +60,16 @@ export const createDrugNodes = (
 	sourceNodesArgs: SourceNodesArgs
 ): void => {
 	drugs.forEach(
-		({ medicinalForms, interactants, constituentDrugs, id, sid, ...drug }) => {
+		({
+			constituentDrugs,
+			interactants,
+			id,
+			sid,
+			medicinalForms,
+			primaryClassification,
+			secondaryClassifications,
+			...drug
+		}) => {
 			const {
 				initialStatement,
 				specialOrderManufacturersStatement,
@@ -100,6 +112,13 @@ export const createDrugNodes = (
 						sections.some((section) => section.content.includes(`/drug/${sid}`))
 					)
 					.map((treatmentSummary) => treatmentSummary.id),
+				primaryClassification: primaryClassification
+					? findLeafClassification(primaryClassification)
+					: null,
+				secondaryClassifications:
+					secondaryClassifications?.map((classification) =>
+						findLeafClassification(classification)
+					) || [],
 				interactants: interactants
 					.filter(
 						(interactant) =>
@@ -118,4 +137,15 @@ export const createDrugNodes = (
 			createBnfNode(nodeContent, BnfNode.Drug, sourceNodesArgs);
 		}
 	);
+};
+
+const findLeafClassification = (classification: FeedClassification): SID => {
+	const { moreSpecificClassifications } = classification;
+
+	if (!moreSpecificClassifications || moreSpecificClassifications.length === 0)
+		return classification.id;
+
+	return moreSpecificClassifications.map((subClassification) =>
+		findLeafClassification(subClassification)
+	)[0];
 };

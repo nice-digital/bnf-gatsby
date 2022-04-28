@@ -13,6 +13,10 @@ $gutter: core.rem(core.$nds-spacing-large);
 @include core.mq($from: md) {
   $right-col-width: percentage(math.div(4, 12));
 
+  .sectionNav {
+    margin-bottom: 0;
+  }
+
   // IE11/non-grid fallback
   .contentWrapper {
     padding-right: calc($right-col-width + $gutter);
