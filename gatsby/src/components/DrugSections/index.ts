@@ -8,6 +8,12 @@ export {
 } from "./Constituents/Constituents";
 
 export {
+	DrugsInClass,
+	type DrugsInClassProps,
+	type Classification,
+} from "./DrugsInClass/DrugsInClass";
+
+export {
 	ImportantSafetyInfo,
 	type ImportantSafetyInfoProps,
 } from "./ImportantSafetyInfo/ImportantSafetyInfo";

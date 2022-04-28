@@ -17,14 +17,12 @@ const pageProps: AboutSectionPageProps = {
 			title: "Changes",
 			sections: [
 				{
-					order: 0,
 					content:
 						"<p>Monthly updates are provided online via Medicines Complete and the NHS Evidence portal. The changes listed below are cumulative (from one print edition to the next).</p>",
 					slug: "introduction",
 					title: "Introduction",
 				},
 				{
-					order: 1,
 					content:
 						"<p>Significant changes made since the release of data for the print edition of BNF 82 (September 2021 — March 2022):</p>",
 					slug: "significant-changes",

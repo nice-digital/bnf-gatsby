@@ -1,7 +1,7 @@
 import { type NodeInput, type SourceNodesArgs } from "gatsby";
-import { type Except, type Primitive } from "type-fest";
+import { type Primitive } from "type-fest";
 
-import { FeedRecordSection, FeedSimpleRecord } from "../downloader/types";
+import { type FeedSimpleRecord } from "../downloader/types";
 import { BnfNodeTypes, type BnfNodeType } from "../node-types";
 
 export type BuiltIns = Primitive | Date | RegExp;
@@ -62,10 +62,8 @@ export const createBnfNode = <TNodeContent extends { id: string }>(
 	createNode(node);
 };
 
-export interface SimpleRecordNodeInput
-	extends Except<FeedSimpleRecord, "sections"> {
+export interface SimpleRecordNodeInput extends FeedSimpleRecord {
 	order: number;
-	sections: ({ order: number } & FeedRecordSection)[];
 }
 
 /**
@@ -80,16 +78,10 @@ export const createSimpleRecordNodes = (
 	nodeType: BnfNodeTypes,
 	sourceNodesArgs: SourceNodesArgs
 ): void => {
-	simpleRecords.forEach(({ id, title, reviewDate, sections }, order) => {
+	simpleRecords.forEach((simpleRecord, order) => {
 		const nodeContent: SimpleRecordNodeInput = {
 			order,
-			id,
-			title,
-			reviewDate,
-			sections: sections.map((section, order) => ({
-				...section,
-				order,
-			})),
+			...simpleRecord,
 		};
 
 		createBnfNode(nodeContent, nodeType, sourceNodesArgs);

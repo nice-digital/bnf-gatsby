@@ -16,21 +16,17 @@ export type RecordSectionsContentProps = {
  */
 export const RecordSectionsContent: React.FC<RecordSectionsContentProps> = ({
 	sections,
-}) => {
-	sections = sections.sort((a, b) => a.order - b.order);
-
-	return (
-		<>
-			{sections.map(({ slug, title, content }, i) => (
-				<section key={slug} aria-labelledby={slug}>
-					<h2
-						id={slug}
-						dangerouslySetInnerHTML={{ __html: title }}
-						className={i === 0 ? styles.firstHeading : undefined}
-					/>
-					<div dangerouslySetInnerHTML={{ __html: content }} />
-				</section>
-			))}
-		</>
-	);
-};
+}) => (
+	<>
+		{sections.map(({ slug, title, content }, i) => (
+			<section key={slug} aria-labelledby={slug}>
+				<h2
+					id={slug}
+					dangerouslySetInnerHTML={{ __html: title }}
+					className={i === 0 ? styles.firstHeading : undefined}
+				/>
+				<div dangerouslySetInnerHTML={{ __html: content }} />
+			</section>
+		))}
+	</>
+);
