@@ -13,8 +13,20 @@ export interface WoundManagementPricingPageProps {
 		bnfWoundManagementTaxonomyProductGroup: {
 			taxonomy: {
 				title: string;
-				slug: string;
-				text: string | null;
+				rootTaxonomy: {
+					slug: string;
+					title: string;
+				};
+				productGroups: {
+					title: string;
+					products: {
+						name: string;
+						manufacturer: string;
+						packs: {
+							nhsIndicativePrice: string;
+						}[];
+					}[];
+				}[];
 			};
 		};
 	};
@@ -23,7 +35,7 @@ export interface WoundManagementPricingPageProps {
 const WoundManagementPricingPage: FC<WoundManagementPricingPageProps> = ({
 	data: {
 		bnfWoundManagementTaxonomyProductGroup: {
-			taxonomy: { slug, title },
+			taxonomy: { title, rootTaxonomy, productGroups },
 		},
 	},
 }) => {
@@ -44,6 +56,12 @@ const WoundManagementPricingPage: FC<WoundManagementPricingPageProps> = ({
 				<Breadcrumb to="/wound-management/" elementType={Link}>
 					Wound management products and elasticated garments
 				</Breadcrumb>
+				<Breadcrumb
+					to={`/wound-management/${rootTaxonomy.slug}`}
+					elementType={Link}
+				>
+					{rootTaxonomy.title}
+				</Breadcrumb>
 				<Breadcrumb>{title}</Breadcrumb>
 			</Breadcrumbs>
 
@@ -52,8 +70,31 @@ const WoundManagementPricingPage: FC<WoundManagementPricingPageProps> = ({
 				heading={<span dangerouslySetInnerHTML={{ __html: title }} />}
 			/>
 
-			<p>{title}</p>
-			<p>{slug}</p>
+			<ul>
+				{productGroups.map(({ title, products }) => (
+					<li key={title}>
+						<h2>{title}</h2>
+						<table>
+							<thead>
+								<tr>
+									<th>Product</th>
+									<th>Price</th>
+								</tr>
+							</thead>
+							<tbody>
+								{products.map(({ name, manufacturer, packs }) => (
+									<tr key={name}>
+										<td>
+											{name} <span>{manufacturer}</span>
+										</td>
+										<td>{packs[0].nhsIndicativePrice}</td>
+									</tr>
+								))}
+							</tbody>
+						</table>
+					</li>
+				))}
+			</ul>
 		</Layout>
 	);
 };
@@ -63,8 +104,20 @@ export const query = graphql`
 		bnfWoundManagementTaxonomyProductGroup(id: { eq: $id }) {
 			taxonomy {
 				title
-				slug
-				text
+				rootTaxonomy {
+					slug
+					title
+				}
+				productGroups {
+					title
+					products {
+						name
+						manufacturer
+						packs {
+							nhsIndicativePrice
+						}
+					}
+				}
 			}
 		}
 	}
