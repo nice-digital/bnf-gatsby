@@ -53,6 +53,7 @@ export const BnfNode = {
 	WoundManagementIntroduction: "BnfWoundManagementIntroduction",
 	WoundManagementProductGroup: "BnfWoundManagementProductGroup",
 	WoundManagementTaxonomy: "BnfWoundManagementTaxonomy",
+	WoundManagementTaxonomyProductGroup: "BnfWoundManagementTaxonomyProductGroup",
 } as const;
 
 export type BnfNodeTypes = typeof BnfNode[keyof typeof BnfNode];

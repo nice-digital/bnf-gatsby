@@ -102,6 +102,8 @@ const WoundManagementTaxonomyPage: FC<WoundManagementTaxonomyPageProps> = ({
 					<SectionNav {...navSections} />
 					{text && <div dangerouslySetInnerHTML={{ __html: text }}></div>}
 
+					<h2>TODO: Add product groups! Check Cavi-care / Foam dressings</h2>
+
 					{childTaxonomies.length > 0 && (
 						<ul className={styles.childTaxonomyList}>
 							{childTaxonomies.map((child) => (
