@@ -15,6 +15,7 @@ export const isTruthy = <TMaybe>(
 	maybeT: TMaybe | null | undefined
 ): maybeT is TMaybe => !!maybeT;
 
+/** Lowercases the first letter of a string, when it's not an acronym */
 export const decapitalize = (str: string): string => {
 	if (!str) return str;
 
