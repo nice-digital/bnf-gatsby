@@ -161,6 +161,13 @@ exports[`Wound management index page should match page snapshot 1`] = `
           >
             <li>
               <a
+                href="#introduction"
+              >
+                Introduction
+              </a>
+            </li>
+            <li>
+              <a
                 href="#wound-type--154124684"
               >
                 Pink (epitheliasing)
