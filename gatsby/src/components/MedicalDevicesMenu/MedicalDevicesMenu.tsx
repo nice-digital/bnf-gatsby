@@ -15,6 +15,7 @@ export const MedicalDevicesMenu: FC = () => {
 			aria-label="Medical device pages"
 			label="Medical devices"
 			link={{ destination: "/medical-devices/", elementType: Link }}
+			id="collapsible-menu"
 		>
 			{medicalDevicePages.map(({ href, title }) => (
 				<StackedNavLink

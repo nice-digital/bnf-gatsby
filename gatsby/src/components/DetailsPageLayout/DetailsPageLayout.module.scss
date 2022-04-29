@@ -5,3 +5,66 @@
     margin-top: 0;
   }
 }
+
+.toggleButton {
+  appearance: none;
+  background: core.$nds-colour-nice-grey-3;
+  border: 1px solid core.$nds-colour-border;
+  color: core.$nds-colour-link;
+  cursor: pointer;
+  display: block;
+  line-height: 1;
+  margin: 0;
+  padding: core.rem(
+    core.$nds-spacing-medium core.$nds-spacing-large core.$nds-spacing-medium
+      core.$nds-spacing-small
+  );
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  width: 100%;
+
+  &:visited {
+    color: core.$nds-colour-link;
+  }
+
+  &:focus {
+    @include core.nds-default-focus-style;
+    z-index: 1;
+  }
+
+  + :global(.stacked-nav) {
+    display: none;
+
+    // Non-JS fallback
+    &:target {
+      display: block;
+    }
+  }
+
+  &[aria-expanded='false'] + :global(.stacked-nav) {
+    display: none;
+  }
+
+  &[aria-expanded='true'] {
+    border-bottom: 0;
+
+    .icon {
+      transform: translateY(-50%) rotate(180deg);
+    }
+
+    + :global(.stacked-nav) {
+      display: block;
+    }
+  }
+
+  @include core.mq($from: sm) {
+    display: none;
+  }
+}
+
+@include core.mq($from: sm) {
+  :global(.stacked-nav) {
+    display: block !important;
+  }
+}
