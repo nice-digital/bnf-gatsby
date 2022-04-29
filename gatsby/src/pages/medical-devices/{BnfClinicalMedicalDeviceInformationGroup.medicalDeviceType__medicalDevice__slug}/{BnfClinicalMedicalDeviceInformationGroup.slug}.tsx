@@ -8,10 +8,10 @@ import { PageHeader } from "@nice-digital/nds-page-header";
 
 import { Layout } from "@/components/Layout/Layout";
 import { MedicalDevicePrepsSection } from "@/components/MedicalDevicePrepsSection/MedicalDevicePrepsSection";
-import { SectionNav } from "@/components/SectionNav/SectionNav";
+import { SectionLink, SectionNav } from "@/components/SectionNav/SectionNav";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
-import { type QueryResult } from "@/utils";
+import { decapitalize, type QueryResult } from "@/utils";
 
 interface CMPISimplePot {
 	potName: string;
@@ -30,11 +30,14 @@ export interface CMPIPageProps {
 					slug: string;
 				};
 			};
+			preparations: QueryResult<FeedPrep>[];
+			allergyAndCrossSensitivity: CMPISimplePot | null;
+			complianceStandards: CMPISimplePot | null;
 			deviceDescription: CMPISimplePot | null;
 			patientAndCarerAdvice: CMPISimplePot | null;
 			prescribingAndDispensingInformation: CMPISimplePot | null;
 			professionSpecificInformation: CMPISimplePot | null;
-			preparations: QueryResult<FeedPrep>[];
+			treatmentCessation: CMPISimplePot | null;
 		};
 	};
 }
@@ -46,28 +49,43 @@ const SimplePot = ({ slug, content, potName }: CMPISimplePot) => (
 	</section>
 );
 
+const getSimplePotSectionLink = (
+	pot: CMPISimplePot | null
+): SectionLink | undefined =>
+	pot
+		? {
+				id: pot.slug,
+				title: pot.potName,
+		  }
+		: undefined;
+
 const CMPIPage: FC<CMPIPageProps> = ({
 	data: {
 		bnfClinicalMedicalDeviceInformationGroup: {
 			title,
 			medicalDeviceType: { medicalDevice },
+			preparations,
+			allergyAndCrossSensitivity,
+			complianceStandards,
 			deviceDescription,
 			patientAndCarerAdvice,
 			prescribingAndDispensingInformation,
 			professionSpecificInformation,
-			preparations,
+			treatmentCessation,
 		},
 	},
 }) => {
 	const { siteTitleShort } = useSiteMetadata(),
-		titleNoHtml = striptags(title);
+		titleNoHtml = striptags(title),
+		medicalDeviceTitleNoHtml = striptags(medicalDevice.title);
 
 	return (
 		<Layout>
 			<SEO
-				title={`${titleNoHtml} | ${medicalDevice.title} | Medical devices`}
+				title={`${titleNoHtml} | ${medicalDeviceTitleNoHtml} | Medical devices`}
 				description={`This medical devices topic describes the options that are currently recommended for ${titleNoHtml}.`}
 			/>
+
 			<Breadcrumbs>
 				<Breadcrumb key="NICE" to="https://www.nice.org.uk/">
 					NICE
@@ -82,50 +100,50 @@ const CMPIPage: FC<CMPIPageProps> = ({
 					to={`/medical-devices/${medicalDevice.slug}/`}
 					elementType={Link}
 				>
-					{medicalDevice.title}
+					{medicalDeviceTitleNoHtml}
 				</Breadcrumb>
 				<Breadcrumb>{titleNoHtml}</Breadcrumb>
 			</Breadcrumbs>
+
 			<PageHeader
 				id="content-start"
+				heading={<span dangerouslySetInnerHTML={{ __html: title }} />}
 				lead={
 					<Link to={`/medical-devices/${medicalDevice.slug}/`}>
-						View other{" "}
-						<span dangerouslySetInnerHTML={{ __html: medicalDevice.title }} />
+						View other {decapitalize(medicalDeviceTitleNoHtml)}
 					</Link>
 				}
-				heading={<span dangerouslySetInnerHTML={{ __html: title }} />}
 			/>
+
 			<SectionNav
 				sections={[
-					deviceDescription
-						? {
-								id: deviceDescription.slug,
-								title: deviceDescription.potName,
-						  }
-						: undefined,
-					prescribingAndDispensingInformation
-						? {
-								id: prescribingAndDispensingInformation.slug,
-								title: prescribingAndDispensingInformation.potName,
-						  }
-						: undefined,
-					professionSpecificInformation
-						? {
-								id: professionSpecificInformation.slug,
-								title: professionSpecificInformation.potName,
-						  }
-						: undefined,
+					getSimplePotSectionLink(deviceDescription),
+					getSimplePotSectionLink(allergyAndCrossSensitivity),
+					getSimplePotSectionLink(treatmentCessation),
+					getSimplePotSectionLink(prescribingAndDispensingInformation),
+					getSimplePotSectionLink(patientAndCarerAdvice),
+					getSimplePotSectionLink(professionSpecificInformation),
+					getSimplePotSectionLink(complianceStandards),
 					preparations.length > 0
 						? { id: "medical-device-types", title: "Medical device types" }
 						: undefined,
 				]}
 			/>
+
 			{deviceDescription && <SimplePot {...deviceDescription} />}
-			{patientAndCarerAdvice && <SimplePot {...patientAndCarerAdvice} />}
+			{/* TODO: Indications and dose */}
+			{allergyAndCrossSensitivity && (
+				<SimplePot {...allergyAndCrossSensitivity} />
+			)}
+			{treatmentCessation && <SimplePot {...treatmentCessation} />}
 			{prescribingAndDispensingInformation && (
 				<SimplePot {...prescribingAndDispensingInformation} />
 			)}
+			{patientAndCarerAdvice && <SimplePot {...patientAndCarerAdvice} />}
+			{professionSpecificInformation && (
+				<SimplePot {...professionSpecificInformation} />
+			)}
+			{complianceStandards && <SimplePot {...complianceStandards} />}
 			{preparations.length > 0 ? (
 				<MedicalDevicePrepsSection preps={preparations} />
 			) : null}
@@ -154,6 +172,12 @@ export const query = graphql`
 			preparations {
 				...FullPrep
 			}
+			allergyAndCrossSensitivity {
+				...CMPISimplePot
+			}
+			complianceStandards {
+				...CMPISimplePot
+			}
 			deviceDescription {
 				...CMPISimplePot
 			}
@@ -164,6 +188,9 @@ export const query = graphql`
 				...CMPISimplePot
 			}
 			professionSpecificInformation {
+				...CMPISimplePot
+			}
+			treatmentCessation {
 				...CMPISimplePot
 			}
 		}

@@ -6,15 +6,11 @@ import { type FeedPrep } from "@nice-digital/gatsby-source-bnf";
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
 import { PageHeader } from "@nice-digital/nds-page-header";
 
-import { AccordionGroup } from "@/components/AccordionGroup/AccordionGroup";
 import { Layout } from "@/components/Layout/Layout";
 import { MedicalDevicePrepsSection } from "@/components/MedicalDevicePrepsSection/MedicalDevicePrepsSection";
-import { Prep } from "@/components/Prep/Prep";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 import { QueryResult } from "@/utils";
-
-import styles from "./{BnfMedicalDeviceType.slug}.module.scss";
 
 interface MedicalDeviceTypePageProps {
 	data: {
