@@ -1,17 +1,10 @@
 @use '@nice-digital/nds-core/scss/core';
 
 .woundManagementIndex {
-  h2 {
-    text-transform: lowercase;
-
-    &::first-letter {
-      text-transform: capitalize;
-    }
-  }
-
   table {
     border-bottom: 1px solid core.$nds-colour-border;
     border-collapse: separate;
+    display: table;
     padding-bottom: core.rem(core.$nds-spacing-small);
 
     tr {
