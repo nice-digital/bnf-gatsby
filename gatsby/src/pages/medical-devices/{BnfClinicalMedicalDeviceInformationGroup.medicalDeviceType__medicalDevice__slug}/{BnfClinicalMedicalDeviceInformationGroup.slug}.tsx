@@ -1,23 +1,32 @@
+import { useLocation } from "@reach/router";
 import { graphql, Link } from "gatsby";
 import { FC } from "react";
 import striptags from "striptags";
 
-import { type FeedPrep } from "@nice-digital/gatsby-source-bnf";
-import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
-import { PageHeader } from "@nice-digital/nds-page-header";
+import {
+	FeedIndicationsAndDosePotContent,
+	type FeedPrep,
+} from "@nice-digital/gatsby-source-bnf";
+import { StackedNav, StackedNavLink } from "@nice-digital/nds-stacked-nav";
 
-import { Layout } from "@/components/Layout/Layout";
+import { DetailsPageLayout } from "@/components/DetailsPageLayout/DetailsPageLayout";
+import {
+	type BasePot,
+	IndicationsAndDoseContent,
+} from "@/components/DrugSections";
 import { MedicalDevicePrepsSection } from "@/components/MedicalDevicePrepsSection/MedicalDevicePrepsSection";
-import { SectionLink, SectionNav } from "@/components/SectionNav/SectionNav";
-import { SEO } from "@/components/SEO/SEO";
-import { useSiteMetadata } from "@/hooks/useSiteMetadata";
-import { decapitalize, type QueryResult } from "@/utils";
+import { SectionLink } from "@/components/SectionNav/SectionNav";
+import { isTruthy, type QueryResult } from "@/utils";
 
-interface CMPISimplePot {
+import styles from "./{BnfClinicalMedicalDeviceInformationGroup.slug}.module.scss";
+
+interface CMPISimplePotProps {
 	potName: string;
 	slug: string;
-	contentFor: string;
-	content: string;
+	content: {
+		contentFor: string;
+		content: string;
+	};
 }
 
 export interface CMPIPageProps {
@@ -25,24 +34,39 @@ export interface CMPIPageProps {
 		bnfClinicalMedicalDeviceInformationGroup: {
 			title: string;
 			medicalDeviceType: {
+				title: string;
+				slug: string;
+				clinicalMedicalDeviceInformationGroups: {
+					title: string;
+					slug: string;
+				}[];
 				medicalDevice: {
 					title: string;
 					slug: string;
 				};
 			};
 			preparations: QueryResult<FeedPrep>[];
-			allergyAndCrossSensitivity: CMPISimplePot | null;
-			complianceStandards: CMPISimplePot | null;
-			deviceDescription: CMPISimplePot | null;
-			patientAndCarerAdvice: CMPISimplePot | null;
-			prescribingAndDispensingInformation: CMPISimplePot | null;
-			professionSpecificInformation: CMPISimplePot | null;
-			treatmentCessation: CMPISimplePot | null;
+			allergyAndCrossSensitivity: CMPISimplePotProps | null;
+			complianceStandards: CMPISimplePotProps | null;
+			deviceDescription: CMPISimplePotProps | null;
+			indicationsAndDose:
+				| (BasePot & {
+						content: QueryResult<FeedIndicationsAndDosePotContent>;
+				  })
+				| null;
+			patientAndCarerAdvice: CMPISimplePotProps | null;
+			prescribingAndDispensingInformation: CMPISimplePotProps | null;
+			professionSpecificInformation: CMPISimplePotProps | null;
+			treatmentCessation: CMPISimplePotProps | null;
 		};
 	};
 }
 
-const SimplePot = ({ slug, content, potName }: CMPISimplePot) => (
+const CMPISimplePot: FC<CMPISimplePotProps> = ({
+	potName,
+	slug,
+	content: { content },
+}) => (
 	<section aria-labelledby={slug}>
 		<h2 id={slug} dangerouslySetInnerHTML={{ __html: potName }} />
 		<div dangerouslySetInnerHTML={{ __html: content }} />
@@ -50,7 +74,7 @@ const SimplePot = ({ slug, content, potName }: CMPISimplePot) => (
 );
 
 const getSimplePotSectionLink = (
-	pot: CMPISimplePot | null
+	pot: CMPISimplePotProps | null
 ): SectionLink | undefined =>
 	pot
 		? {
@@ -63,11 +87,15 @@ const CMPIPage: FC<CMPIPageProps> = ({
 	data: {
 		bnfClinicalMedicalDeviceInformationGroup: {
 			title,
-			medicalDeviceType: { medicalDevice },
+			medicalDeviceType: {
+				clinicalMedicalDeviceInformationGroups,
+				medicalDevice,
+			},
 			preparations,
 			allergyAndCrossSensitivity,
 			complianceStandards,
 			deviceDescription,
+			indicationsAndDose,
 			patientAndCarerAdvice,
 			prescribingAndDispensingInformation,
 			professionSpecificInformation,
@@ -75,79 +103,104 @@ const CMPIPage: FC<CMPIPageProps> = ({
 		},
 	},
 }) => {
-	const { siteTitleShort } = useSiteMetadata(),
+	const { pathname } = useLocation(),
 		titleNoHtml = striptags(title),
 		medicalDeviceTitleNoHtml = striptags(medicalDevice.title);
 
 	return (
-		<Layout>
-			<SEO
-				title={`${titleNoHtml} | ${medicalDeviceTitleNoHtml} | Medical devices`}
-				description={`This medical devices topic describes the options that are currently recommended for ${titleNoHtml}.`}
-			/>
-
-			<Breadcrumbs>
-				<Breadcrumb key="NICE" to="https://www.nice.org.uk/">
-					NICE
-				</Breadcrumb>
-				<Breadcrumb to="/" elementType={Link}>
-					{siteTitleShort}
-				</Breadcrumb>
-				<Breadcrumb to="/medical-devices/" elementType={Link}>
-					Medical devices
-				</Breadcrumb>
-				<Breadcrumb
-					to={`/medical-devices/${medicalDevice.slug}/`}
-					elementType={Link}
-				>
-					{medicalDeviceTitleNoHtml}
-				</Breadcrumb>
-				<Breadcrumb>{titleNoHtml}</Breadcrumb>
-			</Breadcrumbs>
-
-			<PageHeader
-				id="content-start"
-				heading={<span dangerouslySetInnerHTML={{ __html: title }} />}
-				lead={
-					<Link to={`/medical-devices/${medicalDevice.slug}/`}>
-						View other {decapitalize(medicalDeviceTitleNoHtml)}
-					</Link>
-				}
-			/>
-
-			<SectionNav
-				sections={[
-					getSimplePotSectionLink(deviceDescription),
-					getSimplePotSectionLink(allergyAndCrossSensitivity),
-					getSimplePotSectionLink(treatmentCessation),
-					getSimplePotSectionLink(prescribingAndDispensingInformation),
-					getSimplePotSectionLink(patientAndCarerAdvice),
-					getSimplePotSectionLink(professionSpecificInformation),
-					getSimplePotSectionLink(complianceStandards),
-					preparations.length > 0
-						? { id: "medical-device-types", title: "Medical device types" }
-						: undefined,
-				]}
-			/>
-
-			{deviceDescription && <SimplePot {...deviceDescription} />}
-			{/* TODO: Indications and dose */}
-			{allergyAndCrossSensitivity && (
-				<SimplePot {...allergyAndCrossSensitivity} />
-			)}
-			{treatmentCessation && <SimplePot {...treatmentCessation} />}
-			{prescribingAndDispensingInformation && (
-				<SimplePot {...prescribingAndDispensingInformation} />
-			)}
-			{patientAndCarerAdvice && <SimplePot {...patientAndCarerAdvice} />}
-			{professionSpecificInformation && (
-				<SimplePot {...professionSpecificInformation} />
-			)}
-			{complianceStandards && <SimplePot {...complianceStandards} />}
-			{preparations.length > 0 ? (
-				<MedicalDevicePrepsSection preps={preparations} />
-			) : null}
-		</Layout>
+		<DetailsPageLayout
+			titleHtml={title}
+			metaDescription={`This medical devices topic describes the options that are currently recommended for ${titleNoHtml}.`}
+			parentTitleParts={[medicalDeviceTitleNoHtml, "Medical devices"]}
+			parentBreadcrumbs={[
+				{
+					text: "Medical devices",
+					href: "/medical-devices/",
+				},
+				{
+					text: medicalDeviceTitleNoHtml,
+					href: `/medical-devices/${medicalDevice.slug}/`,
+				},
+			]}
+			menu={
+				clinicalMedicalDeviceInformationGroups.length > 1
+					? () => (
+							<StackedNav
+								aria-label={medicalDeviceTitleNoHtml}
+								label={medicalDeviceTitleNoHtml}
+								link={{
+									destination: `/medical-devices/${medicalDevice.slug}/`,
+									elementType: Link,
+								}}
+							>
+								{clinicalMedicalDeviceInformationGroups.map((cmpi) => {
+									const pagePath = `/medical-devices/${medicalDevice.slug}/${cmpi.slug}/`;
+									return (
+										<StackedNavLink
+											key={cmpi.title}
+											destination={pagePath}
+											elementType={Link}
+											isCurrent={pathname === pagePath}
+										>
+											<span dangerouslySetInnerHTML={{ __html: cmpi.title }} />
+										</StackedNavLink>
+									);
+								})}
+							</StackedNav>
+					  )
+					: undefined
+			}
+			useSectionNav
+			sections={[
+				getSimplePotSectionLink(deviceDescription),
+				indicationsAndDose
+					? {
+							id: indicationsAndDose.slug,
+							title: indicationsAndDose.potName,
+					  }
+					: undefined,
+				getSimplePotSectionLink(allergyAndCrossSensitivity),
+				getSimplePotSectionLink(treatmentCessation),
+				getSimplePotSectionLink(prescribingAndDispensingInformation),
+				getSimplePotSectionLink(patientAndCarerAdvice),
+				getSimplePotSectionLink(professionSpecificInformation),
+				getSimplePotSectionLink(complianceStandards),
+				preparations.length > 0
+					? { id: "medical-device-types", title: "Medical device types" }
+					: undefined,
+			].filter(isTruthy)}
+		>
+			<div className={styles.sections}>
+				{deviceDescription && <CMPISimplePot {...deviceDescription} />}
+				{indicationsAndDose && (
+					<section aria-labelledby={indicationsAndDose.slug}>
+						<h2
+							id={indicationsAndDose.slug}
+							dangerouslySetInnerHTML={{ __html: indicationsAndDose.potName }}
+						/>
+						<IndicationsAndDoseContent
+							collapsible={false}
+							content={indicationsAndDose.content}
+						/>
+					</section>
+				)}
+				{allergyAndCrossSensitivity && (
+					<CMPISimplePot {...allergyAndCrossSensitivity} />
+				)}
+				{treatmentCessation && <CMPISimplePot {...treatmentCessation} />}
+				{prescribingAndDispensingInformation && (
+					<CMPISimplePot {...prescribingAndDispensingInformation} />
+				)}
+				{patientAndCarerAdvice && <CMPISimplePot {...patientAndCarerAdvice} />}
+				{professionSpecificInformation && (
+					<CMPISimplePot {...professionSpecificInformation} />
+				)}
+				{complianceStandards && <CMPISimplePot {...complianceStandards} />}
+				{preparations.length > 0 ? (
+					<MedicalDevicePrepsSection preps={preparations} />
+				) : null}
+			</div>
+		</DetailsPageLayout>
 	);
 };
 
@@ -155,19 +208,25 @@ export const query = graphql`
 	fragment CMPISimplePot on BnfMedicalDeviceSimplePot {
 		potName
 		slug
-		contentFor
-		content
+		content {
+			contentFor
+			content
+		}
 	}
 	query ($id: String) {
 		bnfClinicalMedicalDeviceInformationGroup(id: { eq: $id }) {
 			title
 			medicalDeviceType {
+				title
+				slug
+				clinicalMedicalDeviceInformationGroups {
+					title
+					slug
+				}
 				medicalDevice {
 					title
 					slug
 				}
-				title
-				slug
 			}
 			preparations {
 				...FullPrep
@@ -180,6 +239,13 @@ export const query = graphql`
 			}
 			deviceDescription {
 				...CMPISimplePot
+			}
+			indicationsAndDose {
+				potName
+				slug
+				content {
+					...IndicationsAndDoseContent
+				}
 			}
 			patientAndCarerAdvice {
 				...CMPISimplePot

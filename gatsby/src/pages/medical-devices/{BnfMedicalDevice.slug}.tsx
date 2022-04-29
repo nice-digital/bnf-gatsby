@@ -68,12 +68,12 @@ const MedicalDevicePage: FC<MedicalDevicePageProps> = ({
 					<MedicalDevicesMenu />
 				</GridItem>
 				<GridItem cols={12} md={9} lg={9}>
-					<ColumnList>
+					<ColumnList aria-label={`Medical device types for ${titleNoHtml}`}>
 						{medicalDeviceTypes
 							.sort((a, b) => a.slug.localeCompare(b.slug))
 							.map((medicalDeviceType) =>
 								medicalDeviceType.hasPreps ? (
-									<li>
+									<li key={medicalDeviceType.title}>
 										<Link
 											to={`/medical-devices/${slug}/${medicalDeviceType.slug}/`}
 											dangerouslySetInnerHTML={{

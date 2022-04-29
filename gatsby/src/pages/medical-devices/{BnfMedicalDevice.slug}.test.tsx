@@ -24,6 +24,10 @@ const props: MedicalDevicePageProps = {
 							title: "AS Saliva Orthana® lozenges",
 							slug: "as-saliva-orthana-lozenges",
 						},
+						{
+							title: "AS Saliva Orthana® spray",
+							slug: "as-saliva-orthana-spray",
+						},
 					],
 				},
 			],
@@ -47,7 +51,7 @@ describe("MedicalDevicePage", () => {
 	});
 
 	describe("SEO", () => {
-		it("should set page title from medical type title", async () => {
+		it("should set page title from medical device type title", async () => {
 			render(<MedicalDevicePage {...props} />);
 			await waitFor(() => {
 				expect(document.title).toStartWith(
@@ -112,9 +116,75 @@ describe("MedicalDevicePage", () => {
 	});
 
 	describe("Page body", () => {
-		it.todo("should render list of links to each CMPI");
-		it.todo(
-			"should render list of links to each medical device type with preps"
-		);
+		it("should render list of CMPIs with accessible name", () => {
+			render(<MedicalDevicePage {...props} />);
+
+			expect(
+				screen.getByRole("list", {
+					name: "Medical device types for Artificial saliva products",
+				})
+			).toBeInTheDocument();
+		});
+
+		it("should render list of links to each CMPI", () => {
+			render(<MedicalDevicePage {...props} />);
+
+			const list = screen.getByRole("list", {
+				name: "Medical device types for Artificial saliva products",
+			});
+
+			expect(within(list).getAllByRole("listitem")).toHaveLength(2);
+			expect(within(list).getAllByRole("link")).toHaveLength(2);
+		});
+
+		it("should render CMPI link with correct href and text", () => {
+			render(<MedicalDevicePage {...props} />);
+
+			expect(
+				screen.getByRole("link", { name: "AS Saliva Orthana® lozenges" })
+			).toHaveAttribute(
+				"href",
+				"/medical-devices/artificial-saliva-products/as-saliva-orthana-lozenges/"
+			);
+		});
+
+		it("should render list of links to each medical device type with preps", () => {
+			render(
+				<MedicalDevicePage
+					data={{
+						bnfMedicalDevice: {
+							title: "Gloves",
+							slug: "gloves",
+							medicalDeviceTypes: [
+								{
+									title: "Film gloves",
+									slug: "film-gloves",
+									clinicalMedicalDeviceInformationGroups: [],
+									hasPreps: true,
+								},
+								{
+									title: "Nitrile gloves",
+									slug: "nitrile-gloves",
+									clinicalMedicalDeviceInformationGroups: [],
+									hasPreps: true,
+								},
+							],
+						},
+					}}
+				/>
+			);
+
+			const list = screen.getByRole("list", {
+				name: "Medical device types for Gloves",
+			});
+
+			expect(within(list).getAllByRole("listitem")).toHaveLength(2);
+			expect(within(list).getAllByRole("link")).toHaveLength(2);
+
+			expect(screen.getByRole("link", { name: "Film gloves" })).toHaveAttribute(
+				"href",
+				"/medical-devices/gloves/film-gloves/"
+			);
+		});
 	});
 });

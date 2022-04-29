@@ -12,7 +12,9 @@ import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 import { QueryResult } from "@/utils";
 
-interface MedicalDeviceTypePageProps {
+import NotFoundPage from "../../404";
+
+export interface MedicalDeviceTypePageProps {
 	data: {
 		bnfMedicalDeviceType: {
 			slug: string;
@@ -34,7 +36,7 @@ const MedicalDeviceTypePage: FC<MedicalDeviceTypePageProps> = ({
 	const { siteTitleShort } = useSiteMetadata(),
 		titleNoHtml = striptags(title);
 
-	if (preparations.length === 0) return null;
+	if (preparations.length === 0) return <NotFoundPage />;
 
 	return (
 		<Layout>
