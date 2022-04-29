@@ -5,17 +5,13 @@ import { DetailsPageLayout } from "@/components/DetailsPageLayout/DetailsPageLay
 import { NursePrescribersFormularyMenu } from "@/components/NursePrescribersFormularyMenu/NursePrescribersFormularyMenu";
 import { RecordSectionsContent } from "@/components/RecordSectionsContent/RecordSectionsContent";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
-import {
-	type RecordSection,
-	type MetaDescriptionsMap,
-	type SlugAndTitle,
-} from "@/utils";
+import { MetaDescriptionsMap, SlugAndTitle, type RecordSection } from "@/utils";
 
-import metas from "./{BnfNursePrescribersFormularyTreatmentSummary.slug}.meta-descriptions.json";
+import metas from "./{BnfNursePrescribersFormularyIntroduction.slug}.meta-descriptions.json";
 
-export type NursePrescribersFormularyTreatmentSummaryPageProps = {
+export type NursePrescribersFormularyApprovedListPageProps = {
 	data: {
-		bnfNursePrescribersFormularyTreatmentSummary: SlugAndTitle & {
+		bnfNursePrescribersFormularyIntroduction: SlugAndTitle & {
 			sections: RecordSection[];
 		};
 	};
@@ -24,11 +20,11 @@ export type NursePrescribersFormularyTreatmentSummaryPageProps = {
 	};
 };
 
-const NursePrescribersFormularyTreatmentSummaryPage: FC<
-	NursePrescribersFormularyTreatmentSummaryPageProps
+const NursePrescribersFormularyApprovedListPage: FC<
+	NursePrescribersFormularyApprovedListPageProps
 > = ({
 	data: {
-		bnfNursePrescribersFormularyTreatmentSummary: { title, sections, slug },
+		bnfNursePrescribersFormularyIntroduction: { title, sections, slug },
 	},
 	location: { pathname },
 }) => {
@@ -66,8 +62,8 @@ const NursePrescribersFormularyTreatmentSummaryPage: FC<
 };
 
 export const query = graphql`
-	query ($id: String) {
-		bnfNursePrescribersFormularyTreatmentSummary(id: { eq: $id }) {
+	query {
+		bnfNursePrescribersFormularyIntroduction {
 			title
 			slug
 			sections {
@@ -77,4 +73,4 @@ export const query = graphql`
 	}
 `;
 
-export default NursePrescribersFormularyTreatmentSummaryPage;
+export default NursePrescribersFormularyApprovedListPage;
