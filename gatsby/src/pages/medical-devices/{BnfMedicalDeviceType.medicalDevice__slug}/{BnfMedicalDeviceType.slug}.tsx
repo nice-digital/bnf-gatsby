@@ -1,10 +1,13 @@
+import { useLocation } from "@reach/router";
 import { graphql, Link } from "gatsby";
 import { FC } from "react";
 import striptags from "striptags";
 
 import { type FeedPrep } from "@nice-digital/gatsby-source-bnf";
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
+import { Grid, GridItem } from "@nice-digital/nds-grid";
 import { PageHeader } from "@nice-digital/nds-page-header";
+import { StackedNav, StackedNavLink } from "@nice-digital/nds-stacked-nav";
 
 import { Layout } from "@/components/Layout/Layout";
 import { MedicalDevicePrepsSection } from "@/components/MedicalDevicePrepsSection/MedicalDevicePrepsSection";
@@ -14,6 +17,8 @@ import { QueryResult } from "@/utils";
 
 import NotFoundPage from "../../404";
 
+import styles from "./{BnfMedicalDeviceType.slug}.module.scss";
+
 export interface MedicalDeviceTypePageProps {
 	data: {
 		bnfMedicalDeviceType: {
@@ -22,6 +27,10 @@ export interface MedicalDeviceTypePageProps {
 			medicalDevice: {
 				title: string;
 				slug: string;
+				medicalDeviceTypes: {
+					title: string;
+					slug: string;
+				}[];
 			};
 			preparations: QueryResult<FeedPrep>[];
 		};
@@ -33,8 +42,11 @@ const MedicalDeviceTypePage: FC<MedicalDeviceTypePageProps> = ({
 		bnfMedicalDeviceType: { title, medicalDevice, preparations },
 	},
 }) => {
-	const { siteTitleShort } = useSiteMetadata(),
-		titleNoHtml = striptags(title);
+	const { pathname } = useLocation(),
+		{ siteTitleShort } = useSiteMetadata(),
+		titleNoHtml = striptags(title),
+		hasStackedNav = medicalDevice.medicalDeviceTypes.length > 1,
+		medicalDeviceTitleNoHtml = striptags(medicalDevice.title);
 
 	if (preparations.length === 0) return <NotFoundPage />;
 
@@ -69,9 +81,48 @@ const MedicalDeviceTypePage: FC<MedicalDeviceTypePageProps> = ({
 				heading={<span dangerouslySetInnerHTML={{ __html: title }} />}
 			/>
 
-			{preparations.length > 0 ? (
-				<MedicalDevicePrepsSection preps={preparations} />
-			) : null}
+			<Grid gutter="loose">
+				{hasStackedNav ? (
+					<GridItem cols={12} md={4} lg={3}>
+						<StackedNav
+							aria-label={medicalDeviceTitleNoHtml}
+							label={medicalDeviceTitleNoHtml}
+							link={{
+								destination: `/medical-devices/${medicalDevice.slug}/`,
+								elementType: Link,
+							}}
+						>
+							{medicalDevice.medicalDeviceTypes
+								.sort((a, b) => a.slug.localeCompare(b.slug))
+								.map((deviceType) => {
+									const pagePath = `/medical-devices/${medicalDevice.slug}/${deviceType.slug}/`;
+									return (
+										<StackedNavLink
+											key={deviceType.title}
+											destination={pagePath}
+											elementType={Link}
+											isCurrent={pathname === pagePath}
+										>
+											<span
+												dangerouslySetInnerHTML={{ __html: deviceType.title }}
+											/>
+										</StackedNavLink>
+									);
+								})}
+						</StackedNav>
+					</GridItem>
+				) : null}
+				<GridItem
+					cols={12}
+					md={hasStackedNav ? 8 : 12}
+					lg={hasStackedNav ? 9 : 12}
+					className={styles.sections}
+				>
+					{preparations.length > 0 ? (
+						<MedicalDevicePrepsSection preps={preparations} />
+					) : null}
+				</GridItem>
+			</Grid>
 		</Layout>
 	);
 };
@@ -84,6 +135,10 @@ export const query = graphql`
 			medicalDevice {
 				title
 				slug
+				medicalDeviceTypes {
+					title
+					slug
+				}
 			}
 			preparations {
 				...FullPrep

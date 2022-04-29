@@ -59,6 +59,19 @@ describe("MedicalDevicePage", () => {
 				);
 			});
 		});
+
+		it("should set meta description", async () => {
+			render(<MedicalDevicePage {...props} />);
+			await waitFor(() => {
+				expect(
+					// eslint-disable-next-line testing-library/no-node-access
+					document.querySelector("meta[name=description]")
+				).toHaveAttribute(
+					"content",
+					"This medical devices topic describes the options that are currently recommended for Artificial saliva products."
+				);
+			});
+		});
 	});
 
 	describe("Breadcrumbs", () => {
