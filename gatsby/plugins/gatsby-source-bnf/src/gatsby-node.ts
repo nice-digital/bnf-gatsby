@@ -110,7 +110,7 @@ export const sourceNodes = async (
 		feedData.borderlineSubstances,
 		sourceNodesArgs
 	);
-	
+
 	createClassificationNodes(
 		{ classifications: feedData.classifications, drugs: feedData.drugs },
 		sourceNodesArgs
