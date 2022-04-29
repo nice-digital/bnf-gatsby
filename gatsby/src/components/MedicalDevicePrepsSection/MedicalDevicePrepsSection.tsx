@@ -37,9 +37,9 @@ export const MedicalDevicePrepsSection: FC<MedicalDevicePrepsSectionProps> = ({
 			) : (
 				<AccordionGroup
 					toggleText={(isOpen) =>
-						`${isOpen ? "Hide" : "Show"} all ${
+						`${isOpen ? "Hide" : "Show"} all medical device types (${
 							preps.length
-						} medical device types`
+						})`
 					}
 				>
 					{body}
