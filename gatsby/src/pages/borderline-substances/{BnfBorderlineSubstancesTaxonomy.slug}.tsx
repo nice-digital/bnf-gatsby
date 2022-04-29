@@ -1,11 +1,17 @@
 import { graphql, Link } from "gatsby";
 import React, { type FC } from "react";
 
-import { ColumnList } from "@nice-digital/nds-column-list";
+import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
+import { Grid, GridItem } from "@nice-digital/nds-grid";
+import { PageHeader } from "@nice-digital/nds-page-header";
 
 import { BorderlineSubstancesMenu } from "@/components/BorderlineSubstancesMenu/BorderlineSubstancesMenu";
-import { DetailsPageLayout } from "@/components/DetailsPageLayout/DetailsPageLayout";
+import { Layout } from "@/components/Layout/Layout";
+import { SEO } from "@/components/SEO/SEO";
+import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 import { type SlugAndTitle } from "@/utils";
+
+import styles from "./{BnfBorderlineSubstancesTaxonomy.slug}.module.scss";
 
 export type BorderlineSubstancesSectionPageProps = {
 	data: {
@@ -15,10 +21,6 @@ export type BorderlineSubstancesSectionPageProps = {
 					title: string;
 					childTaxonomies: {
 						title: string;
-						childTaxonomies: {
-							title: string;
-							slug: string;
-						}[];
 						slug: string;
 					}[];
 					slug: string;
@@ -32,9 +34,10 @@ const BorderlineSubstancesSectionPage: FC<
 	BorderlineSubstancesSectionPageProps
 > = ({
 	data: {
-		bnfBorderlineSubstancesTaxonomy: { slug, title, rootTaxonomy },
+		bnfBorderlineSubstancesTaxonomy: { title, rootTaxonomy },
 	},
 }) => {
+	const { siteTitleShort } = useSiteMetadata();
 	const sections = rootTaxonomy.childTaxonomies;
 	const isOneLevel = sections.find(
 		(section) =>
@@ -44,38 +47,72 @@ const BorderlineSubstancesSectionPage: FC<
 		: true;
 
 	return (
-		<DetailsPageLayout
-			titleHtml={title}
-			parentTitleParts={["Borderline Substances"]}
-			parentBreadcrumbs={[
-				{ href: "/borderline-substances/", text: "Borderline Substances" },
-			]}
-			menu={BorderlineSubstancesMenu}
-			sections={sections.map(({ slug, title }) => ({
-				id: slug,
-				title,
-			}))}
-			useSectionNav={true}
-		>
-			{!isOneLevel && (
-				<ol className="list--unstyled">
-					{sections.map((child1) => (
+		<Layout>
+			<SEO title={title} description="Browse borderline substances, by type." />
+
+			<Breadcrumbs>
+				<Breadcrumb key="NICE" to="https://www.nice.org.uk/">
+					NICE
+				</Breadcrumb>
+				<Breadcrumb key="Home" to="/" elementType={Link}>
+					{siteTitleShort}
+				</Breadcrumb>
+				<Breadcrumb key="Home" to="/borderline-substances/" elementType={Link}>
+					Borderline Substances
+				</Breadcrumb>
+				<Breadcrumb key="Current page">{title}</Breadcrumb>
+			</Breadcrumbs>
+
+			<PageHeader id="content-start" heading={title} />
+			<Grid gutter="loose" data-testid="body">
+				<GridItem cols={12} md={4} lg={3} className="hide-print">
+					<BorderlineSubstancesMenu />
+				</GridItem>
+
+				<GridItem cols={12} md={8} lg={9}>
+					{isOneLevel ? (
 						<>
-							<h2 key={child1.slug}>{child1.title}</h2>
-							<ol className="list--unstyled">
-								{child1.childTaxonomies.map((child2) => (
-									<li key={child2.slug}>
-										<Link to={`/interactions/${child2.slug}/`}>
-											{child2.title}
-										</Link>
-									</li>
-								))}
-							</ol>
+							{" "}
+							<nav aria-label="navigate-to-products" className={styles.nav}>
+								<ol aria-label="Links to products" className={styles.linkList}>
+									{sections.map((section) => (
+										<li key={section?.slug}>
+											<a href={`${section?.slug}`}>{section?.title}</a>
+										</li>
+									))}
+								</ol>
+							</nav>
 						</>
-					))}
-				</ol>
-			)}
-		</DetailsPageLayout>
+					) : (
+						<>
+							<section>
+								{sections.map(({ title, childTaxonomies, slug }, i) => (
+									<>
+										<h2
+											key={slug}
+											className={i === 0 ? styles.firstHeading : undefined}
+										>
+											{title}
+										</h2>
+										<ol className="list--unstyled">
+											{childTaxonomies.map((child2) => (
+												<li key={child2.slug}>
+													<Link
+														to={`/borderline-substances/${slug}/${child2.slug}/`}
+													>
+														{child2.title}
+													</Link>
+												</li>
+											))}
+										</ol>
+									</>
+								))}
+							</section>
+						</>
+					)}
+				</GridItem>
+			</Grid>
+		</Layout>
 	);
 };
 
@@ -89,10 +126,6 @@ export const query = graphql`
 					title
 					childTaxonomies {
 						title
-						childTaxonomies {
-							title
-							slug
-						}
 						slug
 					}
 					slug

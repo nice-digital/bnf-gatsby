@@ -1,0 +1,44 @@
+@use '@nice-digital/nds-core/scss/core';
+
+.nav {
+  background: core.$nds-colour-nice-white;
+  border: 1px solid core.$nds-colour-nice-grey-2;
+  margin-bottom: core.rem(core.$nds-spacing-large);
+  padding: core.rem(core.$nds-spacing-medium);
+
+  &.navReadableMaxWidth {
+    max-width: core.$nds-readable-width;
+  }
+
+  @media print {
+    display: none;
+  }
+}
+
+.linkList {
+  list-style: none;
+  margin: 0;
+  max-width: none;
+  padding: 0;
+
+  li {
+    line-height: 1.3;
+    margin-bottom: core.rem(core.$nds-spacing-medium);
+  }
+}
+
+@include core.mq($from: md) {
+  .linkList {
+    column-gap: core.rem(core.$nds-spacing-large);
+    columns: 2;
+
+    li {
+      break-inside: avoid;
+    }
+  }
+}
+
+.firstHeading {
+  // Removing the margin allows the first heading to sit flush with the other columns e.g. stacked nav
+  margin-top: 0;
+}
