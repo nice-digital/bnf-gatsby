@@ -34,7 +34,7 @@ const BorderlineSubstancesSectionPage: FC<
 	BorderlineSubstancesSectionPageProps
 > = ({
 	data: {
-		bnfBorderlineSubstancesTaxonomy: { title, rootTaxonomy },
+		bnfBorderlineSubstancesTaxonomy: { slug, title, rootTaxonomy },
 	},
 }) => {
 	const { siteTitleShort } = useSiteMetadata();
@@ -86,19 +86,19 @@ const BorderlineSubstancesSectionPage: FC<
 					) : (
 						<>
 							<section>
-								{sections.map(({ title, childTaxonomies, slug }, i) => (
+								{sections.map((child1, i) => (
 									<>
 										<h2
-											key={slug}
+											key={child1.slug}
 											className={i === 0 ? styles.firstHeading : undefined}
 										>
-											{title}
+											{child1.title}
 										</h2>
 										<ol className="list--unstyled">
-											{childTaxonomies.map((child2) => (
+											{child1.childTaxonomies.map((child2) => (
 												<li key={child2.slug}>
 													<Link
-														to={`/borderline-substances/${slug}/${child2.slug}/`}
+														to={`/borderline-substances/${slug}/${child1.slug}/${child2.slug}/`}
 													>
 														{child2.title}
 													</Link>
