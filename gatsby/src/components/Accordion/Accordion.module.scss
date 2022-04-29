@@ -13,7 +13,8 @@
 
 .summary {
   cursor: pointer;
-  display: block;
+  display: flex;
+  flex-direction: column-reverse;
   list-style: none;
 
   &::marker,
@@ -21,7 +22,7 @@
     display: none;
   }
 
-  > :first-child {
+  > :last-child {
     margin: 0;
   }
 
@@ -48,34 +49,14 @@
 }
 
 .toggleLabel {
-  align-items: center;
-  color: core.$nds-colour-link;
-  display: flex;
-  flex-wrap: nowrap;
   margin-top: core.rem(core.$nds-spacing-x-small);
-  text-decoration: underline;
-
-  summary:hover & {
-    color: core.$nds-colour-link-hover;
-  }
-
-  .warningTheme & {
-    color: core.$nds-colour-nice-rich-black;
-  }
-}
-
-.icon {
-  display: block;
-  margin-right: core.rem(core.$nds-spacing-small);
-  transition: all 0.25s ease;
-
-  /* stylelint-disable-next-line selector-max-compound-selectors */
-  [open] > summary > .toggleLabel & {
-    transform: rotate(-180deg);
-  }
 }
 
 .warningTheme {
   background: core.$nds-colour-caution-background;
   border: 1px solid core.$nds-colour-caution;
+
+  .toggleLabel {
+    color: core.$nds-colour-nice-rich-black;
+  }
 }

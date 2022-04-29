@@ -188,19 +188,19 @@ describe("IndicationsAndDose", () => {
 
 			expect(
 				screen.getByRole("button", {
-					name: /show all 3 sections/i,
+					name: "Show all indications and dose (3)",
 				})
 			).toHaveAttribute("data-tracking", "Show all sections");
 
 			userEvent.click(
 				screen.getByRole("button", {
-					name: /show all 3 sections/i,
+					name: "Show all indications and dose (3)",
 				})
 			);
 
 			expect(
 				screen.getByRole("button", {
-					name: /hide all 3 sections/i,
+					name: "Hide all indications and dose (3)",
 				})
 			).toHaveAttribute("data-tracking", "Hide all sections");
 		});
@@ -209,13 +209,13 @@ describe("IndicationsAndDose", () => {
 			render(<IndicationsAndDose {...props} />);
 
 			expect(screen.getByRole("button")).toHaveTextContent(
-				"Show all 3 sections"
+				"Show all indications and dose (3)"
 			);
 
 			userEvent.click(screen.getByRole("button"));
 
 			expect(screen.getByRole("button")).toHaveTextContent(
-				"Hide all 3 sections"
+				"Hide all indications and dose (3)"
 			);
 		});
 	});
