@@ -13,3 +13,16 @@ export * from "./types";
  * */
 export const isTruthy = <TMaybe>(maybeT: TMaybe | null): maybeT is TMaybe =>
 	!!maybeT;
+
+export const decapitalize = (str: string): string => {
+	if (!str) return str;
+
+	const firstWordMatch = str.match(/^(\w*)(.*)$/) as RegExpMatchArray;
+
+	const firstWord = firstWordMatch[1],
+		rest = firstWordMatch[2];
+
+	if (firstWord === firstWord.toLocaleUpperCase()) return str;
+
+	return firstWord[0].toLocaleLowerCase() + firstWord.slice(1) + rest;
+};

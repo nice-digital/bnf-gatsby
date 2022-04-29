@@ -1,17 +1,13 @@
 import {
 	SyntheticEvent,
-	useContext,
 	useEffect,
-	useRef,
 	useState,
 	type FC,
 	type ReactNode,
 } from "react";
 
-import ChevronDownIcon from "@nice-digital/icons/lib/ChevronDown";
-
 import {
-	AccordionGroupContext,
+	useAccordionGroup,
 	AccordionGroupProvider,
 } from "../AccordionGroupContext/AccordionGroupContext";
 import { Toggle } from "../Toggle/Toggle";
@@ -21,6 +17,7 @@ import styles from "./Accordion.module.scss";
 export enum AccordionTheme {
 	Warning,
 }
+
 export interface AccordionProps {
 	title: ReactNode;
 	children: ReactNode;
@@ -42,7 +39,7 @@ export const Accordion: FC<AccordionProps> = ({
 }) => {
 	const [isOpen, setIsOpen] = useState(open),
 		themeClass = theme === AccordionTheme.Warning ? styles.warningTheme : "",
-		{ isGroupOpen } = useContext(AccordionGroupContext);
+		{ isGroupOpen } = useAccordionGroup();
 
 	useEffect(() => {
 		setIsOpen(isGroupOpen);

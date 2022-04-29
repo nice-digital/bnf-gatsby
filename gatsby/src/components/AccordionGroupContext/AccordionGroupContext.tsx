@@ -1,4 +1,4 @@
-import { createContext, type FC } from "react";
+import { createContext, useContext, type FC } from "react";
 
 export interface AccordionGroupContextType {
 	isGroupOpen: boolean;
@@ -22,3 +22,6 @@ export const AccordionGroupProvider: FC<AccordionGroupProviderProps> = ({
 		</AccordionGroupContext.Provider>
 	);
 };
+
+export const useAccordionGroup = (): AccordionGroupContextType =>
+	useContext(AccordionGroupContext);
