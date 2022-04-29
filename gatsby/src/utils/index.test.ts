@@ -36,7 +36,7 @@ describe("utils", () => {
 			);
 		});
 
-		it("should decapitalize accented character", () => {
+		it("should not decapitalize accented capital", () => {
 			expect(decapitalize("Étest")).toBe("Étest");
 		});
 	});
