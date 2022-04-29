@@ -28,6 +28,7 @@ const props: WoundManagementTaxonomyPageProps = {
 					title: "Hydrogel dressings",
 					slug: "hydrogel-dressings",
 					text: "<p> Hydrogel dressings are most commonly supplied as an amorphous, cohesive topical application that can take up the shape of a wound.</p>",
+					productGroups: [],
 					childTaxonomies: [
 						{
 							title: "Sodium hyaluronate dressings",
@@ -47,6 +48,7 @@ const props: WoundManagementTaxonomyPageProps = {
 					title: "Vapour-permeable films and membranes",
 					slug: "vapour-permeable-films-and-membranes",
 					text: "<p> Vapour-permeable films and membranes allow the passage of water vapour and oxygen but are impermeable to water and micro-organisms, and are suitable for lightly exuding wounds.</p>",
+					productGroups: [],
 					childTaxonomies: [
 						{
 							title: "Non-woven fabric dressing with viscose-rayon pad",
@@ -72,6 +74,7 @@ const props: WoundManagementTaxonomyPageProps = {
 					title: "Capillary-acting dressings",
 					slug: "capillary-acting-dressings",
 					text: null,
+					productGroups: [],
 					childTaxonomies: [],
 				},
 			],
@@ -139,4 +142,8 @@ describe("Wound management taxonomy page", () => {
 			props.data.allBnfWoundManagementTaxonomy.taxonomies.length
 		);
 	});
+
+	it.todo(
+		"check that product groups with no information are rendered correctly"
+	);
 });

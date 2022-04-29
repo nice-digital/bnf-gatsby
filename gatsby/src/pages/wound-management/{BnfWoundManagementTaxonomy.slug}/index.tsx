@@ -1,6 +1,7 @@
 import { graphql, Link } from "gatsby";
 import React, { type FC } from "react";
 
+import { FeedPrep } from "@nice-digital/gatsby-source-bnf";
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
 import { Grid, GridItem } from "@nice-digital/nds-grid";
 import { PageHeader } from "@nice-digital/nds-page-header";
@@ -15,6 +16,12 @@ import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
 import styles from "./index.module.scss";
+
+export type ProductGroup = {
+	title: string;
+	description: string;
+	products: FeedPrep[];
+};
 
 export interface WoundManagementTaxonomyPageProps {
 	data: {
@@ -32,6 +39,7 @@ export interface WoundManagementTaxonomyPageProps {
 				title: string;
 				slug: string;
 				text: string | null;
+				productGroups: ProductGroup[];
 				childTaxonomies: {
 					title: string;
 					slug: string;
@@ -40,6 +48,18 @@ export interface WoundManagementTaxonomyPageProps {
 		};
 	};
 }
+
+const productGroupsHaveNoInfo = (productGroups: ProductGroup[]) => {
+	let groupsHaveNoInfo = true;
+	for (const group of productGroups) {
+		if (group.products?.length) {
+			groupsHaveNoInfo = false;
+			break;
+		}
+	}
+
+	return groupsHaveNoInfo;
+};
 
 const WoundManagementTaxonomyPage: FC<WoundManagementTaxonomyPageProps> = ({
 	data: {
@@ -102,39 +122,55 @@ const WoundManagementTaxonomyPage: FC<WoundManagementTaxonomyPageProps> = ({
 					<SectionNav {...navSections} />
 					{text && <div dangerouslySetInnerHTML={{ __html: text }}></div>}
 
-					<h2>TODO: Add product groups! Check Cavi-care / Foam dressings</h2>
-
 					{childTaxonomies.length > 0 && (
 						<ul className={styles.childTaxonomyList}>
-							{childTaxonomies.map((child) => (
-								<li key={child.slug}>
-									<h2 id={child.slug}>{child.title}</h2>
-									{child.text && (
-										<div dangerouslySetInnerHTML={{ __html: child.text }}></div>
-									)}
-									{child.childTaxonomies.length > 0 ? (
-										<ul className={styles.nestedTaxonomyList}>
-											{child.childTaxonomies.map((nestedChild) => (
-												<li key={nestedChild.slug}>
-													<Link
-														to={`/wound-management/${slug}/${nestedChild.slug}`}
-													>
-														{nestedChild.title}
+							{childTaxonomies.map((child) => {
+								return (
+									<li key={child.slug}>
+										<h2 id={child.slug}>{child.title}</h2>
+										{child.text && (
+											<div
+												dangerouslySetInnerHTML={{ __html: child.text }}
+											></div>
+										)}
+										{child.productGroups.length > 0 &&
+											productGroupsHaveNoInfo(child.productGroups) &&
+											child.productGroups.map(({ title, description }) => (
+												<>
+													<h3>{title}</h3>
+													<div
+														dangerouslySetInnerHTML={{ __html: description }}
+													></div>
+													<p>
+														Please note, there is currently no specific
+														information about this product.
+													</p>
+												</>
+											))}
+										{child.childTaxonomies.length > 0 ? (
+											<ul className={styles.nestedTaxonomyList}>
+												{child.childTaxonomies.map((nestedChild) => (
+													<li key={nestedChild.slug}>
+														<Link
+															to={`/wound-management/${slug}/${nestedChild.slug}`}
+														>
+															{nestedChild.title}
+														</Link>
+													</li>
+												))}
+											</ul>
+										) : (
+											<ul className={styles.nestedTaxonomyList}>
+												<li>
+													<Link to={`/wound-management/${slug}/${child.slug}`}>
+														{child.title}
 													</Link>
 												</li>
-											))}
-										</ul>
-									) : (
-										<ul className={styles.nestedTaxonomyList}>
-											<li>
-												<Link to={`/wound-management/${slug}/${child.slug}`}>
-													{child.title}
-												</Link>
-											</li>
-										</ul>
-									)}
-								</li>
-							))}
+											</ul>
+										)}
+									</li>
+								);
+							})}
 						</ul>
 					)}
 				</GridItem>
@@ -161,6 +197,13 @@ export const query = graphql`
 				title
 				slug
 				text
+				productGroups {
+					title
+					description
+					products {
+						name
+					}
+				}
 				childTaxonomies {
 					title
 					slug
