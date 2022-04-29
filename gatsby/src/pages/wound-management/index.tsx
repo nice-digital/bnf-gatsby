@@ -36,6 +36,10 @@ export type WoundManagementIndexPageProps = {
 const navSections: SectionNavProps = {
 	sections: [
 		{
+			title: "Introduction",
+			id: "introduction",
+		},
+		{
 			title: "Pink (epitheliasing)",
 			id: "wound-type--154124684",
 		},
