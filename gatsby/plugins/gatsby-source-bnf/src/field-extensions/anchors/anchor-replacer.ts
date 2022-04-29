@@ -104,6 +104,8 @@ const anchorReplacer =
 		if (nodeType === BnfNode.WoundManagementTaxonomy) {
 			// TODO: What will the URL structure of wound management pages be?
 			newPath = `${basePath}/`;
+		} else if (nodeType === BnfNode.NursePrescribersFormularyIntroduction) {
+			newPath = `${basePath}/approved-list-for-prescribing-by-community-practitioner-nurse-prescribers-npf/`;
 		} else if (landingPageNodeTypes.includes(nodeType)) {
 			newPath = `${basePath}/`;
 		} else {

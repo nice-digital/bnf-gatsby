@@ -107,13 +107,6 @@ const InteractantPage: FC<InteractantPageProps> = ({
 		);
 	}, [interactions, sortBySeverity, searchFilterTerm]);
 
-	const handleKeyDown = (e: KeyboardEvent) => {
-		if (e.key === "Enter") {
-			e.preventDefault();
-			setSearchFilterTerm(filterTerm);
-		}
-	};
-
 	const RemoveFilterButton: FC = () => (
 		<div className={styles.clearFilterWrapper}>
 			<button
@@ -128,6 +121,12 @@ const InteractantPage: FC<InteractantPageProps> = ({
 			</button>
 		</div>
 	);
+
+	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		setSearchFilterTerm(filterTerm);
+		window.dataLayer.push({ event: "formSubmit", formText: filterTerm });
+	};
 
 	return (
 		<Layout>
@@ -153,7 +152,11 @@ const InteractantPage: FC<InteractantPageProps> = ({
 				heading="Interactions"
 				lead={
 					drug ? (
-						<Link className="p" to={`/drugs/${drug.slug}/`}>
+						<Link
+							className="p"
+							to={`/drugs/${drug.slug}/`}
+							data-tracking="own-monograph"
+						>
 							View <span dangerouslySetInnerHTML={{ __html: drug.title }} />{" "}
 							monograph page
 						</Link>
@@ -187,7 +190,10 @@ const InteractantPage: FC<InteractantPageProps> = ({
 
 					<div className={styles.grid}>
 						<div className={styles.rightCol}>
-							<div className={styles.informationPanel}>
+							<div
+								className={styles.informationPanel}
+								data-tracking="interaction-information"
+							>
 								<h2 className={styles.informationPanelHeading}>
 									Drug interaction information
 								</h2>
@@ -205,7 +211,7 @@ const InteractantPage: FC<InteractantPageProps> = ({
 							{isClient && (
 								<section className={`${styles.filterPanel} hide-print`}>
 									<h2 className="visually-hidden">Filters and sorting</h2>
-									<form className={styles.filterForm}>
+									<form className={styles.filterForm} onSubmit={handleSubmit}>
 										<Input
 											className={styles.filterInput}
 											label="Filter by drug name"
@@ -213,19 +219,18 @@ const InteractantPage: FC<InteractantPageProps> = ({
 											onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
 												setFilterTerm(e.target.value)
 											}
-											onKeyDown={handleKeyDown}
 											name="drugNameInput"
 											value={filterTerm}
 										/>
 										<Button
-											onClick={() => setSearchFilterTerm(filterTerm)}
 											variant={Button.variants.secondary}
 											className={styles.filterButton}
+											type="submit"
 										>
 											Filter
 										</Button>
 									</form>
-									<div className={styles.sortControls}>
+									<div className={styles.sortControls} data-tracking="sort">
 										<strong>Sorted by: </strong>
 										{sortBySeverity ? (
 											<>
