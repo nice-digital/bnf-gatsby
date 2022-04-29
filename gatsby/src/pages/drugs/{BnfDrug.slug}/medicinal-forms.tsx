@@ -15,7 +15,7 @@ import { AccordionGroup } from "@/components/AccordionGroup/AccordionGroup";
 import labelStyles from "@/components/CautionaryAndAdvisoryLabel/CautionaryAndAdvisoryLabel.module.scss";
 import { DetailsPageLayout } from "@/components/DetailsPageLayout/DetailsPageLayout";
 import { Prep } from "@/components/Prep/Prep";
-import { type QueryResult, WithSlug } from "@/utils";
+import { type QueryResult, WithSlug, decapitalize } from "@/utils";
 
 import styles from "./medicinal-forms.module.scss";
 
@@ -72,6 +72,8 @@ const MedicinalFormsPage: FC<MedicinalFormsPageProps> = ({
 		},
 	},
 }) => {
+	const titleNoHTML = striptags(title);
+
 	// Construct the meta description
 	const formList = medicinalForms.map(({ form }) => form);
 	const formattedFormList =
@@ -94,7 +96,7 @@ const MedicinalFormsPage: FC<MedicinalFormsPageProps> = ({
 				},
 				{
 					href: `/drugs/${slug}/`,
-					text: striptags(title),
+					text: titleNoHTML,
 				},
 			]}
 			sections={medicinalForms.map(({ form, slug }) => ({
@@ -104,12 +106,7 @@ const MedicinalFormsPage: FC<MedicinalFormsPageProps> = ({
 			asideContent={asideInfo}
 			headerCta={
 				<Link to={`/drugs/${slug}/`}>
-					View <span dangerouslySetInnerHTML={{ __html: title }}></span> drug
-					monograph
-					<span className="visually-hidden">
-						{" "}
-						for <span dangerouslySetInnerHTML={{ __html: title }}></span>
-					</span>
+					View {decapitalize(titleNoHTML)} drug monograph
 				</Link>
 			}
 		>
@@ -208,9 +205,9 @@ const MedicinalFormsPage: FC<MedicinalFormsPageProps> = ({
 							) : preps.length > 1 ? (
 								<AccordionGroup
 									toggleText={(isOpen) =>
-										`${isOpen ? "Hide" : "Show"} all ${
-											preps.length
-										} ${form} products`
+										`${isOpen ? "Hide" : "Show"} all ${decapitalize(
+											form
+										)} products (${preps.length})`
 									}
 								>
 									{formBody}

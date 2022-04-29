@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState, type FC } from "react";
+import { type FC } from "react";
 
 import { type FeedIndicationsAndDosePot } from "@nice-digital/gatsby-source-bnf";
 
@@ -58,7 +58,9 @@ export const IndicationsAndDose: FC<IndicationsAndDoseProps> = ({
 			{collapsible ? (
 				<AccordionGroup
 					toggleText={(isOpen) =>
-						`${isOpen ? "Hide" : "Show"} all ${numberOfSections} sections`
+						`${
+							isOpen ? "Hide" : "Show"
+						} all indications and dose (${numberOfSections})`
 					}
 				>
 					{bodyContent}
