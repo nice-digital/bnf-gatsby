@@ -17,14 +17,12 @@ const pageProps: MedicinesGuidancePageProps = {
 			title: "Guidance on prescribing",
 			sections: [
 				{
-					order: 0,
 					content:
 						"<p>Medicines should be prescribed only when they are necessary</p>",
 					slug: "general-guidance",
 					title: "General guidance",
 				},
 				{
-					order: 1,
 					content:
 						"<p><b>Biological medicines</b> are medicines that are made by or derived from a biological source</p>",
 					slug: "biological-medicines",
