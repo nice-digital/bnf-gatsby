@@ -15,6 +15,7 @@ export const MedicinesGuidanceMenu: FC = () => {
 			aria-label="Medicines guidance pages"
 			label="Medicines guidance"
 			link={{ destination: "/medicines-guidance/", elementType: Link }}
+			id="collapsible-menu"
 		>
 			{medicinesGuidancePages.map(({ href, title }) => (
 				<StackedNavLink

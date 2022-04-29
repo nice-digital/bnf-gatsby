@@ -1,6 +1,8 @@
 /* eslint-disable testing-library/no-render-in-setup */
 /* eslint-disable testing-library/no-node-access */
 import { render, screen, waitFor, within } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import React from "react";
 
 import { type OnThisPageProps } from "../OnThisPage/OnThisPage";
 
@@ -28,6 +30,7 @@ describe("DetailsPageLayout", () => {
 					titleHtml="FAQs for BNF <em>for Children</em> — general"
 					parentTitleParts={["Parent", "Grandparent"]}
 					metaDescription="A test meta"
+					parentBreadcrumbs={[{ href: "/about/", text: "About" }]}
 					{...sections}
 				>
 					test
@@ -117,7 +120,12 @@ describe("DetailsPageLayout", () => {
 	describe("Page header", () => {
 		it("should add content start skip link target id to page header", () => {
 			render(
-				<DetailsPageLayout menu={() => null} titleHtml="Anything" {...sections}>
+				<DetailsPageLayout
+					menu={() => null}
+					titleHtml="Anything"
+					{...sections}
+					parentBreadcrumbs={[{ href: "/about/", text: "About" }]}
+				>
 					test
 				</DetailsPageLayout>
 			);
@@ -132,6 +140,7 @@ describe("DetailsPageLayout", () => {
 				<DetailsPageLayout
 					menu={() => null}
 					titleHtml="Some <b>title</b>"
+					parentBreadcrumbs={[{ href: "/about/", text: "About" }]}
 					{...sections}
 				>
 					test
@@ -153,6 +162,7 @@ describe("DetailsPageLayout", () => {
 					menu={() => null}
 					preheading="Some <strong>HTML</strong>"
 					titleHtml="Title"
+					parentBreadcrumbs={[{ href: "/about/", text: "About" }]}
 					{...sections}
 				>
 					test
@@ -175,6 +185,7 @@ describe("DetailsPageLayout", () => {
 				<DetailsPageLayout
 					menu={() => <>Menu</>}
 					titleHtml="Anything"
+					parentBreadcrumbs={[{ href: "/about/", text: "About" }]}
 					{...sections}
 				>
 					Body content
@@ -190,6 +201,121 @@ describe("DetailsPageLayout", () => {
 				</DetailsPageLayout>
 			);
 			expect(screen.getByTestId("body")).toMatchSnapshot();
+		});
+	});
+
+	describe("mobile nav", () => {
+		it("should not render mobile toggle button in static build", () => {
+			const spy = jest
+				.spyOn(React, "useLayoutEffect")
+				.mockImplementation(() => {
+					/*noop*/
+				});
+
+			render(
+				<DetailsPageLayout
+					menu={() => <>Menu</>}
+					titleHtml="Anything"
+					parentBreadcrumbs={[{ href: "/about/", text: "About" }]}
+					{...sections}
+				>
+					Body content
+				</DetailsPageLayout>
+			);
+
+			expect(screen.queryByText("About", { selector: "button" })).toBeNull();
+
+			spy.mockRestore();
+		});
+
+		it("should render mobile anchor to topic menu in static build", () => {
+			const spy = jest
+				.spyOn(React, "useLayoutEffect")
+				.mockImplementation(() => {
+					/*noop*/
+				});
+
+			render(
+				<DetailsPageLayout
+					menu={() => <>Menu</>}
+					titleHtml="Anything"
+					parentBreadcrumbs={[{ href: "/about/", text: "About" }]}
+					{...sections}
+				>
+					Body content
+				</DetailsPageLayout>
+			);
+
+			expect(
+				screen.queryByText("About", {
+					selector: "a.toggleButton",
+				})
+			).toHaveAttribute("href", "#collapsible-menu");
+
+			spy.mockRestore();
+		});
+
+		it("should render collapsed mobile menu button client side", () => {
+			render(
+				<DetailsPageLayout
+					menu={() => <>Menu</>}
+					titleHtml="Anything"
+					parentBreadcrumbs={[{ href: "/about/", text: "About" }]}
+					{...sections}
+				>
+					Body content
+				</DetailsPageLayout>
+			);
+
+			const toggleBtn = screen.getByText("About", {
+				selector: "button",
+			});
+			expect(toggleBtn).toBeInTheDocument();
+			expect(toggleBtn).toHaveAttribute("aria-expanded", "false");
+		});
+
+		it("should render label for screenreaders", () => {
+			render(
+				<DetailsPageLayout
+					menu={() => <>Menu</>}
+					titleHtml="Anything"
+					parentBreadcrumbs={[{ href: "/about/", text: "About" }]}
+					{...sections}
+				>
+					Body content
+				</DetailsPageLayout>
+			);
+
+			const toggleBtn = screen.getByText("About", {
+				selector: "button",
+			});
+			expect(toggleBtn).toBeInTheDocument();
+			expect(toggleBtn).toHaveAttribute("aria-label", "Expand menu for About");
+		});
+
+		it("should collapse toggle button on click", () => {
+			render(
+				<DetailsPageLayout
+					menu={() => <>Menu</>}
+					titleHtml="Anything"
+					parentBreadcrumbs={[{ href: "/about/", text: "About" }]}
+					{...sections}
+				>
+					Body content
+				</DetailsPageLayout>
+			);
+
+			const toggleBtn = screen.getByText("About", {
+				selector: "button",
+			});
+
+			userEvent.click(toggleBtn);
+
+			expect(toggleBtn).toHaveAttribute("aria-expanded", "true");
+			expect(toggleBtn).toHaveAttribute(
+				"aria-label",
+				"Collapse menu for About"
+			);
 		});
 	});
 });

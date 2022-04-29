@@ -15,6 +15,7 @@ export const NursePrescribersFormularyMenu: FC = () => {
 			aria-label="Nurse Prescribers' Formulary"
 			label="Nurse Prescribers' Formulary"
 			link={{ destination: "/nurse-prescribers-formulary/", elementType: Link }}
+			id="collapsible-menu"
 		>
 			{menuList.map(({ href, title }) => (
 				<StackedNavLink

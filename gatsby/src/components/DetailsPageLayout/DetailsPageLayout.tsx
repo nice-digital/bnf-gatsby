@@ -4,9 +4,13 @@ import React, {
 	type ReactNode,
 	type ElementType,
 	ReactElement,
+	useState,
+	useLayoutEffect,
+	useCallback,
 } from "react";
 import striptags from "striptags";
 
+import ChevronDownIcon from "@nice-digital/icons/lib/ChevronDown";
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
 import { Grid, GridItem } from "@nice-digital/nds-grid";
 import { PageHeader } from "@nice-digital/nds-page-header";
@@ -56,6 +60,18 @@ export const DetailsPageLayout: React.FC<DetailsPageLayoutProps> = ({
 	headerCta,
 	useSectionNav,
 }) => {
+	const [isExpanded, setIsExpanded] = useState(true);
+	const [isClient, setIsClient] = useState(false);
+
+	useLayoutEffect(() => {
+		setIsExpanded(false);
+		setIsClient(true);
+	}, []);
+
+	const clickHandler = useCallback(() => {
+		setIsExpanded((s) => !s);
+	}, []);
+
 	const { siteTitleShort } = useSiteMetadata(),
 		titleNoHtml = striptags(titleHtml),
 		breadcrumbElements = useMemo(
@@ -98,9 +114,30 @@ export const DetailsPageLayout: React.FC<DetailsPageLayoutProps> = ({
 
 			<Grid gutter="loose" data-testid="body">
 				{Menu && (
-					<GridItem cols={12} md={4} lg={3} className="hide-print">
-						<Menu />
-					</GridItem>
+					<>
+						<GridItem cols={12} md={4} lg={3} className="hide-print">
+							{isClient ? (
+								<button
+									type="button"
+									className={styles.toggleButton}
+									onClick={clickHandler}
+									aria-expanded={isExpanded}
+									aria-label={`${isExpanded ? "Collapse" : "Expand"} menu for ${
+										parentBreadcrumbs[parentBreadcrumbs.length - 1].text
+									}`}
+								>
+									{parentBreadcrumbs[parentBreadcrumbs.length - 1].text}{" "}
+									<ChevronDownIcon className={styles.icon} />
+								</button>
+							) : (
+								<a className={styles.toggleButton} href="#collapsible-menu">
+									{parentBreadcrumbs[parentBreadcrumbs.length - 1].text}{" "}
+									<ChevronDownIcon className={styles.icon} />
+								</a>
+							)}
+							<Menu />
+						</GridItem>
+					</>
 				)}
 				<GridItem cols={12} md={Menu ? 8 : 12} lg={Menu ? 9 : 12}>
 					{useSectionNav && !asideContent ? (

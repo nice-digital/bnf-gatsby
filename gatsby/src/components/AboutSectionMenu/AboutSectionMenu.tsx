@@ -15,6 +15,7 @@ export const AboutSectionMenu: FC = () => {
 			aria-label="About section pages"
 			label="About"
 			link={{ destination: "/about/", elementType: Link }}
+			id="collapsible-menu"
 		>
 			{aboutPages.map(({ href, title }) => (
 				<StackedNavLink
