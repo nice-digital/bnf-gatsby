@@ -6,6 +6,8 @@ import striptags from "striptags";
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
 import { PageHeader } from "@nice-digital/nds-page-header";
 
+import { Accordion } from "@/components/Accordion/Accordion";
+import { AccordionGroup } from "@/components/AccordionGroup/AccordionGroup";
 import { Layout } from "@/components/Layout/Layout";
 import {
 	SectionNav,
@@ -98,37 +100,59 @@ const WoundManagementPricingPage: FC<WoundManagementPricingPageProps> = ({
 
 			{text && <div dangerouslySetInnerHTML={{ __html: text }}></div>}
 
-			<ul className={styles.productGroupList}>
-				{productGroups.map(({ title, description, products }) => (
-					<li key={title}>
-						<h2 id={slugify(striptags(title))}>{title}</h2>
-						{description && (
-							<div dangerouslySetInnerHTML={{ __html: description }}></div>
-						)}
-						<table>
-							<thead>
-								<tr>
-									<th>Product</th>
-									<th>Price</th>
-								</tr>
-							</thead>
-							<tbody>
-								{products.map(({ name, manufacturer, packs }) => (
-									<tr key={name}>
-										<td>
-											{name}{" "}
-											<span className={styles.manufacturer}>
-												{manufacturer}
-											</span>
-										</td>
-										<td>{packs[0]?.nhsIndicativePrice}</td>
-									</tr>
-								))}
-							</tbody>
-						</table>
-					</li>
-				))}
-			</ul>
+			<AccordionGroup
+				toggleText={(isOpen) =>
+					`${isOpen ? "Hide" : "Show"} all ${title.toLowerCase()}  (${
+						productGroups.length
+					})`
+				}
+			>
+				<ul className={styles.productGroupList}>
+					{productGroups.map(({ title, description, products }) => (
+						<li key={title}>
+							<Accordion
+								title={
+									<div>
+										<h2
+											className={styles.productGroupHeading}
+											id={slugify(striptags(title))}
+										>
+											{title}
+										</h2>
+										{description && (
+											<div
+												dangerouslySetInnerHTML={{ __html: description }}
+											></div>
+										)}
+									</div>
+								}
+							>
+								<table>
+									<thead>
+										<tr>
+											<th>Product</th>
+											<th>Price</th>
+										</tr>
+									</thead>
+									<tbody>
+										{products.map(({ name, manufacturer, packs }) => (
+											<tr key={name}>
+												<td>
+													{name}{" "}
+													<span className={styles.manufacturer}>
+														{manufacturer}
+													</span>
+												</td>
+												<td>{packs[0]?.nhsIndicativePrice}</td>
+											</tr>
+										))}
+									</tbody>
+								</table>
+							</Accordion>
+						</li>
+					))}
+				</ul>
+			</AccordionGroup>
 		</Layout>
 	);
 };

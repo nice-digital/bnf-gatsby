@@ -1,6 +1,13 @@
+@use '@nice-digital/nds-core/scss/core';
+
 .productGroupList {
   list-style: none;
   margin: 0;
+}
+
+.productGroupHeading {
+  @include core.nds-h3;
+  margin-top: 0;
 }
 
 .manufacturer {
