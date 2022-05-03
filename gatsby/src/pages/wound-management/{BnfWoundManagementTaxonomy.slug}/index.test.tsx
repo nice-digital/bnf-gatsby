@@ -143,7 +143,37 @@ describe("Wound management taxonomy page", () => {
 		);
 	});
 
-	it.todo(
-		"check that product groups with no information are rendered correctly"
-	);
+	it("should show a message when rendering a product group with no information", () => {
+		render(
+			<WoundManagementTaxonomyPage
+				data={{
+					...props.data,
+					bnfWoundManagementTaxonomy: {
+						...props.data.bnfWoundManagementTaxonomy,
+						childTaxonomies: [
+							{
+								title: "No info test",
+								slug: "no-info-test",
+								text: "<p>No info test</p>",
+								childTaxonomies: [],
+								productGroups: [
+									{
+										title: "Test product group",
+										description: "<p>Test description</p>",
+										products: [], // Need a product group with no products to trigger this condition
+									},
+								],
+							},
+						],
+					},
+				}}
+			/>
+		);
+
+		expect(
+			screen.getByText(
+				"Please note, there is currently no specific information about this product."
+			)
+		).toBeInTheDocument();
+	});
 });
