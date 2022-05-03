@@ -116,7 +116,10 @@ const WoundManagementPricingPage: FC<WoundManagementPricingPageProps> = ({
 								{products.map(({ name, manufacturer, packs }) => (
 									<tr key={name}>
 										<td>
-											{name} <span>{manufacturer}</span>
+											{name}{" "}
+											<span className={styles.manufacturer}>
+												{manufacturer}
+											</span>
 										</td>
 										<td>{packs[0]?.nhsIndicativePrice}</td>
 									</tr>
