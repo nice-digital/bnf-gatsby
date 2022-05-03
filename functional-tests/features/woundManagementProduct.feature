@@ -1,4 +1,4 @@
-Feature: Wound management taxonomy page
+Feature: Wound management product page
   As a user of BNF
   I want to be able to use the BNF Wound management product page
 
