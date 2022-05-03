@@ -113,9 +113,7 @@ describe("Wound management taxonomy page", () => {
 	it("should render the page title with the expected text", async () => {
 		render(<WoundManagementProductPage {...props} />);
 		await waitFor(() => {
-			expect(document.title).toStartWith(
-				props.data.bnfWoundManagementTaxonomyProductGroup.taxonomy.title
-			);
+			expect(document.title).toStartWith(taxonomy.title);
 		});
 	});
 
