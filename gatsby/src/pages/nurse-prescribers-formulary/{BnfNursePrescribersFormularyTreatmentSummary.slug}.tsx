@@ -2,15 +2,25 @@ import { graphql } from "gatsby";
 import React, { FC } from "react";
 
 import { DetailsPageLayout } from "@/components/DetailsPageLayout/DetailsPageLayout";
+import { NursePrescribersFormularyMenu } from "@/components/NursePrescribersFormularyMenu/NursePrescribersFormularyMenu";
 import { RecordSectionsContent } from "@/components/RecordSectionsContent/RecordSectionsContent";
-import { type RecordSection } from "@/utils";
+import { useSiteMetadata } from "@/hooks/useSiteMetadata";
+import {
+	type RecordSection,
+	type MetaDescriptionsMap,
+	type SlugAndTitle,
+} from "@/utils";
+
+import metas from "./{BnfNursePrescribersFormularyTreatmentSummary.slug}.meta-descriptions.json";
 
 export type NursePrescribersFormularyTreatmentSummaryPageProps = {
 	data: {
-		bnfNursePrescribersFormularyTreatmentSummary: {
-			title: string;
+		bnfNursePrescribersFormularyTreatmentSummary: SlugAndTitle & {
 			sections: RecordSection[];
 		};
+	};
+	location: {
+		pathname: string;
 	};
 };
 
@@ -18,13 +28,26 @@ const NursePrescribersFormularyTreatmentSummaryPage: FC<
 	NursePrescribersFormularyTreatmentSummaryPageProps
 > = ({
 	data: {
-		bnfNursePrescribersFormularyTreatmentSummary: { title, sections },
+		bnfNursePrescribersFormularyTreatmentSummary: { title, sections, slug },
 	},
+	location: { pathname },
 }) => {
+	const { isBNF } = useSiteMetadata(),
+		metaDescription = (metas as MetaDescriptionsMap)[slug]?.[
+			isBNF ? "bnf" : "bnfc"
+		];
+
+	if (typeof metaDescription !== "string")
+		throw new Error(
+			`Couldn't find meta description for page '${title}' at path '${pathname}'. Has the page been added or renamed?`
+		);
+
 	return (
 		<DetailsPageLayout
 			titleHtml={title}
 			parentTitleParts={["Nurse Prescribers' Formulary"]}
+			menu={NursePrescribersFormularyMenu}
+			asideContent={<></>}
 			parentBreadcrumbs={[
 				{
 					href: "/nurse-prescribers-formulary/",
@@ -35,6 +58,7 @@ const NursePrescribersFormularyTreatmentSummaryPage: FC<
 				id: slug,
 				title,
 			}))}
+			metaDescription={metaDescription}
 		>
 			<RecordSectionsContent sections={sections} />
 		</DetailsPageLayout>
@@ -45,6 +69,7 @@ export const query = graphql`
 	query ($id: String) {
 		bnfNursePrescribersFormularyTreatmentSummary(id: { eq: $id }) {
 			title
+			slug
 			sections {
 				...RecordSection
 			}

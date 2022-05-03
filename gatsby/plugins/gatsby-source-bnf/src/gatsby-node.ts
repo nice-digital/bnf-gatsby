@@ -21,6 +21,7 @@ import { createInteractionNodes } from "./node-creation/interactions";
 import { createMedicalDeviceNodes } from "./node-creation/medical-devices";
 import { createMetadataNode } from "./node-creation/metadata";
 import { createNursePrescribersNodes } from "./node-creation/nurse-prescribers-formulary";
+import { createTreatmentSummaryNodes } from "./node-creation/treatment-summaries";
 import { createSimpleRecordNodes } from "./node-creation/utils";
 import { createWoundManagementNodes } from "./node-creation/wound-management";
 import { BnfNode } from "./node-types";
@@ -76,15 +77,12 @@ export const sourceNodes = async (
 		sourceNodesArgs
 	);
 
+	createTreatmentSummaryNodes(feedData.treatmentSummaries, sourceNodesArgs);
+
 	// Simple records nodes:
 	createSimpleRecordNodes(
 		feedData.about,
 		BnfNode.AboutSection,
-		sourceNodesArgs
-	);
-	createSimpleRecordNodes(
-		feedData.treatmentSummaries,
-		BnfNode.TreatmentSummary,
 		sourceNodesArgs
 	);
 	createSimpleRecordNodes(feedData.guidance, BnfNode.Guidance, sourceNodesArgs);

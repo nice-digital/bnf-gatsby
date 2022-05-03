@@ -1,4 +1,3 @@
-import { Link } from "gatsby";
 import { type FC } from "react";
 
 import { TagList, Tag } from "@/components/TagList/TagList";

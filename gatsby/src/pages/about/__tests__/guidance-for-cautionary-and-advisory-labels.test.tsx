@@ -16,14 +16,12 @@ const pageProps: CautionaryAdvisoryGuidancePageProps = {
 			title: "Guidance for cautionary and advisory labels",
 			sections: [
 				{
-					order: 0,
 					content:
 						"<p>Medicinal forms within BNF publications include code numbers...</p>",
 					slug: "introduction",
 					title: "Introduction",
 				},
 				{
-					order: 1,
 					content:
 						"<p>Most preparations are dispensed in unbroken original packs...</p>",
 					slug: "original-packs",

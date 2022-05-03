@@ -1,4 +1,4 @@
-import { graphql, Link } from "gatsby";
+import { Link } from "gatsby";
 import { FC } from "react";
 
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
@@ -7,29 +7,19 @@ import { PageHeader } from "@nice-digital/nds-page-header";
 
 import { Layout } from "@/components/Layout/Layout";
 import { SEO } from "@/components/SEO/SEO";
+import { useMedicalDevicePages } from "@/hooks/useMedicalDevicePages";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
-export interface MedicalDevicesIndexPageProps {
-	data: {
-		allMedicalDevices: {
-			nodes: {
-				title: string;
-				slug: string;
-			}[];
-		};
-	};
-}
-
-const MedicalDevicesIndexPage: FC<MedicalDevicesIndexPageProps> = ({
-	data: {
-		allMedicalDevices: { nodes },
-	},
-}) => {
-	const { siteTitleShort } = useSiteMetadata();
+const MedicalDevicesIndexPage: FC = () => {
+	const { siteTitleShort } = useSiteMetadata(),
+		medicalDevicePages = useMedicalDevicePages();
 
 	return (
 		<Layout>
-			<SEO title="Medical devices" />
+			<SEO
+				title="Medical devices"
+				description="Browse medical devices, by type."
+			/>
 
 			<Breadcrumbs>
 				<Breadcrumb to="https://www.nice.org.uk/">NICE</Breadcrumb>
@@ -42,30 +32,14 @@ const MedicalDevicesIndexPage: FC<MedicalDevicesIndexPageProps> = ({
 			<PageHeader id="content-start" heading="Medical devices" />
 
 			<ColumnList aria-label="Pages in the medical devices section">
-				{nodes.map(({ slug, title }) => (
-					<li key={slug}>
-						<Link
-							to={`/medical-devices/${slug}/`}
-							dangerouslySetInnerHTML={{ __html: title }}
-						/>
+				{medicalDevicePages.map(({ href, title }) => (
+					<li key={title}>
+						<Link to={href} dangerouslySetInnerHTML={{ __html: title }} />
 					</li>
 				))}
 			</ColumnList>
 		</Layout>
 	);
 };
-
-export const query = graphql`
-	{
-		allMedicalDevices: allBnfMedicalDevice(
-			sort: { fields: title, order: ASC }
-		) {
-			nodes {
-				title
-				slug
-			}
-		}
-	}
-`;
 
 export default MedicalDevicesIndexPage;

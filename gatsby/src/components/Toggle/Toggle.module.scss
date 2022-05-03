@@ -1,0 +1,25 @@
+@use '@nice-digital/nds-core/scss/core';
+
+.label {
+  @include core.nds-link-default;
+  align-items: center;
+  color: core.$nds-colour-link;
+  display: flex;
+  flex-wrap: nowrap;
+  text-decoration: underline;
+
+  summary:hover &,
+  button:hover & {
+    color: core.$nds-colour-link-hover;
+  }
+}
+
+.icon {
+  display: block;
+  margin-right: core.rem(core.$nds-spacing-small);
+  transition: all 0.25s ease;
+
+  &.open {
+    transform: rotate(-180deg);
+  }
+}

@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MedicalDevicePage should match snapshot for graphql query 1`] = `
+"
+	query ($id: String) {
+		bnfMedicalDevice(id: { eq: $id }) {
+			title
+			slug
+			medicalDeviceTypes {
+				title
+				slug
+				hasPreps
+				clinicalMedicalDeviceInformationGroups {
+					title
+					slug
+				}
+			}
+		}
+	}
+"
+`;

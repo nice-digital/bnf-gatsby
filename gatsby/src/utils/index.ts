@@ -11,5 +11,20 @@ export * from "./types";
  *  		// Do something
  *  	})
  * */
-export const isTruthy = <TMaybe>(maybeT: TMaybe | null): maybeT is TMaybe =>
-	!!maybeT;
+export const isTruthy = <TMaybe>(
+	maybeT: TMaybe | null | undefined
+): maybeT is TMaybe => !!maybeT;
+
+/** Lowercases the first letter of a string, when it's not an acronym */
+export const decapitalize = (str: string): string => {
+	if (!str) return str;
+
+	const firstWordMatch = str.match(/^(\w*)(.*)$/) as RegExpMatchArray;
+
+	const firstWord = firstWordMatch[1],
+		rest = firstWordMatch[2];
+
+	if (firstWord === firstWord.toLocaleUpperCase()) return str;
+
+	return firstWord[0].toLocaleLowerCase() + firstWord.slice(1) + rest;
+};
