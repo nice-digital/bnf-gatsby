@@ -1,24 +1,34 @@
+import slugify from "@sindresorhus/slugify";
 import { graphql, Link } from "gatsby";
 import React, { type FC } from "react";
+import striptags from "striptags";
 
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
 import { PageHeader } from "@nice-digital/nds-page-header";
 
 import { Layout } from "@/components/Layout/Layout";
+import {
+	SectionNav,
+	type SectionNavProps,
+} from "@/components/SectionNav/SectionNav";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
+
+import styles from "./{BnfWoundManagementTaxonomyProductGroup.taxonomy__slug}.module.scss";
 
 export interface WoundManagementPricingPageProps {
 	data: {
 		bnfWoundManagementTaxonomyProductGroup: {
 			taxonomy: {
 				title: string;
+				text: string;
 				rootTaxonomy: {
 					slug: string;
 					title: string;
 				};
 				productGroups: {
 					title: string;
+					description: string;
 					products: {
 						name: string;
 						manufacturer: string;
@@ -35,11 +45,20 @@ export interface WoundManagementPricingPageProps {
 const WoundManagementPricingPage: FC<WoundManagementPricingPageProps> = ({
 	data: {
 		bnfWoundManagementTaxonomyProductGroup: {
-			taxonomy: { title, rootTaxonomy, productGroups },
+			taxonomy: { title, text, rootTaxonomy, productGroups },
 		},
 	},
 }) => {
 	const { siteTitleShort } = useSiteMetadata();
+
+	const navSections: SectionNavProps = {
+		sections: productGroups.map(({ title }) => {
+			return {
+				id: slugify(striptags(title)),
+				title,
+			};
+		}),
+	};
 
 	return (
 		<Layout>
@@ -68,12 +87,24 @@ const WoundManagementPricingPage: FC<WoundManagementPricingPageProps> = ({
 			<PageHeader
 				id="content-start"
 				heading={<span dangerouslySetInnerHTML={{ __html: title }} />}
+				lead={
+					<Link className="p" to={`/wound-management/${rootTaxonomy.slug}`}>
+						View other {rootTaxonomy.title.toLowerCase()}
+					</Link>
+				}
 			/>
 
-			<ul>
-				{productGroups.map(({ title, products }) => (
+			<SectionNav {...navSections} />
+
+			{text && <div dangerouslySetInnerHTML={{ __html: text }}></div>}
+
+			<ul className={styles.productGroupList}>
+				{productGroups.map(({ title, description, products }) => (
 					<li key={title}>
-						<h2>{title}</h2>
+						<h2 id={slugify(striptags(title))}>{title}</h2>
+						{description && (
+							<div dangerouslySetInnerHTML={{ __html: description }}></div>
+						)}
 						<table>
 							<thead>
 								<tr>
@@ -87,7 +118,7 @@ const WoundManagementPricingPage: FC<WoundManagementPricingPageProps> = ({
 										<td>
 											{name} <span>{manufacturer}</span>
 										</td>
-										<td>{packs[0].nhsIndicativePrice}</td>
+										<td>{packs[0]?.nhsIndicativePrice}</td>
 									</tr>
 								))}
 							</tbody>
@@ -104,12 +135,14 @@ export const query = graphql`
 		bnfWoundManagementTaxonomyProductGroup(id: { eq: $id }) {
 			taxonomy {
 				title
+				text
 				rootTaxonomy {
 					slug
 					title
 				}
 				productGroups {
 					title
+					description
 					products {
 						name
 						manufacturer
