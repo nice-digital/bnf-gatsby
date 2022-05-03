@@ -15,8 +15,6 @@ import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 import { QueryResult } from "@/utils";
 
-import NotFoundPage from "../../404";
-
 import styles from "./{BnfMedicalDeviceType.slug}.module.scss";
 
 export interface MedicalDeviceTypePageProps {
@@ -48,7 +46,7 @@ const MedicalDeviceTypePage: FC<MedicalDeviceTypePageProps> = ({
 		hasStackedNav = medicalDevice.medicalDeviceTypes.length > 1,
 		medicalDeviceTitleNoHtml = striptags(medicalDevice.title);
 
-	if (preparations.length === 0) return <NotFoundPage />;
+	if (preparations.length === 0) return null;
 
 	return (
 		<Layout>

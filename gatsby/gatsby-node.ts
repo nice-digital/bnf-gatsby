@@ -4,6 +4,7 @@ import {
 	CreatePageArgs,
 } from "gatsby";
 
+import { BnfNode } from "./plugins/gatsby-source-bnf/src/node-types";
 import { initialFieldExtension } from "./src/field-extensions/initial";
 import { isBNFC } from "./src/site";
 
@@ -70,10 +71,41 @@ export const onCreateWebpackConfig = ({
  * Gatsby hook for page creation/deletion
  * See https://www.gatsbyjs.com/docs/creating-and-modifying-pages/
  */
-export const onCreatePage = ({ page, actions }: CreatePageArgs): void => {
+export const onCreatePage = ({
+	page,
+	actions,
+	getNodesByType,
+	reporter,
+}: CreatePageArgs): void => {
 	// Delete wound management from BNFC
 	const { deletePage } = actions;
 	if (isBNFC && page.path === "/wound-management/") {
 		deletePage(page);
+	}
+
+	// The Gatsby File System Route API doesn't support queries or returning null from pages,
+	// so we have to delete empty pages here, e.g. medical device types that have no preps will have CMPIs instead
+	const medicalDeviceSubPageRegex = /^\/medical-devices\/[^/]*\/([^/]+)/;
+	if (
+		medicalDeviceSubPageRegex.test(page.path) &&
+		page.component.includes(
+			"{BnfMedicalDeviceType.medicalDevice__slug}/{BnfMedicalDeviceType.slug}.tsx"
+		)
+	) {
+		const medicalDeviceType = getNodesByType(BnfNode.MedicalDeviceType).find(
+			(n) => n.id === page.context.id
+		);
+
+		if (!medicalDeviceType)
+			throw Error(
+				`Could not find medical device type node with id ${page.context.id}`
+			);
+
+		if (!medicalDeviceType.hasPreps) {
+			reporter.info(
+				`Deleting page '${medicalDeviceType.title}' because it has no preps`
+			);
+			deletePage(page);
+		}
 	}
 };
