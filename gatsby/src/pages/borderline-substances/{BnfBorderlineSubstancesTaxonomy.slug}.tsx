@@ -30,6 +30,21 @@ export type BorderlineSubstancesSectionPageProps = {
 					slug: string;
 				}[];
 			};
+			substances: {
+				title: string;
+			}[];
+			childTaxonomies: {
+				title: string;
+				substances: {
+					title: string;
+				}[];
+				childTaxonomies: {
+					title: string;
+					substances: {
+						title: string;
+					}[];
+				}[];
+			}[];
 		};
 	};
 };
@@ -38,7 +53,13 @@ const BorderlineSubstancesSectionPage: FC<
 	BorderlineSubstancesSectionPageProps
 > = ({
 	data: {
-		bnfBorderlineSubstancesTaxonomy: { slug, title, rootTaxonomy },
+		bnfBorderlineSubstancesTaxonomy: {
+			slug,
+			title,
+			rootTaxonomy,
+			substances,
+			childTaxonomies,
+		},
 	},
 }) => {
 	const { siteTitleShort } = useSiteMetadata();
@@ -124,9 +145,28 @@ const BorderlineSubstancesSectionPage: FC<
 					</GridItem>
 				</Grid>
 			) : (
-				<Link to={`/borderline-substances/${rootTaxonomy.slug}/`}>
-					View other {rootTaxonomy.title}
-				</Link>
+				<>
+					{" "}
+					<Link to={`/borderline-substances/${rootTaxonomy.slug}/`}>
+						View other {rootTaxonomy.title}
+					</Link>
+					{/* // loop through this taxonomy substances //// within that, loop
+					through its presentations // loop through this taxonomy's children
+					//// loop through its children //////loop through its presentations */}
+					<section>
+						{substances.map((substance) => (
+							<>
+								<h2 key={substance.title}>{substance.title}</h2>
+							</>
+						))}
+					</section>
+					<section>
+						{" "}
+						{childTaxonomies.map((child) => (
+							<h3 key={child.title}>{child.title}</h3>
+						))}
+					</section>
+				</>
 			)}
 		</Layout>
 	);
@@ -138,6 +178,8 @@ export const query = graphql`
 			slug
 			title
 			rootTaxonomy {
+				slug
+				title
 				childTaxonomies {
 					title
 					childTaxonomies {
@@ -146,8 +188,21 @@ export const query = graphql`
 					}
 					slug
 				}
-				slug
+			}
+			substances {
 				title
+			}
+			childTaxonomies {
+				title
+				substances {
+					title
+				}
+				childTaxonomies {
+					title
+					substances {
+						title
+					}
+				}
 			}
 		}
 	}
