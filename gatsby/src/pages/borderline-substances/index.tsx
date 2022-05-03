@@ -31,6 +31,7 @@ const BorderlineSubstanceIntroductionPage: FC<
 				title,
 			}))}
 			menu={BorderlineSubstancesMenu}
+			metaDescription="Find information on ACBS approved foods and other borderline substances which have been formulated for use in managing medical conditions."
 		>
 			<RecordSectionsContent sections={sections} />
 		</DetailsPageLayout>

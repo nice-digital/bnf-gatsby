@@ -15,7 +15,7 @@ describe("BorderlineSubstancesMenu", () => {
 		render(<BorderlineSubstancesMenu />);
 
 		expect(
-			screen.getByRole("navigation", { name: "Borderline Substances" })
+			screen.getByRole("navigation", { name: "Borderline substances" })
 		).toBeInTheDocument();
 	});
 
@@ -23,7 +23,7 @@ describe("BorderlineSubstancesMenu", () => {
 		render(<BorderlineSubstancesMenu />);
 
 		expect(
-			screen.getByRole("link", { name: "Borderline Substances" })
+			screen.getByRole("link", { name: "Borderline substances" })
 		).toHaveAttribute("href", "/borderline-substances/");
 	});
 

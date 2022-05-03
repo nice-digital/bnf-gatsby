@@ -93,7 +93,7 @@ exports[`BorderlineSubstanceIntroductionPage should match snapshot for page cont
         data-g="12 md:4 lg:3"
       >
         <nav
-          aria-label="Borderline Substances"
+          aria-label="Borderline substances"
           class="stacked-nav"
         >
           <p
@@ -103,7 +103,7 @@ exports[`BorderlineSubstanceIntroductionPage should match snapshot for page cont
               aria-current="false"
               href="/borderline-substances/"
             >
-              Borderline Substances
+              Borderline substances
             </a>
           </p>
           <ul

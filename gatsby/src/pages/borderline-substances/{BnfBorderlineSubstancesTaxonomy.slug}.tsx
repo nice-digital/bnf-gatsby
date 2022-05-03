@@ -48,7 +48,7 @@ const BorderlineSubstancesSectionPage: FC<
 
 	return (
 		<Layout>
-			<SEO title={title} description="Browse borderline substances, by type." />
+			<SEO title={title} />
 
 			<Breadcrumbs>
 				<Breadcrumb key="NICE" to="https://www.nice.org.uk/">
