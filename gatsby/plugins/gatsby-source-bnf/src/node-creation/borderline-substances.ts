@@ -2,6 +2,7 @@ import { type SourceNodesArgs } from "gatsby";
 import { type Except } from "type-fest";
 
 import {
+	FeedBorderlineSubstance,
 	FeedBorderlineSubstancesTaxonomy,
 	PHPID,
 	SID,
@@ -63,4 +64,27 @@ export const createBorderlineSubstancesNodes = (
 	};
 
 	createTaxonomyRecursive(taxonomy);
+
+	const createSubstanceRecursive = (
+		taxonomies: FeedBorderlineSubstancesTaxonomy[]
+	) => {
+		taxonomies.forEach((taxonomy) => {
+			const substances = taxonomy.substances;
+
+			substances?.forEach((substance) => {
+				const { ...substanceFields } = substance;
+				createBnfNode<FeedBorderlineSubstance>(
+					{
+						...substanceFields,
+					},
+					BnfNode.BorderlineSubstance,
+					sourceNodesArgs
+				);
+			});
+
+			if (taxonomy.children) createSubstanceRecursive(taxonomy.children);
+		});
+	};
+
+	createSubstanceRecursive(taxonomy);
 };

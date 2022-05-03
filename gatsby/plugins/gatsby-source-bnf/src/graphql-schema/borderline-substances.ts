@@ -47,7 +47,7 @@ export const borderlineSubstancesSchema = `
 	"""
 	An individual borderline substance. This comprises a number of presentations, each of which may contain zero or more preparations.
 	"""
-	type ${BnfNode.BorderlineSubstance} {
+	type ${BnfNode.BorderlineSubstance} implements Node @dontInfer {
 		"The title of the borderline substance. May contain HTML mark-up."
 		title: String!
 
