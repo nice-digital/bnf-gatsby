@@ -1,3 +1,4 @@
+import { useLocation } from "@reach/router";
 import { render, waitFor, screen, within } from "@testing-library/react";
 
 import MedicalDeviceTypePage, {
@@ -134,13 +135,129 @@ describe("MedicalDeviceTypePage", () => {
 
 	describe("Body", () => {
 		describe("Stacked Nav", () => {
-			it.todo("should render stacked nav when there are sibling device types");
+			it("should not render stacked nav when there are no sibling device types", () => {
+				render(
+					<MedicalDeviceTypePage
+						data={{
+							bnfMedicalDeviceType: {
+								...props.data.bnfMedicalDeviceType,
+								medicalDevice: {
+									...props.data.bnfMedicalDeviceType.medicalDevice,
+									medicalDeviceTypes: [
+										props.data.bnfMedicalDeviceType.medicalDevice,
+									],
+								},
+							},
+						}}
+					/>
+				);
 
-			it.todo("should render nav link to parent medical device");
-			it.todo("should render nav link to each sibling device types");
-			it.todo("should render highlight current page");
+				expect(
+					screen.queryByText("Gloves", { selector: ".stacked-nav a" })
+				).toBeNull();
+			});
+
+			it("should render stacked nav when there are sibling device types", () => {
+				render(<MedicalDeviceTypePage {...props} />);
+				expect(
+					screen.getByText("Gloves", { selector: ".stacked-nav a" })
+				).toBeInTheDocument();
+			});
+
+			it("should render nav link to parent medical device", () => {
+				render(<MedicalDeviceTypePage {...props} />);
+				expect(
+					screen.getByText("Gloves", { selector: ".stacked-nav a" })
+				).toHaveAttribute("href", "/medical-devices/gloves/");
+			});
+
+			it("should render nav link to each sibling device types", () => {
+				render(<MedicalDeviceTypePage {...props} />);
+				expect(
+					screen.getByRole("link", { name: "Nitrile gloves" })
+				).toHaveAttribute("href", "/medical-devices/gloves/nitrile-gloves/");
+				expect(
+					screen.getByRole("link", { name: "Film gloves" })
+				).toHaveAttribute("href", "/medical-devices/gloves/film-gloves/");
+				expect(
+					screen.getByRole("link", { name: "Polythene gloves" })
+				).toHaveAttribute("href", "/medical-devices/gloves/polythene-gloves/");
+			});
+
+			it("should order stacked nav links alphabetically", () => {
+				render(<MedicalDeviceTypePage {...props} />);
+
+				const stackedNav = screen.getByRole("navigation", { name: "Gloves" });
+
+				expect(
+					within(stackedNav)
+						.getAllByRole("link")
+						.map((l) => l.textContent)
+				).toStrictEqual([
+					// Root link
+					"Gloves",
+					// Sub links
+					"Film gloves",
+					"Nitrile gloves",
+					"Polythene gloves",
+				]);
+			});
+
+			it("should highlight current page in stacked nav", () => {
+				(useLocation as jest.Mock).mockReturnValue(
+					new URL(
+						"https://bnf-gatsby-tests.nice.org.uk/medical-devices/gloves/film-gloves/"
+					)
+				);
+
+				render(<MedicalDeviceTypePage {...props} />);
+
+				const stackedNav = screen.getByRole("navigation", { name: "Gloves" });
+
+				expect(
+					within(stackedNav).getByRole("link", { name: "Film gloves" })
+				).toHaveAttribute("aria-current", "true");
+			});
 		});
 
-		it.todo("should render list of preparations");
+		describe("Prep list section", () => {
+			it("should render section with accessible name for preps list", () => {
+				render(<MedicalDeviceTypePage {...props} />);
+				expect(
+					screen.getByRole("region", { name: "Medical device types" })
+				).toBeInTheDocument();
+			});
+
+			it("should render heading 2 for medical device type preps", () => {
+				render(<MedicalDeviceTypePage {...props} />);
+				expect(
+					screen.getByRole("heading", {
+						level: 2,
+						name: "Medical device types",
+					})
+				).toBeInTheDocument();
+			});
+
+			it("should render list of preparations", () => {
+				render(<MedicalDeviceTypePage {...props} />);
+				const prepsSection = screen.getByRole("region", {
+					name: "Medical device types",
+				});
+				expect(within(prepsSection).getByRole("list").childNodes).toHaveLength(
+					2
+				);
+			});
+
+			it("should render each prep", () => {
+				render(<MedicalDeviceTypePage {...props} />);
+
+				expect(
+					screen.getByText("Dispos-A-Gloves non-sterile large")
+				).toBeInTheDocument();
+				expect(
+					screen.getByText("Dispos-A-Gloves non-sterile medium")
+				).toBeInTheDocument();
+			});
+		});
 	});
 });
