@@ -40,19 +40,19 @@ const navSections: SectionNavProps = {
 			id: "introduction",
 		},
 		{
-			title: "Pink (epitheliasing)",
+			title: "PINK (epitheliasing)",
 			id: "wound-type--154124684",
 		},
 		{
-			title: "Red (granulating)",
+			title: "RED (granulating)",
 			id: "wound-type-1889862293",
 		},
 		{
-			title: "Yellow (sloughy)(granulating)",
+			title: "YELLOW (sloughy)(granulating)",
 			id: "wound-type-102222233",
 		},
 		{
-			title: "Black (Necrotic/ Eschar)",
+			title: "BLACK (Necrotic/ Eschar)",
 			id: "wound-type-530708321",
 		},
 		{

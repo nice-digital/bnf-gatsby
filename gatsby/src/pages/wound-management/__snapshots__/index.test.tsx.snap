@@ -170,28 +170,28 @@ exports[`Wound management index page should match page snapshot 1`] = `
               <a
                 href="#wound-type--154124684"
               >
-                Pink (epitheliasing)
+                PINK (epitheliasing)
               </a>
             </li>
             <li>
               <a
                 href="#wound-type-1889862293"
               >
-                Red (granulating)
+                RED (granulating)
               </a>
             </li>
             <li>
               <a
                 href="#wound-type-102222233"
               >
-                Yellow (sloughy)(granulating)
+                YELLOW (sloughy)(granulating)
               </a>
             </li>
             <li>
               <a
                 href="#wound-type-530708321"
               >
-                Black (Necrotic/ Eschar)
+                BLACK (Necrotic/ Eschar)
               </a>
             </li>
             <li>
