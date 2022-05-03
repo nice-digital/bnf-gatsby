@@ -26,12 +26,6 @@ const BorderlineSubstanceIntroductionPage: FC<
 		<DetailsPageLayout
 			titleHtml={title}
 			parentTitleParts={["Borderline Substances"]}
-			parentBreadcrumbs={[
-				{
-					href: "/borderline-substances/",
-					text: "Borderline Substances",
-				},
-			]}
 			sections={sections.map(({ slug, title }) => ({
 				id: slug,
 				title,

@@ -33,15 +33,6 @@ exports[`BorderlineSubstanceIntroductionPage should match snapshot for page cont
         <li
           class="breadcrumbs__crumb"
         >
-          <a
-            href="/borderline-substances/"
-          >
-            Borderline Substances
-          </a>
-        </li>
-        <li
-          class="breadcrumbs__crumb"
-        >
           <span>
             Borderline Substances
           </span>
@@ -74,14 +65,6 @@ exports[`BorderlineSubstanceIntroductionPage should match snapshot for page cont
     {
       "@type": "ListItem",
       "position": 3,
-      "item": {
-        "@id": "/borderline-substances/",
-        "name": "Borderline Substances"
-      }
-    },
-    {
-      "@type": "ListItem",
-      "position": 4,
       "item": {
         "name": "Borderline Substances"
       }

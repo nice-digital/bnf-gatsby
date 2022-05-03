@@ -113,7 +113,7 @@ describe("BorderlineSubstancesSectionPage", () => {
 		it.each([
 			["NICE", "https://www.nice.org.uk/"],
 			["BNF", "/"],
-			["Borderline Substances", "/borderline-substances/"],
+			["Borderline substances", "/borderline-substances/"],
 		])(
 			"should render default '(%s)' breadcrumb",
 			(breadcrumbText, expectedHref) => {

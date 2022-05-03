@@ -58,7 +58,7 @@ const BorderlineSubstancesSectionPage: FC<
 					{siteTitleShort}
 				</Breadcrumb>
 				<Breadcrumb key="Home" to="/borderline-substances/" elementType={Link}>
-					Borderline Substances
+					Borderline substances
 				</Breadcrumb>
 				<Breadcrumb key="Current page">{title}</Breadcrumb>
 			</Breadcrumbs>
