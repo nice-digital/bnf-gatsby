@@ -1,0 +1,139 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NursePrescribersFormularyTreatmentSummaryPage should match snapshot for page contents 1`] = `
+<main>
+  <div
+    class="container"
+  >
+    <nav
+      aria-label="Breadcrumbs"
+      role="navigation"
+    >
+      <ol
+        class="breadcrumbs"
+      >
+        <li
+          class="breadcrumbs__crumb"
+        >
+          <a
+            href="https://www.nice.org.uk/"
+          >
+            NICE
+          </a>
+        </li>
+        <li
+          class="breadcrumbs__crumb"
+        >
+          <a
+            href="/"
+          >
+            BNF
+          </a>
+        </li>
+        <li
+          class="breadcrumbs__crumb"
+        >
+          <span>
+            Nurse Prescribers’ Formulary
+          </span>
+        </li>
+      </ol>
+    </nav>
+    <script
+      type="application/ld+json"
+    >
+      {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@id": "https://www.nice.org.uk/",
+        "name": "NICE"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@id": "/",
+        "name": "BNF"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "name": "Nurse Prescribers’ Formulary"
+      }
+    }
+  ]
+}
+    </script>
+    <div
+      class="page-header"
+      id="content-start"
+    >
+      <h1
+        class="page-header__heading"
+      >
+        Nurse Prescribers' Formulary
+      </h1>
+    </div>
+    <h2>
+      About the Nurse Prescribers’ Formulary
+    </h2>
+    <ol
+      class="list--unstyled"
+    >
+      <li>
+        <a
+          class="p"
+          href="/nurse-prescribers-formulary/general-guidance/"
+        >
+          General guidance
+        </a>
+      </li>
+      <li>
+        <a
+          class="p"
+          href="/nurse-prescribers-formulary/approved-list-for-prescribing-by-community-practitioner-nurse-prescribers-npf/"
+        >
+          Approved list for prescribing by Community Practitioner Nurse Prescribers (NPF)
+        </a>
+      </li>
+    </ol>
+    <h2>
+      Treatment summaries
+    </h2>
+    <ol
+      aria-label="Treatment summary pages"
+      class="column-list column-list--boxed"
+    >
+      <li>
+        <a
+          href="/nurse-prescribers-formulary/analgesics/"
+        >
+          Analgesics
+        </a>
+      </li>
+      <li>
+        <a
+          href="/nurse-prescribers-formulary/appliances-and-reagents-for-diabetes/"
+        >
+          Appliances and reagents for diabetes
+        </a>
+      </li>
+      <li>
+        <a
+          href="/nurse-prescribers-formulary/general-guidance/"
+        >
+          General guidance
+        </a>
+      </li>
+    </ol>
+  </div>
+</main>
+`;

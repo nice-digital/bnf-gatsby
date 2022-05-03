@@ -132,7 +132,7 @@ describe("replaceRelativeAnchors", () => {
 	});
 
 	describe("Nurse Prescribers' Formulary", () => {
-		it("should replace link to dental practitioners formulary without section hash", () => {
+		it("should replace link to nurse prescribers approved list without section hash", () => {
 			getNodeById.mockReturnValueOnce({
 				title: "Nurse Prescribers' Formulary",
 				internal: { type: BnfNode.NursePrescribersFormularyIntroduction },
@@ -143,10 +143,12 @@ describe("replaceRelativeAnchors", () => {
 					`<a href="/nursePrescribersFormulary/_129024858" title="NPF">NPF</a>`,
 					nodeModel
 				)
-			).toBe(`<a href="/nurse-prescribers-formulary/" title="NPF">NPF</a>`);
+			).toBe(
+				`<a href="/nurse-prescribers-formulary/approved-list-for-prescribing-by-community-practitioner-nurse-prescribers-npf/" title="NPF">NPF</a>`
+			);
 		});
 
-		it("should replace link to dental practitioners formulary with section hash", () => {
+		it("should replace link to nurse practitioners formulary approved list with section hash", () => {
 			getNodeById.mockReturnValueOnce({
 				title: "Nurse Prescribers' Formulary",
 				sections: [
@@ -163,7 +165,7 @@ describe("replaceRelativeAnchors", () => {
 					nodeModel
 				)
 			).toBe(
-				`<a href="/nurse-prescribers-formulary/#medicinal-preparations" title="NPF Medicinal Preparations">NPF Medicinal Preparations</a>`
+				`<a href="/nurse-prescribers-formulary/approved-list-for-prescribing-by-community-practitioner-nurse-prescribers-npf/#medicinal-preparations" title="NPF Medicinal Preparations">NPF Medicinal Preparations</a>`
 			);
 		});
 	});
