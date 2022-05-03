@@ -1,5 +1,4 @@
 import { type SourceNodesArgs } from "gatsby";
-import CautionaryAdvisoryLabelsPage from "src/pages/about/labels";
 import { type Except } from "type-fest";
 
 import {

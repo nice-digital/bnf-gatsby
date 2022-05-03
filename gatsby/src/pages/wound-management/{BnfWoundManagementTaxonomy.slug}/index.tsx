@@ -110,7 +110,7 @@ const WoundManagementTaxonomyPage: FC<WoundManagementTaxonomyPageProps> = ({
 						{taxonomies.map(({ slug, title }) => (
 							<StackedNavLink
 								key={slug}
-								destination={`/wound-management/${slug}`}
+								destination={`/wound-management/${slug}/`}
 								elementType={Link}
 							>
 								<span dangerouslySetInnerHTML={{ __html: title }} />
@@ -152,7 +152,7 @@ const WoundManagementTaxonomyPage: FC<WoundManagementTaxonomyPageProps> = ({
 												{child.childTaxonomies.map((nestedChild) => (
 													<li key={nestedChild.slug}>
 														<Link
-															to={`/wound-management/${slug}/${nestedChild.slug}`}
+															to={`/wound-management/${slug}/${nestedChild.slug}/`}
 														>
 															{nestedChild.title}
 														</Link>
@@ -162,7 +162,7 @@ const WoundManagementTaxonomyPage: FC<WoundManagementTaxonomyPageProps> = ({
 										) : (
 											<ul className={styles.nestedTaxonomyList}>
 												<li>
-													<Link to={`/wound-management/${slug}/${child.slug}`}>
+													<Link to={`/wound-management/${slug}/${child.slug}/`}>
 														{child.title}
 													</Link>
 												</li>

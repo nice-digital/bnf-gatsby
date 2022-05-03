@@ -131,7 +131,7 @@ exports[`Wound management taxonomy page should match page snapshot 1`] = `
             >
               <a
                 aria-current="false"
-                href="/wound-management/basic-wound-contact-dressings"
+                href="/wound-management/basic-wound-contact-dressings/"
               >
                 <span
                   class="stacked-nav__content-wrapper"
@@ -147,7 +147,7 @@ exports[`Wound management taxonomy page should match page snapshot 1`] = `
             >
               <a
                 aria-current="false"
-                href="/wound-management/advanced-wound-dressings"
+                href="/wound-management/advanced-wound-dressings/"
               >
                 <span
                   class="stacked-nav__content-wrapper"
@@ -225,21 +225,21 @@ exports[`Wound management taxonomy page should match page snapshot 1`] = `
             >
               <li>
                 <a
-                  href="/wound-management/advanced-wound-dressings/sodium-hyaluronate-dressings"
+                  href="/wound-management/advanced-wound-dressings/sodium-hyaluronate-dressings/"
                 >
                   Sodium hyaluronate dressings
                 </a>
               </li>
               <li>
                 <a
-                  href="/wound-management/advanced-wound-dressings/hydrogel-sheet-dressings"
+                  href="/wound-management/advanced-wound-dressings/hydrogel-sheet-dressings/"
                 >
                   Hydrogel sheet dressings
                 </a>
               </li>
               <li>
                 <a
-                  href="/wound-management/advanced-wound-dressings/hydrogel-application-amorphous"
+                  href="/wound-management/advanced-wound-dressings/hydrogel-application-amorphous/"
                 >
                   Hydrogel application (amorphous)
                 </a>
@@ -262,28 +262,28 @@ exports[`Wound management taxonomy page should match page snapshot 1`] = `
             >
               <li>
                 <a
-                  href="/wound-management/advanced-wound-dressings/non-woven-fabric-dressing-with-viscose-rayon-pad"
+                  href="/wound-management/advanced-wound-dressings/non-woven-fabric-dressing-with-viscose-rayon-pad/"
                 >
                   Non-woven fabric dressing with viscose-rayon pad
                 </a>
               </li>
               <li>
                 <a
-                  href="/wound-management/advanced-wound-dressings/vapour-permeable-transparent-film-dressing-with-adhesive-foam-border"
+                  href="/wound-management/advanced-wound-dressings/vapour-permeable-transparent-film-dressing-with-adhesive-foam-border/"
                 >
                   Vapour–permeable transparent film dressing with adhesive foam border
                 </a>
               </li>
               <li>
                 <a
-                  href="/wound-management/advanced-wound-dressings/vapour-permeable-transparent-adhesive-film-dressing"
+                  href="/wound-management/advanced-wound-dressings/vapour-permeable-transparent-adhesive-film-dressing/"
                 >
                   Vapour–permeable transparent, adhesive film dressing.
                 </a>
               </li>
               <li>
                 <a
-                  href="/wound-management/advanced-wound-dressings/vapour-permeable-adhesive-film-dressing-semi-permeable-adhesive-dressing"
+                  href="/wound-management/advanced-wound-dressings/vapour-permeable-adhesive-film-dressing-semi-permeable-adhesive-dressing/"
                 >
                   Vapour-permeable Adhesive Film Dressing (Semi-permeable Adhesive Dressing)
                 </a>
@@ -301,7 +301,7 @@ exports[`Wound management taxonomy page should match page snapshot 1`] = `
             >
               <li>
                 <a
-                  href="/wound-management/advanced-wound-dressings/capillary-acting-dressings"
+                  href="/wound-management/advanced-wound-dressings/capillary-acting-dressings/"
                 >
                   Capillary-acting dressings
                 </a>

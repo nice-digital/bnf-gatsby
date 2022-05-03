@@ -18,7 +18,7 @@ import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
 import styles from "./{BnfWoundManagementTaxonomyProductGroup.taxonomy__slug}.module.scss";
 
-export interface WoundManagementPricingPageProps {
+export interface WoundManagementProductPageProps {
 	data: {
 		bnfWoundManagementTaxonomyProductGroup: {
 			taxonomy: {
@@ -44,7 +44,7 @@ export interface WoundManagementPricingPageProps {
 	};
 }
 
-const WoundManagementPricingPage: FC<WoundManagementPricingPageProps> = ({
+const WoundManagementProductPage: FC<WoundManagementProductPageProps> = ({
 	data: {
 		bnfWoundManagementTaxonomyProductGroup: {
 			taxonomy: { title, text, rootTaxonomy, productGroups },
@@ -78,7 +78,7 @@ const WoundManagementPricingPage: FC<WoundManagementPricingPageProps> = ({
 					Wound management products and elasticated garments
 				</Breadcrumb>
 				<Breadcrumb
-					to={`/wound-management/${rootTaxonomy.slug}`}
+					to={`/wound-management/${rootTaxonomy.slug}/`}
 					elementType={Link}
 				>
 					{rootTaxonomy.title}
@@ -90,7 +90,7 @@ const WoundManagementPricingPage: FC<WoundManagementPricingPageProps> = ({
 				id="content-start"
 				heading={<span dangerouslySetInnerHTML={{ __html: title }} />}
 				lead={
-					<Link className="p" to={`/wound-management/${rootTaxonomy.slug}`}>
+					<Link className="p" to={`/wound-management/${rootTaxonomy.slug}/`}>
 						View other {rootTaxonomy.title.toLowerCase()}
 					</Link>
 				}
@@ -127,27 +127,34 @@ const WoundManagementPricingPage: FC<WoundManagementPricingPageProps> = ({
 									</div>
 								}
 							>
-								<table>
-									<thead>
-										<tr>
-											<th>Product</th>
-											<th>Price</th>
-										</tr>
-									</thead>
-									<tbody>
-										{products.map(({ name, manufacturer, packs }) => (
-											<tr key={name}>
-												<td>
-													{name}{" "}
-													<span className={styles.manufacturer}>
-														{manufacturer}
-													</span>
-												</td>
-												<td>{packs[0]?.nhsIndicativePrice}</td>
+								{products.length > 0 ? (
+									<table>
+										<thead>
+											<tr>
+												<th>Product</th>
+												<th>Price</th>
 											</tr>
-										))}
-									</tbody>
-								</table>
+										</thead>
+										<tbody>
+											{products.map(({ name, manufacturer, packs }) => (
+												<tr key={name}>
+													<td>
+														{name}{" "}
+														<span className={styles.manufacturer}>
+															{manufacturer}
+														</span>
+													</td>
+													<td>{packs[0]?.nhsIndicativePrice || "£0.00"}</td>
+												</tr>
+											))}
+										</tbody>
+									</table>
+								) : (
+									<p>
+										Please note, there is currently no specific information
+										about this product.
+									</p>
+								)}
 							</Accordion>
 						</li>
 					))}
@@ -183,4 +190,4 @@ export const query = graphql`
 	}
 `;
 
-export default WoundManagementPricingPage;
+export default WoundManagementProductPage;

@@ -1,0 +1,482 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Wound management taxonomy page should match page snapshot 1`] = `
+<main>
+  <div
+    class="container"
+  >
+    <nav
+      aria-label="Breadcrumbs"
+      role="navigation"
+    >
+      <ol
+        class="breadcrumbs"
+      >
+        <li
+          class="breadcrumbs__crumb"
+        >
+          <a
+            href="https://www.nice.org.uk/"
+          >
+            NICE
+          </a>
+        </li>
+        <li
+          class="breadcrumbs__crumb"
+        >
+          <a
+            href="/"
+          >
+            BNF
+          </a>
+        </li>
+        <li
+          class="breadcrumbs__crumb"
+        >
+          <a
+            href="/wound-management/"
+          >
+            Wound management products and elasticated garments
+          </a>
+        </li>
+        <li
+          class="breadcrumbs__crumb"
+        >
+          <a
+            href="/wound-management/advanced-wound-dressings/"
+          >
+            Advanced wound dressings
+          </a>
+        </li>
+        <li
+          class="breadcrumbs__crumb"
+        >
+          <span>
+            Vapour–permeable, transparent, adhesive film dressing.
+          </span>
+        </li>
+      </ol>
+    </nav>
+    <script
+      type="application/ld+json"
+    >
+      {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@id": "https://www.nice.org.uk/",
+        "name": "NICE"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@id": "/",
+        "name": "BNF"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@id": "/wound-management/",
+        "name": "Wound management products and elasticated garments"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "item": {
+        "@id": "/wound-management/advanced-wound-dressings/",
+        "name": "Advanced wound dressings"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 5,
+      "item": {
+        "name": "Vapour–permeable, transparent, adhesive film dressing."
+      }
+    }
+  ]
+}
+    </script>
+    <div
+      class="page-header"
+      id="content-start"
+    >
+      <h1
+        class="page-header__heading"
+      >
+        <span>
+          Vapour–permeable, transparent, adhesive film dressing.
+        </span>
+      </h1>
+      <p
+        class="page-header__lead"
+      >
+        <a
+          class="p"
+          href="/wound-management/advanced-wound-dressings/"
+        >
+          View other 
+          advanced wound dressings
+        </a>
+      </p>
+    </div>
+    <nav
+      aria-labelledby="navigate-to-section"
+      class="nav"
+    >
+      <h2
+        class="heading"
+        id="navigate-to-section"
+      >
+        Navigate to section
+      </h2>
+      <ol
+        aria-label="Jump links to sections on this page"
+        class="linkList"
+      >
+        <li>
+          <a
+            href="#iv-3000"
+          >
+            IV3000
+          </a>
+        </li>
+        <li>
+          <a
+            href="#mepore-iv"
+          >
+            Mepore IV
+          </a>
+        </li>
+        <li>
+          <a
+            href="#pharmapore-pu-iv"
+          >
+            Pharmapore-PU IV
+          </a>
+        </li>
+      </ol>
+    </nav>
+    <div>
+      <p>
+        Test description for this product group
+      </p>
+    </div>
+    <button
+      aria-expanded="false"
+      class="toggleButton"
+      data-tracking="Show all sections"
+      type="button"
+    >
+      <span
+        class="label"
+      >
+        <svg
+          aria-hidden="true"
+          class="icon"
+          fill="none"
+          focusable="false"
+          height="1em"
+          viewBox="0 0 512 512"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M478.152 174c0 10.091-3.525 18.661-10.576 25.712l-186 186c-7.243 7.243-15.909 10.864-26 10.864-10.283 0-18.853-3.621-25.712-10.864l-186-186C36.621 192.853 33 184.283 33 174c0-10.091 3.621-18.757 10.864-26L65 126.576C72.424 119.525 81.09 116 91 116c10.091 0 18.661 3.525 25.712 10.576L255.576 265.44 394.44 126.576c7.051-7.051 15.621-10.576 25.712-10.576 9.909 0 18.576 3.525 26 10.576L467.576 148c7.051 7.424 10.576 16.091 10.576 26z"
+            fill="currentColor"
+          />
+        </svg>
+        Show all vapour–permeable, transparent, adhesive film dressing.  (3)
+      </span>
+    </button>
+    <ul
+      class="productGroupList"
+    >
+      <li>
+        <details
+          class="details  "
+        >
+          <summary
+            class="summary"
+            data-tracking="Show"
+          >
+            <span
+              class="toggleLabel label"
+            >
+              <svg
+                aria-hidden="true"
+                class="icon"
+                fill="none"
+                focusable="false"
+                height="1em"
+                viewBox="0 0 512 512"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M478.152 174c0 10.091-3.525 18.661-10.576 25.712l-186 186c-7.243 7.243-15.909 10.864-26 10.864-10.283 0-18.853-3.621-25.712-10.864l-186-186C36.621 192.853 33 184.283 33 174c0-10.091 3.621-18.757 10.864-26L65 126.576C72.424 119.525 81.09 116 91 116c10.091 0 18.661 3.525 25.712 10.576L255.576 265.44 394.44 126.576c7.051-7.051 15.621-10.576 25.712-10.576 9.909 0 18.576 3.525 26 10.576L467.576 148c7.051 7.424 10.576 16.091 10.576 26z"
+                  fill="currentColor"
+                />
+              </svg>
+              Show
+            </span>
+             
+            <div>
+              <h2
+                class="productGroupHeading"
+                id="iv-3000"
+              >
+                IV3000
+              </h2>
+              <div>
+                <p>
+                  For intravenous and subcutaneous catheter sites
+                </p>
+              </div>
+            </div>
+          </summary>
+          <table>
+            <thead>
+              <tr>
+                <th>
+                  Product
+                </th>
+                <th>
+                  Price
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  IV3000 dressing 5cm x 6cm
+                   
+                  <span
+                    class="manufacturer"
+                  >
+                    Smith & Nephew Healthcare Ltd
+                  </span>
+                </td>
+                <td>
+                  £0.45
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  IV3000 dressing 9cm x 12cm
+                   
+                  <span
+                    class="manufacturer"
+                  >
+                    Smith & Nephew Healthcare Ltd
+                  </span>
+                </td>
+                <td>
+                  £1.55
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  IV3000 dressing 10cm x 12cm
+                   
+                  <span
+                    class="manufacturer"
+                  >
+                    Smith & Nephew Healthcare Ltd
+                  </span>
+                </td>
+                <td>
+                  £1.49
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </details>
+      </li>
+      <li>
+        <details
+          class="details  "
+        >
+          <summary
+            class="summary"
+            data-tracking="Show"
+          >
+            <span
+              class="toggleLabel label"
+            >
+              <svg
+                aria-hidden="true"
+                class="icon"
+                fill="none"
+                focusable="false"
+                height="1em"
+                viewBox="0 0 512 512"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M478.152 174c0 10.091-3.525 18.661-10.576 25.712l-186 186c-7.243 7.243-15.909 10.864-26 10.864-10.283 0-18.853-3.621-25.712-10.864l-186-186C36.621 192.853 33 184.283 33 174c0-10.091 3.621-18.757 10.864-26L65 126.576C72.424 119.525 81.09 116 91 116c10.091 0 18.661 3.525 25.712 10.576L255.576 265.44 394.44 126.576c7.051-7.051 15.621-10.576 25.712-10.576 9.909 0 18.576 3.525 26 10.576L467.576 148c7.051 7.424 10.576 16.091 10.576 26z"
+                  fill="currentColor"
+                />
+              </svg>
+              Show
+            </span>
+             
+            <div>
+              <h2
+                class="productGroupHeading"
+                id="mepore-iv"
+              >
+                Mepore IV
+              </h2>
+              <div>
+                <p>
+                  For intravenous and subcutaneous catheter sites
+                </p>
+              </div>
+            </div>
+          </summary>
+          <table>
+            <thead>
+              <tr>
+                <th>
+                  Product
+                </th>
+                <th>
+                  Price
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  Mepore IV dressing 5cm x 5.5cm
+                   
+                  <span
+                    class="manufacturer"
+                  >
+                    Molnlycke Health Care Ltd
+                  </span>
+                </td>
+                <td>
+                  £0.32
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </details>
+      </li>
+      <li>
+        <details
+          class="details  "
+        >
+          <summary
+            class="summary"
+            data-tracking="Show"
+          >
+            <span
+              class="toggleLabel label"
+            >
+              <svg
+                aria-hidden="true"
+                class="icon"
+                fill="none"
+                focusable="false"
+                height="1em"
+                viewBox="0 0 512 512"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M478.152 174c0 10.091-3.525 18.661-10.576 25.712l-186 186c-7.243 7.243-15.909 10.864-26 10.864-10.283 0-18.853-3.621-25.712-10.864l-186-186C36.621 192.853 33 184.283 33 174c0-10.091 3.621-18.757 10.864-26L65 126.576C72.424 119.525 81.09 116 91 116c10.091 0 18.661 3.525 25.712 10.576L255.576 265.44 394.44 126.576c7.051-7.051 15.621-10.576 25.712-10.576 9.909 0 18.576 3.525 26 10.576L467.576 148c7.051 7.424 10.576 16.091 10.576 26z"
+                  fill="currentColor"
+                />
+              </svg>
+              Show
+            </span>
+             
+            <div>
+              <h2
+                class="productGroupHeading"
+                id="pharmapore-pu-iv"
+              >
+                Pharmapore-PU IV
+              </h2>
+              <div>
+                <p>
+                  For intravenous and subcutaneous catheter sites
+                </p>
+              </div>
+            </div>
+          </summary>
+          <table>
+            <thead>
+              <tr>
+                <th>
+                  Product
+                </th>
+                <th>
+                  Price
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  Pharmapore-PU-I.V dressing 7cm x 8.5cm
+                   
+                  <span
+                    class="manufacturer"
+                  >
+                    Wallace, Cameron & Company Ltd
+                  </span>
+                </td>
+                <td>
+                  £0.07
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Pharmapore-PU-I.V dressing 6cm x 7cm
+                   
+                  <span
+                    class="manufacturer"
+                  >
+                    Wallace, Cameron & Company Ltd
+                  </span>
+                </td>
+                <td>
+                  £0.08
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Pharmapore-PU-I.V dressing 7cm x 9cm
+                   
+                  <span
+                    class="manufacturer"
+                  >
+                    Wallace, Cameron & Company Ltd
+                  </span>
+                </td>
+                <td>
+                  £0.17
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </details>
+      </li>
+    </ul>
+  </div>
+</main>
+`;

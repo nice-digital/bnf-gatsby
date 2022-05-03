@@ -29,6 +29,8 @@ export const pagePaths = {
 	// Wound management
 	"wound management": "/wound-management",
 	"advanced wound dressings": "/wound-management/advanced-wound-dressings/",
+	"odour absorbent dressings":
+		"/wound-management/advanced-wound-dressings/odour-absorbent-dressings/",
 	// Medicines guidance
 	"guidance on prescribing": "/medicines-guidance/guidance-on-prescribing/",
 	"prescription writing": "/medicines-guidance/prescription-writing/",
