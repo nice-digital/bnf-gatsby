@@ -1032,6 +1032,9 @@ exports[`schema should match snapshot 1`] = `
 		\\"The title of the taxonomy node. May contain HTML mark-up.\\"
 		title: String!
 
+		\\"The slugified and lowercased title, used as a URL path\\"
+		slug: String! @slug(field: \\"title\\")
+
 		\\"The review date of the record.\\"
 		reviewDate: Date @dateformat
 
