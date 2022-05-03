@@ -144,6 +144,12 @@ describe("Wound management taxonomy page", () => {
 	});
 
 	it("should show a message when rendering a product group with no information", () => {
+		const noInformationWarningText =
+			"Please note, there is currently no specific information about this product.";
+
+		render(<WoundManagementTaxonomyPage {...props} />);
+		expect(screen.queryByText(noInformationWarningText)).toBeNull();
+
 		render(
 			<WoundManagementTaxonomyPage
 				data={{
@@ -169,11 +175,6 @@ describe("Wound management taxonomy page", () => {
 				}}
 			/>
 		);
-
-		expect(
-			screen.getByText(
-				"Please note, there is currently no specific information about this product."
-			)
-		).toBeInTheDocument();
+		expect(screen.getByText(noInformationWarningText)).toBeInTheDocument();
 	});
 });
