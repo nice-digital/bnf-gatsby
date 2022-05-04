@@ -21,7 +21,10 @@ exports[`HomePage should match snapshot for BNF 1`] = `
             <h1
               class="title"
             >
-              British National Formulary (BNF)
+              British National Formulary
+               (
+              BNF
+              )
             </h1>
             <p
               class="intro"
@@ -736,7 +739,10 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
             <h1
               class="title"
             >
-              British National Formulary (BNF)
+              British National Formulary
+               (
+              BNF
+              )
             </h1>
             <p
               class="intro"
@@ -779,7 +785,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
             Drugs
           </h2>
           <p>
-            Key information on the selection, prescribing, dispensing and administration of medicines used for children.
+            Drug monographs describe the uses, doses, safety issues, medicinal forms and other considerations involved in the use of a drug.
           </p>
           <h3
             class="h4"

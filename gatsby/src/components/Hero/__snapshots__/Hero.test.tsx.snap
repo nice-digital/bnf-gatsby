@@ -4,7 +4,10 @@ exports[`Hero should match snapshot for BNF 1`] = `
 <h1
   class="title"
 >
-  British National Formulary (BNF)
+  British National Formulary
+   (
+  BNF
+  )
 </h1>
 `;
 
@@ -12,6 +15,9 @@ exports[`Hero should match snapshot for BNFC 1`] = `
 <h1
   class="title"
 >
-  British National Formulary for Children (BNFC)
+  British National Formulary for Children
+   (
+  BNFC
+  )
 </h1>
 `;

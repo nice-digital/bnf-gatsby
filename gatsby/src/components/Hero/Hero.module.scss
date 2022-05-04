@@ -1,41 +1,17 @@
 @use '~@nice-digital/nds-core/scss/core';
 
 .hero {
-  @include core.nds-links-inverse;
-  @include core.nds-inverse-button-focus;
   background: core.$nds-colour-nice-white;
-  color: core.$nds-colour-text;
   left: 50%;
   margin-bottom: core.rem(core.$nds-spacing-large);
   margin-left: -50vw;
   margin-right: -50vw;
   overflow: hidden;
-
   padding-bottom: core.rem(core.$nds-spacing-large);
   padding-top: core.rem(core.$nds-spacing-large);
-
   position: relative;
   right: 50%;
   width: 100vw;
-
-  a {
-    &:link,
-    &:visited {
-      color: core.$nds-colour-link;
-    }
-
-    &:hover {
-      color: core.$nds-colour-link-hover;
-    }
-
-    &:active {
-      color: core.$nds-colour-link-active;
-    }
-
-    &:focus {
-      outline: 3px solid core.$nds-colour-focus;
-    }
-  }
 
   .heroContainer {
     @include core.nds-container;

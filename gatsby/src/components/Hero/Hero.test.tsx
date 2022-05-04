@@ -32,6 +32,8 @@ describe("Hero", () => {
 	it("should match snapshot for BNFC", () => {
 		useSiteMetadataMock.mockReturnValueOnce({
 			isBNF: false,
+			siteTitleShort: "BNFC",
+			siteTitleLong: "British National Formulary for Children",
 		});
 
 		render(<Hero />);

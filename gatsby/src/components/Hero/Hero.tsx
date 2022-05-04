@@ -28,20 +28,19 @@ export const Hero: React.FC = () => {
 		bnfMetadata: { lastUpdatedDate, lastUpdatedDateFormatted },
 	} = useStaticQuery<LastUpdatedDataQueryResult>(query);
 
-	const { isBNF } = useSiteMetadata();
+	const { isBNF, siteTitleLong, siteTitleShort } = useSiteMetadata();
 
 	return (
 		<div className={styles.hero} id="content-start">
 			<div className={styles.heroContainer}>
 				<div className={styles.text}>
 					<h1 className={styles.title}>
-						{isBNF
-							? "British National Formulary (BNF)"
-							: "British National Formulary for Children (BNFC)"}
+						{siteTitleLong} ({siteTitleShort})
 					</h1>
 					<p className={styles.intro}>
-						Key information on the selection, prescribing, dispensing and
-						administration of medicines.
+						{isBNF
+							? "Key information on the selection, prescribing, dispensing and administration of medicines."
+							: "Key information on the selection, prescribing, dispensing and administration of medicines used for children."}
 					</p>
 				</div>
 				<div className={styles.lastUpdated} data-tracking="last-updated">

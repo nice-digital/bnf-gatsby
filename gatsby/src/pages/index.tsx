@@ -15,7 +15,7 @@ import styles from "./index.module.scss";
 const alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
 
 const HomePage: FC = () => {
-	const { isBNF } = useSiteMetadata();
+	const { isBNF, siteTitleShort } = useSiteMetadata();
 
 	return (
 		<Layout>
@@ -29,18 +29,10 @@ const HomePage: FC = () => {
 				>
 					<GridItem md={6} cols={12} className={styles.drugsColumn}>
 						<h2>Drugs</h2>
-						{isBNF ? (
-							<p>
-								Drug monographs describe the uses, doses, safety issues,
-								medicinal forms and other considerations involved in the use of
-								a drug.
-							</p>
-						) : (
-							<p>
-								Key information on the selection, prescribing, dispensing and
-								administration of medicines used for children.
-							</p>
-						)}
+						<p>
+							Drug monographs describe the uses, doses, safety issues, medicinal
+							forms and other considerations involved in the use of a drug.
+						</p>
 						<h3 className="h4">Browse drugs by A to Z</h3>
 						<Alphabet
 							chunky
@@ -206,7 +198,7 @@ const HomePage: FC = () => {
 
 						<p>
 							Cautionary, warning and advisory labels applied to medications
-							used in the {isBNF ? "BNF" : "BNFC"}.
+							used in the {siteTitleShort}.
 						</p>
 					</GridItem>
 
@@ -219,7 +211,7 @@ const HomePage: FC = () => {
 
 						<p>
 							Glossary of symbols and abbreviations. Includes Latin, medication
-							and dosage abbreviations used in the {isBNF ? "BNF" : "BNFC"} and
+							and dosage abbreviations used in the {siteTitleShort} and
 							prescribing.
 						</p>
 					</GridItem>
@@ -229,13 +221,13 @@ const HomePage: FC = () => {
 
 				<ul
 					className={styles.inlineList}
-					data-tracking={`${isBNF ? "BNF" : "BNFC"} home footer`}
+					data-tracking={`${siteTitleShort} home footer`}
 				>
 					<li>
 						<Link to="/about/changes/">What&apos;s changed?</Link>
 					</li>
 					<li>
-						<Link to="/about/">About {isBNF ? "BNF" : "BNFC"}</Link>
+						<Link to="/about/">About {siteTitleShort}</Link>
 					</li>
 				</ul>
 			</div>
