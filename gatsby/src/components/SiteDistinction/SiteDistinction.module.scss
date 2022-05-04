@@ -2,10 +2,14 @@
 @import '../../styles/settings';
 
 .wrapper {
-  border-top: core.rem(core.$nds-spacing-small) solid $bnf-brand-colour;
+  border-top: core.rem(core.$nds-spacing-small) solid #000;
   position: sticky;
   top: -0.1px; // Hack to avoid 1px gap due to some weird Chrome sub pixel rounding
   z-index: 1;
+
+  &.bnf {
+    border-top-color: $bnf-brand-colour;
+  }
 
   &.bnfc {
     border-top-color: $bnfc-brand-colour;
@@ -42,11 +46,15 @@
   position: relative;
   text-decoration: none;
   text-shadow: 1px 0 0 currentColor;
-  top: -1px;
+  top: -1px; // To avoid a 1px gap in Chrome
+
+  &:hover {
+    color: core.$nds-colour-true-black;
+  }
 }
 
 .currentSiteTab {
-  z-index: 1;
+  z-index: 1; // To site above the other site tab
 
   @include core.nds-when-is(button) {
     cursor: pointer;
@@ -85,7 +93,7 @@
   }
 
   &:focus {
-    z-index: 1;
+    z-index: 1; // So focus ring sits above current site tab
   }
 
   &:visited {

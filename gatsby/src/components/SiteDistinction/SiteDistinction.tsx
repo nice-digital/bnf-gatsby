@@ -1,6 +1,6 @@
 import { useLocation } from "@reach/router";
 import classNames from "classnames";
-import { useState, type FC } from "react";
+import { useMemo, useState, type FC } from "react";
 
 import ChevronDownIcon from "@nice-digital/icons/lib/ChevronDown";
 import ChevronRightIcon from "@nice-digital/icons/lib/ChevronRight";
@@ -12,10 +12,19 @@ import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 import styles from "./SiteDistinction.module.scss";
 
 export const SiteDistinction: FC = () => {
-	const { pathname } = useLocation();
-	const isClient = useIsClient();
-	const { isBNF, siteTitleShort } = useSiteMetadata();
-	const [isExpanded, setIsExpanded] = useState(false);
+	const { href } = useLocation(),
+		isClient = useIsClient(),
+		{ isBNF, siteTitleShort } = useSiteMetadata(),
+		[isExpanded, setIsExpanded] = useState(false),
+		otherSiteHref = useMemo(() => {
+			const url = new URL(href);
+			url.host = url.host.replace(
+				isBNF ? "bnf" : "bnfc",
+				isBNF ? "bnfc" : "bnf"
+			);
+			url.searchParams.append("ref", "switch");
+			return url.toString();
+		}, [href, isBNF]);
 
 	return (
 		<div
@@ -23,7 +32,9 @@ export const SiteDistinction: FC = () => {
 		>
 			<Container className={styles.container}>
 				<p className={styles.tabs}>
-					<span className="visually-hidden">Currently viewing </span>
+					<span className="visually-hidden">
+						Currently viewing {siteTitleShort}.{" "}
+					</span>
 					{isClient ? (
 						<button
 							type="button"
@@ -46,29 +57,18 @@ export const SiteDistinction: FC = () => {
 							{siteTitleShort}
 						</button>
 					) : (
-						<span
-							className={classNames(
-								styles.currentSiteTab,
-								styles[siteTitleShort]
-							)}
-						>
-							{siteTitleShort}
-						</span>
+						<span className={styles.currentSiteTab}>{siteTitleShort}</span>
 					)}
-
 					<a
 						className={classNames(
 							styles.otherSiteTab,
 							(isExpanded || !isClient) && styles.otherSiteTabExpanded
 						)}
-						href={
-							(isBNF ? "https://bnfc.nice.org.uk" : "https://bnf.nice.org.uk") +
-							pathname +
-							"?ref=switch"
-						}
+						href={otherSiteHref}
 						tabIndex={isExpanded || !isClient ? undefined : -1}
 					>
 						<span className="visually-hidden">switch to </span>
+						{/* The right chevron is our non-JS fallback to make the other site tab look clickable */}
 						{isClient ? null : <ChevronRightIcon className={styles.icon} />}
 						{isBNF ? "BNFC" : "BNF"}
 					</a>
