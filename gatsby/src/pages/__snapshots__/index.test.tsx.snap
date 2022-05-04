@@ -665,7 +665,9 @@ exports[`HomePage should match snapshot for BNF 1`] = `
             </a>
           </h2>
           <p>
-            Cautionary, warning and advisory labels applied to medications used in the BNF.
+            Cautionary, warning and advisory labels applied to medications used in the 
+            BNF
+            .
           </p>
         </div>
         <div
@@ -681,7 +683,9 @@ exports[`HomePage should match snapshot for BNF 1`] = `
             </a>
           </h2>
           <p>
-            Glossary of symbols and abbreviations. Includes Latin, medication and dosage abbreviations used in the BNF and prescribing.
+            Glossary of symbols and abbreviations. Includes Latin, medication and dosage abbreviations used in the 
+            BNF
+             and prescribing.
           </p>
         </div>
       </div>
@@ -775,7 +779,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
             Drugs
           </h2>
           <p>
-            Drug monographs describe the uses, doses, safety issues, medicinal forms and other considerations involved in the use of a drug.
+            Key information on the selection, prescribing, dispensing and administration of medicines used for children.
           </p>
           <h3
             class="h4"
@@ -1362,7 +1366,9 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
             </a>
           </h2>
           <p>
-            Cautionary, warning and advisory labels applied to medications used in the BNF.
+            Cautionary, warning and advisory labels applied to medications used in the 
+            BNFC
+            .
           </p>
         </div>
         <div
@@ -1378,7 +1384,9 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
             </a>
           </h2>
           <p>
-            Glossary of symbols and abbreviations. Includes Latin, medication and dosage abbreviations used in the BNF and prescribing.
+            Glossary of symbols and abbreviations. Includes Latin, medication and dosage abbreviations used in the 
+            BNFC
+             and prescribing.
           </p>
         </div>
       </div>

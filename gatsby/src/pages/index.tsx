@@ -29,10 +29,18 @@ const HomePage: FC = () => {
 				>
 					<GridItem md={6} cols={12} className={styles.drugsColumn}>
 						<h2>Drugs</h2>
-						<p>
-							Drug monographs describe the uses, doses, safety issues, medicinal
-							forms and other considerations involved in the use of a drug.
-						</p>
+						{isBNF ? (
+							<p>
+								Drug monographs describe the uses, doses, safety issues,
+								medicinal forms and other considerations involved in the use of
+								a drug.
+							</p>
+						) : (
+							<p>
+								Key information on the selection, prescribing, dispensing and
+								administration of medicines used for children.
+							</p>
+						)}
 						<h3 className="h4">Browse drugs by A to Z</h3>
 						<Alphabet
 							chunky
@@ -198,7 +206,7 @@ const HomePage: FC = () => {
 
 						<p>
 							Cautionary, warning and advisory labels applied to medications
-							used in the BNF.
+							used in the {isBNF ? "BNF" : "BNFC"}.
 						</p>
 					</GridItem>
 
@@ -211,7 +219,8 @@ const HomePage: FC = () => {
 
 						<p>
 							Glossary of symbols and abbreviations. Includes Latin, medication
-							and dosage abbreviations used in the BNF and prescribing.
+							and dosage abbreviations used in the {isBNF ? "BNF" : "BNFC"} and
+							prescribing.
 						</p>
 					</GridItem>
 				</Grid>

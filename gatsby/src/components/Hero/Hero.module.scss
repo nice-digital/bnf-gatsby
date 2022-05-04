@@ -29,7 +29,11 @@
     }
 
     &:active {
-      color: core.$nds-colour-text-inverse;
+      color: core.$nds-colour-link-active;
+    }
+
+    &:focus {
+      outline: 3px solid core.$nds-colour-focus;
     }
   }
 
