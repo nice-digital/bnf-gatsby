@@ -207,6 +207,7 @@ exports[`Wound management taxonomy page should match page snapshot 1`] = `
           </p>
         </div>
         <ul
+          aria-label="List of advanced wound dressings"
           class="childTaxonomyList"
         >
           <li>

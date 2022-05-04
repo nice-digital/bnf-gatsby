@@ -123,7 +123,10 @@ const WoundManagementTaxonomyPage: FC<WoundManagementTaxonomyPageProps> = ({
 					{text && <div dangerouslySetInnerHTML={{ __html: text }}></div>}
 
 					{childTaxonomies.length > 0 && (
-						<ul className={styles.childTaxonomyList}>
+						<ul
+							className={styles.childTaxonomyList}
+							aria-label={`List of ${title.toLowerCase()}`}
+						>
 							{childTaxonomies.map((child) => {
 								return (
 									<li key={child.slug}>

@@ -82,6 +82,8 @@ const props: WoundManagementTaxonomyPageProps = {
 	},
 };
 
+const childTaxonomyListName = `List of ${props.data.bnfWoundManagementTaxonomy.title.toLowerCase()}`;
+
 describe("Wound management taxonomy page", () => {
 	it("should render the page title with the expected text", async () => {
 		render(<WoundManagementTaxonomyPage {...props} />);
@@ -140,6 +142,27 @@ describe("Wound management taxonomy page", () => {
 		});
 		expect(within(subNav).getAllByRole("listitem")).toHaveLength(
 			props.data.allBnfWoundManagementTaxonomy.taxonomies.length
+		);
+	});
+
+	it("should render a list of child taxonomies", () => {
+		render(<WoundManagementTaxonomyPage {...props} />);
+		expect(
+			screen.getByRole("list", {
+				name: childTaxonomyListName,
+			})
+		).toBeInTheDocument();
+	});
+
+	it("should render a heading for each child taxonomy", () => {
+		render(<WoundManagementTaxonomyPage {...props} />);
+		const childTaxonomyList = screen.getByRole("list", {
+			name: childTaxonomyListName,
+		});
+		expect(
+			within(childTaxonomyList).getAllByRole("heading", { level: 2 })
+		).toHaveLength(
+			props.data.bnfWoundManagementTaxonomy.childTaxonomies.length
 		);
 	});
 
