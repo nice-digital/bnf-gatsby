@@ -535,14 +535,14 @@ exports[`HomePage should match snapshot for BNF 1`] = `
             General guidance on prescribing and the use of medicines. Includes guidance on
              
             <a
-              href="/guidance/prescribing-in-palliative-care/"
+              href="/medicines-guidance/prescribing-in-palliative-care/"
             >
               prescribing in palliative care
             </a>
             ,
              
             <a
-              href="/guidance/prescription-writing/"
+              href="/medicines-guidance/prescription-writing/"
             >
               prescription writing
             </a>
@@ -550,7 +550,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
             and
              
             <a
-              href="/guidance/prescribing-in-renal-impairment/"
+              href="/medicines-guidance/prescribing-in-renal-impairment/"
             >
               prescribing in renal impairment
             </a>
@@ -1253,14 +1253,14 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
             General guidance on prescribing and the use of medicines. Includes guidance on
              
             <a
-              href="/guidance/prescribing-in-palliative-care/"
+              href="/medicines-guidance/prescribing-in-palliative-care/"
             >
               prescribing in palliative care
             </a>
             ,
              
             <a
-              href="/guidance/prescription-writing/"
+              href="/medicines-guidance/prescription-writing/"
             >
               prescription writing
             </a>
@@ -1268,7 +1268,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
             and
              
             <a
-              href="/guidance/prescribing-in-renal-impairment/"
+              href="/medicines-guidance/prescribing-in-renal-impairment/"
             >
               prescribing in renal impairment
             </a>

@@ -96,15 +96,15 @@ const HomePage: FC = () => {
 						<p>
 							General guidance on prescribing and the use of medicines. Includes
 							guidance on{" "}
-							<Link to="/guidance/prescribing-in-palliative-care/">
+							<Link to="/medicines-guidance/prescribing-in-palliative-care/">
 								prescribing in palliative care
 							</Link>
 							,{" "}
-							<Link to="/guidance/prescription-writing/">
+							<Link to="/medicines-guidance/prescription-writing/">
 								prescription writing
 							</Link>{" "}
 							and{" "}
-							<Link to="/guidance/prescribing-in-renal-impairment/">
+							<Link to="/medicines-guidance/prescribing-in-renal-impairment/">
 								prescribing in renal impairment
 							</Link>
 							.
