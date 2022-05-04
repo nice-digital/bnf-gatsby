@@ -108,6 +108,7 @@ const props: WoundManagementProductPageProps = {
 
 // Saves some lengthy repetition below...
 const taxonomy = props.data.bnfWoundManagementTaxonomyProductGroup.taxonomy;
+const productListName = `List of products: ${taxonomy.title}`;
 
 describe("Wound management taxonomy page", () => {
 	it("should render the page title with the expected text", async () => {
@@ -167,4 +168,39 @@ describe("Wound management taxonomy page", () => {
 			taxonomy.productGroups.length
 		);
 	});
+
+	it("should render a list of products", () => {
+		render(<WoundManagementProductPage {...props} />);
+		expect(
+			screen.getByRole("list", {
+				name: productListName,
+			})
+		).toBeInTheDocument();
+	});
+
+	it("should render a heading for each product group", () => {
+		render(<WoundManagementProductPage {...props} />);
+		const productList = screen.getByRole("list", {
+			name: productListName,
+		});
+		expect(
+			within(productList).getAllByRole("heading", { level: 2 })
+		).toHaveLength(taxonomy.productGroups.length);
+	});
+
+	it.each(taxonomy.productGroups)(
+		"should render a heading and a product table for each product group",
+		({ title, products }) => {
+			render(<WoundManagementProductPage {...props} />);
+			const heading = screen.getByRole("heading", { level: 2, name: title });
+			expect(heading).toBeInTheDocument();
+
+			// eslint-disable-next-line testing-library/no-node-access
+			const parentListItem = heading.closest("li");
+			if (parentListItem) {
+				const tableRows = within(parentListItem).getAllByRole("row");
+				expect(tableRows).toHaveLength(products.length + 1); // Adding 1 for the table header
+			}
+		}
+	);
 });

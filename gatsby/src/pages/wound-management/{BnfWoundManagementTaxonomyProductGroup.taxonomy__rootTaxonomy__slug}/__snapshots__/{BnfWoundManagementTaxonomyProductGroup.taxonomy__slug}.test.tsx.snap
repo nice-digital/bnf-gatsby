@@ -199,6 +199,7 @@ exports[`Wound management taxonomy page should match page snapshot 1`] = `
       </span>
     </button>
     <ul
+      aria-label="List of products: Vapour–permeable, transparent, adhesive film dressing."
       class="productGroupList"
     >
       <li>

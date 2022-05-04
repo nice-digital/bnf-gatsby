@@ -107,7 +107,10 @@ const WoundManagementProductPage: FC<WoundManagementProductPageProps> = ({
 					})`
 				}
 			>
-				<ul className={styles.productGroupList}>
+				<ul
+					className={styles.productGroupList}
+					aria-label={`List of products: ${title}`}
+				>
 					{productGroups.map(({ title, description, products }) => (
 						<li key={title}>
 							<Accordion
