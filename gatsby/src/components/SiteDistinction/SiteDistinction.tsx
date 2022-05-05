@@ -33,7 +33,7 @@ export const SiteDistinction: FC = () => {
 			<Container className={styles.container}>
 				<p className={styles.tabs}>
 					<span className="visually-hidden">
-						Currently viewing {siteTitleShort}.{" "}
+						Currently viewing {siteTitleShort}.
 					</span>
 					{isClient ? (
 						<button
