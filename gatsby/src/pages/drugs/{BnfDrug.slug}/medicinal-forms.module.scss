@@ -4,20 +4,26 @@
   margin-bottom: core.rem(core.$nds-spacing-large);
 }
 
+// .asideInfo {
+//   background: core.$nds-colour-nice-white;
+//   border: 1px solid core.$nds-colour-nice-grey-2;
+//   margin-bottom: core.rem(core.$nds-spacing-medium);
+//   padding: core.rem(core.$nds-spacing-medium);
+
+//   h2 {
+//     @include core.nds-h4;
+//     margin-top: 0;
+//   }
+
+//   > :last-child {
+//     margin-bottom: 0;
+//   }
+// }
+
 .asideInfo {
-  background: core.$nds-colour-nice-white;
-  border: 1px solid core.$nds-colour-nice-grey-2;
-  margin-bottom: core.rem(core.$nds-spacing-medium);
+  background: core.$nds-colour-nice-blue-1;
+  margin-bottom: core.rem(core.$nds-spacing-large);
   padding: core.rem(core.$nds-spacing-medium);
-
-  h2 {
-    @include core.nds-h4;
-    margin-top: 0;
-  }
-
-  > :last-child {
-    margin-bottom: 0;
-  }
 }
 
 .prepList {

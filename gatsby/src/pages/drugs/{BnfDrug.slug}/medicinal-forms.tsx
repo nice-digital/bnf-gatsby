@@ -9,6 +9,7 @@ import {
 	FeedLabel,
 } from "@nice-digital/gatsby-source-bnf";
 import WarningIcon from "@nice-digital/icons/lib/Warning";
+import { Alert } from "@nice-digital/nds-alert";
 
 import { Accordion, AccordionTheme } from "@/components/Accordion/Accordion";
 import { AccordionGroup } from "@/components/AccordionGroup/AccordionGroup";
@@ -44,19 +45,9 @@ export interface MedicinalFormsPageProps {
 }
 
 const asideInfo: ReactElement = (
-	<aside className={styles.asideInfo}>
-		<h2>Important information about BNF prices and buying drugs</h2>
-		<p>NICE does not sell any drugs, medicines or pharmaceutical products.</p>
-		<p>
-			BNF prices do not reflect over-the-counter purchase pricings because they
-			do not take into account VAT, professional fees, and other overheads.
-		</p>
-		<p>
-			A fuller explanation of costs to the NHS may be obtained from the Drug
-			Tariff. Separate drug tariffs are applicable to England and Wales,
-			Scotland and Northern Ireland
-		</p>
-	</aside>
+	<Alert className={styles.asideInfo}>
+		<p>NICE does not sell any drugs, medicines or pharmaceutical products</p>
+	</Alert>
 );
 
 const MedicinalFormsPage: FC<MedicinalFormsPageProps> = ({
