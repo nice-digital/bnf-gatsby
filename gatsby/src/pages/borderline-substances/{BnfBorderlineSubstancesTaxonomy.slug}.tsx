@@ -19,9 +19,7 @@ import styles from "./{BnfBorderlineSubstancesTaxonomy.slug}.module.scss";
 export type BorderlineSubstancesSectionPageProps = {
 	data: {
 		bnfBorderlineSubstancesTaxonomy: SlugAndTitle & {
-			rootTaxonomy: {
-				slug: string;
-				title: string;
+			rootTaxonomy: SlugAndTitle & {
 				childTaxonomies: {
 					title: string;
 					childTaxonomies: {

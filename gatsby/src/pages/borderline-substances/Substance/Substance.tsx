@@ -31,7 +31,7 @@ const Substance: FC<SubstancesProps> = ({ substance, label }) => {
 							<span className={styles.headingText}>{substance.title} </span>
 						</h2>
 						{substance && substance.introductionNote && (
-							<Alert type="caution">
+							<Alert type="info">
 								{striptags(substance?.introductionNote)}
 							</Alert>
 						)}
