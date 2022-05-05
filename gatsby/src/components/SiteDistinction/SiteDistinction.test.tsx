@@ -1,4 +1,4 @@
-import { render, screen, within } from "@testing-library/react";
+import { fireEvent, render, screen, within } from "@testing-library/react";
 
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
@@ -31,8 +31,25 @@ describe("SiteDistinction", () => {
 					})
 				).toBeInTheDocument();
 			});
-			it.todo("should not be expanded by default");
-			it.todo("should expand on click");
+
+			it("should not be expanded by default", () => {
+				render(<SiteDistinction />);
+				expect(
+					screen.getByRole("button", {
+						name: `Show ${otherSiteTitleShort} link`,
+					})
+				).toHaveAttribute("aria-expanded", "false");
+			});
+
+			it("should expand on click", () => {
+				render(<SiteDistinction />);
+				const button = screen.getByRole("button", {
+					name: `Show ${otherSiteTitleShort} link`,
+				});
+				fireEvent.click(button);
+				expect(button).toHaveAttribute("aria-expanded", "true");
+			});
+
 			it.todo("should change text to hide other site link on click");
 			it.todo("should render an icon with an expanded class");
 		});
