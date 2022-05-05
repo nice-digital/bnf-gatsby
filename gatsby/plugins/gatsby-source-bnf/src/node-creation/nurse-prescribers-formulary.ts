@@ -1,12 +1,18 @@
 import { type SourceNodesArgs } from "gatsby";
 
-import { type FeedNursePrescribersFormulary } from "../downloader/types";
+import { isTruthy } from "../../../../src/utils/index";
+import {
+	FeedRecordSection,
+	type FeedNursePrescribersFormulary,
+} from "../downloader/types";
 import { BnfNode } from "../node-types";
 
 import { createBnfNode, createSimpleRecordNodes } from "./utils";
 
 /** NPF treatment summaries all have this prefix on in the feed which we want to strip */
 const npfTreatmentSummaryTitlePrefix = "Nurse Prescribers' Formulary—";
+
+const drugHrefRegex = /"\/drug\/(?<drugId>_\d+)"/g;
 
 export const createNursePrescribersNodes = (
 	{ introduction, npfTreatmentSummaries }: FeedNursePrescribersFormulary,
@@ -26,6 +32,20 @@ export const createNursePrescribersNodes = (
 				title: npfTreatmentSummary.title.replace(
 					npfTreatmentSummaryTitlePrefix,
 					""
+				),
+				relatedDrugs: Array.from(
+					new Set(
+						npfTreatmentSummary.sections.reduce(
+							(ids: string[], { content }: FeedRecordSection) => [
+								...ids,
+								...Array.from(
+									content.matchAll(drugHrefRegex),
+									(m) => m.groups?.["drugId"]
+								).filter(isTruthy),
+							],
+							[]
+						)
+					)
 				),
 			})),
 			BnfNode.NursePrescribersFormularyTreatmentSummary,
