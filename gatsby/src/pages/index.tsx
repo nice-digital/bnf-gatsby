@@ -137,9 +137,7 @@ const HomePage: FC = () => {
 
 					<GridItem md={isBNF ? 6 : 4} cols={12}>
 						<h2>
-							<Link to="/borderline-substance-taxonomy/">
-								Borderline substances
-							</Link>
+							<Link to="/borderline-substances">Borderline substances</Link>
 						</h2>
 
 						<p>

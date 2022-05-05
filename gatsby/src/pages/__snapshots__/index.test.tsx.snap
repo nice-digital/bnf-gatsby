@@ -590,7 +590,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
         >
           <h2>
             <a
-              href="/borderline-substance-taxonomy/"
+              href="/borderline-substances"
             >
               Borderline substances
             </a>
@@ -1294,7 +1294,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
         >
           <h2>
             <a
-              href="/borderline-substance-taxonomy/"
+              href="/borderline-substances"
             >
               Borderline substances
             </a>
