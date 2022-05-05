@@ -16,7 +16,7 @@ export const createSchemaCustomization = ({
 }: CreateSchemaCustomizationArgs): void => {
 	createFieldExtension(initialFieldExtension);
 
-	// Add initials for types used in A-Z lists, as it's easier for grouping
+	// Add initials for types used in A to Z lists, as it's easier for grouping
 	// We don't add the initial field in the source plugin because grouping is a presentation concern
 	const typeDefs = `
 	  type BnfDrug implements Node {

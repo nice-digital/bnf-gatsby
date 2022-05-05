@@ -9,6 +9,7 @@ import { guidanceSchema } from "./guidance";
 import { indicationsAndDoseSchema } from "./indications-and-dose";
 import { interactionSchema } from "./interaction";
 import { medicalDeviceSchema } from "./medical-device";
+import { metadataSchema } from "./metadata";
 import { monitoringSchema } from "./monitoring";
 import { nationalFundingSchema } from "./national-funding";
 import { nursePrescribersSchema } from "./nurse-prescribers-formulary";
@@ -37,6 +38,7 @@ export const schema = [
 	indicationsAndDoseSchema,
 	interactionSchema,
 	medicalDeviceSchema,
+	metadataSchema,
 	monitoringSchema,
 	nationalFundingSchema,
 	nursePrescribersSchema,
