@@ -1,19 +1,25 @@
 import { fireEvent, render, screen, within } from "@testing-library/react";
+import { renderToString } from "react-dom/server";
 
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
 import { SiteDistinction } from "./SiteDistinction";
 
 describe("SiteDistinction", () => {
-	it("should match snapshot", () => {
-		render(<SiteDistinction />);
-		expect(screen.getByLabelText("Show BNFC link")).toMatchSnapshot();
-	});
-
 	describe.each([
-		["BNF", true, "BNFC"],
-		["BNFC", false, "BNF"],
-	])("%s site", (siteTitleShort, isBNF, otherSiteTitleShort) => {
+		[
+			"BNF",
+			true,
+			"BNFC",
+			"https://bnfc-gatsby-tests.nice.org.uk/test/?ref=switch",
+		],
+		[
+			"BNFC",
+			false,
+			"BNF",
+			"https://bnf-gatsby-tests.nice.org.uk/test/?ref=switch",
+		],
+	])("%s site", (siteTitleShort, isBNF, otherSiteTitleShort, otherSiteHref) => {
 		beforeEach(() => {
 			(useSiteMetadata as jest.Mock).mockReturnValue({
 				siteTitleShort,
@@ -21,8 +27,17 @@ describe("SiteDistinction", () => {
 			});
 		});
 
+		it("should match snapshot", () => {
+			render(<SiteDistinction />);
+			expect(
+				screen.getByLabelText(`Show ${otherSiteTitleShort} link`)
+			).toMatchSnapshot();
+		});
+
 		describe("Button", () => {
-			it.todo("should not render a button on serverside");
+			it("should not render the button server side", () => {
+				expect(renderToString(<SiteDistinction />)).not.toContain("<button");
+			});
 			it(`should render a button with an accessible label to show ${otherSiteTitleShort} link`, () => {
 				render(<SiteDistinction />);
 				expect(
@@ -50,13 +65,40 @@ describe("SiteDistinction", () => {
 				expect(button).toHaveAttribute("aria-expanded", "true");
 			});
 
-			it.todo("should change text to hide other site link on click");
-			it.todo("should render an icon with an expanded class");
+			it("should change label text to hide other site link on click", () => {
+				render(<SiteDistinction />);
+				const button = screen.getByRole("button", {
+					name: `Show ${otherSiteTitleShort} link`,
+				});
+				fireEvent.click(button);
+				expect(button).toHaveAttribute(
+					"aria-label",
+					`Hide ${otherSiteTitleShort} link`
+				);
+			});
+
+			it("should render an icon with an expanded class on click", () => {
+				render(<SiteDistinction />);
+				const button = screen.getByRole("button", {
+					name: `Show ${otherSiteTitleShort} link`,
+				});
+
+				// eslint-disable-next-line testing-library/no-node-access
+				const svg = button.querySelector("svg");
+				expect(svg?.classList.value).toEqual("icon");
+				fireEvent.click(button);
+				expect(svg).toHaveClass("icon iconExpanded");
+			});
 		});
 
 		describe("Link", () => {
-			it.todo("should ");
-			it.todo("should have an href with ref = switch on querystring");
+			it(`should have href to ${otherSiteTitleShort} with querystring parameter ref=switch`, () => {
+				render(<SiteDistinction />);
+				const link = screen.getByRole("link", {
+					name: `switch to ${otherSiteTitleShort}`,
+				});
+				expect(link).toHaveAttribute("href", otherSiteHref);
+			});
 		});
 
 		describe("Visually hidden", () => {
