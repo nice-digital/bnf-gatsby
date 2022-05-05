@@ -1,7 +1,7 @@
-import { useLocation } from "@reach/router";
 import { graphql, Link } from "gatsby";
 import React, { type FC } from "react";
 
+import { FeedBorderlineSubstance } from "@nice-digital/gatsby-source-bnf";
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
 import { Grid, GridItem } from "@nice-digital/nds-grid";
 import { PageHeader } from "@nice-digital/nds-page-header";
@@ -13,6 +13,7 @@ import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 import { type SlugAndTitle } from "@/utils";
 
+import Substance from "./Substance/Substance";
 import styles from "./{BnfBorderlineSubstancesTaxonomy.slug}.module.scss";
 
 export type BorderlineSubstancesSectionPageProps = {
@@ -30,19 +31,13 @@ export type BorderlineSubstancesSectionPageProps = {
 					slug: string;
 				}[];
 			};
-			substances: {
-				title: string;
-			}[];
+			substances: FeedBorderlineSubstance[];
 			childTaxonomies: {
 				title: string;
-				substances: {
-					title: string;
-				}[];
+				substances: FeedBorderlineSubstance[];
 				childTaxonomies: {
 					title: string;
-					substances: {
-						title: string;
-					}[];
+					substances: FeedBorderlineSubstance[];
 				}[];
 			}[];
 		};
@@ -145,28 +140,43 @@ const BorderlineSubstancesSectionPage: FC<
 					</GridItem>
 				</Grid>
 			) : (
-				<>
+				<section className={styles.section}>
 					{" "}
 					<Link to={`/borderline-substances/${rootTaxonomy.slug}/`}>
 						View other {rootTaxonomy.title}
 					</Link>
-					{/* // loop through this taxonomy substances //// within that, loop
-					through its presentations // loop through this taxonomy's children
-					//// loop through its children //////loop through its presentations */}
-					<section>
-						{substances.map((substance) => (
-							<>
-								<h2 key={substance.title}>{substance.title}</h2>
-							</>
-						))}
-					</section>
-					<section>
-						{" "}
-						{childTaxonomies.map((child) => (
-							<h3 key={child.title}>{child.title}</h3>
-						))}
-					</section>
-				</>
+					<SectionNav
+						sections={substances.map(({ title, id }) => ({
+							id,
+							title,
+						}))}
+					></SectionNav>
+					{substances.map((substance) => (
+						<Substance key={substance.id} substance={substance}></Substance>
+					))}
+					{childTaxonomies.map((child) => (
+						<>
+							{child.substances.map((substance) => (
+								<Substance
+									key={substance.id}
+									substance={substance}
+									label={child.title}
+								></Substance>
+							))}
+							{child.childTaxonomies.map((child2) => (
+								<>
+									{child2.substances.map((substance) => (
+										<Substance
+											key={substance.id}
+											substance={substance}
+											label={child2.title}
+										></Substance>
+									))}
+								</>
+							))}
+						</>
+					))}
+				</section>
 			)}
 		</Layout>
 	);
@@ -191,11 +201,51 @@ export const query = graphql`
 			}
 			substances {
 				title
+				introductionNote
+				presentations {
+					acbs
+					energyKj
+					proteinGrams
+					carbohydrateGrams
+					fatGrams
+					fibreGrams
+					specialCharacteristics
+					formulation
+					borderlineSubstancePreps {
+						packs {
+							unit
+							size
+							nhsIndicativePrice
+						}
+						name
+						manufacturer
+					}
+				}
 			}
 			childTaxonomies {
 				title
 				substances {
 					title
+					introductionNote
+					presentations {
+						acbs
+						energyKj
+						proteinGrams
+						carbohydrateGrams
+						fatGrams
+						fibreGrams
+						specialCharacteristics
+						formulation
+						borderlineSubstancePreps {
+							packs {
+								unit
+								size
+								nhsIndicativePrice
+							}
+							name
+							manufacturer
+						}
+					}
 				}
 				childTaxonomies {
 					title
