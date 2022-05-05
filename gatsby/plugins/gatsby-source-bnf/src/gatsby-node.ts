@@ -19,6 +19,7 @@ import { createClassificationNodes } from "./node-creation/classifications";
 import { createDrugNodes } from "./node-creation/drugs";
 import { createInteractionNodes } from "./node-creation/interactions";
 import { createMedicalDeviceNodes } from "./node-creation/medical-devices";
+import { createMetadataNode } from "./node-creation/metadata";
 import { createNursePrescribersNodes } from "./node-creation/nurse-prescribers-formulary";
 import { createTreatmentSummaryNodes } from "./node-creation/treatment-summaries";
 import { createSimpleRecordNodes } from "./node-creation/utils";
@@ -113,6 +114,8 @@ export const sourceNodes = async (
 	// Wound management only exists in BNF and not BNFC
 	if (feedData.woundManagement)
 		createWoundManagementNodes(feedData.woundManagement, sourceNodesArgs);
+
+	createMetadataNode(feedData.metadata, sourceNodesArgs);
 
 	createNodesActivity.setStatus(`Created all nodes`);
 	createNodesActivity.end();
