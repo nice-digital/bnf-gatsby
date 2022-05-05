@@ -102,7 +102,7 @@ const WoundManagementIndexPage: FC<WoundManagementIndexPageProps> = ({
 						{taxonomies.map(({ slug, title }) => (
 							<StackedNavLink
 								key={slug}
-								destination={`/wound-management/${slug}`}
+								destination={`/wound-management/${slug}/`}
 								elementType={Link}
 							>
 								<span dangerouslySetInnerHTML={{ __html: title }} />
