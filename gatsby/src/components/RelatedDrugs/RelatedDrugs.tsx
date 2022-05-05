@@ -8,12 +8,16 @@ export interface RelatedDrugsProps {
 	drugs: SlugAndTitle[];
 }
 
+export const sectionId = "related-drugs";
+
+export const sectionHeading = "Related drugs";
+
 export const RelatedDrugs: FC<RelatedDrugsProps> = ({ drugs }) => (
 	<>
 		{drugs.length > 0 ? (
-			<section aria-labelledby="related-drugs">
-				<h2 id="related-drugs">Related drugs</h2>
-				<TagList aria-labelledby="related-drugs">
+			<section aria-labelledby={sectionId}>
+				<h2 id={sectionId}>{sectionHeading}</h2>
+				<TagList aria-labelledby={sectionId}>
 					{drugs
 						.sort((a, b) => a.slug.localeCompare(b.slug))
 						.map((drug) => (

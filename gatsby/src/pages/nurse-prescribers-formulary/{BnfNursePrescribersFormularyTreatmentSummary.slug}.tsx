@@ -4,7 +4,11 @@ import React, { FC } from "react";
 import { DetailsPageLayout } from "@/components/DetailsPageLayout/DetailsPageLayout";
 import { NursePrescribersFormularyMenu } from "@/components/NursePrescribersFormularyMenu/NursePrescribersFormularyMenu";
 import { RecordSectionsContent } from "@/components/RecordSectionsContent/RecordSectionsContent";
-import { RelatedDrugs } from "@/components/RelatedDrugs/RelatedDrugs";
+import {
+	RelatedDrugs,
+	sectionHeading as relatedDrugsHeading,
+	sectionId as relatedDrugsId,
+} from "@/components/RelatedDrugs/RelatedDrugs";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 import {
 	type RecordSection,
@@ -68,7 +72,7 @@ const NursePrescribersFormularyTreatmentSummaryPage: FC<
 				}))
 				.concat(
 					relatedDrugs.length > 0
-						? { id: "related-drugs", title: "Related drugs" }
+						? { id: relatedDrugsId, title: relatedDrugsHeading }
 						: []
 				)}
 			metaDescription={metaDescription}
