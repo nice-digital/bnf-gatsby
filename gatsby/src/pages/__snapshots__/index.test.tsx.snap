@@ -6,204 +6,714 @@ exports[`HomePage should match snapshot for BNF 1`] = `
     class="container"
   >
     <div
-      class="hero"
-      id="content-start"
+      class="homeWrapper"
     >
       <div
-        class="hero__container"
+        class="hero"
+        id="content-start"
       >
-        <nav
-          aria-label="Breadcrumbs"
-          role="navigation"
-        >
-          <ol
-            class="breadcrumbs"
-          >
-            <li
-              class="breadcrumbs__crumb"
-            >
-              <a
-                href="https://www.nice.org.uk/"
-              >
-                NICE
-              </a>
-            </li>
-            <li
-              class="breadcrumbs__crumb"
-            >
-              <span>
-                BNF
-              </span>
-            </li>
-          </ol>
-        </nav>
-        <script
-          type="application/ld+json"
-        >
-          {
-  "@context": "http://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "item": {
-        "@id": "https://www.nice.org.uk/",
-        "name": "NICE"
-      }
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "item": {
-        "name": "BNF"
-      }
-    }
-  ]
-}
-        </script>
         <div
-          class="hero__body"
+          class="heroContainer"
         >
           <div
-            class="hero__copy"
+            class="text"
           >
             <h1
-              class="hero__title"
+              class="title"
             >
               British National Formulary
+               (
+              BNF
+              )
             </h1>
             <p
-              class="hero__intro"
+              class="intro"
             >
-              The British National Formulary (BNF) is the first choice for concise medicines information. Trusted by healthcare professionals across the world to support confident decision-making at the point of care.
+              Key information on the selection, prescribing, dispensing and administration of medicines.
             </p>
-            <div
-              class="hero__actions"
+          </div>
+          <div
+            class="lastUpdated"
+            data-tracking="last-updated"
+          >
+            <h2
+              class="h5"
             >
-              <a
-                class="btn btn--cta"
-                href="/drugs/"
-              >
-                Browse drugs
-              </a>
-            </div>
+              Last updated: 
+            </h2>
+            <time
+              class="h3"
+              datetime="2022-04-06T00:38:57.911"
+            >
+              6 April 2022
+            </time>
+            <a
+              href="/about/changes/"
+            >
+              See what's changed
+            </a>
           </div>
         </div>
       </div>
+      <div
+        class="grid grid--loose"
+        data-tracking="browse-a-to-z"
+      >
+        <div
+          class="drugsColumn"
+          data-g="12 md:6"
+        >
+          <h2>
+            Drugs
+          </h2>
+          <p>
+            Drug monographs describe the uses, doses, safety issues, medicinal forms and other considerations involved in the use of a drug.
+          </p>
+          <h3
+            class="h4"
+          >
+            Browse drugs by A to Z
+          </h3>
+          <ol
+            class="alphabet alphabet--chunky alphabet"
+            data-tracking="drugs-a-to-z"
+            id="a-to-z"
+          >
+            <li
+              class="alphabet__letter alphabet__letter--chunky"
+            >
+              <span
+                class="alphabet__link-wrapper"
+              >
+                <a
+                  class="alphabet__link"
+                  href="/drugs/#a"
+                >
+                  A
+                </a>
+                 
+              </span>
+            </li>
+            <li
+              class="alphabet__letter alphabet__letter--chunky"
+            >
+              <span
+                class="alphabet__link-wrapper"
+              >
+                <a
+                  class="alphabet__link"
+                  href="/drugs/#b"
+                >
+                  B
+                </a>
+                 
+              </span>
+            </li>
+            <li
+              class="alphabet__letter alphabet__letter--chunky"
+            >
+              <span
+                class="alphabet__link-wrapper"
+              >
+                <a
+                  class="alphabet__link"
+                  href="/drugs/#c"
+                >
+                  C
+                </a>
+                 
+              </span>
+            </li>
+            <li
+              class="alphabet__letter alphabet__letter--chunky"
+            >
+              <span
+                class="alphabet__link-wrapper"
+              >
+                <a
+                  class="alphabet__link"
+                  href="/drugs/#d"
+                >
+                  D
+                </a>
+                 
+              </span>
+            </li>
+            <li
+              class="alphabet__letter alphabet__letter--chunky"
+            >
+              <span
+                class="alphabet__link-wrapper"
+              >
+                <a
+                  class="alphabet__link"
+                  href="/drugs/#e"
+                >
+                  E
+                </a>
+                 
+              </span>
+            </li>
+            <li
+              class="alphabet__letter alphabet__letter--chunky"
+            >
+              <span
+                class="alphabet__link-wrapper"
+              >
+                <a
+                  class="alphabet__link"
+                  href="/drugs/#f"
+                >
+                  F
+                </a>
+                 
+              </span>
+            </li>
+            <li
+              class="alphabet__letter alphabet__letter--chunky"
+            >
+              <span
+                class="alphabet__link-wrapper"
+              >
+                <a
+                  class="alphabet__link"
+                  href="/drugs/#g"
+                >
+                  G
+                </a>
+                 
+              </span>
+            </li>
+            <li
+              class="alphabet__letter alphabet__letter--chunky"
+            >
+              <span
+                class="alphabet__link-wrapper"
+              >
+                <a
+                  class="alphabet__link"
+                  href="/drugs/#h"
+                >
+                  H
+                </a>
+                 
+              </span>
+            </li>
+            <li
+              class="alphabet__letter alphabet__letter--chunky"
+            >
+              <span
+                class="alphabet__link-wrapper"
+              >
+                <a
+                  class="alphabet__link"
+                  href="/drugs/#i"
+                >
+                  I
+                </a>
+                 
+              </span>
+            </li>
+            <li
+              class="alphabet__letter alphabet__letter--chunky"
+            >
+              <span
+                class="alphabet__link-wrapper"
+              >
+                <a
+                  class="alphabet__link"
+                  href="/drugs/#j"
+                >
+                  J
+                </a>
+                 
+              </span>
+            </li>
+            <li
+              class="alphabet__letter alphabet__letter--chunky"
+            >
+              <span
+                class="alphabet__link-wrapper"
+              >
+                <a
+                  class="alphabet__link"
+                  href="/drugs/#k"
+                >
+                  K
+                </a>
+                 
+              </span>
+            </li>
+            <li
+              class="alphabet__letter alphabet__letter--chunky"
+            >
+              <span
+                class="alphabet__link-wrapper"
+              >
+                <a
+                  class="alphabet__link"
+                  href="/drugs/#l"
+                >
+                  L
+                </a>
+                 
+              </span>
+            </li>
+            <li
+              class="alphabet__letter alphabet__letter--chunky"
+            >
+              <span
+                class="alphabet__link-wrapper"
+              >
+                <a
+                  class="alphabet__link"
+                  href="/drugs/#m"
+                >
+                  M
+                </a>
+                 
+              </span>
+            </li>
+            <li
+              class="alphabet__letter alphabet__letter--chunky"
+            >
+              <span
+                class="alphabet__link-wrapper"
+              >
+                <a
+                  class="alphabet__link"
+                  href="/drugs/#n"
+                >
+                  N
+                </a>
+                 
+              </span>
+            </li>
+            <li
+              class="alphabet__letter alphabet__letter--chunky"
+            >
+              <span
+                class="alphabet__link-wrapper"
+              >
+                <a
+                  class="alphabet__link"
+                  href="/drugs/#o"
+                >
+                  O
+                </a>
+                 
+              </span>
+            </li>
+            <li
+              class="alphabet__letter alphabet__letter--chunky"
+            >
+              <span
+                class="alphabet__link-wrapper"
+              >
+                <a
+                  class="alphabet__link"
+                  href="/drugs/#p"
+                >
+                  P
+                </a>
+                 
+              </span>
+            </li>
+            <li
+              class="alphabet__letter alphabet__letter--chunky"
+            >
+              <span
+                class="alphabet__link-wrapper"
+              >
+                <a
+                  class="alphabet__link"
+                  href="/drugs/#q"
+                >
+                  Q
+                </a>
+                 
+              </span>
+            </li>
+            <li
+              class="alphabet__letter alphabet__letter--chunky"
+            >
+              <span
+                class="alphabet__link-wrapper"
+              >
+                <a
+                  class="alphabet__link"
+                  href="/drugs/#r"
+                >
+                  R
+                </a>
+                 
+              </span>
+            </li>
+            <li
+              class="alphabet__letter alphabet__letter--chunky"
+            >
+              <span
+                class="alphabet__link-wrapper"
+              >
+                <a
+                  class="alphabet__link"
+                  href="/drugs/#s"
+                >
+                  S
+                </a>
+                 
+              </span>
+            </li>
+            <li
+              class="alphabet__letter alphabet__letter--chunky"
+            >
+              <span
+                class="alphabet__link-wrapper"
+              >
+                <a
+                  class="alphabet__link"
+                  href="/drugs/#t"
+                >
+                  T
+                </a>
+                 
+              </span>
+            </li>
+            <li
+              class="alphabet__letter alphabet__letter--chunky"
+            >
+              <span
+                class="alphabet__link-wrapper"
+              >
+                <a
+                  class="alphabet__link"
+                  href="/drugs/#u"
+                >
+                  U
+                </a>
+                 
+              </span>
+            </li>
+            <li
+              class="alphabet__letter alphabet__letter--chunky"
+            >
+              <span
+                class="alphabet__link-wrapper"
+              >
+                <a
+                  class="alphabet__link"
+                  href="/drugs/#v"
+                >
+                  V
+                </a>
+                 
+              </span>
+            </li>
+            <li
+              class="alphabet__letter alphabet__letter--chunky"
+            >
+              <span
+                class="alphabet__link-wrapper"
+              >
+                <a
+                  class="alphabet__link"
+                  href="/drugs/#w"
+                >
+                  W
+                </a>
+                 
+              </span>
+            </li>
+            <li
+              class="alphabet__letter alphabet__letter--chunky"
+            >
+              <span
+                class="alphabet__link-wrapper"
+              >
+                <a
+                  class="alphabet__link"
+                  href="/drugs/#x"
+                >
+                  X
+                </a>
+                 
+              </span>
+            </li>
+            <li
+              class="alphabet__letter alphabet__letter--chunky"
+            >
+              <span
+                class="alphabet__link-wrapper"
+              >
+                <a
+                  class="alphabet__link"
+                  href="/drugs/#y"
+                >
+                  Y
+                </a>
+                 
+              </span>
+            </li>
+            <li
+              class="alphabet__letter alphabet__letter--chunky"
+            >
+              <span
+                class="alphabet__link-wrapper"
+              >
+                <a
+                  class="alphabet__link"
+                  href="/drugs/#z"
+                >
+                  Z
+                </a>
+                 
+              </span>
+            </li>
+          </ol>
+        </div>
+        <div
+          class="featureColumn"
+          data-g="12 md:6"
+        >
+          <div>
+            <h2>
+              Treatment summaries
+            </h2>
+            <p>
+              Browse an A to Z list of treatment summaries covering:
+            </p>
+            <ul>
+              <li>
+                drug use related to a particular body system
+              </li>
+              <li>
+                drug management or treatment of common conditions
+              </li>
+              <li>
+                comparisons between groups of drugs.
+              </li>
+            </ul>
+            <a
+              class="btn"
+              href="/treatment-summaries/"
+            >
+              View treatment summaries A to Z
+            </a>
+          </div>
+          <div>
+            <h2>
+              Interactions
+            </h2>
+            <p>
+              Check for drug interactions. Includes information on the severity of an interaction and the type of evidence to support it.
+            </p>
+            <a
+              class="btn"
+              href="/interactions/"
+            >
+              View interactions A to Z
+            </a>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div
+        class="grid grid--loose"
+        data-tracking="browse-by-category"
+      >
+        <div
+          data-g="12 md:6"
+        >
+          <h2>
+            <a
+              href="/medicines-guidance/"
+            >
+              Medicines guidance
+            </a>
+          </h2>
+          <p>
+            General guidance on prescribing and the use of medicines. Includes guidance on
+             
+            <a
+              href="/medicines-guidance/prescribing-in-palliative-care/"
+            >
+              prescribing in palliative care
+            </a>
+            ,
+             
+            <a
+              href="/medicines-guidance/prescription-writing/"
+            >
+              prescription writing
+            </a>
+             
+            and
+             
+            <a
+              href="/medicines-guidance/prescribing-in-renal-impairment/"
+            >
+              prescribing in renal impairment
+            </a>
+            .
+          </p>
+        </div>
+        <div
+          data-g="12 md:6"
+        >
+          <h2>
+            <a
+              href="/wound-management/"
+            >
+              Wound management
+            </a>
+          </h2>
+          <p>
+            Wound management products and elasticated garments. Browse by wound type or product type.
+          </p>
+        </div>
+        <div
+          data-g="12 md:6"
+        >
+          <h2>
+            <a
+              href="/medical-devices/"
+            >
+              Medical devices
+            </a>
+          </h2>
+          <p>
+            Indication, dose and medicinal product information for medical devices. Browse devices by type.
+          </p>
+        </div>
+        <div
+          data-g="12 md:6"
+        >
+          <h2>
+            <a
+              href="/borderline-substances"
+            >
+              Borderline substances
+            </a>
+          </h2>
+          <p>
+            Foods and toilet preparations, that in certain conditions have the characteristics of drugs.
+          </p>
+        </div>
+      </div>
+      <hr />
+      <div
+        class="grid grid--loose"
+        data-tracking="formulary"
+      >
+        <div
+          data-g="12 md:6"
+        >
+          <h2>
+            <a
+              href="/nurse-prescribers-formulary/"
+            >
+              Nurse prescribers formulary
+            </a>
+          </h2>
+          <p>
+            Medicines approved by the NHS for Nurse Practitioner prescribing.
+          </p>
+        </div>
+        <div
+          data-g="12 md:6"
+        >
+          <h2>
+            <a
+              href="/dental-practitioners-formulary/"
+            >
+              Dental practitioners formulary
+            </a>
+          </h2>
+          <p>
+            Medicines approved by the NHS for dental prescribing. 
+          </p>
+        </div>
+      </div>
+      <hr />
+      <div
+        class="grid grid--loose"
+        data-tracking="reference-tables"
+      >
+        <div
+          data-g="12 sm:6 md:4"
+        >
+          <h2
+            class="h3"
+          >
+            <a
+              href="/about/approximate-conversions-and-units/"
+            >
+              Approximate conversions and units
+            </a>
+          </h2>
+          <p>
+            Conversions and units tables. Includes growth chart with average weight and height, by gender and age (neonate, child and adult).
+          </p>
+        </div>
+        <div
+          data-g="12 sm:6 md:4"
+        >
+          <h2
+            class="h3"
+          >
+            <a
+              href="/about/labels/"
+            >
+              Cautionary and advisory labels
+            </a>
+          </h2>
+          <p>
+            Cautionary, warning and advisory labels applied to medications used in the 
+            BNF
+            .
+          </p>
+        </div>
+        <div
+          data-g="12 sm:6 md:4"
+        >
+          <h2
+            class="h3"
+          >
+            <a
+              href="/about/abbreviations-and-symbols/"
+            >
+              Abbreviations and symbols
+            </a>
+          </h2>
+          <p>
+            Glossary of symbols and abbreviations. Includes Latin, medication and dosage abbreviations used in the 
+            BNF
+             and prescribing.
+          </p>
+        </div>
+      </div>
+      <hr />
+      <ul
+        class="inlineList"
+        data-tracking="BNF home footer"
+      >
+        <li>
+          <a
+            href="/about/changes/"
+          >
+            What's changed?
+          </a>
+        </li>
+        <li>
+          <a
+            href="/about/"
+          >
+            About 
+            BNF
+          </a>
+        </li>
+      </ul>
     </div>
-    <div
-      class="grid grid--loose"
-    >
-      <div
-        data-g="12 sm:6 md:4"
-      >
-        <div
-          class="panel panel--impact-alt"
-        >
-          <h2
-            class="h3"
-          >
-            Drugs A to Z
-          </h2>
-          <p>
-            Browse the list of drug monographs, arranged alphabetically.
-          </p>
-          <a
-            class="btn btn--cta"
-            href="/drugs/"
-          >
-            Browse drugs
-          </a>
-        </div>
-      </div>
-      <div
-        data-g="12 sm:6 md:4"
-      >
-        <div
-          class="panel panel--primary"
-        >
-          <h2
-            class="h3"
-          >
-            Interactions
-          </h2>
-          <p>
-            Browse the list of drug interactions, arranged alphabetically.
-          </p>
-          <a
-            class="btn btn--inverse"
-            href="/interactions/"
-          >
-            Browse interactions
-          </a>
-        </div>
-      </div>
-      <div
-        data-g="12 sm:6 md:4"
-      >
-        <div
-          class="panel panel--impact-alt"
-        >
-          <h2
-            class="h3"
-          >
-            Treatment summaries
-          </h2>
-          <p>
-            Browse the list of treatment summaries, arranged alphabetically.
-          </p>
-          <a
-            class="btn btn--secondary"
-            href="/treatment-summaries/"
-          >
-            Browse treatment summaries
-          </a>
-        </div>
-      </div>
-    </div>
-    <p>
-      <a
-        href="/about/"
-      >
-        About
-      </a>
-    </p>
-    <p>
-      <a
-        href="/dental-practitioners-formulary/"
-      >
-        Dental Practitioners' Formulary
-      </a>
-    </p>
-    <p>
-      <a
-        href="/medical-devices/"
-      >
-        Medical devices
-      </a>
-    </p>
-    <p>
-      <a
-        href="/wound-management/"
-      >
-        Wound management products and elasticated garments
-      </a>
-    </p>
-    <p>
-      <a
-        href="/nurse-prescribers-formulary/"
-      >
-        Nurse Prescribers' Formulary
-      </a>
-    </p>
-    <p>
-      <a
-        href="/medicines-guidance/"
-      >
-        Medicines guidance
-      </a>
-    </p>
   </div>
 </main>
 `;
@@ -214,204 +724,700 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
     class="container"
   >
     <div
-      class="hero"
-      id="content-start"
+      class="homeWrapper"
     >
       <div
-        class="hero__container"
+        class="hero"
+        id="content-start"
       >
-        <nav
-          aria-label="Breadcrumbs"
-          role="navigation"
-        >
-          <ol
-            class="breadcrumbs"
-          >
-            <li
-              class="breadcrumbs__crumb"
-            >
-              <a
-                href="https://www.nice.org.uk/"
-              >
-                NICE
-              </a>
-            </li>
-            <li
-              class="breadcrumbs__crumb"
-            >
-              <span>
-                BNF
-              </span>
-            </li>
-          </ol>
-        </nav>
-        <script
-          type="application/ld+json"
-        >
-          {
-  "@context": "http://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "item": {
-        "@id": "https://www.nice.org.uk/",
-        "name": "NICE"
-      }
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "item": {
-        "name": "BNF"
-      }
-    }
-  ]
-}
-        </script>
         <div
-          class="hero__body"
+          class="heroContainer"
         >
           <div
-            class="hero__copy"
+            class="text"
           >
             <h1
-              class="hero__title"
+              class="title"
             >
-              British National Formulary for Children
+              British National Formulary
+               (
+              BNF
+              )
             </h1>
             <p
-              class="hero__intro"
+              class="intro"
             >
-              Covering neonates to adolescents, the BNF for Children includes key clinical and pharmaceutical information specific to those age groups.
+              Key information on the selection, prescribing, dispensing and administration of medicines.
             </p>
-            <div
-              class="hero__actions"
+          </div>
+          <div
+            class="lastUpdated"
+            data-tracking="last-updated"
+          >
+            <h2
+              class="h5"
             >
-              <a
-                class="btn btn--cta"
-                href="/drugs/"
-              >
-                Browse drugs
-              </a>
-            </div>
+              Last updated: 
+            </h2>
+            <time
+              class="h3"
+              datetime="2022-04-06T00:38:57.911"
+            >
+              6 April 2022
+            </time>
+            <a
+              href="/about/changes/"
+            >
+              See what's changed
+            </a>
           </div>
         </div>
       </div>
+      <div
+        class="grid grid--loose"
+        data-tracking="browse-a-to-z"
+      >
+        <div
+          class="drugsColumn"
+          data-g="12 md:6"
+        >
+          <h2>
+            Drugs
+          </h2>
+          <p>
+            Drug monographs describe the uses, doses, safety issues, medicinal forms and other considerations involved in the use of a drug.
+          </p>
+          <h3
+            class="h4"
+          >
+            Browse drugs by A to Z
+          </h3>
+          <ol
+            class="alphabet alphabet--chunky alphabet"
+            data-tracking="drugs-a-to-z"
+            id="a-to-z"
+          >
+            <li
+              class="alphabet__letter alphabet__letter--chunky"
+            >
+              <span
+                class="alphabet__link-wrapper"
+              >
+                <a
+                  class="alphabet__link"
+                  href="/drugs/#a"
+                >
+                  A
+                </a>
+                 
+              </span>
+            </li>
+            <li
+              class="alphabet__letter alphabet__letter--chunky"
+            >
+              <span
+                class="alphabet__link-wrapper"
+              >
+                <a
+                  class="alphabet__link"
+                  href="/drugs/#b"
+                >
+                  B
+                </a>
+                 
+              </span>
+            </li>
+            <li
+              class="alphabet__letter alphabet__letter--chunky"
+            >
+              <span
+                class="alphabet__link-wrapper"
+              >
+                <a
+                  class="alphabet__link"
+                  href="/drugs/#c"
+                >
+                  C
+                </a>
+                 
+              </span>
+            </li>
+            <li
+              class="alphabet__letter alphabet__letter--chunky"
+            >
+              <span
+                class="alphabet__link-wrapper"
+              >
+                <a
+                  class="alphabet__link"
+                  href="/drugs/#d"
+                >
+                  D
+                </a>
+                 
+              </span>
+            </li>
+            <li
+              class="alphabet__letter alphabet__letter--chunky"
+            >
+              <span
+                class="alphabet__link-wrapper"
+              >
+                <a
+                  class="alphabet__link"
+                  href="/drugs/#e"
+                >
+                  E
+                </a>
+                 
+              </span>
+            </li>
+            <li
+              class="alphabet__letter alphabet__letter--chunky"
+            >
+              <span
+                class="alphabet__link-wrapper"
+              >
+                <a
+                  class="alphabet__link"
+                  href="/drugs/#f"
+                >
+                  F
+                </a>
+                 
+              </span>
+            </li>
+            <li
+              class="alphabet__letter alphabet__letter--chunky"
+            >
+              <span
+                class="alphabet__link-wrapper"
+              >
+                <a
+                  class="alphabet__link"
+                  href="/drugs/#g"
+                >
+                  G
+                </a>
+                 
+              </span>
+            </li>
+            <li
+              class="alphabet__letter alphabet__letter--chunky"
+            >
+              <span
+                class="alphabet__link-wrapper"
+              >
+                <a
+                  class="alphabet__link"
+                  href="/drugs/#h"
+                >
+                  H
+                </a>
+                 
+              </span>
+            </li>
+            <li
+              class="alphabet__letter alphabet__letter--chunky"
+            >
+              <span
+                class="alphabet__link-wrapper"
+              >
+                <a
+                  class="alphabet__link"
+                  href="/drugs/#i"
+                >
+                  I
+                </a>
+                 
+              </span>
+            </li>
+            <li
+              class="alphabet__letter alphabet__letter--chunky"
+            >
+              <span
+                class="alphabet__link-wrapper"
+              >
+                <a
+                  class="alphabet__link"
+                  href="/drugs/#j"
+                >
+                  J
+                </a>
+                 
+              </span>
+            </li>
+            <li
+              class="alphabet__letter alphabet__letter--chunky"
+            >
+              <span
+                class="alphabet__link-wrapper"
+              >
+                <a
+                  class="alphabet__link"
+                  href="/drugs/#k"
+                >
+                  K
+                </a>
+                 
+              </span>
+            </li>
+            <li
+              class="alphabet__letter alphabet__letter--chunky"
+            >
+              <span
+                class="alphabet__link-wrapper"
+              >
+                <a
+                  class="alphabet__link"
+                  href="/drugs/#l"
+                >
+                  L
+                </a>
+                 
+              </span>
+            </li>
+            <li
+              class="alphabet__letter alphabet__letter--chunky"
+            >
+              <span
+                class="alphabet__link-wrapper"
+              >
+                <a
+                  class="alphabet__link"
+                  href="/drugs/#m"
+                >
+                  M
+                </a>
+                 
+              </span>
+            </li>
+            <li
+              class="alphabet__letter alphabet__letter--chunky"
+            >
+              <span
+                class="alphabet__link-wrapper"
+              >
+                <a
+                  class="alphabet__link"
+                  href="/drugs/#n"
+                >
+                  N
+                </a>
+                 
+              </span>
+            </li>
+            <li
+              class="alphabet__letter alphabet__letter--chunky"
+            >
+              <span
+                class="alphabet__link-wrapper"
+              >
+                <a
+                  class="alphabet__link"
+                  href="/drugs/#o"
+                >
+                  O
+                </a>
+                 
+              </span>
+            </li>
+            <li
+              class="alphabet__letter alphabet__letter--chunky"
+            >
+              <span
+                class="alphabet__link-wrapper"
+              >
+                <a
+                  class="alphabet__link"
+                  href="/drugs/#p"
+                >
+                  P
+                </a>
+                 
+              </span>
+            </li>
+            <li
+              class="alphabet__letter alphabet__letter--chunky"
+            >
+              <span
+                class="alphabet__link-wrapper"
+              >
+                <a
+                  class="alphabet__link"
+                  href="/drugs/#q"
+                >
+                  Q
+                </a>
+                 
+              </span>
+            </li>
+            <li
+              class="alphabet__letter alphabet__letter--chunky"
+            >
+              <span
+                class="alphabet__link-wrapper"
+              >
+                <a
+                  class="alphabet__link"
+                  href="/drugs/#r"
+                >
+                  R
+                </a>
+                 
+              </span>
+            </li>
+            <li
+              class="alphabet__letter alphabet__letter--chunky"
+            >
+              <span
+                class="alphabet__link-wrapper"
+              >
+                <a
+                  class="alphabet__link"
+                  href="/drugs/#s"
+                >
+                  S
+                </a>
+                 
+              </span>
+            </li>
+            <li
+              class="alphabet__letter alphabet__letter--chunky"
+            >
+              <span
+                class="alphabet__link-wrapper"
+              >
+                <a
+                  class="alphabet__link"
+                  href="/drugs/#t"
+                >
+                  T
+                </a>
+                 
+              </span>
+            </li>
+            <li
+              class="alphabet__letter alphabet__letter--chunky"
+            >
+              <span
+                class="alphabet__link-wrapper"
+              >
+                <a
+                  class="alphabet__link"
+                  href="/drugs/#u"
+                >
+                  U
+                </a>
+                 
+              </span>
+            </li>
+            <li
+              class="alphabet__letter alphabet__letter--chunky"
+            >
+              <span
+                class="alphabet__link-wrapper"
+              >
+                <a
+                  class="alphabet__link"
+                  href="/drugs/#v"
+                >
+                  V
+                </a>
+                 
+              </span>
+            </li>
+            <li
+              class="alphabet__letter alphabet__letter--chunky"
+            >
+              <span
+                class="alphabet__link-wrapper"
+              >
+                <a
+                  class="alphabet__link"
+                  href="/drugs/#w"
+                >
+                  W
+                </a>
+                 
+              </span>
+            </li>
+            <li
+              class="alphabet__letter alphabet__letter--chunky"
+            >
+              <span
+                class="alphabet__link-wrapper"
+              >
+                <a
+                  class="alphabet__link"
+                  href="/drugs/#x"
+                >
+                  X
+                </a>
+                 
+              </span>
+            </li>
+            <li
+              class="alphabet__letter alphabet__letter--chunky"
+            >
+              <span
+                class="alphabet__link-wrapper"
+              >
+                <a
+                  class="alphabet__link"
+                  href="/drugs/#y"
+                >
+                  Y
+                </a>
+                 
+              </span>
+            </li>
+            <li
+              class="alphabet__letter alphabet__letter--chunky"
+            >
+              <span
+                class="alphabet__link-wrapper"
+              >
+                <a
+                  class="alphabet__link"
+                  href="/drugs/#z"
+                >
+                  Z
+                </a>
+                 
+              </span>
+            </li>
+          </ol>
+        </div>
+        <div
+          class="featureColumn"
+          data-g="12 md:6"
+        >
+          <div>
+            <h2>
+              Treatment summaries
+            </h2>
+            <p>
+              Browse an A to Z list of treatment summaries covering:
+            </p>
+            <ul>
+              <li>
+                drug use related to a particular body system
+              </li>
+              <li>
+                drug management or treatment of common conditions
+              </li>
+              <li>
+                comparisons between groups of drugs.
+              </li>
+            </ul>
+            <a
+              class="btn"
+              href="/treatment-summaries/"
+            >
+              View treatment summaries A to Z
+            </a>
+          </div>
+          <div>
+            <h2>
+              Interactions
+            </h2>
+            <p>
+              Check for drug interactions. Includes information on the severity of an interaction and the type of evidence to support it.
+            </p>
+            <a
+              class="btn"
+              href="/interactions/"
+            >
+              View interactions A to Z
+            </a>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div
+        class="grid grid--loose"
+        data-tracking="browse-by-category"
+      >
+        <div
+          data-g="12 md:4"
+        >
+          <h2>
+            <a
+              href="/medicines-guidance/"
+            >
+              Medicines guidance
+            </a>
+          </h2>
+          <p>
+            General guidance on prescribing and the use of medicines. Includes guidance on
+             
+            <a
+              href="/medicines-guidance/prescribing-in-palliative-care/"
+            >
+              prescribing in palliative care
+            </a>
+            ,
+             
+            <a
+              href="/medicines-guidance/prescription-writing/"
+            >
+              prescription writing
+            </a>
+             
+            and
+             
+            <a
+              href="/medicines-guidance/prescribing-in-renal-impairment/"
+            >
+              prescribing in renal impairment
+            </a>
+            .
+          </p>
+        </div>
+        <div
+          data-g="12 md:4"
+        >
+          <h2>
+            <a
+              href="/medical-devices/"
+            >
+              Medical devices
+            </a>
+          </h2>
+          <p>
+            Indication, dose and medicinal product information for medical devices. Browse devices by type.
+          </p>
+        </div>
+        <div
+          data-g="12 md:4"
+        >
+          <h2>
+            <a
+              href="/borderline-substances"
+            >
+              Borderline substances
+            </a>
+          </h2>
+          <p>
+            Foods and toilet preparations, that in certain conditions have the characteristics of drugs.
+          </p>
+        </div>
+      </div>
+      <hr />
+      <div
+        class="grid grid--loose"
+        data-tracking="formulary"
+      >
+        <div
+          data-g="12 md:6"
+        >
+          <h2>
+            <a
+              href="/nurse-prescribers-formulary/"
+            >
+              Nurse prescribers formulary
+            </a>
+          </h2>
+          <p>
+            Medicines approved by the NHS for Nurse Practitioner prescribing.
+          </p>
+        </div>
+        <div
+          data-g="12 md:6"
+        >
+          <h2>
+            <a
+              href="/dental-practitioners-formulary/"
+            >
+              Dental practitioners formulary
+            </a>
+          </h2>
+          <p>
+            Medicines approved by the NHS for dental prescribing. 
+          </p>
+        </div>
+      </div>
+      <hr />
+      <div
+        class="grid grid--loose"
+        data-tracking="reference-tables"
+      >
+        <div
+          data-g="12 sm:6 md:4"
+        >
+          <h2
+            class="h3"
+          >
+            <a
+              href="/about/approximate-conversions-and-units/"
+            >
+              Approximate conversions and units
+            </a>
+          </h2>
+          <p>
+            Conversions and units tables. Includes growth chart with average weight and height, by gender and age (neonate, child and adult).
+          </p>
+        </div>
+        <div
+          data-g="12 sm:6 md:4"
+        >
+          <h2
+            class="h3"
+          >
+            <a
+              href="/about/labels/"
+            >
+              Cautionary and advisory labels
+            </a>
+          </h2>
+          <p>
+            Cautionary, warning and advisory labels applied to medications used in the 
+            BNFC
+            .
+          </p>
+        </div>
+        <div
+          data-g="12 sm:6 md:4"
+        >
+          <h2
+            class="h3"
+          >
+            <a
+              href="/about/abbreviations-and-symbols/"
+            >
+              Abbreviations and symbols
+            </a>
+          </h2>
+          <p>
+            Glossary of symbols and abbreviations. Includes Latin, medication and dosage abbreviations used in the 
+            BNFC
+             and prescribing.
+          </p>
+        </div>
+      </div>
+      <hr />
+      <ul
+        class="inlineList"
+        data-tracking="BNFC home footer"
+      >
+        <li>
+          <a
+            href="/about/changes/"
+          >
+            What's changed?
+          </a>
+        </li>
+        <li>
+          <a
+            href="/about/"
+          >
+            About 
+            BNFC
+          </a>
+        </li>
+      </ul>
     </div>
-    <div
-      class="grid grid--loose"
-    >
-      <div
-        data-g="12 sm:6 md:4"
-      >
-        <div
-          class="panel panel--impact-alt"
-        >
-          <h2
-            class="h3"
-          >
-            Drugs A to Z
-          </h2>
-          <p>
-            Browse the list of drug monographs, arranged alphabetically.
-          </p>
-          <a
-            class="btn btn--cta"
-            href="/drugs/"
-          >
-            Browse drugs
-          </a>
-        </div>
-      </div>
-      <div
-        data-g="12 sm:6 md:4"
-      >
-        <div
-          class="panel panel--primary"
-        >
-          <h2
-            class="h3"
-          >
-            Interactions
-          </h2>
-          <p>
-            Browse the list of drug interactions, arranged alphabetically.
-          </p>
-          <a
-            class="btn btn--inverse"
-            href="/interactions/"
-          >
-            Browse interactions
-          </a>
-        </div>
-      </div>
-      <div
-        data-g="12 sm:6 md:4"
-      >
-        <div
-          class="panel panel--impact-alt"
-        >
-          <h2
-            class="h3"
-          >
-            Treatment summaries
-          </h2>
-          <p>
-            Browse the list of treatment summaries, arranged alphabetically.
-          </p>
-          <a
-            class="btn btn--secondary"
-            href="/treatment-summaries/"
-          >
-            Browse treatment summaries
-          </a>
-        </div>
-      </div>
-    </div>
-    <p>
-      <a
-        href="/about/"
-      >
-        About
-      </a>
-    </p>
-    <p>
-      <a
-        href="/dental-practitioners-formulary/"
-      >
-        Dental Practitioners' Formulary
-      </a>
-    </p>
-    <p>
-      <a
-        href="/medical-devices/"
-      >
-        Medical devices
-      </a>
-    </p>
-    <p>
-      <a
-        href="/wound-management/"
-      >
-        Wound management products and elasticated garments
-      </a>
-    </p>
-    <p>
-      <a
-        href="/nurse-prescribers-formulary/"
-      >
-        Nurse Prescribers' Formulary
-      </a>
-    </p>
-    <p>
-      <a
-        href="/medicines-guidance/"
-      >
-        Medicines guidance
-      </a>
-    </p>
   </div>
 </main>
 `;

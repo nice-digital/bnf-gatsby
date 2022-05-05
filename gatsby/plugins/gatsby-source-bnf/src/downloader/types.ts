@@ -1,4 +1,6 @@
 export interface Feed {
+	/** The metadata for the export that produced the version of the BNF content contained in this JSON file. */
+	metadata: FeedPublicationMetadata;
 	/** All about records in the BNF, in a consistent order. */
 	about: FeedSimpleRecord[];
 	/** The borderline substances (Appendix 2) content. */
@@ -29,6 +31,33 @@ export interface Feed {
 	woundManagement?: FeedWoundManagement;
 	/** The complete hierarchy of classifications, represented as a tree data structure. The classifications correlate with the `primaryClassification` and `secondaryClassification` fields in Drug. */
 	classifications: [FeedClassification, ...FeedClassification[]];
+}
+
+/** The metadata relating to the export that produced the app JSON output. An export is a job that is run to collate all of the published BNF content at a particular point in time (the \"content cut\" date). */
+export interface FeedPublicationMetadata {
+	/** The date and time that the export that produced this output started. The format used is ISO 8601-1:2019 compliant (without a time zone designator), e.g. `2021-07-06T00:37:25.918`. */
+	exportStarted: string;
+
+	/** The exporter run-tag of the publication. This is the internal RPS designator for the export that generated this output. This value should be given to RPS if there is a problem with this JSON so that we can correlate the content in our systems. */
+	runTag: string;
+
+	/** The publication. A value of 'bnf' shows that the JSON contains the British National Formulary content, while a value of 'bnfc' shows that the JSON contains the BNF for Children content. */
+	publication: "bnf" | "bnfc";
+
+	/** The output will contain records published in the CMS up to this date and time. The format used is ISO 8601-1:2019 compliant (without a time zone designator), e.g. `2021-07-06T00:37:25.918`. */
+	contentCut: string;
+
+	/** The version of the Dictionary of Medicines and Devices (dm+d) dataset (which contains preparation data) used by the export that produced this output. The value is presented in yyyy.m.w format, e.g. `2021.5.4`. */
+	dmdVersion: string;
+
+	/** The version of the international edition of SNOMED CT used by the export that produced this output. */
+	snomedInternationalVersion: string;
+
+	/** The version of the UK clinical extension of SNOMED CT used by the export that produced this output. */
+	snomedUKExtensionVersion: string;
+
+	/** The version of the UK drug extension of SNOMED CT used by the export that produced this output. */
+	snomedUKDrugExtensionVersion: string;
 }
 
 /** A BNF PHP ID in the format `^PHP[0-9]+$` */
