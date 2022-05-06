@@ -5,6 +5,7 @@ exports[`SiteDistinction BNF site should match snapshot 1`] = `
   aria-expanded="false"
   aria-label="Show BNFC link"
   class="currentSiteTab BNF"
+  data-tracking="show-bnfc-link"
   type="button"
 >
   <svg
@@ -31,6 +32,7 @@ exports[`SiteDistinction BNFC site should match snapshot 1`] = `
   aria-expanded="false"
   aria-label="Show BNF link"
   class="currentSiteTab BNFC"
+  data-tracking="show-bnf-link"
   type="button"
 >
   <svg

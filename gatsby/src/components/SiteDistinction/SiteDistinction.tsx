@@ -46,6 +46,9 @@ export const SiteDistinction: FC = () => {
 								isBNF ? "BNFC" : "BNF"
 							} link`}
 							aria-expanded={isExpanded}
+							data-tracking={`${isExpanded ? "hide" : "show"}-${
+								isBNF ? "bnfc" : "bnf"
+							}-link`}
 							onClick={() => setIsExpanded((isExpanded) => !isExpanded)}
 						>
 							<ChevronDownIcon
@@ -65,6 +68,7 @@ export const SiteDistinction: FC = () => {
 							(isExpanded || !isClient) && styles.otherSiteTabExpanded
 						)}
 						href={otherSiteHref}
+						data-tracking={`${isBNF ? "bnfc" : "bnf"}-link`}
 						tabIndex={isExpanded || !isClient ? undefined : -1}
 					>
 						<span className="visually-hidden">switch to </span>

@@ -19,7 +19,7 @@ describe("SiteDistinction", () => {
 			"BNF",
 			"https://bnf-gatsby-tests.nice.org.uk/test/?ref=switch",
 		],
-	])("%s site", (siteTitleShort, isBNF, otherSiteTitleShort, otherSiteHref) => {
+	])("%s site", (siteTitleShort, isBNF, otherSiteTitleShort, expectedHref) => {
 		beforeEach(() => {
 			(useSiteMetadata as jest.Mock).mockReturnValue({
 				siteTitleShort,
@@ -38,6 +38,7 @@ describe("SiteDistinction", () => {
 			it("should not render the button server side", () => {
 				expect(renderToString(<SiteDistinction />)).not.toContain("<button");
 			});
+
 			it(`should render a button with an accessible label to show ${otherSiteTitleShort} link`, () => {
 				render(<SiteDistinction />);
 				expect(
@@ -77,6 +78,22 @@ describe("SiteDistinction", () => {
 				);
 			});
 
+			it("should change data tracking attribute on button click", () => {
+				render(<SiteDistinction />);
+				const button = screen.getByRole("button", {
+					name: `Show ${otherSiteTitleShort} link`,
+				});
+				expect(button).toHaveAttribute(
+					"data-tracking",
+					`show-${otherSiteTitleShort.toLowerCase()}-link`
+				);
+				fireEvent.click(button);
+				expect(button).toHaveAttribute(
+					"data-tracking",
+					`hide-${otherSiteTitleShort.toLowerCase()}-link`
+				);
+			});
+
 			it("should render an icon with an expanded class on click", () => {
 				render(<SiteDistinction />);
 				const button = screen.getByRole("button", {
@@ -97,7 +114,18 @@ describe("SiteDistinction", () => {
 				const link = screen.getByRole("link", {
 					name: `switch to ${otherSiteTitleShort}`,
 				});
-				expect(link).toHaveAttribute("href", otherSiteHref);
+				expect(link).toHaveAttribute("href", expectedHref);
+			});
+
+			it(`should have data tracking attribute`, () => {
+				render(<SiteDistinction />);
+				const link = screen.getByRole("link", {
+					name: `switch to ${otherSiteTitleShort}`,
+				});
+				expect(link).toHaveAttribute(
+					"data-tracking",
+					`${otherSiteTitleShort.toLowerCase()}-link`
+				);
 			});
 		});
 
