@@ -22,11 +22,11 @@ export type BorderlineSubstancesSectionPageProps = {
 			rootTaxonomy: SlugAndTitle & {
 				childTaxonomies: {
 					title: string;
+					slug: string;
 					childTaxonomies: {
 						title: string;
 						slug: string;
 					}[];
-					slug: string;
 				}[];
 			};
 			substances: FeedBorderlineSubstance[];
@@ -66,6 +66,18 @@ const BorderlineSubstancesSectionPage: FC<
 
 	const isRoot = slug == rootTaxonomy.slug;
 
+	const flattenedSubstances: FeedBorderlineSubstance[] = substances;
+	childTaxonomies.map((child) =>
+		child.substances.forEach((substance) => flattenedSubstances.push(substance))
+	);
+	childTaxonomies.map((child) =>
+		child.childTaxonomies.map((child2) =>
+			child2.substances.forEach((substance) =>
+				flattenedSubstances.push(substance)
+			)
+		)
+	);
+
 	return (
 		<Layout>
 			<SEO title={title} description="Browse borderline substances, by type." />
@@ -83,7 +95,20 @@ const BorderlineSubstancesSectionPage: FC<
 				<Breadcrumb key="Current page">{title}</Breadcrumb>
 			</Breadcrumbs>
 
-			<PageHeader id="content-start" heading={title} />
+			<PageHeader
+				id="content-start"
+				heading={title}
+				lead={
+					isRoot ? null : (
+						<Link
+							className="p"
+							to={`/borderline-substances/${rootTaxonomy.slug}/`}
+						>
+							View other {rootTaxonomy.title}
+						</Link>
+					)
+				}
+			/>
 
 			{isRoot ? (
 				<Grid gutter="loose" data-testid="body">
@@ -138,20 +163,13 @@ const BorderlineSubstancesSectionPage: FC<
 					</GridItem>
 				</Grid>
 			) : (
-				<section className={styles.section}>
-					{" "}
-					<Link to={`/borderline-substances/${rootTaxonomy.slug}/`}>
-						View other {rootTaxonomy.title}
-					</Link>
-					<SectionNav
-						sections={substances.map(({ title, id }) => ({
-							id,
-							title,
-						}))}
-					></SectionNav>
+				<section aria-labelledby={slug} className={styles.section}>
+					<SectionNav sections={flattenedSubstances}></SectionNav>
+
 					{substances.map((substance) => (
 						<Substance key={substance.id} substance={substance}></Substance>
 					))}
+
 					{childTaxonomies.map((child) => (
 						<>
 							{child.substances.map((substance) => (
@@ -200,6 +218,7 @@ export const query = graphql`
 			substances {
 				title
 				introductionNote
+				id
 				presentations {
 					acbs
 					energyKj
@@ -225,6 +244,7 @@ export const query = graphql`
 				substances {
 					title
 					introductionNote
+					id
 					presentations {
 						acbs
 						energyKj
@@ -249,6 +269,27 @@ export const query = graphql`
 					title
 					substances {
 						title
+						introductionNote
+						id
+						presentations {
+							acbs
+							energyKj
+							proteinGrams
+							carbohydrateGrams
+							fatGrams
+							fibreGrams
+							specialCharacteristics
+							formulation
+							borderlineSubstancePreps {
+								packs {
+									unit
+									size
+									nhsIndicativePrice
+								}
+								name
+								manufacturer
+							}
+						}
 					}
 				}
 			}
