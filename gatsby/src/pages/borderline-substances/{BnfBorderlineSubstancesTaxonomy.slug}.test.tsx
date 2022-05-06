@@ -297,18 +297,6 @@ describe("BorderlineSubstancesSectionPage", () => {
 				expect(document.title).toStartWith("Root taxonomy |");
 			});
 		});
-
-		// it("should render meta description", async () => {
-		// 	render(<BorderlineSubstancesSectionPage {...twoLevelProps} />);
-
-		// 	await waitFor(() => {
-		// 		expect(
-		// 			document
-		// 				// eslint-disable-next-line testing-library/no-node-access
-		// 				.querySelector("meta[name='description']")
-		// 		).toHaveAttribute("content", "Find information on ACBS approved foods and other borderline substances which have been formulated for use in managing medical conditions.");
-		// 	});
-		// });
 	});
 
 	describe("Page header", () => {

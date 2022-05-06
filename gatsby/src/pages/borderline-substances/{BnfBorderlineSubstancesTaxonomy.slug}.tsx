@@ -1,5 +1,3 @@
-import { captureRejections } from "events";
-
 import { graphql, Link } from "gatsby";
 import React, { type FC } from "react";
 
@@ -105,7 +103,7 @@ const BorderlineSubstancesSectionPage: FC<
 					to="/borderline-substances/"
 					elementType={Link}
 				>
-					Borderline Substances
+					Borderline substances
 				</Breadcrumb>
 				{isRoot ? null : (
 					<Breadcrumb
