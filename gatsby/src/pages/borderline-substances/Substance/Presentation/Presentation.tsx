@@ -15,7 +15,7 @@ const Presentation: FC<PresentationProps> = ({ presentation }) => {
 	return (
 		<>
 			<dl>
-				{presentation.formulation && (
+				{presentation?.formulation && (
 					<div className={styles.packDefinitionListItem}>
 						<dt>
 							<strong>Formulation</strong>
@@ -24,7 +24,7 @@ const Presentation: FC<PresentationProps> = ({ presentation }) => {
 					</div>
 				)}
 
-				{presentation.energyKj && (
+				{presentation?.energyKj && (
 					<div className={styles.packDefinitionListItem}>
 						<dt>
 							<strong>Energy (Kj)</strong>
@@ -36,7 +36,7 @@ const Presentation: FC<PresentationProps> = ({ presentation }) => {
 					</div>
 				)}
 
-				{presentation.proteinGrams && (
+				{presentation?.proteinGrams && (
 					<div className={styles.packDefinitionListItem}>
 						<dt>
 							<strong>Protein (g)</strong>
@@ -49,7 +49,7 @@ const Presentation: FC<PresentationProps> = ({ presentation }) => {
 					</div>
 				)}
 
-				{presentation.carbohydrateGrams && (
+				{presentation?.carbohydrateGrams && (
 					<div className={styles.packDefinitionListItem}>
 						<dt>
 							<strong>Carbohydrate (g)</strong>
@@ -62,7 +62,7 @@ const Presentation: FC<PresentationProps> = ({ presentation }) => {
 					</div>
 				)}
 
-				{presentation.fatGrams && (
+				{presentation?.fatGrams && (
 					<div className={styles.packDefinitionListItem}>
 						<dt>
 							<strong>Fat (g)</strong>
@@ -71,7 +71,7 @@ const Presentation: FC<PresentationProps> = ({ presentation }) => {
 					</div>
 				)}
 
-				{presentation.fibreGrams && (
+				{presentation?.fibreGrams && (
 					<div className={styles.packDefinitionListItem}>
 						<dt>
 							<strong>Fibre (g)</strong>
@@ -80,7 +80,7 @@ const Presentation: FC<PresentationProps> = ({ presentation }) => {
 					</div>
 				)}
 
-				{presentation.specialCharacteristics && (
+				{presentation?.specialCharacteristics && (
 					<div className={styles.packDefinitionListItem}>
 						<dt>
 							<strong>Special characteristics</strong>
@@ -89,7 +89,7 @@ const Presentation: FC<PresentationProps> = ({ presentation }) => {
 					</div>
 				)}
 
-				{presentation.acbs && (
+				{presentation?.acbs && (
 					<div className={styles.packDefinitionListItem}>
 						<dt>
 							<strong>Standard ACBS indications</strong>
@@ -99,7 +99,7 @@ const Presentation: FC<PresentationProps> = ({ presentation }) => {
 				)}
 			</dl>
 
-			{presentation.borderlineSubstancePreps?.map((preparation) => (
+			{presentation?.borderlineSubstancePreps?.map((preparation) => (
 				<Prep key={preparation.ampId} prep={preparation}></Prep>
 			))}
 		</>
