@@ -26,6 +26,7 @@ export const pagePaths = {
 	"diabetes treatment summary": "/treatment-summaries/diabetes/",
 	"medicines guidance": "/medicines-guidance/",
 	"medical devices": "/medical-devices/",
+	"wound management": "/wound-management",
 	// Medicines guidance
 	"guidance on prescribing": "/medicines-guidance/guidance-on-prescribing/",
 	"prescription writing": "/medicines-guidance/prescription-writing/",

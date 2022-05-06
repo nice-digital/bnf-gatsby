@@ -8,11 +8,8 @@ exports[`Accordion should match snapshot 1`] = `
     class="summary"
     data-tracking="Show"
   >
-    <h3>
-      Some title
-    </h3>
     <span
-      class="toggleLabel"
+      class="toggleLabel label"
     >
       <svg
         aria-hidden="true"
@@ -29,9 +26,12 @@ exports[`Accordion should match snapshot 1`] = `
           fill="currentColor"
         />
       </svg>
-       
       Show
     </span>
+     
+    <h3>
+      Some title
+    </h3>
   </summary>
   <p>
     Body content

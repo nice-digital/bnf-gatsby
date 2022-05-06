@@ -1,0 +1,66 @@
+@use '~@nice-digital/nds-core/scss/core';
+
+.hero {
+  background: core.$nds-colour-nice-white;
+  left: 50%;
+  margin-bottom: core.rem(core.$nds-spacing-large);
+  margin-left: -50vw;
+  margin-right: -50vw;
+  overflow: hidden;
+  padding-bottom: core.rem(core.$nds-spacing-large);
+  padding-top: core.rem(core.$nds-spacing-large);
+  position: relative;
+  right: 50%;
+  width: 100vw;
+
+  .heroContainer {
+    @include core.nds-container;
+  }
+
+  .title {
+    @include core.nds-h1;
+  }
+
+  .intro {
+    @include core.nds-lead;
+    max-width: unset;
+  }
+
+  .lastUpdated {
+    h2 {
+      @include core.nds-h5;
+      margin: 0;
+    }
+
+    time {
+      @include core.nds-h3;
+      display: block;
+      font-weight: 700;
+      margin: 0 0 core.rem(core.$nds-spacing-medium);
+    }
+  }
+}
+
+@include core.mq($from: md) {
+  .heroContainer {
+    align-items: center;
+    column-gap: core.rem(core.$nds-spacing-medium);
+    display: flex;
+    flex-flow: row;
+  }
+
+  .text {
+    flex-grow: 1;
+  }
+
+  .lastUpdated {
+    background-color: core.$nds-colour-nice-grey-3;
+    padding: core.rem(core.$nds-spacing-medium);
+    padding-left: core.rem(core.$nds-spacing-medium);
+    padding-right: core.rem(core.$nds-spacing-large);
+  }
+
+  .lastUpdated * {
+    white-space: nowrap;
+  }
+}

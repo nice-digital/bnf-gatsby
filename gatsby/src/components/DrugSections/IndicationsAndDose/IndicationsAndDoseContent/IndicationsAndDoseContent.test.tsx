@@ -63,13 +63,7 @@ const content: IndicationsAndDoseContentProps["content"] = {
 
 describe("IndicationsAndDoseContent", () => {
 	it("should match snapshot", () => {
-		render(
-			<IndicationsAndDoseContent
-				content={content}
-				defaultOpen={false}
-				collapsible={false}
-			/>
-		);
+		render(<IndicationsAndDoseContent content={content} collapsible={false} />);
 
 		expect(screen.getByLabelText("For diazepam")).toMatchSnapshot();
 	});
@@ -77,11 +71,7 @@ describe("IndicationsAndDoseContent", () => {
 	describe("collapsible", () => {
 		it("should wrap content in accordion when collapsible", () => {
 			render(
-				<IndicationsAndDoseContent
-					content={content}
-					defaultOpen={false}
-					collapsible={true}
-				/>
+				<IndicationsAndDoseContent content={content} collapsible={true} />
 			);
 			expect(screen.getByRole("group")).toBeInTheDocument();
 		});
@@ -91,7 +81,6 @@ describe("IndicationsAndDoseContent", () => {
 				<IndicationsAndDoseContent
 					content={content}
 					contentForPrefix="For all"
-					defaultOpen={false}
 					collapsible={true}
 				/>
 			);
@@ -107,11 +96,7 @@ describe("IndicationsAndDoseContent", () => {
 	describe("not collapsible", () => {
 		it("should not render accordion when not collapsible", () => {
 			render(
-				<IndicationsAndDoseContent
-					content={content}
-					defaultOpen={false}
-					collapsible={false}
-				/>
+				<IndicationsAndDoseContent content={content} collapsible={false} />
 			);
 			expect(screen.queryByRole("group")).toBeNull();
 		});
@@ -121,7 +106,6 @@ describe("IndicationsAndDoseContent", () => {
 				<IndicationsAndDoseContent
 					content={content}
 					contentForPrefix="For all"
-					defaultOpen={false}
 					collapsible={false}
 				/>
 			);
@@ -136,11 +120,7 @@ describe("IndicationsAndDoseContent", () => {
 		describe("Indications section", () => {
 			it("should append for screenreaders what content the indications are for to the indications heading", () => {
 				render(
-					<IndicationsAndDoseContent
-						content={content}
-						defaultOpen={false}
-						collapsible={false}
-					/>
+					<IndicationsAndDoseContent content={content} collapsible={false} />
 				);
 
 				expect(
@@ -158,11 +138,7 @@ describe("IndicationsAndDoseContent", () => {
 
 			it("should render section for each indication and dose group labelled by indications", () => {
 				render(
-					<IndicationsAndDoseContent
-						content={content}
-						defaultOpen={false}
-						collapsible={false}
-					/>
+					<IndicationsAndDoseContent content={content} collapsible={false} />
 				);
 
 				expect(
@@ -174,11 +150,7 @@ describe("IndicationsAndDoseContent", () => {
 
 			it("should render heading 4 with multiple indications", () => {
 				render(
-					<IndicationsAndDoseContent
-						content={content}
-						defaultOpen={false}
-						collapsible={false}
-					/>
+					<IndicationsAndDoseContent content={content} collapsible={false} />
 				);
 
 				expect(
@@ -192,11 +164,7 @@ describe("IndicationsAndDoseContent", () => {
 
 			it("should render SNOMED CT codes as data attributes on indications", () => {
 				render(
-					<IndicationsAndDoseContent
-						content={content}
-						defaultOpen={false}
-						collapsible={false}
-					/>
+					<IndicationsAndDoseContent content={content} collapsible={false} />
 				);
 
 				const indication = screen.getByText(/^Severe acute anxiety/);
@@ -212,11 +180,7 @@ describe("IndicationsAndDoseContent", () => {
 		describe("Routes of administration", () => {
 			it("should render heading 5 for each route of administration", () => {
 				render(
-					<IndicationsAndDoseContent
-						content={content}
-						defaultOpen={false}
-						collapsible={false}
-					/>
+					<IndicationsAndDoseContent content={content} collapsible={false} />
 				);
 
 				const routeOfAdministrationHeadings = screen.getAllByRole("heading", {
@@ -235,11 +199,7 @@ describe("IndicationsAndDoseContent", () => {
 		describe("Patient groups", () => {
 			it("should render item for each patient group", () => {
 				render(
-					<IndicationsAndDoseContent
-						content={content}
-						defaultOpen={false}
-						collapsible={false}
-					/>
+					<IndicationsAndDoseContent content={content} collapsible={false} />
 				);
 
 				const terms = screen.getAllByRole("term");
@@ -255,11 +215,7 @@ describe("IndicationsAndDoseContent", () => {
 
 			it("should render class name for patient group item", () => {
 				render(
-					<IndicationsAndDoseContent
-						content={content}
-						defaultOpen={false}
-						collapsible={false}
-					/>
+					<IndicationsAndDoseContent content={content} collapsible={false} />
 				);
 
 				expect(
@@ -270,11 +226,7 @@ describe("IndicationsAndDoseContent", () => {
 
 			it("should render patient group with HTML dose statement", () => {
 				render(
-					<IndicationsAndDoseContent
-						content={content}
-						defaultOpen={false}
-						collapsible={false}
-					/>
+					<IndicationsAndDoseContent content={content} collapsible={false} />
 				);
 
 				const adult = screen
@@ -307,7 +259,6 @@ describe("IndicationsAndDoseContent", () => {
 				render(
 					<IndicationsAndDoseContent
 						content={{ ...content, [propertyName]: "<p>Some content</p>" }}
-						defaultOpen={false}
 						collapsible={false}
 					/>
 				);

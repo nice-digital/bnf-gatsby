@@ -18,8 +18,6 @@ export interface IndicationsAndDoseContentProps {
 	contentForPrefix?: "For" | "For all";
 	/** Whether to (`true`) or not (`false`) to wrap this indications and dose content in an accordion to make it collapsible */
 	collapsible: boolean;
-	/** Whether to open the accordion (if `collapsible=true`) by default */
-	defaultOpen: boolean;
 }
 
 export const IndicationsAndDoseContent: FC<IndicationsAndDoseContentProps> = ({
@@ -34,7 +32,6 @@ export const IndicationsAndDoseContent: FC<IndicationsAndDoseContentProps> = ({
 	},
 	contentForPrefix = "For",
 	collapsible,
-	defaultOpen,
 }) => {
 	const slug = slugify(striptags(contentFor));
 
@@ -223,7 +220,6 @@ export const IndicationsAndDoseContent: FC<IndicationsAndDoseContentProps> = ({
 							}}
 						/>
 					}
-					defaultOpen={defaultOpen}
 				>
 					{body}
 				</Accordion>

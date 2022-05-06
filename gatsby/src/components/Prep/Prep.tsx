@@ -62,27 +62,30 @@ export const Prep: FC<PrepProps> = ({ prep, children }) => (
 	<Accordion
 		title={
 			<h3 className={styles.prepHeading}>
-				<span className={styles.headingIcons}>
-					{prep.controlledDrugSchedule ? (
-						<abbr
-							className={styles.controlledScheduleCode}
-							title={prep.controlledDrugSchedule}
-						>
-							{resolveSchedule(prep.controlledDrugSchedule)}{" "}
-							<span className="visually-hidden">
-								({prep.controlledDrugSchedule})
+				{prep.controlledDrugSchedule || prep.blackTriangle || prep.sugarFree ? (
+					<span className={styles.headingIcons}>
+						{prep.controlledDrugSchedule ? (
+							<abbr
+								className={styles.controlledScheduleCode}
+								title={prep.controlledDrugSchedule}
+							>
+								{resolveSchedule(prep.controlledDrugSchedule)}{" "}
+								<span className="visually-hidden">
+									({prep.controlledDrugSchedule})
+								</span>
+							</abbr>
+						) : null}
+						{prep.blackTriangle ? (
+							<span title="Black triangle">
+								&#9660;
+								<span className="visually-hidden"> (black triangle) </span>
 							</span>
-						</abbr>
-					) : null}
-					{prep.blackTriangle ? (
-						<span title="Black triangle">
-							&#9660;<span className="visually-hidden"> (black triangle) </span>
-						</span>
-					) : null}
-					{prep.sugarFree ? (
-						<span className={styles.sugarFree}> Sugar free </span>
-					) : null}
-				</span>
+						) : null}
+						{prep.sugarFree ? (
+							<span className={styles.sugarFree}> Sugar free </span>
+						) : null}
+					</span>
+				) : null}
 				<span className={styles.headingText}>
 					{prep.name}{" "}
 					<span className={styles.manufacturer}>{prep.manufacturer}</span>

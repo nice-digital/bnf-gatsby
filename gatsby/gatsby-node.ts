@@ -1,6 +1,11 @@
-import { CreateSchemaCustomizationArgs, CreateWebpackConfigArgs } from "gatsby";
+import {
+	CreateSchemaCustomizationArgs,
+	CreateWebpackConfigArgs,
+	CreatePageArgs,
+} from "gatsby";
 
 import { initialFieldExtension } from "./src/field-extensions/initial";
+import { isBNFC } from "./src/site";
 
 /**
  * Gatsby hook for customizing the schema.
@@ -11,7 +16,7 @@ export const createSchemaCustomization = ({
 }: CreateSchemaCustomizationArgs): void => {
 	createFieldExtension(initialFieldExtension);
 
-	// Add initials for types used in A-Z lists, as it's easier for grouping
+	// Add initials for types used in A to Z lists, as it's easier for grouping
 	// We don't add the initial field in the source plugin because grouping is a presentation concern
 	const typeDefs = `
 	  type BnfDrug implements Node {
@@ -58,5 +63,17 @@ export const onCreateWebpackConfig = ({
 		actions.setWebpackConfig({
 			plugins: [plugins.provide({ process: "process/browser" })],
 		});
+	}
+};
+
+/**
+ * Gatsby hook for page creation/deletion
+ * See https://www.gatsbyjs.com/docs/creating-and-modifying-pages/
+ */
+export const onCreatePage = ({ page, actions }: CreatePageArgs): void => {
+	// Delete wound management from BNFC
+	const { deletePage } = actions;
+	if (isBNFC && page.path === "/wound-management/") {
+		deletePage(page);
 	}
 };
