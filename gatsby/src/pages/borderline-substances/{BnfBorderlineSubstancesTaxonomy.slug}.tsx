@@ -66,6 +66,9 @@ const BorderlineSubstancesSectionPage: FC<
 
 	const isRoot = slug == rootTaxonomy.slug;
 
+	// In some taxonomies there are substances at multiple levels of the taxonomy which need to be flattened for the section nav
+	// Currently these only go 3 deep in the "food for special diets" taxonomy.
+	// If they ever go further it would be worth doing something recursive to check every level until there are no more substances.
 	const flattenedSubstances: FeedBorderlineSubstance[] = substances;
 	childTaxonomies.map((child) =>
 		child.substances.forEach((substance) => flattenedSubstances.push(substance))
@@ -80,7 +83,10 @@ const BorderlineSubstancesSectionPage: FC<
 
 	return (
 		<Layout>
-			<SEO title={title} description="Browse borderline substances, by type." />
+			<SEO
+				title={`${title} | Borderline substances`}
+				description="Browse borderline substances, by type."
+			/>
 
 			<Breadcrumbs>
 				<Breadcrumb key="NICE" to="https://www.nice.org.uk/">
@@ -89,9 +95,22 @@ const BorderlineSubstancesSectionPage: FC<
 				<Breadcrumb key="Home" to="/" elementType={Link}>
 					{siteTitleShort}
 				</Breadcrumb>
-				<Breadcrumb key="Home" to="/borderline-substances/" elementType={Link}>
+				<Breadcrumb
+					key="Borderline substances"
+					to="/borderline-substances/"
+					elementType={Link}
+				>
 					Borderline Substances
 				</Breadcrumb>
+				{isRoot ? null : (
+					<Breadcrumb
+						key="Parent taxonomy"
+						to={`/borderline-substances/${rootTaxonomy.slug}/`}
+						elementType={Link}
+					>
+						{rootTaxonomy.title}
+					</Breadcrumb>
+				)}
 				<Breadcrumb key="Current page">{title}</Breadcrumb>
 			</Breadcrumbs>
 
