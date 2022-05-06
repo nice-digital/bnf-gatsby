@@ -68,9 +68,9 @@ export const SiteDistinction: FC = () => {
 						tabIndex={isExpanded || !isClient ? undefined : -1}
 					>
 						<span className="visually-hidden">switch to </span>
+						{isBNF ? "BNFC" : "BNF"}
 						{/* The right chevron is our non-JS fallback to make the other site tab look clickable */}
 						{isClient ? null : <ChevronRightIcon className={styles.icon} />}
-						{isBNF ? "BNFC" : "BNF"}
 					</a>
 				</p>
 			</Container>
