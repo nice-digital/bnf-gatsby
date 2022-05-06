@@ -27,7 +27,7 @@ describe("Accordion", () => {
 			render(
 				<Accordion
 					title={<h3>Some title</h3>}
-					defaultOpen={defaultOpen}
+					open={defaultOpen}
 					showLabel={defaultOpen ? undefined : actualLabel}
 					hideLabel={defaultOpen ? actualLabel : undefined}
 				>
@@ -41,7 +41,7 @@ describe("Accordion", () => {
 			expect(
 				screen.getByText(
 					(_content, element) =>
-						element?.textContent === `Some title ${expectedLabel}`,
+						element?.textContent === `${expectedLabel} Some title`,
 					{
 						selector: "summary",
 					}
@@ -69,7 +69,7 @@ describe("Accordion", () => {
 
 		expect(
 			screen.getByText(
-				(_content, element) => element?.textContent === "Test Show"
+				(_content, element) => element?.textContent === "Show Test"
 			)
 		).toHaveClass("summary");
 	});
@@ -96,13 +96,13 @@ describe("Accordion", () => {
 
 	it("should update label when expanded", async () => {
 		render(
-			<Accordion title="Test" defaultOpen={false}>
+			<Accordion title="Test" open={false}>
 				<p>Body content</p>
 			</Accordion>
 		);
 
 		const summary = screen.getByText(
-			(_content, element) => element?.textContent === `Test Show`,
+			(_content, element) => element?.textContent === `Show Test`,
 			{
 				selector: "summary",
 			}
@@ -111,26 +111,26 @@ describe("Accordion", () => {
 		userEvent.click(summary);
 
 		await waitFor(() => {
-			expect(summary).toHaveTextContent("Test Hide");
+			expect(summary).toHaveTextContent("Hide Test");
 		});
 	});
 
 	it("should open when default open prop changed from false to true", async () => {
 		const { rerender } = render(
-			<Accordion title="Test" defaultOpen={false}>
+			<Accordion title="Test" open={false}>
 				<p>Body content</p>
 			</Accordion>
 		);
 
 		const summary = screen.getByText(
-			(_content, element) => element?.textContent === `Test Show`,
+			(_content, element) => element?.textContent === `Show Test`,
 			{
 				selector: "summary",
 			}
 		);
 
 		rerender(
-			<Accordion title="Test" defaultOpen={true}>
+			<Accordion title="Test" open={true}>
 				<p>Body content</p>
 			</Accordion>
 		);
@@ -138,26 +138,26 @@ describe("Accordion", () => {
 		expect(screen.getByRole("group")).toHaveProperty("open", true);
 
 		await waitFor(() => {
-			expect(summary).toHaveTextContent("Test Hide");
+			expect(summary).toHaveTextContent("Hide Test");
 		});
 	});
 
 	it("should close when default open prop changed from true to false", async () => {
 		const { rerender } = render(
-			<Accordion title="Test" defaultOpen={true}>
+			<Accordion title="Test" open={true}>
 				<p>Body content</p>
 			</Accordion>
 		);
 
 		const summary = screen.getByText(
-			(_content, element) => element?.textContent === `Test Hide`,
+			(_content, element) => element?.textContent === `Hide Test`,
 			{
 				selector: "summary",
 			}
 		);
 
 		rerender(
-			<Accordion title="Test" defaultOpen={false}>
+			<Accordion title="Test" open={false}>
 				<p>Body content</p>
 			</Accordion>
 		);
@@ -165,13 +165,13 @@ describe("Accordion", () => {
 		expect(screen.getByRole("group")).toHaveProperty("open", false);
 
 		await waitFor(() => {
-			expect(summary).toHaveTextContent("Test Show");
+			expect(summary).toHaveTextContent("Show Test");
 		});
 	});
 
 	it("should have appropriate data tracking attribute", async () => {
 		render(
-			<Accordion title="Test" defaultOpen={false}>
+			<Accordion title="Test" open={false}>
 				<p>Body content</p>
 			</Accordion>
 		);
