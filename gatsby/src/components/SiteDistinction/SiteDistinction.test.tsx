@@ -3,7 +3,8 @@ import { renderToString } from "react-dom/server";
 
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
-import { SiteDistinction } from "./SiteDistinction";
+// SiteDistinction is mocked globally in setup
+const { SiteDistinction } = jest.requireActual("./SiteDistinction");
 
 describe("SiteDistinction", () => {
 	describe.each([
