@@ -33,15 +33,6 @@ exports[`BorderlineSubstanceIntroductionPage should match snapshot for page cont
         <li
           class="breadcrumbs__crumb"
         >
-          <a
-            href="/borderline-substances/"
-          >
-            Borderline Substances
-          </a>
-        </li>
-        <li
-          class="breadcrumbs__crumb"
-        >
           <span>
             Borderline Substances
           </span>
@@ -75,14 +66,6 @@ exports[`BorderlineSubstanceIntroductionPage should match snapshot for page cont
       "@type": "ListItem",
       "position": 3,
       "item": {
-        "@id": "/borderline-substances/",
-        "name": "Borderline Substances"
-      }
-    },
-    {
-      "@type": "ListItem",
-      "position": 4,
-      "item": {
         "name": "Borderline Substances"
       }
     }
@@ -110,7 +93,7 @@ exports[`BorderlineSubstanceIntroductionPage should match snapshot for page cont
         data-g="12 md:4 lg:3"
       >
         <nav
-          aria-label="Borderline Substances"
+          aria-label="Borderline substances"
           class="stacked-nav"
         >
           <p
@@ -120,7 +103,7 @@ exports[`BorderlineSubstanceIntroductionPage should match snapshot for page cont
               aria-current="false"
               href="/borderline-substances/"
             >
-              Borderline Substances
+              Borderline substances
             </a>
           </p>
           <ul

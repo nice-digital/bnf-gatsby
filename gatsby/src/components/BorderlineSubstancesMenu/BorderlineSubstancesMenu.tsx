@@ -12,8 +12,8 @@ export const BorderlineSubstancesMenu: FC = () => {
 
 	return (
 		<StackedNav
-			aria-label="Borderline Substances"
-			label="Borderline Substances"
+			aria-label="Borderline substances"
+			label="Borderline substances"
 			link={{ destination: "/borderline-substances/", elementType: Link }}
 		>
 			{topLevel.map(({ href, title }) => (

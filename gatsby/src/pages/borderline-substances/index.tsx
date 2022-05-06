@@ -26,17 +26,12 @@ const BorderlineSubstanceIntroductionPage: FC<
 		<DetailsPageLayout
 			titleHtml={title}
 			parentTitleParts={["Borderline Substances"]}
-			parentBreadcrumbs={[
-				{
-					href: "/borderline-substances/",
-					text: "Borderline Substances",
-				},
-			]}
 			sections={sections.map(({ slug, title }) => ({
 				id: slug,
 				title,
 			}))}
 			menu={BorderlineSubstancesMenu}
+			metaDescription="Find information on ACBS approved foods and other borderline substances which have been formulated for use in managing medical conditions."
 		>
 			<RecordSectionsContent sections={sections} />
 		</DetailsPageLayout>
