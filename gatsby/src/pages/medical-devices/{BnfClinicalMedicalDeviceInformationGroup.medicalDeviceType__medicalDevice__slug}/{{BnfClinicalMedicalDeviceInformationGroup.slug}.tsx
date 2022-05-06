@@ -3,8 +3,6 @@ import { FC } from "react";
 import striptags from "striptags";
 
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
-import { ColumnList } from "@nice-digital/nds-column-list";
-import { Grid, GridItem } from "@nice-digital/nds-grid";
 import { PageHeader } from "@nice-digital/nds-page-header";
 
 import { Layout } from "@/components/Layout/Layout";
@@ -35,7 +33,6 @@ export interface CMPIPageProps {
 const CMPIPage: FC<CMPIPageProps> = ({
 	data: {
 		bnfClinicalMedicalDeviceInformationGroup: {
-			slug,
 			title,
 			medicalDeviceType: { medicalDevice },
 			deviceDescription,

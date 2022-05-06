@@ -2,7 +2,6 @@ import { type SourceNodesArgs } from "gatsby";
 import { type Except } from "type-fest";
 
 import {
-	FeedBorderlineSubstance,
 	FeedBorderlineSubstancesTaxonomy,
 	PHPID,
 	SID,
