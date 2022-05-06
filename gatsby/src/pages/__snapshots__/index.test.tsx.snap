@@ -15,6 +15,57 @@ exports[`HomePage should match snapshot for BNF 1`] = `
         <div
           class="heroContainer"
         >
+          <nav
+            aria-label="Breadcrumbs"
+            class="breadcrumbs"
+            role="navigation"
+          >
+            <ol
+              class="breadcrumbs"
+            >
+              <li
+                class="breadcrumbs__crumb"
+              >
+                <a
+                  href="https://www.nice.org.uk/"
+                >
+                  NICE
+                </a>
+              </li>
+              <li
+                class="breadcrumbs__crumb"
+              >
+                <span>
+                  BNF
+                </span>
+              </li>
+            </ol>
+          </nav>
+          <script
+            type="application/ld+json"
+          >
+            {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@id": "https://www.nice.org.uk/",
+        "name": "NICE"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "name": "BNF"
+      }
+    }
+  ]
+}
+          </script>
           <div
             class="text"
           >
@@ -733,6 +784,57 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
         <div
           class="heroContainer"
         >
+          <nav
+            aria-label="Breadcrumbs"
+            class="breadcrumbs"
+            role="navigation"
+          >
+            <ol
+              class="breadcrumbs"
+            >
+              <li
+                class="breadcrumbs__crumb"
+              >
+                <a
+                  href="https://www.nice.org.uk/"
+                >
+                  NICE
+                </a>
+              </li>
+              <li
+                class="breadcrumbs__crumb"
+              >
+                <span>
+                  BNF
+                </span>
+              </li>
+            </ol>
+          </nav>
+          <script
+            type="application/ld+json"
+          >
+            {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@id": "https://www.nice.org.uk/",
+        "name": "NICE"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "name": "BNF"
+      }
+    }
+  ]
+}
+          </script>
           <div
             class="text"
           >
