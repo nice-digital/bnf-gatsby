@@ -65,7 +65,7 @@ exports[`schema should match snapshot 1`] = `
 	\\"\\"\\"
 	An individual borderline substance. This comprises a number of presentations, each of which may contain zero or more preparations.
 	\\"\\"\\"
-	type BnfBorderlineSubstance {
+	type BnfBorderlineSubstance implements Node @dontInfer {
 		\\"The title of the borderline substance. May contain HTML mark-up.\\"
 		title: String!
 

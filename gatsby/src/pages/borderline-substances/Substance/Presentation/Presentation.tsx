@@ -3,11 +3,12 @@ import { FC } from "react";
 import { FeedBorderlineSubstancePresentation } from "@nice-digital/gatsby-source-bnf";
 
 import { Prep } from "@/components/Prep/Prep";
+import { type QueryResult } from "@/utils";
 
 import styles from "./../../{BnfBorderlineSubstancesTaxonomy.slug}.module.scss";
 
 export type PresentationProps = {
-	presentation: FeedBorderlineSubstancePresentation;
+	presentation: QueryResult<FeedBorderlineSubstancePresentation>;
 };
 
 const Presentation: FC<PresentationProps> = ({ presentation }) => {
@@ -98,8 +99,8 @@ const Presentation: FC<PresentationProps> = ({ presentation }) => {
 				)}
 			</dl>
 
-			{presentation.borderlineSubstancePreps?.map((preparation, i) => (
-				<Prep key={i} prep={preparation}></Prep>
+			{presentation.borderlineSubstancePreps?.map((preparation) => (
+				<Prep key={preparation.ampId} prep={preparation}></Prep>
 			))}
 		</>
 	);

@@ -5,12 +5,13 @@ import { FeedBorderlineSubstance } from "@nice-digital/gatsby-source-bnf";
 import { Alert } from "@nice-digital/nds-alert";
 
 import { Accordion } from "@/components/Accordion/Accordion";
+import { QueryResult } from "@/utils";
 
 import styles from "./../{BnfBorderlineSubstancesTaxonomy.slug}.module.scss";
 import Presentation from "./Presentation/Presentation";
 
 export type SubstancesProps = {
-	substance: FeedBorderlineSubstance;
+	substance: QueryResult<FeedBorderlineSubstance>;
 	label?: string;
 };
 

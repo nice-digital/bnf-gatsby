@@ -7,6 +7,8 @@ exports[`BorderlineSubstancesSectionPage should match snapshot for graphql query
 			slug
 			title
 			rootTaxonomy {
+				slug
+				title
 				childTaxonomies {
 					title
 					childTaxonomies {
@@ -14,6 +16,66 @@ exports[`BorderlineSubstancesSectionPage should match snapshot for graphql query
 						slug
 					}
 					slug
+				}
+			}
+			substances {
+				title
+				introductionNote
+				id
+				presentations {
+					acbs
+					energyKj
+					proteinGrams
+					carbohydrateGrams
+					fatGrams
+					fibreGrams
+					specialCharacteristics
+					formulation
+					borderlineSubstancePreps {
+						...FullPrep
+					}
+				}
+			}
+			childTaxonomies {
+				title
+				substances {
+					title
+					introductionNote
+					id
+					presentations {
+						acbs
+						energyKj
+						proteinGrams
+						carbohydrateGrams
+						fatGrams
+						fibreGrams
+						specialCharacteristics
+						formulation
+						borderlineSubstancePreps {
+							...FullPrep
+						}
+					}
+				}
+				childTaxonomies {
+					title
+					substances {
+						title
+						introductionNote
+						id
+						presentations {
+							acbs
+							energyKj
+							proteinGrams
+							carbohydrateGrams
+							fatGrams
+							fibreGrams
+							specialCharacteristics
+							formulation
+							borderlineSubstancePreps {
+								...FullPrep
+							}
+						}
+					}
 				}
 			}
 		}

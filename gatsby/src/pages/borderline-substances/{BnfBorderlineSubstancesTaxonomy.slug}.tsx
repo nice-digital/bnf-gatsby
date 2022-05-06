@@ -1,3 +1,5 @@
+import { captureRejections } from "events";
+
 import { graphql, Link } from "gatsby";
 import React, { type FC } from "react";
 
@@ -11,7 +13,7 @@ import { Layout } from "@/components/Layout/Layout";
 import { SectionNav } from "@/components/SectionNav/SectionNav";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
-import { type SlugAndTitle } from "@/utils";
+import { QueryResult, type SlugAndTitle } from "@/utils";
 
 import Substance from "./Substance/Substance";
 import styles from "./{BnfBorderlineSubstancesTaxonomy.slug}.module.scss";
@@ -23,19 +25,19 @@ export type BorderlineSubstancesSectionPageProps = {
 				childTaxonomies: {
 					title: string;
 					slug: string;
-					childTaxonomies: {
+					childTaxonomies?: {
 						title: string;
 						slug: string;
 					}[];
 				}[];
 			};
-			substances: FeedBorderlineSubstance[];
-			childTaxonomies: {
+			substances?: QueryResult<FeedBorderlineSubstance>[];
+			childTaxonomies?: {
 				title: string;
-				substances: FeedBorderlineSubstance[];
-				childTaxonomies: {
+				substances?: QueryResult<FeedBorderlineSubstance>[];
+				childTaxonomies?: {
 					title: string;
-					substances: FeedBorderlineSubstance[];
+					substances?: QueryResult<FeedBorderlineSubstance>[];
 				}[];
 			}[];
 		};
@@ -69,13 +71,19 @@ const BorderlineSubstancesSectionPage: FC<
 	// In some taxonomies there are substances at multiple levels of the taxonomy which need to be flattened for the section nav
 	// Currently these only go 3 deep in the "food for special diets" taxonomy.
 	// If they ever go further it would be worth doing something recursive to check every level until there are no more substances.
-	const flattenedSubstances: FeedBorderlineSubstance[] = substances;
-	childTaxonomies.map((child) =>
-		child.substances.forEach((substance) => flattenedSubstances.push(substance))
+	const flattenedSubstances: QueryResult<FeedBorderlineSubstance>[] = [];
+
+	substances?.forEach((substance) => flattenedSubstances.push(substance));
+
+	childTaxonomies?.map((child) =>
+		child.substances?.forEach((substance) =>
+			flattenedSubstances.push(substance)
+		)
 	);
-	childTaxonomies.map((child) =>
-		child.childTaxonomies.map((child2) =>
-			child2.substances.forEach((substance) =>
+
+	childTaxonomies?.map((child) =>
+		child.childTaxonomies?.map((child2) =>
+			child2.substances?.forEach((substance) =>
 				flattenedSubstances.push(substance)
 			)
 		)
@@ -166,7 +174,7 @@ const BorderlineSubstancesSectionPage: FC<
 												{child1.title}
 											</h2>
 											<ol className="list--unstyled">
-												{child1.childTaxonomies.map((child2) => (
+												{child1.childTaxonomies?.map((child2) => (
 													<li key={child2.slug}>
 														<Link to={`/borderline-substances/${child2.slug}/`}>
 															{child2.title}
@@ -185,22 +193,22 @@ const BorderlineSubstancesSectionPage: FC<
 				<section aria-labelledby={slug} className={styles.section}>
 					<SectionNav sections={flattenedSubstances}></SectionNav>
 
-					{substances.map((substance) => (
+					{substances?.map((substance) => (
 						<Substance key={substance.id} substance={substance}></Substance>
 					))}
 
-					{childTaxonomies.map((child) => (
+					{childTaxonomies?.map((child) => (
 						<>
-							{child.substances.map((substance) => (
+							{child.substances?.map((substance) => (
 								<Substance
 									key={substance.id}
 									substance={substance}
 									label={child.title}
 								></Substance>
 							))}
-							{child.childTaxonomies.map((child2) => (
+							{child.childTaxonomies?.map((child2) => (
 								<>
-									{child2.substances.map((substance) => (
+									{child2.substances?.map((substance) => (
 										<Substance
 											key={substance.id}
 											substance={substance}
@@ -248,13 +256,7 @@ export const query = graphql`
 					specialCharacteristics
 					formulation
 					borderlineSubstancePreps {
-						packs {
-							unit
-							size
-							nhsIndicativePrice
-						}
-						name
-						manufacturer
+						...FullPrep
 					}
 				}
 			}
@@ -274,13 +276,7 @@ export const query = graphql`
 						specialCharacteristics
 						formulation
 						borderlineSubstancePreps {
-							packs {
-								unit
-								size
-								nhsIndicativePrice
-							}
-							name
-							manufacturer
+							...FullPrep
 						}
 					}
 				}
@@ -300,13 +296,7 @@ export const query = graphql`
 							specialCharacteristics
 							formulation
 							borderlineSubstancePreps {
-								packs {
-									unit
-									size
-									nhsIndicativePrice
-								}
-								name
-								manufacturer
+								...FullPrep
 							}
 						}
 					}
