@@ -2,7 +2,7 @@
 @import '../../styles/settings';
 
 .wrapper {
-  border-top: core.rem(core.$nds-spacing-small) solid #000;
+  border-top: core.rem(core.$nds-spacing-x-small) solid;
   position: sticky;
   top: -0.1px; // Hack to avoid 1px gap due to some weird Chrome sub pixel rounding
   z-index: 1;
