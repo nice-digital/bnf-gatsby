@@ -17,15 +17,14 @@ export const SiteDistinction: FC = () => {
 		{ isBNF, siteTitleShort, siteUrl } = useSiteMetadata(),
 		[isExpanded, setIsExpanded] = useState(false),
 		otherSiteHref = useMemo(() => {
-			const url = new URL(href || siteUrl);
-			url.pathname = pathname;
+			const url = new URL(isClient ? href : siteUrl + pathname);
 			url.host = url.host.replace(
 				isBNF ? "bnf" : "bnfc",
 				isBNF ? "bnfc" : "bnf"
 			);
 			url.searchParams.append("ref", "switch");
 			return url.toString();
-		}, [href, pathname, siteUrl, isBNF]);
+		}, [href, pathname, siteUrl, isBNF, isClient]);
 
 	useEffect(() => {
 		// If the page changes then it makes sense to collapse the other site link
