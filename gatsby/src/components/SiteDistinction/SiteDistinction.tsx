@@ -1,6 +1,6 @@
 import { useLocation } from "@reach/router";
 import classNames from "classnames";
-import { useMemo, useState, type FC } from "react";
+import { useEffect, useMemo, useState, type FC } from "react";
 
 import ChevronDownIcon from "@nice-digital/icons/lib/ChevronDown";
 import ChevronRightIcon from "@nice-digital/icons/lib/ChevronRight";
@@ -12,19 +12,25 @@ import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 import styles from "./SiteDistinction.module.scss";
 
 export const SiteDistinction: FC = () => {
-	const { href } = useLocation(),
+	const { href, pathname } = useLocation(),
 		isClient = useIsClient(),
-		{ isBNF, siteTitleShort } = useSiteMetadata(),
+		{ isBNF, siteTitleShort, siteUrl } = useSiteMetadata(),
 		[isExpanded, setIsExpanded] = useState(false),
 		otherSiteHref = useMemo(() => {
-			const url = new URL(href);
+			const url = new URL(href || siteUrl);
+			url.pathname = pathname;
 			url.host = url.host.replace(
 				isBNF ? "bnf" : "bnfc",
 				isBNF ? "bnfc" : "bnf"
 			);
 			url.searchParams.append("ref", "switch");
 			return url.toString();
-		}, [href, isBNF]);
+		}, [href, pathname, siteUrl, isBNF]);
+
+	useEffect(() => {
+		// If the page changes then it makes sense to collapse the other site link
+		setIsExpanded(false);
+	}, [pathname]);
 
 	return (
 		<div
