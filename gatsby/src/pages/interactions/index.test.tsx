@@ -1,4 +1,4 @@
-import { render, waitFor, screen } from "@testing-library/react";
+import { render, waitFor } from "@testing-library/react";
 
 import InteractionsIndexPage, { type InteractionsIndexPageProps } from "./";
 
@@ -60,7 +60,7 @@ describe("InteractionsIndexPage", () => {
 	});
 
 	it("should match snapshot for page body", () => {
-		render(<InteractionsIndexPage {...props} />);
-		expect(screen.getByRole("main")).toMatchSnapshot();
+		const { container } = render(<InteractionsIndexPage {...props} />);
+		expect(container).toMatchSnapshot();
 	});
 });

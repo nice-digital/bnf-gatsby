@@ -228,8 +228,8 @@ describe("MedicinalFormsPage", () => {
 		});
 
 		it("should match snapshot for page body", () => {
-			render(<MedicinalFormsPage data={dataProp} />);
-			expect(screen.getByRole("main")).toMatchSnapshot();
+			const { container } = render(<MedicinalFormsPage data={dataProp} />);
+			expect(container).toMatchSnapshot();
 		});
 	});
 });

@@ -52,7 +52,7 @@ describe("InteractionsIntroductionPage", () => {
 	});
 
 	it("should match snapshot for page body", () => {
-		render(<InteractionsIntroductionPage {...props} />);
-		expect(screen.getByRole("main")).toMatchSnapshot();
+		const { container } = render(<InteractionsIntroductionPage {...props} />);
+		expect(container).toMatchSnapshot();
 	});
 });

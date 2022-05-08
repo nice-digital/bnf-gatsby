@@ -51,9 +51,11 @@ describe("NursePrescribersFormularyTreatmentSummaryPage", () => {
 	});
 
 	it("should match snapshot for page contents", () => {
-		render(<NursePrescribersFormularyTreatmentSummaryPage {...pageProps} />);
+		const { container } = render(
+			<NursePrescribersFormularyTreatmentSummaryPage {...pageProps} />
+		);
 
-		expect(screen.getByRole("main")).toMatchSnapshot();
+		expect(container).toMatchSnapshot();
 	});
 
 	it("should set page title", async () => {
