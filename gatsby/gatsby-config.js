@@ -13,15 +13,21 @@ if (process.env.NODE_ENV && !process.env.GATSBY_SEARCH_URL)
 		"Env var GATSBY_SEARCH_URL isn't set. Did you forget to add it?"
 	);
 
+const siteUrl =
+		process.env.NODE_ENV === "development"
+			? "http://localhost:8000"
+			: `https://${isBNF ? "bnf" : "bnfc"}.nice.org.uk`,
+	siteTitleShort = isBNF ? "BNF" : "BNFC",
+	siteTitleLong = "British National Formulary" + (isBNF ? "" : " for Children");
+
 module.exports = {
 	jsxRuntime: "automatic",
 	siteMetadata: {
 		isBNF,
-		siteUrl: `https://${isBNF ? "bnf" : "bnfc"}.nice.org.uk`,
+		siteUrl,
 		searchUrl,
-		siteTitleShort: isBNF ? "BNF" : "BNFC",
-		siteTitleLong:
-			"British National Formulary" + (isBNF ? "" : " for Children"),
+		siteTitleShort,
+		siteTitleLong,
 	},
 	plugins: [
 		{
@@ -63,9 +69,95 @@ module.exports = {
 			},
 		},
 		{
-			resolve: "gatsby-plugin-manifest",
+			resolve: `gatsby-plugin-manifest`,
 			options: {
-				icon: "src/images/icon.png",
+				name: `${siteTitleLong} (${siteTitleShort})`,
+				short_name: `${siteTitleShort} | NICE`,
+				description: isBNF
+					? "Key information on the selection, prescribing, dispensing and administration of medicines."
+					: "Key information on the selection, prescribing, dispensing and administration of medicines used for children.",
+				start_url: `/?utm_source=a2hs&utm_medium=a2hs`,
+				background_color: `#fff`,
+				theme_color: isBNF ? "#93da49" : "#ef4a81",
+				display: `minimal-ui`,
+				icon: `src/images/logo-pwa-${siteTitleShort.toLowerCase()}.svg`,
+				icon_options: {
+					purpose: `maskable any`,
+				},
+				include_favicon: false,
+				shortcuts: [
+					{
+						name: "Drugs A to Z",
+						url: "/drugs/?utm_source=a2hs&utm_medium=shortcuts",
+					},
+					{
+						name: "Treatment summaries A to Z",
+						url: "/treatment-summaries/?utm_source=a2hs&utm_medium=shortcuts",
+					},
+					{
+						name: "Interactions A to Z",
+						url: "/interactions/?utm_source=a2hs&utm_medium=shortcuts",
+					},
+					{
+						name: "What's new",
+						url: "/about/changes/?utm_source=a2hs&utm_medium=shortcuts",
+					},
+				],
+			},
+		},
+		{
+			resolve: `gatsby-plugin-offline`,
+			options: {
+				// Pre cache all the top level/important pages for offline access
+				precachePages: [
+					`/drugs/`,
+					`/interactions/`,
+					`/treatment-summaries/`,
+					`/search/`,
+					`/about/`,
+					`/about/changes/`,
+					`/about/labels/`,
+					`/about/approximate-conversions-and-units/`,
+					`/about/abbreviations-and-symbols/`,
+					`/medical-devices/`,
+					`/medicines-guidance/`,
+					`/borderline-substances/`,
+					`/nurse-prescribers-formulary/`,
+					`/dental-practitioners-formulary/`,
+					isBNF ? `/wound-management/` : undefined,
+				].filter(Boolean),
+				workboxConfig: {
+					// Use the default gatsby runtimeCaching with 2 key differences:
+					// use NetworkFirst for page-data.json and for HTML pages
+					runtimeCaching: [
+						{
+							urlPattern: /(\.js$|\.css$|static\/)/,
+							handler: `CacheFirst`,
+						},
+						{
+							// Optimise for accurate/latest content rather than out-and-out performance by
+							// trying to load HTML and page/app data JSON network first
+							urlPattern: /\/$/,
+							handler: `NetworkFirst`,
+							options: {
+								networkTimeoutSeconds: 1,
+							},
+						},
+						{
+							urlPattern:
+								/^https?:.*\/page-data\/.*\/(page-data|app-data)\.json$/,
+							handler: `NetworkFirst`,
+							options: {
+								networkTimeoutSeconds: 1,
+							},
+						},
+						{
+							urlPattern:
+								/^https?:.*\.(png|jpg|jpeg|webp|svg|gif|tiff|js|woff|woff2|json|css)$/,
+							handler: `StaleWhileRevalidate`,
+						},
+					],
+				},
 			},
 		},
 	],

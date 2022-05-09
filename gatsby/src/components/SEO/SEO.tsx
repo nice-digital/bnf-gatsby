@@ -65,7 +65,7 @@ export const SEO: FC<SEOProps> = ({
 				/>
 				<meta name="twitter:site" content="@NICEcomms" />
 				<meta name="twitter:creator" content="@NICEcomms" />
-				<meta name="theme-color" content="#004650" />
+				<meta name="theme-color" content={isBNF ? "#93da49" : "#ef4a81"} />
 				{additionalMetadata?.map((x, i) => (
 					<meta key={i} name={x.name} content={x.content} />
 				))}
