@@ -1,4 +1,4 @@
-Feature: Borderline substances page
+Feature: Borderline substance page
   As a user of BNF
   I want to be able to use a BNF borderline substance page
 

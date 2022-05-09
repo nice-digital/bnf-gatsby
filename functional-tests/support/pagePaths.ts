@@ -38,8 +38,7 @@ export const pagePaths = {
 	"local anaesthetics": "/nurse-prescribers-formulary/local-anaesthetics/",
 	"borderline substances": "/borderline-substances/",
 	"feed supplements": "/borderline-substances/feed-supplements/",
-	"high-fibre supplements":
-		"/borderline-substances/feed-supplements/high-fibre-supplements/",
+	"high-fibre supplements": "/borderline-substances/high-fibre-supplements/",
 } as const;
 
 export type PageName = keyof typeof pagePaths;

@@ -22,16 +22,16 @@ const Substance: FC<SubstancesProps> = ({ substance, label }) => {
 				title={
 					<>
 						<h2
-							key={substance.title}
-							id={substance.id}
+							key={substance?.title}
+							id={substance?.id}
 							className={styles.prepHeading}
 						>
 							<span className={styles.headingIcons}>
 								{label ? <span className={styles.label}> {label} </span> : null}
 							</span>
-							<span className={styles.headingText}>{substance.title} </span>
+							<span className={styles.headingText}>{substance?.title} </span>
 						</h2>
-						{substance && substance.introductionNote && (
+						{substance && substance?.introductionNote && (
 							<Alert type="info">
 								{striptags(substance?.introductionNote)}
 							</Alert>
@@ -40,7 +40,7 @@ const Substance: FC<SubstancesProps> = ({ substance, label }) => {
 				}
 			>
 				{" "}
-				{substance.presentations?.map((presentation, i) => (
+				{substance?.presentations?.map((presentation, i) => (
 					<Presentation key={i} presentation={presentation}></Presentation>
 				))}
 			</Accordion>
