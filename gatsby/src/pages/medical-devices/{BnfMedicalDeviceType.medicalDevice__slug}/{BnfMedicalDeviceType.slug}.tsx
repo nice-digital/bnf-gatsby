@@ -1,9 +1,23 @@
-import { graphql } from "gatsby";
+import { useLocation } from "@reach/router";
+import { graphql, Link } from "gatsby";
 import { FC } from "react";
+import striptags from "striptags";
 
-import { DetailsPageLayout } from "@/components/DetailsPageLayout/DetailsPageLayout";
+import { type FeedPrep } from "@nice-digital/gatsby-source-bnf";
+import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
+import { Grid, GridItem } from "@nice-digital/nds-grid";
+import { PageHeader } from "@nice-digital/nds-page-header";
+import { StackedNav, StackedNavLink } from "@nice-digital/nds-stacked-nav";
 
-interface MedicalDeviceTypePageProps {
+import { Layout } from "@/components/Layout/Layout";
+import { MedicalDevicePrepsSection } from "@/components/MedicalDevicePrepsSection/MedicalDevicePrepsSection";
+import { SEO } from "@/components/SEO/SEO";
+import { useSiteMetadata } from "@/hooks/useSiteMetadata";
+import { QueryResult } from "@/utils";
+
+import styles from "./{BnfMedicalDeviceType.slug}.module.scss";
+
+export interface MedicalDeviceTypePageProps {
 	data: {
 		bnfMedicalDeviceType: {
 			slug: string;
@@ -11,8 +25,12 @@ interface MedicalDeviceTypePageProps {
 			medicalDevice: {
 				title: string;
 				slug: string;
+				medicalDeviceTypes: {
+					title: string;
+					slug: string;
+				}[];
 			};
-			preparations: { name: string }[];
+			preparations: QueryResult<FeedPrep>[];
 		};
 	};
 }
@@ -22,27 +40,88 @@ const MedicalDeviceTypePage: FC<MedicalDeviceTypePageProps> = ({
 		bnfMedicalDeviceType: { title, medicalDevice, preparations },
 	},
 }) => {
+	const { pathname } = useLocation(),
+		{ siteTitleShort } = useSiteMetadata(),
+		titleNoHtml = striptags(title),
+		hasStackedNav = medicalDevice.medicalDeviceTypes.length > 1,
+		medicalDeviceTitleNoHtml = striptags(medicalDevice.title);
+
 	if (preparations.length === 0) return null;
 
 	return (
-		<DetailsPageLayout
-			titleHtml={title}
-			parentTitleParts={[medicalDevice.title, "Medical devices"]}
-			parentBreadcrumbs={[
-				{ href: "/medical-devices/", text: "Medical devices" },
-				{
-					href: `/medical-devices/${medicalDevice.slug}/`,
-					text: medicalDevice.title,
-				},
-			]}
-			sections={[]}
-		>
-			<ol>
-				{preparations.map((prep) => (
-					<li key={prep.name}>{prep.name}</li>
-				))}
-			</ol>
-		</DetailsPageLayout>
+		<Layout>
+			<SEO
+				title={`${titleNoHtml} | ${medicalDevice.title} | Medical devices`}
+				description={`This medical device type describes the options that are currently recommended for ${titleNoHtml}.`}
+			/>
+
+			<Breadcrumbs>
+				<Breadcrumb key="NICE" to="https://www.nice.org.uk/">
+					NICE
+				</Breadcrumb>
+				<Breadcrumb to="/" elementType={Link}>
+					{siteTitleShort}
+				</Breadcrumb>
+				<Breadcrumb to="/medical-devices/" elementType={Link}>
+					Medical devices
+				</Breadcrumb>
+				<Breadcrumb
+					to={`/medical-devices/${medicalDevice.slug}/`}
+					elementType={Link}
+				>
+					{medicalDevice.title}
+				</Breadcrumb>
+				<Breadcrumb>{titleNoHtml}</Breadcrumb>
+			</Breadcrumbs>
+
+			<PageHeader
+				id="content-start"
+				heading={<span dangerouslySetInnerHTML={{ __html: title }} />}
+			/>
+
+			<Grid gutter="loose">
+				{hasStackedNav ? (
+					<GridItem cols={12} md={4} lg={3}>
+						<StackedNav
+							aria-label={medicalDeviceTitleNoHtml}
+							label={medicalDeviceTitleNoHtml}
+							link={{
+								destination: `/medical-devices/${medicalDevice.slug}/`,
+								elementType: Link,
+							}}
+						>
+							{medicalDevice.medicalDeviceTypes
+								.sort((a, b) => a.slug.localeCompare(b.slug))
+								.map((deviceType) => {
+									const pagePath = `/medical-devices/${medicalDevice.slug}/${deviceType.slug}/`;
+									return (
+										<StackedNavLink
+											key={deviceType.title}
+											destination={pagePath}
+											elementType={Link}
+											isCurrent={pathname === pagePath}
+										>
+											<span
+												dangerouslySetInnerHTML={{ __html: deviceType.title }}
+											/>
+										</StackedNavLink>
+									);
+								})}
+						</StackedNav>
+					</GridItem>
+				) : null}
+				<GridItem
+					cols={12}
+					md={hasStackedNav ? 8 : 12}
+					lg={hasStackedNav ? 9 : 12}
+					className={styles.sections}
+				>
+					{preparations.length > 0 ? (
+						<MedicalDevicePrepsSection preps={preparations} />
+					) : null}
+				</GridItem>
+			</Grid>
+		</Layout>
 	);
 };
 
@@ -54,9 +133,13 @@ export const query = graphql`
 			medicalDevice {
 				title
 				slug
+				medicalDeviceTypes {
+					title
+					slug
+				}
 			}
 			preparations {
-				name
+				...FullPrep
 			}
 		}
 	}

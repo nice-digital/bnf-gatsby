@@ -64,7 +64,7 @@ export const medicalDeviceSchema = `
 		complianceStandards: ${BnfNode.MedicalDeviceSimplePot}
 
 		"The indications and dose section for the clinical medical device information group."
-		indicationsAndDose: ${BnfNode.IndicationsAndDose}
+		indicationsAndDose: ${BnfNode.MedicalDeviceIndicationsAndDose}
 
 		"The allergy and cross-sensitivity section for the clinical medical device information group."
 		allergyAndCrossSensitivity: ${BnfNode.MedicalDeviceSimplePot}
@@ -95,10 +95,19 @@ export const medicalDeviceSchema = `
 		"The slugified and lowercased pot name, used as an ID/hash link"
 		slug: String! @slug(field: "potName")
 
-		"The name of the medical device e.g. 'A2A Spacer®'. May contain HTML mark-up"
-		contentFor: String! @html
+		content: ${BnfNode.SimplePotContent}!
+	}
 
-		"The content. May contain HTML mark-up."
-		content: String! @html
+	"""
+	A single section of simple (unstructured) content for a BNF medical device.
+	"""
+	type ${BnfNode.MedicalDeviceIndicationsAndDose} @dontInfer {
+		"The name/title of the pot."
+		potName: String!
+
+		"The slugified and lowercased pot name, used as a DOM ID and hash target"
+		slug: String! @slug(field: "potName")
+
+		content: ${BnfNode.IndicationsAndDoseContent}!
 	}
 `;
