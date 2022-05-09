@@ -1,6 +1,6 @@
 import { useLocation } from "@reach/router";
 import classNames from "classnames";
-import { useEffect, useMemo, useReducer, useState, type FC } from "react";
+import { useEffect, useMemo, useState, type FC } from "react";
 import { Helmet } from "react-helmet";
 
 import ChevronDownIcon from "@nice-digital/icons/lib/ChevronDown";
@@ -24,7 +24,8 @@ export const SiteDistinction: FC = () => {
 				isBNF ? "bnf" : "bnfc",
 				isBNF ? "bnfc" : "bnf"
 			);
-			url.searchParams.append("ref", "switch");
+			if (!url.searchParams.has("ref"))
+				url.searchParams.append("ref", "switch");
 			return url.toString();
 		}, [href, pathname, siteUrl, isBNF, isClient]);
 
