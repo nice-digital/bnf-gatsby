@@ -1,4 +1,5 @@
-import { fireEvent, render, screen, within } from "@testing-library/react";
+import { render, screen, waitFor, within } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { renderToString } from "react-dom/server";
 
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
@@ -64,7 +65,7 @@ describe("SiteDistinction", () => {
 				const button = screen.getByRole("button", {
 					name: `Show ${otherSiteTitleShort} link`,
 				});
-				fireEvent.click(button);
+				userEvent.click(button);
 				expect(button).toHaveAttribute("aria-expanded", "true");
 			});
 
@@ -73,7 +74,7 @@ describe("SiteDistinction", () => {
 				const button = screen.getByRole("button", {
 					name: `Show ${otherSiteTitleShort} link`,
 				});
-				fireEvent.click(button);
+				userEvent.click(button);
 				expect(button).toHaveAttribute(
 					"aria-label",
 					`Hide ${otherSiteTitleShort} link`
@@ -89,7 +90,7 @@ describe("SiteDistinction", () => {
 					"data-tracking",
 					`show-${otherSiteTitleShort.toLowerCase()}-link`
 				);
-				fireEvent.click(button);
+				userEvent.click(button);
 				expect(button).toHaveAttribute(
 					"data-tracking",
 					`hide-${otherSiteTitleShort.toLowerCase()}-link`
@@ -105,8 +106,28 @@ describe("SiteDistinction", () => {
 				// eslint-disable-next-line testing-library/no-node-access
 				const svg = button.querySelector("svg");
 				expect(svg?.classList.value).toEqual("icon");
-				fireEvent.click(button);
+				userEvent.click(button);
 				expect(svg).toHaveClass("icon iconExpanded");
+			});
+
+			it("should prefetch other site link", async () => {
+				render(<SiteDistinction />);
+				const button = screen.getByRole("button", {
+					name: `Show ${otherSiteTitleShort} link`,
+				});
+				userEvent.click(button);
+
+				let prefetch: Element | null = null;
+				await waitFor(() => {
+					// eslint-disable-next-line testing-library/no-node-access
+					prefetch = document.querySelector("link[rel='prefetch']");
+					expect(prefetch).toHaveAttribute("as", "document");
+				});
+
+				expect(prefetch).toHaveAttribute(
+					"href",
+					"https://bnfc-gatsby-tests.nice.org.uk/test/?ref=switch"
+				);
 			});
 		});
 
