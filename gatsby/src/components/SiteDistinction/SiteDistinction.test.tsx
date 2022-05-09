@@ -30,11 +30,16 @@ describe("SiteDistinction", () => {
 			});
 		});
 
-		it("should match snapshot", () => {
-			render(<SiteDistinction />);
-			expect(
-				screen.getByLabelText(`Show ${otherSiteTitleShort} link`)
-			).toMatchSnapshot();
+		it("should match snapshot server side", () => {
+			const wrapper = document.createElement("div");
+			wrapper.innerHTML = renderToString(<SiteDistinction />);
+
+			expect(wrapper).toMatchSnapshot();
+		});
+
+		it("should match snapshot client side", () => {
+			const { container } = render(<SiteDistinction />);
+			expect(container).toMatchSnapshot();
 		});
 
 		describe("Button", () => {

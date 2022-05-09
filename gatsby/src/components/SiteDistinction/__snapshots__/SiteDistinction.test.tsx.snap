@@ -1,55 +1,239 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SiteDistinction BNF site should match snapshot 1`] = `
-<button
-  aria-expanded="false"
-  aria-label="Show BNFC link"
-  class="currentSiteTab BNF"
-  data-tracking="show-bnfc-link"
-  type="button"
->
-  <svg
-    aria-hidden="true"
-    class="icon"
-    fill="none"
-    focusable="false"
-    height="1em"
-    viewBox="0 0 512 512"
-    width="1em"
-    xmlns="http://www.w3.org/2000/svg"
+exports[`SiteDistinction BNF site should match snapshot client side 1`] = `
+<div>
+  <div
+    class="wrapper bnf"
   >
-    <path
-      d="M478.152 174c0 10.091-3.525 18.661-10.576 25.712l-186 186c-7.243 7.243-15.909 10.864-26 10.864-10.283 0-18.853-3.621-25.712-10.864l-186-186C36.621 192.853 33 184.283 33 174c0-10.091 3.621-18.757 10.864-26L65 126.576C72.424 119.525 81.09 116 91 116c10.091 0 18.661 3.525 25.712 10.576L255.576 265.44 394.44 126.576c7.051-7.051 15.621-10.576 25.712-10.576 9.909 0 18.576 3.525 26 10.576L467.576 148c7.051 7.424 10.576 16.091 10.576 26z"
-      fill="currentColor"
-    />
-  </svg>
-  BNF
-</button>
+    <div
+      class="container container"
+    >
+      <p
+        class="tabs"
+      >
+        <span
+          class="visually-hidden"
+        >
+          Currently viewing 
+          BNF
+          .
+        </span>
+        <button
+          aria-expanded="false"
+          aria-label="Show BNFC link"
+          class="currentSiteTab BNF"
+          data-tracking="show-bnfc-link"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            class="icon"
+            fill="none"
+            focusable="false"
+            height="1em"
+            viewBox="0 0 512 512"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M478.152 174c0 10.091-3.525 18.661-10.576 25.712l-186 186c-7.243 7.243-15.909 10.864-26 10.864-10.283 0-18.853-3.621-25.712-10.864l-186-186C36.621 192.853 33 184.283 33 174c0-10.091 3.621-18.757 10.864-26L65 126.576C72.424 119.525 81.09 116 91 116c10.091 0 18.661 3.525 25.712 10.576L255.576 265.44 394.44 126.576c7.051-7.051 15.621-10.576 25.712-10.576 9.909 0 18.576 3.525 26 10.576L467.576 148c7.051 7.424 10.576 16.091 10.576 26z"
+              fill="currentColor"
+            />
+          </svg>
+          BNF
+        </button>
+        <a
+          class="otherSiteTab"
+          data-tracking="bnfc-link"
+          href="https://bnfc-gatsby-tests.nice.org.uk/test/?ref=switch"
+          tabindex="-1"
+        >
+          <span
+            class="visually-hidden"
+          >
+            switch to 
+          </span>
+          BNFC
+        </a>
+      </p>
+    </div>
+  </div>
+</div>
 `;
 
-exports[`SiteDistinction BNFC site should match snapshot 1`] = `
-<button
-  aria-expanded="false"
-  aria-label="Show BNF link"
-  class="currentSiteTab BNFC"
-  data-tracking="show-bnf-link"
-  type="button"
->
-  <svg
-    aria-hidden="true"
-    class="icon"
-    fill="none"
-    focusable="false"
-    height="1em"
-    viewBox="0 0 512 512"
-    width="1em"
-    xmlns="http://www.w3.org/2000/svg"
+exports[`SiteDistinction BNF site should match snapshot server side 1`] = `
+<div>
+  <div
+    class="wrapper bnf"
   >
-    <path
-      d="M478.152 174c0 10.091-3.525 18.661-10.576 25.712l-186 186c-7.243 7.243-15.909 10.864-26 10.864-10.283 0-18.853-3.621-25.712-10.864l-186-186C36.621 192.853 33 184.283 33 174c0-10.091 3.621-18.757 10.864-26L65 126.576C72.424 119.525 81.09 116 91 116c10.091 0 18.661 3.525 25.712 10.576L255.576 265.44 394.44 126.576c7.051-7.051 15.621-10.576 25.712-10.576 9.909 0 18.576 3.525 26 10.576L467.576 148c7.051 7.424 10.576 16.091 10.576 26z"
-      fill="currentColor"
-    />
-  </svg>
-  BNFC
-</button>
+    <div
+      class="container container"
+    >
+      <p
+        class="tabs"
+      >
+        <span
+          class="visually-hidden"
+        >
+          Currently viewing 
+          <!-- -->
+          BNF
+          <!-- -->
+          .
+        </span>
+        <span
+          class="currentSiteTab"
+        >
+          BNF
+        </span>
+        <a
+          class="otherSiteTab otherSiteTabExpanded"
+          data-tracking="bnfc-link"
+          href="https://bnfc.nice.org.uk/test/?ref=switch"
+        >
+          <span
+            class="visually-hidden"
+          >
+            switch to 
+          </span>
+          BNFC
+          <svg
+            aria-hidden="true"
+            class="icon"
+            fill="none"
+            focusable="false"
+            height="1em"
+            viewBox="0 0 512 512"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M396.576 255.576c0 9.909-3.525 18.576-10.576 26l-186.288 186c-7.051 7.051-15.621 10.576-25.712 10.576s-18.661-3.525-25.712-10.576l-21.712-21.424c-7.051-7.424-10.576-16.091-10.576-26 0-10.091 3.525-18.661 10.576-25.712L265.44 255.576 126.576 117C119.525 109.576 116 100.909 116 91c0-10.09 3.525-18.661 10.576-25.712l21.712-21.424C155.147 36.621 163.717 33 174 33s18.853 3.621 25.712 10.864l186.288 186c7.051 7.051 10.576 15.621 10.576 25.712z"
+              fill="currentColor"
+            />
+          </svg>
+        </a>
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`SiteDistinction BNFC site should match snapshot client side 1`] = `
+<div>
+  <div
+    class="wrapper bnfc"
+  >
+    <div
+      class="container container"
+    >
+      <p
+        class="tabs"
+      >
+        <span
+          class="visually-hidden"
+        >
+          Currently viewing 
+          BNFC
+          .
+        </span>
+        <button
+          aria-expanded="false"
+          aria-label="Show BNF link"
+          class="currentSiteTab BNFC"
+          data-tracking="show-bnf-link"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            class="icon"
+            fill="none"
+            focusable="false"
+            height="1em"
+            viewBox="0 0 512 512"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M478.152 174c0 10.091-3.525 18.661-10.576 25.712l-186 186c-7.243 7.243-15.909 10.864-26 10.864-10.283 0-18.853-3.621-25.712-10.864l-186-186C36.621 192.853 33 184.283 33 174c0-10.091 3.621-18.757 10.864-26L65 126.576C72.424 119.525 81.09 116 91 116c10.091 0 18.661 3.525 25.712 10.576L255.576 265.44 394.44 126.576c7.051-7.051 15.621-10.576 25.712-10.576 9.909 0 18.576 3.525 26 10.576L467.576 148c7.051 7.424 10.576 16.091 10.576 26z"
+              fill="currentColor"
+            />
+          </svg>
+          BNFC
+        </button>
+        <a
+          class="otherSiteTab"
+          data-tracking="bnf-link"
+          href="https://bnf-gatsby-tests.nice.org.uk/test/?ref=switch"
+          tabindex="-1"
+        >
+          <span
+            class="visually-hidden"
+          >
+            switch to 
+          </span>
+          BNF
+        </a>
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`SiteDistinction BNFC site should match snapshot server side 1`] = `
+<div>
+  <div
+    class="wrapper bnfc"
+  >
+    <div
+      class="container container"
+    >
+      <p
+        class="tabs"
+      >
+        <span
+          class="visually-hidden"
+        >
+          Currently viewing 
+          <!-- -->
+          BNFC
+          <!-- -->
+          .
+        </span>
+        <span
+          class="currentSiteTab"
+        >
+          BNFC
+        </span>
+        <a
+          class="otherSiteTab otherSiteTabExpanded"
+          data-tracking="bnf-link"
+          href="https://bnf.nice.org.uk/test/?ref=switch"
+        >
+          <span
+            class="visually-hidden"
+          >
+            switch to 
+          </span>
+          BNF
+          <svg
+            aria-hidden="true"
+            class="icon"
+            fill="none"
+            focusable="false"
+            height="1em"
+            viewBox="0 0 512 512"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M396.576 255.576c0 9.909-3.525 18.576-10.576 26l-186.288 186c-7.051 7.051-15.621 10.576-25.712 10.576s-18.661-3.525-25.712-10.576l-21.712-21.424c-7.051-7.424-10.576-16.091-10.576-26 0-10.091 3.525-18.661 10.576-25.712L265.44 255.576 126.576 117C119.525 109.576 116 100.909 116 91c0-10.09 3.525-18.661 10.576-25.712l21.712-21.424C155.147 36.621 163.717 33 174 33s18.853 3.621 25.712 10.864l186.288 186c7.051 7.051 10.576 15.621 10.576 25.712z"
+              fill="currentColor"
+            />
+          </svg>
+        </a>
+      </p>
+    </div>
+  </div>
+</div>
 `;
