@@ -9,6 +9,7 @@ import {
 	FeedLabel,
 } from "@nice-digital/gatsby-source-bnf";
 import WarningIcon from "@nice-digital/icons/lib/Warning";
+import { Alert } from "@nice-digital/nds-alert";
 
 import { Accordion, AccordionTheme } from "@/components/Accordion/Accordion";
 import { AccordionGroup } from "@/components/AccordionGroup/AccordionGroup";
@@ -44,9 +45,9 @@ export interface MedicinalFormsPageProps {
 }
 
 const asideInfo: ReactElement = (
-	<aside className={styles.asideInfo}>
+	<Alert>
 		<p>NICE does not sell any drugs, medicines or pharmaceutical products</p>
-	</aside>
+	</Alert>
 );
 
 const MedicinalFormsPage: FC<MedicinalFormsPageProps> = ({
