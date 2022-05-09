@@ -1,7 +1,7 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, waitFor } from "@testing-library/react";
 import { useStaticQuery } from "gatsby";
 
-import { mockBorderlineSubstancesPagesQueryData } from "@/hooks/useBorderlineSubstancesPages.test";
+import { mockBorderlineSubstancesPagesQueryData } from "./{BnfBorderlineSubstancesTaxonomy.slug}.test";
 
 import BorderlineSubstanceIntroductionPage, {
 	type BorderlineSubstanceIntroductionPageProps,
@@ -24,9 +24,10 @@ describe("BorderlineSubstanceIntroductionPage", () => {
 	});
 
 	it("should match snapshot for page contents", () => {
-		render(<BorderlineSubstanceIntroductionPage {...props} />);
-
-		expect(screen.getByRole("main")).toMatchSnapshot();
+		const { container } = render(
+			<BorderlineSubstanceIntroductionPage {...props} />
+		);
+		expect(container).toMatchSnapshot();
 	});
 
 	it("should set page title", async () => {

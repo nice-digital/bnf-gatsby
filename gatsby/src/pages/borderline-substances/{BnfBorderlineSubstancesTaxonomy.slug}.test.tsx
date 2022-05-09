@@ -1,12 +1,56 @@
 import { render, waitFor, screen, within } from "@testing-library/react";
 import { useStaticQuery } from "gatsby";
 
-import { mockBorderlineSubstancesPagesQueryData } from "@/hooks/useBorderlineSubstancesPages.test";
+import { BorderlineSubstancesQueryResult } from "@/hooks/useBorderlineSubstancesPages";
 
 import BorderlineSubstancesSectionPage, {
 	query,
 	type BorderlineSubstancesSectionPageProps,
 } from "./{BnfBorderlineSubstancesTaxonomy.slug}";
+
+export const mockBorderlineSubstancesPagesQueryData: BorderlineSubstancesQueryResult =
+	{
+		allBnfBorderlineSubstancesTaxonomy: {
+			pages: [
+				{
+					slug: "parent-1",
+					title: "Parent taxonomy 1",
+					parentTaxonomy: null,
+				},
+				{
+					slug: "taxonomy-1",
+					title: "Sub taxonomy 1",
+					parentTaxonomy: {
+						id: "PHP123",
+					},
+				},
+				{
+					slug: "taxonomy-2",
+					title: "Sub taxonomy 2",
+					parentTaxonomy: {
+						id: "PHP123",
+					},
+				},
+				{
+					slug: "parent-2",
+					title: "Parent 2",
+					parentTaxonomy: null,
+				},
+				{
+					slug: "sub-taxonomy-1",
+					title: "Sub taxonomy 1",
+					parentTaxonomy: {
+						id: "PHP124",
+					},
+				},
+				{
+					slug: "parent-3",
+					title: "Parent 3",
+					parentTaxonomy: null,
+				},
+			],
+		},
+	};
 
 const isRootTwoLevelProps: BorderlineSubstancesSectionPageProps = {
 	data: {
@@ -28,6 +72,10 @@ const isRootTwoLevelProps: BorderlineSubstancesSectionPageProps = {
 					{
 						title: "Taxonomy 2",
 						slug: "taxonomy-2",
+						childTaxonomies: [
+							{ title: "Sub taxonomy 1", slug: "sub-taxonomy-1" },
+							{ title: "Sub taxonomy 2", slug: "sub-taxonomy-2" },
+						],
 					},
 				],
 			},

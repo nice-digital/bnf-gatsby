@@ -868,6 +868,9 @@ exports[`schema should match snapshot 1`] = `
 
 		\\"The sections of the record.\\"
 		sections: [BnfRecordSection!]!
+
+		\\"Any drugs linked from this NPF treatment summary\\"
+		relatedDrugs: [BnfDrug!]! @link
 	}
 
 

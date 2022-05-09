@@ -57,12 +57,10 @@ const BorderlineSubstancesSectionPage: FC<
 }) => {
 	const { siteTitleShort } = useSiteMetadata();
 	const sections = rootTaxonomy.childTaxonomies;
-	const isOneLevel = sections.find(
+	const isOneLevel = sections.some(
 		(section) =>
-			section.childTaxonomies != null && section.childTaxonomies.length > 0
-	)
-		? false
-		: true;
+			section.childTaxonomies == null || section.childTaxonomies.length == 0
+	);
 
 	const isRoot = slug == rootTaxonomy.slug;
 
@@ -92,29 +90,22 @@ const BorderlineSubstancesSectionPage: FC<
 			<SEO title={title} />
 
 			<Breadcrumbs>
-				<Breadcrumb key="NICE" to="https://www.nice.org.uk/">
-					NICE
-				</Breadcrumb>
-				<Breadcrumb key="Home" to="/" elementType={Link}>
+				<Breadcrumb to="https://www.nice.org.uk/">NICE</Breadcrumb>
+				<Breadcrumb to="/" elementType={Link}>
 					{siteTitleShort}
 				</Breadcrumb>
-				<Breadcrumb
-					key="Borderline substances"
-					to="/borderline-substances/"
-					elementType={Link}
-				>
+				<Breadcrumb to="/borderline-substances/" elementType={Link}>
 					Borderline substances
 				</Breadcrumb>
 				{isRoot ? null : (
 					<Breadcrumb
-						key="Parent taxonomy"
 						to={`/borderline-substances/${rootTaxonomy.slug}/`}
 						elementType={Link}
 					>
 						{rootTaxonomy.title}
 					</Breadcrumb>
 				)}
-				<Breadcrumb key="Current page">{title}</Breadcrumb>
+				<Breadcrumb>{title}</Breadcrumb>
 			</Breadcrumbs>
 
 			<PageHeader
@@ -141,21 +132,13 @@ const BorderlineSubstancesSectionPage: FC<
 					<GridItem cols={12} md={8} lg={9}>
 						{isOneLevel ? (
 							<>
-								{" "}
-								<nav aria-label="navigate-to-products" className={styles.nav}>
-									<ol
-										aria-label="Links to products"
-										className={styles.linkList}
-									>
-										{sections.map((section) => (
-											<li key={section?.slug}>
-												<Link to={`/borderline-substances/${section.slug}/`}>
-													{section.title}
-												</Link>
-											</li>
-										))}
-									</ol>
-								</nav>
+								<SectionNav
+									sections={sections.map(({ slug, title }) => ({
+										title,
+										id: `/borderline-substances/${slug}/`,
+									}))}
+									navigateToAnotherPage={true}
+								></SectionNav>
 							</>
 						) : (
 							<>
