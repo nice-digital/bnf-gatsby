@@ -26,6 +26,16 @@ const pageProps: NursePrescribersFormularyTreatmentSummaryPageProps = {
 					title: "Analgesic 2",
 				},
 			],
+			relatedDrugs: [
+				{
+					slug: "aspirin",
+					title: "Aspirin",
+				},
+				{
+					slug: "ibuprofen",
+					title: "Ibuprofen",
+				},
+			],
 		},
 	},
 	location: {
@@ -89,6 +99,7 @@ describe("NursePrescribersFormularyTreatmentSummaryPage", () => {
 							slug: "unknown",
 							title: "Unknown",
 							sections: [],
+							relatedDrugs: [],
 						},
 					}}
 					location={{

@@ -8,6 +8,8 @@ import {
 	type FeedMedicalDeviceType,
 	type FeedClinicalMedicalDeviceInformationGroup,
 	type FeedSimplePot,
+	type FeedFeedSimplePotContent,
+	type FeedIndicationsAndDosePotContent,
 } from "../downloader/types";
 import { BnfNode } from "../node-types";
 
@@ -15,8 +17,7 @@ import { createBnfNode } from "./utils";
 
 interface MedicalDeviceSimplePot {
 	potName: string;
-	contentFor: string;
-	content: string;
+	content: FeedFeedSimplePotContent;
 }
 
 export type MedicalDeviceNodeInput = Merge<
@@ -37,19 +38,25 @@ export type MedicalDeviceTypeNodeInput = Merge<
 	}
 >;
 
+export type CMPIIndicationsAndDosePot = {
+	potName: string;
+	content: FeedIndicationsAndDosePotContent;
+};
+
 export type CMPINodeInput = Merge<
 	FeedClinicalMedicalDeviceInformationGroup,
 	{
 		medicalDeviceType: string;
 		id: string;
 		title: string;
-		deviceDescription: MedicalDeviceSimplePot | undefined;
-		complianceStandards: MedicalDeviceSimplePot | undefined;
 		allergyAndCrossSensitivity: MedicalDeviceSimplePot | undefined;
-		treatmentCessation: MedicalDeviceSimplePot | undefined;
-		prescribingAndDispensingInformation: MedicalDeviceSimplePot | undefined;
+		complianceStandards: MedicalDeviceSimplePot | undefined;
+		deviceDescription: MedicalDeviceSimplePot | undefined;
+		indicationsAndDose: CMPIIndicationsAndDosePot | undefined;
 		patientAndCarerAdvice: MedicalDeviceSimplePot | undefined;
+		prescribingAndDispensingInformation: MedicalDeviceSimplePot | undefined;
 		professionSpecificInformation: MedicalDeviceSimplePot | undefined;
+		treatmentCessation: MedicalDeviceSimplePot | undefined;
 	}
 >;
 
@@ -119,7 +126,7 @@ const flattenCMPISimplePot = (
 
 	return {
 		potName,
-		...drugContent,
+		content: drugContent,
 	};
 };
 
@@ -155,7 +162,12 @@ const createCMPINode = (
 		medicalDeviceType: medicalDeviceType.id,
 		id,
 		title,
-		indicationsAndDose,
+		indicationsAndDose: indicationsAndDose?.drugContent
+			? {
+					potName: indicationsAndDose.potName,
+					content: indicationsAndDose.drugContent,
+			  }
+			: undefined,
 		preparations,
 		// Flatten all the simple pots as we can discard the drug class and prep info for CMPI. To quote the schema:
 		// "For clinical medical device information groups, the drug class content will always be empty, as will the preparation content. The 'drugContent' will contain the information for the clinical medical device information group."

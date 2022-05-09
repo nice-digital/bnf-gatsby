@@ -25,7 +25,14 @@ export const pagePaths = {
 	"dementia treatment summary": "/treatment-summaries/dementia/",
 	"diabetes treatment summary": "/treatment-summaries/diabetes/",
 	"medicines guidance": "/medicines-guidance/",
+	// Medical devices
 	"medical devices": "/medical-devices/",
+	"artificial saliva products": "/medical-devices/artificial-saliva-products/",
+	"AS Saliva Orthana® lozenges":
+		"/medical-devices/artificial-saliva-products/as-saliva-orthana-lozenges/",
+	spacers: "/medical-devices/spacers/",
+	"urine protein testing strips":
+		"/medical-devices/urine-protein-testing-strips/urine-protein-testing-strips/",
 	"wound management": "/wound-management",
 	// Medicines guidance
 	"guidance on prescribing": "/medicines-guidance/guidance-on-prescribing/",
