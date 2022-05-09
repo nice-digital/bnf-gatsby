@@ -119,7 +119,7 @@ const WoundManagementTaxonomyPage: FC<WoundManagementTaxonomyPageProps> = ({
 					</StackedNav>
 				</GridItem>
 				<GridItem cols={12} md={8} lg={9}>
-					<SectionNav {...navSections} />
+					<SectionNav readableMaxWidth {...navSections} />
 					{text && <div dangerouslySetInnerHTML={{ __html: text }}></div>}
 
 					{childTaxonomies.length > 0 && (

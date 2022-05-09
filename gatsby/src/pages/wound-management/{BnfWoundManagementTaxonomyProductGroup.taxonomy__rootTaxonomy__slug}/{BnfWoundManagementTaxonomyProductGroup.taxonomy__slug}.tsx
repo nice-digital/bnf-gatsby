@@ -1,6 +1,6 @@
 import slugify from "@sindresorhus/slugify";
 import { graphql, Link } from "gatsby";
-import React, { type FC } from "react";
+import React, { type FC, useMemo } from "react";
 import striptags from "striptags";
 
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
@@ -51,16 +51,22 @@ const WoundManagementProductPage: FC<WoundManagementProductPageProps> = ({
 		},
 	},
 }) => {
-	const { siteTitleShort } = useSiteMetadata();
-
-	const navSections: SectionNavProps = {
-		sections: productGroups.map(({ title }) => {
-			return {
-				id: slugify(striptags(title)),
-				title,
-			};
-		}),
-	};
+	const { siteTitleShort } = useSiteMetadata(),
+		sortedProductGroups = useMemo(() => {
+			return productGroups
+				.filter((group) => group.products.length > 0)
+				.sort((a, b) => (a.title > b.title ? 1 : -1));
+		}, [productGroups]),
+		navSections: SectionNavProps = {
+			sections: sortedProductGroups
+				.filter((group) => group.products.length > 0)
+				.map(({ title }) => {
+					return {
+						id: slugify(striptags(title)),
+						title,
+					};
+				}),
+		};
 
 	return (
 		<Layout>
@@ -96,14 +102,14 @@ const WoundManagementProductPage: FC<WoundManagementProductPageProps> = ({
 				}
 			/>
 
-			<SectionNav {...navSections} />
+			<SectionNav readableMaxWidth {...navSections} />
 
 			{text && <div dangerouslySetInnerHTML={{ __html: text }}></div>}
 
 			<AccordionGroup
 				toggleText={(isOpen) =>
 					`${isOpen ? "Hide" : "Show"} all ${title.toLowerCase()}  (${
-						productGroups.length
+						sortedProductGroups.length
 					})`
 				}
 			>
@@ -111,7 +117,7 @@ const WoundManagementProductPage: FC<WoundManagementProductPageProps> = ({
 					className={styles.productGroupList}
 					aria-label={`List of products: ${title}`}
 				>
-					{productGroups.map(({ title, description, products }) => (
+					{sortedProductGroups.map(({ title, description, products }) => (
 						<li key={title}>
 							<Accordion
 								title={

@@ -111,7 +111,7 @@ const WoundManagementIndexPage: FC<WoundManagementIndexPageProps> = ({
 					</StackedNav>
 				</GridItem>
 				<GridItem cols={12} md={8} lg={9}>
-					<SectionNav {...navSections} />
+					<SectionNav readableMaxWidth {...navSections} />
 					<RecordSectionsContent
 						sections={sections}
 						className={styles.woundManagementIndex}
