@@ -4,26 +4,23 @@
   margin-bottom: core.rem(core.$nds-spacing-large);
 }
 
-// .asideInfo {
-//   background: core.$nds-colour-nice-white;
-//   border: 1px solid core.$nds-colour-nice-grey-2;
-//   margin-bottom: core.rem(core.$nds-spacing-medium);
-//   padding: core.rem(core.$nds-spacing-medium);
-
-//   h2 {
-//     @include core.nds-h4;
-//     margin-top: 0;
-//   }
-
-//   > :last-child {
-//     margin-bottom: 0;
-//   }
-// }
-
 .asideInfo {
-  background: core.$nds-colour-nice-blue-1;
+  background: core.$nds-colour-info-background;
+  border: 3px solid core.$nds-colour-info;
+  font-size: 1.4rem;
   margin-bottom: core.rem(core.$nds-spacing-large);
-  padding: core.rem(core.$nds-spacing-medium);
+  padding: core.rem(core.$nds-spacing-small);
+
+  p {
+    display: flex;
+
+    &::before {
+      content: '\1f6c8';
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 1.2rem;
+      padding-right: core.rem(core.$nds-spacing-x-small);
+    }
+  }
 }
 
 .prepList {
