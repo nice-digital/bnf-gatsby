@@ -26,6 +26,7 @@ export const BnfNode = {
 	InteractionsIntroductionSection: "BnfInteractionsIntroductionSection",
 	InteractionSupplementaryInformation: "BnfInteractionSupplementaryInformation",
 	MedicalDevice: "BnfMedicalDevice",
+	MedicalDeviceIndicationsAndDose: "BnfMedicalDeviceIndicationsAndDose",
 	MedicalDeviceType: "BnfMedicalDeviceType",
 	MedicalDeviceSimplePot: "BnfMedicalDeviceSimplePot",
 	MedicinalForm: "BnfMedicinalForm",
