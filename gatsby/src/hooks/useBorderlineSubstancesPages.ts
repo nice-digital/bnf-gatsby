@@ -31,7 +31,9 @@ export const useBorderlineSubstancesPages = (): MenuPageLink[] => {
 		useStaticQuery<BorderlineSubstancesQueryResult>(
 			graphql`
 				{
-					allBnfBorderlineSubstancesTaxonomy {
+					allBnfBorderlineSubstancesTaxonomy(
+						filter: { parentTaxonomy: { title: { eq: null } } }
+					) {
 						pages: nodes {
 							slug
 							title
@@ -44,9 +46,5 @@ export const useBorderlineSubstancesPages = (): MenuPageLink[] => {
 			`
 		);
 
-	const topLevel = allBnfBorderlineSubstancesTaxonomy.pages.filter(
-		(taxonomy) => taxonomy.parentTaxonomy == null
-	);
-
-	return topLevel.map(slugToHref);
+	return allBnfBorderlineSubstancesTaxonomy.pages.map(slugToHref);
 };

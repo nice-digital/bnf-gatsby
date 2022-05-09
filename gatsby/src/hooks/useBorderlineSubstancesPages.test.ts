@@ -5,7 +5,6 @@ import {
 	type BorderlineSubstancesQueryResult,
 } from "./useBorderlineSubstancesPages";
 
-// Export this mock data so we can use it elsewhere
 export const mockBorderlineSubstancesPagesQueryData: BorderlineSubstancesQueryResult =
 	{
 		allBnfBorderlineSubstancesTaxonomy: {
@@ -16,30 +15,9 @@ export const mockBorderlineSubstancesPagesQueryData: BorderlineSubstancesQueryRe
 					parentTaxonomy: null,
 				},
 				{
-					slug: "child-1",
-					title: "Child 1",
-					parentTaxonomy: {
-						id: "PHP123",
-					},
-				},
-				{
-					slug: "child-2",
-					title: "Child 2",
-					parentTaxonomy: {
-						id: "PHP123",
-					},
-				},
-				{
 					slug: "parent-2",
 					title: "Parent 2",
 					parentTaxonomy: null,
-				},
-				{
-					slug: "child-1",
-					title: "Child 1",
-					parentTaxonomy: {
-						id: "PHP124",
-					},
 				},
 				{
 					slug: "parent-3",
