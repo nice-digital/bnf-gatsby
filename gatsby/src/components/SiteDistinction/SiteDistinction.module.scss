@@ -55,7 +55,7 @@
 }
 
 .currentSiteTab {
-  z-index: 1; // To site above the other site tab
+  z-index: 1; // To sit above the other site tab
 
   @include core.nds-when-is(button) {
     cursor: pointer;
