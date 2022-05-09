@@ -27,7 +27,9 @@ const Substance: FC<SubstancesProps> = ({ substance, label }) => {
 							className={styles.prepHeading}
 						>
 							<span className={styles.headingIcons}>
-								{label ? <span className={styles.label}> {label} </span> : null}
+								<span className={label ? styles.label : undefined}>
+									{label}
+								</span>
 							</span>
 							<span className={styles.headingText}>{substance?.title} </span>
 						</h2>
