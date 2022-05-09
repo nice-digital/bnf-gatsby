@@ -229,41 +229,11 @@ exports[`NursePrescribersFormularyTreatmentSummaryPage should match snapshot for
               class="heading"
               id="navigate-to-section"
             >
-              <h2
-                class="heading"
-                id="navigate-to-section"
-              >
-                Navigate to section
-              </h2>
-              <ol
-                aria-label="Jump links to sections on this page"
-                class="linkList"
-              >
-                <li>
-                  <a
-                    href="#analgesic-1"
-                  >
-                    Analgesic 1
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#analgesic-2"
-                  >
-                    Analgesic 2
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#related-drugs"
-                  >
-                    Related drugs
-                  </a>
-                </li>
-              </ol>
-            </nav>
-            <section
-              aria-labelledby="analgesic-1"
+              Navigate to section
+            </h2>
+            <ol
+              aria-label="Jump links to sections on this page"
+              class="linkList"
             >
               <li>
                 <a
@@ -279,6 +249,13 @@ exports[`NursePrescribersFormularyTreatmentSummaryPage should match snapshot for
                   Analgesic 2
                 </a>
               </li>
+              <li>
+                <a
+                  href="#related-drugs"
+                >
+                  Related drugs
+                </a>
+              </li>
             </ol>
           </nav>
           <section
@@ -288,48 +265,58 @@ exports[`NursePrescribersFormularyTreatmentSummaryPage should match snapshot for
               class="firstHeading"
               id="analgesic-1"
             >
-              <h2
-                id="analgesic-2"
-              >
-                Analgesic 2
-              </h2>
-              <div>
-                <p>
-                  Analgesic content 2
-                </p>
-              </div>
-            </section>
-            <section
-              aria-labelledby="related-drugs"
+              Analgesic 1
+            </h2>
+            <div>
+              <p>
+                Analgesic content
+              </p>
+            </div>
+          </section>
+          <section
+            aria-labelledby="analgesic-2"
+          >
+            <h2
+              id="analgesic-2"
             >
-              <h2
-                id="related-drugs"
-              >
-                Related drugs
-              </h2>
-              <ol
-                aria-labelledby="related-drugs"
-                class="list"
-              >
-                <li>
-                  <a
-                    class="tag"
-                    href="/drugs/aspirin/"
-                  >
-                    Aspirin
-                  </a>
-                </li>
-                <li>
-                  <a
-                    class="tag"
-                    href="/drugs/ibuprofen/"
-                  >
-                    Ibuprofen
-                  </a>
-                </li>
-              </ol>
-            </section>
-          </div>
+              Analgesic 2
+            </h2>
+            <div>
+              <p>
+                Analgesic content 2
+              </p>
+            </div>
+          </section>
+          <section
+            aria-labelledby="related-drugs"
+          >
+            <h2
+              id="related-drugs"
+            >
+              Related drugs
+            </h2>
+            <ol
+              aria-labelledby="related-drugs"
+              class="list"
+            >
+              <li>
+                <a
+                  class="tag"
+                  href="/drugs/aspirin/"
+                >
+                  Aspirin
+                </a>
+              </li>
+              <li>
+                <a
+                  class="tag"
+                  href="/drugs/ibuprofen/"
+                >
+                  Ibuprofen
+                </a>
+              </li>
+            </ol>
+          </section>
         </div>
       </div>
     </div>
