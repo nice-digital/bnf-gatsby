@@ -104,10 +104,15 @@ export const DetailsPageLayout: React.FC<DetailsPageLayoutProps> = ({
 				<GridItem cols={12} md={Menu ? 8 : 12} lg={Menu ? 9 : 12}>
 					{useSectionNav && !asideContent ? (
 						<Grid gutter="loose">
-							<GridItem cols={12} md={8} lg={9}>
+							<GridItem cols={12} md={Menu ? 12 : 8} lg={Menu ? 12 : 9}>
 								<SectionNav sections={sections} />
 							</GridItem>
-							<GridItem className={styles.body} cols={12} md={8} lg={9}>
+							<GridItem
+								className={styles.body}
+								cols={12}
+								md={Menu ? 12 : 8}
+								lg={Menu ? 12 : 9}
+							>
 								{children}
 							</GridItem>
 						</Grid>

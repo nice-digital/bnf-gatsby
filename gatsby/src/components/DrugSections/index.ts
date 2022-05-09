@@ -23,6 +23,11 @@ export {
 	type IndicationsAndDoseProps,
 } from "./IndicationsAndDose/IndicationsAndDose";
 
+export {
+	IndicationsAndDoseContent,
+	type IndicationsAndDoseContentProps,
+} from "./IndicationsAndDose/IndicationsAndDoseContent/IndicationsAndDoseContent";
+
 export { Monitoring, type MonitoringProps } from "./Monitoring/Monitoring";
 
 export {

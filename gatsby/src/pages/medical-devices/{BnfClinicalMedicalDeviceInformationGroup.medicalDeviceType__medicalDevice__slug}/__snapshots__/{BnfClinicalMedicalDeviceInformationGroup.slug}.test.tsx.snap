@@ -1,0 +1,203 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CMPIPage Body Indications and dose should match snapshot for indications and dose section 1`] = `
+<section
+  aria-labelledby="indications-and-dose"
+>
+  <h2
+    id="indications-and-dose"
+  >
+    Indications and dose
+  </h2>
+  <section
+    aria-labelledby="as-saliva-orthana-lozenges-indications-and-dose"
+  >
+    <h3
+      class="visually-hidden"
+      id="as-saliva-orthana-lozenges-indications-and-dose"
+    >
+      For AS Saliva Orthana® lozenges
+    </h3>
+    <section
+      aria-labelledby="as-saliva-orthana-lozenges-indication-1"
+      class="indicationWrapper"
+    >
+      <h4
+        class="indicationHeading"
+        id="as-saliva-orthana-lozenges-indication-1"
+      >
+        <span
+          class="indicationText"
+        >
+          Dry mouth as a result of sicca syndrome (ACBS)
+        </span>
+        <span
+          class="visually-hidden"
+        >
+           for AS Saliva Orthana® lozenges
+        </span>
+      </h4>
+      <section
+        class="routeOfAdministration"
+      >
+        <h5
+          class="routeOfAdministrationHeading"
+        >
+          By mouth
+        </h5>
+        <dl
+          class="patientGroups"
+        >
+          <div
+            class="patientGroupDose adult"
+          >
+            <dt
+              class="patientGroup"
+            >
+              Adult
+            </dt>
+            <dd
+              class="doseStatement"
+            >
+              1 lozenge as required, allow to dissolve slowly in the mouth.
+            </dd>
+          </div>
+        </dl>
+      </section>
+    </section>
+  </section>
+</section>
+`;
+
+exports[`CMPIPage Body Preparations should match snapshot for preps list 1`] = `
+<section
+  aria-labelledby="medical-device-types"
+>
+  <h2
+    id="medical-device-types"
+  >
+    Medical device types
+  </h2>
+  <ol
+    class="prepList"
+  >
+    <li>
+      <details
+        class="details  "
+      >
+        <summary
+          class="summary"
+          data-tracking="Show"
+        >
+          <span
+            class="toggleLabel label"
+          >
+            <svg
+              aria-hidden="true"
+              class="icon"
+              fill="none"
+              focusable="false"
+              height="1em"
+              viewBox="0 0 512 512"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M478.152 174c0 10.091-3.525 18.661-10.576 25.712l-186 186c-7.243 7.243-15.909 10.864-26 10.864-10.283 0-18.853-3.621-25.712-10.864l-186-186C36.621 192.853 33 184.283 33 174c0-10.091 3.621-18.757 10.864-26L65 126.576C72.424 119.525 81.09 116 91 116c10.091 0 18.661 3.525 25.712 10.576L255.576 265.44 394.44 126.576c7.051-7.051 15.621-10.576 25.712-10.576 9.909 0 18.576 3.525 26 10.576L467.576 148c7.051 7.424 10.576 16.091 10.576 26z"
+                fill="currentColor"
+              />
+            </svg>
+            Show
+          </span>
+           
+          <h3
+            class="prepHeading"
+          >
+            <span
+              class="headingText"
+            >
+              AS Saliva Orthana lozenges
+               
+              <span
+                class="manufacturer"
+              >
+                CCMed Ltd
+              </span>
+            </span>
+          </h3>
+        </summary>
+        <ol
+          class="packList"
+        >
+          <li
+            class="packItem"
+          >
+            <dl>
+              <div
+                class="packDefinitionListItem"
+              >
+                <dt>
+                  Size
+                </dt>
+                <dd>
+                  30
+                </dd>
+              </div>
+              <div
+                class="packDefinitionListItem"
+              >
+                <dt>
+                  Unit
+                </dt>
+                <dd>
+                  lozenge
+                </dd>
+              </div>
+              <div
+                class="packDefinitionListItem"
+              >
+                <dt>
+                  NHS indicative price
+                </dt>
+                <dd>
+                  £3.04
+                </dd>
+              </div>
+              <div
+                class="packDefinitionListItem"
+              >
+                <dt>
+                  Drug tariff
+                </dt>
+                <dd>
+                  Part VIIIA Category C
+                </dd>
+              </div>
+              <div
+                class="packDefinitionListItem"
+              >
+                <dt>
+                  Drug tariff price
+                </dt>
+                <dd>
+                  £3.04
+                </dd>
+              </div>
+              <div
+                class="packDefinitionListItem"
+              >
+                <dt>
+                  Legal category
+                </dt>
+                <dd>
+                  Not Applicable
+                </dd>
+              </div>
+            </dl>
+          </li>
+        </ol>
+      </details>
+    </li>
+  </ol>
+</section>
+`;
