@@ -72,8 +72,9 @@ const BorderlineSubstancesSectionPage: FC<
 							<SectionNav
 								sections={sections.map(({ slug, title }) => ({
 									title,
-									to: `/borderline-substances/${slug}/`,
+									id: `/borderline-substances/${slug}/`,
 								}))}
+								navigateToAnotherPage={true}
 							></SectionNav>
 						</>
 					) : (
