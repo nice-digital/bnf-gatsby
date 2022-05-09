@@ -23,6 +23,7 @@ describe("SiteDistinction", () => {
 	])("%s site", (siteTitleShort, isBNF, otherSiteTitleShort, expectedHref) => {
 		beforeEach(() => {
 			(useSiteMetadata as jest.Mock).mockReturnValue({
+				...useSiteMetadata(),
 				siteTitleShort,
 				isBNF,
 			});
