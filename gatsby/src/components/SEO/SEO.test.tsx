@@ -111,4 +111,26 @@ describe("SEO", () => {
 			);
 		});
 	});
+
+	it("should render theme colour meta tag for BNF", async () => {
+		render(<SEO />);
+		await waitFor(() => {
+			expect(
+				document.querySelector("meta[name='theme-color']")
+			).toHaveAttribute("content", "#93da49");
+		});
+	});
+
+	it("should render theme colour meta tag for BNF", async () => {
+		(useSiteMetadata as jest.Mock).mockReturnValueOnce({
+			...useSiteMetadata(),
+			isBNF: false,
+		});
+		render(<SEO />);
+		await waitFor(() => {
+			expect(
+				document.querySelector("meta[name='theme-color']")
+			).toHaveAttribute("content", "#ef4a81");
+		});
+	});
 });

@@ -86,7 +86,7 @@ exports[`SEO should set default title and description when none provided 1`] = `
     name="twitter:creator"
   />
   <meta
-    content="#004650"
+    content="#93da49"
     data-react-helmet="true"
     name="theme-color"
   />
