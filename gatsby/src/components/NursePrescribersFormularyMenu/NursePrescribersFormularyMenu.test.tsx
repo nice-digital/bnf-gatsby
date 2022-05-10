@@ -15,7 +15,9 @@ describe("NursePrescribersMenu", () => {
 		render(<NursePrescribersFormularyMenu />);
 
 		expect(
-			screen.getByRole("navigation", { name: "Nurse Prescribers' Formulary" })
+			screen.getByRole("navigation", {
+				name: "Nurse Prescribers' Formulary pages",
+			})
 		).toBeInTheDocument();
 	});
 

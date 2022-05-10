@@ -152,7 +152,7 @@ exports[`NursePrescribersFormularyTreatmentSummaryPage should match snapshot for
           </svg>
         </button>
         <nav
-          aria-label="Nurse Prescribers' Formulary"
+          aria-label="Nurse Prescribers' Formulary pages"
           class="stacked-nav"
           id="collapsible-menu"
         >
