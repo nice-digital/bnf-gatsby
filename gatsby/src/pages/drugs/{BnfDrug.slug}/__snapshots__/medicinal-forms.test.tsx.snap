@@ -157,7 +157,7 @@ exports[`MedicinalFormsPage Body should match snapshot for page body 1`] = `
               class="alert alert--info"
             >
               <p>
-                NICE does not sell any drugs, medicines or pharmaceutical products
+                NICE does not sell any drugs, medicines or pharmaceutical products.
               </p>
             </div>
           </div>
