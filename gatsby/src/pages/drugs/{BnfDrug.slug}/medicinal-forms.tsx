@@ -46,7 +46,7 @@ export interface MedicinalFormsPageProps {
 
 const asideInfo: ReactElement = (
 	<Alert>
-		<p>NICE does not sell any drugs, medicines or pharmaceutical products</p>
+		<p>NICE does not sell any drugs, medicines or pharmaceutical products.</p>
 	</Alert>
 );
 
