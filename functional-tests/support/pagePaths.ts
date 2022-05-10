@@ -43,6 +43,8 @@ export const pagePaths = {
 	laxatives: "/nurse-prescribers-formulary/laxatives/",
 	"general guidance": "/nurse-prescribers-formulary/general-guidance/",
 	"local anaesthetics": "/nurse-prescribers-formulary/local-anaesthetics/",
+	"borderline substances": "/borderline-substances/",
+	"feed supplements": "/borderline-substances/feed-supplements/",
 } as const;
 
 export type PageName = keyof typeof pagePaths;
