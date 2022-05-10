@@ -25,6 +25,7 @@ describe("SEO", () => {
 
 	it("should add BNFC specific CSS class to html root element", async () => {
 		(useSiteMetadata as jest.Mock).mockImplementationOnce(() => ({
+			siteTitleShort: "BNFC",
 			isBNF: false,
 		}));
 		render(<SEO />);

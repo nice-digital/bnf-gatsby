@@ -51,13 +51,16 @@ export const SEO: FC<SEOProps> = ({
 						`${siteTitleShort} content published by NICE`
 					}
 				/>
-				<meta property="og:image" content={`${siteUrl}/open-graph-image.png`} />
+				<meta
+					property="og:image"
+					content={`${siteUrl}/open-graph-${siteTitleShort.toLowerCase()}.png`}
+				/>
 				<meta property="og:image:width" content="1200" />
 				<meta property="og:image:height" content="630" />
-				<meta name="twitter:card" content="summary" />
+				<meta name="twitter:card" content="summary_large_image" />
 				<meta
 					name="twitter:image"
-					content={`${siteUrl}/twitter-summary-image.png`}
+					content={`${siteUrl}/open-graph-${siteTitleShort.toLowerCase()}.png`}
 				/>
 				<meta
 					name="twitter:image:alt"

@@ -46,7 +46,7 @@ exports[`SEO should set default title and description when none provided 1`] = `
     property="og:title"
   />
   <meta
-    content="https://bnf.nice.org.uk/open-graph-image.png"
+    content="https://bnf.nice.org.uk/open-graph-bnf.png"
     data-react-helmet="true"
     property="og:image"
   />
@@ -61,12 +61,12 @@ exports[`SEO should set default title and description when none provided 1`] = `
     property="og:image:height"
   />
   <meta
-    content="summary"
+    content="summary_large_image"
     data-react-helmet="true"
     name="twitter:card"
   />
   <meta
-    content="https://bnf.nice.org.uk/twitter-summary-image.png"
+    content="https://bnf.nice.org.uk/open-graph-bnf.png"
     data-react-helmet="true"
     name="twitter:image"
   />
