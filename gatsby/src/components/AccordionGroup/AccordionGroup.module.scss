@@ -1,0 +1,30 @@
+@use '@nice-digital/nds-core/scss/core';
+
+.toggleButton {
+  @include core.nds-link-default;
+  align-items: center;
+  appearance: none;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  display: flex;
+  flex-wrap: nowrap;
+  margin: core.rem(core.$nds-spacing-medium 0);
+  padding: 0;
+
+  &:focus {
+    @include core.nds-default-focus-style;
+  }
+
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  &:focus-visible {
+    @include core.nds-default-focus-style;
+  }
+
+  @media print {
+    display: none;
+  }
+}

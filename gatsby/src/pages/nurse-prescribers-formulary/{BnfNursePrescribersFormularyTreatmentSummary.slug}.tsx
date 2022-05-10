@@ -4,6 +4,11 @@ import React, { FC } from "react";
 import { DetailsPageLayout } from "@/components/DetailsPageLayout/DetailsPageLayout";
 import { NursePrescribersFormularyMenu } from "@/components/NursePrescribersFormularyMenu/NursePrescribersFormularyMenu";
 import { RecordSectionsContent } from "@/components/RecordSectionsContent/RecordSectionsContent";
+import {
+	RelatedDrugs,
+	sectionHeading as relatedDrugsHeading,
+	sectionId as relatedDrugsId,
+} from "@/components/RelatedDrugs/RelatedDrugs";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 import {
 	type RecordSection,
@@ -17,6 +22,7 @@ export type NursePrescribersFormularyTreatmentSummaryPageProps = {
 	data: {
 		bnfNursePrescribersFormularyTreatmentSummary: SlugAndTitle & {
 			sections: RecordSection[];
+			relatedDrugs: SlugAndTitle[];
 		};
 	};
 	location: {
@@ -28,7 +34,12 @@ const NursePrescribersFormularyTreatmentSummaryPage: FC<
 	NursePrescribersFormularyTreatmentSummaryPageProps
 > = ({
 	data: {
-		bnfNursePrescribersFormularyTreatmentSummary: { title, sections, slug },
+		bnfNursePrescribersFormularyTreatmentSummary: {
+			title,
+			sections,
+			slug,
+			relatedDrugs,
+		},
 	},
 	location: { pathname },
 }) => {
@@ -54,13 +65,20 @@ const NursePrescribersFormularyTreatmentSummaryPage: FC<
 					text: "Nurse Prescribers' Formulary",
 				},
 			]}
-			sections={sections.map(({ slug, title }) => ({
-				id: slug,
-				title,
-			}))}
+			sections={sections
+				.map(({ slug, title }) => ({
+					id: slug,
+					title,
+				}))
+				.concat(
+					relatedDrugs.length > 0
+						? { id: relatedDrugsId, title: relatedDrugsHeading }
+						: []
+				)}
 			metaDescription={metaDescription}
 		>
 			<RecordSectionsContent sections={sections} />
+			<RelatedDrugs drugs={relatedDrugs} />
 		</DetailsPageLayout>
 	);
 };
@@ -72,6 +90,10 @@ export const query = graphql`
 			slug
 			sections {
 				...RecordSection
+			}
+			relatedDrugs {
+				title
+				slug
 			}
 		}
 	}

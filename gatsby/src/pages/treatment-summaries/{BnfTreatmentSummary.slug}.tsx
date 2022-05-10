@@ -4,6 +4,7 @@ import striptags from "striptags";
 
 import { DetailsPageLayout } from "@/components/DetailsPageLayout/DetailsPageLayout";
 import { RecordSectionsContent } from "@/components/RecordSectionsContent/RecordSectionsContent";
+import { RelatedDrugs } from "@/components/RelatedDrugs/RelatedDrugs";
 import { Tag, TagList } from "@/components/TagList/TagList";
 import { type SlugAndTitle, type RecordSection, isTruthy } from "@/utils";
 
@@ -59,20 +60,7 @@ const TreatmentSummaryPage: FC<TreatmentSummaryPageProps> = ({
 			].filter(isTruthy)}
 		>
 			<RecordSectionsContent sections={sections} />
-			{relatedDrugs.length > 0 ? (
-				<section aria-labelledby="related-drugs">
-					<h2 id="related-drugs">Related drugs</h2>
-					<TagList aria-labelledby="related-drugs">
-						{relatedDrugs
-							.sort((a, b) => a.slug.localeCompare(b.slug))
-							.map((drug) => (
-								<Tag key={drug.slug} href={`/drugs/${drug.slug}/`}>
-									{drug.title}
-								</Tag>
-							))}
-					</TagList>
-				</section>
-			) : null}
+			<RelatedDrugs drugs={relatedDrugs} />
 			{relatedTreatmentSummaries.length > 0 ? (
 				<section aria-labelledby="related-treatment-summaries">
 					<h2 id="related-treatment-summaries">Related treatment summaries</h2>

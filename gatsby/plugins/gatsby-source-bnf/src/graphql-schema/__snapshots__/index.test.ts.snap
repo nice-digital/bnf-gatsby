@@ -650,7 +650,7 @@ exports[`schema should match snapshot 1`] = `
 		complianceStandards: BnfMedicalDeviceSimplePot
 
 		\\"The indications and dose section for the clinical medical device information group.\\"
-		indicationsAndDose: BnfIndicationsAndDose
+		indicationsAndDose: BnfMedicalDeviceIndicationsAndDose
 
 		\\"The allergy and cross-sensitivity section for the clinical medical device information group.\\"
 		allergyAndCrossSensitivity: BnfMedicalDeviceSimplePot
@@ -681,11 +681,50 @@ exports[`schema should match snapshot 1`] = `
 		\\"The slugified and lowercased pot name, used as an ID/hash link\\"
 		slug: String! @slug(field: \\"potName\\")
 
-		\\"The name of the medical device e.g. 'A2A Spacer®'. May contain HTML mark-up\\"
-		contentFor: String! @html
+		content: BnfSimplePotContent!
+	}
 
-		\\"The content. May contain HTML mark-up.\\"
-		content: String! @html
+	\\"\\"\\"
+	A single section of simple (unstructured) content for a BNF medical device.
+	\\"\\"\\"
+	type BnfMedicalDeviceIndicationsAndDose @dontInfer {
+		\\"The name/title of the pot.\\"
+		potName: String!
+
+		\\"The slugified and lowercased pot name, used as a DOM ID and hash target\\"
+		slug: String! @slug(field: \\"potName\\")
+
+		content: BnfIndicationsAndDoseContent!
+	}
+
+
+	\\"\\"\\"
+	The metadata relating to the export that produced the app JSON output. An export is a job that is run to collate all of the published BNF content at a particular point in time (the 'content cut' date).
+	\\"\\"\\"
+	type BnfMetadata implements Node @dontInfer {
+		\\"The date and time that the export that produced this output started.\\"
+		exportStarted: Date! @dateformat
+
+		\\"The exporter run-tag of the publication. This is the internal RPS designator for the export that generated this output. This value should be given to RPS if there is a problem with this JSON so that we can correlate the content in our systems.\\"
+		runTag: String!
+
+		\\"The publication. A value of 'bnf' shows that the JSON contains the British National Formulary content, while a value of 'bnfc' shows that the JSON contains the BNF for Children content.\\"
+		publication: String!
+
+		\\"The output will contain records published in the CMS up to this date and time. The format used is ISO 8601-1:2019 compliant (without a time zone designator), e.g. '2021-07-06T00:37:25.918'.\\"
+		contentCut: Date! @dateformat
+
+		\\"The version of the Dictionary of Medicines and Devices (dm+d) dataset (which contains preparation data) used by the export that produced this output. The value is presented in yyyy.m.w format, e.g. '2021.5.4'.\\"
+		dmdVersion: String!
+
+		\\"The version of the international edition of SNOMED CT used by the export that produced this output.\\"
+		snomedInternationalVersion: String!
+
+		\\"The version of the UK clinical extension of SNOMED CT used by the export that produced this output.\\"
+		snomedUKExtensionVersion: String!
+
+		\\"The version of the UK drug extension of SNOMED CT used by the export that produced this output.\\"
+		snomedUKDrugExtensionVersion: String!
 	}
 
 
@@ -755,31 +794,31 @@ exports[`schema should match snapshot 1`] = `
 		contentFor: String!
 
 		\\"The initial paragraph of text at the start of the national funding pot. May contain HTML mark-up\\"
-		initialText: String!
+		initialText: String! @html
 
 		\\"Title for the NICE funding decisions.\\"
-		niceDecisionsTitle: String
+		niceDecisionsTitle: String @html
 
 		\\"The NICE funding decisions.\\"
 		niceDecisions: [BnfFundingDecision!]!
 
 		\\"Title for the SMC funding decisions.\\"
-		smcDecisionsTitle: String
+		smcDecisionsTitle: String @html
 
 		\\"The SMC funding decisions.\\"
 		smcDecisions: [BnfFundingDecision!]!
 
 		\\"Title for the AWMSG funding decisions.\\"
-		awmsgDecisionsTitle: String
+		awmsgDecisionsTitle: String @html
 
 		\\"The AWMSG funding decisions.\\"
 		awmsgDecisions: [BnfFundingDecision!]!
 
 		\\"Title for the non-NHS content.\\"
-		nonNhsTitle: String
+		nonNhsTitle: String @html
 
 		\\"Whether the drug can be accessed through the NHS, based on whether it is approved for national funding. May contain HTML mark-up.\\"
-		nonNhs: String
+		nonNhs: String @html
 	}
 
 	\\"\\"\\"
@@ -787,19 +826,19 @@ exports[`schema should match snapshot 1`] = `
 	\\"\\"\\"
 	type BnfFundingDecision {
 		\\"The funding identifier (e.g. TA177)\\"
-		fundingIdentifier: String!
+		fundingIdentifier: String! @html
 
 		\\"The slugified and lowercased funding identifier, used as an ID/hash link\\"
 		slug: String! @slug(field: \\"fundingIdentifier\\")
 
 		\\"The title of the funding decision, usually including the date that the decision was published. May contain HTML mark-up\\"
-		title: String
+		title: String @html
 
 		\\"The URL to the relevant funding body's decision.\\"
 		url: String!
 
 		\\"A summary of the decision.\\"
-		approvedForUse: String!
+		approvedForUse: String! @html
 	}
 
 
@@ -829,6 +868,9 @@ exports[`schema should match snapshot 1`] = `
 
 		\\"The sections of the record.\\"
 		sections: [BnfRecordSection!]!
+
+		\\"Any drugs linked from this NPF treatment summary\\"
+		relatedDrugs: [BnfDrug!]! @link
 	}
 
 
@@ -1001,6 +1043,9 @@ exports[`schema should match snapshot 1`] = `
 	type BnfWoundManagementTaxonomy implements Node @dontInfer {
 		\\"The title of the taxonomy node. May contain HTML mark-up.\\"
 		title: String!
+
+		\\"The slugified and lowercased title, used as a URL path\\"
+		slug: String! @slug(field: \\"title\\")
 
 		\\"The review date of the record.\\"
 		reviewDate: Date @dateformat

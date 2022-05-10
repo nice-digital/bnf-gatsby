@@ -19,6 +19,9 @@ export const woundManagementSchema = `
 		"The title of the taxonomy node. May contain HTML mark-up."
 		title: String!
 
+		"The slugified and lowercased title, used as a URL path"
+		slug: String! @slug(field: "title")
+
 		"The review date of the record."
 		reviewDate: Date @dateformat
 

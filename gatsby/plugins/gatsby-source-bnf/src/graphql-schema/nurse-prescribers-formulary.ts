@@ -27,5 +27,8 @@ export const nursePrescribersSchema = `
 
 		"The sections of the record."
 		sections: [${BnfNode.RecordSection}!]!
+
+		"Any drugs linked from this NPF treatment summary"
+		relatedDrugs: [${BnfNode.Drug}!]! @link
 	}
 `;
