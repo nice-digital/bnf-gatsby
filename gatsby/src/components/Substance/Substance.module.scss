@@ -1,0 +1,47 @@
+@use '@nice-digital/nds-core/scss/core';
+
+.prepHeading {
+  @include core.nds-h4;
+  max-width: none;
+
+  @include core.mq($from: md) {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: row-reverse;
+    gap: core.rem(core.$nds-spacing-large);
+  }
+}
+
+.headingIcons {
+  align-items: center;
+  display: flex;
+  gap: core.rem(core.$nds-spacing-x-small);
+  margin-bottom: core.rem(core.$nds-spacing-small);
+
+  @include core.mq($from: md) {
+    justify-content: flex-end;
+    margin-bottom: 0;
+    text-align: right;
+  }
+}
+
+.headingText {
+  display: block;
+
+  @include core.mq($from: md) {
+    flex-grow: 1;
+  }
+}
+
+.label {
+  @include core.nds-font-size(-2);
+  background: core.$nds-colour-nice-dark-grey;
+  border: 1px solid core.$nds-colour-border !important;
+  color: core.$nds-colour-nice-white;
+  display: inline-block;
+  font-weight: 500;
+  padding: core.rem(core.$nds-spacing-xx-small)
+    core.rem(core.$nds-spacing-x-small);
+  text-decoration: none !important;
+  white-space: nowrap;
+}

@@ -13,7 +13,8 @@ import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 import { QueryResult, type SlugAndTitle } from "@/utils";
 
-import Substance from "./Substance/Substance";
+import Substance from "../../components/Substance/Substance";
+
 import styles from "./{BnfBorderlineSubstancesTaxonomy.slug}.module.scss";
 
 export type BorderlineSubstancesSectionPageProps = {

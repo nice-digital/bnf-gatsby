@@ -5,7 +5,7 @@ import { FeedBorderlineSubstancePresentation } from "@nice-digital/gatsby-source
 import { Prep } from "@/components/Prep/Prep";
 import { type QueryResult } from "@/utils";
 
-import styles from "./../../{BnfBorderlineSubstancesTaxonomy.slug}.module.scss";
+import styles from "./Presentation.module.scss";
 
 export type PresentationProps = {
 	presentation: QueryResult<FeedBorderlineSubstancePresentation>;

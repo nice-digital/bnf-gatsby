@@ -7,15 +7,15 @@ import { Alert } from "@nice-digital/nds-alert";
 import { Accordion } from "@/components/Accordion/Accordion";
 import { QueryResult } from "@/utils";
 
-import styles from "./../{BnfBorderlineSubstancesTaxonomy.slug}.module.scss";
 import Presentation from "./Presentation/Presentation";
+import styles from "./Substance.module.scss";
 
-export type SubstancesProps = {
+export type SubstanceProps = {
 	substance: QueryResult<FeedBorderlineSubstance>;
 	label?: string;
 };
 
-const Substance: FC<SubstancesProps> = ({ substance, label }) => {
+const Substance: FC<SubstanceProps> = ({ substance, label }) => {
 	return (
 		<>
 			<Accordion
