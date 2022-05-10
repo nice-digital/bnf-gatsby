@@ -4,6 +4,8 @@ $nds-include-spacing-modifiers: false;
 $nds-output-text-classes: false;
 $nds-output-visibility-classes: false;
 
+@import './settings';
+
 @import './lato';
 
 @import '~@nice-digital/design-system/scss/base';

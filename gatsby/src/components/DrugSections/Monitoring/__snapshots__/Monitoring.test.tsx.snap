@@ -1,0 +1,158 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Monitoring outer section should match snapshot 1`] = `
+<section
+  aria-labelledby="monitoring-requirements"
+  class="section"
+>
+  <h2
+    id="monitoring-requirements"
+  >
+    Monitoring requirements
+  </h2>
+  <section
+    aria-labelledby="monitoring-requirements-corticosteroids"
+  >
+    <h3
+      class=""
+      id="monitoring-requirements-corticosteroids"
+    >
+      <span
+        class="visually-hidden"
+      >
+        Monitoring requirements 
+      </span>
+      <span>
+        For all corticosteroids
+      </span>
+    </h3>
+    <section
+      aria-labelledby="patient-programmes-corticosteroids"
+    >
+      <h4
+        id="patient-programmes-corticosteroids"
+      >
+        Patient monitoring programmes
+        <span
+          class="visually-hidden"
+        >
+           For all corticosteroids
+        </span>
+      </h4>
+      <div>
+        <p>
+          Some patient monitoring for all corticosteroids
+        </p>
+      </div>
+    </section>
+  </section>
+  <section
+    aria-labelledby="monitoring-requirements-opioids"
+  >
+    <h3
+      class=""
+      id="monitoring-requirements-opioids"
+    >
+      <span
+        class="visually-hidden"
+      >
+        Monitoring requirements 
+      </span>
+      <span>
+        For all opioids
+      </span>
+    </h3>
+    <section
+      aria-labelledby="patient-parameters-opioids"
+    >
+      <h4
+        id="patient-parameters-opioids"
+      >
+        Monitoring of patient parameters
+        <span
+          class="visually-hidden"
+        >
+           For all opioids
+        </span>
+      </h4>
+      <div>
+        <p>
+          Patient parameters for all opioids
+        </p>
+      </div>
+    </section>
+  </section>
+  <section
+    aria-labelledby="monitoring-requirements-co-codamol"
+  >
+    <h3
+      class=""
+      id="monitoring-requirements-co-codamol"
+    >
+      <span
+        class="visually-hidden"
+      >
+        Monitoring requirements 
+      </span>
+      <span>
+        For co-codamol
+      </span>
+    </h3>
+    <section
+      aria-labelledby="therapeutic-drug-co-codamol"
+    >
+      <h4
+        id="therapeutic-drug-co-codamol"
+      >
+        Therapeutic drug monitoring
+        <span
+          class="visually-hidden"
+        >
+           For co-codamol
+        </span>
+      </h4>
+      <div>
+        <p>
+          Therapeutic for co-codamol
+        </p>
+      </div>
+    </section>
+  </section>
+  <section
+    aria-labelledby="monitoring-requirements-solpadol-caplets"
+  >
+    <h3
+      class=""
+      id="monitoring-requirements-solpadol-caplets"
+    >
+      <span
+        class="visually-hidden"
+      >
+        Monitoring requirements 
+      </span>
+      <span>
+        For Solpadol® caplets
+      </span>
+    </h3>
+    <section
+      aria-labelledby="patient-programmes-solpadol-caplets"
+    >
+      <h4
+        id="patient-programmes-solpadol-caplets"
+      >
+        Patient monitoring programmes
+        <span
+          class="visually-hidden"
+        >
+           For Solpadol® caplets
+        </span>
+      </h4>
+      <div>
+        <p>
+          Patient monitoring for a prep
+        </p>
+      </div>
+    </section>
+  </section>
+</section>
+`;

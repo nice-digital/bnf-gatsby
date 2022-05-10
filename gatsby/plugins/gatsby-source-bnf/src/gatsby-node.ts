@@ -5,16 +5,24 @@ import {
 } from "gatsby";
 import { type Schema } from "gatsby-plugin-utils";
 
-import { downloadFeed, type PluginOptions } from "./downloader/downloader";
-import { type Feed } from "./downloader/types";
+import {
+	downloadFeed,
+	downloadImageZIP,
+	type PluginOptions,
+} from "./downloader/downloader";
 import { htmlFieldExtension } from "./field-extensions/html";
 import { slugFieldExtension } from "./field-extensions/slug";
 import { schema } from "./graphql-schema";
+import { extractImageZIP } from "./images-unzipper";
+import { createBorderlineSubstancesNodes } from "./node-creation/borderline-substances";
 import { createCautionaryAndAdvisoryLabelsNodes } from "./node-creation/cautionary-advisory";
+import { createClassificationNodes } from "./node-creation/classifications";
 import { createDrugNodes } from "./node-creation/drugs";
 import { createInteractionNodes } from "./node-creation/interactions";
 import { createMedicalDeviceNodes } from "./node-creation/medical-devices";
+import { createMetadataNode } from "./node-creation/metadata";
 import { createNursePrescribersNodes } from "./node-creation/nurse-prescribers-formulary";
+import { createTreatmentSummaryNodes } from "./node-creation/treatment-summaries";
 import { createSimpleRecordNodes } from "./node-creation/utils";
 import { createWoundManagementNodes } from "./node-creation/wound-management";
 import { BnfNode } from "./node-types";
@@ -38,38 +46,44 @@ export const createSchemaCustomization = ({
  */
 export const sourceNodes = async (
 	sourceNodesArgs: SourceNodesArgs,
-	options: PluginOptions
+	pluginOptions: PluginOptions
 ): Promise<undefined> => {
-	const {
-		reporter: { activityTimer },
-	} = sourceNodesArgs;
+	const { reporter } = sourceNodesArgs;
 
-	const { start, setStatus, end, panic } = activityTimer(
-		`Download data and creating BNF nodes`
-	);
-	start();
+	const zip = await downloadImageZIP(pluginOptions, reporter);
 
-	let feedData: Feed;
-	try {
-		feedData = await downloadFeed(options);
-		setStatus(`Downloaded feed data`);
-	} catch (e) {
-		panic(e);
+	if (!zip) {
+		reporter.panic("Image ZIP is null");
+		return;
+	}
+
+	const imagesBasePath = await extractImageZIP(zip, reporter),
+		feedData = await downloadFeed(pluginOptions, imagesBasePath, reporter);
+
+	const createNodesActivity = reporter.activityTimer(`Creating GraphQL nodes`);
+	createNodesActivity.start();
+
+	if (!feedData) {
+		reporter.panic("Feed is null");
 		return;
 	}
 
 	// Create all of our different nodes
-	createDrugNodes(feedData.drugs, sourceNodesArgs);
+	createDrugNodes(
+		{
+			drugs: feedData.drugs,
+			treatmentSummaries: feedData.treatmentSummaries,
+			interactions: feedData.interactions,
+		},
+		sourceNodesArgs
+	);
+
+	createTreatmentSummaryNodes(feedData.treatmentSummaries, sourceNodesArgs);
 
 	// Simple records nodes:
 	createSimpleRecordNodes(
 		feedData.about,
 		BnfNode.AboutSection,
-		sourceNodesArgs
-	);
-	createSimpleRecordNodes(
-		feedData.treatmentSummaries,
-		BnfNode.TreatmentSummary,
 		sourceNodesArgs
 	);
 	createSimpleRecordNodes(feedData.guidance, BnfNode.Guidance, sourceNodesArgs);
@@ -93,12 +107,24 @@ export const sourceNodes = async (
 		sourceNodesArgs
 	);
 
+	createBorderlineSubstancesNodes(
+		feedData.borderlineSubstances,
+		sourceNodesArgs
+	);
+
+	createClassificationNodes(
+		{ classifications: feedData.classifications, drugs: feedData.drugs },
+		sourceNodesArgs
+	);
+
 	// Wound management only exists in BNF and not BNFC
 	if (feedData.woundManagement)
 		createWoundManagementNodes(feedData.woundManagement, sourceNodesArgs);
 
-	setStatus(`Created all nodes`);
-	end();
+	createMetadataNode(feedData.metadata, sourceNodesArgs);
+
+	createNodesActivity.setStatus(`Created all nodes`);
+	createNodesActivity.end();
 
 	return;
 };

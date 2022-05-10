@@ -5,6 +5,5 @@ export const RecordSection = graphql`
 		title
 		slug
 		content
-		order
 	}
 `;

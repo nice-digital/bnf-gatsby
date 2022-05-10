@@ -1,4 +1,9 @@
 {
+  "metadata": {
+    "publication": "bnf",
+    "runTag": "2022_04_05_0037_bnf",
+    "exportStarted": "2022-04-05T00:39:02.86"
+  },
   "about": [
     {
       "id": "about-1",
@@ -16,6 +21,7 @@
     {
       "id": "drug-1",
       "title": "Drug 1",
+      "interactants": [],
       "medicinalForms": {
         "initialStatement": "There can be variation in the licensing of different medicines containing the same drug.",
         "medicinalForms": [
@@ -23,7 +29,7 @@
             "form": "Solution for injection",
             "cautionaryAndAdvisoryLabels": [],
             "excipients": "May contain polysorbates.",
-            "electolytes": "",
+            "electrolytes": "",
             "preps": [
               {
                 "name": "Fuzzzumab 120mg/1ml solution",
@@ -145,6 +151,13 @@
         "sid": "_149824369",
         "title": "Abatacept"
       }
+    ],
+    "supplementaryInformation": [
+      {
+        "interactantSid": "_149824369",
+        "title": "Abatacept supplementary",
+        "information": "<p>Supplementary information body</p>"
+      }
     ]
   },
   "medicalDevices": [
@@ -164,6 +177,20 @@
           "id": "section_320704649-0",
           "title": "Introduction",
           "content": "<p>The correct dressing for wound management depends not only on the type of wound but also on the stage of the healing process.</p>"
+        }
+      ]
+    },
+    "taxonomy": []
+  },
+  "borderlineSubstances": {
+    "introduction": {
+      "id": "PHP104227",
+      "title": "Borderline substances",
+      "sections": [
+        {
+          "id": "sectionPHP104227-0",
+          "title": "Introduction",
+          "content": "<p>In certain conditions some foods (and toilet preparations) have characteristics of drugs and the Advisory Committee on Borderline Substances (ACBS) advises as to the circumstances in which such substances may be regarded as drugs. Prescriptions issued in accordance with the Committee's advice and endorsed ‘ACBS’ will normally not be investigated.</p>"
         }
       ]
     },
@@ -194,5 +221,21 @@
         ]
       }
     ]
-  }
+  },
+  "classifications": [
+    {
+      "id": "_656472841",
+      "name": "Drugs for neuromuscular disorders"
+    },
+    {
+      "id": "_779447034",
+      "name": "Drugs acting on the renin-angiotensin system",
+      "moreSpecificClassifications": [
+        {
+          "id": "_241907176",
+          "name": "ACE inhibitors"
+        }
+      ]
+    }
+  ]
 }

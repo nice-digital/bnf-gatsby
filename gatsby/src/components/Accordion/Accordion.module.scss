@@ -1,8 +1,8 @@
 @use '@nice-digital/nds-core/scss/core';
 
 .details {
-  background: core.$nds-colour-nice-grey-3;
-  border: 1px solid core.$nds-colour-nice-grey-2;
+  background: none;
+  border: 1px solid #8c8c8c; // TODO: add var to design system (nds-colour-border-dark) and replace it here
   margin: core.rem(core.$nds-spacing-medium 0);
   padding: core.rem(core.$nds-spacing-medium);
 
@@ -13,7 +13,8 @@
 
 .summary {
   cursor: pointer;
-  display: block;
+  display: flex;
+  flex-direction: column-reverse;
   list-style: none;
 
   &::marker,
@@ -21,11 +22,11 @@
     display: none;
   }
 
-  > :first-child {
+  > :last-child {
     margin: 0;
   }
 
-  [open] & {
+  [open] > & {
     margin-bottom: core.rem(core.$nds-spacing-medium);
   }
 
@@ -48,24 +49,14 @@
 }
 
 .toggleLabel {
-  align-items: center;
-  color: core.$nds-colour-link;
-  display: flex;
-  flex-wrap: nowrap;
   margin-top: core.rem(core.$nds-spacing-x-small);
-  text-decoration: underline;
-
-  summary:hover & {
-    color: core.$nds-colour-link-hover;
-  }
 }
 
-.icon {
-  display: block;
-  margin-right: core.rem(core.$nds-spacing-small);
-  transition: all 0.25s ease;
+.warningTheme {
+  background: core.$nds-colour-caution-background;
+  border: 1px solid core.$nds-colour-caution;
 
-  [open] & {
-    transform: rotate(-180deg);
+  .toggleLabel {
+    color: core.$nds-colour-nice-rich-black;
   }
 }

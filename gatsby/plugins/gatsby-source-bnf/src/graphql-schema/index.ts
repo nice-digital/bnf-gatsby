@@ -1,12 +1,15 @@
 import { aboutSectionSchema } from "./about-section";
+import { borderlineSubstancesSchema } from "./borderline-substances";
 import { cautionaryAndAdvisoryGuidanceSchema } from "./cautionary-advisory-guidance";
 import { cautionaryAndAdvisoryLabelSchema } from "./cautionary-advisory-label";
+import { classificationSchema } from "./classifications";
 import { dentalPractitionersFormularySchema } from "./dental-practitioners-formulary";
 import { drugSchema } from "./drug";
 import { guidanceSchema } from "./guidance";
 import { indicationsAndDoseSchema } from "./indications-and-dose";
-import { interactantSchema } from "./interactant";
+import { interactionSchema } from "./interaction";
 import { medicalDeviceSchema } from "./medical-device";
+import { metadataSchema } from "./metadata";
 import { monitoringSchema } from "./monitoring";
 import { nationalFundingSchema } from "./national-funding";
 import { nursePrescribersSchema } from "./nurse-prescribers-formulary";
@@ -25,14 +28,17 @@ import { woundManagementSchema } from "./wound-management";
  */
 export const schema = [
 	aboutSectionSchema,
+	borderlineSubstancesSchema,
 	cautionaryAndAdvisoryGuidanceSchema,
 	cautionaryAndAdvisoryLabelSchema,
+	classificationSchema,
 	dentalPractitionersFormularySchema,
 	drugSchema,
 	guidanceSchema,
 	indicationsAndDoseSchema,
-	interactantSchema,
+	interactionSchema,
 	medicalDeviceSchema,
+	metadataSchema,
 	monitoringSchema,
 	nationalFundingSchema,
 	nursePrescribersSchema,

@@ -18,13 +18,33 @@ export const pagePaths = {
 	"abacavir drug": "/drugs/abacavir/",
 	"co-codamol drug": "/drugs/co-codamol/",
 	"abacavir medicinal forms": "/drugs/abacavir/medicinal-forms/",
+	"acne treatment summary": "/treatment-summaries/acne/",
+	"abemaciclib medicinal forms": "/drugs/abemaciclib/medicinal-forms/",
+	"co-codamol medicinal forms": "/drugs/co-codamol/medicinal-forms/",
+	"galantamine medicinal forms": "/drugs/galantamine/medicinal-forms/",
 	"dementia treatment summary": "/treatment-summaries/dementia/",
+	"diabetes treatment summary": "/treatment-summaries/diabetes/",
 	"medicines guidance": "/medicines-guidance/",
+	// Medical devices
+	"medical devices": "/medical-devices/",
+	"artificial saliva products": "/medical-devices/artificial-saliva-products/",
+	"AS Saliva Orthana® lozenges":
+		"/medical-devices/artificial-saliva-products/as-saliva-orthana-lozenges/",
+	spacers: "/medical-devices/spacers/",
+	"urine protein testing strips":
+		"/medical-devices/urine-protein-testing-strips/urine-protein-testing-strips/",
+	"wound management": "/wound-management",
 	// Medicines guidance
 	"guidance on prescribing": "/medicines-guidance/guidance-on-prescribing/",
 	"prescription writing": "/medicines-guidance/prescription-writing/",
 	"prescribing in dental practice":
 		"/medicines-guidance/prescribing-in-dental-practice/",
+	"nurse prescribers formulary": "/nurse-prescribers-formulary/",
+	laxatives: "/nurse-prescribers-formulary/laxatives/",
+	"general guidance": "/nurse-prescribers-formulary/general-guidance/",
+	"local anaesthetics": "/nurse-prescribers-formulary/local-anaesthetics/",
+	"borderline substances": "/borderline-substances/",
+	"feed supplements": "/borderline-substances/feed-supplements/",
 } as const;
 
 export type PageName = keyof typeof pagePaths;

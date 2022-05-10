@@ -1,0 +1,87 @@
+@use '@nice-digital/nds-core/scss/core';
+@use 'sass:math';
+
+$gutter: core.rem(core.$nds-spacing-large);
+
+@media print {
+  .sectionNav,
+  .aside {
+    display: none;
+  }
+}
+
+@include core.mq($from: md) {
+  $right-col-width: percentage(math.div(4, 12));
+
+  .sectionNav {
+    margin-bottom: 0;
+  }
+
+  // IE11/non-grid fallback
+  .contentWrapper {
+    padding-right: calc($right-col-width + $gutter);
+    position: relative;
+  }
+
+  .aside {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: $right-col-width;
+  }
+
+  @supports (display: grid) {
+    .contentWrapper {
+      display: grid;
+      gap: $gutter;
+      grid-template-areas:
+        'sectionNav aside'
+        'sections aside';
+      grid-template-columns: auto $right-col-width;
+      grid-template-rows: auto auto;
+      padding: 0;
+    }
+
+    .sectionNav {
+      grid-area: sectionNav;
+    }
+
+    .aside {
+      grid-area: aside;
+      position: static;
+      width: auto;
+    }
+
+    .sections {
+      grid-area: sections;
+
+      > :first-child h2 {
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+@include core.mq($from: lg) {
+  $right-col-width: percentage(math.div(3, 12));
+
+  .contentWrapper {
+    grid-template-columns: auto $right-col-width;
+    padding-right: calc($right-col-width + $gutter);
+  }
+
+  .aside {
+    width: $right-col-width;
+  }
+
+  @supports (display: grid) {
+    .contentWrapper {
+      padding: 0;
+    }
+
+    .aside {
+      grid-area: aside;
+      width: auto;
+    }
+  }
+}

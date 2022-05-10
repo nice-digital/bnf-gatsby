@@ -1,0 +1,141 @@
+@use '@nice-digital/nds-core/scss/core';
+
+.alertText {
+  > :last-child {
+    margin-bottom: 0;
+  }
+
+  p {
+    font-weight: normal;
+  }
+}
+
+.grid {
+  @include core.mq($from: md) {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+  }
+}
+
+.rightCol {
+  @include core.mq($from: md) {
+    flex: 0 1 33%;
+    margin-left: core.rem(core.$nds-spacing-large);
+  }
+}
+
+.informationPanel {
+  background: core.$nds-colour-nice-grey-3;
+  margin-bottom: core.rem(core.$nds-spacing-large);
+  padding: core.rem(core.$nds-spacing-medium);
+}
+
+.informationPanelHeading {
+  @include core.nds-h6();
+}
+
+.interactionInformation {
+  margin-bottom: core.rem(core.$nds-spacing-large);
+}
+
+.interactionsList {
+  list-style: none;
+  margin: 0;
+}
+
+.interactionsListItem {
+  border-bottom: 1px solid core.$nds-colour-nice-grey-1;
+
+  &:last-child {
+    border-bottom: 0;
+    margin-bottom: core.rem(core.$nds-spacing-large);
+  }
+}
+
+.filterForm {
+  @include core.mq($from: md) {
+    align-items: flex-end;
+    display: flex;
+    flex: 1 0;
+    padding-right: core.rem(core.$nds-spacing-medium);
+  }
+}
+
+.filterInput {
+  @include core.mq($from: md) {
+    flex: 1 0;
+    margin-bottom: core.rem(core.$nds-spacing-xx-small);
+  }
+}
+
+.filterButton {
+  @include core.mq($from: md) {
+    margin: 0 0 0 core.rem(core.$nds-spacing-medium);
+  }
+}
+
+.filterPanel {
+  margin-bottom: core.rem(core.$nds-spacing-medium);
+
+  @include core.mq($from: md) {
+    display: flex;
+  }
+}
+
+.clearFilterWrapper {
+  margin: 0 0 0 core.rem(core.$nds-spacing-small);
+}
+
+.clearFilterButton {
+  background: core.$nds-colour-nice-grey-3;
+  border: 1px solid core.$nds-colour-border;
+  cursor: pointer;
+
+  svg {
+    @include core.nds-font-size(-2);
+  }
+}
+
+.sortControls {
+  margin-left: auto;
+}
+
+.sortButtonLabel {
+  font-weight: bold;
+}
+
+.sortButton {
+  @include core.nds-link-default;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 0;
+
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  &:focus-visible {
+    @include core.nds-default-focus-style;
+  }
+}
+
+.resultCount {
+  display: flex;
+  font-weight: bold;
+  margin: 0 0 core.rem(core.$nds-spacing-large) 0;
+}
+
+.noResultsHeading {
+  @include core.nds-h5();
+}
+
+.linkButton {
+  @include core.nds-link-default;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+}

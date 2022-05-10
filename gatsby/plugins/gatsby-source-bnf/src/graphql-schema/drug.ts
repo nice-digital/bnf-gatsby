@@ -20,8 +20,20 @@ export const drugSchema = `
 		"The review date, if available for this record."
 		reviewDate: Date @dateformat
 
+		"The lowest level primary classification to which this drug belongs. Note: it's nullable because not all drugs have a primary classification, e.g. Cranberry"
+		primaryClassification: ${BnfNode.Classification} @link
+
+		"The lowest level secondary classifications to which this drug belongs."
+		secondaryClassifications: [${BnfNode.Classification}!]! @link
+
 		"The interactant with the same sid as this drug, if it exists, otherwise null"
 		interactant: ${BnfNode.Interactant} @link(by: "sid", from: "sid")
+
+		"The list of individual interactants for the substance(s) in this drug. An empty list indicates that there are no interactants associated with this drug."
+		interactants: [${BnfNode.Interactant}!]! @link(by: "sid")
+
+		"Any treatment summaries that contain a link to back this drug"
+		relatedTreatmentSummaries: [${BnfNode.TreatmentSummary}!]! @link
 
 		"The constituent drugs. This will be populated if the drug is a combination (e.g. 'tramadol with paracetamol') where each constituent exists in the BNF as a monograph in its own right."
 		constituentDrugs: ${BnfNode.ConstituentDrugs}
@@ -144,15 +156,26 @@ export const drugSchema = `
 		slug: String! @slug(field: "form")
 
 		"A list of any cautionary and advisory labels for the medicinal form."
-		cautionaryAndAdvisoryLabels: [String!]
+		cautionaryAndAdvisoryLabels: [${BnfNode.MedicinalFormLabel}!]!
 
 		"A list of any excipients for the medicinal form, provided as a text statement."
 		excipients: String
 
 		"A list of any electrolytes for the medicinal form, provided as a text statement."
-		electolytes: String
+		electrolytes: String
 
 		"The preparations of the drug for the medicinal form."
 		preps: [${BnfNode.Prep}!]!
+	}
+
+	"""
+	A cautionary/advisory label for this form. It differs slightly from the labels used elsewhere, as it also includes a qualifier for this particular medicinal form.
+	"""
+	type ${BnfNode.MedicinalFormLabel} {
+		"A label for this medicinal form"
+		label: ${BnfNode.CautionaryAndAdvisoryLabel}! @link(by: "number")
+
+		"A qualifying statement that elaborates on this label"
+		qualifier: String
 	}
 `;

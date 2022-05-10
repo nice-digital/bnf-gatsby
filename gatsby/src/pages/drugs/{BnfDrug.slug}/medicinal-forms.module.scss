@@ -1,0 +1,61 @@
+@use '@nice-digital/nds-core/scss/core';
+
+.form {
+  margin-bottom: core.rem(core.$nds-spacing-large);
+}
+
+.prepList {
+  list-style: none;
+  margin: 0;
+  max-width: none;
+}
+
+.labelAccordionHeading,
+.nestedLabelAccordionHeading {
+  @include core.nds-h4;
+  align-items: center;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  max-width: none;
+
+  @include core.mq($from: md) {
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+}
+
+.nestedLabelAccordionHeading {
+  @include core.nds-h6;
+  flex-direction: row;
+}
+
+.warningIcon {
+  margin: 0 0 0 core.rem(core.$nds-spacing-small);
+
+  @include core.mq($from: md) {
+    margin: 0 core.rem(core.$nds-spacing-small) 0 0;
+  }
+}
+
+.labelHeading {
+  @include core.nds-h6;
+}
+
+.labelList {
+  list-style: none;
+  margin: 0;
+  max-width: none;
+
+  li {
+    margin-bottom: core.rem(core.$nds-spacing-medium);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.labelWelsh {
+  font-style: italic;
+}

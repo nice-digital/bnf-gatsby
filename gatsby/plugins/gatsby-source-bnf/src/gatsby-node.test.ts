@@ -1,3 +1,6 @@
+import * as fsPromises from "fs/promises";
+import path from "path";
+
 import {
 	type SourceNodesArgs,
 	type CreateSchemaCustomizationArgs,
@@ -17,11 +20,18 @@ import { schema } from "./graphql-schema";
 import mockFeed from "./mock-feed.json";
 import { BnfNode } from "./node-types";
 
+jest.mock("fs/promises");
+
 jest.mock("./downloader/downloader", () => ({
-	downloadFeed: jest.fn().mockImplementation(() => {
-		// eslint-disable-next-line @typescript-eslint/no-var-requires
-		return Promise.resolve(require("./mock-feed.json"));
-	}),
+	// eslint-disable-next-line @typescript-eslint/no-var-requires
+	downloadFeed: jest.fn().mockResolvedValue(require("./mock-feed.json")),
+	downloadImageZIP: jest
+		.fn()
+		.mockResolvedValue(
+			(jest.requireActual("fs/promises") as typeof fsPromises).readFile(
+				path.join(__dirname, "mock-images.zip")
+			)
+		),
 }));
 
 describe("gatsby-node", () => {
@@ -89,20 +99,17 @@ describe("gatsby-node", () => {
 			await sourceNodes(sourceNodesArgs, pluginOptions);
 
 			expect(downloadFeed).toHaveBeenCalledTimes(1);
-			expect(downloadFeed).toHaveBeenCalledWith(pluginOptions);
+			expect(downloadFeed).toHaveBeenCalledWith(
+				pluginOptions,
+				"/img/d06535079bdf2fd3013f95f9d8830ee8/",
+				expect.anything()
+			);
 		});
 
 		it("should create Dental Practitioners’ Formulary node", async () => {
 			await sourceNodes(sourceNodesArgs, pluginOptions);
 			expect(sourceNodesArgs.actions.createNode).toHaveBeenNthCalledWith(5, {
 				...mockFeed.dentalPractitionersFormulary,
-				sections: [
-					{
-						order: 0,
-						reviewDate: undefined,
-						...mockFeed.dentalPractitionersFormulary.sections[0],
-					},
-				],
 				order: 0,
 				internal: expect.objectContaining({
 					type: BnfNode.DentalPractitionersFormulary,
