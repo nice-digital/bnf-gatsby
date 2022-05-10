@@ -153,22 +153,13 @@ exports[`MedicinalFormsPage Body should match snapshot for page body 1`] = `
           <div
             data-g="12 lg:3"
           >
-            <aside
-              class="asideInfo"
+            <div
+              class="alert alert--info"
             >
-              <h2>
-                Important information about BNF prices and buying drugs
-              </h2>
               <p>
                 NICE does not sell any drugs, medicines or pharmaceutical products.
               </p>
-              <p>
-                BNF prices do not reflect over-the-counter purchase pricings because they do not take into account VAT, professional fees, and other overheads.
-              </p>
-              <p>
-                A fuller explanation of costs to the NHS may be obtained from the Drug Tariff. Separate drug tariffs are applicable to England and Wales, Scotland and Northern Ireland
-              </p>
-            </aside>
+            </div>
           </div>
           <div
             class="body"
