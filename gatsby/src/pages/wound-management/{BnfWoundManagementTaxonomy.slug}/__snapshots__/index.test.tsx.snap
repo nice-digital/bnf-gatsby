@@ -180,6 +180,13 @@ exports[`Wound management taxonomy page should match page snapshot 1`] = `
           >
             <li>
               <a
+                href="#capillary-acting-dressings"
+              >
+                Capillary-acting dressings
+              </a>
+            </li>
+            <li>
+              <a
                 href="#hydrogel-dressings"
               >
                 Hydrogel dressings
@@ -190,13 +197,6 @@ exports[`Wound management taxonomy page should match page snapshot 1`] = `
                 href="#vapour-permeable-films-and-membranes"
               >
                 Vapour-permeable films and membranes
-              </a>
-            </li>
-            <li>
-              <a
-                href="#capillary-acting-dressings"
-              >
-                Capillary-acting dressings
               </a>
             </li>
           </ol>
@@ -210,6 +210,24 @@ exports[`Wound management taxonomy page should match page snapshot 1`] = `
           aria-label="List of advanced wound dressings"
           class="childTaxonomyList"
         >
+          <li>
+            <h2
+              id="capillary-acting-dressings"
+            >
+              Capillary-acting dressings
+            </h2>
+            <ul
+              class="nestedTaxonomyList"
+            >
+              <li>
+                <a
+                  href="/wound-management/advanced-wound-dressings/capillary-acting-dressings/"
+                >
+                  Capillary-acting dressings
+                </a>
+              </li>
+            </ul>
+          </li>
           <li>
             <h2
               id="hydrogel-dressings"
@@ -287,24 +305,6 @@ exports[`Wound management taxonomy page should match page snapshot 1`] = `
                   href="/wound-management/advanced-wound-dressings/vapour-permeable-transparent-adhesive-film-dressing/"
                 >
                   Vapour–permeable transparent, adhesive film dressing.
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <h2
-              id="capillary-acting-dressings"
-            >
-              Capillary-acting dressings
-            </h2>
-            <ul
-              class="nestedTaxonomyList"
-            >
-              <li>
-                <a
-                  href="/wound-management/advanced-wound-dressings/capillary-acting-dressings/"
-                >
-                  Capillary-acting dressings
                 </a>
               </li>
             </ul>

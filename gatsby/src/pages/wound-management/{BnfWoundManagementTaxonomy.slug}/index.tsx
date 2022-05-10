@@ -70,8 +70,11 @@ const WoundManagementTaxonomyPage: FC<WoundManagementTaxonomyPageProps> = ({
 }) => {
 	const { siteTitleShort } = useSiteMetadata(),
 		{ pathname } = useLocation(),
+		sortedTaxonomies = childTaxonomies.sort((a, b) =>
+			a.title > b.title ? 1 : -1
+		),
 		navSections: SectionNavProps = {
-			sections: childTaxonomies.map(({ slug, title }) => {
+			sections: sortedTaxonomies.map(({ slug, title }) => {
 				return {
 					id: slug,
 					title,
@@ -125,7 +128,7 @@ const WoundManagementTaxonomyPage: FC<WoundManagementTaxonomyPageProps> = ({
 					<SectionNav readableMaxWidth {...navSections} />
 					{text && <div dangerouslySetInnerHTML={{ __html: text }}></div>}
 
-					{childTaxonomies.length > 0 && (
+					{sortedTaxonomies.length > 0 && (
 						<ul
 							className={styles.childTaxonomyList}
 							aria-label={`List of ${title.toLowerCase()}`}

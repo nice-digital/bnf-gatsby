@@ -1,6 +1,6 @@
 import slugify from "@sindresorhus/slugify";
 import { graphql, Link } from "gatsby";
-import React, { type FC, useMemo } from "react";
+import React, { type FC } from "react";
 import striptags from "striptags";
 
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
@@ -52,11 +52,9 @@ const WoundManagementProductPage: FC<WoundManagementProductPageProps> = ({
 	},
 }) => {
 	const { siteTitleShort } = useSiteMetadata(),
-		sortedProductGroups = useMemo(() => {
-			return productGroups
-				.filter((group) => group.products.length > 0)
-				.sort((a, b) => (a.title > b.title ? 1 : -1));
-		}, [productGroups]),
+		sortedProductGroups = productGroups
+			.filter((group) => group.products.length > 0)
+			.sort((a, b) => (a.title > b.title ? 1 : -1)),
 		navSections: SectionNavProps = {
 			sections: sortedProductGroups
 				.filter((group) => group.products.length > 0)
