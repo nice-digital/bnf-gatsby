@@ -14,7 +14,6 @@
   cursor: pointer;
   display: block;
   line-height: 1;
-  margin: 0;
   /* stylelint-disable indentation, function-parentheses-space-inside */
   padding: core.rem(
     core.$nds-spacing-medium core.$nds-spacing-large core.$nds-spacing-medium
@@ -42,6 +41,10 @@
     &:target {
       display: block;
     }
+  }
+
+  &[aria-expanded='false'] {
+    margin: 0 0 core.rem(core.$nds-spacing-medium) 0;
   }
 
   &[aria-expanded='false'] + :global(.stacked-nav) {
