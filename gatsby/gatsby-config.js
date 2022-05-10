@@ -110,6 +110,7 @@ module.exports = {
 			options: {
 				// Pre cache all the top level/important pages for offline access
 				precachePages: [
+					`/`,
 					`/drugs/`,
 					`/interactions/`,
 					`/treatment-summaries/`,
