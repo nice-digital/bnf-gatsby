@@ -226,9 +226,9 @@ exports[`Wound management taxonomy page should match page snapshot 1`] = `
             >
               <li>
                 <a
-                  href="/wound-management/advanced-wound-dressings/sodium-hyaluronate-dressings/"
+                  href="/wound-management/advanced-wound-dressings/hydrogel-application-amorphous/"
                 >
-                  Sodium hyaluronate dressings
+                  Hydrogel application (amorphous)
                 </a>
               </li>
               <li>
@@ -240,9 +240,9 @@ exports[`Wound management taxonomy page should match page snapshot 1`] = `
               </li>
               <li>
                 <a
-                  href="/wound-management/advanced-wound-dressings/hydrogel-application-amorphous/"
+                  href="/wound-management/advanced-wound-dressings/sodium-hyaluronate-dressings/"
                 >
-                  Hydrogel application (amorphous)
+                  Sodium hyaluronate dressings
                 </a>
               </li>
             </ul>
@@ -270,6 +270,13 @@ exports[`Wound management taxonomy page should match page snapshot 1`] = `
               </li>
               <li>
                 <a
+                  href="/wound-management/advanced-wound-dressings/vapour-permeable-adhesive-film-dressing-semi-permeable-adhesive-dressing/"
+                >
+                  Vapour-permeable Adhesive Film Dressing (Semi-permeable Adhesive Dressing)
+                </a>
+              </li>
+              <li>
+                <a
                   href="/wound-management/advanced-wound-dressings/vapour-permeable-transparent-film-dressing-with-adhesive-foam-border/"
                 >
                   Vapour–permeable transparent film dressing with adhesive foam border
@@ -280,13 +287,6 @@ exports[`Wound management taxonomy page should match page snapshot 1`] = `
                   href="/wound-management/advanced-wound-dressings/vapour-permeable-transparent-adhesive-film-dressing/"
                 >
                   Vapour–permeable transparent, adhesive film dressing.
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/wound-management/advanced-wound-dressings/vapour-permeable-adhesive-film-dressing-semi-permeable-adhesive-dressing/"
-                >
-                  Vapour-permeable Adhesive Film Dressing (Semi-permeable Adhesive Dressing)
                 </a>
               </li>
             </ul>

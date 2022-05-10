@@ -1,3 +1,4 @@
+import { useLocation } from "@reach/router";
 import { graphql, Link } from "gatsby";
 import React, { type FC } from "react";
 
@@ -67,20 +68,21 @@ const WoundManagementTaxonomyPage: FC<WoundManagementTaxonomyPageProps> = ({
 		bnfWoundManagementTaxonomy: { slug, title, text, childTaxonomies },
 	},
 }) => {
-	const { siteTitleShort } = useSiteMetadata();
-	const navSections: SectionNavProps = {
-		sections: childTaxonomies.map(({ slug, title }) => {
-			return {
-				id: slug,
-				title,
-			};
-		}),
-	};
+	const { siteTitleShort } = useSiteMetadata(),
+		{ pathname } = useLocation(),
+		navSections: SectionNavProps = {
+			sections: childTaxonomies.map(({ slug, title }) => {
+				return {
+					id: slug,
+					title,
+				};
+			}),
+		};
 
 	return (
 		<Layout>
 			<SEO
-				title={title}
+				title={`${title} | Wound management`}
 				description={`This wound management topic describes the options that are currently recommended for ${title}`}
 			/>
 
@@ -112,6 +114,7 @@ const WoundManagementTaxonomyPage: FC<WoundManagementTaxonomyPageProps> = ({
 								key={slug}
 								destination={`/wound-management/${slug}/`}
 								elementType={Link}
+								isCurrent={pathname.includes(slug)}
 							>
 								<span dangerouslySetInnerHTML={{ __html: title }} />
 							</StackedNavLink>
@@ -152,15 +155,17 @@ const WoundManagementTaxonomyPage: FC<WoundManagementTaxonomyPageProps> = ({
 											))}
 										{child.childTaxonomies.length > 0 ? (
 											<ul className={styles.nestedTaxonomyList}>
-												{child.childTaxonomies.map((nestedChild) => (
-													<li key={nestedChild.slug}>
-														<Link
-															to={`/wound-management/${slug}/${nestedChild.slug}/`}
-														>
-															{nestedChild.title}
-														</Link>
-													</li>
-												))}
+												{child.childTaxonomies
+													.sort((a, b) => (a.title > b.title ? 1 : -1))
+													.map((nestedChild) => (
+														<li key={nestedChild.slug}>
+															<Link
+																to={`/wound-management/${slug}/${nestedChild.slug}/`}
+															>
+																{nestedChild.title}
+															</Link>
+														</li>
+													))}
 											</ul>
 										) : (
 											<ul className={styles.nestedTaxonomyList}>

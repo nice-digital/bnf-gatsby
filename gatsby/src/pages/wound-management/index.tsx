@@ -97,7 +97,11 @@ const WoundManagementIndexPage: FC<WoundManagementIndexPageProps> = ({
 					<StackedNav
 						aria-label="Wound management product pages"
 						label="Wound management products"
-						link={{ destination: "/wound-management/", elementType: Link }}
+						link={{
+							destination: "/wound-management/",
+							elementType: Link,
+							isCurrent: true,
+						}}
 					>
 						{taxonomies.map(({ slug, title }) => (
 							<StackedNavLink

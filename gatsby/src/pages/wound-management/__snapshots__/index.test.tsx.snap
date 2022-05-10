@@ -98,7 +98,7 @@ exports[`Wound management index page should match page snapshot 1`] = `
             class="stacked-nav__root"
           >
             <a
-              aria-current="false"
+              aria-current="true"
               href="/wound-management/"
             >
               Wound management products

@@ -71,7 +71,7 @@ const WoundManagementProductPage: FC<WoundManagementProductPageProps> = ({
 	return (
 		<Layout>
 			<SEO
-				title={title}
+				title={`${title} | Wound management`}
 				description={`This wound management topic describes the options that are currently recommended for ${title}`}
 			/>
 
