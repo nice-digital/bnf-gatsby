@@ -69,7 +69,7 @@
 }
 
 @include core.mq($from: sm) {
-  :global(.stacked-nav) {
-    display: block !important;
+  :global(#collapsible-menu) {
+    display: block;
   }
 }
