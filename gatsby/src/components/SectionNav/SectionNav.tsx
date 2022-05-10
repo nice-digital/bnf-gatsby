@@ -1,4 +1,5 @@
 import classNames from "classnames";
+import { Link } from "gatsby";
 import { FC } from "react";
 import striptags from "striptags";
 
@@ -15,12 +16,14 @@ export interface SectionNavProps {
 	sections: (SectionLink | undefined)[];
 	className?: string;
 	readableMaxWidth?: boolean;
+	navigateToAnotherPage?: boolean;
 }
 
 export const SectionNav: FC<SectionNavProps> = ({
 	sections,
 	className,
 	readableMaxWidth = false,
+	navigateToAnotherPage = false,
 }) => (
 	<nav
 		aria-labelledby="navigate-to-section"
@@ -31,7 +34,7 @@ export const SectionNav: FC<SectionNavProps> = ({
 		)}
 	>
 		<h2 id="navigate-to-section" className={styles.heading}>
-			Navigate to section
+			{navigateToAnotherPage ? "Navigate to page" : "Navigate to section"}
 		</h2>
 		<ol
 			aria-label="Jump links to sections on this page"
@@ -39,7 +42,11 @@ export const SectionNav: FC<SectionNavProps> = ({
 		>
 			{sections.filter(isTruthy).map((section) => (
 				<li key={section?.id}>
-					<a href={`#${section?.id}`}>{striptags(section?.title || "")}</a>
+					{navigateToAnotherPage ? (
+						<Link to={section?.id}>{striptags(section?.title || "")}</Link>
+					) : (
+						<a href={`#${section?.id}`}>{striptags(section?.title || "")}</a>
+					)}
 				</li>
 			))}
 		</ol>

@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BorderlineSubstancesSectionPage should match snapshot for graphql query 1`] = `
+"
+	query ($id: String) {
+		bnfBorderlineSubstancesTaxonomy(id: { eq: $id }) {
+			slug
+			title
+			rootTaxonomy {
+				childTaxonomies {
+					title
+					childTaxonomies {
+						title
+						slug
+					}
+					slug
+				}
+			}
+		}
+	}
+"
+`;
