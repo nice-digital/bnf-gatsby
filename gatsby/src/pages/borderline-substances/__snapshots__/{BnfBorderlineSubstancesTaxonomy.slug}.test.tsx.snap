@@ -23,17 +23,7 @@ exports[`BorderlineSubstancesSectionPage should match snapshot for graphql query
 				introductionNote
 				id
 				presentations {
-					acbs
-					energyKj
-					proteinGrams
-					carbohydrateGrams
-					fatGrams
-					fibreGrams
-					specialCharacteristics
-					formulation
-					borderlineSubstancePreps {
-						...FullPrep
-					}
+					...FullPresentation
 				}
 			}
 			childTaxonomies {
@@ -43,17 +33,7 @@ exports[`BorderlineSubstancesSectionPage should match snapshot for graphql query
 					introductionNote
 					id
 					presentations {
-						acbs
-						energyKj
-						proteinGrams
-						carbohydrateGrams
-						fatGrams
-						fibreGrams
-						specialCharacteristics
-						formulation
-						borderlineSubstancePreps {
-							...FullPrep
-						}
+						...FullPresentation
 					}
 				}
 				childTaxonomies {
@@ -63,17 +43,7 @@ exports[`BorderlineSubstancesSectionPage should match snapshot for graphql query
 						introductionNote
 						id
 						presentations {
-							acbs
-							energyKj
-							proteinGrams
-							carbohydrateGrams
-							fatGrams
-							fibreGrams
-							specialCharacteristics
-							formulation
-							borderlineSubstancePreps {
-								...FullPrep
-							}
+							...FullPresentation
 						}
 					}
 				}

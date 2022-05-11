@@ -226,17 +226,7 @@ export const query = graphql`
 				introductionNote
 				id
 				presentations {
-					acbs
-					energyKj
-					proteinGrams
-					carbohydrateGrams
-					fatGrams
-					fibreGrams
-					specialCharacteristics
-					formulation
-					borderlineSubstancePreps {
-						...FullPrep
-					}
+					...FullPresentation
 				}
 			}
 			childTaxonomies {
@@ -246,17 +236,7 @@ export const query = graphql`
 					introductionNote
 					id
 					presentations {
-						acbs
-						energyKj
-						proteinGrams
-						carbohydrateGrams
-						fatGrams
-						fibreGrams
-						specialCharacteristics
-						formulation
-						borderlineSubstancePreps {
-							...FullPrep
-						}
+						...FullPresentation
 					}
 				}
 				childTaxonomies {
@@ -266,17 +246,7 @@ export const query = graphql`
 						introductionNote
 						id
 						presentations {
-							acbs
-							energyKj
-							proteinGrams
-							carbohydrateGrams
-							fatGrams
-							fibreGrams
-							specialCharacteristics
-							formulation
-							borderlineSubstancePreps {
-								...FullPrep
-							}
+							...FullPresentation
 						}
 					}
 				}

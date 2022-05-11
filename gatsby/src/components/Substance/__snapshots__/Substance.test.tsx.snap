@@ -62,9 +62,7 @@ exports[`substance should match snapshot 1`] = `
         class="packDefinitionListItem"
       >
         <dt>
-          <strong>
-            Formulation
-          </strong>
+          Formulation
         </dt>
         <dd>
           Liquid per 100 mL
@@ -74,73 +72,51 @@ exports[`substance should match snapshot 1`] = `
         class="packDefinitionListItem"
       >
         <dt>
-          <strong>
-            Energy (Kj)
-          </strong>
+          Energy
         </dt>
         <dd>
           420
-           
-          (100)
+           kJ
+           / 
+          100
+           kcal
         </dd>
       </div>
       <div
         class="packDefinitionListItem"
       >
         <dt>
-          <strong>
-            Protein (g)
-          </strong>
+          Protein
         </dt>
         <dd>
           3.8
-          ()
+           g
+           
         </dd>
       </div>
       <div
         class="packDefinitionListItem"
       >
         <dt>
-          <strong>
-            Carbohydrate (g)
-          </strong>
+          Carbohydrate
         </dt>
         <dd>
           13.0
-          ()
+           g
+           
         </dd>
       </div>
       <div
         class="packDefinitionListItem"
       >
         <dt>
-          <strong>
-            Fibre (g)
-          </strong>
+          Fibre
         </dt>
         <dd>
           1.5
+           g
+           
         </dd>
-      </div>
-      <div
-        class="packDefinitionListItem"
-      >
-        <dt>
-          <strong>
-            Special characteristics
-          </strong>
-        </dt>
-        <dd />
-      </div>
-      <div
-        class="packDefinitionListItem"
-      >
-        <dt>
-          <strong>
-            Standard ACBS indications
-          </strong>
-        </dt>
-        <dd />
       </div>
     </dl>
   </details>

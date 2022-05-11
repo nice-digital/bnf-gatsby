@@ -1,5 +1,4 @@
-import { render, waitFor, screen, within } from "@testing-library/react";
-import { useStaticQuery } from "gatsby";
+import { render, screen } from "@testing-library/react";
 
 import Presentation, { PresentationProps } from "./Presentation";
 
@@ -12,7 +11,7 @@ const presentationProps: PresentationProps = {
 		energyKCal: "100",
 		energyKj: "420",
 		fatGrams: null,
-		fibreConstituents: null,
+		fibreConstituents: [],
 		fibreGrams: "1.5",
 		formulation: "Liquid (tube feed) per 100 mL",
 		presentationNote: null,

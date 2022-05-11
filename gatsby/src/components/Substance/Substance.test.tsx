@@ -12,7 +12,7 @@ const substanceProps: SubstanceProps = {
 				energyKCal: "100",
 				energyKj: "420",
 				fatGrams: null,
-				fibreConstituents: null,
+				fibreConstituents: [],
 				fibreGrams: "1.5",
 				formulation: "Liquid per 100 mL",
 				presentationNote: null,
@@ -66,7 +66,7 @@ describe("substance", () => {
 	it("should render each presentation", async () => {
 		render(<Substance {...substanceProps} />);
 		const presentation = screen.getAllByRole("definition");
-		expect(presentation.length).toEqual(7);
+		expect(presentation.length).toEqual(5);
 		expect(presentation[0]).toHaveTextContent("Liquid per 100 mL");
 	});
 });

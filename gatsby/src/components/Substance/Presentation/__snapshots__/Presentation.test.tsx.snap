@@ -7,9 +7,7 @@ exports[`presentation should match snapshot 1`] = `
       class="packDefinitionListItem"
     >
       <dt>
-        <strong>
-          Formulation
-        </strong>
+        Formulation
       </dt>
       <dd>
         Liquid (tube feed) per 100 mL
@@ -19,61 +17,59 @@ exports[`presentation should match snapshot 1`] = `
       class="packDefinitionListItem"
     >
       <dt>
-        <strong>
-          Energy (Kj)
-        </strong>
+        Energy
       </dt>
       <dd>
         420
-         
-        (100)
+         kJ
+         / 
+        100
+         kcal
       </dd>
     </div>
     <div
       class="packDefinitionListItem"
     >
       <dt>
-        <strong>
-          Protein (g)
-        </strong>
+        Protein
       </dt>
       <dd>
         3.8
-        (milk, soya proteins)
+         g
+         
+        milk, soya proteins
       </dd>
     </div>
     <div
       class="packDefinitionListItem"
     >
       <dt>
-        <strong>
-          Carbohydrate (g)
-        </strong>
+        Carbohydrate
       </dt>
       <dd>
         13.0
-        ((sugars 0.9 g))
+         g
+         
+        (sugars 0.9 g)
       </dd>
     </div>
     <div
       class="packDefinitionListItem"
     >
       <dt>
-        <strong>
-          Fibre (g)
-        </strong>
+        Fibre
       </dt>
       <dd>
         1.5
+         g
+         
       </dd>
     </div>
     <div
       class="packDefinitionListItem"
     >
       <dt>
-        <strong>
-          Special characteristics
-        </strong>
+        Special characteristics
       </dt>
       <dd>
         Contains fish oil, residual lactose, soya. Gluten-free
@@ -83,12 +79,15 @@ exports[`presentation should match snapshot 1`] = `
       class="packDefinitionListItem"
     >
       <dt>
-        <strong>
-          Standard ACBS indications
-        </strong>
+        ACBS indications
       </dt>
       <dd>
-        &lt;p&gt;&lt;b&gt;Standard ACBS indications:&lt;/b&gt; Disease-related malnutrition, intractable malabsorption, pre-operative preparation of malnourished patients, dysphagia, proven inflammatory bowel disease, following total gastrectomy, short-bowel syndrome, bowel fistula except bowel fistula and pre-operative preparation of malnourished patients.&lt;/p&gt;
+        <p>
+          <b>
+            Standard ACBS indications:
+          </b>
+           Disease-related malnutrition, intractable malabsorption, pre-operative preparation of malnourished patients, dysphagia, proven inflammatory bowel disease, following total gastrectomy, short-bowel syndrome, bowel fistula except bowel fistula and pre-operative preparation of malnourished patients.
+        </p>
       </dd>
     </div>
   </dl>

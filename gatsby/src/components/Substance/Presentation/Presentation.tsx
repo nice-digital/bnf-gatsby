@@ -7,99 +7,122 @@ import { type QueryResult } from "@/utils";
 
 import styles from "./Presentation.module.scss";
 
+const nilValue = "Nil";
+
+const GramValue = (props: {
+	label: string;
+	valueInGrams: string;
+	constituents: string[];
+}) => (
+	<div className={styles.packDefinitionListItem}>
+		<dt>{props.label}</dt>
+		<dd>
+			{props.valueInGrams === nilValue ? (
+				props.valueInGrams
+			) : (
+				<>
+					{props.valueInGrams}&nbsp;g{" "}
+					{props.constituents.length > 0 ? props.constituents.join(", ") : null}
+				</>
+			)}
+		</dd>
+	</div>
+);
+
 export type PresentationProps = {
 	presentation: QueryResult<FeedBorderlineSubstancePresentation>;
 };
 
-const Presentation: FC<PresentationProps> = ({ presentation }) => {
+const Presentation: FC<PresentationProps> = ({
+	presentation: {
+		acbs,
+		carbohydrateConstituents,
+		carbohydrateGrams,
+		energyKCal,
+		energyKj,
+		fatConstituents,
+		fatGrams,
+		fibreConstituents,
+		fibreGrams,
+		formulation,
+		proteinConstituents,
+		proteinGrams,
+		specialCharacteristics,
+		borderlineSubstancePreps,
+		presentationNote,
+	},
+}) => {
 	return (
 		<>
 			<dl>
-				{presentation?.formulation && (
+				{formulation && (
 					<div className={styles.packDefinitionListItem}>
-						<dt>
-							<strong>Formulation</strong>
-						</dt>
-						<dd>{presentation.formulation}</dd>
+						<dt>Formulation</dt>
+						<dd>{formulation}</dd>
 					</div>
 				)}
 
-				{presentation?.energyKj && (
+				{energyKj || energyKCal ? (
 					<div className={styles.packDefinitionListItem}>
-						<dt>
-							<strong>Energy (Kj)</strong>
-						</dt>
+						<dt>Energy</dt>
 						<dd>
-							{presentation.energyKj}{" "}
-							{presentation.energyKCal && `(${presentation.energyKCal})`}
+							{energyKj && <>{energyKj}&nbsp;kJ</>}
+							{energyKj && energyKCal ? " / " : null}
+							{energyKCal && <>{energyKCal}&nbsp;kcal</>}
 						</dd>
 					</div>
+				) : null}
+
+				{proteinGrams && (
+					<GramValue
+						label="Protein"
+						valueInGrams={proteinGrams}
+						constituents={proteinConstituents}
+					/>
 				)}
 
-				{presentation?.proteinGrams && (
-					<div className={styles.packDefinitionListItem}>
-						<dt>
-							<strong>Protein (g)</strong>
-						</dt>
-						<dd>
-							{presentation.proteinGrams}
-							{presentation.proteinConstituents &&
-								`(${presentation.proteinConstituents})`}
-						</dd>
-					</div>
+				{carbohydrateGrams && (
+					<GramValue
+						label="Carbohydrate"
+						valueInGrams={carbohydrateGrams}
+						constituents={carbohydrateConstituents}
+					/>
 				)}
 
-				{presentation?.carbohydrateGrams && (
-					<div className={styles.packDefinitionListItem}>
-						<dt>
-							<strong>Carbohydrate (g)</strong>
-						</dt>
-						<dd>
-							{presentation.carbohydrateGrams}
-							{presentation.carbohydrateConstituents &&
-								`(${presentation.carbohydrateConstituents})`}
-						</dd>
-					</div>
+				{fatGrams && (
+					<GramValue
+						label="Fat"
+						valueInGrams={fatGrams}
+						constituents={fatConstituents}
+					/>
 				)}
 
-				{presentation?.fatGrams && (
-					<div className={styles.packDefinitionListItem}>
-						<dt>
-							<strong>Fat (g)</strong>
-						</dt>
-						<dd>{presentation.fatGrams}</dd>
-					</div>
+				{fibreGrams && (
+					<GramValue
+						label="Fibre"
+						valueInGrams={fibreGrams}
+						constituents={fibreConstituents}
+					/>
 				)}
 
-				{presentation?.fibreGrams && (
+				{specialCharacteristics.length > 0 ? (
 					<div className={styles.packDefinitionListItem}>
-						<dt>
-							<strong>Fibre (g)</strong>
-						</dt>
-						<dd>{presentation.fibreGrams}</dd>
+						<dt>Special characteristics</dt>
+						<dd>{specialCharacteristics.join(", ")}</dd>
 					</div>
-				)}
+				) : null}
 
-				{presentation?.specialCharacteristics && (
+				{acbs.length > 0 ? (
 					<div className={styles.packDefinitionListItem}>
-						<dt>
-							<strong>Special characteristics</strong>
-						</dt>
-						<dd>{presentation.specialCharacteristics}</dd>
+						<dt>ACBS indications</dt>
+						<dd dangerouslySetInnerHTML={{ __html: acbs.join("") }} />
 					</div>
-				)}
-
-				{presentation?.acbs && (
-					<div className={styles.packDefinitionListItem}>
-						<dt>
-							<strong>Standard ACBS indications</strong>
-						</dt>
-						<dd>{presentation.acbs}</dd>
-					</div>
-				)}
+				) : null}
 			</dl>
 
-			{presentation?.borderlineSubstancePreps?.map((preparation) => (
+			{presentationNote && <p>{presentationNote}</p>}
+
+			{borderlineSubstancePreps.map((preparation) => (
 				<Prep key={preparation.ampId} prep={preparation}></Prep>
 			))}
 		</>

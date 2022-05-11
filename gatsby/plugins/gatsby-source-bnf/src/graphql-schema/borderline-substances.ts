@@ -75,31 +75,31 @@ export const borderlineSubstancesSchema = `
 		proteinGrams: String
 
 		"The protein constituents of the borderline substance."
-		proteinConstituents: [String]!
+		proteinConstituents: [String!]!
 
 		"The carbohydrate content of the borderline substance in grams."
 		carbohydrateGrams: String
 
 		"The carbohydrate constituents of the borderline substance."
-		carbohydrateConstituents: [String]!
+		carbohydrateConstituents: [String!]!
 
 		"The fat content of the borderline substance in grams."
 		fatGrams: String
 
 		"The fat constituents of the borderline substance."
-		fatConstituents: [String]!
+		fatConstituents: [String!]!
 
 		"The fibre content of the borderline substance in grams."
 		fibreGrams: String
 
 		"The fibre constituents of the borderline substance."
-		fibreConstituents: String
+		fibreConstituents: [String!]!
 
 		"A list of any special characteristics of the borderline substance."
-		specialCharacteristics: [String]!
+		specialCharacteristics: [String!]!
 
 		"A list of the Advisory Committee on Borderline Substances (ACBS) indications. May contain HTML mark-up."
-		acbs: [String]!
+		acbs: [String!]!
 
 		"The presentation note for the borderline substance."
 		presentationNote: String
