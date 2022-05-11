@@ -8,10 +8,13 @@ import { PageHeader } from "@nice-digital/nds-page-header";
 
 import { BorderlineSubstancesMenu } from "@/components/BorderlineSubstancesMenu/BorderlineSubstancesMenu";
 import { Layout } from "@/components/Layout/Layout";
-import { SectionNav } from "@/components/SectionNav/SectionNav";
+import {
+	type SectionLink,
+	SectionNav,
+} from "@/components/SectionNav/SectionNav";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
-import { QueryResult, type SlugAndTitle } from "@/utils";
+import { type QueryResult, type SlugAndTitle, type WithSlug } from "@/utils";
 
 import Substance from "../../components/Substance/Substance";
 
@@ -21,22 +24,17 @@ export type BorderlineSubstancesSectionPageProps = {
 	data: {
 		bnfBorderlineSubstancesTaxonomy: SlugAndTitle & {
 			rootTaxonomy: SlugAndTitle & {
-				childTaxonomies: {
-					title: string;
-					slug: string;
-					childTaxonomies?: {
-						title: string;
-						slug: string;
-					}[];
-				}[];
+				childTaxonomies: (SlugAndTitle & {
+					childTaxonomies: SlugAndTitle[];
+				})[];
 			};
-			substances?: QueryResult<FeedBorderlineSubstance>[];
-			childTaxonomies?: {
+			substances: WithSlug<QueryResult<FeedBorderlineSubstance>>[];
+			childTaxonomies: {
 				title: string;
-				substances?: QueryResult<FeedBorderlineSubstance>[];
+				substances: WithSlug<QueryResult<FeedBorderlineSubstance>>[];
 				childTaxonomies?: {
 					title: string;
-					substances?: QueryResult<FeedBorderlineSubstance>[];
+					substances: WithSlug<QueryResult<FeedBorderlineSubstance>>[];
 				}[];
 			}[];
 		};
@@ -68,20 +66,22 @@ const BorderlineSubstancesSectionPage: FC<
 	// In some taxonomies there are substances at multiple levels of the taxonomy which need to be flattened for the section nav
 	// Currently these only go 3 deep in the "food for special diets" taxonomy.
 	// If they ever go further it would be worth doing something recursive to check every level until there are no more substances.
-	const flattenedSubstances: QueryResult<FeedBorderlineSubstance>[] = [];
+	const flattenedSubstances: SectionLink[] = [];
 
-	substances?.forEach((substance) => flattenedSubstances.push(substance));
+	substances?.forEach(({ title, slug }) =>
+		flattenedSubstances.push({ title, id: slug })
+	);
 
 	childTaxonomies?.map((child) =>
-		child.substances?.forEach((substance) =>
-			flattenedSubstances.push(substance)
+		child.substances?.forEach(({ title, slug }) =>
+			flattenedSubstances.push({ title, id: slug })
 		)
 	);
 
 	childTaxonomies?.map((child) =>
 		child.childTaxonomies?.map((child2) =>
-			child2.substances?.forEach((substance) =>
-				flattenedSubstances.push(substance)
+			child2.substances?.forEach(({ title, slug }) =>
+				flattenedSubstances.push({ title, id: slug })
 			)
 		)
 	);
@@ -222,32 +222,17 @@ export const query = graphql`
 				}
 			}
 			substances {
-				title
-				introductionNote
-				id
-				presentations {
-					...FullPresentation
-				}
+				...FullSubstance
 			}
 			childTaxonomies {
 				title
 				substances {
-					title
-					introductionNote
-					id
-					presentations {
-						...FullPresentation
-					}
+					...FullSubstance
 				}
 				childTaxonomies {
 					title
 					substances {
-						title
-						introductionNote
-						id
-						presentations {
-							...FullPresentation
-						}
+						...FullSubstance
 					}
 				}
 			}

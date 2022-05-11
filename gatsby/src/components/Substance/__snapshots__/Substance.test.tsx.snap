@@ -32,7 +32,7 @@ exports[`substance should match snapshot 1`] = `
        
       <h2
         class="prepHeading"
-        id="PHP103613"
+        id="fresubin-1500-complete"
       >
         <span
           class="headingIcons"
@@ -47,16 +47,18 @@ exports[`substance should match snapshot 1`] = `
           class="headingText"
         >
           Fresubin® 1500 Complete
-           
         </span>
       </h2>
-      <div
-        class="alert alert--info"
-      >
-        Not suitable for use in child under 3 years; not recommended for child under 6 years
-      </div>
     </summary>
-     
+    <div
+      class="alert alert--info"
+    >
+      <div>
+        <p>
+          Not suitable for use in child under 3 years; not recommended for child under 6 years
+        </p>
+      </div>
+    </div>
     <dl>
       <div
         class="packDefinitionListItem"

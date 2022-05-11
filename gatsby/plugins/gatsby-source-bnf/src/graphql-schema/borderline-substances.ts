@@ -47,9 +47,15 @@ export const borderlineSubstancesSchema = `
 	"""
 	An individual borderline substance. This comprises a number of presentations, each of which may contain zero or more preparations.
 	"""
-	type ${BnfNode.BorderlineSubstance} implements Node @dontInfer {
+	type ${BnfNode.BorderlineSubstance} @dontInfer {
+		"The PHPID of the borderline substance"
+		id: ID!
+
 		"The title of the borderline substance. May contain HTML mark-up."
 		title: String!
+
+		"The slugified and lowercased title, used as a URL path/hash"
+		slug: String! @slug(field: "title")
 
 		"An optional introductory note for the borderline substance. May contain HTML mark-up."
 		introductionNote: String
@@ -61,7 +67,7 @@ export const borderlineSubstancesSchema = `
 	"""
 	The presentation of a borderline substance, i.e. its formulation and nutritional content. Also comprises zero or more preparations.
 	"""
-	type ${BnfNode.BorderlineSubstancePresentation} {
+	type ${BnfNode.BorderlineSubstancePresentation} @dontInfer {
 		"The formulation of the borderline substance, for example 'Liquid (tube feed) per 100 mL'."
 		formulation: String
 

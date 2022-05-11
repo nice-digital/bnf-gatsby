@@ -19,32 +19,17 @@ exports[`BorderlineSubstancesSectionPage should match snapshot for graphql query
 				}
 			}
 			substances {
-				title
-				introductionNote
-				id
-				presentations {
-					...FullPresentation
-				}
+				...FullSubstance
 			}
 			childTaxonomies {
 				title
 				substances {
-					title
-					introductionNote
-					id
-					presentations {
-						...FullPresentation
-					}
+					...FullSubstance
 				}
 				childTaxonomies {
 					title
 					substances {
-						title
-						introductionNote
-						id
-						presentations {
-							...FullPresentation
-						}
+						...FullSubstance
 					}
 				}
 			}

@@ -65,9 +65,15 @@ exports[`schema should match snapshot 1`] = `
 	\\"\\"\\"
 	An individual borderline substance. This comprises a number of presentations, each of which may contain zero or more preparations.
 	\\"\\"\\"
-	type BnfBorderlineSubstance implements Node @dontInfer {
+	type BnfBorderlineSubstance @dontInfer {
+		\\"The PHPID of the borderline substance\\"
+		id: ID!
+
 		\\"The title of the borderline substance. May contain HTML mark-up.\\"
 		title: String!
+
+		\\"The slugified and lowercased title, used as a URL path/hash\\"
+		slug: String! @slug(field: \\"title\\")
 
 		\\"An optional introductory note for the borderline substance. May contain HTML mark-up.\\"
 		introductionNote: String
@@ -79,7 +85,7 @@ exports[`schema should match snapshot 1`] = `
 	\\"\\"\\"
 	The presentation of a borderline substance, i.e. its formulation and nutritional content. Also comprises zero or more preparations.
 	\\"\\"\\"
-	type BnfBorderlineSubstancePresentation {
+	type BnfBorderlineSubstancePresentation @dontInfer {
 		\\"The formulation of the borderline substance, for example 'Liquid (tube feed) per 100 mL'.\\"
 		formulation: String
 

@@ -1,48 +1,49 @@
 import { FC } from "react";
-import striptags from "striptags";
 
 import { FeedBorderlineSubstance } from "@nice-digital/gatsby-source-bnf";
 import { Alert } from "@nice-digital/nds-alert";
 
 import { Accordion } from "@/components/Accordion/Accordion";
-import { QueryResult } from "@/utils";
+import { type QueryResult, type WithSlug } from "@/utils";
 
 import Presentation from "./Presentation/Presentation";
 import styles from "./Substance.module.scss";
 
 export type SubstanceProps = {
-	substance: QueryResult<FeedBorderlineSubstance>;
+	substance: WithSlug<QueryResult<FeedBorderlineSubstance>>;
 	label?: string;
 };
 
-const Substance: FC<SubstanceProps> = ({ substance, label }) => {
+const Substance: FC<SubstanceProps> = ({
+	substance: { title, slug, introductionNote, presentations },
+	label,
+}) => {
 	return (
 		<>
 			<Accordion
 				title={
-					<>
-						<h2
-							key={substance?.title}
-							id={substance?.id}
-							className={styles.prepHeading}
-						>
+					<h2 id={slug} className={styles.prepHeading}>
+						{label && (
 							<span className={styles.headingIcons}>
-								<span className={label ? styles.label : undefined}>
-									{label}
-								</span>
+								<span className={styles.label}>{label}</span>
 							</span>
-							<span className={styles.headingText}>{substance?.title} </span>
-						</h2>
-						{substance && substance?.introductionNote && (
-							<Alert type="info">
-								{striptags(substance?.introductionNote)}
-							</Alert>
 						)}
-					</>
+						<span
+							className={styles.headingText}
+							dangerouslySetInnerHTML={{ __html: title }}
+						/>
+					</h2>
 				}
 			>
-				{" "}
-				{substance?.presentations?.map((presentation, i) => (
+				{introductionNote && (
+					<Alert type="info">
+						<div
+							className={styles.alertContent}
+							dangerouslySetInnerHTML={{ __html: introductionNote }}
+						/>
+					</Alert>
+				)}
+				{presentations.map((presentation, i) => (
 					<Presentation key={i} presentation={presentation}></Presentation>
 				))}
 			</Accordion>

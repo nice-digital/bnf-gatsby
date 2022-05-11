@@ -5,6 +5,7 @@ import Substance, { type SubstanceProps } from "./Substance";
 const substanceProps: SubstanceProps = {
 	substance: {
 		title: "Fresubin® 1500 Complete",
+		slug: "fresubin-1500-complete",
 		presentations: [
 			{
 				acbs: [],

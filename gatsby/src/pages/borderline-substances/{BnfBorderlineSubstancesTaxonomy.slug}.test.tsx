@@ -57,6 +57,8 @@ const isRootTwoLevelProps: BorderlineSubstancesSectionPageProps = {
 		bnfBorderlineSubstancesTaxonomy: {
 			slug: "root-taxonomy",
 			title: "Root taxonomy",
+			childTaxonomies: [],
+			substances: [],
 			rootTaxonomy: {
 				slug: "root-taxonomy",
 				title: "Root taxonomy",
@@ -88,6 +90,8 @@ const isRootSingleLevelProps: BorderlineSubstancesSectionPageProps = {
 		bnfBorderlineSubstancesTaxonomy: {
 			slug: "root-taxonomy",
 			title: "Root taxonomy",
+			childTaxonomies: [],
+			substances: [],
 			rootTaxonomy: {
 				slug: "root-taxonomy",
 				title: "Root taxonomy",
@@ -95,10 +99,12 @@ const isRootSingleLevelProps: BorderlineSubstancesSectionPageProps = {
 					{
 						title: "Taxonomy 1",
 						slug: "taxonomy-1",
+						childTaxonomies: [],
 					},
 					{
 						title: "Taxonomy 2",
 						slug: "taxonomy-2",
+						childTaxonomies: [],
 					},
 				],
 			},
@@ -133,6 +139,7 @@ const isNotRootProps: BorderlineSubstancesSectionPageProps = {
 			substances: [
 				{
 					title: "Fresubin® 1500 Complete",
+					slug: "fresubin-1500-complete",
 					presentations: [
 						{
 							acbs: [
@@ -186,6 +193,7 @@ const isNotRootProps: BorderlineSubstancesSectionPageProps = {
 				},
 				{
 					title: "Fresubin® Original Fibre",
+					slug: "fresubin-original-fibre",
 					presentations: [
 						{
 							acbs: [
@@ -255,6 +263,7 @@ const isNotRootProps: BorderlineSubstancesSectionPageProps = {
 					substances: [
 						{
 							title: "Fresubin® Soya Fibre",
+							slug: "fresubin-soya-fibre",
 							introductionNote:
 								"<p>Not suitable for use in child under 3 years; not recommended for child under 6 years</p>",
 							id: "PHP103619",
