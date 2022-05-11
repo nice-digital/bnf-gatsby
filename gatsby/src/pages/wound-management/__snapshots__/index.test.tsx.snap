@@ -147,7 +147,7 @@ exports[`Wound management index page should match page snapshot 1`] = `
       >
         <nav
           aria-labelledby="navigate-to-section"
-          class="nav navReadableMaxWidth"
+          class="nav"
         >
           <h2
             class="heading"

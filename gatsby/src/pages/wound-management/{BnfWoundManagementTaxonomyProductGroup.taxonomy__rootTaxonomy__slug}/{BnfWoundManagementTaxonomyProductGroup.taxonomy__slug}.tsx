@@ -100,7 +100,7 @@ const WoundManagementProductPage: FC<WoundManagementProductPageProps> = ({
 				}
 			/>
 
-			<SectionNav readableMaxWidth {...navSections} />
+			<SectionNav {...navSections} />
 
 			{text && <div dangerouslySetInnerHTML={{ __html: text }}></div>}
 

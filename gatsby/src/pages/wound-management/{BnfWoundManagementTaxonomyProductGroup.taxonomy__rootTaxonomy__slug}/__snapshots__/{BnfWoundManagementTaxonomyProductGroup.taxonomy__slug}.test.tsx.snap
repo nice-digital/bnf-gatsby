@@ -131,7 +131,7 @@ exports[`Wound management taxonomy page should match page snapshot 1`] = `
     </div>
     <nav
       aria-labelledby="navigate-to-section"
-      class="nav navReadableMaxWidth"
+      class="nav"
     >
       <h2
         class="heading"
