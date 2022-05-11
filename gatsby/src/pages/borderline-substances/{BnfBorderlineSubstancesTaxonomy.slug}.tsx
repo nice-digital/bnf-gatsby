@@ -88,7 +88,11 @@ const BorderlineSubstancesSectionPage: FC<
 
 	return (
 		<Layout>
-			<SEO title={title} />
+			<SEO
+				title={`${title} ${
+					isRoot ? "" : ` | ${rootTaxonomy.title}`
+				} | Borderline substances`}
+			/>
 
 			<Breadcrumbs>
 				<Breadcrumb to="https://www.nice.org.uk/">NICE</Breadcrumb>

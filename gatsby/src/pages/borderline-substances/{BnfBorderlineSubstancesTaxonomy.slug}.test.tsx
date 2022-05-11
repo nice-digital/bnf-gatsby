@@ -347,11 +347,27 @@ describe("BorderlineSubstancesSectionPage", () => {
 	});
 
 	describe("SEO", () => {
+		beforeEach(() => {
+			document.title = "";
+		});
+
 		it("should set page title from borderline substance taxonomy title", async () => {
 			render(<BorderlineSubstancesSectionPage {...isRootTwoLevelProps} />);
 
 			await waitFor(() => {
-				expect(document.title).toStartWith("Root taxonomy |");
+				expect(document.title).toStartWith(
+					"Root taxonomy | Borderline substances | "
+				);
+			});
+		});
+
+		it("should set page title from borderline substance taxonomy title", async () => {
+			render(<BorderlineSubstancesSectionPage {...isNotRootProps} />);
+
+			await waitFor(() => {
+				expect(document.title).toStartWith(
+					"Taxonomy 1 | Root taxonomy | Borderline substances | "
+				);
 			});
 		});
 	});
