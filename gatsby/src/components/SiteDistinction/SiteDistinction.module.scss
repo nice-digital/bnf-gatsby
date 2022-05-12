@@ -133,3 +133,14 @@
     transform: rotate(180deg);
   }
 }
+
+// temp width adjustment so tabs don't overlap breadcrumb on mobile
+:global(.breadcrumbs) {
+  width: 80%;
+}
+
+@include core.mq($from: md) {
+  :global(.breadcrumbs) {
+    width: 100%;
+  }
+}
