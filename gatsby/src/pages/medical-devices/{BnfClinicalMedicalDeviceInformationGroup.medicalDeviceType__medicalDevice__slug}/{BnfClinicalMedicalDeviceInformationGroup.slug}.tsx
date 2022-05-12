@@ -15,6 +15,7 @@ import {
 	IndicationsAndDoseContent,
 } from "@/components/DrugSections";
 import { MedicalDevicePrepsSection } from "@/components/MedicalDevicePrepsSection/MedicalDevicePrepsSection";
+import { Menu } from "@/components/Menu/Menu";
 import { SectionLink } from "@/components/SectionNav/SectionNav";
 import { isTruthy, type QueryResult } from "@/utils";
 
@@ -125,28 +126,15 @@ const CMPIPage: FC<CMPIPageProps> = ({
 			menu={
 				clinicalMedicalDeviceInformationGroups.length > 1
 					? () => (
-							<StackedNav
-								aria-label={medicalDeviceTitleNoHtml}
+							<Menu
 								label={medicalDeviceTitleNoHtml}
-								link={{
-									destination: `/medical-devices/${medicalDevice.slug}/`,
-									elementType: Link,
-								}}
-							>
-								{clinicalMedicalDeviceInformationGroups.map((cmpi) => {
-									const pagePath = `/medical-devices/${medicalDevice.slug}/${cmpi.slug}/`;
-									return (
-										<StackedNavLink
-											key={cmpi.title}
-											destination={pagePath}
-											elementType={Link}
-											isCurrent={pathname === pagePath}
-										>
-											<span dangerouslySetInnerHTML={{ __html: cmpi.title }} />
-										</StackedNavLink>
-									);
-								})}
-							</StackedNav>
+								ariaLabel={medicalDeviceTitleNoHtml}
+								link={`/medical-devices/${medicalDevice.slug}/`}
+								pages={clinicalMedicalDeviceInformationGroups.map((cmpi) => ({
+									title: cmpi.title,
+									href: `/medical-devices/${medicalDevice.slug}/${cmpi.slug}/`,
+								}))}
+							></Menu>
 					  )
 					: undefined
 			}
