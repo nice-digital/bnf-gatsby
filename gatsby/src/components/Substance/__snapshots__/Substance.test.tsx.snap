@@ -53,7 +53,9 @@ exports[`substance should match snapshot 1`] = `
     <div
       class="alert alert--info"
     >
-      <div>
+      <div
+        class="alertContent"
+      >
         <p>
           Not suitable for use in child under 3 years; not recommended for child under 6 years
         </p>

@@ -109,7 +109,7 @@ const anchorReplacer =
 		} else if (landingPageNodeTypes.includes(nodeType)) {
 			newPath = `${basePath}/`;
 		} else {
-			newPath = `${basePath}/${slugify(title)}/`;
+			newPath = `${basePath}/${slugify(title, internal.type)}/`;
 		}
 
 		if (!sectionId) return anchorHTML.replace(href, newPath);
@@ -124,7 +124,10 @@ const anchorReplacer =
 				`Couldn't find section with id ${sectionId} on node ${node.title} in link ${anchorHTML}`
 			);
 
-		return anchorHTML.replace(href, `${newPath}#${slugify(sectionNode.title)}`);
+		return anchorHTML.replace(
+			href,
+			`${newPath}#${slugify(sectionNode.title, BnfNode.RecordSection)}`
+		);
 	};
 
 export const replaceRelativeAnchors = (
