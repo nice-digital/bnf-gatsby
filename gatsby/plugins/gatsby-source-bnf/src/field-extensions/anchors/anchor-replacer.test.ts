@@ -209,18 +209,24 @@ describe("replaceRelativeAnchors", () => {
 		});
 
 		it("should replace link to wound management taxonomy", () => {
-			getNodeById.mockReturnValueOnce({
-				title: "Low adherence dressing",
-				internal: { type: BnfNode.WoundManagementTaxonomy },
-			});
+			getNodeById
+				.mockReturnValueOnce({
+					title: "Low adherence dressing",
+					internal: { type: BnfNode.WoundManagementTaxonomy },
+				})
+				.mockReturnValueOnce({
+					title: "Basic wound contact dressings",
+					internal: { type: BnfNode.WoundManagementTaxonomy },
+				});
 
 			expect(
 				replaceRelativeAnchors(
 					`<a href="/woundManagement/taxonomy/_870221431">Low adherence dressing</a>`,
 					nodeModel
 				)
-				// TODO Update this path here when we know what URL structure wound management will have
-			).toBe(`<a href="/wound-management/">Low adherence dressing</a>`);
+			).toBe(
+				`<a href="/wound-management/basic-wound-contact-dressings/#low-adherence-dressing">Low adherence dressing</a>`
+			);
 		});
 	});
 
