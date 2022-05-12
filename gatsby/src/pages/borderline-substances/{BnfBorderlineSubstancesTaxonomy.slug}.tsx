@@ -151,7 +151,7 @@ const BorderlineSubstancesSectionPage: FC<
 									{sections.map((child1, i) => (
 										<>
 											<h2
-												key={child1.slug}
+												id={child1.slug}
 												className={i === 0 ? styles.firstHeading : undefined}
 											>
 												{child1.title}
