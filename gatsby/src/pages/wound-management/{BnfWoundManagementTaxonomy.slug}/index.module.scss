@@ -1,0 +1,24 @@
+@use '@nice-digital/nds-core/scss/core';
+
+.childTaxonomyList {
+  list-style: none;
+  margin: 0;
+
+  > li {
+    border-bottom: 1px solid core.$nds-colour-border;
+    padding-bottom: core.rem(core.$nds-spacing-large);
+  }
+}
+
+.nestedTaxonomyList {
+  column-gap: core.rem(core.$nds-spacing-large);
+  columns: 2;
+  list-style: none;
+  margin: 0;
+
+  li {
+    line-height: 1.6;
+    margin-bottom: 0;
+    padding: core.rem(core.$nds-spacing-x-small) 0;
+  }
+}

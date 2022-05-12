@@ -15,6 +15,7 @@ import { nodeTypePathMap } from "./node-type-paths";
 type CustomNodeInput = NodeInput & {
 	title: string;
 	sections?: FeedRecordSection[];
+	parentTaxonomy?: string;
 };
 
 /**
@@ -102,8 +103,22 @@ const anchorReplacer =
 		// Turn the node into a URL path
 		let newPath: string;
 		if (nodeType === BnfNode.WoundManagementTaxonomy) {
-			// TODO: What will the URL structure of wound management pages be?
-			newPath = `${basePath}/`;
+			const parentNode = nodeModel.getNodeById<CustomNodeInput>({
+				id: node.parentTaxonomy || "",
+				type: nodeType,
+			});
+			const grandParentNode = nodeModel.getNodeById<CustomNodeInput>({
+				id: parentNode?.parentTaxonomy || "",
+				type: nodeType,
+			});
+
+			newPath = grandParentNode
+				? `${basePath}/${slugify(grandParentNode?.title || "")}/${slugify(
+						node.title
+				  )}`
+				: `${basePath}/${slugify(parentNode?.title || "")}/#${slugify(
+						node.title
+				  )}`;
 		} else if (nodeType === BnfNode.NursePrescribersFormularyIntroduction) {
 			newPath = `${basePath}/approved-list-for-prescribing-by-community-practitioner-nurse-prescribers-npf/`;
 		} else if (landingPageNodeTypes.includes(nodeType)) {

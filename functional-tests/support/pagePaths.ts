@@ -33,7 +33,17 @@ export const pagePaths = {
 	spacers: "/medical-devices/spacers/",
 	"urine protein testing strips":
 		"/medical-devices/urine-protein-testing-strips/urine-protein-testing-strips/",
+	// Wound management
 	"wound management": "/wound-management",
+	"advanced wound dressings": "/wound-management/advanced-wound-dressings/",
+	"antimicrobial dressings": "/wound-management/antimicrobial-dressings/",
+	"complex adjunct therapies": "/wound-management/complex-adjunct-therapies/",
+	bandages: "/wound-management/bandages/",
+	"odour absorbent dressings":
+		"/wound-management/advanced-wound-dressings/odour-absorbent-dressings/",
+	"protease-modulating matrix dressings":
+		"/wound-management/specialised-dressings/protease-modulating-matrix-dressings/",
+	"medicated bandages": "/wound-management/bandages/medicated-bandages/",
 	// Medicines guidance
 	"guidance on prescribing": "/medicines-guidance/guidance-on-prescribing/",
 	"prescription writing": "/medicines-guidance/prescription-writing/",

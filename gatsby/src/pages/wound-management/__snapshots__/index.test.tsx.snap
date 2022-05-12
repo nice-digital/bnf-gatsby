@@ -95,7 +95,7 @@ exports[`Wound management index page should match page snapshot 1`] = `
           class="stacked-nav__root"
         >
           <a
-            aria-current="false"
+            aria-current="true"
             href="/wound-management/"
           >
             Wound management products
@@ -109,7 +109,7 @@ exports[`Wound management index page should match page snapshot 1`] = `
           >
             <a
               aria-current="false"
-              href="/wound-management/basic-wound-contact-dressings"
+              href="/wound-management/basic-wound-contact-dressings/"
             >
               <span
                 class="stacked-nav__content-wrapper"
@@ -125,7 +125,7 @@ exports[`Wound management index page should match page snapshot 1`] = `
           >
             <a
               aria-current="false"
-              href="/wound-management/advanced-wound-dressings"
+              href="/wound-management/advanced-wound-dressings/"
             >
               <span
                 class="stacked-nav__content-wrapper"
