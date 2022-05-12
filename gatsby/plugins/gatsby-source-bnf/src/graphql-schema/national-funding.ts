@@ -29,31 +29,31 @@ export const nationalFundingSchema = `
 		contentFor: String!
 
 		"The initial paragraph of text at the start of the national funding pot. May contain HTML mark-up"
-		initialText: String!
+		initialText: String! @html
 
 		"Title for the NICE funding decisions."
-		niceDecisionsTitle: String
+		niceDecisionsTitle: String @html
 
 		"The NICE funding decisions."
 		niceDecisions: [${BnfNode.NationalFundingDecision}!]!
 
 		"Title for the SMC funding decisions."
-		smcDecisionsTitle: String
+		smcDecisionsTitle: String @html
 
 		"The SMC funding decisions."
 		smcDecisions: [${BnfNode.NationalFundingDecision}!]!
 
 		"Title for the AWMSG funding decisions."
-		awmsgDecisionsTitle: String
+		awmsgDecisionsTitle: String @html
 
 		"The AWMSG funding decisions."
 		awmsgDecisions: [${BnfNode.NationalFundingDecision}!]!
 
 		"Title for the non-NHS content."
-		nonNhsTitle: String
+		nonNhsTitle: String @html
 
 		"Whether the drug can be accessed through the NHS, based on whether it is approved for national funding. May contain HTML mark-up."
-		nonNhs: String
+		nonNhs: String @html
 	}
 
 	"""
@@ -61,18 +61,18 @@ export const nationalFundingSchema = `
 	"""
 	type ${BnfNode.NationalFundingDecision} {
 		"The funding identifier (e.g. TA177)"
-		fundingIdentifier: String!
+		fundingIdentifier: String! @html
 
 		"The slugified and lowercased funding identifier, used as an ID/hash link"
 		slug: String! @slug(field: "fundingIdentifier")
 
 		"The title of the funding decision, usually including the date that the decision was published. May contain HTML mark-up"
-		title: String
+		title: String @html
 
 		"The URL to the relevant funding body's decision."
 		url: String!
 
 		"A summary of the decision."
-		approvedForUse: String!
+		approvedForUse: String! @html
 	}
 `;

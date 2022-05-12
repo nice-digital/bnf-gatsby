@@ -14,6 +14,7 @@ import { htmlFieldExtension } from "./field-extensions/html";
 import { slugFieldExtension } from "./field-extensions/slug";
 import { schema } from "./graphql-schema";
 import { extractImageZIP } from "./images-unzipper";
+import { createBorderlineSubstancesNodes } from "./node-creation/borderline-substances";
 import { createCautionaryAndAdvisoryLabelsNodes } from "./node-creation/cautionary-advisory";
 import { createClassificationNodes } from "./node-creation/classifications";
 import { createDrugNodes } from "./node-creation/drugs";
@@ -103,6 +104,11 @@ export const sourceNodes = async (
 
 	createNursePrescribersNodes(
 		feedData.nursePrescribersFormulary,
+		sourceNodesArgs
+	);
+
+	createBorderlineSubstancesNodes(
+		feedData.borderlineSubstances,
 		sourceNodesArgs
 	);
 
