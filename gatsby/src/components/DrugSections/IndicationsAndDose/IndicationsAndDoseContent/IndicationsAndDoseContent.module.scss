@@ -10,12 +10,18 @@
 
 .indicationHeading {
   break-inside: avoid;
+  line-height: 1.3;
   margin: core.rem(0 0 core.$nds-spacing-medium);
   max-width: none;
 }
 
 .indicationText {
   display: block;
+  margin-top: core.rem(core.$nds-spacing-small);
+
+  &:first-child {
+    margin-top: 0;
+  }
 }
 
 .routeOfAdministration {
