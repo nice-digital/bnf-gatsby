@@ -1,5 +1,5 @@
 import { useLocation } from "@reach/router";
-import { graphql, Link } from "gatsby";
+import { graphql } from "gatsby";
 import { FC } from "react";
 import striptags from "striptags";
 
@@ -7,7 +7,6 @@ import {
 	FeedIndicationsAndDosePotContent,
 	type FeedPrep,
 } from "@nice-digital/gatsby-source-bnf";
-import { StackedNav, StackedNavLink } from "@nice-digital/nds-stacked-nav";
 
 import { DetailsPageLayout } from "@/components/DetailsPageLayout/DetailsPageLayout";
 import {
@@ -104,8 +103,7 @@ const CMPIPage: FC<CMPIPageProps> = ({
 		},
 	},
 }) => {
-	const { pathname } = useLocation(),
-		titleNoHtml = striptags(title),
+	const titleNoHtml = striptags(title),
 		medicalDeviceTitleNoHtml = striptags(medicalDevice.title);
 
 	return (
