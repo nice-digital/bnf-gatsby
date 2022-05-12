@@ -7,11 +7,6 @@
   display: flex;
   flex-wrap: nowrap;
   text-decoration: underline;
-
-  summary:hover &,
-  button:hover & {
-    color: core.$nds-colour-link-hover;
-  }
 }
 
 .icon {

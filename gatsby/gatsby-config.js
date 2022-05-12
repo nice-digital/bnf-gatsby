@@ -1,3 +1,4 @@
+const { createProxyMiddleware } = require("http-proxy-middleware");
 require("source-map-support").install();
 require("ts-node/register/transpile-only");
 
@@ -69,4 +70,14 @@ module.exports = {
 			},
 		},
 	],
+	// Proxy the relative search endpoint for local dev
+	developMiddleware: (app) => {
+		app.use(
+			"/api",
+			createProxyMiddleware({
+				target: "https://alpha-search-api.nice.org.uk",
+				changeOrigin: true,
+			})
+		);
+	},
 };

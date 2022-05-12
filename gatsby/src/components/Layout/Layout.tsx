@@ -7,6 +7,7 @@ import { SiteHeader } from "../SiteHeader/SiteHeader";
 
 import { isBNF } from "./../../site";
 import "./../../styles/global.scss";
+import "./../../styles/feed.scss";
 
 type LayoutProps = {
 	children: ReactNode;

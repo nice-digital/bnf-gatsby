@@ -63,6 +63,7 @@
     "dotenv": "^16.0.0",
     "gatsby-plugin-google-tagmanager": "^4.6.0",
     "gatsby-plugin-remove-generator": "^1.2.0",
+    "http-proxy-middleware": "^2.0.6",
     "identity-obj-proxy": "^3.0.0",
     "jest-fetch-mock": "^3.0.3",
     "jszip": "^3.9.1",

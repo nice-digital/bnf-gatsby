@@ -36,7 +36,10 @@ const SummaryRecordCount = ({
 }: SearchResultsSuccess) => {
 	return (
 		<>
-			Showing {firstResult} to {lastResult} of {resultCount}
+			Showing{" "}
+			{resultCount === 1
+				? "1 result"
+				: `${firstResult} to ${lastResult} of ${resultCount} results`}
 			{finalSearchText && (
 				<>
 					{" "}
