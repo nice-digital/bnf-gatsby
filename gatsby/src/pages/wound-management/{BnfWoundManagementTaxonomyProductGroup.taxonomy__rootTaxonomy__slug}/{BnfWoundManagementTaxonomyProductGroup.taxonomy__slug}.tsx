@@ -4,6 +4,7 @@ import React, { type FC } from "react";
 import striptags from "striptags";
 
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
+import { Grid, GridItem } from "@nice-digital/nds-grid";
 import { PageHeader } from "@nice-digital/nds-page-header";
 
 import { Accordion } from "@/components/Accordion/Accordion";
@@ -100,73 +101,77 @@ const WoundManagementProductPage: FC<WoundManagementProductPageProps> = ({
 				}
 			/>
 
-			<SectionNav {...navSections} />
+			<Grid gutter="loose">
+				<GridItem cols={12} lg={9}>
+					<SectionNav {...navSections} />
 
-			{text && <div dangerouslySetInnerHTML={{ __html: text }}></div>}
+					{text && <div dangerouslySetInnerHTML={{ __html: text }}></div>}
 
-			<AccordionGroup
-				toggleText={(isOpen) =>
-					`${isOpen ? "Hide" : "Show"} all ${title.toLowerCase()}  (${
-						sortedProductGroups.length
-					})`
-				}
-			>
-				<ul
-					className={styles.productGroupList}
-					aria-label={`List of products: ${title}`}
-				>
-					{sortedProductGroups.map(({ title, description, products }) => (
-						<li key={title}>
-							<Accordion
-								title={
-									<div>
-										<h2
-											className={styles.productGroupHeading}
-											id={slugify(striptags(title))}
-										>
-											{title}
-										</h2>
-										{description && (
-											<div
-												dangerouslySetInnerHTML={{ __html: description }}
-											></div>
+					<AccordionGroup
+						toggleText={(isOpen) =>
+							`${isOpen ? "Hide" : "Show"} all ${title.toLowerCase()}  (${
+								sortedProductGroups.length
+							})`
+						}
+					>
+						<ul
+							className={styles.productGroupList}
+							aria-label={`List of products: ${title}`}
+						>
+							{sortedProductGroups.map(({ title, description, products }) => (
+								<li key={title}>
+									<Accordion
+										title={
+											<div>
+												<h2
+													className={styles.productGroupHeading}
+													id={slugify(striptags(title))}
+												>
+													{title}
+												</h2>
+												{description && (
+													<div
+														dangerouslySetInnerHTML={{ __html: description }}
+													></div>
+												)}
+											</div>
+										}
+									>
+										{products.length > 0 ? (
+											<table>
+												<thead>
+													<tr>
+														<th>Product</th>
+														<th>Price</th>
+													</tr>
+												</thead>
+												<tbody>
+													{products.map(({ name, manufacturer, packs }) => (
+														<tr key={name}>
+															<td>
+																{name}{" "}
+																<span className={styles.manufacturer}>
+																	{manufacturer}
+																</span>
+															</td>
+															<td>{packs[0]?.nhsIndicativePrice || "£0.00"}</td>
+														</tr>
+													))}
+												</tbody>
+											</table>
+										) : (
+											<p>
+												Please note, there is currently no specific information
+												about this product.
+											</p>
 										)}
-									</div>
-								}
-							>
-								{products.length > 0 ? (
-									<table>
-										<thead>
-											<tr>
-												<th>Product</th>
-												<th>Price</th>
-											</tr>
-										</thead>
-										<tbody>
-											{products.map(({ name, manufacturer, packs }) => (
-												<tr key={name}>
-													<td>
-														{name}{" "}
-														<span className={styles.manufacturer}>
-															{manufacturer}
-														</span>
-													</td>
-													<td>{packs[0]?.nhsIndicativePrice || "£0.00"}</td>
-												</tr>
-											))}
-										</tbody>
-									</table>
-								) : (
-									<p>
-										Please note, there is currently no specific information
-										about this product.
-									</p>
-								)}
-							</Accordion>
-						</li>
-					))}
-				</ul>
-			</AccordionGroup>
+									</Accordion>
+								</li>
+							))}
+						</ul>
+					</AccordionGroup>
+				</GridItem>
+			</Grid>
 		</Layout>
 	);
 };
