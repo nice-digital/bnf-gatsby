@@ -73,3 +73,12 @@
     display: block;
   }
 }
+
+.icon {
+  color: core.$nds-colour-link;
+  right: core.rem(core.$nds-spacing-small);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: all 0.25s ease;
+}
