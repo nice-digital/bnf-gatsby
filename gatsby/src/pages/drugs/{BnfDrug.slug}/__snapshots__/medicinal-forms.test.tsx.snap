@@ -118,7 +118,7 @@ exports[`MedicinalFormsPage Body should match snapshot for page body 1`] = `
           <sub>
             0
           </sub>
-          ) immunoglobulin
+          ) immunoglobulin 
         </span>
       </span>
       <span>
@@ -131,7 +131,7 @@ exports[`MedicinalFormsPage Body should match snapshot for page body 1`] = `
       <a
         href="/drugs/anti-d-rh0-immunoglobulin/"
       >
-        View
+        View 
         anti-D (Rh0) immunoglobulin
          drug monograph
       </a>
@@ -150,20 +150,57 @@ exports[`MedicinalFormsPage Body should match snapshot for page body 1`] = `
         <div
           data-g="12 lg:3"
         >
-          <aside
-            class="asideInfo"
-          >
-            <div
-              class="alert alert--info"
-            >
-              <p>
-                NICE does not sell any drugs, medicines or pharmaceutical products.
-              </p>
-            </div>
-          </div>
           <div
-            class="body"
-            data-g="12 lg:9"
+            class="alert alert--info"
+          >
+            <p>
+              NICE does not sell any drugs, medicines or pharmaceutical products.
+            </p>
+          </div>
+        </div>
+        <div
+          class="body"
+          data-g="12 lg:9"
+        >
+          <nav
+            aria-labelledby="navigate-to-section"
+            class="nav sectionNav"
+          >
+            <h2
+              class="heading"
+              id="navigate-to-section"
+            >
+              Navigate to section
+            </h2>
+            <ol
+              aria-label="Jump links to sections on this page"
+              class="linkList"
+            >
+              <li>
+                <a
+                  href="#tablets"
+                >
+                  Tablets
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#powder"
+                >
+                  Powder
+                </a>
+              </li>
+            </ol>
+          </nav>
+          <p>
+            Test initial statement
+          </p>
+          <p>
+            Test special order statement
+          </p>
+          <section
+            aria-labelledby="tablets"
+            class="form"
           >
             <h2
               id="tablets"
@@ -200,7 +237,7 @@ exports[`MedicinalFormsPage Body should match snapshot for page body 1`] = `
                   </svg>
                   Show
                 </span>
-
+                 
                 <h3
                   class="labelAccordionHeading"
                 >
@@ -233,9 +270,9 @@ exports[`MedicinalFormsPage Body should match snapshot for page body 1`] = `
                   <h4
                     class="labelHeading"
                   >
-                    Label
+                    Label 
                     3
-
+                     
                     (test qualifier)
                   </h4>
                   <p>
@@ -254,9 +291,9 @@ exports[`MedicinalFormsPage Body should match snapshot for page body 1`] = `
                   <h4
                     class="labelHeading"
                   >
-                    Label
+                    Label 
                     5
-
+                     
                   </h4>
                   <p>
                     &lt;p&gt;Another English recommendation&lt;/p&gt;
