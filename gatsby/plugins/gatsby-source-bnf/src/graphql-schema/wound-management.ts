@@ -41,6 +41,11 @@ export const woundManagementSchema = `
 		rootTaxonomy: ${BnfNode.WoundManagementTaxonomy}! @link
 	}
 
+	type ${BnfNode.WoundManagementTaxonomyProductGroup} implements Node @dontInfer {
+		"The taxonomy node"
+		taxonomy: ${BnfNode.WoundManagementTaxonomy}! @link
+	}
+
 	"A wound management product group represents a group of wound management products including details of any relevant preparations and prices."
 	type ${BnfNode.WoundManagementProductGroup} @dontInfer {
 		"The title of the wound management product group."
