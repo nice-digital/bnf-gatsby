@@ -27,6 +27,7 @@
 
 .headingText {
   display: block;
+  margin-bottom: core.rem(core.$nds-spacing-small);
 
   @include core.mq($from: md) {
     flex-grow: 1;
@@ -53,5 +54,13 @@
 
   > :last-child {
     margin-bottom: 0;
+  }
+}
+
+.alert {
+  display: block;
+
+  @include core.mq($from: md) {
+    flex-grow: 1;
   }
 }

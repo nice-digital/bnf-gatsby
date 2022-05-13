@@ -30,6 +30,17 @@ exports[`substance should match snapshot 1`] = `
         Show
       </span>
        
+      <div
+        class="alert alert--info"
+      >
+        <div
+          class="alertContent"
+        >
+          <p>
+            Not suitable for use in child under 3 years; not recommended for child under 6 years
+          </p>
+        </div>
+      </div>
       <h2
         class="prepHeading"
         id="fresubin-1500-complete"
@@ -50,17 +61,6 @@ exports[`substance should match snapshot 1`] = `
         </span>
       </h2>
     </summary>
-    <div
-      class="alert alert--info"
-    >
-      <div
-        class="alertContent"
-      >
-        <p>
-          Not suitable for use in child under 3 years; not recommended for child under 6 years
-        </p>
-      </div>
-    </div>
     <dl>
       <div
         class="packDefinitionListItem"

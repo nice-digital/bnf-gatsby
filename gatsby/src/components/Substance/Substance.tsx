@@ -22,27 +22,29 @@ const Substance: FC<SubstanceProps> = ({
 		<>
 			<Accordion
 				title={
-					<h2 id={slug} className={styles.prepHeading}>
-						{label && (
-							<span className={styles.headingIcons}>
-								<span className={styles.label}>{label}</span>
-							</span>
+					<>
+						{introductionNote && (
+							<Alert type="info">
+								<div
+									className={styles.alertContent}
+									dangerouslySetInnerHTML={{ __html: introductionNote }}
+								/>
+							</Alert>
 						)}
-						<span
-							className={styles.headingText}
-							dangerouslySetInnerHTML={{ __html: title }}
-						/>
-					</h2>
+						<h2 id={slug} className={styles.prepHeading}>
+							{label && (
+								<span className={styles.headingIcons}>
+									<span className={styles.label}>{label}</span>
+								</span>
+							)}
+							<span
+								className={styles.headingText}
+								dangerouslySetInnerHTML={{ __html: title }}
+							/>
+						</h2>
+					</>
 				}
 			>
-				{introductionNote && (
-					<Alert type="info">
-						<div
-							className={styles.alertContent}
-							dangerouslySetInnerHTML={{ __html: introductionNote }}
-						/>
-					</Alert>
-				)}
 				{presentations.map((presentation, i) => (
 					<Presentation key={i} presentation={presentation}></Presentation>
 				))}
