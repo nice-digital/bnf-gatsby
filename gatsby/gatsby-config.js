@@ -32,6 +32,8 @@ module.exports = {
 				site: isBNF ? "bnf" : "bnfc",
 			},
 		},
+		// Only use preact in production because of the pesky prefreshGlueCode.js errors
+		process.env.NODE_ENV === "development" ? undefined : `gatsby-plugin-preact`,
 		// Avoid errors like "ModuleNotFoundError: Module not found: Error: Can't resolve '@/components/Layout/Layout'" when using custom paths in tsconfig.json
 		`gatsby-plugin-tsconfig-paths`,
 		{
@@ -68,5 +70,5 @@ module.exports = {
 				icon: "src/images/icon.png",
 			},
 		},
-	],
+	].filter(Boolean),
 };
