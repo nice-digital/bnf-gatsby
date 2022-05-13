@@ -1,6 +1,10 @@
-import { slugify, slugFieldExtension } from "./slug";
+import { slugify, slugFieldExtension, resetAllCounters } from "./slug";
 
 describe("slug field extension", () => {
+	beforeEach(() => {
+		resetAllCounters();
+	});
+
 	describe("slugify", () => {
 		it("should throw error if passed an falsey string", () => {
 			expect(() => {
@@ -59,6 +63,34 @@ describe("slug field extension", () => {
 				"factor-viia-recombinant"
 			);
 		});
+
+		it("should replace roman numerals without hyphens", () => {
+			expect(slugify("Factor VIIa (recombinant)")).toBe(
+				"factor-viia-recombinant"
+			);
+		});
+
+		it("should return the same slug when called multiple times without a key", () => {
+			expect(slugify("A title")).toBe("a-title");
+			expect(slugify("A title")).toBe("a-title");
+		});
+
+		it("should return the same slug when called multiple times with unique keys", () => {
+			expect(slugify("A title", "BnfKey1")).toBe("a-title");
+			expect(slugify("A title", "BnfKey2")).toBe("a-title");
+		});
+
+		it("should return a slug with counter when called multiple times with the same key", () => {
+			expect(slugify("A title", "BnfKey")).toBe("a-title");
+			expect(slugify("A title", "BnfKey")).toBe("a-title-2");
+		});
+
+		it("should return multiple slugs with counter when called multiple times with different keys", () => {
+			expect(slugify("A title", "BnfKey1")).toBe("a-title");
+			expect(slugify("A title", "BnfKey1")).toBe("a-title-2");
+			expect(slugify("A title", "BnfKey2")).toBe("a-title");
+			expect(slugify("A title", "BnfKey2")).toBe("a-title-2");
+		});
 	});
 
 	describe("slugFieldExtension", () => {
@@ -81,7 +113,51 @@ describe("slug field extension", () => {
 			expect(
 				slugFieldExtension
 					.extend({ field: "something" }, null)
-					.resolve({ something: "A test" }, null, null, null)
+					.resolve({ something: "A test" }, null, null, {
+						path: { typename: "BnfSomething" },
+					})
+			).toBe("a-test");
+		});
+
+		it("should return same slug when called multiple times for the same node id, type and title", () => {
+			const extension = slugFieldExtension.extend({ field: "something" }, null);
+			expect(
+				extension.resolve({ id: "123", something: "A test" }, null, null, {
+					path: { typename: "BnfSomething" },
+				})
+			).toBe("a-test");
+			expect(
+				extension.resolve({ id: "123", something: "A test" }, null, null, {
+					path: { typename: "BnfSomething" },
+				})
+			).toBe("a-test");
+		});
+
+		it("should return unique slug with counter when called multiple times for the same node type and title but different id", () => {
+			const extension = slugFieldExtension.extend({ field: "something" }, null);
+			expect(
+				extension.resolve({ id: "123", something: "A test" }, null, null, {
+					path: { typename: "BnfSomething" },
+				})
+			).toBe("a-test");
+			expect(
+				extension.resolve({ id: "456", something: "A test" }, null, null, {
+					path: { typename: "BnfSomething" },
+				})
+			).toBe("a-test-2");
+		});
+
+		it("should return same slug when called multiple times with same title but different type", () => {
+			const extension = slugFieldExtension.extend({ field: "something" }, null);
+			expect(
+				extension.resolve({ something: "A test" }, null, null, {
+					path: { typename: "BnfSomething1" },
+				})
+			).toBe("a-test");
+			expect(
+				extension.resolve({ something: "A test" }, null, null, {
+					path: { typename: "BnfSomething2" },
+				})
 			).toBe("a-test");
 		});
 
@@ -89,7 +165,9 @@ describe("slug field extension", () => {
 			expect(() => {
 				slugFieldExtension
 					.extend({ field: "invalid" }, null)
-					.resolve({ something: "A test" }, null, null, null);
+					.resolve({ something: "A test" }, null, null, {
+						path: { typename: "BnfSomething" },
+					});
 			}).toThrow("Field invalid has no value so can't be stringified");
 		});
 
@@ -97,7 +175,9 @@ describe("slug field extension", () => {
 			expect(() => {
 				slugFieldExtension
 					.extend({ field: "aNumber" }, null)
-					.resolve({ aNumber: 99 }, null, null, null);
+					.resolve({ aNumber: 99 }, null, null, {
+						path: { typename: "BnfSomething" },
+					});
 			}).toThrow("Field aNumber isn't a string value");
 		});
 	});
