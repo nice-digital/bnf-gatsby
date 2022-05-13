@@ -17,6 +17,7 @@ import {
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
+import { decapitalize } from "@/utils";
 import styles from "./{BnfWoundManagementTaxonomyProductGroup.taxonomy__slug}.module.scss";
 
 export interface WoundManagementProductPageProps {
@@ -71,7 +72,9 @@ const WoundManagementProductPage: FC<WoundManagementProductPageProps> = ({
 		<Layout>
 			<SEO
 				title={`${title} | Wound management`}
-				description={`This wound management topic describes the options that are currently recommended for ${title}`}
+				description={`This wound management topic describes the options that are currently recommended for ${decapitalize(
+					title
+				)}`}
 			/>
 
 			<Breadcrumbs>
