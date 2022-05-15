@@ -1,11 +1,16 @@
 import { graphql, Link } from "gatsby";
 import React, { type FC } from "react";
 
-import { FeedBorderlineSubstance } from "@nice-digital/gatsby-source-bnf";
+import {
+	FeedBorderlineSubstance,
+	PHPID,
+} from "@nice-digital/gatsby-source-bnf";
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
+import { ColumnList } from "@nice-digital/nds-column-list";
 import { Grid, GridItem } from "@nice-digital/nds-grid";
 import { PageHeader } from "@nice-digital/nds-page-header";
 
+import { AccordionGroup } from "@/components/AccordionGroup/AccordionGroup";
 import { BorderlineSubstancesMenu } from "@/components/BorderlineSubstancesMenu/BorderlineSubstancesMenu";
 import { Layout } from "@/components/Layout/Layout";
 import {
@@ -14,7 +19,12 @@ import {
 } from "@/components/SectionNav/SectionNav";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
-import { type QueryResult, type SlugAndTitle, type WithSlug } from "@/utils";
+import {
+	decapitalize,
+	type QueryResult,
+	type SlugAndTitle,
+	type WithSlug,
+} from "@/utils";
 
 import Substance from "../../components/Substance/Substance";
 
@@ -37,6 +47,12 @@ export type BorderlineSubstancesSectionPageProps = {
 					substances: WithSlug<QueryResult<FeedBorderlineSubstance>>[];
 				}[];
 			}[];
+			parentTaxonomy: {
+				title: string;
+				childTaxonomies: {
+					id: PHPID;
+				}[];
+			};
 		};
 	};
 };
@@ -51,6 +67,7 @@ const BorderlineSubstancesSectionPage: FC<
 			rootTaxonomy,
 			substances,
 			childTaxonomies,
+			parentTaxonomy,
 		},
 	},
 }) => {
@@ -61,7 +78,9 @@ const BorderlineSubstancesSectionPage: FC<
 			section.childTaxonomies == null || section.childTaxonomies.length == 0
 	);
 
-	const isRoot = slug == rootTaxonomy.slug;
+	const isRoot: boolean = slug == rootTaxonomy.slug;
+
+	const hasSiblings: boolean = parentTaxonomy?.childTaxonomies?.length > 1;
 
 	// In some taxonomies there are substances at multiple levels of the taxonomy which need to be flattened for the section nav
 	// Currently these only go 3 deep in the "food for special diets" taxonomy.
@@ -117,15 +136,16 @@ const BorderlineSubstancesSectionPage: FC<
 				id="content-start"
 				heading={title}
 				lead={
-					isRoot ? null : (
+					hasSiblings ? (
 						<Link
 							className="p"
 							to={`/borderline-substances/${rootTaxonomy.slug}/`}
 						>
-							View other {rootTaxonomy.title}
+							View other {decapitalize(rootTaxonomy.title)}
 						</Link>
-					)
+					) : null
 				}
+				preheading={parentTaxonomy?.title}
 			/>
 
 			{isRoot ? (
@@ -137,37 +157,40 @@ const BorderlineSubstancesSectionPage: FC<
 					<GridItem cols={12} md={8} lg={9}>
 						{isOneLevel ? (
 							<>
-								<SectionNav
-									sections={sections.map(({ slug, title }) => ({
-										title,
-										id: `/borderline-substances/${slug}/`,
-									}))}
-									navigateToAnotherPage={true}
-								></SectionNav>
+								<ColumnList aria-label={`${title} substances`} columns={2}>
+									{sections.map(({ slug, title }) => (
+										<li key={slug}>
+											<Link to={`/borderline-substances/${slug}/`}>
+												{title}
+											</Link>
+										</li>
+									))}
+								</ColumnList>
 							</>
 						) : (
 							<>
-								<section>
-									{sections.map((child1, i) => (
-										<>
-											<h2
-												id={child1.slug}
-												className={i === 0 ? styles.firstHeading : undefined}
-											>
-												{child1.title}
-											</h2>
-											<ol className="list--unstyled">
-												{child1.childTaxonomies?.map((child2) => (
-													<li key={child2.slug}>
-														<Link to={`/borderline-substances/${child2.slug}/`}>
-															{child2.title}
-														</Link>
-													</li>
-												))}
-											</ol>
-										</>
-									))}
-								</section>
+								{sections.map((child1, i) => (
+									<section key={child1.slug}>
+										<h2
+											id={child1.slug}
+											className={i === 0 ? styles.firstHeading : undefined}
+										>
+											{child1.title}
+										</h2>
+										<ColumnList
+											aria-label={`${child1.title} substances`}
+											columns={2}
+										>
+											{child1.childTaxonomies?.map(({ slug, title }) => (
+												<li key={slug}>
+													<Link to={`/borderline-substances/${slug}/`}>
+														{title}
+													</Link>
+												</li>
+											))}
+										</ColumnList>
+									</section>
+								))}
 							</>
 						)}
 					</GridItem>
@@ -175,33 +198,34 @@ const BorderlineSubstancesSectionPage: FC<
 			) : (
 				<section aria-labelledby={slug} className={styles.section}>
 					<SectionNav sections={flattenedSubstances}></SectionNav>
+					<AccordionGroup>
+						{substances?.map((substance) => (
+							<Substance key={substance.id} substance={substance}></Substance>
+						))}
 
-					{substances?.map((substance) => (
-						<Substance key={substance.id} substance={substance}></Substance>
-					))}
-
-					{childTaxonomies?.map((child) => (
-						<>
-							{child.substances?.map((substance) => (
-								<Substance
-									key={substance.id}
-									substance={substance}
-									label={child.title}
-								></Substance>
-							))}
-							{child.childTaxonomies?.map((child2) => (
-								<>
-									{child2.substances?.map((substance) => (
-										<Substance
-											key={substance.id}
-											substance={substance}
-											label={child2.title}
-										></Substance>
-									))}
-								</>
-							))}
-						</>
-					))}
+						{childTaxonomies?.map((child) => (
+							<>
+								{child.substances?.map((substance) => (
+									<Substance
+										key={substance.id}
+										substance={substance}
+										label={child.title}
+									></Substance>
+								))}
+								{child.childTaxonomies?.map((child2) => (
+									<>
+										{child2.substances?.map((substance) => (
+											<Substance
+												key={substance.id}
+												substance={substance}
+												label={child2.title}
+											></Substance>
+										))}
+									</>
+								))}
+							</>
+						))}
+					</AccordionGroup>
 				</section>
 			)}
 		</Layout>

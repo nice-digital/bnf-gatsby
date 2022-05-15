@@ -45,7 +45,13 @@ export const createBorderlineSubstancesNodes = (
 	) => {
 		taxonomies.forEach((taxonomy) => {
 			const rootTaxonomy = root || taxonomy,
-				{ children, ...taxonomyFields } = taxonomy;
+				{ children, ...taxonomyFields } = taxonomy,
+				isLeaf = parent?.children?.some(
+					(child) => !child.children || child.children.length == 0
+				);
+
+			//leaf creation now working fine, but it broke the root creation.
+			//TODO: split out logic, rename union called parent, consider isLeaf naming, alert border thickness, fix tests
 
 			createBnfNode<TaxonomyNodeInput>(
 				{
@@ -54,7 +60,11 @@ export const createBorderlineSubstancesNodes = (
 					childTaxonomies: children?.map((t) => t.id) || [],
 					rootTaxonomy: rootTaxonomy.id,
 				},
-				BnfNode.BorderlineSubstancesTaxonomy,
+				isLeaf
+					? BnfNode.BorderlineSubstancesTaxonomyLeaf
+					: parent
+					? BnfNode.BorderlineSubstancesTaxonomy
+					: BnfNode.BorderlineSubstancesTaxonomyRoot,
 				sourceNodesArgs
 			);
 

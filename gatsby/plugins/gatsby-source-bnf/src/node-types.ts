@@ -7,6 +7,8 @@ export const BnfNode = {
 	BorderlineSubstancesIntroduction: "BnfBorderlineSubstancesIntroduction",
 	BorderlineSubstancePresentation: "BnfBorderlineSubstancePresentation",
 	BorderlineSubstancesTaxonomy: "BnfBorderlineSubstancesTaxonomy",
+	BorderlineSubstancesTaxonomyLeaf: "BnfBorderlineSubstancesTaxonomyLeaf",
+	BorderlineSubstancesTaxonomyRoot: "BnfBorderlineSubstancesTaxonomyRoot",
 	CautionaryAndAdvisoryGuidance: "BnfCautionaryAndAdvisoryGuidance",
 	CautionaryAndAdvisoryLabel: "BnfCautionaryAndAdvisoryLabel",
 	Classification: "BnfClassification",

@@ -5,13 +5,10 @@ import { SID, PHPID } from "@nice-digital/gatsby-source-bnf";
 import { type MenuPageLink, type SlugAndTitle } from "@/utils";
 
 export interface BorderlineSubstancesQueryResult {
-	allBnfBorderlineSubstancesTaxonomy: {
+	allBnfBorderlineSubstancesTaxonomyRoot: {
 		pages: {
 			slug: string;
 			title: string;
-			parentTaxonomy: {
-				id: SID | PHPID;
-			} | null;
 		}[];
 	};
 }
@@ -27,24 +24,19 @@ const slugToHref = ({ title, slug }: SlugAndTitle): MenuPageLink => ({
  * @returns The consolidated list of borderline substances pages
  */
 export const useBorderlineSubstancesPages = (): MenuPageLink[] => {
-	const { allBnfBorderlineSubstancesTaxonomy } =
+	const { allBnfBorderlineSubstancesTaxonomyRoot } =
 		useStaticQuery<BorderlineSubstancesQueryResult>(
 			graphql`
 				{
-					allBnfBorderlineSubstancesTaxonomy(
-						filter: { parentTaxonomy: { title: { eq: null } } }
-					) {
+					allBnfBorderlineSubstancesTaxonomyRoot {
 						pages: nodes {
 							slug
 							title
-							parentTaxonomy {
-								id
-							}
 						}
 					}
 				}
 			`
 		);
 
-	return allBnfBorderlineSubstancesTaxonomy.pages.map(slugToHref);
+	return allBnfBorderlineSubstancesTaxonomyRoot.pages.map(slugToHref);
 };
