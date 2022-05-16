@@ -292,16 +292,6 @@ exports[`InteractantPage body should match snapshot for page body 1`] = `
                          can increase the risk of hypoglycaemia.
                       </p>
                     </div>
-                    <dl
-                      class="supplementaryInfo"
-                    >
-                      <dt>
-                        Severity:
-                      </dt>
-                      <dd>
-                        Normal
-                      </dd>
-                    </dl>
                   </div>
                 </li>
               </ul>
@@ -413,16 +403,6 @@ exports[`InteractantPage body should match snapshot for page body 1`] = `
                     <div>
                       Test message 1
                     </div>
-                    <dl
-                      class="supplementaryInfo"
-                    >
-                      <dt>
-                        Severity:
-                      </dt>
-                      <dd>
-                        Normal
-                      </dd>
-                    </dl>
                   </div>
                 </li>
                 <li
