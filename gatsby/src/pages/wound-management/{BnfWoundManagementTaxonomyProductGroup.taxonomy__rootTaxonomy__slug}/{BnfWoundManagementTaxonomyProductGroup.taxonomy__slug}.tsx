@@ -53,18 +53,16 @@ const WoundManagementProductPage: FC<WoundManagementProductPageProps> = ({
 	},
 }) => {
 	const { siteTitleShort } = useSiteMetadata(),
-		sortedProductGroups = productGroups
-			.filter((group) => group.products.length > 0)
-			.sort((a, b) => (a.title > b.title ? 1 : -1)),
+		sortedProductGroups = productGroups.sort((a, b) =>
+			a.title > b.title ? 1 : -1
+		),
 		navSections: SectionNavProps = {
-			sections: sortedProductGroups
-				.filter((group) => group.products.length > 0)
-				.map(({ title }) => {
-					return {
-						id: slugify(striptags(title)),
-						title,
-					};
-				}),
+			sections: sortedProductGroups.map(({ title }) => {
+				return {
+					id: slugify(striptags(title)),
+					title,
+				};
+			}),
 		};
 
 	return (
