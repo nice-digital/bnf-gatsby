@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BorderlineSubstancesProductGroupPage should match snapshot for graphql query 1`] = `
+"
+	query ($id: String) {
+		bnfBorderlineSubstancesTaxonomyProductGroup(id: { eq: $id }) {
+			taxonomy {
+				slug
+				title
+				rootTaxonomy {
+					slug
+					title
+				}
+				parentTaxonomy {
+					slug
+					title
+					childTaxonomies {
+						slug
+						title
+					}
+				}
+				substances {
+					...FullSubstance
+				}
+				childTaxonomies {
+					slug
+					title
+					substances {
+						...FullSubstance
+					}
+					childTaxonomies {
+						slug
+						title
+						substances {
+							...FullSubstance
+						}
+						childTaxonomies {
+							slug
+							title
+							substances {
+								...FullSubstance
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+"
+`;

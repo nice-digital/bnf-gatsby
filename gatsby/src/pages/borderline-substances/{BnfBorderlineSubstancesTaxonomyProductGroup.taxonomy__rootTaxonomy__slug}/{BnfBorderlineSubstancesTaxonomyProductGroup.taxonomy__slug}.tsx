@@ -28,7 +28,7 @@ type QueriedTaxonomy = SlugAndTitle & {
 
 export type BorderlineSubstancesProductGroupPageProps = {
 	data: {
-		bnfBorderlineSubstancesTaxonomyProductGroup: SlugAndTitle & {
+		bnfBorderlineSubstancesTaxonomyProductGroup: {
 			taxonomy: QueriedTaxonomy & {
 				rootTaxonomy: SlugAndTitle;
 				parentTaxonomy: SlugAndTitle & {

@@ -6,7 +6,7 @@ Feature: Borderline substance page
     Given I am using a desktop size browser
     And I open the high-fibre supplements page
 
-  # These throw up false positives for colour contrast on the accordion, there seems to be some interaction with the footer with the automatic scrolling
+  # These throw up false positives for colour contrast on the accordion, there seems to be some interaction with the footer with the automatic scrolling. Or possibly related to https://github.com/dequelabs/axe-core/issues/2958 although that's for nesting an anchor inside a summary, rather than nested details elements.
 
   # Scenario: Desktop accessibility issues
   #   Then the page should have no accessibility issues
