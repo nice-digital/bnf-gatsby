@@ -4,7 +4,7 @@ $site-distinction-banner-clearance: core.rem(core.$nds-spacing-large * 2);
 
 .wrapper {
   @include core.nds-hide-print;
-  top: core.rem(3rem);
+  top: 3rem;
 
   @include core.mq($from: lg) {
     position: sticky;
