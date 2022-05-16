@@ -68,9 +68,9 @@ export const slugFieldExtension = {
 				_args: null,
 				_context: unknown,
 				{
-					path: { typename },
+					path,
 				}: {
-					path: {
+					path?: {
 						typename: string;
 					};
 				}
@@ -84,6 +84,8 @@ export const slugFieldExtension = {
 
 				if (typeof fieldValue !== "string")
 					throw new Error(`Field ${options.field} isn't a string value`);
+
+				const typename = path ? path.typename : "";
 
 				// Avoid re-generating the same slug again to avoid accidentally incrementing a slug counter
 				const cacheKey = `${typename}:${source.id || "no-id"}:${fieldValue}`,

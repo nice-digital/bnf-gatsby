@@ -115,13 +115,13 @@ exports[`BorderlineSubstanceIntroductionPage should match snapshot for page cont
               >
                 <a
                   aria-current="false"
-                  href="/borderline-substances/parent-1/"
+                  href="/borderline-substances/enteral-feeds-non-disease-specific/"
                 >
                   <span
                     class="stacked-nav__content-wrapper"
                   >
                     <span>
-                      Parent taxonomy 1
+                      Enteral feeds (non-disease specific)
                     </span>
                   </span>
                 </a>
@@ -131,13 +131,13 @@ exports[`BorderlineSubstanceIntroductionPage should match snapshot for page cont
               >
                 <a
                   aria-current="false"
-                  href="/borderline-substances/taxonomy-1/"
+                  href="/borderline-substances/specialised-formulas/"
                 >
                   <span
                     class="stacked-nav__content-wrapper"
                   >
                     <span>
-                      Sub taxonomy 1
+                      Specialised formulas
                     </span>
                   </span>
                 </a>
@@ -147,61 +147,13 @@ exports[`BorderlineSubstanceIntroductionPage should match snapshot for page cont
               >
                 <a
                   aria-current="false"
-                  href="/borderline-substances/taxonomy-2/"
+                  href="/borderline-substances/foods-for-special-diets/"
                 >
                   <span
                     class="stacked-nav__content-wrapper"
                   >
                     <span>
-                      Sub taxonomy 2
-                    </span>
-                  </span>
-                </a>
-              </li>
-              <li
-                class="stacked-nav__list-item"
-              >
-                <a
-                  aria-current="false"
-                  href="/borderline-substances/parent-2/"
-                >
-                  <span
-                    class="stacked-nav__content-wrapper"
-                  >
-                    <span>
-                      Parent 2
-                    </span>
-                  </span>
-                </a>
-              </li>
-              <li
-                class="stacked-nav__list-item"
-              >
-                <a
-                  aria-current="false"
-                  href="/borderline-substances/sub-taxonomy-1/"
-                >
-                  <span
-                    class="stacked-nav__content-wrapper"
-                  >
-                    <span>
-                      Sub taxonomy 1
-                    </span>
-                  </span>
-                </a>
-              </li>
-              <li
-                class="stacked-nav__list-item"
-              >
-                <a
-                  aria-current="false"
-                  href="/borderline-substances/parent-3/"
-                >
-                  <span
-                    class="stacked-nav__content-wrapper"
-                  >
-                    <span>
-                      Parent 3
+                      Foods for special diets
                     </span>
                   </span>
                 </a>
@@ -244,42 +196,4 @@ exports[`BorderlineSubstanceIntroductionPage should match snapshot for page cont
     </div>
   </main>
 </div>
-`;
-
-exports[`BorderlineSubstancesSectionPage should match snapshot for graphql query 1`] = `
-"
-	query ($id: String) {
-		bnfBorderlineSubstancesTaxonomy(id: { eq: $id }) {
-			slug
-			title
-			rootTaxonomy {
-				slug
-				title
-				childTaxonomies {
-					title
-					childTaxonomies {
-						title
-						slug
-					}
-					slug
-				}
-			}
-			substances {
-				...FullSubstance
-			}
-			childTaxonomies {
-				title
-				substances {
-					...FullSubstance
-				}
-				childTaxonomies {
-					title
-					substances {
-						...FullSubstance
-					}
-				}
-			}
-		}
-	}
-"
 `;

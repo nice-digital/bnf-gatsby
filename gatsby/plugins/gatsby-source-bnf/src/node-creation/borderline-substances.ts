@@ -41,17 +41,12 @@ export const createBorderlineSubstancesNodes = (
 	const createTaxonomyRecursive = (
 		taxonomies: FeedBorderlineSubstancesTaxonomy[],
 		parent?: FeedBorderlineSubstancesTaxonomy,
-		root?: FeedBorderlineSubstancesTaxonomy
+		root?: FeedBorderlineSubstancesTaxonomy,
+		isProductGroup?: boolean
 	) => {
 		taxonomies.forEach((taxonomy) => {
 			const rootTaxonomy = root || taxonomy,
-				{ children, ...taxonomyFields } = taxonomy,
-				isLeaf = parent?.children?.some(
-					(child) => !child.children || child.children.length == 0
-				);
-
-			//leaf creation now working fine, but it broke the root creation.
-			//TODO: split out logic, rename union called parent, consider isLeaf naming, alert border thickness, fix tests
+				{ children, ...taxonomyFields } = taxonomy;
 
 			createBnfNode<TaxonomyNodeInput>(
 				{
@@ -60,15 +55,46 @@ export const createBorderlineSubstancesNodes = (
 					childTaxonomies: children?.map((t) => t.id) || [],
 					rootTaxonomy: rootTaxonomy.id,
 				},
-				isLeaf
-					? BnfNode.BorderlineSubstancesTaxonomyLeaf
-					: parent
-					? BnfNode.BorderlineSubstancesTaxonomy
-					: BnfNode.BorderlineSubstancesTaxonomyRoot,
+				BnfNode.BorderlineSubstancesTaxonomy,
 				sourceNodesArgs
 			);
 
-			if (children) createTaxonomyRecursive(children, taxonomy, rootTaxonomy);
+			// Create a root taxonomy node that links to the main taxonomy
+			if (!parent) {
+				createBnfNode(
+					{
+						taxonomy: taxonomy.id,
+						id: sourceNodesArgs.createNodeId(taxonomy.id),
+					},
+					BnfNode.BorderlineSubstancesTaxonomyRoot,
+					sourceNodesArgs
+				);
+			}
+
+			// A product group is the level we create sub pages at
+			if (isProductGroup) {
+				createBnfNode(
+					{
+						taxonomy: taxonomy.id,
+						id: sourceNodesArgs.createNodeId(taxonomy.id),
+					},
+					BnfNode.BorderlineSubstancesTaxonomyProductGroup,
+					sourceNodesArgs
+				);
+			}
+
+			// Recursivly create nested taxonomy objects
+			if (children)
+				createTaxonomyRecursive(
+					children,
+					taxonomy,
+					rootTaxonomy,
+					isProductGroup
+						? false
+						: children.some(
+								(child) => !child.children || child.children.length == 0
+						  )
+				);
 		});
 	};
 

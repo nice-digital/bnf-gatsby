@@ -18,8 +18,6 @@ export const borderlineSubstancesSchema = `
 		sections: [${BnfNode.RecordSection}!]!
 	}
 
-	union Parent = ${BnfNode.BorderlineSubstancesTaxonomy} | ${BnfNode.BorderlineSubstancesTaxonomyRoot}
-
 	"""
 	The borderline substance taxonomy as a tree structure.
 	"""
@@ -39,54 +37,25 @@ export const borderlineSubstancesSchema = `
 		"Any children records of the borderline substances taxonomy."
 		childTaxonomies: [${BnfNode.BorderlineSubstancesTaxonomy}!]! @link
 
-		"The parent taxonomy. Empty for root level taxonomy nodes."
-		parentTaxonomy: Parent @link
+		"The parent taxonomy. Will be null for root taxonomies."
+		parentTaxonomy: ${BnfNode.BorderlineSubstancesTaxonomy} @link
 
 		"The root taxonomy"
-		rootTaxonomy: ${BnfNode.BorderlineSubstancesTaxonomyRoot}! @link
+		rootTaxonomy: ${BnfNode.BorderlineSubstancesTaxonomy}! @link
 	}
 
 	"""
-	The borderline substance taxonomy as a tree structure.
-	"""
-	type ${BnfNode.BorderlineSubstancesTaxonomyLeaf} implements Node @dontInfer {
-		"The title of the taxonomy node. May contain HTML mark-up."
-		title: String!
-
-		"The slugified and lowercased title, used as a URL path"
-		slug: String! @slug(field: "title")
-
-		"The review date of the record, formatted into a string."
-		reviewDate: Date @dateformat
-
-		"The borderline substances that are applicable for this point in the borderline substances taxonomy."
-		substances: [${BnfNode.BorderlineSubstance}!]!
-
-		"The parent taxonomy. Empty for root level taxonomy nodes."
-		parentTaxonomy: Parent @link
-
-		"The root taxonomy"
-		rootTaxonomy: ${BnfNode.BorderlineSubstancesTaxonomyRoot}! @link
-	}
-
-	"""
-	The borderline substance taxonomy as a tree structure.
+	The root of the borderline substances tree, e.g. 'Foods for special diets' etc
 	"""
 	type ${BnfNode.BorderlineSubstancesTaxonomyRoot} implements Node @dontInfer {
-		"The title of the taxonomy node. May contain HTML mark-up."
-		title: String!
+		taxonomy: ${BnfNode.BorderlineSubstancesTaxonomy}! @link
+	}
 
-		"The slugified and lowercased title, used as a URL path"
-		slug: String! @slug(field: "title")
-
-		"The review date of the record, formatted into a string."
-		reviewDate: Date @dateformat
-
-		"The borderline substances that are applicable for this point in the borderline substances taxonomy."
-		substances: [${BnfNode.BorderlineSubstance}!]!
-
-		"Any children records of the borderline substances taxonomy."
-		childTaxonomies: [${BnfNode.BorderlineSubstancesTaxonomy}!]! @link
+	"""
+	A group of products - the level at which we create sub-pages
+	"""
+	type ${BnfNode.BorderlineSubstancesTaxonomyProductGroup} implements Node @dontInfer {
+		taxonomy: ${BnfNode.BorderlineSubstancesTaxonomy}! @link
 	}
 
 	"""

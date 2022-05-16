@@ -9,8 +9,10 @@ import { type QueryResult, type WithSlug } from "@/utils";
 import Presentation from "./Presentation/Presentation";
 import styles from "./Substance.module.scss";
 
+export type SubstanceType = WithSlug<QueryResult<FeedBorderlineSubstance>>;
+
 export type SubstanceProps = {
-	substance: WithSlug<QueryResult<FeedBorderlineSubstance>>;
+	substance: SubstanceType;
 	label?: string;
 };
 

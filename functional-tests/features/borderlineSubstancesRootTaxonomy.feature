@@ -18,4 +18,4 @@ Feature: Borderline substances root taxonomy page
 
   Scenario: Link to high-fibre supplements page
     When I click the "High-fibre supplements" link
-    Then I expect that the path is "/borderline-substances/high-fibre-supplements/"
+    Then I expect that the path is "/borderline-substances/feed-supplements/high-fibre-supplements/"

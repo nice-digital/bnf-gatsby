@@ -31,8 +31,8 @@ Feature: Borderline substance page
     Then I expect that the path is "/borderline-substances/"
 
   Scenario: Heading text
-    Then I expect that element "h1" matches the text "High-fibre supplements"
+    Then I expect that element "h1" contains the text "High-fibre supplements"
 
-  Scenario: Link to other Feed supplements page
-    When I click the "View other Feed supplements" link
+  Scenario: Link to other feed supplements page
+    When I click the "View other feed supplements" link
     Then I expect that the path is "/borderline-substances/feed-supplements/"

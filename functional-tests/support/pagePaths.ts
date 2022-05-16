@@ -53,9 +53,11 @@ export const pagePaths = {
 	laxatives: "/nurse-prescribers-formulary/laxatives/",
 	"general guidance": "/nurse-prescribers-formulary/general-guidance/",
 	"local anaesthetics": "/nurse-prescribers-formulary/local-anaesthetics/",
+	// Borderline substances
 	"borderline substances": "/borderline-substances/",
 	"feed supplements": "/borderline-substances/feed-supplements/",
-	"high-fibre supplements": "/borderline-substances/high-fibre-supplements/",
+	"high-fibre supplements":
+		"/borderline-substances/feed-supplements/high-fibre-supplements/",
 } as const;
 
 export type PageName = keyof typeof pagePaths;

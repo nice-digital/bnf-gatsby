@@ -55,11 +55,25 @@ exports[`schema should match snapshot 1`] = `
 		\\"Any children records of the borderline substances taxonomy.\\"
 		childTaxonomies: [BnfBorderlineSubstancesTaxonomy!]! @link
 
-		\\"The parent taxonomy. Empty for root level taxonomy nodes.\\"
+		\\"The parent taxonomy. Will be null for root taxonomies.\\"
 		parentTaxonomy: BnfBorderlineSubstancesTaxonomy @link
 
 		\\"The root taxonomy\\"
 		rootTaxonomy: BnfBorderlineSubstancesTaxonomy! @link
+	}
+
+	\\"\\"\\"
+	The root of the borderline substances tree, e.g. 'Foods for special diets' etc
+	\\"\\"\\"
+	type BnfBorderlineSubstancesTaxonomyRoot implements Node @dontInfer {
+		taxonomy: BnfBorderlineSubstancesTaxonomy! @link
+	}
+
+	\\"\\"\\"
+	A group of products - the level at which we create sub-pages
+	\\"\\"\\"
+	type BnfBorderlineSubstancesTaxonomyProductGroup implements Node @dontInfer {
+		taxonomy: BnfBorderlineSubstancesTaxonomy! @link
 	}
 
 	\\"\\"\\"
