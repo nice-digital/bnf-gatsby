@@ -203,4 +203,31 @@ describe("Wound management taxonomy page", () => {
 			}
 		}
 	);
+
+	it("should show a message when there is no specific product information", () => {
+		render(
+			<WoundManagementProductPage
+				data={{
+					bnfWoundManagementTaxonomyProductGroup: {
+						taxonomy: {
+							...props.data.bnfWoundManagementTaxonomyProductGroup.taxonomy,
+							productGroups: [
+								{
+									title: "No products here",
+									description: "<p>No products here</p>",
+									products: [],
+								},
+							],
+						},
+					},
+				}}
+			/>
+		);
+
+		expect(
+			screen.getByText(
+				"Please note, there is currently no specific information about this product."
+			)
+		).toBeInTheDocument();
+	});
 });
