@@ -215,11 +215,42 @@ const DrugPage: FC<DrugPageProps> = ({
 		otherDrugsInClassSection,
 	].filter(isTruthy);
 
+	// Construct meta description from specific sections present in this monograph
+	let metaDescriptionSections: string[] = [
+		bnfDrug.renalImpairment,
+		bnfDrug.pregnancy,
+		bnfDrug.breastFeeding,
+		bnfDrug.contraIndications,
+		monitoringRequirements,
+		importantSafetyInformation,
+		bnfDrug.directionsForAdministration,
+		bnfDrug.drugAction,
+	]
+		.filter(isTruthy)
+		.map(({ potName }) => potName.toLowerCase());
+
+	if (indicationsAndDose) {
+		metaDescriptionSections.unshift("dose, uses");
+	}
+
+	// Trim any sections beyond the maximum, then glue all their names together
+	const MAX_META_DESCRIPTION_SECTIONS = 7;
+	if (metaDescriptionSections.length > MAX_META_DESCRIPTION_SECTIONS) {
+		metaDescriptionSections = metaDescriptionSections.slice(
+			0,
+			MAX_META_DESCRIPTION_SECTIONS
+		);
+	}
+
+	const metaDescriptionSectionText = `${metaDescriptionSections
+		.slice(0, -1)
+		.join(", ")} and ${metaDescriptionSections.slice(-1)}`;
+
 	return (
 		<Layout>
 			<SEO
 				title={`${titleNoHtml} | Drugs`}
-				description={`Indications, dose, contra-indications, side-effects, interactions, cautions, warnings and other safety information for ${titleNoHtml}`}
+				description={`View ${titleNoHtml} information, including ${metaDescriptionSectionText}.`}
 			/>
 
 			<Breadcrumbs>
