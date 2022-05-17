@@ -55,8 +55,8 @@ describe("Wound management index page", () => {
 	});
 
 	it("should match page snapshot", () => {
-		render(<WoundManagementIndexPage {...props} />);
-		expect(screen.getByRole("main")).toMatchSnapshot();
+		const { container } = render(<WoundManagementIndexPage {...props} />);
+		expect(container).toMatchSnapshot();
 	});
 
 	it("should add content start skip link target id to page header", () => {

@@ -28,7 +28,6 @@ import {
 	Interactions,
 	InteractionsContent,
 } from "@/components/DrugSections";
-import { Layout } from "@/components/Layout/Layout";
 import { SectionNav } from "@/components/SectionNav/SectionNav";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
@@ -247,7 +246,7 @@ const DrugPage: FC<DrugPageProps> = ({
 		.join(", ")} and ${metaDescriptionSections.slice(-1)}`;
 
 	return (
-		<Layout>
+		<>
 			<SEO
 				title={`${titleNoHtml} | Drugs`}
 				description={`View ${titleNoHtml} information, including ${metaDescriptionSectionText}.`}
@@ -311,7 +310,7 @@ const DrugPage: FC<DrugPageProps> = ({
 					})}
 				</div>
 			</div>
-		</Layout>
+		</>
 	);
 };
 

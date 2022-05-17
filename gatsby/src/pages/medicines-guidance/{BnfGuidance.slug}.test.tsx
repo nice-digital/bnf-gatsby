@@ -1,5 +1,5 @@
 import { useLocation } from "@reach/router";
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, waitFor } from "@testing-library/react";
 import { useStaticQuery } from "gatsby";
 
 import { mockQueryData } from "@/hooks/useMedicinesGuidancePages.test";
@@ -52,9 +52,9 @@ describe("MedicinesGuidancePage", () => {
 	});
 
 	it("should match snapshot for page contents", () => {
-		render(<MedicinesGuidancePage {...pageProps} />);
+		const { container } = render(<MedicinesGuidancePage {...pageProps} />);
 
-		expect(screen.getByRole("main")).toMatchSnapshot();
+		expect(container).toMatchSnapshot();
 	});
 
 	it("should set page title", async () => {

@@ -1,0 +1,147 @@
+@use '@nice-digital/nds-core/scss/core';
+@import '../../styles/settings';
+
+.wrapper {
+  border-top: core.rem(core.$nds-spacing-x-small) solid;
+  position: sticky;
+  top: -0.1px; // Hack to avoid 1px gap due to some weird Chrome sub pixel rounding
+  z-index: 1;
+
+  &.bnf {
+    border-top-color: $bnf-brand-colour;
+  }
+
+  &.bnfc {
+    border-top-color: $bnfc-brand-colour;
+  }
+}
+
+.container {
+  position: relative;
+}
+
+.tabs {
+  margin: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.currentSiteTab,
+.otherSiteTab {
+  @include core.nds-font-size(-1);
+  align-items: center;
+  appearance: none;
+  background: none;
+  border: 0;
+  color: core.$nds-colour-true-black;
+  display: flex;
+  flex-direction: row;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  gap: core.rem(core.$nds-spacing-x-small);
+  justify-content: center;
+  letter-spacing: 1px;
+  line-height: 1.5rem;
+  padding: core.rem(core.$nds-spacing-small);
+  position: relative;
+  text-decoration: none;
+  text-shadow: 1px 0 0 currentColor;
+  top: -1px; // To avoid a 1px gap in Chrome
+
+  &:hover {
+    color: core.$nds-colour-true-black;
+  }
+}
+
+.currentSiteTab {
+  z-index: 1; // To sit above the other site tab
+
+  @include core.nds-when-is(button) {
+    cursor: pointer;
+  }
+
+  &:focus {
+    @include core.nds-default-focus-style;
+  }
+
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  &:focus-visible {
+    @include core.nds-default-focus-style;
+  }
+
+  .bnf & {
+    background: $bnf-brand-colour;
+  }
+
+  .bnfc & {
+    background: $bnfc-brand-colour;
+  }
+}
+
+.otherSiteTab {
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(-100%);
+  transition: all 0.25s ease;
+
+  &:hover {
+    text-decoration: underline;
+    text-decoration-thickness: core.rem(core.$nds-spacing-xx-small);
+  }
+
+  &:focus {
+    z-index: 1; // So focus ring sits above current site tab
+  }
+
+  &:visited {
+    color: core.$nds-colour-true-black;
+  }
+
+  .bnf & {
+    background: $bnfc-brand-colour;
+  }
+
+  .bnfc & {
+    background: $bnf-brand-colour;
+  }
+
+  &.otherSiteTabExpanded {
+    opacity: 1;
+    transform: translateY(0);
+    z-index: 1; // So tab appears on IE11
+  }
+}
+
+.icon {
+  position: relative;
+  top: 0;
+  transition: all 0.25s ease;
+
+  .currentSiteTab:hover & {
+    transform: translateY(#{core.rem(core.$nds-spacing-xx-small)});
+
+    &.iconExpanded {
+      transform: translateY(-#{core.rem(core.$nds-spacing-xx-small)})
+        rotate(180deg);
+    }
+  }
+
+  &.iconExpanded {
+    transform: rotate(180deg);
+  }
+}
+
+// temp width adjustment so tabs don't overlap breadcrumb on mobile
+:global(.breadcrumbs) {
+  width: 80%;
+}
+
+@include core.mq($from: md) {
+  :global(.breadcrumbs) {
+    width: 100%;
+  }
+}

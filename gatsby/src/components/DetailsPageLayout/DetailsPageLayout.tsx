@@ -11,7 +11,6 @@ import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
 import { Grid, GridItem } from "@nice-digital/nds-grid";
 import { PageHeader } from "@nice-digital/nds-page-header";
 
-import { Layout } from "@/components/Layout/Layout";
 import {
 	OnThisPage,
 	type OnThisPageProps,
@@ -77,7 +76,7 @@ export const DetailsPageLayout: React.FC<DetailsPageLayoutProps> = ({
 		);
 
 	return (
-		<Layout>
+		<>
 			<SEO
 				title={[titleNoHtml, ...parentTitleParts].filter(Boolean).join(" | ")}
 				description={metaDescription}
@@ -139,6 +138,6 @@ export const DetailsPageLayout: React.FC<DetailsPageLayoutProps> = ({
 					)}
 				</GridItem>
 			</Grid>
-		</Layout>
+		</>
 	);
 };

@@ -16,57 +16,54 @@ exports[`CautionaryAdvisoryLabelsPage should match snapshot for graphql query 1`
 `;
 
 exports[`CautionaryAdvisoryLabelsPage should match snapshot for page contents 1`] = `
-<main>
-  <div
-    class="container"
+<div>
+  <nav
+    aria-label="Breadcrumbs"
+    role="navigation"
   >
-    <nav
-      aria-label="Breadcrumbs"
-      role="navigation"
+    <ol
+      class="breadcrumbs"
     >
-      <ol
-        class="breadcrumbs"
+      <li
+        class="breadcrumbs__crumb"
       >
-        <li
-          class="breadcrumbs__crumb"
+        <a
+          href="https://www.nice.org.uk/"
         >
-          <a
-            href="https://www.nice.org.uk/"
-          >
-            NICE
-          </a>
-        </li>
-        <li
-          class="breadcrumbs__crumb"
+          NICE
+        </a>
+      </li>
+      <li
+        class="breadcrumbs__crumb"
+      >
+        <a
+          href="/"
         >
-          <a
-            href="/"
-          >
-            BNF
-          </a>
-        </li>
-        <li
-          class="breadcrumbs__crumb"
+          BNF
+        </a>
+      </li>
+      <li
+        class="breadcrumbs__crumb"
+      >
+        <a
+          href="/about/"
         >
-          <a
-            href="/about/"
-          >
-            About
-          </a>
-        </li>
-        <li
-          class="breadcrumbs__crumb"
-        >
-          <span>
-            Cautionary and advisory labels
-          </span>
-        </li>
-      </ol>
-    </nav>
-    <script
-      type="application/ld+json"
-    >
-      {
+          About
+        </a>
+      </li>
+      <li
+        class="breadcrumbs__crumb"
+      >
+        <span>
+          Cautionary and advisory labels
+        </span>
+      </li>
+    </ol>
+  </nav>
+  <script
+    type="application/ld+json"
+  >
+    {
   "@context": "http://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
@@ -103,231 +100,230 @@ exports[`CautionaryAdvisoryLabelsPage should match snapshot for page contents 1`
     }
   ]
 }
-    </script>
-    <div
-      class="page-header"
-      id="content-start"
+  </script>
+  <div
+    class="page-header"
+    id="content-start"
+  >
+    <h1
+      class="page-header__heading"
     >
-      <h1
-        class="page-header__heading"
-      >
-        <span>
-          Cautionary and advisory labels
-        </span>
-      </h1>
-    </div>
+      <span>
+        Cautionary and advisory labels
+      </span>
+    </h1>
+  </div>
+  <div
+    class="grid grid--loose"
+    data-testid="body"
+  >
     <div
-      class="grid grid--loose"
-      data-testid="body"
+      class="hide-print"
+      data-g="12 md:4 lg:3"
     >
-      <div
-        class="hide-print"
-        data-g="12 md:4 lg:3"
+      <nav
+        aria-label="About section pages"
+        class="stacked-nav"
       >
-        <nav
-          aria-label="About section pages"
-          class="stacked-nav"
+        <p
+          class="stacked-nav__root"
         >
-          <p
-            class="stacked-nav__root"
+          <a
+            aria-current="false"
+            href="/about/"
+          >
+            About
+          </a>
+        </p>
+        <ul
+          class="stacked-nav__list"
+        >
+          <li
+            class="stacked-nav__list-item"
           >
             <a
               aria-current="false"
-              href="/about/"
+              href="/about/changes/"
             >
-              About
+              <span
+                class="stacked-nav__content-wrapper"
+              >
+                <span>
+                  Changes
+                </span>
+              </span>
             </a>
-          </p>
-          <ul
-            class="stacked-nav__list"
+          </li>
+          <li
+            class="stacked-nav__list-item"
           >
-            <li
-              class="stacked-nav__list-item"
+            <a
+              aria-current="false"
+              href="/about/publication-information/"
             >
-              <a
-                aria-current="false"
-                href="/about/changes/"
+              <span
+                class="stacked-nav__content-wrapper"
               >
-                <span
-                  class="stacked-nav__content-wrapper"
-                >
-                  <span>
-                    Changes
-                  </span>
+                <span>
+                  Publication 
+                  <i>
+                    information
+                  </i>
                 </span>
-              </a>
-            </li>
-            <li
-              class="stacked-nav__list-item"
+              </span>
+            </a>
+          </li>
+          <li
+            class="stacked-nav__list-item"
+          >
+            <a
+              aria-current="true"
+              href="/about/labels/"
             >
-              <a
-                aria-current="false"
-                href="/about/publication-information/"
+              <span
+                class="stacked-nav__content-wrapper"
               >
-                <span
-                  class="stacked-nav__content-wrapper"
-                >
-                  <span>
-                    Publication 
-                    <i>
-                      information
-                    </i>
-                  </span>
+                <span>
+                  Labels
                 </span>
-              </a>
-            </li>
-            <li
-              class="stacked-nav__list-item"
+              </span>
+            </a>
+          </li>
+          <li
+            class="stacked-nav__list-item"
+          >
+            <a
+              aria-current="false"
+              href="/about/guidance-for-cautionary-and-advisory-labels/"
             >
-              <a
-                aria-current="true"
-                href="/about/labels/"
+              <span
+                class="stacked-nav__content-wrapper"
               >
-                <span
-                  class="stacked-nav__content-wrapper"
-                >
-                  <span>
-                    Labels
-                  </span>
+                <span>
+                  Guidance for cautionary and advisory labels
                 </span>
-              </a>
-            </li>
-            <li
-              class="stacked-nav__list-item"
-            >
-              <a
-                aria-current="false"
-                href="/about/guidance-for-cautionary-and-advisory-labels/"
-              >
-                <span
-                  class="stacked-nav__content-wrapper"
-                >
-                  <span>
-                    Guidance for cautionary and advisory labels
-                  </span>
-                </span>
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </div>
+              </span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div
+      data-g="12 md:8 lg:9"
+    >
       <div
-        data-g="12 md:8 lg:9"
+        class="grid grid--rev grid--loose"
       >
         <div
-          class="grid grid--rev grid--loose"
+          data-g="12 lg:3"
         >
-          <div
-            data-g="12 lg:3"
+          <nav
+            aria-labelledby="on-this-page"
+            class="wrapper"
           >
-            <nav
-              aria-labelledby="on-this-page"
-              class="wrapper"
+            <h2
+              class="heading"
+              id="on-this-page"
             >
-              <h2
-                class="heading"
-                id="on-this-page"
-              >
-                On this page
-              </h2>
-              <ol
-                aria-label="Jump links to sections on this page"
-                class="list"
-              >
-                <li>
-                  <a
-                    href="#label-1"
-                  >
-                    Label 1
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#label-2"
-                  >
-                    Label 2
-                  </a>
-                </li>
-              </ol>
-            </nav>
-          </div>
-          <div
-            class="body"
-            data-g="12 lg:9"
-          >
-            <p>
-              <a
-                href="/about/guidance-for-cautionary-and-advisory-labels/"
-              >
-                View guidance for cautionary and advisory labels
-              </a>
-            </p>
+              On this page
+            </h2>
             <ol
-              class="list--unstyled"
+              aria-label="Jump links to sections on this page"
+              class="list"
             >
               <li>
-                <section
-                  aria-labelledby="label-1"
+                <a
+                  href="#label-1"
                 >
-                  <h2
-                    id="label-1"
-                  >
-                    Label 1
-                  </h2>
-                  <div
-                    class="label"
-                  >
-                    <p>
-                      English recommendation 1
-                    </p>
-                    <p
-                      class="welsh"
-                      lang="cy"
-                    >
-                      Welsh recommendation 1
-                    </p>
-                  </div>
-                  <div>
-                    <p>
-                      Example description 1
-                    </p>
-                  </div>
-                </section>
+                  Label 1
+                </a>
               </li>
               <li>
-                <section
-                  aria-labelledby="label-2"
+                <a
+                  href="#label-2"
                 >
-                  <h2
-                    id="label-2"
-                  >
-                    Label 2
-                  </h2>
-                  <div
-                    class="label"
-                  >
-                    <p>
-                      English recommendation 2
-                    </p>
-                    <p
-                      class="welsh"
-                      lang="cy"
-                    >
-                      Welsh recommendation 2
-                    </p>
-                  </div>
-                  <div>
-                    <p>
-                      Example description 2
-                    </p>
-                  </div>
-                </section>
+                  Label 2
+                </a>
               </li>
             </ol>
-          </div>
+          </nav>
+        </div>
+        <div
+          class="body"
+          data-g="12 lg:9"
+        >
+          <p>
+            <a
+              href="/about/guidance-for-cautionary-and-advisory-labels/"
+            >
+              View guidance for cautionary and advisory labels
+            </a>
+          </p>
+          <ol
+            class="list--unstyled"
+          >
+            <li>
+              <section
+                aria-labelledby="label-1"
+              >
+                <h2
+                  id="label-1"
+                >
+                  Label 1
+                </h2>
+                <div
+                  class="label"
+                >
+                  <p>
+                    English recommendation 1
+                  </p>
+                  <p
+                    class="welsh"
+                    lang="cy"
+                  >
+                    Welsh recommendation 1
+                  </p>
+                </div>
+                <div>
+                  <p>
+                    Example description 1
+                  </p>
+                </div>
+              </section>
+            </li>
+            <li>
+              <section
+                aria-labelledby="label-2"
+              >
+                <h2
+                  id="label-2"
+                >
+                  Label 2
+                </h2>
+                <div
+                  class="label"
+                >
+                  <p>
+                    English recommendation 2
+                  </p>
+                  <p
+                    class="welsh"
+                    lang="cy"
+                  >
+                    Welsh recommendation 2
+                  </p>
+                </div>
+                <div>
+                  <p>
+                    Example description 2
+                  </p>
+                </div>
+              </section>
+            </li>
+          </ol>
         </div>
       </div>
     </div>
   </div>
-</main>
+</div>
 `;
