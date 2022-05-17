@@ -7,7 +7,6 @@ import { Grid, GridItem } from "@nice-digital/nds-grid";
 import { PageHeader } from "@nice-digital/nds-page-header";
 
 import { BorderlineSubstancesMenu } from "@/components/BorderlineSubstancesMenu/BorderlineSubstancesMenu";
-import { Layout } from "@/components/Layout/Layout";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 import { type SlugAndTitle } from "@/utils";
@@ -42,7 +41,7 @@ const BorderlineSubstancesRootPage: FC<BorderlineSubstancesRootPageProps> = ({
 		);
 
 	return (
-		<Layout>
+		<>
 			<SEO title={`${title} | Borderline substances`} />
 
 			<Breadcrumbs>
@@ -104,7 +103,7 @@ const BorderlineSubstancesRootPage: FC<BorderlineSubstancesRootPageProps> = ({
 					)}
 				</GridItem>
 			</Grid>
-		</Layout>
+		</>
 	);
 };
 

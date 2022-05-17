@@ -222,5 +222,67 @@ describe("BorderlineSubstancesProductGroupPage", () => {
 				"Glutafin® Baguettes and rolls",
 			]);
 		});
+
+		it("should render single substance without accordion", () => {
+			render(
+				<BorderlineSubstancesProductGroupPage
+					data={{
+						bnfBorderlineSubstancesTaxonomyProductGroup: {
+							taxonomy: {
+								...minimumTaxonomy,
+								childTaxonomies: [],
+							},
+						},
+					}}
+				/>
+			);
+			expect(
+				screen.queryByRole("list", {
+					name: "Substances within Bread",
+				})
+			).toBeNull();
+			expect(
+				screen.queryByRole("button", {
+					name: /Show all bread/,
+				})
+			).toBeNull();
+		});
+
+		it("should render show all accordions toggle button when multiple products", () => {
+			render(<BorderlineSubstancesProductGroupPage {...minimumProps} />);
+
+			expect(
+				screen.getByRole("button", {
+					name: "Show all bread (5)",
+				})
+			).toBeInTheDocument();
+		});
+
+		it("should render list of substances with accessible name when multiple products", () => {
+			render(<BorderlineSubstancesProductGroupPage {...minimumProps} />);
+
+			expect(
+				screen.getByRole("list", {
+					name: "Substances within Bread",
+				})
+			).toBeInTheDocument();
+		});
+
+		it("should render each substance", () => {
+			render(<BorderlineSubstancesProductGroupPage {...minimumProps} />);
+
+			const substanceList = screen.getByRole("list", {
+				name: "Substances within Bread",
+			});
+
+			expect(within(substanceList).getAllByRole("group")).toHaveLength(5);
+		});
+
+		it("should match snapshot", () => {
+			const { container } = render(
+				<BorderlineSubstancesProductGroupPage {...minimumProps} />
+			);
+			expect(container).toMatchSnapshot();
+		});
 	});
 });

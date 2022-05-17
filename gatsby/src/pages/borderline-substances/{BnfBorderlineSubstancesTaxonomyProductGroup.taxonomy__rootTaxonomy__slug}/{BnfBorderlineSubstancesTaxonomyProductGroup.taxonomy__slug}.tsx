@@ -5,7 +5,6 @@ import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
 import { PageHeader } from "@nice-digital/nds-page-header";
 
 import { AccordionGroup } from "@/components/AccordionGroup/AccordionGroup";
-import { Layout } from "@/components/Layout/Layout";
 import { SectionNav } from "@/components/SectionNav/SectionNav";
 import { SEO } from "@/components/SEO/SEO";
 import Substance, {
@@ -71,7 +70,7 @@ const BorderlineSubstancesProductGroupPage: FC<
 		);
 
 	return (
-		<Layout>
+		<>
 			<SEO
 				title={`${title} | ${parentTaxonomy.title} | ${rootTaxonomy.title} | Borderline substances`}
 			/>
@@ -142,7 +141,7 @@ const BorderlineSubstancesProductGroupPage: FC<
 					</AccordionGroup>
 				)}
 			</section>
-		</Layout>
+		</>
 	);
 };
 
