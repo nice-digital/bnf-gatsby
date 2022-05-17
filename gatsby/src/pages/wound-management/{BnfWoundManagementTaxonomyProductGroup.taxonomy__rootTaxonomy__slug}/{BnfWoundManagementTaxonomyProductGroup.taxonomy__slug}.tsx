@@ -9,15 +9,14 @@ import { PageHeader } from "@nice-digital/nds-page-header";
 
 import { Accordion } from "@/components/Accordion/Accordion";
 import { AccordionGroup } from "@/components/AccordionGroup/AccordionGroup";
-import { Layout } from "@/components/Layout/Layout";
 import {
 	SectionNav,
 	type SectionNavProps,
 } from "@/components/SectionNav/SectionNav";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
-
 import { decapitalize } from "@/utils";
+
 import styles from "./{BnfWoundManagementTaxonomyProductGroup.taxonomy__slug}.module.scss";
 
 export interface WoundManagementProductPageProps {

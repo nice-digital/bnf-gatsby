@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, waitFor } from "@testing-library/react";
 import { useStaticQuery } from "gatsby";
 
 import { mockNursePrescribersPagesQueryData } from "@/hooks/useNursePrescribers.test";
