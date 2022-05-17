@@ -256,39 +256,11 @@ exports[`InteractantPage body should match snapshot for page body 1`] = `
               <a
                 href="/drugs/canagliflozin/"
               >
-                <li
-                  class="message"
-                >
-                  <div
-                    class=""
-                  >
-                    <div>
-                      <p>
-                        Both 
-                        <span
-                          class="substance-primary"
-                          data-monograph-sid="_426793441"
-                          data-sid="_426793441"
-                        >
-                          acarbose
-                        </span>
-                         and 
-                        <span
-                          class="substance-primary"
-                          data-monograph-sid="_629412592"
-                          data-sid="_629412592"
-                        >
-                          canagliflozin
-                        </span>
-                         can increase the risk of hypoglycaemia.
-                      </p>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </li>
-            <li
-              class="interactionsListItem"
+                Canagliflozin test
+              </a>
+            </h3>
+            <ul
+              class="messageList"
             >
               <li
                 class="message"
@@ -317,16 +289,6 @@ exports[`InteractantPage body should match snapshot for page body 1`] = `
                        can increase the risk of hypoglycaemia.
                     </p>
                   </div>
-                  <dl
-                    class="supplementaryInfo"
-                  >
-                    <dt>
-                      Severity:
-                    </dt>
-                    <dd>
-                      Normal
-                    </dd>
-                  </dl>
                 </div>
               </li>
             </ul>
@@ -352,12 +314,47 @@ exports[`InteractantPage body should match snapshot for page body 1`] = `
                 <div
                   class=""
                 >
-                  <div
-                    class=""
-                  >
-                    <div>
-                      Test message 1
-                    </div>
+                  <div>
+                    <span
+                      class="substance-primary"
+                      data-monograph-sid="_743802912"
+                      data-sid="_743802912"
+                    >
+                      pancreatin
+                    </span>
+                     
+                    <span
+                      class="effectQualifier"
+                    >
+                      is predicted to
+                    </span>
+                     
+                    <span
+                      class="effect"
+                    >
+                      decrease
+                    </span>
+                     
+                    <span
+                      class="parameter"
+                    >
+                      the effects of
+                    </span>
+                     
+                    <span
+                      class="substance-primary"
+                      data-monograph-sid="_426793441"
+                      data-sid="_426793441"
+                    >
+                      acarbose
+                    </span>
+                    . 
+                    <span
+                      class="action"
+                    >
+                      Manufacturer advises avoid
+                    </span>
+                    .  
                   </div>
                   <dl
                     class="supplementaryInfo"
@@ -403,16 +400,6 @@ exports[`InteractantPage body should match snapshot for page body 1`] = `
                   <div>
                     Test message 1
                   </div>
-                  <dl
-                    class="supplementaryInfo"
-                  >
-                    <dt>
-                      Severity:
-                    </dt>
-                    <dd>
-                      Normal
-                    </dd>
-                  </dl>
                 </div>
               </li>
               <li
