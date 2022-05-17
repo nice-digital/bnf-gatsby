@@ -8,7 +8,6 @@
   margin-right: -50vw;
   overflow: hidden;
   padding-bottom: core.rem(core.$nds-spacing-large);
-  padding-top: core.rem(core.$nds-spacing-large);
   position: relative;
   right: 50%;
   width: 100vw;
@@ -41,12 +40,17 @@
   }
 }
 
+.breadcrumbs {
+  flex: 0 1 100%;
+}
+
 @include core.mq($from: md) {
   .heroContainer {
     align-items: center;
     column-gap: core.rem(core.$nds-spacing-medium);
     display: flex;
     flex-flow: row;
+    flex-wrap: wrap;
   }
 
   .text {

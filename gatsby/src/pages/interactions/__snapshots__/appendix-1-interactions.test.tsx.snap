@@ -1,57 +1,54 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`InteractionsIntroductionPage should match snapshot for page body 1`] = `
-<main>
-  <div
-    class="container"
+<div>
+  <nav
+    aria-label="Breadcrumbs"
+    role="navigation"
   >
-    <nav
-      aria-label="Breadcrumbs"
-      role="navigation"
+    <ol
+      class="breadcrumbs"
     >
-      <ol
-        class="breadcrumbs"
+      <li
+        class="breadcrumbs__crumb"
       >
-        <li
-          class="breadcrumbs__crumb"
+        <a
+          href="https://www.nice.org.uk/"
         >
-          <a
-            href="https://www.nice.org.uk/"
-          >
-            NICE
-          </a>
-        </li>
-        <li
-          class="breadcrumbs__crumb"
+          NICE
+        </a>
+      </li>
+      <li
+        class="breadcrumbs__crumb"
+      >
+        <a
+          href="/"
         >
-          <a
-            href="/"
-          >
-            BNF
-          </a>
-        </li>
-        <li
-          class="breadcrumbs__crumb"
+          BNF
+        </a>
+      </li>
+      <li
+        class="breadcrumbs__crumb"
+      >
+        <a
+          href="/interactions/"
         >
-          <a
-            href="/interactions/"
-          >
-            Interactions
-          </a>
-        </li>
-        <li
-          class="breadcrumbs__crumb"
-        >
-          <span>
-            Appendix 1 Interactions
-          </span>
-        </li>
-      </ol>
-    </nav>
-    <script
-      type="application/ld+json"
-    >
-      {
+          Interactions
+        </a>
+      </li>
+      <li
+        class="breadcrumbs__crumb"
+      >
+        <span>
+          Appendix 1 Interactions
+        </span>
+      </li>
+    </ol>
+  </nav>
+  <script
+    type="application/ld+json"
+  >
+    {
   "@context": "http://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
@@ -88,27 +85,26 @@ exports[`InteractionsIntroductionPage should match snapshot for page body 1`] = 
     }
   ]
 }
-    </script>
-    <div
-      class="page-header"
-      id="content-start"
+  </script>
+  <div
+    class="page-header"
+    id="content-start"
+  >
+    <h1
+      class="page-header__heading"
     >
-      <h1
-        class="page-header__heading"
-      >
-        Test intro title
-      </h1>
-    </div>
-    <section>
-      <h2>
-        Test section title
-      </h2>
-      <div>
-        <p>
-          I am some content for the introductions page
-        </p>
-      </div>
-    </section>
+      Test intro title
+    </h1>
   </div>
-</main>
+  <section>
+    <h2>
+      Test section title
+    </h2>
+    <div>
+      <p>
+        I am some content for the introductions page
+      </p>
+    </div>
+  </section>
+</div>
 `;

@@ -9,7 +9,6 @@ import { Grid, GridItem } from "@nice-digital/nds-grid";
 import { PageHeader } from "@nice-digital/nds-page-header";
 import { StackedNav, StackedNavLink } from "@nice-digital/nds-stacked-nav";
 
-import { Layout } from "@/components/Layout/Layout";
 import { MedicalDevicePrepsSection } from "@/components/MedicalDevicePrepsSection/MedicalDevicePrepsSection";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
@@ -49,7 +48,7 @@ const MedicalDeviceTypePage: FC<MedicalDeviceTypePageProps> = ({
 	if (preparations.length === 0) return null;
 
 	return (
-		<Layout>
+		<>
 			<SEO
 				title={`${titleNoHtml} | ${medicalDevice.title} | Medical devices`}
 				description={`This medical device type describes the options that are currently recommended for ${titleNoHtml}.`}
@@ -121,7 +120,7 @@ const MedicalDeviceTypePage: FC<MedicalDeviceTypePageProps> = ({
 					) : null}
 				</GridItem>
 			</Grid>
-		</Layout>
+		</>
 	);
 };
 

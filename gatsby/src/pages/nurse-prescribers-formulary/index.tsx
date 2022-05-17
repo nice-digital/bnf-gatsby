@@ -5,7 +5,6 @@ import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
 import { ColumnList } from "@nice-digital/nds-column-list";
 import { PageHeader } from "@nice-digital/nds-page-header";
 
-import { Layout } from "@/components/Layout/Layout";
 import { SEO } from "@/components/SEO/SEO";
 import { useNursePrescribers } from "@/hooks/useNursePrescribers";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
@@ -18,7 +17,7 @@ const NursePrescribersFormularyIndexPage: FC = () => {
 		"View the list of NPF treatment summaries for drugs, conditions and scenarios managed by Community Practitioner Nurse Prescribers.";
 
 	return (
-		<Layout>
+		<>
 			<SEO title="Nurse Prescribers' Formulary" description={metaDescription} />
 			<Breadcrumbs>
 				<Breadcrumb to="https://www.nice.org.uk/">NICE</Breadcrumb>
@@ -54,7 +53,7 @@ const NursePrescribersFormularyIndexPage: FC = () => {
 					</ColumnList>
 				</>
 			)}
-		</Layout>
+		</>
 	);
 };
 
