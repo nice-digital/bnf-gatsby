@@ -2,57 +2,53 @@
 
 exports[`BorderlineSubstancesRootPage Body Single level should match snapshot 1`] = `
 <div>
-  <main>
-    <div
-      class="container"
+  <nav
+    aria-label="Breadcrumbs"
+    role="navigation"
+  >
+    <ol
+      class="breadcrumbs"
     >
-      <nav
-        aria-label="Breadcrumbs"
-        role="navigation"
+      <li
+        class="breadcrumbs__crumb"
       >
-        <ol
-          class="breadcrumbs"
+        <a
+          href="https://www.nice.org.uk/"
         >
-          <li
-            class="breadcrumbs__crumb"
-          >
-            <a
-              href="https://www.nice.org.uk/"
-            >
-              NICE
-            </a>
-          </li>
-          <li
-            class="breadcrumbs__crumb"
-          >
-            <a
-              href="/"
-            >
-              BNF
-            </a>
-          </li>
-          <li
-            class="breadcrumbs__crumb"
-          >
-            <a
-              href="/borderline-substances/"
-            >
-              Borderline substances
-            </a>
-          </li>
-          <li
-            class="breadcrumbs__crumb"
-          >
-            <span>
-              Specialised formulas
-            </span>
-          </li>
-        </ol>
-      </nav>
-      <script
-        type="application/ld+json"
+          NICE
+        </a>
+      </li>
+      <li
+        class="breadcrumbs__crumb"
       >
-        {
+        <a
+          href="/"
+        >
+          BNF
+        </a>
+      </li>
+      <li
+        class="breadcrumbs__crumb"
+      >
+        <a
+          href="/borderline-substances/"
+        >
+          Borderline substances
+        </a>
+      </li>
+      <li
+        class="breadcrumbs__crumb"
+      >
+        <span>
+          Specialised formulas
+        </span>
+      </li>
+    </ol>
+  </nav>
+  <script
+    type="application/ld+json"
+  >
+    {
   "@context": "http://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
@@ -89,168 +85,162 @@ exports[`BorderlineSubstancesRootPage Body Single level should match snapshot 1`
     }
   ]
 }
-      </script>
-      <div
-        class="page-header"
-        id="content-start"
+  </script>
+  <div
+    class="page-header"
+    id="content-start"
+  >
+    <h1
+      class="page-header__heading"
+    >
+      Specialised formulas
+    </h1>
+  </div>
+  <div
+    class="grid grid--loose"
+    data-testid="body"
+  >
+    <div
+      class="hide-print"
+      data-g="12 md:4 lg:3"
+    >
+      <nav
+        aria-label="Borderline substances"
+        class="stacked-nav"
       >
-        <h1
-          class="page-header__heading"
+        <p
+          class="stacked-nav__root"
         >
-          Specialised formulas
-        </h1>
-      </div>
-      <div
-        class="grid grid--loose"
-        data-testid="body"
-      >
-        <div
-          class="hide-print"
-          data-g="12 md:4 lg:3"
-        >
-          <nav
-            aria-label="Borderline substances"
-            class="stacked-nav"
+          <a
+            aria-current="false"
+            href="/borderline-substances/"
           >
-            <p
-              class="stacked-nav__root"
-            >
-              <a
-                aria-current="false"
-                href="/borderline-substances/"
-              >
-                Borderline substances
-              </a>
-            </p>
-            <ul
-              class="stacked-nav__list"
-            >
-              <li
-                class="stacked-nav__list-item"
-              >
-                <a
-                  aria-current="false"
-                  href="/borderline-substances/enteral-feeds-non-disease-specific/"
-                >
-                  <span
-                    class="stacked-nav__content-wrapper"
-                  >
-                    <span>
-                      Enteral feeds (non-disease specific)
-                    </span>
-                  </span>
-                </a>
-              </li>
-              <li
-                class="stacked-nav__list-item"
-              >
-                <a
-                  aria-current="true"
-                  href="/borderline-substances/specialised-formulas/"
-                >
-                  <span
-                    class="stacked-nav__content-wrapper"
-                  >
-                    <span>
-                      Specialised formulas
-                    </span>
-                  </span>
-                </a>
-              </li>
-              <li
-                class="stacked-nav__list-item"
-              >
-                <a
-                  aria-current="false"
-                  href="/borderline-substances/foods-for-special-diets/"
-                >
-                  <span
-                    class="stacked-nav__content-wrapper"
-                  >
-                    <span>
-                      Foods for special diets
-                    </span>
-                  </span>
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-        <div
-          data-g="12 md:8 lg:9"
+            Borderline substances
+          </a>
+        </p>
+        <ul
+          class="stacked-nav__list"
         >
-          <ol
-            aria-label="Sections within Specialised formulas"
-            class="column-list column-list--boxed column-list--two-columns"
+          <li
+            class="stacked-nav__list-item"
           >
-            <li>
-              <a
-                href="/borderline-substances/specialised-formulas/specialised-formulas-for-specific-clinical-conditions/"
+            <a
+              aria-current="false"
+              href="/borderline-substances/enteral-feeds-non-disease-specific/"
+            >
+              <span
+                class="stacked-nav__content-wrapper"
               >
-                Specialised formulas for specific clinical conditions
-              </a>
-            </li>
-          </ol>
-        </div>
-      </div>
+                <span>
+                  Enteral feeds (non-disease specific)
+                </span>
+              </span>
+            </a>
+          </li>
+          <li
+            class="stacked-nav__list-item"
+          >
+            <a
+              aria-current="true"
+              href="/borderline-substances/specialised-formulas/"
+            >
+              <span
+                class="stacked-nav__content-wrapper"
+              >
+                <span>
+                  Specialised formulas
+                </span>
+              </span>
+            </a>
+          </li>
+          <li
+            class="stacked-nav__list-item"
+          >
+            <a
+              aria-current="false"
+              href="/borderline-substances/foods-for-special-diets/"
+            >
+              <span
+                class="stacked-nav__content-wrapper"
+              >
+                <span>
+                  Foods for special diets
+                </span>
+              </span>
+            </a>
+          </li>
+        </ul>
+      </nav>
     </div>
-  </main>
+    <div
+      data-g="12 md:8 lg:9"
+    >
+      <ol
+        aria-label="Sections within Specialised formulas"
+        class="column-list column-list--boxed column-list--two-columns"
+      >
+        <li>
+          <a
+            href="/borderline-substances/specialised-formulas/specialised-formulas-for-specific-clinical-conditions/"
+          >
+            Specialised formulas for specific clinical conditions
+          </a>
+        </li>
+      </ol>
+    </div>
+  </div>
 </div>
 `;
 
 exports[`BorderlineSubstancesRootPage Body Two levels should match snapshot 1`] = `
 <div>
-  <main>
-    <div
-      class="container"
+  <nav
+    aria-label="Breadcrumbs"
+    role="navigation"
+  >
+    <ol
+      class="breadcrumbs"
     >
-      <nav
-        aria-label="Breadcrumbs"
-        role="navigation"
+      <li
+        class="breadcrumbs__crumb"
       >
-        <ol
-          class="breadcrumbs"
+        <a
+          href="https://www.nice.org.uk/"
         >
-          <li
-            class="breadcrumbs__crumb"
-          >
-            <a
-              href="https://www.nice.org.uk/"
-            >
-              NICE
-            </a>
-          </li>
-          <li
-            class="breadcrumbs__crumb"
-          >
-            <a
-              href="/"
-            >
-              BNF
-            </a>
-          </li>
-          <li
-            class="breadcrumbs__crumb"
-          >
-            <a
-              href="/borderline-substances/"
-            >
-              Borderline substances
-            </a>
-          </li>
-          <li
-            class="breadcrumbs__crumb"
-          >
-            <span>
-              Foods for special diets
-            </span>
-          </li>
-        </ol>
-      </nav>
-      <script
-        type="application/ld+json"
+          NICE
+        </a>
+      </li>
+      <li
+        class="breadcrumbs__crumb"
       >
-        {
+        <a
+          href="/"
+        >
+          BNF
+        </a>
+      </li>
+      <li
+        class="breadcrumbs__crumb"
+      >
+        <a
+          href="/borderline-substances/"
+        >
+          Borderline substances
+        </a>
+      </li>
+      <li
+        class="breadcrumbs__crumb"
+      >
+        <span>
+          Foods for special diets
+        </span>
+      </li>
+    </ol>
+  </nav>
+  <script
+    type="application/ld+json"
+  >
+    {
   "@context": "http://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
@@ -287,157 +277,155 @@ exports[`BorderlineSubstancesRootPage Body Two levels should match snapshot 1`] 
     }
   ]
 }
-      </script>
-      <div
-        class="page-header"
-        id="content-start"
+  </script>
+  <div
+    class="page-header"
+    id="content-start"
+  >
+    <h1
+      class="page-header__heading"
+    >
+      Foods for special diets
+    </h1>
+  </div>
+  <div
+    class="grid grid--loose"
+    data-testid="body"
+  >
+    <div
+      class="hide-print"
+      data-g="12 md:4 lg:3"
+    >
+      <nav
+        aria-label="Borderline substances"
+        class="stacked-nav"
       >
-        <h1
-          class="page-header__heading"
+        <p
+          class="stacked-nav__root"
         >
-          Foods for special diets
-        </h1>
-      </div>
-      <div
-        class="grid grid--loose"
-        data-testid="body"
-      >
-        <div
-          class="hide-print"
-          data-g="12 md:4 lg:3"
+          <a
+            aria-current="false"
+            href="/borderline-substances/"
+          >
+            Borderline substances
+          </a>
+        </p>
+        <ul
+          class="stacked-nav__list"
         >
-          <nav
-            aria-label="Borderline substances"
-            class="stacked-nav"
+          <li
+            class="stacked-nav__list-item"
           >
-            <p
-              class="stacked-nav__root"
+            <a
+              aria-current="false"
+              href="/borderline-substances/enteral-feeds-non-disease-specific/"
             >
-              <a
-                aria-current="false"
-                href="/borderline-substances/"
+              <span
+                class="stacked-nav__content-wrapper"
               >
-                Borderline substances
-              </a>
-            </p>
-            <ul
-              class="stacked-nav__list"
-            >
-              <li
-                class="stacked-nav__list-item"
-              >
-                <a
-                  aria-current="false"
-                  href="/borderline-substances/enteral-feeds-non-disease-specific/"
-                >
-                  <span
-                    class="stacked-nav__content-wrapper"
-                  >
-                    <span>
-                      Enteral feeds (non-disease specific)
-                    </span>
-                  </span>
-                </a>
-              </li>
-              <li
-                class="stacked-nav__list-item"
-              >
-                <a
-                  aria-current="false"
-                  href="/borderline-substances/specialised-formulas/"
-                >
-                  <span
-                    class="stacked-nav__content-wrapper"
-                  >
-                    <span>
-                      Specialised formulas
-                    </span>
-                  </span>
-                </a>
-              </li>
-              <li
-                class="stacked-nav__list-item"
-              >
-                <a
-                  aria-current="true"
-                  href="/borderline-substances/foods-for-special-diets/"
-                >
-                  <span
-                    class="stacked-nav__content-wrapper"
-                  >
-                    <span>
-                      Foods for special diets
-                    </span>
-                  </span>
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-        <div
-          data-g="12 md:8 lg:9"
-        >
-          <section
-            aria-labelledby="gluten-free-foods"
+                <span>
+                  Enteral feeds (non-disease specific)
+                </span>
+              </span>
+            </a>
+          </li>
+          <li
+            class="stacked-nav__list-item"
           >
-            <h2
-              class="firstHeading"
-              id="gluten-free-foods"
+            <a
+              aria-current="false"
+              href="/borderline-substances/specialised-formulas/"
             >
-              Gluten-free foods
-            </h2>
-            <ol
-              aria-label="Sections within Gluten-free foods"
-              class="column-list column-list--boxed column-list--two-columns"
-            >
-              <li>
-                <a
-                  href="/borderline-substances/foods-for-special-diets/bread/"
-                >
-                  Bread
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/borderline-substances/foods-for-special-diets/cereals/"
-                >
-                  Cereals
-                </a>
-              </li>
-            </ol>
-          </section>
-          <section
-            aria-labelledby="low-protein-foods"
+              <span
+                class="stacked-nav__content-wrapper"
+              >
+                <span>
+                  Specialised formulas
+                </span>
+              </span>
+            </a>
+          </li>
+          <li
+            class="stacked-nav__list-item"
           >
-            <h2
-              id="low-protein-foods"
+            <a
+              aria-current="true"
+              href="/borderline-substances/foods-for-special-diets/"
             >
-              Low-protein foods
-            </h2>
-            <ol
-              aria-label="Sections within Low-protein foods"
-              class="column-list column-list--boxed column-list--two-columns"
-            >
-              <li>
-                <a
-                  href="/borderline-substances/foods-for-special-diets/bread-2/"
-                >
-                  Bread
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/borderline-substances/foods-for-special-diets/cake-biscuits-and-snacks/"
-                >
-                  Cake, biscuits, and snacks
-                </a>
-              </li>
-            </ol>
-          </section>
-        </div>
-      </div>
+              <span
+                class="stacked-nav__content-wrapper"
+              >
+                <span>
+                  Foods for special diets
+                </span>
+              </span>
+            </a>
+          </li>
+        </ul>
+      </nav>
     </div>
-  </main>
+    <div
+      data-g="12 md:8 lg:9"
+    >
+      <section
+        aria-labelledby="gluten-free-foods"
+      >
+        <h2
+          class="firstHeading"
+          id="gluten-free-foods"
+        >
+          Gluten-free foods
+        </h2>
+        <ol
+          aria-label="Sections within Gluten-free foods"
+          class="column-list column-list--boxed column-list--two-columns"
+        >
+          <li>
+            <a
+              href="/borderline-substances/foods-for-special-diets/bread/"
+            >
+              Bread
+            </a>
+          </li>
+          <li>
+            <a
+              href="/borderline-substances/foods-for-special-diets/cereals/"
+            >
+              Cereals
+            </a>
+          </li>
+        </ol>
+      </section>
+      <section
+        aria-labelledby="low-protein-foods"
+      >
+        <h2
+          id="low-protein-foods"
+        >
+          Low-protein foods
+        </h2>
+        <ol
+          aria-label="Sections within Low-protein foods"
+          class="column-list column-list--boxed column-list--two-columns"
+        >
+          <li>
+            <a
+              href="/borderline-substances/foods-for-special-diets/bread-2/"
+            >
+              Bread
+            </a>
+          </li>
+          <li>
+            <a
+              href="/borderline-substances/foods-for-special-diets/cake-biscuits-and-snacks/"
+            >
+              Cake, biscuits, and snacks
+            </a>
+          </li>
+        </ol>
+      </section>
+    </div>
+  </div>
 </div>
 `;
 

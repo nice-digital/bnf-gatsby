@@ -33,7 +33,7 @@ export type WithSlug<T extends object> = T & Slug;
  * Add a `slug: string` property to each of the given `SlugTypes` recursively within the given type `Base`.
  *
  * This type is useful for augmenting raw feed types with `slug` properties when they're queried via GraphQl.
- * This is because we add slugs using the `@slug` directive in the GraphQL schema, so there are no slugs on the raw feed types.
+ * This is because we add slugs when we create nodes for GraphQL, so there are no slugs on the raw feed types.
  * It avoids having to do nested union types to add a `slug` property in each file that queries GraphQL.
  *
  * This type will often be used in tandem with `QueryResult` in practice to correctly type the results of GraphQL queries _and_ to add slugs where needed.

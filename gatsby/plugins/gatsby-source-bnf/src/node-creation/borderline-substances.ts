@@ -9,12 +9,14 @@ import {
 } from "../downloader/types";
 import { BnfNode } from "../node-types";
 
+import { slugify } from "./slugify";
 import { createBnfNode, SimpleRecordNodeInput } from "./utils";
 
 export type TaxonomyNodeInput = Except<
 	FeedBorderlineSubstancesTaxonomy,
 	"substances" | "children"
 > & {
+	slug: string;
 	parentTaxonomy?: SID | PHPID;
 	rootTaxonomy: SID | PHPID;
 	childTaxonomies: (SID | PHPID)[];
@@ -51,6 +53,10 @@ export const createBorderlineSubstancesNodes = (
 			createBnfNode<TaxonomyNodeInput>(
 				{
 					...taxonomyFields,
+					slug: slugify(
+						taxonomyFields.title,
+						BnfNode.BorderlineSubstancesTaxonomy
+					),
 					parentTaxonomy: parent?.id,
 					childTaxonomies: children?.map((t) => t.id) || [],
 					rootTaxonomy: rootTaxonomy.id,
