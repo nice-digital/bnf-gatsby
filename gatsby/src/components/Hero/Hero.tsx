@@ -1,6 +1,8 @@
 import { Link, graphql, useStaticQuery } from "gatsby";
 import * as React from "react";
 
+import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
+
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
 import styles from "./Hero.module.scss";
@@ -33,6 +35,10 @@ export const Hero: React.FC = () => {
 	return (
 		<div className={styles.hero} id="content-start">
 			<div className={styles.heroContainer}>
+				<Breadcrumbs className={styles.breadcrumbs}>
+					<Breadcrumb to="https://www.nice.org.uk/">NICE</Breadcrumb>
+					<Breadcrumb>{siteTitleShort}</Breadcrumb>
+				</Breadcrumbs>
 				<div className={styles.text}>
 					<h1 className={styles.title}>
 						{siteTitleLong} ({siteTitleShort})

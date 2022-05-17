@@ -15,57 +15,54 @@ exports[`NursePrescribersFormularyApprovedListPage should match snapshot for gra
 `;
 
 exports[`NursePrescribersFormularyApprovedListPage should match snapshot for page contents 1`] = `
-<main>
-  <div
-    class="container"
+<div>
+  <nav
+    aria-label="Breadcrumbs"
+    role="navigation"
   >
-    <nav
-      aria-label="Breadcrumbs"
-      role="navigation"
+    <ol
+      class="breadcrumbs"
     >
-      <ol
-        class="breadcrumbs"
+      <li
+        class="breadcrumbs__crumb"
       >
-        <li
-          class="breadcrumbs__crumb"
+        <a
+          href="https://www.nice.org.uk/"
         >
-          <a
-            href="https://www.nice.org.uk/"
-          >
-            NICE
-          </a>
-        </li>
-        <li
-          class="breadcrumbs__crumb"
+          NICE
+        </a>
+      </li>
+      <li
+        class="breadcrumbs__crumb"
+      >
+        <a
+          href="/"
         >
-          <a
-            href="/"
-          >
-            BNF
-          </a>
-        </li>
-        <li
-          class="breadcrumbs__crumb"
+          BNF
+        </a>
+      </li>
+      <li
+        class="breadcrumbs__crumb"
+      >
+        <a
+          href="/nurse-prescribers-formulary/"
         >
-          <a
-            href="/nurse-prescribers-formulary/"
-          >
-            Nurse Prescribers' Formulary
-          </a>
-        </li>
-        <li
-          class="breadcrumbs__crumb"
-        >
-          <span>
-            Approved list for prescribing by Community Practitioner Nurse Prescribers (NPF)
-          </span>
-        </li>
-      </ol>
-    </nav>
-    <script
-      type="application/ld+json"
-    >
-      {
+          Nurse Prescribers' Formulary
+        </a>
+      </li>
+      <li
+        class="breadcrumbs__crumb"
+      >
+        <span>
+          Approved list for prescribing by Community Practitioner Nurse Prescribers (NPF)
+        </span>
+      </li>
+    </ol>
+  </nav>
+  <script
+    type="application/ld+json"
+  >
+    {
   "@context": "http://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
@@ -102,187 +99,186 @@ exports[`NursePrescribersFormularyApprovedListPage should match snapshot for pag
     }
   ]
 }
-    </script>
-    <div
-      class="page-header"
-      id="content-start"
+  </script>
+  <div
+    class="page-header"
+    id="content-start"
+  >
+    <h1
+      class="page-header__heading"
     >
-      <h1
-        class="page-header__heading"
-      >
-        <span>
-          Approved list for prescribing by Community Practitioner Nurse Prescribers (NPF)
-        </span>
-      </h1>
-    </div>
+      <span>
+        Approved list for prescribing by Community Practitioner Nurse Prescribers (NPF)
+      </span>
+    </h1>
+  </div>
+  <div
+    class="grid grid--loose"
+    data-testid="body"
+  >
     <div
-      class="grid grid--loose"
-      data-testid="body"
+      class="hide-print"
+      data-g="12 md:4 lg:3"
     >
-      <div
-        class="hide-print"
-        data-g="12 md:4 lg:3"
+      <nav
+        aria-label="Nurse Prescribers' Formulary"
+        class="stacked-nav"
       >
-        <nav
-          aria-label="Nurse Prescribers' Formulary"
-          class="stacked-nav"
+        <p
+          class="stacked-nav__root"
         >
-          <p
-            class="stacked-nav__root"
+          <a
+            aria-current="false"
+            href="/nurse-prescribers-formulary/"
+          >
+            Nurse Prescribers' Formulary
+          </a>
+        </p>
+        <ul
+          class="stacked-nav__list"
+        >
+          <li
+            class="stacked-nav__list-item"
           >
             <a
               aria-current="false"
-              href="/nurse-prescribers-formulary/"
+              href="/nurse-prescribers-formulary/analgesics/"
             >
-              Nurse Prescribers' Formulary
+              <span
+                class="stacked-nav__content-wrapper"
+              >
+                <span>
+                  Analgesics
+                </span>
+              </span>
             </a>
-          </p>
-          <ul
-            class="stacked-nav__list"
+          </li>
+          <li
+            class="stacked-nav__list-item"
           >
-            <li
-              class="stacked-nav__list-item"
+            <a
+              aria-current="false"
+              href="/nurse-prescribers-formulary/appliances-and-reagents-for-diabetes/"
             >
-              <a
-                aria-current="false"
-                href="/nurse-prescribers-formulary/analgesics/"
+              <span
+                class="stacked-nav__content-wrapper"
               >
-                <span
-                  class="stacked-nav__content-wrapper"
-                >
-                  <span>
-                    Analgesics
-                  </span>
+                <span>
+                  Appliances and reagents for diabetes
                 </span>
-              </a>
-            </li>
-            <li
-              class="stacked-nav__list-item"
+              </span>
+            </a>
+          </li>
+          <li
+            class="stacked-nav__list-item"
+          >
+            <a
+              aria-current="false"
+              href="/nurse-prescribers-formulary/general-guidance/"
             >
-              <a
-                aria-current="false"
-                href="/nurse-prescribers-formulary/appliances-and-reagents-for-diabetes/"
+              <span
+                class="stacked-nav__content-wrapper"
               >
-                <span
-                  class="stacked-nav__content-wrapper"
-                >
-                  <span>
-                    Appliances and reagents for diabetes
-                  </span>
+                <span>
+                  General guidance
                 </span>
-              </a>
-            </li>
-            <li
-              class="stacked-nav__list-item"
+              </span>
+            </a>
+          </li>
+          <li
+            class="stacked-nav__list-item"
+          >
+            <a
+              aria-current="true"
+              href="/nurse-prescribers-formulary/approved-list-for-prescribing-by-community-practitioner-nurse-prescribers-npf/"
             >
-              <a
-                aria-current="false"
-                href="/nurse-prescribers-formulary/general-guidance/"
+              <span
+                class="stacked-nav__content-wrapper"
               >
-                <span
-                  class="stacked-nav__content-wrapper"
-                >
-                  <span>
-                    General guidance
-                  </span>
+                <span>
+                  Approved list for prescribing by Community Practitioner Nurse Prescribers (NPF)
                 </span>
-              </a>
-            </li>
-            <li
-              class="stacked-nav__list-item"
-            >
-              <a
-                aria-current="true"
-                href="/nurse-prescribers-formulary/approved-list-for-prescribing-by-community-practitioner-nurse-prescribers-npf/"
-              >
-                <span
-                  class="stacked-nav__content-wrapper"
-                >
-                  <span>
-                    Approved list for prescribing by Community Practitioner Nurse Prescribers (NPF)
-                  </span>
-                </span>
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </div>
+              </span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div
+      data-g="12 md:8 lg:9"
+    >
       <div
-        data-g="12 md:8 lg:9"
+        class="grid grid--rev grid--loose"
       >
         <div
-          class="grid grid--rev grid--loose"
+          data-g="12 lg:3"
+        />
+        <div
+          class="body"
+          data-g="12 lg:9"
         >
-          <div
-            data-g="12 lg:3"
-          />
-          <div
-            class="body"
-            data-g="12 lg:9"
+          <nav
+            aria-labelledby="navigate-to-section"
+            class="nav sectionNav"
           >
-            <nav
-              aria-labelledby="navigate-to-section"
-              class="nav sectionNav"
+            <h2
+              class="heading"
+              id="navigate-to-section"
             >
-              <h2
-                class="heading"
-                id="navigate-to-section"
-              >
-                Navigate to section
-              </h2>
-              <ol
-                aria-label="Jump links to sections on this page"
-                class="linkList"
-              >
-                <li>
-                  <a
-                    href="#intro-1"
-                  >
-                    Intro 1
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#intro-2"
-                  >
-                    Intro 2
-                  </a>
-                </li>
-              </ol>
-            </nav>
-            <section
-              aria-labelledby="intro-1"
+              Navigate to section
+            </h2>
+            <ol
+              aria-label="Jump links to sections on this page"
+              class="linkList"
             >
-              <h2
-                class="firstHeading"
-                id="intro-1"
-              >
-                Intro 1
-              </h2>
-              <div>
-                <p>
-                  Approved list content
-                </p>
-              </div>
-            </section>
-            <section
-              aria-labelledby="intro-2"
+              <li>
+                <a
+                  href="#intro-1"
+                >
+                  Intro 1
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#intro-2"
+                >
+                  Intro 2
+                </a>
+              </li>
+            </ol>
+          </nav>
+          <section
+            aria-labelledby="intro-1"
+          >
+            <h2
+              class="firstHeading"
+              id="intro-1"
             >
-              <h2
-                id="intro-2"
-              >
-                Intro 2
-              </h2>
-              <div>
-                <p>
-                  Approved list content 2
-                </p>
-              </div>
-            </section>
-          </div>
+              Intro 1
+            </h2>
+            <div>
+              <p>
+                Approved list content
+              </p>
+            </div>
+          </section>
+          <section
+            aria-labelledby="intro-2"
+          >
+            <h2
+              id="intro-2"
+            >
+              Intro 2
+            </h2>
+            <div>
+              <p>
+                Approved list content 2
+              </p>
+            </div>
+          </section>
         </div>
       </div>
     </div>
   </div>
-</main>
+</div>
 `;

@@ -11,10 +11,11 @@ describe("NursePrescribersFormularyTreatmentSummaryPage", () => {
 			mockNursePrescribersPagesQueryData
 		);
 	});
-	it("should match snapshot for page contents", () => {
-		render(<NursePrescribersFormularyIndexPage />);
 
-		expect(screen.getByRole("main")).toMatchSnapshot();
+	it("should match snapshot for page contents", () => {
+		const { container } = render(<NursePrescribersFormularyIndexPage />);
+
+		expect(container).toMatchSnapshot();
 	});
 
 	it("should set page title", async () => {

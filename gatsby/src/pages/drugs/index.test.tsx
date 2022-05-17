@@ -1,4 +1,4 @@
-import { render, waitFor, screen } from "@testing-library/react";
+import { render, waitFor } from "@testing-library/react";
 
 import DrugsIndexPage, { type DrugsIndexPageProps } from "./";
 
@@ -58,7 +58,7 @@ describe("DrugsIndexPage", () => {
 	});
 
 	it("should match snapshot for page body", () => {
-		render(<DrugsIndexPage {...props} />);
-		expect(screen.getByRole("main")).toMatchSnapshot();
+		const { container } = render(<DrugsIndexPage {...props} />);
+		expect(container).toMatchSnapshot();
 	});
 });
