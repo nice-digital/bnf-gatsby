@@ -1,48 +1,45 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DrugsIndexPage should match snapshot for page body 1`] = `
-<main>
-  <div
-    class="container"
+<div>
+  <nav
+    aria-label="Breadcrumbs"
+    role="navigation"
   >
-    <nav
-      aria-label="Breadcrumbs"
-      role="navigation"
+    <ol
+      class="breadcrumbs"
     >
-      <ol
-        class="breadcrumbs"
+      <li
+        class="breadcrumbs__crumb"
       >
-        <li
-          class="breadcrumbs__crumb"
+        <a
+          href="https://www.nice.org.uk/"
         >
-          <a
-            href="https://www.nice.org.uk/"
-          >
-            NICE
-          </a>
-        </li>
-        <li
-          class="breadcrumbs__crumb"
+          NICE
+        </a>
+      </li>
+      <li
+        class="breadcrumbs__crumb"
+      >
+        <a
+          href="/"
         >
-          <a
-            href="/"
-          >
-            BNF
-          </a>
-        </li>
-        <li
-          class="breadcrumbs__crumb"
-        >
-          <span>
-            Drugs A to Z
-          </span>
-        </li>
-      </ol>
-    </nav>
-    <script
-      type="application/ld+json"
-    >
-      {
+          BNF
+        </a>
+      </li>
+      <li
+        class="breadcrumbs__crumb"
+      >
+        <span>
+          Drugs A to Z
+        </span>
+      </li>
+    </ol>
+  </nav>
+  <script
+    type="application/ld+json"
+  >
+    {
   "@context": "http://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
@@ -71,108 +68,107 @@ exports[`DrugsIndexPage should match snapshot for page body 1`] = `
     }
   ]
 }
-    </script>
-    <div
-      class="page-header"
-      id="content-start"
+  </script>
+  <div
+    class="page-header"
+    id="content-start"
+  >
+    <h1
+      class="page-header__heading"
     >
-      <h1
-        class="page-header__heading"
-      >
-        Drugs
-         A to Z
-      </h1>
-      <p
-        class="page-header__lead"
-      >
-        Browse drug monographs by A to Z. Drug monographs describe the uses, doses, safety issues, medicinal forms and other considerations involved in the use of a drug.
-      </p>
-    </div>
-    <ol
-      class="alphabet  "
-      id="a-to-z"
+      Drugs
+       A to Z
+    </h1>
+    <p
+      class="page-header__lead"
     >
-      <li
-        class="alphabet__letter "
-      >
-        <a
-          href="#a"
-        >
-          A
-        </a>
-      </li>
-      <li
-        class="alphabet__letter "
-      >
-        <a
-          href="#b"
-        >
-          B
-        </a>
-      </li>
-    </ol>
-    <ol
-      class="a-z-list "
-    >
-      <li
-        class="a-z-list__item "
-      >
-        <h2
-          class="a-z-list__item-heading"
-          id="a"
-        >
-          A
-        </h2>
-        <ol
-          aria-labelledby="a"
-          class="column-list column-list--boxed"
-        >
-          <li>
-            <a
-              href="/drugs/abacavir/"
-            >
-              Abacavir
-            </a>
-          </li>
-          <li>
-            <a
-              href="/drugs/abatacept/"
-            >
-              Abatacept
-            </a>
-          </li>
-        </ol>
-      </li>
-      <li
-        class="a-z-list__item "
-      >
-        <h2
-          class="a-z-list__item-heading"
-          id="b"
-        >
-          B
-        </h2>
-        <ol
-          aria-labelledby="b"
-          class="column-list column-list--boxed"
-        >
-          <li>
-            <a
-              href="/drugs/bacillus-calmette-guerin/"
-            >
-              Bacillus Calmette-Guérin
-            </a>
-          </li>
-          <li>
-            <a
-              href="/drugs/bacillus-calmette-guerin-vaccine/"
-            >
-              Bacillus Calmette-Guérin
-            </a>
-          </li>
-        </ol>
-      </li>
-    </ol>
+      Browse drug monographs by A to Z. Drug monographs describe the uses, doses, safety issues, medicinal forms and other considerations involved in the use of a drug.
+    </p>
   </div>
-</main>
+  <ol
+    class="alphabet  "
+    id="a-to-z"
+  >
+    <li
+      class="alphabet__letter "
+    >
+      <a
+        href="#a"
+      >
+        A
+      </a>
+    </li>
+    <li
+      class="alphabet__letter "
+    >
+      <a
+        href="#b"
+      >
+        B
+      </a>
+    </li>
+  </ol>
+  <ol
+    class="a-z-list "
+  >
+    <li
+      class="a-z-list__item "
+    >
+      <h2
+        class="a-z-list__item-heading"
+        id="a"
+      >
+        A
+      </h2>
+      <ol
+        aria-labelledby="a"
+        class="column-list column-list--boxed"
+      >
+        <li>
+          <a
+            href="/drugs/abacavir/"
+          >
+            Abacavir
+          </a>
+        </li>
+        <li>
+          <a
+            href="/drugs/abatacept/"
+          >
+            Abatacept
+          </a>
+        </li>
+      </ol>
+    </li>
+    <li
+      class="a-z-list__item "
+    >
+      <h2
+        class="a-z-list__item-heading"
+        id="b"
+      >
+        B
+      </h2>
+      <ol
+        aria-labelledby="b"
+        class="column-list column-list--boxed"
+      >
+        <li>
+          <a
+            href="/drugs/bacillus-calmette-guerin/"
+          >
+            Bacillus Calmette-Guérin
+          </a>
+        </li>
+        <li>
+          <a
+            href="/drugs/bacillus-calmette-guerin-vaccine/"
+          >
+            Bacillus Calmette-Guérin
+          </a>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</div>
 `;

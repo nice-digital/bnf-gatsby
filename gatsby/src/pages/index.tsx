@@ -6,7 +6,6 @@ import { Button } from "@nice-digital/nds-button";
 import { Grid, GridItem } from "@nice-digital/nds-grid";
 
 import { Hero } from "@/components/Hero/Hero";
-import { Layout } from "@/components/Layout/Layout";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
@@ -18,7 +17,7 @@ const HomePage: FC = () => {
 	const { isBNF, siteTitleShort } = useSiteMetadata();
 
 	return (
-		<Layout>
+		<>
 			<div className={styles.homeWrapper}>
 				<SEO />
 				<Hero />
@@ -229,7 +228,7 @@ const HomePage: FC = () => {
 					</li>
 				</ul>
 			</div>
-		</Layout>
+		</>
 	);
 };
 
