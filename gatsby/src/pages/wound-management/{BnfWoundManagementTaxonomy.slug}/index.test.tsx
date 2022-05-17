@@ -109,8 +109,9 @@ describe("Wound management taxonomy page", () => {
 	});
 
 	it("should match page snapshot", () => {
-		render(<WoundManagementTaxonomyPage {...props} />);
-		expect(screen.getByRole("main")).toMatchSnapshot();
+		const { container } = render(<WoundManagementTaxonomyPage {...props} />);
+
+		expect(container).toMatchSnapshot();
 	});
 
 	it("should add content start skip link target id to page header", () => {

@@ -2,48 +2,44 @@
 
 exports[`BorderlineSubstanceIntroductionPage should match snapshot for page contents 1`] = `
 <div>
-  <main>
-    <div
-      class="container"
+  <nav
+    aria-label="Breadcrumbs"
+    role="navigation"
+  >
+    <ol
+      class="breadcrumbs"
     >
-      <nav
-        aria-label="Breadcrumbs"
-        role="navigation"
+      <li
+        class="breadcrumbs__crumb"
       >
-        <ol
-          class="breadcrumbs"
+        <a
+          href="https://www.nice.org.uk/"
         >
-          <li
-            class="breadcrumbs__crumb"
-          >
-            <a
-              href="https://www.nice.org.uk/"
-            >
-              NICE
-            </a>
-          </li>
-          <li
-            class="breadcrumbs__crumb"
-          >
-            <a
-              href="/"
-            >
-              BNF
-            </a>
-          </li>
-          <li
-            class="breadcrumbs__crumb"
-          >
-            <span>
-              Borderline Substances
-            </span>
-          </li>
-        </ol>
-      </nav>
-      <script
-        type="application/ld+json"
+          NICE
+        </a>
+      </li>
+      <li
+        class="breadcrumbs__crumb"
       >
-        {
+        <a
+          href="/"
+        >
+          BNF
+        </a>
+      </li>
+      <li
+        class="breadcrumbs__crumb"
+      >
+        <span>
+          Borderline Substances
+        </span>
+      </li>
+    </ol>
+  </nav>
+  <script
+    type="application/ld+json"
+  >
+    {
   "@context": "http://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
@@ -72,177 +68,175 @@ exports[`BorderlineSubstanceIntroductionPage should match snapshot for page cont
     }
   ]
 }
-      </script>
-      <div
-        class="page-header"
-        id="content-start"
+  </script>
+  <div
+    class="page-header"
+    id="content-start"
+  >
+    <h1
+      class="page-header__heading"
+    >
+      <span>
+        Borderline Substances
+      </span>
+    </h1>
+  </div>
+  <div
+    class="grid grid--loose"
+    data-testid="body"
+  >
+    <div
+      class="hide-print"
+      data-g="12 md:4 lg:3"
+    >
+      <nav
+        aria-label="Borderline substances"
+        class="stacked-nav"
       >
-        <h1
-          class="page-header__heading"
+        <p
+          class="stacked-nav__root"
         >
-          <span>
-            Borderline Substances
-          </span>
-        </h1>
-      </div>
+          <a
+            aria-current="false"
+            href="/borderline-substances/"
+          >
+            Borderline substances
+          </a>
+        </p>
+        <ul
+          class="stacked-nav__list"
+        >
+          <li
+            class="stacked-nav__list-item"
+          >
+            <a
+              aria-current="false"
+              href="/borderline-substances/parent-1/"
+            >
+              <span
+                class="stacked-nav__content-wrapper"
+              >
+                <span>
+                  Parent taxonomy 1
+                </span>
+              </span>
+            </a>
+          </li>
+          <li
+            class="stacked-nav__list-item"
+          >
+            <a
+              aria-current="false"
+              href="/borderline-substances/taxonomy-1/"
+            >
+              <span
+                class="stacked-nav__content-wrapper"
+              >
+                <span>
+                  Sub taxonomy 1
+                </span>
+              </span>
+            </a>
+          </li>
+          <li
+            class="stacked-nav__list-item"
+          >
+            <a
+              aria-current="false"
+              href="/borderline-substances/taxonomy-2/"
+            >
+              <span
+                class="stacked-nav__content-wrapper"
+              >
+                <span>
+                  Sub taxonomy 2
+                </span>
+              </span>
+            </a>
+          </li>
+          <li
+            class="stacked-nav__list-item"
+          >
+            <a
+              aria-current="false"
+              href="/borderline-substances/parent-2/"
+            >
+              <span
+                class="stacked-nav__content-wrapper"
+              >
+                <span>
+                  Parent 2
+                </span>
+              </span>
+            </a>
+          </li>
+          <li
+            class="stacked-nav__list-item"
+          >
+            <a
+              aria-current="false"
+              href="/borderline-substances/sub-taxonomy-1/"
+            >
+              <span
+                class="stacked-nav__content-wrapper"
+              >
+                <span>
+                  Sub taxonomy 1
+                </span>
+              </span>
+            </a>
+          </li>
+          <li
+            class="stacked-nav__list-item"
+          >
+            <a
+              aria-current="false"
+              href="/borderline-substances/parent-3/"
+            >
+              <span
+                class="stacked-nav__content-wrapper"
+              >
+                <span>
+                  Parent 3
+                </span>
+              </span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div
+      data-g="12 md:8 lg:9"
+    >
       <div
-        class="grid grid--loose"
-        data-testid="body"
+        class="grid grid--rev grid--loose"
       >
         <div
-          class="hide-print"
-          data-g="12 md:4 lg:3"
+          data-g="12 lg:3"
         >
           <nav
-            aria-label="Borderline substances"
-            class="stacked-nav"
+            aria-labelledby="on-this-page"
+            class="wrapper"
           >
-            <p
-              class="stacked-nav__root"
+            <h2
+              class="heading"
+              id="on-this-page"
             >
-              <a
-                aria-current="false"
-                href="/borderline-substances/"
-              >
-                Borderline substances
-              </a>
-            </p>
-            <ul
-              class="stacked-nav__list"
-            >
-              <li
-                class="stacked-nav__list-item"
-              >
-                <a
-                  aria-current="false"
-                  href="/borderline-substances/parent-1/"
-                >
-                  <span
-                    class="stacked-nav__content-wrapper"
-                  >
-                    <span>
-                      Parent taxonomy 1
-                    </span>
-                  </span>
-                </a>
-              </li>
-              <li
-                class="stacked-nav__list-item"
-              >
-                <a
-                  aria-current="false"
-                  href="/borderline-substances/taxonomy-1/"
-                >
-                  <span
-                    class="stacked-nav__content-wrapper"
-                  >
-                    <span>
-                      Sub taxonomy 1
-                    </span>
-                  </span>
-                </a>
-              </li>
-              <li
-                class="stacked-nav__list-item"
-              >
-                <a
-                  aria-current="false"
-                  href="/borderline-substances/taxonomy-2/"
-                >
-                  <span
-                    class="stacked-nav__content-wrapper"
-                  >
-                    <span>
-                      Sub taxonomy 2
-                    </span>
-                  </span>
-                </a>
-              </li>
-              <li
-                class="stacked-nav__list-item"
-              >
-                <a
-                  aria-current="false"
-                  href="/borderline-substances/parent-2/"
-                >
-                  <span
-                    class="stacked-nav__content-wrapper"
-                  >
-                    <span>
-                      Parent 2
-                    </span>
-                  </span>
-                </a>
-              </li>
-              <li
-                class="stacked-nav__list-item"
-              >
-                <a
-                  aria-current="false"
-                  href="/borderline-substances/sub-taxonomy-1/"
-                >
-                  <span
-                    class="stacked-nav__content-wrapper"
-                  >
-                    <span>
-                      Sub taxonomy 1
-                    </span>
-                  </span>
-                </a>
-              </li>
-              <li
-                class="stacked-nav__list-item"
-              >
-                <a
-                  aria-current="false"
-                  href="/borderline-substances/parent-3/"
-                >
-                  <span
-                    class="stacked-nav__content-wrapper"
-                  >
-                    <span>
-                      Parent 3
-                    </span>
-                  </span>
-                </a>
-              </li>
-            </ul>
+              On this page
+            </h2>
+            <ol
+              aria-label="Jump links to sections on this page"
+              class="list"
+            />
           </nav>
         </div>
         <div
-          data-g="12 md:8 lg:9"
-        >
-          <div
-            class="grid grid--rev grid--loose"
-          >
-            <div
-              data-g="12 lg:3"
-            >
-              <nav
-                aria-labelledby="on-this-page"
-                class="wrapper"
-              >
-                <h2
-                  class="heading"
-                  id="on-this-page"
-                >
-                  On this page
-                </h2>
-                <ol
-                  aria-label="Jump links to sections on this page"
-                  class="list"
-                />
-              </nav>
-            </div>
-            <div
-              class="body"
-              data-g="12 lg:9"
-            />
-          </div>
-        </div>
+          class="body"
+          data-g="12 lg:9"
+        />
       </div>
     </div>
-  </main>
+  </div>
 </div>
 `;
 

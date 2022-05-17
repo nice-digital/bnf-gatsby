@@ -1,4 +1,4 @@
-import { render, waitFor, screen } from "@testing-library/react";
+import { render, waitFor } from "@testing-library/react";
 
 import TreatmentSummariesIndexPage, {
 	type TreatmentSummariesIndexPageProps,
@@ -62,7 +62,7 @@ describe("TreatmentSummariesIndexPage", () => {
 	});
 
 	it("should match snapshot for page body", () => {
-		render(<TreatmentSummariesIndexPage {...props} />);
-		expect(screen.getByRole("main")).toMatchSnapshot();
+		const { container } = render(<TreatmentSummariesIndexPage {...props} />);
+		expect(container).toMatchSnapshot();
 	});
 });

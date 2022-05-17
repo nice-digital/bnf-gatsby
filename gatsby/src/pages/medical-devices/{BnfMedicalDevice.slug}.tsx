@@ -7,7 +7,6 @@ import { ColumnList } from "@nice-digital/nds-column-list";
 import { Grid, GridItem } from "@nice-digital/nds-grid";
 import { PageHeader } from "@nice-digital/nds-page-header";
 
-import { Layout } from "@/components/Layout/Layout";
 import { MedicalDevicesMenu } from "@/components/MedicalDevicesMenu/MedicalDevicesMenu";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
@@ -40,7 +39,7 @@ const MedicalDevicePage: FC<MedicalDevicePageProps> = ({
 		titleNoHtml = striptags(title);
 
 	return (
-		<Layout>
+		<>
 			<SEO
 				title={`${titleNoHtml} | Medical devices`}
 				description={`This medical devices topic describes the options that are currently recommended for ${decapitalize(
@@ -104,7 +103,7 @@ const MedicalDevicePage: FC<MedicalDevicePageProps> = ({
 					</ColumnList>
 				</GridItem>
 			</Grid>
-		</Layout>
+		</>
 	);
 };
 

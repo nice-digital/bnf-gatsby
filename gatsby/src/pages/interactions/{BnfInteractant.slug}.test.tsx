@@ -195,8 +195,8 @@ describe("InteractantPage", () => {
 		});
 
 		it("should match snapshot for page body", () => {
-			render(<InteractantPage data={dataProp} />);
-			expect(screen.getByRole("main")).toMatchSnapshot();
+			const { container } = render(<InteractantPage data={dataProp} />);
+			expect(container).toMatchSnapshot();
 		});
 
 		it("should link to drug monograph page for matching drug", () => {

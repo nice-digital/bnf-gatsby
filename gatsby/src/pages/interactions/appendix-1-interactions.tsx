@@ -4,7 +4,6 @@ import { FC } from "react";
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
 import { PageHeader } from "@nice-digital/nds-page-header";
 
-import { Layout } from "@/components/Layout/Layout";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
@@ -25,7 +24,7 @@ const InteractionsIndexPage: FC<InteractionsIntroductionPageProps> = ({
 	const { siteTitleShort } = useSiteMetadata();
 
 	return (
-		<Layout>
+		<>
 			<SEO
 				title="Appendix 1 Interactions | Interactions"
 				description="Read about how pharmacodynamic and pharmacokinetic interactions can occur, potential effects of these interactions, and how their severity is graded in the BNF."
@@ -50,7 +49,7 @@ const InteractionsIndexPage: FC<InteractionsIntroductionPageProps> = ({
 					<div dangerouslySetInnerHTML={{ __html: content }}></div>
 				</section>
 			))}
-		</Layout>
+		</>
 	);
 };
 

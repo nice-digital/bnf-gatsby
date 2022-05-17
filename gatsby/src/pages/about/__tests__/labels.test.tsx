@@ -1,5 +1,5 @@
 import { useLocation } from "@reach/router";
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, waitFor } from "@testing-library/react";
 import { useStaticQuery } from "gatsby";
 import React from "react";
 
@@ -88,8 +88,8 @@ describe("CautionaryAdvisoryLabelsPage", () => {
 	});
 
 	it("should match snapshot for page contents", () => {
-		render(<CautionaryAdvisoryLabelsPage {...props} />);
+		const { container } = render(<CautionaryAdvisoryLabelsPage {...props} />);
 
-		expect(screen.getByRole("main")).toMatchSnapshot();
+		expect(container).toMatchSnapshot();
 	});
 });
