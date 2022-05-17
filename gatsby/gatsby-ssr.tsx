@@ -1,5 +1,10 @@
-import { PreRenderHTMLArgs } from "gatsby";
-import React from "react";
+import {
+	type PreRenderHTMLArgs,
+	type WrapPageElementBrowserArgs,
+} from "gatsby";
+import React, { type ReactElement } from "react";
+
+import { Layout } from "@/components/Layout/Layout";
 
 export const onPreRenderHTML = ({
 	getHeadComponents,
@@ -18,3 +23,10 @@ export const onPreRenderHTML = ({
 
 	replaceHeadComponents(components);
 };
+
+export const wrapPageElement = ({
+	element,
+	props,
+}: WrapPageElementBrowserArgs): ReactElement => (
+	<Layout {...props}>{element}</Layout>
+);

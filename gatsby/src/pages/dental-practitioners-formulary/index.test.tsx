@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, waitFor } from "@testing-library/react";
 
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
@@ -35,9 +35,11 @@ describe("DentalPractitionersFormularyPageProps", () => {
 	});
 
 	it("should match snapshot for page contents", () => {
-		render(<DentalPractitionersFormularyPage {...pageProps} />);
+		const { container } = render(
+			<DentalPractitionersFormularyPage {...pageProps} />
+		);
 
-		expect(screen.getByRole("main")).toMatchSnapshot();
+		expect(container).toMatchSnapshot();
 	});
 
 	it("should set page title", async () => {

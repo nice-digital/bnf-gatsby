@@ -3,6 +3,7 @@ import React, { ReactNode } from "react";
 import { Footer, Main } from "@nice-digital/global-nav";
 import { Container } from "@nice-digital/nds-container";
 
+import { SiteDistinction } from "../SiteDistinction/SiteDistinction";
 import { SiteHeader } from "../SiteHeader/SiteHeader";
 
 import { isBNF } from "./../../site";
@@ -18,6 +19,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }: LayoutProps) => {
 		<>
 			<SiteHeader />
 			<Main>
+				<SiteDistinction />
 				<Container>{children}</Container>
 			</Main>
 			<Footer service={isBNF ? "bnf" : "bnfc"} />

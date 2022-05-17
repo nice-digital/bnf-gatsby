@@ -46,7 +46,7 @@ const BorderlineSubstancesSectionPage: FC<
 	);
 
 	return (
-		<Layout>
+		<>
 			<SEO title={title} />
 
 			<Breadcrumbs>
@@ -106,7 +106,7 @@ const BorderlineSubstancesSectionPage: FC<
 					)}
 				</GridItem>
 			</Grid>
-		</Layout>
+		</>
 	);
 };
 
