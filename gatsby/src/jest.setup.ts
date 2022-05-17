@@ -14,6 +14,13 @@ jest.mock("./components/SiteHeader/SiteHeader", () => {
 	};
 });
 
+// Avoid site distinction banner affecting all page snapshots
+jest.mock("./components/SiteDistinction/SiteDistinction", () => {
+	return {
+		SiteDistinction: jest.fn((): null => null),
+	};
+});
+
 // Mock the useSiteMetadata hook as it uses useStaticQuery under the hood, which itself mocked!
 jest.mock("./hooks/useSiteMetadata", () => {
 	return {

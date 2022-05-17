@@ -1,57 +1,54 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Wound management taxonomy page should match page snapshot 1`] = `
-<main>
-  <div
-    class="container"
+<div>
+  <nav
+    aria-label="Breadcrumbs"
+    role="navigation"
   >
-    <nav
-      aria-label="Breadcrumbs"
-      role="navigation"
+    <ol
+      class="breadcrumbs"
     >
-      <ol
-        class="breadcrumbs"
+      <li
+        class="breadcrumbs__crumb"
       >
-        <li
-          class="breadcrumbs__crumb"
+        <a
+          href="https://www.nice.org.uk/"
         >
-          <a
-            href="https://www.nice.org.uk/"
-          >
-            NICE
-          </a>
-        </li>
-        <li
-          class="breadcrumbs__crumb"
+          NICE
+        </a>
+      </li>
+      <li
+        class="breadcrumbs__crumb"
+      >
+        <a
+          href="/"
         >
-          <a
-            href="/"
-          >
-            BNF
-          </a>
-        </li>
-        <li
-          class="breadcrumbs__crumb"
+          BNF
+        </a>
+      </li>
+      <li
+        class="breadcrumbs__crumb"
+      >
+        <a
+          href="/wound-management/"
         >
-          <a
-            href="/wound-management/"
-          >
-            Wound management products and elasticated garments
-          </a>
-        </li>
-        <li
-          class="breadcrumbs__crumb"
-        >
-          <span>
-            Advanced wound dressings
-          </span>
-        </li>
-      </ol>
-    </nav>
-    <script
-      type="application/ld+json"
-    >
-      {
+          Wound management products and elasticated garments
+        </a>
+      </li>
+      <li
+        class="breadcrumbs__crumb"
+      >
+        <span>
+          Advanced wound dressings
+        </span>
+      </li>
+    </ol>
+  </nav>
+  <script
+    type="application/ld+json"
+  >
+    {
   "@context": "http://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
@@ -88,230 +85,229 @@ exports[`Wound management taxonomy page should match page snapshot 1`] = `
     }
   ]
 }
-    </script>
-    <div
-      class="page-header"
-      id="content-start"
+  </script>
+  <div
+    class="page-header"
+    id="content-start"
+  >
+    <h1
+      class="page-header__heading"
     >
-      <h1
-        class="page-header__heading"
-      >
-        <span>
-          Advanced wound dressings
-        </span>
-      </h1>
-    </div>
+      <span>
+        Advanced wound dressings
+      </span>
+    </h1>
+  </div>
+  <div
+    class="grid grid--loose"
+    data-testid="body"
+  >
     <div
-      class="grid grid--loose"
-      data-testid="body"
+      class="hide-print"
+      data-g="12 md:4 lg:3"
     >
-      <div
-        class="hide-print"
-        data-g="12 md:4 lg:3"
+      <nav
+        aria-label="Wound management product pages"
+        class="stacked-nav"
       >
-        <nav
-          aria-label="Wound management product pages"
-          class="stacked-nav"
+        <p
+          class="stacked-nav__root"
         >
-          <p
-            class="stacked-nav__root"
+          <a
+            aria-current="false"
+            href="/wound-management/"
+          >
+            Wound management products
+          </a>
+        </p>
+        <ul
+          class="stacked-nav__list"
+        >
+          <li
+            class="stacked-nav__list-item"
           >
             <a
               aria-current="false"
-              href="/wound-management/"
+              href="/wound-management/basic-wound-contact-dressings/"
             >
-              Wound management products
+              <span
+                class="stacked-nav__content-wrapper"
+              >
+                <span>
+                  Basic wound contact dressings
+                </span>
+              </span>
             </a>
-          </p>
-          <ul
-            class="stacked-nav__list"
+          </li>
+          <li
+            class="stacked-nav__list-item"
           >
-            <li
-              class="stacked-nav__list-item"
+            <a
+              aria-current="false"
+              href="/wound-management/advanced-wound-dressings/"
             >
-              <a
-                aria-current="false"
-                href="/wound-management/basic-wound-contact-dressings/"
+              <span
+                class="stacked-nav__content-wrapper"
               >
-                <span
-                  class="stacked-nav__content-wrapper"
-                >
-                  <span>
-                    Basic wound contact dressings
-                  </span>
+                <span>
+                  Advanced wound dressings
                 </span>
-              </a>
-            </li>
-            <li
-              class="stacked-nav__list-item"
-            >
-              <a
-                aria-current="false"
-                href="/wound-management/advanced-wound-dressings/"
-              >
-                <span
-                  class="stacked-nav__content-wrapper"
-                >
-                  <span>
-                    Advanced wound dressings
-                  </span>
-                </span>
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-      <div
-        data-g="12 md:8 lg:9"
+              </span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div
+      data-g="12 md:8 lg:9"
+    >
+      <nav
+        aria-labelledby="navigate-to-section"
+        class="nav"
       >
-        <nav
-          aria-labelledby="navigate-to-section"
-          class="nav"
+        <h2
+          class="heading"
+          id="navigate-to-section"
         >
+          Navigate to section
+        </h2>
+        <ol
+          aria-label="Jump links to sections on this page"
+          class="linkList"
+        >
+          <li>
+            <a
+              href="#capillary-acting-dressings"
+            >
+              Capillary-acting dressings
+            </a>
+          </li>
+          <li>
+            <a
+              href="#hydrogel-dressings"
+            >
+              Hydrogel dressings
+            </a>
+          </li>
+          <li>
+            <a
+              href="#vapour-permeable-films-and-membranes"
+            >
+              Vapour-permeable films and membranes
+            </a>
+          </li>
+        </ol>
+      </nav>
+      <div>
+        <p>
+           Advanced wound dressings can be used for both acute and chronic wounds. Categories for dressings in this section start with the least absorptive, moisture-donating hydrogel dressings, followed by increasingly more absorptive dressings. 
+        </p>
+      </div>
+      <ul
+        aria-label="List of advanced wound dressings"
+        class="childTaxonomyList"
+      >
+        <li>
           <h2
-            class="heading"
-            id="navigate-to-section"
+            id="capillary-acting-dressings"
           >
-            Navigate to section
+            Capillary-acting dressings
           </h2>
-          <ol
-            aria-label="Jump links to sections on this page"
-            class="linkList"
+          <ul
+            class="nestedTaxonomyList"
           >
             <li>
               <a
-                href="#capillary-acting-dressings"
+                href="/wound-management/advanced-wound-dressings/capillary-acting-dressings/"
               >
                 Capillary-acting dressings
               </a>
             </li>
+          </ul>
+        </li>
+        <li>
+          <h2
+            id="hydrogel-dressings"
+          >
+            Hydrogel dressings
+          </h2>
+          <div>
+            <p>
+               Hydrogel dressings are most commonly supplied as an amorphous, cohesive topical application that can take up the shape of a wound.
+            </p>
+          </div>
+          <ul
+            class="nestedTaxonomyList"
+          >
             <li>
               <a
-                href="#hydrogel-dressings"
+                href="/wound-management/advanced-wound-dressings/hydrogel-application-amorphous/"
               >
-                Hydrogel dressings
+                Hydrogel application (amorphous)
               </a>
             </li>
             <li>
               <a
-                href="#vapour-permeable-films-and-membranes"
+                href="/wound-management/advanced-wound-dressings/hydrogel-sheet-dressings/"
               >
-                Vapour-permeable films and membranes
+                Hydrogel sheet dressings
               </a>
             </li>
-          </ol>
-        </nav>
-        <div>
-          <p>
-             Advanced wound dressings can be used for both acute and chronic wounds. Categories for dressings in this section start with the least absorptive, moisture-donating hydrogel dressings, followed by increasingly more absorptive dressings. 
-          </p>
-        </div>
-        <ul
-          aria-label="List of advanced wound dressings"
-          class="childTaxonomyList"
-        >
-          <li>
-            <h2
-              id="capillary-acting-dressings"
-            >
-              Capillary-acting dressings
-            </h2>
-            <ul
-              class="nestedTaxonomyList"
-            >
-              <li>
-                <a
-                  href="/wound-management/advanced-wound-dressings/capillary-acting-dressings/"
-                >
-                  Capillary-acting dressings
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <h2
-              id="hydrogel-dressings"
-            >
-              Hydrogel dressings
-            </h2>
-            <div>
-              <p>
-                 Hydrogel dressings are most commonly supplied as an amorphous, cohesive topical application that can take up the shape of a wound.
-              </p>
-            </div>
-            <ul
-              class="nestedTaxonomyList"
-            >
-              <li>
-                <a
-                  href="/wound-management/advanced-wound-dressings/hydrogel-application-amorphous/"
-                >
-                  Hydrogel application (amorphous)
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/wound-management/advanced-wound-dressings/hydrogel-sheet-dressings/"
-                >
-                  Hydrogel sheet dressings
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/wound-management/advanced-wound-dressings/sodium-hyaluronate-dressings/"
-                >
-                  Sodium hyaluronate dressings
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <h2
-              id="vapour-permeable-films-and-membranes"
-            >
-              Vapour-permeable films and membranes
-            </h2>
-            <div>
-              <p>
-                 Vapour-permeable films and membranes allow the passage of water vapour and oxygen but are impermeable to water and micro-organisms, and are suitable for lightly exuding wounds.
-              </p>
-            </div>
-            <ul
-              class="nestedTaxonomyList"
-            >
-              <li>
-                <a
-                  href="/wound-management/advanced-wound-dressings/non-woven-fabric-dressing-with-viscose-rayon-pad/"
-                >
-                  Non-woven fabric dressing with viscose-rayon pad
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/wound-management/advanced-wound-dressings/vapour-permeable-adhesive-film-dressing-semi-permeable-adhesive-dressing/"
-                >
-                  Vapour-permeable Adhesive Film Dressing (Semi-permeable Adhesive Dressing)
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/wound-management/advanced-wound-dressings/vapour-permeable-transparent-film-dressing-with-adhesive-foam-border/"
-                >
-                  Vapour–permeable transparent film dressing with adhesive foam border
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/wound-management/advanced-wound-dressings/vapour-permeable-transparent-adhesive-film-dressing/"
-                >
-                  Vapour–permeable transparent, adhesive film dressing.
-                </a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </div>
+            <li>
+              <a
+                href="/wound-management/advanced-wound-dressings/sodium-hyaluronate-dressings/"
+              >
+                Sodium hyaluronate dressings
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <h2
+            id="vapour-permeable-films-and-membranes"
+          >
+            Vapour-permeable films and membranes
+          </h2>
+          <div>
+            <p>
+               Vapour-permeable films and membranes allow the passage of water vapour and oxygen but are impermeable to water and micro-organisms, and are suitable for lightly exuding wounds.
+            </p>
+          </div>
+          <ul
+            class="nestedTaxonomyList"
+          >
+            <li>
+              <a
+                href="/wound-management/advanced-wound-dressings/non-woven-fabric-dressing-with-viscose-rayon-pad/"
+              >
+                Non-woven fabric dressing with viscose-rayon pad
+              </a>
+            </li>
+            <li>
+              <a
+                href="/wound-management/advanced-wound-dressings/vapour-permeable-adhesive-film-dressing-semi-permeable-adhesive-dressing/"
+              >
+                Vapour-permeable Adhesive Film Dressing (Semi-permeable Adhesive Dressing)
+              </a>
+            </li>
+            <li>
+              <a
+                href="/wound-management/advanced-wound-dressings/vapour-permeable-transparent-film-dressing-with-adhesive-foam-border/"
+              >
+                Vapour–permeable transparent film dressing with adhesive foam border
+              </a>
+            </li>
+            <li>
+              <a
+                href="/wound-management/advanced-wound-dressings/vapour-permeable-transparent-adhesive-film-dressing/"
+              >
+                Vapour–permeable transparent, adhesive film dressing.
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
     </div>
   </div>
-</main>
+</div>
 `;

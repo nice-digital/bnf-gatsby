@@ -28,7 +28,6 @@ import {
 	Interactions,
 	InteractionsContent,
 } from "@/components/DrugSections";
-import { Layout } from "@/components/Layout/Layout";
 import { SectionNav } from "@/components/SectionNav/SectionNav";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
@@ -216,7 +215,7 @@ const DrugPage: FC<DrugPageProps> = ({
 	].filter(isTruthy);
 
 	return (
-		<Layout>
+		<>
 			<SEO
 				title={`${titleNoHtml} | Drugs`}
 				description={`Indications, dose, contra-indications, side-effects, interactions, cautions, warnings and other safety information for ${titleNoHtml}`}
@@ -280,7 +279,7 @@ const DrugPage: FC<DrugPageProps> = ({
 					})}
 				</div>
 			</div>
-		</Layout>
+		</>
 	);
 };
 
