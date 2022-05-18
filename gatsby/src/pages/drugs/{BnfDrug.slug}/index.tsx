@@ -249,7 +249,7 @@ const DrugPage: FC<DrugPageProps> = ({
 				</div>
 				<div className={styles.aside}>
 					{interactionsSection ? (
-						<Panel>
+						<Panel data-tracking="Interactions-panel">
 							<h2 className="h5">Interactions</h2>
 							<InteractionsContent
 								interactants={interactionsSection.interactants}
