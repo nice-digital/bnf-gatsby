@@ -44,7 +44,10 @@ const NursePrescribersFormularyIndexPage: FC = () => {
 			{isBNF && (
 				<>
 					<h2>Treatment summaries</h2>
-					<ColumnList aria-label="Treatment summary pages">
+					<ColumnList
+						aria-label="Treatment summary pages"
+						data-tracking="treatment-summary-column-list"
+					>
 						{treatmentSummariesList.map(({ href, title }) => (
 							<li key={href}>
 								<Link to={href} dangerouslySetInnerHTML={{ __html: title }} />

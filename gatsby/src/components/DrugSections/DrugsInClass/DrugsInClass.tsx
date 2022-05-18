@@ -27,7 +27,10 @@ const ClassificationSection: FC<ClassificationSectionProps> = ({
 			<span className="visually-hidden">Other drugs in class</span>
 			<span dangerouslySetInnerHTML={{ __html: title }} />
 		</h3>
-		<ColumnList aria-labelledby={slug}>
+		<ColumnList
+			aria-labelledby={slug}
+			data-tracking="drugs-in-class-column-list"
+		>
 			{drugs
 				.filter((drug) => drug.slug !== drugSlug)
 				.sort((a, b) => a.slug.localeCompare(b.slug))
