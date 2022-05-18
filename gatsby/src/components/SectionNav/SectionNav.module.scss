@@ -5,9 +5,17 @@
   border: 1px solid core.$nds-colour-nice-grey-2;
   margin-bottom: core.rem(core.$nds-spacing-large);
   padding: core.rem(core.$nds-spacing-medium);
+  position: sticky;
+  top: 0;
+  z-index: 1;
 
   &.navReadableMaxWidth {
     max-width: core.$nds-readable-width;
+  }
+
+  &.stuck {
+    margin-left: -1rem; // TODO: replace with design system gutter vars
+    width: calc(100% + 2rem); // TODO: replace with design system gutter vars
   }
 
   @media print {
