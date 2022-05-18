@@ -58,7 +58,7 @@ export const decapitalize = (str: string): string => {
 			.map((word) => word.replace(nonAlphaNumericsAtStart, ""))
 			.filter(Boolean);
 
-		if (words.every((word) => word[0] === word[0].toLocaleUpperCase()))
+		if (words.some((word) => word[0] === word[0].toLocaleUpperCase()))
 			return str;
 	}
 

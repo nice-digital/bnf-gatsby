@@ -64,9 +64,12 @@ describe("utils", () => {
 			expect(decapitalize("Fresubin Original")).toBe("Fresubin Original");
 		});
 
-		it("should not decapitalize multiple words when all start with capitals", () => {
-			expect(decapitalize("Fresubin Original Drink")).toBe(
-				"Fresubin Original Drink"
+		it("should not decapitalize multiple words when some start with capitals", () => {
+			expect(decapitalize("Measles, Mumps and Rubella vaccine")).toBe(
+				"Measles, Mumps and Rubella vaccine"
+			);
+			expect(decapitalize("Sterile Dressing Pack with Non-Woven Pads")).toBe(
+				"Sterile Dressing Pack with Non-Woven Pads"
 			);
 		});
 	});
