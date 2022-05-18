@@ -9,7 +9,6 @@ import { PageHeader } from "@nice-digital/nds-page-header";
 
 import { Accordion } from "@/components/Accordion/Accordion";
 import { AccordionGroup } from "@/components/AccordionGroup/AccordionGroup";
-import { Layout } from "@/components/Layout/Layout";
 import {
 	SectionNav,
 	type SectionNavProps,

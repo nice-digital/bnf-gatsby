@@ -8,7 +8,6 @@ import { Grid, GridItem } from "@nice-digital/nds-grid";
 import { PageHeader } from "@nice-digital/nds-page-header";
 import { StackedNav, StackedNavLink } from "@nice-digital/nds-stacked-nav";
 
-import { Layout } from "@/components/Layout/Layout";
 import {
 	SectionNav,
 	type SectionNavProps,
