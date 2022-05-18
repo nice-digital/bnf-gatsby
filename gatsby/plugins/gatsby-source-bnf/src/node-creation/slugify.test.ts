@@ -69,6 +69,14 @@ describe("slugify", () => {
 		);
 	});
 
+	it("should replace thin spaces with empty string", () => {
+		expect(slugify("less than 5&thinsp;g")).toBe("less-than-5-g");
+	});
+
+	it("should replace ampersands with empty string", () => {
+		expect(slugify("Food &amp; Fluid Thickener")).toBe("food-fluid-thickener");
+	});
+
 	it("should return the same slug when called multiple times without a key", () => {
 		expect(slugify("A title")).toBe("a-title");
 		expect(slugify("A title")).toBe("a-title");

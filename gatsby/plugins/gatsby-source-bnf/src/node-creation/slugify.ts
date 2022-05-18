@@ -1,4 +1,5 @@
 import baseSlugify, { type Options, counter } from "@sindresorhus/slugify";
+import { decode } from "he";
 import striptags from "striptags";
 
 /** Cache a unique slugifier per node type so we can have unique slugs */
@@ -12,6 +13,8 @@ const options: Options = {
 	customReplacements: [
 		["'", ""],
 		["’", ""],
+		// Default library behaviour is to replaec & with "and" but we prefer to just remove ampersands
+		["&", ""],
 	],
 };
 
@@ -25,7 +28,7 @@ export const slugify = (toSlug: string, key?: string): string => {
 
 	// Some titles (e.g. `Frequently asked questions for the BNF and BNF <i>for Children</i> (BNFC)—general`)
 	// have HTML tags in so strip these before we slugify
-	toSlug = striptags(toSlug);
+	toSlug = decode(striptags(toSlug));
 
 	// No key given means no incrementing the counter.
 	// This is useful for things like 'pots' on drugs or medical devices
