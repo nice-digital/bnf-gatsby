@@ -6,7 +6,7 @@ export const borderlineSubstancesSchema = `
 	"""
 	type ${BnfNode.BorderlineSubstancesIntroduction} implements Node & ${BnfNode.SimpleRecord} @dontInfer {
 		"The title of the section. May contain HTML markup."
-		title: String!
+		title: String! @html
 
 		"The review date of the record, formatted into a string."
 		reviewDate: Date @dateformat
@@ -23,7 +23,7 @@ export const borderlineSubstancesSchema = `
 	"""
 	type ${BnfNode.BorderlineSubstancesTaxonomy} implements Node @dontInfer {
 		"The title of the taxonomy node. May contain HTML mark-up."
-		title: String!
+		title: String! @html
 
 		"The slugified and lowercased title, used as a URL path"
 		slug: String!
@@ -66,13 +66,13 @@ export const borderlineSubstancesSchema = `
 		id: ID!
 
 		"The title of the borderline substance. May contain HTML mark-up."
-		title: String!
+		title: String! @html
 
 		"The slugified and lowercased title, used as a URL path/hash"
 		slug: String! @slug(field: "title")
 
 		"An optional introductory note for the borderline substance. May contain HTML mark-up."
-		introductionNote: String
+		introductionNote: String @html
 
 		"The presentation details for the borderline substance."
 		presentations: [${BnfNode.BorderlineSubstancePresentation}!]!
@@ -119,13 +119,13 @@ export const borderlineSubstancesSchema = `
 		specialCharacteristics: [String!]!
 
 		"A list of the Advisory Committee on Borderline Substances (ACBS) indications. May contain HTML mark-up."
-		acbs: [String!]!
+		acbs: [String!]! @html
 
 		"The presentation note for the borderline substance."
-		presentationNote: String
+		presentationNote: String @html
 
 		"The Rx advice for the borderline substance."
-		rxAdvice: String
+		rxAdvice: String @html
 
 		"The preparations for the borderline substance."
 		borderlineSubstancePreps: [${BnfNode.Prep}!]!
