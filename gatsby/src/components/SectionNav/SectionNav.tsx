@@ -1,6 +1,5 @@
 import classNames from "classnames";
 import { FC } from "react";
-import striptags from "striptags";
 
 import { isTruthy } from "@/utils";
 
@@ -38,8 +37,11 @@ export const SectionNav: FC<SectionNavProps> = ({
 			className={styles.linkList}
 		>
 			{sections.filter(isTruthy).map((section) => (
-				<li key={section?.id}>
-					<a href={`#${section?.id}`}>{striptags(section?.title || "")}</a>
+				<li key={section.id}>
+					<a
+						href={`#${section.id}`}
+						dangerouslySetInnerHTML={{ __html: section.title }}
+					/>
 				</li>
 			))}
 		</ol>
