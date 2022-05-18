@@ -216,6 +216,7 @@ const DrugPage: FC<DrugPageProps> = ({
 
 	// Construct meta description from specific sections present in this monograph
 	let metaDescriptionSections: string[] = [
+		bnfDrug.sideEffects,
 		bnfDrug.renalImpairment,
 		bnfDrug.pregnancy,
 		bnfDrug.breastFeeding,
@@ -241,16 +242,22 @@ const DrugPage: FC<DrugPageProps> = ({
 		);
 	}
 
-	const metaDescriptionSectionText = `${metaDescriptionSections
-		.slice(0, -1)
-		.join(", ")} and ${metaDescriptionSections.slice(-1)}`;
+	const metaDescriptionSectionText =
+		metaDescriptionSections.length === 1
+			? metaDescriptionSections[0]
+			: `${metaDescriptionSections
+					.slice(0, -1)
+					.join(", ")} and ${metaDescriptionSections.slice(-1)}`;
+
+	// Add a fallback in case a future drug is published without any valid sections at all
+	const metaDescription =
+		metaDescriptionSections.length === 0
+			? `View ${titleNoHtml} information.`
+			: `View ${titleNoHtml} information, including ${metaDescriptionSectionText}.`;
 
 	return (
 		<>
-			<SEO
-				title={`${titleNoHtml} | Drugs`}
-				description={`View ${titleNoHtml} information, including ${metaDescriptionSectionText}.`}
-			/>
+			<SEO title={`${titleNoHtml} | Drugs`} description={metaDescription} />
 
 			<Breadcrumbs>
 				<Breadcrumb to="https://www.nice.org.uk/">NICE</Breadcrumb>
