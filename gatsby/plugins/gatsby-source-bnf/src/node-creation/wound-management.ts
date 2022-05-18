@@ -51,7 +51,7 @@ export const createWoundManagementNodes = (
 			const rootTaxonomy = root || taxonomy,
 				{ children, ...taxonomyFields } = taxonomy;
 
-			if (taxonomy.productGroups?.length && !children?.length) {
+			if (taxonomy.productGroups?.length) {
 				createBnfNode<TaxonomyProductGroupNodeInput>(
 					{
 						id: sourceNodesArgs.createNodeId(taxonomy.id),
