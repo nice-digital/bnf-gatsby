@@ -16,6 +16,12 @@ describe("utils", () => {
 			);
 		});
 
+		it("should decapitalize multiple comma separated words", () => {
+			expect(decapitalize("Measles, mumps and rubella vaccine, live")).toBe(
+				"measles, mumps and rubella vaccine, live"
+			);
+		});
+
 		it("should decapitalize word with hyphen", () => {
 			expect(decapitalize("Co-codamol")).toBe("co-codamol");
 		});

@@ -53,15 +53,12 @@ export const decapitalize = (str: string): string => {
 
 	// Brand names made of multiple words stating with capitals e.g. Fresubin Original Drink
 	if (firstLetter === firstLetter.toLocaleUpperCase() && rest) {
-		const words = rest.split(/\s/).filter(Boolean);
+		const words = rest
+			.split(/\s/)
+			.map((word) => word.replace(nonAlphaNumericsAtStart, ""))
+			.filter(Boolean);
 
-		if (
-			words.every((word) => {
-				word = word.replace(nonAlphaNumericsAtStart, "");
-
-				return word[0] === word[0].toLocaleUpperCase();
-			})
-		)
+		if (words.every((word) => word[0] === word[0].toLocaleUpperCase()))
 			return str;
 	}
 
