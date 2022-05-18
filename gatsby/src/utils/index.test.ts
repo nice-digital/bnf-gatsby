@@ -10,12 +10,18 @@ describe("utils", () => {
 			expect(decapitalize("Tablet")).toBe("tablet");
 		});
 
-		it("should decapitalize first letter of single word and ingore other capitals", () => {
-			expect(decapitalize("Tablet ABC")).toBe("tablet ABC");
+		it("should decapitalize first letter of multiple words", () => {
+			expect(decapitalize("Modified-release capsule")).toBe(
+				"modified-release capsule"
+			);
 		});
 
 		it("should decapitalize word with hyphen", () => {
 			expect(decapitalize("Co-codamol")).toBe("co-codamol");
+		});
+
+		it("should decapitalize accented capital", () => {
+			expect(decapitalize("Étest")).toBe("étest");
 		});
 
 		it("should not decapitalize single letter acronym", () => {
@@ -36,8 +42,26 @@ describe("utils", () => {
 			);
 		});
 
-		it("should not decapitalize accented capital", () => {
-			expect(decapitalize("Étest")).toBe("Étest");
+		it("should not decapitalize St John's wort", () => {
+			expect(decapitalize("St John's wort")).toBe("St John's wort");
+		});
+
+		it("should not decapitalize string containing registered symbol", () => {
+			expect(decapitalize("MucoClear® 3%")).toBe("MucoClear® 3%");
+		});
+
+		it("should not decapitalize single word containing capitals", () => {
+			expect(decapitalize("OptiChamber")).toBe("OptiChamber");
+		});
+
+		it("should not decapitalize 2 words all starting with capitals", () => {
+			expect(decapitalize("Fresubin Original")).toBe("Fresubin Original");
+		});
+
+		it("should not decapitalize multiple words when all start with capitals", () => {
+			expect(decapitalize("Fresubin Original Drink")).toBe(
+				"Fresubin Original Drink"
+			);
 		});
 	});
 });
