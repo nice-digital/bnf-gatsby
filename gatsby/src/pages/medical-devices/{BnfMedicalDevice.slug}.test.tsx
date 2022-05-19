@@ -68,7 +68,7 @@ describe("MedicalDevicePage", () => {
 					document.querySelector("meta[name=description]")
 				).toHaveAttribute(
 					"content",
-					"This medical devices topic describes the options that are currently recommended for Artificial saliva products."
+					"This medical devices topic describes the options that are currently recommended for artificial saliva products."
 				);
 			});
 		});
