@@ -1,5 +1,7 @@
 @use '@nice-digital/nds-core/scss/core';
 
+$gutter: core.rem(core.$nds-spacing-medium);
+
 .nav {
   background: core.$nds-colour-nice-white;
   border: 1px solid core.$nds-colour-nice-grey-2;
@@ -14,8 +16,8 @@
   }
 
   &.stuck {
-    margin-left: -1rem; // TODO: replace with design system gutter vars
-    width: calc(100% + 2rem); // TODO: replace with design system gutter vars
+    margin-left: -$gutter;
+    width: calc(100% + $gutter * 2);
   }
 
   @media print {
