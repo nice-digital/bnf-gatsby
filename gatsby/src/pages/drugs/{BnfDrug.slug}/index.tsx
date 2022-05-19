@@ -32,6 +32,7 @@ import { SectionNav } from "@/components/SectionNav/SectionNav";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 import {
+	decapitalize,
 	isTruthy,
 	type WithSlug,
 	type WithSlugDeep,
@@ -252,8 +253,10 @@ const DrugPage: FC<DrugPageProps> = ({
 	// Add a fallback in case a future drug is published without any valid sections at all
 	const metaDescription =
 		metaDescriptionSections.length === 0
-			? `View ${titleNoHtml} information.`
-			: `View ${titleNoHtml} information, including ${metaDescriptionSectionText}.`;
+			? `View ${decapitalize(titleNoHtml)} information.`
+			: `View ${decapitalize(
+					titleNoHtml
+			  )} information, including ${metaDescriptionSectionText}.`;
 
 	return (
 		<>
