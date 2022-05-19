@@ -132,7 +132,7 @@ exports[`MedicinalFormsPage Body should match snapshot for page body 1`] = `
         href="/drugs/anti-d-rh0-immunoglobulin/"
       >
         View 
-        anti-D (Rh0) immunoglobulin
+        Anti-D (Rh0) immunoglobulin
          drug monograph
       </a>
     </p>

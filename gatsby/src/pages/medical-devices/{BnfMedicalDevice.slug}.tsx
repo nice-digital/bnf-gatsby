@@ -10,6 +10,7 @@ import { PageHeader } from "@nice-digital/nds-page-header";
 import { MedicalDevicesMenu } from "@/components/MedicalDevicesMenu/MedicalDevicesMenu";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
+import { decapitalize } from "@/utils";
 
 export interface MedicalDevicePageProps {
 	data: {
@@ -41,7 +42,9 @@ const MedicalDevicePage: FC<MedicalDevicePageProps> = ({
 		<>
 			<SEO
 				title={`${titleNoHtml} | Medical devices`}
-				description={`This medical devices topic describes the options that are currently recommended for ${titleNoHtml}.`}
+				description={`This medical devices topic describes the options that are currently recommended for ${decapitalize(
+					titleNoHtml
+				)}.`}
 			/>
 
 			<Breadcrumbs>
