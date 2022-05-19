@@ -14,10 +14,10 @@ import {
 	type InteractionProps,
 } from "@/components/Interaction/Interaction";
 import interactionStyles from "@/components/Interaction/Interaction.module.scss";
-import { Layout } from "@/components/Layout/Layout";
 import { SEO } from "@/components/SEO/SEO";
 import { useIsClient } from "@/hooks/useIsClient";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
+import { decapitalize } from "@/utils";
 
 import styles from "./{BnfInteractant.slug}.module.scss";
 
@@ -129,7 +129,7 @@ const InteractantPage: FC<InteractantPageProps> = ({
 	};
 
 	return (
-		<Layout>
+		<>
 			<SEO
 				title={`${titleNoHtml} | Interactions`}
 				description={`See the list of drugs that interact with ${titleNoHtml}. Includes information on severity of interaction and the level of evidence for it.`}
@@ -157,8 +157,11 @@ const InteractantPage: FC<InteractantPageProps> = ({
 							to={`/drugs/${drug.slug}/`}
 							data-tracking="own-monograph"
 						>
-							View <span dangerouslySetInnerHTML={{ __html: drug.title }} />{" "}
-							monograph page
+							View{" "}
+							<span
+								dangerouslySetInnerHTML={{ __html: decapitalize(drug.title) }}
+							/>{" "}
+							drug monograph
 						</Link>
 					) : null
 				}
@@ -322,7 +325,7 @@ const InteractantPage: FC<InteractantPageProps> = ({
 					</div>
 				</>
 			)}
-		</Layout>
+		</>
 	);
 };
 

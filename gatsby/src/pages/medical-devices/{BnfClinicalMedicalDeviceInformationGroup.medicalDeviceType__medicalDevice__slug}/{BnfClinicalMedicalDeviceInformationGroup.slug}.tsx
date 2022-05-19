@@ -15,7 +15,7 @@ import {
 import { MedicalDevicePrepsSection } from "@/components/MedicalDevicePrepsSection/MedicalDevicePrepsSection";
 import { Menu } from "@/components/Menu/Menu";
 import { SectionLink } from "@/components/SectionNav/SectionNav";
-import { isTruthy, type QueryResult } from "@/utils";
+import { decapitalize, isTruthy, type QueryResult } from "@/utils";
 
 import styles from "./{BnfClinicalMedicalDeviceInformationGroup.slug}.module.scss";
 
@@ -108,7 +108,9 @@ const CMPIPage: FC<CMPIPageProps> = ({
 	return (
 		<DetailsPageLayout
 			titleHtml={title}
-			metaDescription={`This medical devices topic describes the options that are currently recommended for ${titleNoHtml}.`}
+			metaDescription={`This medical devices topic describes the options that are currently recommended for ${decapitalize(
+				titleNoHtml
+			)}.`}
 			parentTitleParts={[medicalDeviceTitleNoHtml, "Medical devices"]}
 			parentBreadcrumbs={[
 				{

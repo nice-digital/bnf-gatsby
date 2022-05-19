@@ -7,6 +7,8 @@ import {
 } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
+import { decapitalize } from "@/utils";
+
 import InteractantPage, {
 	query,
 	type InteractantPageProps,
@@ -16,7 +18,7 @@ const interactant: InteractantPageProps["data"]["bnfInteractant"] = {
 	// Note deliberate use of HTML within the title for testing stripping of tags
 	title: "Anti-D (Rh<sub>0</sub>) immunoglobulin",
 	drug: {
-		title: "acarbose",
+		title: "Acarbose",
 		slug: "acarbose",
 	},
 	interactions: [
@@ -193,14 +195,16 @@ describe("InteractantPage", () => {
 		});
 
 		it("should match snapshot for page body", () => {
-			render(<InteractantPage data={dataProp} />);
-			expect(screen.getByRole("main")).toMatchSnapshot();
+			const { container } = render(<InteractantPage data={dataProp} />);
+			expect(container).toMatchSnapshot();
 		});
 
 		it("should link to drug monograph page for matching drug", () => {
 			render(<InteractantPage data={dataProp} />);
 			const monographLink = screen.getByRole("link", {
-				name: `View ${interactant.drug?.title} monograph page`,
+				name: `View ${decapitalize(
+					interactant.drug?.title || ""
+				)} drug monograph`,
 			});
 			expect(monographLink).toHaveAttribute(
 				"href",

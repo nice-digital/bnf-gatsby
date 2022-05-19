@@ -19,6 +19,11 @@ export type TaxonomyNodeInput = Except<
 	childTaxonomies: SID[];
 };
 
+export type TaxonomyProductGroupNodeInput = {
+	id: string;
+	taxonomy: SID;
+};
+
 export const createWoundManagementNodes = (
 	{ introduction, taxonomy }: FeedWoundManagement,
 	sourceNodesArgs: SourceNodesArgs
@@ -45,6 +50,17 @@ export const createWoundManagementNodes = (
 		taxonomies.forEach((taxonomy) => {
 			const rootTaxonomy = root || taxonomy,
 				{ children, ...taxonomyFields } = taxonomy;
+
+			if (taxonomy.productGroups?.length) {
+				createBnfNode<TaxonomyProductGroupNodeInput>(
+					{
+						id: sourceNodesArgs.createNodeId(taxonomy.id),
+						taxonomy: taxonomy.id,
+					},
+					BnfNode.WoundManagementTaxonomyProductGroup,
+					sourceNodesArgs
+				);
+			}
 
 			createBnfNode<TaxonomyNodeInput>(
 				{

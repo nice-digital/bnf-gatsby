@@ -6,7 +6,6 @@ import { Grid, GridItem } from "@nice-digital/nds-grid";
 import { PageHeader } from "@nice-digital/nds-page-header";
 import { StackedNav, StackedNavLink } from "@nice-digital/nds-stacked-nav";
 
-import { Layout } from "@/components/Layout/Layout";
 import { RecordSectionsContent } from "@/components/RecordSectionsContent/RecordSectionsContent";
 import {
 	SectionNav,
@@ -75,7 +74,7 @@ const WoundManagementIndexPage: FC<WoundManagementIndexPageProps> = ({
 	const { title, sections } = bnfWoundManagementIntroduction;
 
 	return (
-		<Layout>
+		<>
 			<SEO
 				title={title}
 				description="Browse wound management products and elasticated garments, by type."
@@ -97,12 +96,16 @@ const WoundManagementIndexPage: FC<WoundManagementIndexPageProps> = ({
 					<StackedNav
 						aria-label="Wound management product pages"
 						label="Wound management products"
-						link={{ destination: "/wound-management/", elementType: Link }}
+						link={{
+							destination: "/wound-management/",
+							elementType: Link,
+							isCurrent: true,
+						}}
 					>
 						{taxonomies.map(({ slug, title }) => (
 							<StackedNavLink
 								key={slug}
-								destination={`/wound-management/${slug}`}
+								destination={`/wound-management/${slug}/`}
 								elementType={Link}
 							>
 								<span dangerouslySetInnerHTML={{ __html: title }} />
@@ -118,7 +121,7 @@ const WoundManagementIndexPage: FC<WoundManagementIndexPageProps> = ({
 					/>
 				</GridItem>
 			</Grid>
-		</Layout>
+		</>
 	);
 };
 

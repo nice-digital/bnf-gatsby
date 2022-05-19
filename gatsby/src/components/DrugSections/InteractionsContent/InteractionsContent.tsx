@@ -1,7 +1,7 @@
 import { Link } from "gatsby";
 import { type FC } from "react";
 
-import { type SlugAndTitle } from "@/utils";
+import { decapitalize, type SlugAndTitle } from "@/utils";
 
 export type InteractionsContentProps = {
 	interactants: SlugAndTitle[];
@@ -16,7 +16,7 @@ export const InteractionsContent: FC<InteractionsContentProps> = ({
 			<p>
 				<Link to={`/interactions/${slug}/`}>
 					View interactions for{" "}
-					<span dangerouslySetInnerHTML={{ __html: title }} />
+					<span dangerouslySetInnerHTML={{ __html: decapitalize(title) }} />
 				</Link>
 			</p>
 		);

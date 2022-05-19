@@ -1,23 +1,207 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Hero should match snapshot for BNF 1`] = `
-<h1
-  class="title"
->
-  British National Formulary
-   (
-  BNF
-  )
-</h1>
+<div>
+  <div
+    class="hero"
+    id="content-start"
+  >
+    <div
+      class="heroContainer"
+    >
+      <nav
+        aria-label="Breadcrumbs"
+        class="breadcrumbs"
+        role="navigation"
+      >
+        <ol
+          class="breadcrumbs"
+        >
+          <li
+            class="breadcrumbs__crumb"
+          >
+            <a
+              href="https://www.nice.org.uk/"
+            >
+              NICE
+            </a>
+          </li>
+          <li
+            class="breadcrumbs__crumb"
+          >
+            <span>
+              BNF
+            </span>
+          </li>
+        </ol>
+      </nav>
+      <script
+        type="application/ld+json"
+      >
+        {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@id": "https://www.nice.org.uk/",
+        "name": "NICE"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "name": "BNF"
+      }
+    }
+  ]
+}
+      </script>
+      <div
+        class="text"
+      >
+        <h1
+          class="title"
+        >
+          British National Formulary
+           (
+          BNF
+          )
+        </h1>
+        <p
+          class="intro"
+        >
+          Key information on the selection, prescribing, dispensing and administration of medicines.
+        </p>
+      </div>
+      <div
+        class="lastUpdated"
+        data-tracking="last-updated"
+      >
+        <h2
+          class="h5"
+        >
+          Last updated: 
+        </h2>
+        <time
+          class="h3"
+          datetime="2022-04-06T00:38:57.911"
+        >
+          6 April 2022
+        </time>
+        <a
+          href="/about/changes/"
+        >
+          See what's changed
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
 `;
 
 exports[`Hero should match snapshot for BNFC 1`] = `
-<h1
-  class="title"
->
-  British National Formulary for Children
-   (
-  BNFC
-  )
-</h1>
+<div>
+  <div
+    class="hero"
+    id="content-start"
+  >
+    <div
+      class="heroContainer"
+    >
+      <nav
+        aria-label="Breadcrumbs"
+        class="breadcrumbs"
+        role="navigation"
+      >
+        <ol
+          class="breadcrumbs"
+        >
+          <li
+            class="breadcrumbs__crumb"
+          >
+            <a
+              href="https://www.nice.org.uk/"
+            >
+              NICE
+            </a>
+          </li>
+          <li
+            class="breadcrumbs__crumb"
+          >
+            <span>
+              BNFC
+            </span>
+          </li>
+        </ol>
+      </nav>
+      <script
+        type="application/ld+json"
+      >
+        {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@id": "https://www.nice.org.uk/",
+        "name": "NICE"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "name": "BNFC"
+      }
+    }
+  ]
+}
+      </script>
+      <div
+        class="text"
+      >
+        <h1
+          class="title"
+        >
+          British National Formulary for Children
+           (
+          BNFC
+          )
+        </h1>
+        <p
+          class="intro"
+        >
+          Key information on the selection, prescribing, dispensing and administration of medicines used for children.
+        </p>
+      </div>
+      <div
+        class="lastUpdated"
+        data-tracking="last-updated"
+      >
+        <h2
+          class="h5"
+        >
+          Last updated: 
+        </h2>
+        <time
+          class="h3"
+          datetime="2022-04-06T00:38:57.911"
+        >
+          6 April 2022
+        </time>
+        <a
+          href="/about/changes/"
+        >
+          See what's changed
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
 `;

@@ -4,14 +4,13 @@ import React from "react";
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
 import { PageHeader } from "@nice-digital/nds-page-header";
 
-import { Layout } from "../components/Layout/Layout";
 import { SEO } from "../components/SEO/SEO";
 
 import { isBNF } from "./../site";
 
 const NotFoundPage: React.FC = () => {
 	return (
-		<Layout>
+		<>
 			<SEO title="Page not found" noIndex={true} />
 			<Breadcrumbs>
 				<Breadcrumb to="https://www.nice.org.uk/">NICE</Breadcrumb>
@@ -41,7 +40,7 @@ const NotFoundPage: React.FC = () => {
 				</a>{" "}
 				if you think there is a problem.
 			</p>
-		</Layout>
+		</>
 	);
 };
 

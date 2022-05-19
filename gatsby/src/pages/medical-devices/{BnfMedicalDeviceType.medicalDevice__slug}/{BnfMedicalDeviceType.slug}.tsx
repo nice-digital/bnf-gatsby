@@ -8,12 +8,11 @@ import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
 import { Grid, GridItem } from "@nice-digital/nds-grid";
 import { PageHeader } from "@nice-digital/nds-page-header";
 
-import { Layout } from "@/components/Layout/Layout";
 import { MedicalDevicePrepsSection } from "@/components/MedicalDevicePrepsSection/MedicalDevicePrepsSection";
 import { Menu } from "@/components/Menu/Menu";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
-import { QueryResult } from "@/utils";
+import { decapitalize, QueryResult } from "@/utils";
 
 import styles from "./{BnfMedicalDeviceType.slug}.module.scss";
 
@@ -48,10 +47,12 @@ const MedicalDeviceTypePage: FC<MedicalDeviceTypePageProps> = ({
 	if (preparations.length === 0) return null;
 
 	return (
-		<Layout>
+		<>
 			<SEO
 				title={`${titleNoHtml} | ${medicalDevice.title} | Medical devices`}
-				description={`This medical device type describes the options that are currently recommended for ${titleNoHtml}.`}
+				description={`This medical device type describes the options that are currently recommended for ${decapitalize(
+					titleNoHtml
+				)}.`}
 			/>
 
 			<Breadcrumbs>
@@ -108,7 +109,7 @@ const MedicalDeviceTypePage: FC<MedicalDeviceTypePageProps> = ({
 					) : null}
 				</GridItem>
 			</Grid>
-		</Layout>
+		</>
 	);
 };
 

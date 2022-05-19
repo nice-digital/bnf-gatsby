@@ -14,48 +14,45 @@ exports[`DentalPractitionersFormularyPageProps should match snapshot for graphql
 `;
 
 exports[`DentalPractitionersFormularyPageProps should match snapshot for page contents 1`] = `
-<main>
-  <div
-    class="container"
+<div>
+  <nav
+    aria-label="Breadcrumbs"
+    role="navigation"
   >
-    <nav
-      aria-label="Breadcrumbs"
-      role="navigation"
+    <ol
+      class="breadcrumbs"
     >
-      <ol
-        class="breadcrumbs"
+      <li
+        class="breadcrumbs__crumb"
       >
-        <li
-          class="breadcrumbs__crumb"
+        <a
+          href="https://www.nice.org.uk/"
         >
-          <a
-            href="https://www.nice.org.uk/"
-          >
-            NICE
-          </a>
-        </li>
-        <li
-          class="breadcrumbs__crumb"
+          NICE
+        </a>
+      </li>
+      <li
+        class="breadcrumbs__crumb"
+      >
+        <a
+          href="/"
         >
-          <a
-            href="/"
-          >
-            BNF
-          </a>
-        </li>
-        <li
-          class="breadcrumbs__crumb"
-        >
-          <span>
-            Dental Practitioners’ Formulary
-          </span>
-        </li>
-      </ol>
-    </nav>
-    <script
-      type="application/ld+json"
-    >
-      {
+          BNF
+        </a>
+      </li>
+      <li
+        class="breadcrumbs__crumb"
+      >
+        <span>
+          Dental Practitioners’ Formulary
+        </span>
+      </li>
+    </ol>
+  </nav>
+  <script
+    type="application/ld+json"
+  >
+    {
   "@context": "http://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
@@ -84,100 +81,99 @@ exports[`DentalPractitionersFormularyPageProps should match snapshot for page co
     }
   ]
 }
-    </script>
-    <div
-      class="page-header"
-      id="content-start"
+  </script>
+  <div
+    class="page-header"
+    id="content-start"
+  >
+    <h1
+      class="page-header__heading"
     >
-      <h1
-        class="page-header__heading"
-      >
-        <span>
-          Dental Practitioners’ Formulary
-        </span>
-      </h1>
-    </div>
+      <span>
+        Dental Practitioners’ Formulary
+      </span>
+    </h1>
+  </div>
+  <div
+    class="grid grid--loose"
+    data-testid="body"
+  >
     <div
-      class="grid grid--loose"
-      data-testid="body"
+      data-g="12 md:12 lg:12"
     >
       <div
-        data-g="12 md:12 lg:12"
+        class="grid grid--rev grid--loose"
       >
         <div
-          class="grid grid--rev grid--loose"
+          data-g="12 lg:3"
         >
-          <div
-            data-g="12 lg:3"
+          <nav
+            aria-labelledby="on-this-page"
+            class="wrapper"
           >
-            <nav
-              aria-labelledby="on-this-page"
-              class="wrapper"
+            <h2
+              class="heading"
+              id="on-this-page"
             >
-              <h2
-                class="heading"
-                id="on-this-page"
-              >
-                On this page
-              </h2>
-              <ol
-                aria-label="Jump links to sections on this page"
-                class="list"
-              >
-                <li>
-                  <a
-                    href="#list-of-dental-preparations"
-                  >
-                    List of Dental Preparations
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#details-of-dpf-preparations"
-                  >
-                    Details of DPF preparations
-                  </a>
-                </li>
-              </ol>
-            </nav>
-          </div>
-          <div
-            class="body"
-            data-g="12 lg:9"
+              On this page
+            </h2>
+            <ol
+              aria-label="Jump links to sections on this page"
+              class="list"
+            >
+              <li>
+                <a
+                  href="#list-of-dental-preparations"
+                >
+                  List of Dental Preparations
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#details-of-dpf-preparations"
+                >
+                  Details of DPF preparations
+                </a>
+              </li>
+            </ol>
+          </nav>
+        </div>
+        <div
+          class="body"
+          data-g="12 lg:9"
+        >
+          <section
+            aria-labelledby="list-of-dental-preparations"
           >
-            <section
-              aria-labelledby="list-of-dental-preparations"
+            <h2
+              class="firstHeading"
+              id="list-of-dental-preparations"
             >
-              <h2
-                class="firstHeading"
-                id="list-of-dental-preparations"
-              >
-                List of Dental Preparations
-              </h2>
-              <div>
-                <p>
-                  The following list has been approved by the appropriate Secretaries of State
-                </p>
-              </div>
-            </section>
-            <section
-              aria-labelledby="details-of-dpf-preparations"
+              List of Dental Preparations
+            </h2>
+            <div>
+              <p>
+                The following list has been approved by the appropriate Secretaries of State
+              </p>
+            </div>
+          </section>
+          <section
+            aria-labelledby="details-of-dpf-preparations"
+          >
+            <h2
+              id="details-of-dpf-preparations"
             >
-              <h2
-                id="details-of-dpf-preparations"
-              >
-                Details of DPF preparations
-              </h2>
-              <div>
-                <p>
-                  Preparations on the List of Dental Preparations which are specified as DPF are described as follows in the DPF.
-                </p>
-              </div>
-            </section>
-          </div>
+              Details of DPF preparations
+            </h2>
+            <div>
+              <p>
+                Preparations on the List of Dental Preparations which are specified as DPF are described as follows in the DPF.
+              </p>
+            </div>
+          </section>
         </div>
       </div>
     </div>
   </div>
-</main>
+</div>
 `;
