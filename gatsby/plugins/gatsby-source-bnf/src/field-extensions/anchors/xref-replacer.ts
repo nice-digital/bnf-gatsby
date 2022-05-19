@@ -1,8 +1,8 @@
 import { type NodeInput } from "gatsby";
 import { js2xml, xml2js } from "xml-js";
 
+import { slugify } from "../../node-creation/slugify";
 import { type NodeModel } from "../../node-model";
-import { slugify } from "../slug";
 
 import { nodeTypePathMap } from "./node-type-paths";
 

@@ -1,25 +1,4 @@
-import baseSlugify from "@sindresorhus/slugify";
-import striptags from "striptags";
-
-/**
- * Strips HTML tags and slugifies the given string
- *
- * @param toBeSlugified The string to slugify
- * @returns The lowercase, slugified string
- */
-export const slugify = (toBeSlugified: string): string => {
-	if (!toBeSlugified) throw new Error("Cannot slugify an empty string");
-
-	// Some titles (e.g. `Frequently asked questions for the BNF and BNF <i>for Children</i> (BNFC)—general`)
-	// have HTML tags in so strip these before we slugify
-	return baseSlugify(striptags(toBeSlugified), {
-		decamelize: false,
-		customReplacements: [
-			["'", ""],
-			["’", ""],
-		],
-	});
-};
+import { slugify } from "../node-creation/slugify";
 
 type SlugFieldExtensionOptions = {
 	field: string;

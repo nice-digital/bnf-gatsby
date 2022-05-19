@@ -1,0 +1,185 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`presentation should match snapshot 1`] = `
+<div>
+  <dl>
+    <div
+      class="packDefinitionListItem"
+    >
+      <dt>
+        Formulation
+      </dt>
+      <dd>
+        Liquid (tube feed) per 100 mL
+      </dd>
+    </div>
+    <div
+      class="packDefinitionListItem"
+    >
+      <dt>
+        Energy
+      </dt>
+      <dd>
+        420
+         kJ
+         / 
+        100
+         kcal
+      </dd>
+    </div>
+    <div
+      class="packDefinitionListItem"
+    >
+      <dt>
+        Protein
+      </dt>
+      <dd>
+        3.8
+         g
+         
+        milk, soya proteins
+      </dd>
+    </div>
+    <div
+      class="packDefinitionListItem"
+    >
+      <dt>
+        Carbohydrate
+      </dt>
+      <dd>
+        13.0
+         g
+         
+        (sugars 0.9 g)
+      </dd>
+    </div>
+    <div
+      class="packDefinitionListItem"
+    >
+      <dt>
+        Fibre
+      </dt>
+      <dd>
+        1.5
+         g
+         
+      </dd>
+    </div>
+    <div
+      class="packDefinitionListItem"
+    >
+      <dt>
+        Special characteristics
+      </dt>
+      <dd>
+        Contains fish oil, residual lactose, soya. Gluten-free
+      </dd>
+    </div>
+    <div
+      class="packDefinitionListItem"
+    >
+      <dt>
+        ACBS indications
+      </dt>
+      <dd>
+        <p>
+          <b>
+            Standard ACBS indications:
+          </b>
+           Disease-related malnutrition, intractable malabsorption, pre-operative preparation of malnourished patients, dysphagia, proven inflammatory bowel disease, following total gastrectomy, short-bowel syndrome, bowel fistula except bowel fistula and pre-operative preparation of malnourished patients.
+        </p>
+      </dd>
+    </div>
+  </dl>
+  <details
+    class="details  "
+  >
+    <summary
+      class="summary"
+      data-tracking="Show"
+    >
+      <span
+        class="toggleLabel label"
+      >
+        <svg
+          aria-hidden="true"
+          class="icon"
+          fill="none"
+          focusable="false"
+          height="1em"
+          viewBox="0 0 512 512"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M478.152 174c0 10.091-3.525 18.661-10.576 25.712l-186 186c-7.243 7.243-15.909 10.864-26 10.864-10.283 0-18.853-3.621-25.712-10.864l-186-186C36.621 192.853 33 184.283 33 174c0-10.091 3.621-18.757 10.864-26L65 126.576C72.424 119.525 81.09 116 91 116c10.091 0 18.661 3.525 25.712 10.576L255.576 265.44 394.44 126.576c7.051-7.051 15.621-10.576 25.712-10.576 9.909 0 18.576 3.525 26 10.576L467.576 148c7.051 7.424 10.576 16.091 10.576 26z"
+            fill="currentColor"
+          />
+        </svg>
+        Show
+      </span>
+       
+      <h3
+        class="prepHeading"
+      >
+        <span
+          class="headingText"
+        >
+          Fresubin Original Fibre liquid
+           
+          <span
+            class="manufacturer"
+          >
+            Fresenius Kabi Ltd
+          </span>
+        </span>
+      </h3>
+    </summary>
+  </details>
+  <details
+    class="details  "
+  >
+    <summary
+      class="summary"
+      data-tracking="Show"
+    >
+      <span
+        class="toggleLabel label"
+      >
+        <svg
+          aria-hidden="true"
+          class="icon"
+          fill="none"
+          focusable="false"
+          height="1em"
+          viewBox="0 0 512 512"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M478.152 174c0 10.091-3.525 18.661-10.576 25.712l-186 186c-7.243 7.243-15.909 10.864-26 10.864-10.283 0-18.853-3.621-25.712-10.864l-186-186C36.621 192.853 33 184.283 33 174c0-10.091 3.621-18.757 10.864-26L65 126.576C72.424 119.525 81.09 116 91 116c10.091 0 18.661 3.525 25.712 10.576L255.576 265.44 394.44 126.576c7.051-7.051 15.621-10.576 25.712-10.576 9.909 0 18.576 3.525 26 10.576L467.576 148c7.051 7.424 10.576 16.091 10.576 26z"
+            fill="currentColor"
+          />
+        </svg>
+        Show
+      </span>
+       
+      <h3
+        class="prepHeading"
+      >
+        <span
+          class="headingText"
+        >
+          Fresubin 1500 Complete liquid
+           
+          <span
+            class="manufacturer"
+          >
+            Fresenius Kabi Ltd
+          </span>
+        </span>
+      </h3>
+    </summary>
+  </details>
+</div>
+`;
