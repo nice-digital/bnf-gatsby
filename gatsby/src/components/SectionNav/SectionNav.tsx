@@ -28,7 +28,7 @@ export const SectionNav: FC<SectionNavProps> = ({
 	readableMaxWidth = false,
 	navigateToAnotherPage = false,
 }) => {
-	const [isExpanded, setIsExpanded] = useState(true);
+	const [isExpanded, setIsExpanded] = useState(false);
 	const headingText = navigateToAnotherPage
 		? "Navigate to page"
 		: "Navigate to section";
@@ -51,6 +51,8 @@ export const SectionNav: FC<SectionNavProps> = ({
 	useEffect(() => {
 		if (!isStuck) {
 			setIsExpanded(true);
+		} else {
+			setIsExpanded(false);
 		}
 	}, [isStuck]);
 
