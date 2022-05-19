@@ -41,6 +41,23 @@ export const woundManagementSchema = `
 		rootTaxonomy: ${BnfNode.WoundManagementTaxonomy}! @link
 	}
 
+	type ${BnfNode.WoundManagementTaxonomyRoot} implements Node @dontInfer {
+		"The title of the taxonomy node. May contain HTML mark-up."
+		title: String!
+
+		"The slugified and lowercased title, used as a URL path"
+		slug: String! @slug(field: "title")
+
+		"The review date of the record."
+		reviewDate: Date @dateformat
+
+		"The text of the taxonomy node. May contain HTML mark-up."
+		text: String @html
+
+		"Any children records of the wound management taxonomy."
+		childTaxonomies: [${BnfNode.WoundManagementTaxonomy}!]! @link
+	}
+
 	type ${BnfNode.WoundManagementTaxonomyProductGroup} implements Node @dontInfer {
 		"The taxonomy node"
 		taxonomy: ${BnfNode.WoundManagementTaxonomy}! @link

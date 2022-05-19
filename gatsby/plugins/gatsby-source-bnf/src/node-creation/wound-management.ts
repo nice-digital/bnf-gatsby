@@ -10,6 +10,13 @@ import { BnfNode } from "../node-types";
 
 import { createBnfNode, SimpleRecordNodeInput } from "./utils";
 
+export type TaxonomyRootNodeInput = Except<
+	FeedWoundManagementTaxonomy,
+	"productGroups" | "children"
+> & {
+	childTaxonomies: SID[];
+};
+
 export type TaxonomyNodeInput = Except<
 	FeedWoundManagementTaxonomy,
 	"productGroups" | "children"
@@ -50,6 +57,18 @@ export const createWoundManagementNodes = (
 		taxonomies.forEach((taxonomy) => {
 			const rootTaxonomy = root || taxonomy,
 				{ children, ...taxonomyFields } = taxonomy;
+
+			// Create a root taxonomy node if appropriate
+			if (!parent) {
+				createBnfNode<TaxonomyRootNodeInput>(
+					{
+						...taxonomyFields,
+						childTaxonomies: children?.map((t) => t.id) || [],
+					},
+					BnfNode.WoundManagementTaxonomyRoot,
+					sourceNodesArgs
+				);
+			}
 
 			if (taxonomy.productGroups?.length) {
 				createBnfNode<TaxonomyProductGroupNodeInput>(
