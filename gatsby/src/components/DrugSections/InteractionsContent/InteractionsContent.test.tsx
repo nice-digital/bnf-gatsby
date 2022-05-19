@@ -4,13 +4,13 @@ import { InteractionsContent } from "./InteractionsContent";
 
 describe("InteractionsContent", () => {
 	describe("Single interactant", () => {
-		const interactants = [{ slug: "abacavir", title: "<em>Abacavir</em>" }];
+		const interactants = [{ slug: "abacavir", title: "Aba<em>cavir</em>" }];
 
 		it("should render link to view interaction when there", () => {
 			render(<InteractionsContent interactants={interactants} />);
 
 			const link = screen.getByRole("link");
-			expect(link).toHaveTextContent("View interactions for Abacavir");
+			expect(link).toHaveTextContent("View interactions for abacavir");
 			expect(link).toHaveAttribute("href", "/interactions/abacavir/");
 		});
 	});

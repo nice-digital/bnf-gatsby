@@ -28,7 +28,7 @@ Feature: Interactions details page
     Then I expect that element "h1" contains the text "Interactions"
 
   Scenario: Link to matching drug monograph
-    When I click the "View Abacavir monograph page" link
+    When I click the "View abacavir drug monograph" link
     Then I expect that the path is "/drugs/abacavir/"
 
   Scenario: Link to interactant

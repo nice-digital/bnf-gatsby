@@ -73,7 +73,7 @@ describe("MedicalDeviceTypePage", () => {
 					document.querySelector("meta[name=description]")
 				).toHaveAttribute(
 					"content",
-					"This medical device type describes the options that are currently recommended for Film gloves."
+					"This medical device type describes the options that are currently recommended for film gloves."
 				);
 			});
 		});

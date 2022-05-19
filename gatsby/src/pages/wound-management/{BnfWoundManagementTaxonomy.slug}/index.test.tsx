@@ -1,6 +1,8 @@
 import { render, screen, within, waitFor } from "@testing-library/react";
 import React from "react";
 
+import { decapitalize } from "@/utils";
+
 import WoundManagementTaxonomyPage, {
 	type WoundManagementTaxonomyPageProps,
 } from "./";
@@ -100,7 +102,9 @@ describe("Wound management taxonomy page", () => {
 			// eslint-disable-next-line testing-library/no-node-access
 			expect(document.querySelector("meta[name=description]")).toHaveAttribute(
 				"content",
-				`This wound management topic describes the options that are currently recommended for ${props.data.bnfWoundManagementTaxonomy.title}`
+				`This wound management topic describes the options that are currently recommended for ${decapitalize(
+					props.data.bnfWoundManagementTaxonomy.title
+				)}`
 			);
 		});
 	});

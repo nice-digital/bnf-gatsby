@@ -12,7 +12,7 @@ import { StackedNav, StackedNavLink } from "@nice-digital/nds-stacked-nav";
 import { MedicalDevicePrepsSection } from "@/components/MedicalDevicePrepsSection/MedicalDevicePrepsSection";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
-import { QueryResult } from "@/utils";
+import { decapitalize, QueryResult } from "@/utils";
 
 import styles from "./{BnfMedicalDeviceType.slug}.module.scss";
 
@@ -51,7 +51,9 @@ const MedicalDeviceTypePage: FC<MedicalDeviceTypePageProps> = ({
 		<>
 			<SEO
 				title={`${titleNoHtml} | ${medicalDevice.title} | Medical devices`}
-				description={`This medical device type describes the options that are currently recommended for ${titleNoHtml}.`}
+				description={`This medical device type describes the options that are currently recommended for ${decapitalize(
+					titleNoHtml
+				)}.`}
 			/>
 
 			<Breadcrumbs>
