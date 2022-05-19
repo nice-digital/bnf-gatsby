@@ -43,6 +43,16 @@ $gutter: core.rem(core.$nds-spacing-medium);
   }
 }
 
+.icon {
+  position: relative;
+  top: 0;
+  transition: all 0.25s ease;
+
+  &.iconExpanded {
+    transform: rotate(180deg);
+  }
+}
+
 @include core.mq($from: md) {
   .linkList {
     column-gap: core.rem(core.$nds-spacing-large);

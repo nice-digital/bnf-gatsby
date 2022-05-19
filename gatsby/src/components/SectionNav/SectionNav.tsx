@@ -1,8 +1,9 @@
 import classNames from "classnames";
 import { Link } from "gatsby";
-import { FC, useState, useRef } from "react";
+import { FC, useState, useRef, useEffect } from "react";
 import striptags from "striptags";
 
+import ChevronDownIcon from "@nice-digital/icons/lib/ChevronDown";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 import { isTruthy } from "@/utils";
 
@@ -26,7 +27,7 @@ export const SectionNav: FC<SectionNavProps> = ({
 	readableMaxWidth = false,
 	navigateToAnotherPage = false,
 }) => {
-	// const [isDropdownVisible, setIsDropdownVisible] = useState(true);
+	const [isExpanded, setIsExpanded] = useState(true);
 	const headingText = navigateToAnotherPage
 		? "Navigate to page"
 		: "Navigate to section";
@@ -41,7 +42,14 @@ export const SectionNav: FC<SectionNavProps> = ({
 
 	const toggleDropdown = () => {
 		console.log("TOGGLE TIME!");
+		setIsExpanded(!isExpanded);
 	};
+
+	useEffect(() => {
+		if (!isStuck) {
+			setIsExpanded(true);
+		}
+	}, [isStuck]);
 
 	return (
 		<nav
@@ -56,27 +64,42 @@ export const SectionNav: FC<SectionNavProps> = ({
 		>
 			<h2 id="navigate-to-section" className={styles.heading}>
 				{isStuck ? (
-					<button type="button" onClick={toggleDropdown}>
+					<button
+						type="button"
+						aria-label={`${isExpanded ? "Hide" : "Show"} ${headingText}`}
+						aria-expanded={isExpanded}
+						onClick={toggleDropdown}
+					>
+						<ChevronDownIcon
+							className={classNames(
+								styles.icon,
+								isExpanded && styles.iconExpanded
+							)}
+						/>
 						{headingText}
 					</button>
 				) : (
 					<span>{headingText}</span>
 				)}
 			</h2>
-			<ol
-				aria-label="Jump links to sections on this page"
-				className={styles.linkList}
-			>
-				{sections.filter(isTruthy).map((section) => (
-					<li key={section?.id}>
-						{navigateToAnotherPage ? (
-							<Link to={section?.id}>{striptags(section?.title || "")}</Link>
-						) : (
-							<a href={`#${section?.id}`}>{striptags(section?.title || "")}</a>
-						)}
-					</li>
-				))}
-			</ol>
+			{isExpanded ? (
+				<ol
+					aria-label="Jump links to sections on this page"
+					className={styles.linkList}
+				>
+					{sections.filter(isTruthy).map((section) => (
+						<li key={section?.id}>
+							{navigateToAnotherPage ? (
+								<Link to={section?.id}>{striptags(section?.title || "")}</Link>
+							) : (
+								<a href={`#${section?.id}`}>
+									{striptags(section?.title || "")}
+								</a>
+							)}
+						</li>
+					))}
+				</ol>
+			) : null}
 		</nav>
 	);
 };
