@@ -699,7 +699,7 @@ export interface FeedBorderlineSubstancePresentation {
 	/** The fibre content of the borderline substance in grams. */
 	fibreGrams?: string;
 	/** The fibre constituents of the borderline substance. */
-	fibreConstituents?: string;
+	fibreConstituents?: string[];
 	/** A list of any special characteristics of the borderline substance. */
 	specialCharacteristics?: string[];
 	/** A list of the Advisory Committee on Borderline Substances (ACBS) indications. May contain HTML mark-up. */

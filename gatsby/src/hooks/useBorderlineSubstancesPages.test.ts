@@ -7,22 +7,25 @@ import {
 
 export const mockBorderlineSubstancesPagesQueryData: BorderlineSubstancesQueryResult =
 	{
-		allBnfBorderlineSubstancesTaxonomy: {
-			pages: [
+		allBnfBorderlineSubstancesTaxonomyRoot: {
+			nodes: [
 				{
-					slug: "parent-1",
-					title: "Parent 1",
-					parentTaxonomy: null,
+					taxonomy: {
+						slug: "enteral-feeds-non-disease-specific",
+						title: "Enteral feeds (non-disease specific)",
+					},
 				},
 				{
-					slug: "parent-2",
-					title: "Parent 2",
-					parentTaxonomy: null,
+					taxonomy: {
+						slug: "specialised-formulas",
+						title: "Specialised formulas",
+					},
 				},
 				{
-					slug: "parent-3",
-					title: "Parent 3",
-					parentTaxonomy: null,
+					taxonomy: {
+						slug: "foods-for-special-diets",
+						title: "Foods for special diets",
+					},
 				},
 			],
 		},
@@ -42,7 +45,7 @@ describe("useBorderlineSubstancesPages", () => {
 	it("should prefix slugs with about section path", () => {
 		expect(borderlineSubstancesPages[0]).toHaveProperty(
 			"href",
-			"/borderline-substances/parent-1/"
+			"/borderline-substances/enteral-feeds-non-disease-specific/"
 		);
 	});
 });

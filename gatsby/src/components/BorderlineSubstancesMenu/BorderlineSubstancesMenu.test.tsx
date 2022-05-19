@@ -30,10 +30,9 @@ describe("BorderlineSubstancesMenu", () => {
 	it("should render anchor for each parent level taxonomy from feed", () => {
 		render(<BorderlineSubstancesMenu />);
 
-		expect(screen.getByRole("link", { name: "Parent 1" })).toHaveAttribute(
-			"href",
-			"/borderline-substances/parent-1/"
-		);
+		expect(
+			screen.getByRole("link", { name: "Specialised formulas" })
+		).toHaveAttribute("href", "/borderline-substances/specialised-formulas/");
 
 		expect(screen.getAllByRole("link")).toHaveLength(4);
 	});
@@ -42,15 +41,14 @@ describe("BorderlineSubstancesMenu", () => {
 		(useLocation as jest.Mock).mockImplementationOnce(
 			() =>
 				new URL(
-					"https://bnf-gatsby-tests.nice.org.uk/borderline-substances/parent-1/"
+					"https://bnf-gatsby-tests.nice.org.uk/borderline-substances/specialised-formulas/"
 				)
 		);
 
 		render(<BorderlineSubstancesMenu />);
 
-		expect(screen.getByRole("link", { name: "Parent 1" })).toHaveAttribute(
-			"aria-current",
-			"true"
-		);
+		expect(
+			screen.getByRole("link", { name: "Specialised formulas" })
+		).toHaveAttribute("aria-current", "true");
 	});
 });
