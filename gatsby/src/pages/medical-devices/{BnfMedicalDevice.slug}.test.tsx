@@ -129,12 +129,22 @@ describe("MedicalDevicePage", () => {
 	});
 
 	describe("Page body", () => {
+		it("should render CMPIs region with accessible name", () => {
+			render(<MedicalDevicePage {...props} />);
+
+			expect(
+				screen.getByRole("region", {
+					name: "Artificial saliva products",
+				})
+			).toBeInTheDocument();
+		});
+
 		it("should render list of CMPIs with accessible name", () => {
 			render(<MedicalDevicePage {...props} />);
 
 			expect(
 				screen.getByRole("list", {
-					name: "Medical device types for Artificial saliva products",
+					name: "Products within Artificial saliva products",
 				})
 			).toBeInTheDocument();
 		});
@@ -143,7 +153,7 @@ describe("MedicalDevicePage", () => {
 			render(<MedicalDevicePage {...props} />);
 
 			const list = screen.getByRole("list", {
-				name: "Medical device types for Artificial saliva products",
+				name: "Products within Artificial saliva products",
 			});
 
 			expect(within(list).getAllByRole("listitem")).toHaveLength(2);
