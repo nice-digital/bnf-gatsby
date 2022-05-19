@@ -18,7 +18,7 @@ import styles from "./Menu.module.scss";
 export interface MenuProps {
 	ariaLabel?: string;
 	label: string;
-	link: { destination: string; elementType: ElementType };
+	link: { destination: string; elementType: ElementType; isCurrent?: boolean };
 	pages: {
 		href: string;
 		title: string;
