@@ -62,4 +62,10 @@ $gutter: core.rem(core.$nds-spacing-medium);
       break-inside: avoid;
     }
   }
+
+  .nav {
+    &.stuck {
+      border: 10px solid red;
+    }
+  }
 }
