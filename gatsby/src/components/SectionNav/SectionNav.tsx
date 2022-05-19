@@ -65,44 +65,50 @@ export const SectionNav: FC<SectionNavProps> = ({
 			)}
 			ref={ref}
 		>
-			<h2 id="navigate-to-section" className={styles.heading}>
-				{isStuck ? (
-					<button
-						type="button"
-						aria-label={`${isExpanded ? "Hide" : "Show"} ${headingText}`}
-						aria-expanded={isExpanded}
-						onClick={toggleDropdown}
-					>
-						<ChevronDownIcon
-							className={classNames(
-								styles.icon,
-								isExpanded && styles.iconExpanded
-							)}
-						/>
-						{headingText}
-					</button>
-				) : (
-					<span>{headingText}</span>
-				)}
-			</h2>
-			{isExpanded ? (
-				<ol
-					aria-label="Jump links to sections on this page"
-					className={styles.linkList}
-				>
-					{sections.filter(isTruthy).map((section) => (
-						<li key={section?.id}>
-							{navigateToAnotherPage ? (
-								<Link to={section?.id}>{striptags(section?.title || "")}</Link>
-							) : (
-								<a href={`#${section?.id}`}>
-									{striptags(section?.title || "")}
-								</a>
-							)}
-						</li>
-					))}
-				</ol>
-			) : null}
+			<div className={isStuck ? styles.fixed : ""}>
+				<div className={isStuck ? "container" : ""}>
+					<h2 id="navigate-to-section" className={styles.heading}>
+						{isStuck ? (
+							<button
+								type="button"
+								aria-label={`${isExpanded ? "Hide" : "Show"} ${headingText}`}
+								aria-expanded={isExpanded}
+								onClick={toggleDropdown}
+							>
+								<ChevronDownIcon
+									className={classNames(
+										styles.icon,
+										isExpanded && styles.iconExpanded
+									)}
+								/>
+								{headingText}
+							</button>
+						) : (
+							<span>{headingText}</span>
+						)}
+					</h2>
+					{isExpanded ? (
+						<ol
+							aria-label="Jump links to sections on this page"
+							className={styles.linkList}
+						>
+							{sections.filter(isTruthy).map((section) => (
+								<li key={section?.id}>
+									{navigateToAnotherPage ? (
+										<Link to={section?.id}>
+											{striptags(section?.title || "")}
+										</Link>
+									) : (
+										<a href={`#${section?.id}`}>
+											{striptags(section?.title || "")}
+										</a>
+									)}
+								</li>
+							))}
+						</ol>
+					) : null}
+				</div>
+			</div>
 		</nav>
 	);
 };

@@ -25,6 +25,14 @@ $gutter: core.rem(core.$nds-spacing-medium);
   }
 }
 
+.fixed {
+  background: core.$nds-colour-true-white;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
 .heading {
   @include core.nds-h4;
   margin-top: 0;
@@ -60,12 +68,6 @@ $gutter: core.rem(core.$nds-spacing-medium);
 
     li {
       break-inside: avoid;
-    }
-  }
-
-  .nav {
-    &.stuck {
-      border: 10px solid red;
     }
   }
 }
