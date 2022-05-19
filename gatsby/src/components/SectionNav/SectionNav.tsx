@@ -4,6 +4,7 @@ import { FC, useState, useRef, useEffect } from "react";
 import striptags from "striptags";
 
 import ChevronDownIcon from "@nice-digital/icons/lib/ChevronDown";
+
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 import { isTruthy } from "@/utils";
 
@@ -33,8 +34,10 @@ export const SectionNav: FC<SectionNavProps> = ({
 		: "Navigate to section";
 
 	const ref = useRef<HTMLDivElement | null>(null);
+
+	//TODO remove magic number for bottom intersect margin
 	const entry = useIntersectionObserver(ref, {
-		rootMargin: "-1px 0px",
+		rootMargin: "-1px 0px 2500px 0px",
 		threshold: 1,
 	});
 	const isStuck = !entry?.isIntersecting;
