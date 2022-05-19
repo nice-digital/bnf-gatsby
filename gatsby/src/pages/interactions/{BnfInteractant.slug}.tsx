@@ -17,6 +17,7 @@ import interactionStyles from "@/components/Interaction/Interaction.module.scss"
 import { SEO } from "@/components/SEO/SEO";
 import { useIsClient } from "@/hooks/useIsClient";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
+import { decapitalize } from "@/utils";
 
 import styles from "./{BnfInteractant.slug}.module.scss";
 
@@ -156,8 +157,11 @@ const InteractantPage: FC<InteractantPageProps> = ({
 							to={`/drugs/${drug.slug}/`}
 							data-tracking="own-monograph"
 						>
-							View <span dangerouslySetInnerHTML={{ __html: drug.title }} />{" "}
-							monograph page
+							View{" "}
+							<span
+								dangerouslySetInnerHTML={{ __html: decapitalize(drug.title) }}
+							/>{" "}
+							drug monograph
 						</Link>
 					) : null
 				}

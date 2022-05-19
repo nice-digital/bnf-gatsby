@@ -39,23 +39,30 @@ export const Interaction: React.FC<InteractionProps> = ({
 			<ul className={styles.messageList}>
 				{messages.map(
 					({ message, severity, severityOrder, evidence }, messageIndex) => {
-						const isSevereInteraction = severityOrder >= SEVERE_INTERACTION;
+						const isSevereInteraction = severityOrder >= SEVERE_INTERACTION,
+							isNormalInteraction = severity === "Normal";
 						return (
 							<li key={messageIndex} className={styles.message}>
 								<div
 									className={isSevereInteraction ? styles.severeMessage : ""}
 								>
 									<div dangerouslySetInnerHTML={{ __html: message }}></div>
-									<dl className={styles.supplementaryInfo}>
-										<dt>Severity:</dt>
-										<dd>{severity}</dd>
-										{evidence !== null && (
-											<>
-												<dt>Evidence:</dt>
-												<dd>{evidence}</dd>
-											</>
-										)}
-									</dl>
+									{(evidence !== null || !isNormalInteraction) && (
+										<dl className={styles.supplementaryInfo}>
+											{!isNormalInteraction && (
+												<>
+													<dt>Severity:</dt>
+													<dd>{severity}</dd>
+												</>
+											)}
+											{evidence !== null && (
+												<>
+													<dt>Evidence:</dt>
+													<dd>{evidence}</dd>
+												</>
+											)}
+										</dl>
+									)}
 								</div>
 							</li>
 						);

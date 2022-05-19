@@ -114,12 +114,13 @@ exports[`InteractantPage body should match snapshot for page body 1`] = `
         data-tracking="own-monograph"
         href="/drugs/acarbose/"
       >
-        View 
+        View
+         
         <span>
           acarbose
         </span>
          
-        monograph page
+        drug monograph
       </a>
     </p>
   </div>
@@ -232,7 +233,7 @@ exports[`InteractantPage body should match snapshot for page body 1`] = `
           List of interactions for
            
           <span>
-            acarbose
+            Acarbose
           </span>
         </h2>
         <div
@@ -289,16 +290,6 @@ exports[`InteractantPage body should match snapshot for page body 1`] = `
                        can increase the risk of hypoglycaemia.
                     </p>
                   </div>
-                  <dl
-                    class="supplementaryInfo"
-                  >
-                    <dt>
-                      Severity:
-                    </dt>
-                    <dd>
-                      Normal
-                    </dd>
-                  </dl>
                 </div>
               </li>
             </ul>
@@ -410,16 +401,6 @@ exports[`InteractantPage body should match snapshot for page body 1`] = `
                   <div>
                     Test message 1
                   </div>
-                  <dl
-                    class="supplementaryInfo"
-                  >
-                    <dt>
-                      Severity:
-                    </dt>
-                    <dd>
-                      Normal
-                    </dd>
-                  </dl>
                 </div>
               </li>
               <li

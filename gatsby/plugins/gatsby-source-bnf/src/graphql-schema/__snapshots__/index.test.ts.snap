@@ -24,7 +24,7 @@ exports[`schema should match snapshot 1`] = `
 	\\"\\"\\"
 	type BnfBorderlineSubstancesIntroduction implements Node & BnfSimpleRecord @dontInfer {
 		\\"The title of the section. May contain HTML markup.\\"
-		title: String!
+		title: String! @html
 
 		\\"The review date of the record, formatted into a string.\\"
 		reviewDate: Date @dateformat
@@ -41,10 +41,10 @@ exports[`schema should match snapshot 1`] = `
 	\\"\\"\\"
 	type BnfBorderlineSubstancesTaxonomy implements Node @dontInfer {
 		\\"The title of the taxonomy node. May contain HTML mark-up.\\"
-		title: String!
+		title: String! @html
 
 		\\"The slugified and lowercased title, used as a URL path\\"
-		slug: String! @slug(field: \\"title\\")
+		slug: String!
 
 		\\"The review date of the record, formatted into a string.\\"
 		reviewDate: Date @dateformat
@@ -55,7 +55,7 @@ exports[`schema should match snapshot 1`] = `
 		\\"Any children records of the borderline substances taxonomy.\\"
 		childTaxonomies: [BnfBorderlineSubstancesTaxonomy!]! @link
 
-		\\"The parent taxonomy. Empty for root level taxonomy nodes.\\"
+		\\"The parent taxonomy. Will be null for root taxonomies.\\"
 		parentTaxonomy: BnfBorderlineSubstancesTaxonomy @link
 
 		\\"The root taxonomy\\"
@@ -63,14 +63,34 @@ exports[`schema should match snapshot 1`] = `
 	}
 
 	\\"\\"\\"
+	The root of the borderline substances tree, e.g. 'Foods for special diets' etc
+	\\"\\"\\"
+	type BnfBorderlineSubstancesTaxonomyRoot implements Node @dontInfer {
+		taxonomy: BnfBorderlineSubstancesTaxonomy! @link
+	}
+
+	\\"\\"\\"
+	A group of products - the level at which we create sub-pages
+	\\"\\"\\"
+	type BnfBorderlineSubstancesTaxonomyProductGroup implements Node @dontInfer {
+		taxonomy: BnfBorderlineSubstancesTaxonomy! @link
+	}
+
+	\\"\\"\\"
 	An individual borderline substance. This comprises a number of presentations, each of which may contain zero or more preparations.
 	\\"\\"\\"
-	type BnfBorderlineSubstance {
+	type BnfBorderlineSubstance @dontInfer {
+		\\"The PHPID of the borderline substance\\"
+		id: ID!
+
 		\\"The title of the borderline substance. May contain HTML mark-up.\\"
-		title: String!
+		title: String! @html
+
+		\\"The slugified and lowercased title, used as a URL path/hash\\"
+		slug: String! @slug(field: \\"title\\")
 
 		\\"An optional introductory note for the borderline substance. May contain HTML mark-up.\\"
-		introductionNote: String
+		introductionNote: String @html
 
 		\\"The presentation details for the borderline substance.\\"
 		presentations: [BnfBorderlineSubstancePresentation!]!
@@ -79,7 +99,7 @@ exports[`schema should match snapshot 1`] = `
 	\\"\\"\\"
 	The presentation of a borderline substance, i.e. its formulation and nutritional content. Also comprises zero or more preparations.
 	\\"\\"\\"
-	type BnfBorderlineSubstancePresentation {
+	type BnfBorderlineSubstancePresentation @dontInfer {
 		\\"The formulation of the borderline substance, for example 'Liquid (tube feed) per 100 mL'.\\"
 		formulation: String
 
@@ -93,37 +113,37 @@ exports[`schema should match snapshot 1`] = `
 		proteinGrams: String
 
 		\\"The protein constituents of the borderline substance.\\"
-		proteinConstituents: [String]!
+		proteinConstituents: [String!]!
 
 		\\"The carbohydrate content of the borderline substance in grams.\\"
 		carbohydrateGrams: String
 
 		\\"The carbohydrate constituents of the borderline substance.\\"
-		carbohydrateConstituents: [String]!
+		carbohydrateConstituents: [String!]!
 
 		\\"The fat content of the borderline substance in grams.\\"
 		fatGrams: String
 
 		\\"The fat constituents of the borderline substance.\\"
-		fatConstituents: [String]!
+		fatConstituents: [String!]!
 
 		\\"The fibre content of the borderline substance in grams.\\"
 		fibreGrams: String
 
 		\\"The fibre constituents of the borderline substance.\\"
-		fibreConstituents: String
+		fibreConstituents: [String!]!
 
 		\\"A list of any special characteristics of the borderline substance.\\"
-		specialCharacteristics: [String]!
+		specialCharacteristics: [String!]!
 
 		\\"A list of the Advisory Committee on Borderline Substances (ACBS) indications. May contain HTML mark-up.\\"
-		acbs: [String]!
+		acbs: [String!]! @html
 
 		\\"The presentation note for the borderline substance.\\"
-		presentationNote: String
+		presentationNote: String @html
 
 		\\"The Rx advice for the borderline substance.\\"
-		rxAdvice: String
+		rxAdvice: String @html
 
 		\\"The preparations for the borderline substance.\\"
 		borderlineSubstancePreps: [BnfPrep!]!
@@ -1051,7 +1071,7 @@ exports[`schema should match snapshot 1`] = `
 		reviewDate: Date @dateformat
 
 		\\"The text of the taxonomy node. May contain HTML mark-up.\\"
-		text: String
+		text: String @html
 
 		\\"The wound management product groups and preparations that are applicable for this point in the wound management taxonomy.\\"
 		productGroups: [BnfWoundManagementProductGroup!]!
@@ -1077,7 +1097,7 @@ exports[`schema should match snapshot 1`] = `
 		title: String!
 
 		\\"The description of the wound management product group. May contain HTML mark-up.\\"
-		description: String
+		description: String @html
 
 		\\"The list of products in the wound management product group.\\"
 		products: [BnfPrep!]!
