@@ -24,7 +24,7 @@
 
   &:hover,
   &:hover * {
-    color: core.$nds-colour-link-hover;
+    color: #006bbd; // Specific to BNF accordions for now - Nick may move this into the design system later
   }
 
   > :last-child {
