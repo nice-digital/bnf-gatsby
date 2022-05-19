@@ -166,39 +166,4 @@ describe("Wound management taxonomy page", () => {
 			props.data.bnfWoundManagementTaxonomy.childTaxonomies.length
 		);
 	});
-
-	it("should show a message when rendering a product group with no information", () => {
-		const noInformationWarningText =
-			"Please note, there is currently no specific information about this product.";
-
-		render(<WoundManagementTaxonomyPage {...props} />);
-		expect(screen.queryByText(noInformationWarningText)).toBeNull();
-
-		render(
-			<WoundManagementTaxonomyPage
-				data={{
-					...props.data,
-					bnfWoundManagementTaxonomy: {
-						...props.data.bnfWoundManagementTaxonomy,
-						childTaxonomies: [
-							{
-								title: "No info test",
-								slug: "no-info-test",
-								text: "<p>No info test</p>",
-								childTaxonomies: [],
-								productGroups: [
-									{
-										title: "Test product group",
-										description: "<p>Test description</p>",
-										products: [], // Need a product group with no products to trigger this condition
-									},
-								],
-							},
-						],
-					},
-				}}
-			/>
-		);
-		expect(screen.getByText(noInformationWarningText)).toBeInTheDocument();
-	});
 });

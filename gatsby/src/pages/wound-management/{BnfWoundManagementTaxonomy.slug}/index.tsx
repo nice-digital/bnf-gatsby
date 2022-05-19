@@ -49,18 +49,6 @@ export interface WoundManagementTaxonomyPageProps {
 	};
 }
 
-const productGroupsHaveNoInfo = (productGroups: ProductGroup[]) => {
-	let groupsHaveNoInfo = true;
-	for (const group of productGroups) {
-		if (group.products?.length) {
-			groupsHaveNoInfo = false;
-			break;
-		}
-	}
-
-	return groupsHaveNoInfo;
-};
-
 const WoundManagementTaxonomyPage: FC<WoundManagementTaxonomyPageProps> = ({
 	data: {
 		allBnfWoundManagementTaxonomy: { taxonomies },
@@ -136,25 +124,11 @@ const WoundManagementTaxonomyPage: FC<WoundManagementTaxonomyPageProps> = ({
 								return (
 									<li key={child.slug}>
 										<h2 id={child.slug}>{child.title}</h2>
-										{child.text && (
+										{child.text && child.productGroups.length === 0 && (
 											<div
 												dangerouslySetInnerHTML={{ __html: child.text }}
 											></div>
 										)}
-										{child.productGroups.length > 0 &&
-											productGroupsHaveNoInfo(child.productGroups) &&
-											child.productGroups.map(({ title, description }) => (
-												<>
-													<h3>{title}</h3>
-													<div
-														dangerouslySetInnerHTML={{ __html: description }}
-													></div>
-													<p>
-														Please note, there is currently no specific
-														information about this product.
-													</p>
-												</>
-											))}
 										{child.childTaxonomies.length > 0 ? (
 											<ul className={styles.nestedTaxonomyList}>
 												{child.childTaxonomies
@@ -168,6 +142,15 @@ const WoundManagementTaxonomyPage: FC<WoundManagementTaxonomyPageProps> = ({
 															</Link>
 														</li>
 													))}
+												{child.productGroups.length > 0 && (
+													<li>
+														<Link
+															to={`/wound-management/${slug}/${child.slug}/`}
+														>
+															{child.title}
+														</Link>
+													</li>
+												)}
 											</ul>
 										) : (
 											<ul className={styles.nestedTaxonomyList}>
