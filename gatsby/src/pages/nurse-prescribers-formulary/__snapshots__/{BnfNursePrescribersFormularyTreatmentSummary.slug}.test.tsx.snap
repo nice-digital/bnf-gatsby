@@ -127,9 +127,10 @@ exports[`NursePrescribersFormularyTreatmentSummaryPage should match snapshot for
         class="hide-print"
         data-g="12 md:4 lg:3"
       >
+         
         <button
           aria-expanded="false"
-          aria-label="Expand menu for Nurse Prescribers' Formulary"
+          aria-label="Expand menu for nurse Prescribers' Formulary"
           class="toggleButton"
           type="button"
         >

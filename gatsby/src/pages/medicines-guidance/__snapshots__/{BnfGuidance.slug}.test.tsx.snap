@@ -123,9 +123,10 @@ exports[`MedicinesGuidancePage should match snapshot for page contents 1`] = `
         class="hide-print"
         data-g="12 md:4 lg:3"
       >
+         
         <button
           aria-expanded="false"
-          aria-label="Expand menu for Medicines guidance"
+          aria-label="Expand menu for medicines guidance"
           class="toggleButton"
           type="button"
         >

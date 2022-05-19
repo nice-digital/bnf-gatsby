@@ -1,3 +1,4 @@
+import { Link } from "gatsby";
 import React, { type FC } from "react";
 
 import { useNursePrescribers } from "@/hooks/useNursePrescribers";
@@ -10,7 +11,7 @@ export const NursePrescribersFormularyMenu: FC = () => {
 	return (
 		<Menu
 			label="Nurse Prescribers' Formulary"
-			link="/nurse-prescribers-formulary/"
+			link={{ destination: "/nurse-prescribers-formulary/", elementType: Link }}
 			pages={menuList}
 		></Menu>
 	);

@@ -1,10 +1,13 @@
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { Link } from "gatsby";
+import React from "react";
 
 import { Menu, MenuProps } from "./Menu";
 
 const menuProps: MenuProps = {
 	label: "My menu",
-	link: "my-menu",
+	link: { destination: "my-menu", elementType: Link },
 	pages: [
 		{
 			href: "/a-page/",
@@ -47,5 +50,71 @@ describe("Menu", () => {
 		render(<Menu {...menuProps} />);
 
 		expect(screen.getAllByRole("link")).toHaveLength(3);
+	});
+});
+
+describe("mobile menu", () => {
+	it("should not render mobile toggle button in static build", () => {
+		const spy = jest.spyOn(React, "useLayoutEffect").mockImplementation(() => {
+			/*noop*/
+		});
+
+		render(<Menu {...menuProps} />);
+
+		expect(screen.queryByText("My menu", { selector: "button" })).toBeNull();
+
+		spy.mockRestore();
+	});
+
+	it("should render mobile anchor to topic menu in static build", () => {
+		const spy = jest.spyOn(React, "useLayoutEffect").mockImplementation(() => {
+			/*noop*/
+		});
+
+		render(<Menu {...menuProps} />);
+
+		expect(
+			screen.queryByText("My menu", {
+				selector: "a.toggleButton",
+			})
+		).toHaveAttribute("href", "#collapsible-menu");
+
+		spy.mockRestore();
+	});
+
+	it("should render collapsed mobile menu button client side", () => {
+		render(<Menu {...menuProps} />);
+
+		const toggleBtn = screen.getByText("My menu", {
+			selector: "button",
+		});
+		expect(toggleBtn).toBeInTheDocument();
+		expect(toggleBtn).toHaveAttribute("aria-expanded", "false");
+	});
+
+	it("should render label for screenreaders", () => {
+		render(<Menu {...menuProps} />);
+
+		const toggleBtn = screen.getByText("My menu", {
+			selector: "button",
+		});
+		expect(toggleBtn).toBeInTheDocument();
+		expect(toggleBtn).toHaveAttribute("aria-label", "Expand menu for my menu");
+	});
+
+	it("should collapse toggle button on click", () => {
+		render(<Menu {...menuProps} />);
+
+		const toggleBtn = screen.getByText("My menu", {
+			selector: "button",
+		});
+
+		userEvent.click(toggleBtn);
+
+		expect(toggleBtn).toHaveAttribute("aria-expanded", "true");
+		expect(toggleBtn).toHaveAttribute(
+			"aria-label",
+			"Collapse menu for my menu"
+		);
 	});
 });

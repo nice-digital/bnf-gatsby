@@ -1,5 +1,4 @@
-import { useLocation } from "@reach/router";
-import { graphql } from "gatsby";
+import { graphql, Link } from "gatsby";
 import { FC } from "react";
 import striptags from "striptags";
 
@@ -127,7 +126,10 @@ const CMPIPage: FC<CMPIPageProps> = ({
 							<Menu
 								label={medicalDeviceTitleNoHtml}
 								ariaLabel={medicalDeviceTitleNoHtml}
-								link={`/medical-devices/${medicalDevice.slug}/`}
+								link={{
+									destination: `/medical-devices/${medicalDevice.slug}/`,
+									elementType: Link,
+								}}
 								pages={clinicalMedicalDeviceInformationGroups.map((cmpi) => ({
 									title: cmpi.title,
 									href: `/medical-devices/${medicalDevice.slug}/${cmpi.slug}/`,

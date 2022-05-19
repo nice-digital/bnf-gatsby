@@ -38,8 +38,8 @@ describe("AboutSectionMenu", () => {
 	});
 
 	it("should highlight current page", () => {
-		(useLocation as jest.Mock).mockImplementationOnce(
-			() => new URL("https://bnf-gatsby-tests.nice.org.uk/about/labels/")
+		(useLocation as jest.Mock).mockReturnValue(
+			new URL("https://bnf-gatsby-tests.nice.org.uk/about/labels/")
 		);
 
 		render(<AboutSectionMenu />);

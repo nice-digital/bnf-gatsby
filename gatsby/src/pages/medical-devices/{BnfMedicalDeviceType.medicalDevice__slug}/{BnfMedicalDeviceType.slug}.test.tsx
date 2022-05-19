@@ -187,7 +187,9 @@ describe("MedicalDeviceTypePage", () => {
 			it("should order stacked nav links alphabetically", () => {
 				render(<MedicalDeviceTypePage {...props} />);
 
-				const stackedNav = screen.getByRole("navigation", { name: "Gloves" });
+				const stackedNav = screen.getByRole("navigation", {
+					name: "Gloves pages",
+				});
 
 				expect(
 					within(stackedNav)
@@ -212,7 +214,9 @@ describe("MedicalDeviceTypePage", () => {
 
 				render(<MedicalDeviceTypePage {...props} />);
 
-				const stackedNav = screen.getByRole("navigation", { name: "Gloves" });
+				const stackedNav = screen.getByRole("navigation", {
+					name: "Gloves pages",
+				});
 
 				expect(
 					within(stackedNav).getByRole("link", { name: "Film gloves" })

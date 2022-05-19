@@ -1,3 +1,4 @@
+import { Link } from "gatsby";
 import React, { type FC } from "react";
 
 import { useAboutPages } from "@/hooks/useAboutPages";
@@ -11,7 +12,7 @@ export const AboutSectionMenu: FC = () => {
 		<Menu
 			ariaLabel="About section pages"
 			label="About"
-			link="/about/"
+			link={{ destination: "/about/", elementType: Link }}
 			pages={aboutPages}
 		></Menu>
 	);

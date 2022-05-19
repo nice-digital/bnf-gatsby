@@ -1,3 +1,4 @@
+import { Link } from "gatsby";
 import React, { type FC } from "react";
 
 import { useMedicalDevicePages } from "@/hooks/useMedicalDevicePages";
@@ -11,7 +12,7 @@ export const MedicalDevicesMenu: FC = () => {
 		<Menu
 			ariaLabel="Medical device pages"
 			label="Medical devices"
-			link="/medical-devices/"
+			link={{ destination: "/medical-devices/", elementType: Link }}
 			pages={medicalDevicePages}
 		></Menu>
 	);

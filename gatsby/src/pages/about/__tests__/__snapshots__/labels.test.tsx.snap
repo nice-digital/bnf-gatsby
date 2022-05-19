@@ -124,9 +124,10 @@ exports[`CautionaryAdvisoryLabelsPage should match snapshot for page contents 1`
         class="hide-print"
         data-g="12 md:4 lg:3"
       >
+         
         <button
           aria-expanded="false"
-          aria-label="Expand menu for About"
+          aria-label="Expand menu for about"
           class="toggleButton"
           type="button"
         >
