@@ -9,12 +9,12 @@
 <!-- START doctoc -->
 
 - [Stack](#stack)
-	- [Software](#software)
+  - [Software](#software)
 - [:rocket: Set up](#rocket-set-up)
-	- [Slow start](#slow-start)
-	- [Other commands](#other-commands)
+  - [Slow start](#slow-start)
+  - [Other commands](#other-commands)
 - [Source plugin](#source-plugin)
-	- [Configuration](#configuration)
+  - [Configuration](#configuration)
 
 <!-- END doctoc -->
 </details>
@@ -107,3 +107,13 @@ GATSBY_SEARCH_URL=https://alpha-search-api.nice.org.uk/api
 Alternatively, run `npm run build:bnf` or `npm run build:bnfc` to build a specific site and skip setting the `GATSBY_SITE` variable.
 
 > Note: you can get the live values from the TeamCity build parameters or ask a team member.
+
+### Search proxy
+
+By default, local calls to the search service will fail due to CORS limitations. Setting up a proxy will help us to get around this for local dev.
+
+The Gatsby config contains a `developMiddleware` property, which proxies a relative path (/api) to the alpha search service. This relative path can be specified as the search URL in your `.env.development` file, like so:
+
+`GATSBY_SEARCH_URL=/api`
+
+More information can be found in the [advanced proxying section of the Gatsby API docs](https://www.gatsbyjs.com/docs/api-proxy/#advanced-proxying).

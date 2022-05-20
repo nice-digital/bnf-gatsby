@@ -1,0 +1,18 @@
+// Put all styles for embedded feed HTML in here!
+/* stylelint-disable selector-class-pattern */
+@use '@nice-digital/nds-core/scss/core';
+
+.evidence-grading-label {
+  // Hide evidence grading until we decide whether we're keeping them
+  display: none;
+}
+
+.table-title {
+  // Example: /medicines-guidance/prescribing-in-palliative-care/
+  font-weight: bold;
+}
+
+.contact-details {
+  // Example: /medicines-guidance/index-of-manufacturers/
+  margin-bottom: core.rem(core.$nds-spacing-medium);
+}
