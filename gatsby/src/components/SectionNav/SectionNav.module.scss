@@ -53,8 +53,28 @@ $gutter: core.rem(core.$nds-spacing-medium);
   display: flex;
   text-decoration: underline;
 
-  svg {
-    margin-right: core.rem(core.$nds-spacing-x-small);
+  &:hover {
+    text-decoration-thickness: core.rem(core.$nds-spacing-xx-small);
+  }
+}
+
+.icon {
+  margin-right: core.rem(core.$nds-spacing-x-small);
+  position: relative;
+  top: 0;
+  transition: all 0.25s ease;
+
+  .toggleButton:hover & {
+    transform: translateY(#{core.rem(core.$nds-spacing-xx-small)});
+  }
+
+  &.iconExpanded {
+    transform: rotate(180deg);
+
+    .toggleButton:hover & {
+      transform: translateY(#{core.rem(core.$nds-spacing-xx-small)})
+        rotate(180deg);
+    }
   }
 }
 
@@ -91,15 +111,5 @@ $gutter: core.rem(core.$nds-spacing-medium);
     @include core.mq($from: md) {
       break-inside: avoid;
     }
-  }
-}
-
-.icon {
-  position: relative;
-  top: 0;
-  transition: all 0.25s ease;
-
-  &.iconExpanded {
-    transform: rotate(180deg);
   }
 }
