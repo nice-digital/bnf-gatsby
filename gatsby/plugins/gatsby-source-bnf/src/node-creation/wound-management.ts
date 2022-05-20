@@ -26,7 +26,7 @@ export type TaxonomyNodeInput = Except<
 	childTaxonomies: SID[];
 };
 
-export type TaxonomyProductGroupNodeInput = {
+export type LinkedTaxonomyNodeInput = {
 	id: string;
 	taxonomy: SID;
 };
@@ -60,10 +60,10 @@ export const createWoundManagementNodes = (
 
 			// Create a root taxonomy node if appropriate
 			if (!parent) {
-				createBnfNode<TaxonomyRootNodeInput>(
+				createBnfNode<LinkedTaxonomyNodeInput>(
 					{
-						...taxonomyFields,
-						childTaxonomies: children?.map((t) => t.id) || [],
+						id: sourceNodesArgs.createNodeId(taxonomy.id),
+						taxonomy: taxonomy.id,
 					},
 					BnfNode.WoundManagementTaxonomyRoot,
 					sourceNodesArgs
@@ -71,7 +71,7 @@ export const createWoundManagementNodes = (
 			}
 
 			if (taxonomy.productGroups?.length) {
-				createBnfNode<TaxonomyProductGroupNodeInput>(
+				createBnfNode<LinkedTaxonomyNodeInput>(
 					{
 						id: sourceNodesArgs.createNodeId(taxonomy.id),
 						taxonomy: taxonomy.id,

@@ -23,10 +23,12 @@ export type WoundManagementIndexPageProps = {
 			title: string;
 			sections: RecordSection[];
 		} | null;
-		allBnfWoundManagementTaxonomy: {
+		allBnfWoundManagementTaxonomyRoot: {
 			taxonomies: {
-				title: string;
-				slug: string;
+				taxonomy: {
+					title: string;
+					slug: string;
+				};
 			}[];
 		};
 	};
@@ -64,7 +66,7 @@ const navSections: SectionNavProps = {
 const WoundManagementIndexPage: FC<WoundManagementIndexPageProps> = ({
 	data: {
 		bnfWoundManagementIntroduction,
-		allBnfWoundManagementTaxonomy: { taxonomies },
+		allBnfWoundManagementTaxonomyRoot: { taxonomies },
 	},
 }) => {
 	const { siteTitleShort } = useSiteMetadata();
@@ -102,7 +104,7 @@ const WoundManagementIndexPage: FC<WoundManagementIndexPageProps> = ({
 							isCurrent: true,
 						}}
 					>
-						{taxonomies.map(({ slug, title }) => (
+						{taxonomies.map(({ taxonomy: { slug, title } }) => (
 							<StackedNavLink
 								key={slug}
 								destination={`/wound-management/${slug}/`}
@@ -133,12 +135,12 @@ export const query = graphql`
 				...RecordSection
 			}
 		}
-		allBnfWoundManagementTaxonomy(
-			filter: { parentTaxonomy: { title: { eq: null } } }
-		) {
+		allBnfWoundManagementTaxonomyRoot {
 			taxonomies: nodes {
-				title
-				slug
+				taxonomy {
+					title
+					slug
+				}
 			}
 		}
 	}

@@ -18,15 +18,19 @@ const props: WoundManagementIndexPageProps = {
 				},
 			],
 		},
-		allBnfWoundManagementTaxonomy: {
+		allBnfWoundManagementTaxonomyRoot: {
 			taxonomies: [
 				{
-					title: "Basic wound contact dressings",
-					slug: "basic-wound-contact-dressings",
+					taxonomy: {
+						title: "Basic wound contact dressings",
+						slug: "basic-wound-contact-dressings",
+					},
 				},
 				{
-					title: "Advanced wound dressings",
-					slug: "advanced-wound-dressings",
+					taxonomy: {
+						title: "Advanced wound dressings",
+						slug: "advanced-wound-dressings",
+					},
 				},
 			],
 		},
@@ -90,7 +94,7 @@ describe("Wound management index page", () => {
 			name: "Wound management product pages",
 		});
 		expect(within(subNav).getAllByRole("listitem")).toHaveLength(
-			props.data.allBnfWoundManagementTaxonomy.taxonomies.length
+			props.data.allBnfWoundManagementTaxonomyRoot.taxonomies.length
 		);
 	});
 });
