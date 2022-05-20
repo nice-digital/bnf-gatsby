@@ -27,7 +27,10 @@ const AboutIndexPage: FC = () => {
 
 			<PageHeader id="content-start" heading={`About ${siteTitleShort}`} />
 
-			<ColumnList aria-label="Pages in the about section">
+			<ColumnList
+				aria-label="Pages in the about section"
+				data-tracking="about-column-list"
+			>
 				{aboutPages.map(({ href, title }) => (
 					<li key={href}>
 						<Link to={href} dangerouslySetInnerHTML={{ __html: title }} />

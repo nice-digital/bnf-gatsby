@@ -70,7 +70,10 @@ const MedicalDevicePage: FC<MedicalDevicePageProps> = ({
 					<MedicalDevicesMenu />
 				</GridItem>
 				<GridItem cols={12} md={8} lg={9}>
-					<ColumnList aria-label={`Medical device types for ${titleNoHtml}`}>
+					<ColumnList
+						aria-label={`Medical device types for ${titleNoHtml}`}
+						data-tracking="medical-device-column-list"
+					>
 						{medicalDeviceTypes
 							.sort((a, b) => a.slug.localeCompare(b.slug))
 							.map((medicalDeviceType) =>
