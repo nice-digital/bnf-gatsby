@@ -76,6 +76,7 @@ export const SectionNav: FC<SectionNavProps> = ({
 								aria-label={`${isExpanded ? "Hide" : "Show"} ${headingText}`}
 								aria-expanded={isExpanded}
 								onClick={toggleDropdown}
+								data-tracking={isExpanded}
 							>
 								<ChevronDownIcon
 									className={classNames(
