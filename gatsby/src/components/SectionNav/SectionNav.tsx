@@ -73,6 +73,7 @@ export const SectionNav: FC<SectionNavProps> = ({
 						{isStuck ? (
 							<button
 								type="button"
+								className={styles.toggleButton}
 								aria-label={`${isExpanded ? "Hide" : "Show"} ${headingText}`}
 								aria-expanded={isExpanded}
 								onClick={toggleDropdown}
