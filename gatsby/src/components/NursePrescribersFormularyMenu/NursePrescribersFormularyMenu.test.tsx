@@ -15,7 +15,9 @@ describe("NursePrescribersMenu", () => {
 		render(<NursePrescribersFormularyMenu />);
 
 		expect(
-			screen.getByRole("navigation", { name: "Nurse Prescribers' Formulary" })
+			screen.getByRole("navigation", {
+				name: "Nurse Prescribers' Formulary pages",
+			})
 		).toBeInTheDocument();
 	});
 
@@ -39,11 +41,10 @@ describe("NursePrescribersMenu", () => {
 	});
 
 	it("should highlight current page", () => {
-		(useLocation as jest.Mock).mockImplementationOnce(
-			() =>
-				new URL(
-					"https://bnf-gatsby-tests.nice.org.uk/nurse-prescribers-formulary/analgesics/"
-				)
+		(useLocation as jest.Mock).mockReturnValue(
+			new URL(
+				"https://bnf-gatsby-tests.nice.org.uk/nurse-prescribers-formulary/analgesics/"
+			)
 		);
 
 		render(<NursePrescribersFormularyMenu />);

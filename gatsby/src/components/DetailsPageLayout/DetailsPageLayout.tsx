@@ -97,9 +97,11 @@ export const DetailsPageLayout: React.FC<DetailsPageLayoutProps> = ({
 
 			<Grid gutter="loose" data-testid="body">
 				{Menu && (
-					<GridItem cols={12} md={4} lg={3} className="hide-print">
-						<Menu />
-					</GridItem>
+					<>
+						<GridItem cols={12} md={4} lg={3} className="hide-print">
+							<Menu />
+						</GridItem>
+					</>
 				)}
 				<GridItem cols={12} md={Menu ? 8 : 12} lg={Menu ? 9 : 12}>
 					{useSectionNav && !asideContent ? (

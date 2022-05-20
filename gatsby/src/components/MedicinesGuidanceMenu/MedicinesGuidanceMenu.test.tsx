@@ -36,11 +36,10 @@ describe("MedicinesGuidanceMenu", () => {
 	});
 
 	it("should highlight current page", () => {
-		(useLocation as jest.Mock).mockImplementationOnce(
-			() =>
-				new URL(
-					"https://bnf-gatsby-tests.nice.org.uk/medicines-guidance/prescription-writing/"
-				)
+		(useLocation as jest.Mock).mockReturnValue(
+			new URL(
+				"https://bnf-gatsby-tests.nice.org.uk/medicines-guidance/prescription-writing/"
+			)
 		);
 
 		render(<MedicinesGuidanceMenu />);

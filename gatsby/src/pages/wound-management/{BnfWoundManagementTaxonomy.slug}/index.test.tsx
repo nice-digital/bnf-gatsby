@@ -135,7 +135,7 @@ describe("Wound management taxonomy page", () => {
 		render(<WoundManagementTaxonomyPage {...props} />);
 		expect(
 			screen.getByRole("navigation", {
-				name: "Wound management product pages",
+				name: "Wound management products pages",
 			})
 		).toBeInTheDocument();
 	});
@@ -143,7 +143,7 @@ describe("Wound management taxonomy page", () => {
 	it("should render correct number of sections in the sub nav", () => {
 		render(<WoundManagementTaxonomyPage {...props} />);
 		const subNav = screen.getByRole("navigation", {
-			name: "Wound management product pages",
+			name: "Wound management products pages",
 		});
 		expect(within(subNav).getAllByRole("listitem")).toHaveLength(
 			props.data.allBnfWoundManagementTaxonomy.taxonomies.length
