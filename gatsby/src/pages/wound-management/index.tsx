@@ -4,7 +4,6 @@ import React, { type FC } from "react";
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
 import { Grid, GridItem } from "@nice-digital/nds-grid";
 import { PageHeader } from "@nice-digital/nds-page-header";
-import { StackedNav, StackedNavLink } from "@nice-digital/nds-stacked-nav";
 
 import { Menu } from "@/components/Menu/Menu";
 import { RecordSectionsContent } from "@/components/RecordSectionsContent/RecordSectionsContent";
