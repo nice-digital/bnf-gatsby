@@ -12,6 +12,7 @@ const pack: PrepProps["prep"]["packs"][0] = {
 	colour: null,
 	drugTariff: null,
 	drugTariffPrice: null,
+	acbs: false,
 };
 
 const prep: PrepProps["prep"] = {
@@ -84,8 +85,20 @@ describe("Prep", () => {
 		expect(definition).toHaveTextContent(prep.packs[0].size || "");
 	});
 
-	it("should render the unit", () => {
-		render(<Prep prep={prep} />);
+	it("should render the unit, including the 'acbs' flag", () => {
+		render(
+			<Prep
+				prep={{
+					...prep,
+					packs: [
+						{
+							...pack,
+							acbs: true,
+						},
+					],
+				}}
+			/>
+		);
 		const allTerms = screen.getAllByRole("term");
 		const term = allTerms.find((t) => t.textContent?.trim() === "Unit");
 		expect(term).toBeInTheDocument();
@@ -94,6 +107,11 @@ describe("Prep", () => {
 		const definition = term?.nextElementSibling;
 		expect(definition?.nodeName).toBe("DD");
 		expect(definition).toHaveTextContent(prep.packs[0].unit || "");
+
+		// eslint-disable-next-line testing-library/no-node-access
+		const acbs = definition?.firstElementChild;
+		expect(acbs?.nodeName).toBe("ABBR");
+		expect(acbs).toHaveTextContent("(ACBS)");
 	});
 
 	it("should render the indicative price, including the 'hospital only' flag", () => {
@@ -181,6 +199,7 @@ describe("Prep", () => {
 							colour: null,
 							drugTariff: "Part VIIIA Category C",
 							drugTariffPrice: "£1.75",
+							acbs: false,
 						},
 					],
 				}}

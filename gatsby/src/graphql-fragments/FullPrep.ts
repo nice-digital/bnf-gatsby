@@ -19,6 +19,7 @@ export const FullPrep = graphql`
 			drugTariff
 			drugTariffPrice
 			colour
+			acbs
 		}
 	}
 `;
