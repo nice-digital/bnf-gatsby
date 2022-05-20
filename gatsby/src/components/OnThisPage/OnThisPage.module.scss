@@ -1,20 +1,28 @@
 @use '@nice-digital/nds-core/scss/core';
 
-$site-distinction-banner-clearance: core.rem(core.$nds-spacing-large * 2);
+$brand-banner-clearance: core.rem(core.$nds-spacing-xx-large);
+$back-to-top-clearance: core.rem(core.$nds-spacing-xx-large);
 
 .wrapper {
   @include core.nds-hide-print;
-  top: 3rem;
+  display: flex;
+  flex-direction: column;
+  top: $brand-banner-clearance;
 
   @include core.mq($from: lg) {
+    $height-reduction: $brand-banner-clearance + $back-to-top-clearance;
+    height: calc(100vh - #{$height-reduction});
     position: sticky;
-    top: $site-distinction-banner-clearance;
   }
 }
 
 .heading {
   @include core.nds-h4;
   margin-top: 0;
+
+  @include core.mq($from: lg) {
+    padding-left: core.rem(core.$nds-spacing-x-small);
+  }
 }
 
 .list {
@@ -22,7 +30,35 @@ $site-distinction-banner-clearance: core.rem(core.$nds-spacing-large * 2);
   margin: 0 0 core.rem(core.$nds-spacing-medium);
 
   @include core.mq($from: lg) {
-    max-height: 90vh;
+    margin-bottom: 0;
     overflow: auto;
+    padding: core.rem(core.$nds-spacing-x-small); // To make room for focus ring
+    padding-right: core.rem(core.$nds-spacing-small);
+    scrollbar-width: core.rem(core.$nds-spacing-small);
+
+    &::-webkit-scrollbar {
+      background-color: core.$nds-colour-nice-grey-3;
+      display: block;
+      width: core.rem(core.$nds-spacing-small);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: core.$nds-colour-nice-grey-1;
+    }
+  }
+
+  li {
+    margin-bottom: core.rem(core.$nds-spacing-small);
+  }
+
+  a {
+    display: block;
+    line-height: 1.3;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+      text-decoration-thickness: 0.15rem;
+    }
   }
 }

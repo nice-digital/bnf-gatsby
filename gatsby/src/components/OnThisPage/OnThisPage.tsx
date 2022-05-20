@@ -1,7 +1,12 @@
-import React, { FC } from "react";
-import striptags from "striptags";
+import React, { FC, useReducer } from "react";
+
+import { useIsClient } from "@/hooks/useIsClient";
+
+import { Toggle } from "../Toggle/Toggle";
 
 import styles from "./OnThisPage.module.scss";
+
+const hideThreshold = 7;
 
 export type OnThisPageProps = {
 	sections: {
@@ -11,6 +16,14 @@ export type OnThisPageProps = {
 };
 
 export const OnThisPage: FC<OnThisPageProps> = ({ sections }) => {
+	const isClient = useIsClient();
+	const [isHidingMoreLinks, dispatch] = useReducer(
+		() => false,
+		sections.length > hideThreshold
+	);
+
+	if (sections.length <= 1) return null;
+
 	return (
 		<nav aria-labelledby="on-this-page" className={styles.wrapper}>
 			<h2 id="on-this-page" className={styles.heading}>
@@ -20,12 +33,17 @@ export const OnThisPage: FC<OnThisPageProps> = ({ sections }) => {
 				className={styles.list}
 				aria-label="Jump links to sections on this page"
 			>
-				{sections.map((section) => (
-					<li key={section.id}>
-						<a href={`#${section.id}`}>{striptags(section.title)}</a>
+				{sections.map(({ id, title }, i) => (
+					<li key={id}>
+						<a href={`#${id}`} dangerouslySetInnerHTML={{ __html: title }} />
 					</li>
 				))}
 			</ol>
+			{isClient && isHidingMoreLinks ? (
+				<button type="button" onClick={dispatch}>
+					<Toggle isOpen={false}>Show all sections</Toggle>
+				</button>
+			) : null}
 		</nav>
 	);
 };
