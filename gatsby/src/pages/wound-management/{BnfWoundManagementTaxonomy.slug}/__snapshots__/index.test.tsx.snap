@@ -109,7 +109,7 @@ exports[`Wound management taxonomy page should match page snapshot 1`] = `
        
       <button
         aria-expanded="false"
-        aria-label="Expand menu for wound management products"
+        aria-label="Expand menu for wound management products pages"
         class="toggleButton"
         type="button"
       >

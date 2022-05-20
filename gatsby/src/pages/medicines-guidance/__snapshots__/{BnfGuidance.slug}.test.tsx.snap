@@ -123,11 +123,11 @@ exports[`MedicinesGuidancePage should match snapshot for page contents 1`] = `
        
       <button
         aria-expanded="false"
-        aria-label="Expand menu for medicines guidance"
+        aria-label="Expand menu for medicines guidance pages"
         class="toggleButton"
         type="button"
       >
-        Medicines guidance
+        Guidance on prescribing
          
         <svg
           aria-hidden="true"

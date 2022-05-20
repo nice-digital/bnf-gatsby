@@ -107,11 +107,11 @@ exports[`BorderlineSubstancesRootPage Body Single level should match snapshot 1`
        
       <button
         aria-expanded="false"
-        aria-label="Expand menu for borderline substances"
+        aria-label="Expand menu for borderline substances pages"
         class="toggleButton"
         type="button"
       >
-        Borderline substances
+        Specialised formulas
          
         <svg
           aria-hidden="true"
@@ -325,11 +325,11 @@ exports[`BorderlineSubstancesRootPage Body Two levels should match snapshot 1`] 
        
       <button
         aria-expanded="false"
-        aria-label="Expand menu for borderline substances"
+        aria-label="Expand menu for borderline substances pages"
         class="toggleButton"
         type="button"
       >
-        Borderline substances
+        Foods for special diets
          
         <svg
           aria-hidden="true"

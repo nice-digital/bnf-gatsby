@@ -40,6 +40,9 @@ export const Menu: FC<MenuProps> = ({ ariaLabel, label, link, pages }) => {
 		setIsExpanded((s) => !s);
 	}, []);
 
+	const currentPageTitle =
+		pages.find(({ href }) => href == pathname)?.title || label;
+
 	return (
 		<>
 			{" "}
@@ -51,13 +54,13 @@ export const Menu: FC<MenuProps> = ({ ariaLabel, label, link, pages }) => {
 					aria-expanded={isExpanded}
 					aria-label={`${
 						isExpanded ? "Collapse" : "Expand"
-					} menu for ${decapitalize(label)}`}
+					} menu for ${decapitalize(ariaLabel || `${label} pages`)}`}
 				>
-					{label} <ChevronDownIcon className={styles.icon} />
+					{currentPageTitle} <ChevronDownIcon className={styles.icon} />
 				</button>
 			) : (
 				<a className={styles.toggleButton} href="#collapsible-menu">
-					{label}
+					{currentPageTitle}
 					<ChevronDownIcon className={styles.icon} />
 				</a>
 			)}

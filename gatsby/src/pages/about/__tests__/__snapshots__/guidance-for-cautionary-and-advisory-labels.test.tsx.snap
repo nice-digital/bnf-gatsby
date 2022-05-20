@@ -122,11 +122,11 @@ exports[`CautionaryAdvisoryGuidancePage should match snapshot for page contents 
        
       <button
         aria-expanded="false"
-        aria-label="Expand menu for about"
+        aria-label="Expand menu for about section pages"
         class="toggleButton"
         type="button"
       >
-        About
+        Guidance for cautionary and advisory labels
          
         <svg
           aria-hidden="true"

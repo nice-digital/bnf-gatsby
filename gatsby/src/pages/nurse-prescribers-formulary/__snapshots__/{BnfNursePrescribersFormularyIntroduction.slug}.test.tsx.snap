@@ -123,11 +123,11 @@ exports[`NursePrescribersFormularyApprovedListPage should match snapshot for pag
        
       <button
         aria-expanded="false"
-        aria-label="Expand menu for Nurse Prescribers' Formulary"
+        aria-label="Expand menu for Nurse Prescribers' Formulary pages"
         class="toggleButton"
         type="button"
       >
-        Nurse Prescribers' Formulary
+        Approved list for prescribing by Community Practitioner Nurse Prescribers (NPF)
          
         <svg
           aria-hidden="true"

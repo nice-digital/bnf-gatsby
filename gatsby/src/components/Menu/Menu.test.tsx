@@ -7,6 +7,7 @@ import { Menu, MenuProps } from "./Menu";
 
 const menuProps: MenuProps = {
 	label: "My menu",
+	ariaLabel: "example pages",
 	link: { destination: "my-menu", elementType: Link },
 	pages: [
 		{
@@ -25,7 +26,7 @@ describe("Menu", () => {
 		render(<Menu {...menuProps} />);
 
 		expect(
-			screen.getByRole("navigation", { name: "My menu pages" })
+			screen.getByRole("navigation", { name: "example pages" })
 		).toBeInTheDocument();
 	});
 
@@ -99,7 +100,10 @@ describe("mobile menu", () => {
 			selector: "button",
 		});
 		expect(toggleBtn).toBeInTheDocument();
-		expect(toggleBtn).toHaveAttribute("aria-label", "Expand menu for my menu");
+		expect(toggleBtn).toHaveAttribute(
+			"aria-label",
+			"Expand menu for example pages"
+		);
 	});
 
 	it("should collapse toggle button on click", () => {
@@ -114,7 +118,7 @@ describe("mobile menu", () => {
 		expect(toggleBtn).toHaveAttribute("aria-expanded", "true");
 		expect(toggleBtn).toHaveAttribute(
 			"aria-label",
-			"Collapse menu for my menu"
+			"Collapse menu for example pages"
 		);
 	});
 });

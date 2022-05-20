@@ -92,7 +92,7 @@ exports[`BorderlineSubstanceIntroductionPage should match snapshot for page cont
        
       <button
         aria-expanded="false"
-        aria-label="Expand menu for borderline substances"
+        aria-label="Expand menu for borderline substances pages"
         class="toggleButton"
         type="button"
       >
