@@ -123,6 +123,7 @@ exports[`InteractionsIndexPage should match snapshot for page body 1`] = `
       <ol
         aria-labelledby="a"
         class="column-list column-list--boxed"
+        data-tracking="a-to-z-column-list"
       >
         <li>
           <a
@@ -152,6 +153,7 @@ exports[`InteractionsIndexPage should match snapshot for page body 1`] = `
       <ol
         aria-labelledby="b"
         class="column-list column-list--boxed"
+        data-tracking="a-to-z-column-list"
       >
         <li>
           <a

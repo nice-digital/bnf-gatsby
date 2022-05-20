@@ -28,17 +28,30 @@ export const htmlFieldExtension = {
 					args,
 					context,
 					info
-				) as string | null;
+				) as string | string[] | null;
 
 				if (!fieldValue) return fieldValue;
 
-				if (typeof fieldValue !== "string")
-					throw Error(`Expected HTML content field value to be a string`);
+				if (typeof fieldValue === "string") {
+					fieldValue = replaceRelativeAnchors(fieldValue, context.nodeModel);
+					fieldValue = replaceXRefs(fieldValue, context.nodeModel);
 
-				fieldValue = replaceRelativeAnchors(fieldValue, context.nodeModel);
-				fieldValue = replaceXRefs(fieldValue, context.nodeModel);
+					return fieldValue;
+				} else if (
+					Array.isArray(fieldValue) &&
+					fieldValue.every((s) => typeof s === "string")
+				) {
+					return fieldValue.map((s) => {
+						s = replaceRelativeAnchors(s, context.nodeModel);
+						s = replaceXRefs(s, context.nodeModel);
 
-				return fieldValue;
+						return s;
+					});
+				}
+
+				throw Error(
+					`Expected HTML content field value to be a string or an array of strings`
+				);
 			},
 		};
 	},

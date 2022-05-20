@@ -1,0 +1,37 @@
+@use '@nice-digital/nds-core/scss/core';
+
+.packDefinitionListItem {
+  margin-bottom: core.rem(core.$nds-spacing-small);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  @include core.mq($from: md) {
+    display: flex;
+  }
+
+  dt {
+    font-weight: bold;
+
+    @include core.mq($from: md) {
+      flex: 1 1 30%;
+    }
+  }
+
+  dd {
+    margin: 0;
+
+    > :first-child {
+      margin-top: 0;
+    }
+
+    > :last-child {
+      margin-bottom: 0;
+    }
+
+    @include core.mq($from: md) {
+      flex: 1 1 70%;
+    }
+  }
+}

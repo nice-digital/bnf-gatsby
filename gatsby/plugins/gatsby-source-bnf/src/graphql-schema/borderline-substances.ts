@@ -6,7 +6,7 @@ export const borderlineSubstancesSchema = `
 	"""
 	type ${BnfNode.BorderlineSubstancesIntroduction} implements Node & ${BnfNode.SimpleRecord} @dontInfer {
 		"The title of the section. May contain HTML markup."
-		title: String!
+		title: String! @html
 
 		"The review date of the record, formatted into a string."
 		reviewDate: Date @dateformat
@@ -23,10 +23,10 @@ export const borderlineSubstancesSchema = `
 	"""
 	type ${BnfNode.BorderlineSubstancesTaxonomy} implements Node @dontInfer {
 		"The title of the taxonomy node. May contain HTML mark-up."
-		title: String!
+		title: String! @html
 
 		"The slugified and lowercased title, used as a URL path"
-		slug: String! @slug(field: "title")
+		slug: String!
 
 		"The review date of the record, formatted into a string."
 		reviewDate: Date @dateformat
@@ -37,7 +37,7 @@ export const borderlineSubstancesSchema = `
 		"Any children records of the borderline substances taxonomy."
 		childTaxonomies: [${BnfNode.BorderlineSubstancesTaxonomy}!]! @link
 
-		"The parent taxonomy. Empty for root level taxonomy nodes."
+		"The parent taxonomy. Will be null for root taxonomies."
 		parentTaxonomy: ${BnfNode.BorderlineSubstancesTaxonomy} @link
 
 		"The root taxonomy"
@@ -45,14 +45,34 @@ export const borderlineSubstancesSchema = `
 	}
 
 	"""
+	The root of the borderline substances tree, e.g. 'Foods for special diets' etc
+	"""
+	type ${BnfNode.BorderlineSubstancesTaxonomyRoot} implements Node @dontInfer {
+		taxonomy: ${BnfNode.BorderlineSubstancesTaxonomy}! @link
+	}
+
+	"""
+	A group of products - the level at which we create sub-pages
+	"""
+	type ${BnfNode.BorderlineSubstancesTaxonomyProductGroup} implements Node @dontInfer {
+		taxonomy: ${BnfNode.BorderlineSubstancesTaxonomy}! @link
+	}
+
+	"""
 	An individual borderline substance. This comprises a number of presentations, each of which may contain zero or more preparations.
 	"""
-	type ${BnfNode.BorderlineSubstance} {
+	type ${BnfNode.BorderlineSubstance} @dontInfer {
+		"The PHPID of the borderline substance"
+		id: ID!
+
 		"The title of the borderline substance. May contain HTML mark-up."
-		title: String!
+		title: String! @html
+
+		"The slugified and lowercased title, used as a URL path/hash"
+		slug: String! @slug(field: "title")
 
 		"An optional introductory note for the borderline substance. May contain HTML mark-up."
-		introductionNote: String
+		introductionNote: String @html
 
 		"The presentation details for the borderline substance."
 		presentations: [${BnfNode.BorderlineSubstancePresentation}!]!
@@ -61,7 +81,7 @@ export const borderlineSubstancesSchema = `
 	"""
 	The presentation of a borderline substance, i.e. its formulation and nutritional content. Also comprises zero or more preparations.
 	"""
-	type ${BnfNode.BorderlineSubstancePresentation} {
+	type ${BnfNode.BorderlineSubstancePresentation} @dontInfer {
 		"The formulation of the borderline substance, for example 'Liquid (tube feed) per 100 mL'."
 		formulation: String
 
@@ -75,37 +95,37 @@ export const borderlineSubstancesSchema = `
 		proteinGrams: String
 
 		"The protein constituents of the borderline substance."
-		proteinConstituents: [String]!
+		proteinConstituents: [String!]!
 
 		"The carbohydrate content of the borderline substance in grams."
 		carbohydrateGrams: String
 
 		"The carbohydrate constituents of the borderline substance."
-		carbohydrateConstituents: [String]!
+		carbohydrateConstituents: [String!]!
 
 		"The fat content of the borderline substance in grams."
 		fatGrams: String
 
 		"The fat constituents of the borderline substance."
-		fatConstituents: [String]!
+		fatConstituents: [String!]!
 
 		"The fibre content of the borderline substance in grams."
 		fibreGrams: String
 
 		"The fibre constituents of the borderline substance."
-		fibreConstituents: String
+		fibreConstituents: [String!]!
 
 		"A list of any special characteristics of the borderline substance."
-		specialCharacteristics: [String]!
+		specialCharacteristics: [String!]!
 
 		"A list of the Advisory Committee on Borderline Substances (ACBS) indications. May contain HTML mark-up."
-		acbs: [String]!
+		acbs: [String!]! @html
 
 		"The presentation note for the borderline substance."
-		presentationNote: String
+		presentationNote: String @html
 
 		"The Rx advice for the borderline substance."
-		rxAdvice: String
+		rxAdvice: String @html
 
 		"The preparations for the borderline substance."
 		borderlineSubstancePreps: [${BnfNode.Prep}!]!

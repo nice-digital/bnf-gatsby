@@ -71,7 +71,10 @@ export const AtoZListPage: FC<AtoZListPageProps> = ({
 			<AZList alphabet={alphabet}>
 				{letters.map(({ letter, links }) => (
 					<AZListItem key={letter} title={letter.toUpperCase()}>
-						<ColumnList aria-labelledby={letter}>
+						<ColumnList
+							aria-labelledby={letter}
+							data-tracking="a-to-z-column-list"
+						>
 							{links.sort(byTitleAlphabetically).map(({ title, slug }) => (
 								<li key={slug}>
 									<Link

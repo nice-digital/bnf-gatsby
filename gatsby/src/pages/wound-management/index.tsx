@@ -6,6 +6,7 @@ import { Grid, GridItem } from "@nice-digital/nds-grid";
 import { PageHeader } from "@nice-digital/nds-page-header";
 import { StackedNav, StackedNavLink } from "@nice-digital/nds-stacked-nav";
 
+import { Menu } from "@/components/Menu/Menu";
 import { RecordSectionsContent } from "@/components/RecordSectionsContent/RecordSectionsContent";
 import {
 	SectionNav,
@@ -95,25 +96,18 @@ const WoundManagementIndexPage: FC<WoundManagementIndexPageProps> = ({
 			<PageHeader id="content-start" heading={title} />
 			<Grid gutter="loose" data-testid="body">
 				<GridItem cols={12} md={4} lg={3} className="hide-print">
-					<StackedNav
-						aria-label="Wound management product pages"
+					<Menu
 						label="Wound management products"
 						link={{
 							destination: "/wound-management/",
 							elementType: Link,
 							isCurrent: true,
 						}}
-					>
-						{taxonomies.map(({ taxonomy: { slug, title } }) => (
-							<StackedNavLink
-								key={slug}
-								destination={`/wound-management/${slug}/`}
-								elementType={Link}
-							>
-								<span dangerouslySetInnerHTML={{ __html: title }} />
-							</StackedNavLink>
-						))}
-					</StackedNav>
+						pages={taxonomies.map(({ taxonomy: { slug, title } }) => ({
+							href: `/wound-management/${slug}/`,
+							title,
+						}))}
+					></Menu>
 				</GridItem>
 				<GridItem cols={12} md={8} lg={9}>
 					<SectionNav {...navSections} />
