@@ -6,7 +6,6 @@ import { FeedPrep } from "@nice-digital/gatsby-source-bnf";
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
 import { Grid, GridItem } from "@nice-digital/nds-grid";
 import { PageHeader } from "@nice-digital/nds-page-header";
-import { StackedNav, StackedNavLink } from "@nice-digital/nds-stacked-nav";
 
 import { Menu } from "@/components/Menu/Menu";
 import {
@@ -64,7 +63,6 @@ const WoundManagementTaxonomyPage: FC<WoundManagementTaxonomyPageProps> = ({
 	},
 }) => {
 	const { siteTitleShort } = useSiteMetadata(),
-		{ pathname } = useLocation(),
 		sortedTaxonomies = childTaxonomies.sort((a, b) =>
 			a.title > b.title ? 1 : -1
 		),
