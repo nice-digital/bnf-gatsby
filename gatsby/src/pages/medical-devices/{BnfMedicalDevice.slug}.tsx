@@ -90,6 +90,7 @@ const MedicalDevicePage: FC<MedicalDevicePageProps> = ({
 									/>
 									<ColumnList
 										aria-label={`Products within ${medicalDeviceType.title}`}
+										data-tracking="medical-device-column-list"
 									>
 										{medicalDeviceType.clinicalMedicalDeviceInformationGroups
 											.sort((a, b) => a.slug.localeCompare(b.slug))
@@ -107,7 +108,10 @@ const MedicalDevicePage: FC<MedicalDevicePageProps> = ({
 								</section>
 							))
 					) : (
-						<ColumnList aria-label={`Medical device types for ${titleNoHtml}`}>
+						<ColumnList
+							aria-label={`Medical device types for ${titleNoHtml}`}
+							data-tracking="medical-device-column-list"
+						>
 							{medicalDeviceTypes
 								.sort((a, b) => a.slug.localeCompare(b.slug))
 								.map((medicalDeviceType) =>

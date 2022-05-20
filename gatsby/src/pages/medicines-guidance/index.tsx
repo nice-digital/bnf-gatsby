@@ -30,7 +30,10 @@ const GuidanceIndexPage: FC = () => {
 
 			<PageHeader id="content-start" heading="Medicines guidance" />
 
-			<ColumnList aria-label="Pages in the medicines guidance section">
+			<ColumnList
+				aria-label="Pages in the medicines guidance section"
+				data-tracking="medicines-guidance-column-list"
+			>
 				{guidancePages.map(({ href, title }) => (
 					<li key={href}>
 						<Link to={href} dangerouslySetInnerHTML={{ __html: title }} />

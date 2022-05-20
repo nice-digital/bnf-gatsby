@@ -65,7 +65,49 @@ describe("DrugPage", () => {
 		});
 
 		it("should strip HTML tags for templated meta description", async () => {
-			render(<DrugPage data={dataProp} />);
+			render(
+				<DrugPage
+					data={{
+						bnfDrug: {
+							...drug,
+							renalImpairment: {
+								potName: "Renal impairment",
+								slug: "renal-impairment",
+								drugClassContent: [],
+								drugContent: {
+									contentFor: "adrenaline/epinephrine",
+									content:
+										"<p>Manufacturers advise use with caution in severe impairment.</p>",
+								},
+								prepContent: [],
+							},
+							importantSafetyInformation: {
+								potName: "Important safety information",
+								slug: "important-safety-information",
+								drugClassContent: [],
+								drugContent: {
+									contentFor: "adrenaline/epinephrine",
+									content: "<h4>Test content</h4>",
+								},
+								prepContent: [],
+							},
+							monitoringRequirements: {
+								potName: "Monitoring requirements",
+								slug: "monitoring-requirements",
+								drugClassContent: [],
+								drugContent: {
+									contentFor: "adrenaline/epinephrine",
+									monitoringOfPatientParameters:
+										"<p>Monitor blood pressure and ECG.</p>",
+									patientMonitoringProgrammes: null,
+									therapeuticDrugMonitoring: null,
+								},
+								prepContent: [],
+							},
+						},
+					}}
+				/>
+			);
 
 			await waitFor(() => {
 				expect(
@@ -74,7 +116,7 @@ describe("DrugPage", () => {
 						.querySelector("meta[name='description']")
 				).toHaveAttribute(
 					"content",
-					"Indications, dose, contra-indications, side-effects, interactions, cautions, warnings and other safety information for Anti-D (Rh0) immunoglobulin"
+					"View Anti-D (Rh0) immunoglobulin information, including renal impairment, monitoring requirements and important safety information."
 				);
 			});
 		});
