@@ -111,6 +111,21 @@ describe("BorderlineSubstancesProductGroupPage", () => {
 				);
 			});
 		});
+
+		it("should set meta description from taxonomy title and substances within group", async () => {
+			render(<BorderlineSubstancesProductGroupPage {...minimumProps} />);
+
+			await waitFor(() => {
+				expect(
+					document
+						// eslint-disable-next-line testing-library/no-node-access
+						.querySelector("meta[name='description']")
+						?.getAttribute("content")
+				).toEqual(
+					"Read about the 5 ACBS recommended products for bread. Details include formulations, ACBS indications and indicative prices."
+				);
+			});
+		});
 	});
 
 	describe("Page header", () => {

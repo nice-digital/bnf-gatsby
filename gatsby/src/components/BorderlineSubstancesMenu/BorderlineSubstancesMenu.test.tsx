@@ -15,7 +15,7 @@ describe("BorderlineSubstancesMenu", () => {
 		render(<BorderlineSubstancesMenu />);
 
 		expect(
-			screen.getByRole("navigation", { name: "Borderline substances" })
+			screen.getByRole("navigation", { name: "Borderline substances pages" })
 		).toBeInTheDocument();
 	});
 
@@ -38,11 +38,10 @@ describe("BorderlineSubstancesMenu", () => {
 	});
 
 	it("should highlight current page", () => {
-		(useLocation as jest.Mock).mockImplementationOnce(
-			() =>
-				new URL(
-					"https://bnf-gatsby-tests.nice.org.uk/borderline-substances/specialised-formulas/"
-				)
+		(useLocation as jest.Mock).mockReturnValue(
+			new URL(
+				"https://bnf-gatsby-tests.nice.org.uk/borderline-substances/specialised-formulas/"
+			)
 		);
 
 		render(<BorderlineSubstancesMenu />);

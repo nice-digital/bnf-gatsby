@@ -1,31 +1,18 @@
-import { useLocation } from "@reach/router";
 import { Link } from "gatsby";
 import React, { type FC } from "react";
 
-import { StackedNav, StackedNavLink } from "@nice-digital/nds-stacked-nav";
-
 import { useBorderlineSubstancesPages } from "@/hooks/useBorderlineSubstancesPages";
 
+import { Menu } from "../Menu/Menu";
+
 export const BorderlineSubstancesMenu: FC = () => {
-	const { pathname } = useLocation(),
-		topLevel = useBorderlineSubstancesPages();
+	const topLevel = useBorderlineSubstancesPages();
 
 	return (
-		<StackedNav
-			aria-label="Borderline substances"
+		<Menu
 			label="Borderline substances"
 			link={{ destination: "/borderline-substances/", elementType: Link }}
-		>
-			{topLevel.map(({ href, title }) => (
-				<StackedNavLink
-					key={href}
-					destination={href}
-					elementType={Link}
-					isCurrent={href === pathname}
-				>
-					<span dangerouslySetInnerHTML={{ __html: title }} />
-				</StackedNavLink>
-			))}
-		</StackedNav>
+			pages={topLevel}
+		></Menu>
 	);
 };

@@ -73,6 +73,11 @@ const BorderlineSubstancesProductGroupPage: FC<
 		<>
 			<SEO
 				title={`${title} | ${parentTaxonomy.title} | ${rootTaxonomy.title} | Borderline substances`}
+				description={`Read about the ${
+					allSubstances.length
+				} ACBS recommended products for ${decapitalize(
+					title
+				)}. Details include formulations, ACBS indications and indicative prices.`}
 			/>
 
 			<Breadcrumbs>

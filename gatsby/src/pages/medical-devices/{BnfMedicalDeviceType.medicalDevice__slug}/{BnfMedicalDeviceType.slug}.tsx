@@ -1,4 +1,3 @@
-import { useLocation } from "@reach/router";
 import { graphql, Link } from "gatsby";
 import { FC } from "react";
 import striptags from "striptags";
@@ -7,9 +6,9 @@ import { type FeedPrep } from "@nice-digital/gatsby-source-bnf";
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
 import { Grid, GridItem } from "@nice-digital/nds-grid";
 import { PageHeader } from "@nice-digital/nds-page-header";
-import { StackedNav, StackedNavLink } from "@nice-digital/nds-stacked-nav";
 
 import { MedicalDevicePrepsSection } from "@/components/MedicalDevicePrepsSection/MedicalDevicePrepsSection";
+import { Menu } from "@/components/Menu/Menu";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 import { decapitalize, QueryResult } from "@/utils";
@@ -39,8 +38,7 @@ const MedicalDeviceTypePage: FC<MedicalDeviceTypePageProps> = ({
 		bnfMedicalDeviceType: { title, medicalDevice, preparations },
 	},
 }) => {
-	const { pathname } = useLocation(),
-		{ siteTitleShort } = useSiteMetadata(),
+	const { siteTitleShort } = useSiteMetadata(),
 		titleNoHtml = striptags(title),
 		hasStackedNav = medicalDevice.medicalDeviceTypes.length > 1,
 		medicalDeviceTitleNoHtml = striptags(medicalDevice.title);
@@ -83,32 +81,20 @@ const MedicalDeviceTypePage: FC<MedicalDeviceTypePageProps> = ({
 			<Grid gutter="loose">
 				{hasStackedNav ? (
 					<GridItem cols={12} md={4} lg={3}>
-						<StackedNav
+						<Menu
 							aria-label={medicalDeviceTitleNoHtml}
 							label={medicalDeviceTitleNoHtml}
 							link={{
 								destination: `/medical-devices/${medicalDevice.slug}/`,
 								elementType: Link,
 							}}
-						>
-							{medicalDevice.medicalDeviceTypes
+							pages={medicalDevice.medicalDeviceTypes
 								.sort((a, b) => a.slug.localeCompare(b.slug))
-								.map((deviceType) => {
-									const pagePath = `/medical-devices/${medicalDevice.slug}/${deviceType.slug}/`;
-									return (
-										<StackedNavLink
-											key={deviceType.title}
-											destination={pagePath}
-											elementType={Link}
-											isCurrent={pathname === pagePath}
-										>
-											<span
-												dangerouslySetInnerHTML={{ __html: deviceType.title }}
-											/>
-										</StackedNavLink>
-									);
-								})}
-						</StackedNav>
+								.map((deviceType) => ({
+									title: deviceType.title,
+									href: `/medical-devices/${medicalDevice.slug}/${deviceType.slug}/`,
+								}))}
+						></Menu>
 					</GridItem>
 				) : null}
 				<GridItem

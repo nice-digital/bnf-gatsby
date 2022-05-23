@@ -1,4 +1,3 @@
-import { useLocation } from "@reach/router";
 import { graphql, Link } from "gatsby";
 import React, { type FC } from "react";
 
@@ -6,8 +5,8 @@ import { FeedPrep } from "@nice-digital/gatsby-source-bnf";
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
 import { Grid, GridItem } from "@nice-digital/nds-grid";
 import { PageHeader } from "@nice-digital/nds-page-header";
-import { StackedNav, StackedNavLink } from "@nice-digital/nds-stacked-nav";
 
+import { Menu } from "@/components/Menu/Menu";
 import {
 	SectionNav,
 	type SectionNavProps,
@@ -57,7 +56,6 @@ const WoundManagementTaxonomyPage: FC<WoundManagementTaxonomyPageProps> = ({
 	},
 }) => {
 	const { siteTitleShort } = useSiteMetadata(),
-		{ pathname } = useLocation(),
 		sortedTaxonomies = childTaxonomies.sort((a, b) =>
 			a.title > b.title ? 1 : -1
 		),
@@ -97,22 +95,14 @@ const WoundManagementTaxonomyPage: FC<WoundManagementTaxonomyPageProps> = ({
 
 			<Grid gutter="loose" data-testid="body">
 				<GridItem cols={12} md={4} lg={3} className="hide-print">
-					<StackedNav
-						aria-label="Wound management product pages"
+					<Menu
 						label="Wound management products"
 						link={{ destination: "/wound-management/", elementType: Link }}
-					>
-						{taxonomies.map(({ slug, title }) => (
-							<StackedNavLink
-								key={slug}
-								destination={`/wound-management/${slug}/`}
-								elementType={Link}
-								isCurrent={pathname.includes(slug)}
-							>
-								<span dangerouslySetInnerHTML={{ __html: title }} />
-							</StackedNavLink>
-						))}
-					</StackedNav>
+						pages={taxonomies.map(({ slug, title }) => ({
+							href: `/wound-management/${slug}/`,
+							title,
+						}))}
+					></Menu>
 				</GridItem>
 				<GridItem cols={12} md={8} lg={9}>
 					<SectionNav {...navSections} />

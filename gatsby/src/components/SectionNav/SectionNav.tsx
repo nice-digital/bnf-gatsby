@@ -19,7 +19,6 @@ export interface SectionNavProps {
 	sections: (SectionLink | undefined)[];
 	className?: string;
 	readableMaxWidth?: boolean;
-	navigateToAnotherPage?: boolean;
 }
 
 export const SectionNav: FC<SectionNavProps> = ({
