@@ -1,7 +1,6 @@
 /* eslint-disable testing-library/no-render-in-setup */
 /* eslint-disable testing-library/no-node-access */
 import { render, screen, waitFor, within } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import React from "react";
 
 import { type OnThisPageProps } from "../OnThisPage/OnThisPage";
