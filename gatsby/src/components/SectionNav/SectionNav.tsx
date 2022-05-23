@@ -1,5 +1,4 @@
 import classNames from "classnames";
-import { Link } from "gatsby";
 import { FC, useState, useRef, useEffect } from "react";
 import striptags from "striptags";
 
@@ -25,12 +24,9 @@ export const SectionNav: FC<SectionNavProps> = ({
 	sections,
 	className,
 	readableMaxWidth = false,
-	navigateToAnotherPage = false,
 }) => {
 	const [isExpanded, setIsExpanded] = useState(false);
-	const headingText = navigateToAnotherPage
-		? "Navigate to page"
-		: "Navigate to section";
+	const headingText = "Navigate to section";
 
 	const ref = useRef<HTMLDivElement | null>(null);
 
@@ -43,7 +39,6 @@ export const SectionNav: FC<SectionNavProps> = ({
 	console.log("Is stuck?", isStuck);
 
 	const toggleDropdown = () => {
-		console.log("TOGGLE TIME!");
 		setIsExpanded(!isExpanded);
 	};
 
@@ -97,15 +92,9 @@ export const SectionNav: FC<SectionNavProps> = ({
 						>
 							{sections.filter(isTruthy).map((section) => (
 								<li key={section?.id}>
-									{navigateToAnotherPage ? (
-										<Link to={section?.id}>
-											{striptags(section?.title || "")}
-										</Link>
-									) : (
-										<a href={`#${section?.id}`}>
-											{striptags(section?.title || "")}
-										</a>
-									)}
+									<a href={`#${section?.id}`}>
+										{striptags(section?.title || "")}
+									</a>
 								</li>
 							))}
 						</ol>
