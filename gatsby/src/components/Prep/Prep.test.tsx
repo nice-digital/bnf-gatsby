@@ -106,12 +106,14 @@ describe("Prep", () => {
 		// eslint-disable-next-line testing-library/no-node-access
 		const definition = term?.nextElementSibling;
 		expect(definition?.nodeName).toBe("DD");
-		expect(definition).toHaveTextContent(prep.packs[0].unit || "");
+		expect(definition).toHaveTextContent(`${prep.packs[0].unit} (ACBS)`);
 
-		// eslint-disable-next-line testing-library/no-node-access
-		const acbs = definition?.firstElementChild;
-		expect(acbs?.nodeName).toBe("ABBR");
-		expect(acbs).toHaveTextContent("(ACBS)");
+		const abbr = screen.getByText("(ACBS)");
+		expect(abbr).toHaveProperty("tagName", "ABBR");
+		expect(abbr).toHaveAttribute(
+			"title",
+			"Advisory Committee on Borderline Substances"
+		);
 	});
 
 	it("should render the indicative price, including the 'hospital only' flag", () => {
