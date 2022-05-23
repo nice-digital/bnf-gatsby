@@ -176,13 +176,15 @@ exports[`Wound management taxonomy page should match page snapshot 1`] = `
               id="navigate-to-section"
             >
               <button
-                aria-expanded="true"
-                aria-label="Hide Navigate to section"
+                aria-expanded="false"
+                aria-label="Show Navigate to section"
+                class="toggleButton"
+                data-tracking="false"
                 type="button"
               >
                 <svg
                   aria-hidden="true"
-                  class="icon iconExpanded"
+                  class="icon"
                   fill="none"
                   focusable="false"
                   height="1em"
@@ -198,32 +200,6 @@ exports[`Wound management taxonomy page should match page snapshot 1`] = `
                 Navigate to section
               </button>
             </h2>
-            <ol
-              aria-label="Jump links to sections on this page"
-              class="linkList"
-            >
-              <li>
-                <a
-                  href="#capillary-acting-dressings"
-                >
-                  Capillary-acting dressings
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#hydrogel-dressings"
-                >
-                  Hydrogel dressings
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#vapour-permeable-films-and-membranes"
-                >
-                  Vapour-permeable films and membranes
-                </a>
-              </li>
-            </ol>
           </div>
         </div>
       </nav>

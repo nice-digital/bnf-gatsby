@@ -177,13 +177,15 @@ exports[`MedicinalFormsPage Body should match snapshot for page body 1`] = `
                   id="navigate-to-section"
                 >
                   <button
-                    aria-expanded="true"
-                    aria-label="Hide Navigate to section"
+                    aria-expanded="false"
+                    aria-label="Show Navigate to section"
+                    class="toggleButton"
+                    data-tracking="false"
                     type="button"
                   >
                     <svg
                       aria-hidden="true"
-                      class="icon iconExpanded"
+                      class="icon"
                       fill="none"
                       focusable="false"
                       height="1em"
@@ -199,25 +201,6 @@ exports[`MedicinalFormsPage Body should match snapshot for page body 1`] = `
                     Navigate to section
                   </button>
                 </h2>
-                <ol
-                  aria-label="Jump links to sections on this page"
-                  class="linkList"
-                >
-                  <li>
-                    <a
-                      href="#tablets"
-                    >
-                      Tablets
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#powder"
-                    >
-                      Powder
-                    </a>
-                  </li>
-                </ol>
               </div>
             </div>
           </nav>

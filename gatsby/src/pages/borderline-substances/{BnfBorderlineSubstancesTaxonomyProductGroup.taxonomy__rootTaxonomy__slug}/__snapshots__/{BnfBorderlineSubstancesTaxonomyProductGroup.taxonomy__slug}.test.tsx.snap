@@ -148,13 +148,15 @@ exports[`BorderlineSubstancesProductGroupPage Body should match snapshot 1`] = `
             id="navigate-to-section"
           >
             <button
-              aria-expanded="true"
-              aria-label="Hide Navigate to section"
+              aria-expanded="false"
+              aria-label="Show Navigate to section"
+              class="toggleButton"
+              data-tracking="false"
               type="button"
             >
               <svg
                 aria-hidden="true"
-                class="icon iconExpanded"
+                class="icon"
                 fill="none"
                 focusable="false"
                 height="1em"
@@ -170,46 +172,6 @@ exports[`BorderlineSubstancesProductGroupPage Body should match snapshot 1`] = `
               Navigate to section
             </button>
           </h2>
-          <ol
-            aria-label="Jump links to sections on this page"
-            class="linkList"
-          >
-            <li>
-              <a
-                href="#top-level-substance"
-              >
-                Top-level substance
-              </a>
-            </li>
-            <li>
-              <a
-                href="#barkat-loaves"
-              >
-                Barkat® Loaves
-              </a>
-            </li>
-            <li>
-              <a
-                href="#glutafin-loaves"
-              >
-                Glutafin® Loaves
-              </a>
-            </li>
-            <li>
-              <a
-                href="#barkat-baguettes-buns-and-rolls"
-              >
-                Barkat® Baguettes, buns and rolls
-              </a>
-            </li>
-            <li>
-              <a
-                href="#glutafin-baguettes-buns-and-rolls"
-              >
-                Glutafin® Baguettes and rolls
-              </a>
-            </li>
-          </ol>
         </div>
       </div>
     </nav>

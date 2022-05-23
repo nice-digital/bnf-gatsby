@@ -232,13 +232,15 @@ exports[`NursePrescribersFormularyApprovedListPage should match snapshot for pag
                   id="navigate-to-section"
                 >
                   <button
-                    aria-expanded="true"
-                    aria-label="Hide Navigate to section"
+                    aria-expanded="false"
+                    aria-label="Show Navigate to section"
+                    class="toggleButton"
+                    data-tracking="false"
                     type="button"
                   >
                     <svg
                       aria-hidden="true"
-                      class="icon iconExpanded"
+                      class="icon"
                       fill="none"
                       focusable="false"
                       height="1em"
@@ -254,25 +256,6 @@ exports[`NursePrescribersFormularyApprovedListPage should match snapshot for pag
                     Navigate to section
                   </button>
                 </h2>
-                <ol
-                  aria-label="Jump links to sections on this page"
-                  class="linkList"
-                >
-                  <li>
-                    <a
-                      href="#intro-1"
-                    >
-                      Intro 1
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#intro-2"
-                    >
-                      Intro 2
-                    </a>
-                  </li>
-                </ol>
               </div>
             </div>
           </nav>

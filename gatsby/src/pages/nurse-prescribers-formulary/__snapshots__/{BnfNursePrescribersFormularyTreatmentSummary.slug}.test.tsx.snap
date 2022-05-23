@@ -236,13 +236,15 @@ exports[`NursePrescribersFormularyTreatmentSummaryPage should match snapshot for
                   id="navigate-to-section"
                 >
                   <button
-                    aria-expanded="true"
-                    aria-label="Hide Navigate to section"
+                    aria-expanded="false"
+                    aria-label="Show Navigate to section"
+                    class="toggleButton"
+                    data-tracking="false"
                     type="button"
                   >
                     <svg
                       aria-hidden="true"
-                      class="icon iconExpanded"
+                      class="icon"
                       fill="none"
                       focusable="false"
                       height="1em"
@@ -258,32 +260,6 @@ exports[`NursePrescribersFormularyTreatmentSummaryPage should match snapshot for
                     Navigate to section
                   </button>
                 </h2>
-                <ol
-                  aria-label="Jump links to sections on this page"
-                  class="linkList"
-                >
-                  <li>
-                    <a
-                      href="#analgesic-1"
-                    >
-                      Analgesic 1
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#analgesic-2"
-                    >
-                      Analgesic 2
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#related-drugs"
-                    >
-                      Related drugs
-                    </a>
-                  </li>
-                </ol>
               </div>
             </div>
           </nav>

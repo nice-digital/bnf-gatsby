@@ -157,13 +157,15 @@ exports[`Wound management index page should match page snapshot 1`] = `
               id="navigate-to-section"
             >
               <button
-                aria-expanded="true"
-                aria-label="Hide Navigate to section"
+                aria-expanded="false"
+                aria-label="Show Navigate to section"
+                class="toggleButton"
+                data-tracking="false"
                 type="button"
               >
                 <svg
                   aria-hidden="true"
-                  class="icon iconExpanded"
+                  class="icon"
                   fill="none"
                   focusable="false"
                   height="1em"
@@ -179,53 +181,6 @@ exports[`Wound management index page should match page snapshot 1`] = `
                 Navigate to section
               </button>
             </h2>
-            <ol
-              aria-label="Jump links to sections on this page"
-              class="linkList"
-            >
-              <li>
-                <a
-                  href="#introduction"
-                >
-                  Introduction
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#wound-type--154124684"
-                >
-                  PINK (epitheliasing)
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#wound-type-1889862293"
-                >
-                  RED (granulating)
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#wound-type-102222233"
-                >
-                  YELLOW (sloughy)(granulating)
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#wound-type-530708321"
-                >
-                  BLACK (Necrotic/ Eschar)
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#wound-type-592109193"
-                >
-                  Wounds with signs of infection
-                </a>
-              </li>
-            </ol>
           </div>
         </div>
       </nav>

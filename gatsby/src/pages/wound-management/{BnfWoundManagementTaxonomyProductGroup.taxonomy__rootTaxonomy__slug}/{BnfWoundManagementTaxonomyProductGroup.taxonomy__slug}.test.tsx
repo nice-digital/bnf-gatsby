@@ -1,4 +1,5 @@
 import { render, screen, within, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import React from "react";
 
 import { decapitalize } from "@/utils";
@@ -156,6 +157,7 @@ describe("Wound management taxonomy page", () => {
 
 	it("should render a navigation list of sub sections", () => {
 		render(<WoundManagementProductPage {...props} />);
+
 		expect(
 			screen.getByRole("navigation", {
 				name: "Navigate to section",
@@ -165,6 +167,12 @@ describe("Wound management taxonomy page", () => {
 
 	it("should render correct number of sections in the sub nav", () => {
 		render(<WoundManagementProductPage {...props} />);
+
+		const sectionNavButton = screen.getByRole("button", {
+			name: "Show Navigate to section",
+		});
+		userEvent.click(sectionNavButton);
+
 		const subNav = screen.getByRole("navigation", {
 			name: "Navigate to section",
 		});

@@ -1,4 +1,5 @@
 import { render, waitFor, screen, within } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import { SlugAndTitle } from "@/utils";
 
@@ -117,6 +118,12 @@ describe("TreatmentSummaryPage", () => {
 	describe("body", () => {
 		it("should render hash link to each record section", () => {
 			render(<TreatmentSummaryPage {...minimumProps} />);
+
+			const sectionNavButton = screen.getByRole("button", {
+				name: "Show Navigate to section",
+			});
+			userEvent.click(sectionNavButton);
+
 			expect(screen.getByRole("link", { name: "Section 1" })).toHaveAttribute(
 				"href",
 				"#section-1"
@@ -183,6 +190,11 @@ describe("TreatmentSummaryPage", () => {
 
 				it(`should render ${sectionName} hash link`, () => {
 					render(<TreatmentSummaryPage {...props} />);
+
+					const sectionNavButton = screen.getByRole("button", {
+						name: "Show Navigate to section",
+					});
+					userEvent.click(sectionNavButton);
 
 					expect(
 						screen.queryByRole("link", { name: sectionName })
