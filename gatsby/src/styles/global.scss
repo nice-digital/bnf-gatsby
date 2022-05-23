@@ -53,9 +53,3 @@ body {
 footer {
   margin-top: 0 !important;
 }
-
-/* stylelint-disable selector-class-pattern -- Classes coming from the feed HTML */
-.evidence-grading-label {
-  // Hide evidence grading until we decide whether we're keeping them
-  display: none;
-}

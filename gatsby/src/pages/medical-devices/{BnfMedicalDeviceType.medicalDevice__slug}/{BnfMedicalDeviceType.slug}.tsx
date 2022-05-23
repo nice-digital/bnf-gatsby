@@ -1,4 +1,3 @@
-import { useLocation } from "@reach/router";
 import { graphql, Link } from "gatsby";
 import { FC } from "react";
 import striptags from "striptags";

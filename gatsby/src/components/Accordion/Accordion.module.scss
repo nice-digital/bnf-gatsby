@@ -22,6 +22,11 @@
     display: none;
   }
 
+  &:hover,
+  &:hover * {
+    color: #006bbd; // Specific to BNF accordions for now - Nick may move this into the design system later
+  }
+
   > :last-child {
     margin: 0;
   }
@@ -58,5 +63,10 @@
 
   .toggleLabel {
     color: core.$nds-colour-nice-rich-black;
+  }
+
+  .summary:hover,
+  .summary:hover * {
+    color: #407291; // TODO: this is a colour from the forthcoming brand updates that isn't in NDS yet. We should replace this with a ref to it once it's been updated
   }
 }

@@ -7,6 +7,7 @@ import { SiteDistinction } from "../SiteDistinction/SiteDistinction";
 import { SiteHeader } from "../SiteHeader/SiteHeader";
 
 import { isBNF } from "./../../site";
+import "./../../styles/feed.scss";
 import "./../../styles/global.scss";
 
 type LayoutProps = {
