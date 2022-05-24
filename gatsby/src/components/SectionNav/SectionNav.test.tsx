@@ -6,8 +6,8 @@ import { SectionNav } from "./SectionNav";
 
 const defaultProps = {
 	sections: [
-		{ title: "test-1", id: "1" },
-		{ title: "test-2", id: "2" },
+		{ title: "test-1", id: "wound-type-1889862293" },
+		{ title: "test-2", id: "wound-type-1889862294" },
 	],
 };
 
@@ -49,6 +49,7 @@ describe("SectionNav", () => {
 				name: `Show Navigate to section`,
 			});
 			userEvent.click(button);
+			screen.debug();
 			expect(button).toHaveAttribute("aria-expanded", "true");
 		});
 
@@ -63,6 +64,18 @@ describe("SectionNav", () => {
 			expect(svg?.classList.value).toEqual("icon");
 			userEvent.click(button);
 			expect(svg).toHaveClass("icon iconExpanded");
+		});
+	});
+
+	describe("Link list", () => {
+		it("should render links when button is clicked", () => {
+			render(<SectionNav {...defaultProps} />);
+			const button = screen.getByRole("button", {
+				name: `Show Navigate to section`,
+			});
+			userEvent.click(button);
+			expect(screen.getByRole("link", { name: "test-1" })).toBeInTheDocument();
+			expect(screen.getByRole("link", { name: "test-2" })).toBeInTheDocument();
 		});
 	});
 });
