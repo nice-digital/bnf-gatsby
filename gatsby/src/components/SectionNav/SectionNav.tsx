@@ -1,3 +1,5 @@
+import { read } from "fs";
+
 import classNames from "classnames";
 import { FC, useState, useRef, useEffect } from "react";
 import striptags from "striptags";
@@ -36,7 +38,6 @@ export const SectionNav: FC<SectionNavProps> = ({
 		threshold: 1,
 	});
 	const isStuck = !entry?.isIntersecting;
-	console.log("Is stuck?", isStuck);
 
 	const toggleDropdown = () => {
 		setIsExpanded(!isExpanded);
