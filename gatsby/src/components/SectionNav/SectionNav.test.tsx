@@ -77,5 +77,15 @@ describe("SectionNav", () => {
 			expect(screen.getByRole("link", { name: "test-1" })).toBeInTheDocument();
 			expect(screen.getByRole("link", { name: "test-2" })).toBeInTheDocument();
 		});
+
+		it("should render a list item for each section when button is clicked", () => {
+			render(<SectionNav {...defaultProps} />);
+			const button = screen.getByRole("button", {
+				name: `Show Navigate to section`,
+			});
+			expect(screen.queryAllByRole("listitem")).toHaveLength(0);
+			userEvent.click(button);
+			expect(screen.queryAllByRole("listitem")).toHaveLength(2);
+		});
 	});
 });
