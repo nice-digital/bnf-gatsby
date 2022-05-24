@@ -34,6 +34,15 @@ describe("SectionNav", () => {
 			).toBeInTheDocument();
 		});
 
+		it("should not be expanded by default", () => {
+			render(<SectionNav {...defaultProps} />);
+			expect(
+				screen.getByRole("button", {
+					name: `Show Navigate to section`,
+				})
+			).toHaveAttribute("aria-expanded", "false");
+		});
+
 		it("should expand on click", () => {
 			render(<SectionNav {...defaultProps} />);
 			const button = screen.getByRole("button", {
@@ -41,6 +50,19 @@ describe("SectionNav", () => {
 			});
 			userEvent.click(button);
 			expect(button).toHaveAttribute("aria-expanded", "true");
+		});
+
+		it("should render an icon with an expanded class on click", () => {
+			render(<SectionNav {...defaultProps} />);
+			const button = screen.getByRole("button", {
+				name: `Show Navigate to section`,
+			});
+
+			// eslint-disable-next-line testing-library/no-node-access
+			const svg = button.querySelector("svg");
+			expect(svg?.classList.value).toEqual("icon");
+			userEvent.click(button);
+			expect(svg).toHaveClass("icon iconExpanded");
 		});
 	});
 });
