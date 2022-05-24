@@ -357,6 +357,7 @@ describe("CMPIPage", () => {
 									drugTariff: "Part VIIIA Category C",
 									drugTariffPrice: "£3.04",
 									colour: null,
+									acbs: false,
 								},
 							],
 						},
