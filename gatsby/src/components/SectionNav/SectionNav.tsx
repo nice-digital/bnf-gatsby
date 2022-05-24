@@ -43,11 +43,7 @@ export const SectionNav: FC<SectionNavProps> = ({
 	};
 
 	useEffect(() => {
-		if (!isStuck) {
-			setIsExpanded(true);
-		} else {
-			setIsExpanded(false);
-		}
+		isStuck ? setIsExpanded(false) : setIsExpanded(true);
 	}, [isStuck]);
 
 	return (
