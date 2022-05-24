@@ -78,6 +78,37 @@ describe("SectionNav", () => {
 			expect(screen.getByRole("link", { name: "test-2" })).toBeInTheDocument();
 		});
 
+		it("should render an aria labelled list in specific order by dom snapshot", () => {
+			render(<SectionNav {...defaultProps} />);
+			const button = screen.getByRole("button", {
+				name: `Show Navigate to section`,
+			});
+
+			userEvent.click(button);
+			const list = screen.getByRole("list");
+			expect(list).toMatchInlineSnapshot(`
+			<ol
+			  aria-label="Jump links to sections on this page"
+			  class="linkList"
+			>
+			  <li>
+			    <a
+			      href="#wound-type-1889862293"
+			    >
+			      test-1
+			    </a>
+			  </li>
+			  <li>
+			    <a
+			      href="#wound-type-1889862294"
+			    >
+			      test-2
+			    </a>
+			  </li>
+			</ol>
+		`);
+		});
+
 		it("should render a list item for each section when button is clicked", () => {
 			render(<SectionNav {...defaultProps} />);
 			const button = screen.getByRole("button", {
