@@ -83,7 +83,7 @@ module.exports = {
 				background_color: `#fff`,
 				theme_color: isBNF ? "#93da49" : "#ef4a81",
 				display: `minimal-ui`,
-				icon: `src/images/logo-pwa-${siteTitleShort.toLowerCase()}.svg`,
+				icon: `src/images/favicon.ico`,
 				icon_options: {
 					purpose: `maskable any`,
 				},
