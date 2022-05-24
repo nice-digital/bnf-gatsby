@@ -89,6 +89,7 @@ const CMPIPage: FC<CMPIPageProps> = ({
 			medicalDeviceType: {
 				clinicalMedicalDeviceInformationGroups,
 				medicalDevice,
+				title: medicalDeviceTypeTitle,
 			},
 			preparations,
 			allergyAndCrossSensitivity,
@@ -107,6 +108,7 @@ const CMPIPage: FC<CMPIPageProps> = ({
 
 	return (
 		<DetailsPageLayout
+			preheading={`${medicalDeviceTypeTitle}: `}
 			titleHtml={title}
 			metaDescription={`This medical devices topic describes the options that are currently recommended for ${decapitalize(
 				titleNoHtml
