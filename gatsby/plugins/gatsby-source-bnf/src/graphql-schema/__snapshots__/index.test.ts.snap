@@ -1086,6 +1086,11 @@ exports[`schema should match snapshot 1`] = `
 		rootTaxonomy: BnfWoundManagementTaxonomy! @link
 	}
 
+	type BnfWoundManagementTaxonomyRoot implements Node @dontInfer {
+		\\"The taxonomy node\\"
+		taxonomy: BnfWoundManagementTaxonomy! @link
+	}
+
 	type BnfWoundManagementTaxonomyProductGroup implements Node @dontInfer {
 		\\"The taxonomy node\\"
 		taxonomy: BnfWoundManagementTaxonomy! @link
