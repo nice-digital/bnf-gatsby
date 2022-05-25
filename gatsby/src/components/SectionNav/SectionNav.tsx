@@ -1,3 +1,5 @@
+import { read } from "fs";
+
 import classNames from "classnames";
 import { FC, useState, useRef, useEffect } from "react";
 import striptags from "striptags";
@@ -42,11 +44,7 @@ export const SectionNav: FC<SectionNavProps> = ({
 	};
 
 	useEffect(() => {
-		if (!isStuck) {
-			setIsExpanded(true);
-		} else {
-			setIsExpanded(false);
-		}
+		isStuck ? setIsExpanded(false) : setIsExpanded(true);
 	}, [isStuck]);
 
 	return (
