@@ -18,7 +18,11 @@ export async function scrollInToView(
 
 	await element.scrollIntoView();
 
-	if (element.selector == "a=BioXtra® gel") {
+	const navsection = await $(
+		'[aria-labelledby="navigate-to-section"]'
+	).isExisting();
+
+	if (navsection) {
 		await browser.execute(() => {
 			const theLink = Array.from(document.querySelectorAll("a")).find(
 				(el) => el.textContent === "BioXtra® gel"
