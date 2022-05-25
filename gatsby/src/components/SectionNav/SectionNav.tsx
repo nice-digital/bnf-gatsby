@@ -32,11 +32,10 @@ export const SectionNav: FC<SectionNavProps> = ({
 
 	//TODO remove magic number for bottom intersect margin
 	const entry = useIntersectionObserver(ref, {
-		rootMargin: "-1px 0px 2500px 0px",
+		rootMargin: "-1px 0px 0px 0px",
 		threshold: 1,
 	});
 	const isStuck = !entry?.isIntersecting;
-	console.log("Is stuck?", isStuck);
 
 	const toggleDropdown = () => {
 		setIsExpanded(!isExpanded);
