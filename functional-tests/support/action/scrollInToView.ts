@@ -17,5 +17,18 @@ export async function scrollInToView(
 	await browser.pause(250);
 
 	await element.scrollIntoView();
+
+	if (element.selector == "a=BioXtra® gel") {
+		await browser.execute(() => {
+			const theLink = Array.from(document.querySelectorAll("a")).find(
+				(el) => el.textContent === "BioXtra® gel"
+			);
+
+			if (theLink) theLink.style.zIndex = "500";
+		});
+
+		console.log("Element selector #####", element.selector);
+	}
+
 	await waitForScrollToElement(selector, 5000, contextSelector);
 }
