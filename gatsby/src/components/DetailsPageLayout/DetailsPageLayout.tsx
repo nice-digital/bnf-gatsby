@@ -11,7 +11,6 @@ import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
 import { Grid, GridItem } from "@nice-digital/nds-grid";
 import { PageHeader } from "@nice-digital/nds-page-header";
 
-import { Layout } from "@/components/Layout/Layout";
 import {
 	OnThisPage,
 	type OnThisPageProps,
@@ -77,7 +76,7 @@ export const DetailsPageLayout: React.FC<DetailsPageLayoutProps> = ({
 		);
 
 	return (
-		<Layout>
+		<>
 			<SEO
 				title={[titleNoHtml, ...parentTitleParts].filter(Boolean).join(" | ")}
 				description={metaDescription}
@@ -98,9 +97,11 @@ export const DetailsPageLayout: React.FC<DetailsPageLayoutProps> = ({
 
 			<Grid gutter="loose" data-testid="body">
 				{Menu && (
-					<GridItem cols={12} md={4} lg={3} className="hide-print">
-						<Menu />
-					</GridItem>
+					<>
+						<GridItem cols={12} md={4} lg={3} className="hide-print">
+							<Menu />
+						</GridItem>
+					</>
 				)}
 				<GridItem cols={12} md={Menu ? 8 : 12} lg={Menu ? 9 : 12}>
 					{useSectionNav && !asideContent ? (
@@ -139,6 +140,6 @@ export const DetailsPageLayout: React.FC<DetailsPageLayoutProps> = ({
 					)}
 				</GridItem>
 			</Grid>
-		</Layout>
+		</>
 	);
 };

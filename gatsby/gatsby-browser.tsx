@@ -1,4 +1,7 @@
-import { RouteUpdateArgs } from "gatsby";
+import { type RouteUpdateArgs, type WrapPageElementBrowserArgs } from "gatsby";
+import { type ReactElement } from "react";
+
+import { Layout } from "@/components/Layout/Layout";
 
 // Gatsby hook for when the route has changed on the client side
 // See https://www.gatsbyjs.org/docs/browser-apis/#onRouteUpdate
@@ -42,3 +45,10 @@ export const onRouteUpdate = ({
 		});
 	}
 };
+
+export const wrapPageElement = ({
+	element,
+	props,
+}: WrapPageElementBrowserArgs): ReactElement => (
+	<Layout {...props}>{element}</Layout>
+);

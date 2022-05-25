@@ -21,12 +21,8 @@ beforeAll(() => {
 
 describe("Hero", () => {
 	it("should match snapshot for BNF", () => {
-		render(<Hero />);
-		expect(
-			screen.getByRole("heading", {
-				name: "British National Formulary (BNF)",
-			})
-		).toMatchSnapshot();
+		const { container } = render(<Hero />);
+		expect(container).toMatchSnapshot();
 	});
 
 	it("should match snapshot for BNFC", () => {
@@ -36,12 +32,8 @@ describe("Hero", () => {
 			siteTitleLong: "British National Formulary for Children",
 		});
 
-		render(<Hero />);
-		expect(
-			screen.getByRole("heading", {
-				name: "British National Formulary for Children (BNFC)",
-			})
-		).toMatchSnapshot();
+		const { container } = render(<Hero />);
+		expect(container).toMatchSnapshot();
 	});
 
 	it("should render the last updated date", () => {

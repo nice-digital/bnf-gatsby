@@ -56,7 +56,7 @@ describe("TreatmentSummaryPage", () => {
 						.querySelector("meta[name='description']")
 				).toHaveAttribute(
 					"content",
-					"This treatment summary topic describes Acne"
+					"This treatment summary topic describes acne"
 				);
 			});
 		});

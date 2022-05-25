@@ -14,7 +14,6 @@ import {
 
 import { Announcer } from "@/components/Announcer/Announcer";
 import { ErrorPageContent } from "@/components/ErrorPageContent/ErrorPageContent";
-import { Layout } from "@/components/Layout/Layout";
 import { SearchCardList } from "@/components/SearchCardList/SearchCardList";
 import { SearchNoResults } from "@/components/SearchNoResults/SearchNoResults";
 import { SearchPagination } from "@/components/SearchPagination/SearchPagination";
@@ -36,7 +35,10 @@ const SummaryRecordCount = ({
 }: SearchResultsSuccess) => {
 	return (
 		<>
-			Showing {firstResult} to {lastResult} of {resultCount}
+			Showing{" "}
+			{resultCount === 1
+				? "1 result"
+				: `${firstResult} to ${lastResult} of ${resultCount} results`}
 			{finalSearchText && (
 				<>
 					{" "}
@@ -143,7 +145,7 @@ const SearchIndexPage: FC = () => {
 	}`;
 
 	return (
-		<Layout>
+		<>
 			<SEO
 				title={[...siteTitleParts, "Search results"]
 					.filter(Boolean)
@@ -205,7 +207,7 @@ const SearchIndexPage: FC = () => {
 					<SearchPagination results={data} />
 				</>
 			)}
-		</Layout>
+		</>
 	);
 };
 

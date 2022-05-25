@@ -5,7 +5,6 @@ import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
 import { ColumnList } from "@nice-digital/nds-column-list";
 import { PageHeader } from "@nice-digital/nds-page-header";
 
-import { Layout } from "@/components/Layout/Layout";
 import { SEO } from "@/components/SEO/SEO";
 import { useAboutPages } from "@/hooks/useAboutPages";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
@@ -15,7 +14,7 @@ const AboutIndexPage: FC = () => {
 		aboutPages = useAboutPages();
 
 	return (
-		<Layout>
+		<>
 			<SEO title="About" />
 
 			<Breadcrumbs>
@@ -28,14 +27,17 @@ const AboutIndexPage: FC = () => {
 
 			<PageHeader id="content-start" heading={`About ${siteTitleShort}`} />
 
-			<ColumnList aria-label="Pages in the about section">
+			<ColumnList
+				aria-label="Pages in the about section"
+				data-tracking="about-column-list"
+			>
 				{aboutPages.map(({ href, title }) => (
 					<li key={href}>
 						<Link to={href} dangerouslySetInnerHTML={{ __html: title }} />
 					</li>
 				))}
 			</ColumnList>
-		</Layout>
+		</>
 	);
 };
 

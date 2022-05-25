@@ -7,6 +7,9 @@ export const BnfNode = {
 	BorderlineSubstancesIntroduction: "BnfBorderlineSubstancesIntroduction",
 	BorderlineSubstancePresentation: "BnfBorderlineSubstancePresentation",
 	BorderlineSubstancesTaxonomy: "BnfBorderlineSubstancesTaxonomy",
+	BorderlineSubstancesTaxonomyRoot: "BnfBorderlineSubstancesTaxonomyRoot",
+	BorderlineSubstancesTaxonomyProductGroup:
+		"BnfBorderlineSubstancesTaxonomyProductGroup",
 	CautionaryAndAdvisoryGuidance: "BnfCautionaryAndAdvisoryGuidance",
 	CautionaryAndAdvisoryLabel: "BnfCautionaryAndAdvisoryLabel",
 	Classification: "BnfClassification",
@@ -55,6 +58,8 @@ export const BnfNode = {
 	WoundManagementIntroduction: "BnfWoundManagementIntroduction",
 	WoundManagementProductGroup: "BnfWoundManagementProductGroup",
 	WoundManagementTaxonomy: "BnfWoundManagementTaxonomy",
+	WoundManagementTaxonomyRoot: "BnfWoundManagementTaxonomyRoot",
+	WoundManagementTaxonomyProductGroup: "BnfWoundManagementTaxonomyProductGroup",
 } as const;
 
 export type BnfNodeTypes = typeof BnfNode[keyof typeof BnfNode];

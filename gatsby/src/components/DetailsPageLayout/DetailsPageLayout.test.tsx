@@ -1,6 +1,7 @@
 /* eslint-disable testing-library/no-render-in-setup */
 /* eslint-disable testing-library/no-node-access */
 import { render, screen, waitFor, within } from "@testing-library/react";
+import React from "react";
 
 import { type OnThisPageProps } from "../OnThisPage/OnThisPage";
 
@@ -28,6 +29,7 @@ describe("DetailsPageLayout", () => {
 					titleHtml="FAQs for BNF <em>for Children</em> — general"
 					parentTitleParts={["Parent", "Grandparent"]}
 					metaDescription="A test meta"
+					parentBreadcrumbs={[{ href: "/about/", text: "About" }]}
 					{...sections}
 				>
 					test
@@ -117,7 +119,12 @@ describe("DetailsPageLayout", () => {
 	describe("Page header", () => {
 		it("should add content start skip link target id to page header", () => {
 			render(
-				<DetailsPageLayout menu={() => null} titleHtml="Anything" {...sections}>
+				<DetailsPageLayout
+					menu={() => null}
+					titleHtml="Anything"
+					{...sections}
+					parentBreadcrumbs={[{ href: "/about/", text: "About" }]}
+				>
 					test
 				</DetailsPageLayout>
 			);
@@ -132,6 +139,7 @@ describe("DetailsPageLayout", () => {
 				<DetailsPageLayout
 					menu={() => null}
 					titleHtml="Some <b>title</b>"
+					parentBreadcrumbs={[{ href: "/about/", text: "About" }]}
 					{...sections}
 				>
 					test
@@ -153,6 +161,7 @@ describe("DetailsPageLayout", () => {
 					menu={() => null}
 					preheading="Some <strong>HTML</strong>"
 					titleHtml="Title"
+					parentBreadcrumbs={[{ href: "/about/", text: "About" }]}
 					{...sections}
 				>
 					test
@@ -175,6 +184,7 @@ describe("DetailsPageLayout", () => {
 				<DetailsPageLayout
 					menu={() => <>Menu</>}
 					titleHtml="Anything"
+					parentBreadcrumbs={[{ href: "/about/", text: "About" }]}
 					{...sections}
 				>
 					Body content

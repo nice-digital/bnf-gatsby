@@ -1,7 +1,7 @@
 import { render, waitFor } from "@testing-library/react";
 import { useStaticQuery } from "gatsby";
 
-import { mockBorderlineSubstancesPagesQueryData } from "./{BnfBorderlineSubstancesTaxonomy.slug}.test";
+import { mockBorderlineSubstancesPagesQueryData } from "@/hooks/useBorderlineSubstancesPages.test";
 
 import BorderlineSubstanceIntroductionPage, {
 	type BorderlineSubstanceIntroductionPageProps,

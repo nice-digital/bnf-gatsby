@@ -37,7 +37,7 @@ describe("HTML field extension", () => {
 			).toBeUndefined();
 		});
 
-		it("should replace internal anchors and xrefs", () => {
+		it("should replace internal anchors and xrefs in string", () => {
 			const mockResolveContext = {
 				defaultFieldResolver: () =>
 					`a <a href="/treatmentSummaries/_123" title="A treatment summary">treatment summary</a><xref type="drug" idref="123">drug</xref> link`,
@@ -62,6 +62,37 @@ describe("HTML field extension", () => {
 			).toBe(
 				`a <a href="/treatment-summaries/a-treatment-summary/" title="A treatment summary">treatment summary</a><a data-type="drug" data-idref="123" href="/drugs/a-drug/">drug</a> link`
 			);
+		});
+
+		it("should replace internal anchors in array of strings", () => {
+			const mockResolveContext = {
+				defaultFieldResolver: () => [
+					`<a href="/treatmentSummaries/_123" title="A treatment summary">treatment summary</a>`,
+					`<a href="/drug/_987">drug</a>`,
+				],
+				nodeModel: {
+					getNodeById: jest
+						.fn()
+						.mockReturnValueOnce({
+							title: "A treatment summary",
+							internal: { type: BnfNode.TreatmentSummary },
+						})
+						.mockReturnValueOnce({
+							title: "A drug",
+							slug: "the-drugs-slug",
+							internal: { type: BnfNode.Drug },
+						}),
+				} as unknown as NodeModel,
+			};
+
+			expect(
+				htmlFieldExtension
+					.extend({ field: "something" }, null)
+					.resolve({}, null, mockResolveContext, null)
+			).toStrictEqual([
+				`<a href="/treatment-summaries/a-treatment-summary/" title="A treatment summary">treatment summary</a>`,
+				`<a href="/drugs/the-drugs-slug/">drug</a>`,
+			]);
 		});
 	});
 });

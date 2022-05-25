@@ -18,15 +18,19 @@ const props: WoundManagementIndexPageProps = {
 				},
 			],
 		},
-		allBnfWoundManagementTaxonomy: {
+		allBnfWoundManagementTaxonomyRoot: {
 			taxonomies: [
 				{
-					title: "Basic wound contact dressings",
-					slug: "basic-wound-contact-dressings",
+					taxonomy: {
+						title: "Basic wound contact dressings",
+						slug: "basic-wound-contact-dressings",
+					},
 				},
 				{
-					title: "Advanced wound dressings",
-					slug: "advanced-wound-dressings",
+					taxonomy: {
+						title: "Advanced wound dressings",
+						slug: "advanced-wound-dressings",
+					},
 				},
 			],
 		},
@@ -55,8 +59,8 @@ describe("Wound management index page", () => {
 	});
 
 	it("should match page snapshot", () => {
-		render(<WoundManagementIndexPage {...props} />);
-		expect(screen.getByRole("main")).toMatchSnapshot();
+		const { container } = render(<WoundManagementIndexPage {...props} />);
+		expect(container).toMatchSnapshot();
 	});
 
 	it("should add content start skip link target id to page header", () => {
@@ -79,7 +83,7 @@ describe("Wound management index page", () => {
 		render(<WoundManagementIndexPage {...props} />);
 		expect(
 			screen.getByRole("navigation", {
-				name: "Wound management product pages",
+				name: "Wound management products pages",
 			})
 		).toBeInTheDocument();
 	});
@@ -87,10 +91,10 @@ describe("Wound management index page", () => {
 	it("should render correct number of sections in the sub nav", () => {
 		render(<WoundManagementIndexPage {...props} />);
 		const subNav = screen.getByRole("navigation", {
-			name: "Wound management product pages",
+			name: "Wound management products pages",
 		});
 		expect(within(subNav).getAllByRole("listitem")).toHaveLength(
-			props.data.allBnfWoundManagementTaxonomy.taxonomies.length
+			props.data.allBnfWoundManagementTaxonomyRoot.taxonomies.length
 		);
 	});
 });

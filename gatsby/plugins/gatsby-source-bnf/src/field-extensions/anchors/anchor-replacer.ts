@@ -6,15 +6,17 @@ import {
 	type SectionID,
 	type FeedRecordSection,
 } from "../../downloader/types";
+import { slugify } from "../../node-creation/slugify";
 import { type NodeModel } from "../../node-model";
 import { BnfNode, type BnfNodeType } from "../../node-types";
-import { slugify } from "../slug";
 
 import { nodeTypePathMap } from "./node-type-paths";
 
 type CustomNodeInput = NodeInput & {
 	title: string;
+	slug: string;
 	sections?: FeedRecordSection[];
+	parentTaxonomy?: string;
 };
 
 /**
@@ -99,17 +101,33 @@ const anchorReplacer =
 				`Node '${title}' has unsupported type '${internal.type}' for mapping to a path in link ${anchorHTML}`
 			);
 
+		const slug = node.slug || slugify(node.title);
+
 		// Turn the node into a URL path
 		let newPath: string;
 		if (nodeType === BnfNode.WoundManagementTaxonomy) {
-			// TODO: What will the URL structure of wound management pages be?
-			newPath = `${basePath}/`;
+			const parentNode = nodeModel.getNodeById<CustomNodeInput>({
+				id: node.parentTaxonomy || "",
+				type: nodeType,
+			});
+			const grandParentNode = nodeModel.getNodeById<CustomNodeInput>({
+				id: parentNode?.parentTaxonomy || "",
+				type: nodeType,
+			});
+
+			newPath = grandParentNode
+				? `${basePath}/${
+						grandParentNode.slug || slugify(grandParentNode.title)
+				  }/${slug}/`
+				: `${basePath}/${
+						parentNode?.slug || slugify(parentNode?.title || "")
+				  }/#${slug}`;
 		} else if (nodeType === BnfNode.NursePrescribersFormularyIntroduction) {
 			newPath = `${basePath}/approved-list-for-prescribing-by-community-practitioner-nurse-prescribers-npf/`;
 		} else if (landingPageNodeTypes.includes(nodeType)) {
 			newPath = `${basePath}/`;
 		} else {
-			newPath = `${basePath}/${slugify(title)}/`;
+			newPath = `${basePath}/${slug}/`;
 		}
 
 		if (!sectionId) return anchorHTML.replace(href, newPath);
@@ -124,7 +142,9 @@ const anchorReplacer =
 				`Couldn't find section with id ${sectionId} on node ${node.title} in link ${anchorHTML}`
 			);
 
-		return anchorHTML.replace(href, `${newPath}#${slugify(sectionNode.title)}`);
+		const sectionSlug = slugify(sectionNode.title);
+
+		return anchorHTML.replace(href, `${newPath}#${sectionSlug}`);
 	};
 
 export const replaceRelativeAnchors = (

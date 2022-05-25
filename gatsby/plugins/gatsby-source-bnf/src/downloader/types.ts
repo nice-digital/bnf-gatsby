@@ -571,6 +571,8 @@ export interface FeedPack {
 	drugTariffPrice?: string;
 	/** The colour of the preparation, if available. This will only ever be present for wound management preparations. */
 	colour?: string;
+	/** A flag to indicate whether (`true`) or not (`false`) this pack is for ACBS indications. */
+	acbs?: boolean;
 }
 
 export type FeedLegalCategory = "POM" | "P" | "GSL" | "Not Applicable";
@@ -699,7 +701,7 @@ export interface FeedBorderlineSubstancePresentation {
 	/** The fibre content of the borderline substance in grams. */
 	fibreGrams?: string;
 	/** The fibre constituents of the borderline substance. */
-	fibreConstituents?: string;
+	fibreConstituents?: string[];
 	/** A list of any special characteristics of the borderline substance. */
 	specialCharacteristics?: string[];
 	/** A list of the Advisory Committee on Borderline Substances (ACBS) indications. May contain HTML mark-up. */

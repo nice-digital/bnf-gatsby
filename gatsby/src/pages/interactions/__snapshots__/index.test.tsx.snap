@@ -1,48 +1,45 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`InteractionsIndexPage should match snapshot for page body 1`] = `
-<main>
-  <div
-    class="container"
+<div>
+  <nav
+    aria-label="Breadcrumbs"
+    role="navigation"
   >
-    <nav
-      aria-label="Breadcrumbs"
-      role="navigation"
+    <ol
+      class="breadcrumbs"
     >
-      <ol
-        class="breadcrumbs"
+      <li
+        class="breadcrumbs__crumb"
       >
-        <li
-          class="breadcrumbs__crumb"
+        <a
+          href="https://www.nice.org.uk/"
         >
-          <a
-            href="https://www.nice.org.uk/"
-          >
-            NICE
-          </a>
-        </li>
-        <li
-          class="breadcrumbs__crumb"
+          NICE
+        </a>
+      </li>
+      <li
+        class="breadcrumbs__crumb"
+      >
+        <a
+          href="/"
         >
-          <a
-            href="/"
-          >
-            BNF
-          </a>
-        </li>
-        <li
-          class="breadcrumbs__crumb"
-        >
-          <span>
-            Interactions A to Z
-          </span>
-        </li>
-      </ol>
-    </nav>
-    <script
-      type="application/ld+json"
-    >
-      {
+          BNF
+        </a>
+      </li>
+      <li
+        class="breadcrumbs__crumb"
+      >
+        <span>
+          Interactions A to Z
+        </span>
+      </li>
+    </ol>
+  </nav>
+  <script
+    type="application/ld+json"
+  >
+    {
   "@context": "http://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
@@ -71,108 +68,109 @@ exports[`InteractionsIndexPage should match snapshot for page body 1`] = `
     }
   ]
 }
-    </script>
-    <div
-      class="page-header"
-      id="content-start"
+  </script>
+  <div
+    class="page-header"
+    id="content-start"
+  >
+    <h1
+      class="page-header__heading"
     >
-      <h1
-        class="page-header__heading"
-      >
-        Interactions
-         A to Z
-      </h1>
-      <p
-        class="page-header__lead"
-      >
-        Browse drugs by A to Z to check for interactions. Includes information on the severity of an interaction and the type of evidence to support it.
-      </p>
-    </div>
-    <ol
-      class="alphabet  "
-      id="a-to-z"
+      Interactions
+       A to Z
+    </h1>
+    <p
+      class="page-header__lead"
     >
-      <li
-        class="alphabet__letter "
-      >
-        <a
-          href="#a"
-        >
-          A
-        </a>
-      </li>
-      <li
-        class="alphabet__letter "
-      >
-        <a
-          href="#b"
-        >
-          B
-        </a>
-      </li>
-    </ol>
-    <ol
-      class="a-z-list "
-    >
-      <li
-        class="a-z-list__item "
-      >
-        <h2
-          class="a-z-list__item-heading"
-          id="a"
-        >
-          A
-        </h2>
-        <ol
-          aria-labelledby="a"
-          class="column-list column-list--boxed"
-        >
-          <li>
-            <a
-              href="/interactions/abacavir/"
-            >
-              Abacavir
-            </a>
-          </li>
-          <li>
-            <a
-              href="/interactions/abatacept/"
-            >
-              Abatacept
-            </a>
-          </li>
-        </ol>
-      </li>
-      <li
-        class="a-z-list__item "
-      >
-        <h2
-          class="a-z-list__item-heading"
-          id="b"
-        >
-          B
-        </h2>
-        <ol
-          aria-labelledby="b"
-          class="column-list column-list--boxed"
-        >
-          <li>
-            <a
-              href="/interactions/bacillus-calmette-guerin-vaccine/"
-            >
-              Bacillus Calmette-Guérin
-            </a>
-          </li>
-          <li>
-            <a
-              href="/interactions/bacitracin/"
-            >
-              Bacitracin
-            </a>
-          </li>
-        </ol>
-      </li>
-    </ol>
+      Browse drugs by A to Z to check for interactions. Includes information on the severity of an interaction and the type of evidence to support it.
+    </p>
   </div>
-</main>
+  <ol
+    class="alphabet  "
+    id="a-to-z"
+  >
+    <li
+      class="alphabet__letter "
+    >
+      <a
+        href="#a"
+      >
+        A
+      </a>
+    </li>
+    <li
+      class="alphabet__letter "
+    >
+      <a
+        href="#b"
+      >
+        B
+      </a>
+    </li>
+  </ol>
+  <ol
+    class="a-z-list "
+  >
+    <li
+      class="a-z-list__item "
+    >
+      <h2
+        class="a-z-list__item-heading"
+        id="a"
+      >
+        A
+      </h2>
+      <ol
+        aria-labelledby="a"
+        class="column-list column-list--boxed"
+        data-tracking="a-to-z-column-list"
+      >
+        <li>
+          <a
+            href="/interactions/abacavir/"
+          >
+            Abacavir
+          </a>
+        </li>
+        <li>
+          <a
+            href="/interactions/abatacept/"
+          >
+            Abatacept
+          </a>
+        </li>
+      </ol>
+    </li>
+    <li
+      class="a-z-list__item "
+    >
+      <h2
+        class="a-z-list__item-heading"
+        id="b"
+      >
+        B
+      </h2>
+      <ol
+        aria-labelledby="b"
+        class="column-list column-list--boxed"
+        data-tracking="a-to-z-column-list"
+      >
+        <li>
+          <a
+            href="/interactions/bacillus-calmette-guerin-vaccine/"
+          >
+            Bacillus Calmette-Guérin
+          </a>
+        </li>
+        <li>
+          <a
+            href="/interactions/bacitracin/"
+          >
+            Bacitracin
+          </a>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</div>
 `;

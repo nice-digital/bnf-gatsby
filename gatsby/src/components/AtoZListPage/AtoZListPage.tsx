@@ -7,7 +7,6 @@ import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
 import { ColumnList } from "@nice-digital/nds-column-list";
 import { PageHeader } from "@nice-digital/nds-page-header";
 
-import { Layout } from "@/components/Layout/Layout";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
@@ -52,7 +51,7 @@ export const AtoZListPage: FC<AtoZListPageProps> = ({
 	);
 
 	return (
-		<Layout>
+		<>
 			<SEO title={`${title} A to Z`} description={metaDescription} />
 
 			<Breadcrumbs>
@@ -72,7 +71,10 @@ export const AtoZListPage: FC<AtoZListPageProps> = ({
 			<AZList alphabet={alphabet}>
 				{letters.map(({ letter, links }) => (
 					<AZListItem key={letter} title={letter.toUpperCase()}>
-						<ColumnList aria-labelledby={letter}>
+						<ColumnList
+							aria-labelledby={letter}
+							data-tracking="a-to-z-column-list"
+						>
 							{links.sort(byTitleAlphabetically).map(({ title, slug }) => (
 								<li key={slug}>
 									<Link
@@ -85,6 +87,6 @@ export const AtoZListPage: FC<AtoZListPageProps> = ({
 					</AZListItem>
 				))}
 			</AZList>
-		</Layout>
+		</>
 	);
 };

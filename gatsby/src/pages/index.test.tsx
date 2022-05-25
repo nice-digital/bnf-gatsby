@@ -18,8 +18,8 @@ export const mockLastUpdatedDataQueryData: LastUpdatedDataQueryResult = {
 
 describe("HomePage", () => {
 	it("should match snapshot for BNF", () => {
-		render(<HomePage />);
-		expect(screen.getByRole("main")).toMatchSnapshot();
+		const { container } = render(<HomePage />);
+		expect(container).toMatchSnapshot();
 	});
 
 	it("should match snapshot for BNFC", () => {
@@ -29,8 +29,8 @@ describe("HomePage", () => {
 			siteTitleLong: "British National Formulary for Children",
 		});
 
-		render(<HomePage />);
-		expect(screen.getByRole("main")).toMatchSnapshot();
+		const { container } = render(<HomePage />);
+		expect(container).toMatchSnapshot();
 	});
 
 	describe("Drug list", () => {

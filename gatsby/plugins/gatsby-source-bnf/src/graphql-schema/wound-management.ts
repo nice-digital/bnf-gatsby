@@ -26,7 +26,7 @@ export const woundManagementSchema = `
 		reviewDate: Date @dateformat
 
 		"The text of the taxonomy node. May contain HTML mark-up."
-		text: String
+		text: String @html
 
 		"The wound management product groups and preparations that are applicable for this point in the wound management taxonomy."
 		productGroups: [${BnfNode.WoundManagementProductGroup}!]!
@@ -41,13 +41,23 @@ export const woundManagementSchema = `
 		rootTaxonomy: ${BnfNode.WoundManagementTaxonomy}! @link
 	}
 
+	type ${BnfNode.WoundManagementTaxonomyRoot} implements Node @dontInfer {
+		"The taxonomy node"
+		taxonomy: ${BnfNode.WoundManagementTaxonomy}! @link
+	}
+
+	type ${BnfNode.WoundManagementTaxonomyProductGroup} implements Node @dontInfer {
+		"The taxonomy node"
+		taxonomy: ${BnfNode.WoundManagementTaxonomy}! @link
+	}
+
 	"A wound management product group represents a group of wound management products including details of any relevant preparations and prices."
 	type ${BnfNode.WoundManagementProductGroup} @dontInfer {
 		"The title of the wound management product group."
 		title: String!
 
 		"The description of the wound management product group. May contain HTML mark-up."
-		description: String
+		description: String @html
 
 		"The list of products in the wound management product group."
 		products: [${BnfNode.Prep}!]!

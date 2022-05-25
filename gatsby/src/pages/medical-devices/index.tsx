@@ -5,7 +5,6 @@ import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
 import { ColumnList } from "@nice-digital/nds-column-list";
 import { PageHeader } from "@nice-digital/nds-page-header";
 
-import { Layout } from "@/components/Layout/Layout";
 import { SEO } from "@/components/SEO/SEO";
 import { useMedicalDevicePages } from "@/hooks/useMedicalDevicePages";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
@@ -15,7 +14,7 @@ const MedicalDevicesIndexPage: FC = () => {
 		medicalDevicePages = useMedicalDevicePages();
 
 	return (
-		<Layout>
+		<>
 			<SEO
 				title="Medical devices"
 				description="Browse medical devices, by type."
@@ -31,14 +30,17 @@ const MedicalDevicesIndexPage: FC = () => {
 
 			<PageHeader id="content-start" heading="Medical devices" />
 
-			<ColumnList aria-label="Pages in the medical devices section">
+			<ColumnList
+				aria-label="Pages in the medical devices section"
+				data-tracking="medical-devices-pages-column-list"
+			>
 				{medicalDevicePages.map(({ href, title }) => (
 					<li key={title}>
 						<Link to={href} dangerouslySetInnerHTML={{ __html: title }} />
 					</li>
 				))}
 			</ColumnList>
-		</Layout>
+		</>
 	);
 };
 

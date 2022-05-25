@@ -14,57 +14,54 @@ exports[`CautionaryAdvisoryGuidancePage should match snapshot for graphql query 
 `;
 
 exports[`CautionaryAdvisoryGuidancePage should match snapshot for page contents 1`] = `
-<main>
-  <div
-    class="container"
+<div>
+  <nav
+    aria-label="Breadcrumbs"
+    role="navigation"
   >
-    <nav
-      aria-label="Breadcrumbs"
-      role="navigation"
+    <ol
+      class="breadcrumbs"
     >
-      <ol
-        class="breadcrumbs"
+      <li
+        class="breadcrumbs__crumb"
       >
-        <li
-          class="breadcrumbs__crumb"
+        <a
+          href="https://www.nice.org.uk/"
         >
-          <a
-            href="https://www.nice.org.uk/"
-          >
-            NICE
-          </a>
-        </li>
-        <li
-          class="breadcrumbs__crumb"
+          NICE
+        </a>
+      </li>
+      <li
+        class="breadcrumbs__crumb"
+      >
+        <a
+          href="/"
         >
-          <a
-            href="/"
-          >
-            BNF
-          </a>
-        </li>
-        <li
-          class="breadcrumbs__crumb"
+          BNF
+        </a>
+      </li>
+      <li
+        class="breadcrumbs__crumb"
+      >
+        <a
+          href="/about/"
         >
-          <a
-            href="/about/"
-          >
-            About
-          </a>
-        </li>
-        <li
-          class="breadcrumbs__crumb"
-        >
-          <span>
-            Guidance for cautionary and advisory labels
-          </span>
-        </li>
-      </ol>
-    </nav>
-    <script
-      type="application/ld+json"
-    >
-      {
+          About
+        </a>
+      </li>
+      <li
+        class="breadcrumbs__crumb"
+      >
+        <span>
+          Guidance for cautionary and advisory labels
+        </span>
+      </li>
+    </ol>
+  </nav>
+  <script
+    type="application/ld+json"
+  >
+    {
   "@context": "http://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
@@ -101,191 +98,216 @@ exports[`CautionaryAdvisoryGuidancePage should match snapshot for page contents 
     }
   ]
 }
-    </script>
-    <div
-      class="page-header"
-      id="content-start"
+  </script>
+  <div
+    class="page-header"
+    id="content-start"
+  >
+    <h1
+      class="page-header__heading"
     >
-      <h1
-        class="page-header__heading"
-      >
-        <span>
-          Guidance for cautionary and advisory labels
-        </span>
-      </h1>
-    </div>
+      <span>
+        Guidance for cautionary and advisory labels
+      </span>
+    </h1>
+  </div>
+  <div
+    class="grid grid--loose"
+    data-testid="body"
+  >
     <div
-      class="grid grid--loose"
-      data-testid="body"
+      class="hide-print"
+      data-g="12 md:4 lg:3"
     >
-      <div
-        class="hide-print"
-        data-g="12 md:4 lg:3"
+       
+      <button
+        aria-expanded="false"
+        aria-label="Expand menu for about section pages"
+        class="toggleButton"
+        type="button"
       >
-        <nav
-          aria-label="About section pages"
-          class="stacked-nav"
+        Guidance for cautionary and advisory labels
+         
+        <svg
+          aria-hidden="true"
+          class="icon"
+          fill="none"
+          focusable="false"
+          height="1em"
+          viewBox="0 0 512 512"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          <p
-            class="stacked-nav__root"
+          <path
+            d="M478.152 174c0 10.091-3.525 18.661-10.576 25.712l-186 186c-7.243 7.243-15.909 10.864-26 10.864-10.283 0-18.853-3.621-25.712-10.864l-186-186C36.621 192.853 33 184.283 33 174c0-10.091 3.621-18.757 10.864-26L65 126.576C72.424 119.525 81.09 116 91 116c10.091 0 18.661 3.525 25.712 10.576L255.576 265.44 394.44 126.576c7.051-7.051 15.621-10.576 25.712-10.576 9.909 0 18.576 3.525 26 10.576L467.576 148c7.051 7.424 10.576 16.091 10.576 26z"
+            fill="currentColor"
+          />
+        </svg>
+      </button>
+      <nav
+        aria-label="About section pages"
+        class="stacked-nav"
+        id="collapsible-menu"
+      >
+        <p
+          class="stacked-nav__root"
+        >
+          <a
+            aria-current="false"
+            href="/about/"
+          >
+            About
+          </a>
+        </p>
+        <ul
+          class="stacked-nav__list"
+        >
+          <li
+            class="stacked-nav__list-item"
           >
             <a
               aria-current="false"
-              href="/about/"
+              href="/about/changes/"
             >
-              About
+              <span
+                class="stacked-nav__content-wrapper"
+              >
+                <span>
+                  Changes
+                </span>
+              </span>
             </a>
-          </p>
-          <ul
-            class="stacked-nav__list"
+          </li>
+          <li
+            class="stacked-nav__list-item"
           >
-            <li
-              class="stacked-nav__list-item"
+            <a
+              aria-current="false"
+              href="/about/publication-information/"
             >
-              <a
-                aria-current="false"
-                href="/about/changes/"
+              <span
+                class="stacked-nav__content-wrapper"
               >
-                <span
-                  class="stacked-nav__content-wrapper"
-                >
-                  <span>
-                    Changes
-                  </span>
+                <span>
+                  Publication 
+                  <i>
+                    information
+                  </i>
                 </span>
-              </a>
-            </li>
-            <li
-              class="stacked-nav__list-item"
+              </span>
+            </a>
+          </li>
+          <li
+            class="stacked-nav__list-item"
+          >
+            <a
+              aria-current="false"
+              href="/about/labels/"
             >
-              <a
-                aria-current="false"
-                href="/about/publication-information/"
+              <span
+                class="stacked-nav__content-wrapper"
               >
-                <span
-                  class="stacked-nav__content-wrapper"
-                >
-                  <span>
-                    Publication 
-                    <i>
-                      information
-                    </i>
-                  </span>
+                <span>
+                  Labels
                 </span>
-              </a>
-            </li>
-            <li
-              class="stacked-nav__list-item"
+              </span>
+            </a>
+          </li>
+          <li
+            class="stacked-nav__list-item"
+          >
+            <a
+              aria-current="true"
+              href="/about/guidance-for-cautionary-and-advisory-labels/"
             >
-              <a
-                aria-current="false"
-                href="/about/labels/"
+              <span
+                class="stacked-nav__content-wrapper"
               >
-                <span
-                  class="stacked-nav__content-wrapper"
-                >
-                  <span>
-                    Labels
-                  </span>
+                <span>
+                  Guidance for cautionary and advisory labels
                 </span>
-              </a>
-            </li>
-            <li
-              class="stacked-nav__list-item"
-            >
-              <a
-                aria-current="true"
-                href="/about/guidance-for-cautionary-and-advisory-labels/"
-              >
-                <span
-                  class="stacked-nav__content-wrapper"
-                >
-                  <span>
-                    Guidance for cautionary and advisory labels
-                  </span>
-                </span>
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </div>
+              </span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div
+      data-g="12 md:8 lg:9"
+    >
       <div
-        data-g="12 md:8 lg:9"
+        class="grid grid--rev grid--loose"
       >
         <div
-          class="grid grid--rev grid--loose"
+          data-g="12 lg:3"
         >
-          <div
-            data-g="12 lg:3"
+          <nav
+            aria-labelledby="on-this-page"
+            class="wrapper"
           >
-            <nav
-              aria-labelledby="on-this-page"
-              class="wrapper"
+            <h2
+              class="heading"
+              id="on-this-page"
             >
-              <h2
-                class="heading"
-                id="on-this-page"
-              >
-                On this page
-              </h2>
-              <ol
-                aria-label="Jump links to sections on this page"
-                class="list"
-              >
-                <li>
-                  <a
-                    href="#introduction"
-                  >
-                    Introduction
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#original-packs"
-                  >
-                    Original packs
-                  </a>
-                </li>
-              </ol>
-            </nav>
-          </div>
-          <div
-            class="body"
-            data-g="12 lg:9"
+              On this page
+            </h2>
+            <ol
+              aria-label="Jump links to sections on this page"
+              class="list"
+            >
+              <li>
+                <a
+                  href="#introduction"
+                >
+                  Introduction
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#original-packs"
+                >
+                  Original packs
+                </a>
+              </li>
+            </ol>
+          </nav>
+        </div>
+        <div
+          class="body"
+          data-g="12 lg:9"
+        >
+          <section
+            aria-labelledby="introduction"
           >
-            <section
-              aria-labelledby="introduction"
+            <h2
+              class="firstHeading"
+              id="introduction"
             >
-              <h2
-                class="firstHeading"
-                id="introduction"
-              >
-                Introduction
-              </h2>
-              <div>
-                <p>
-                  Medicinal forms within BNF publications include code numbers...
-                </p>
-              </div>
-            </section>
-            <section
-              aria-labelledby="original-packs"
+              Introduction
+            </h2>
+            <div>
+              <p>
+                Medicinal forms within BNF publications include code numbers...
+              </p>
+            </div>
+          </section>
+          <section
+            aria-labelledby="original-packs"
+          >
+            <h2
+              id="original-packs"
             >
-              <h2
-                id="original-packs"
-              >
-                Original packs
-              </h2>
-              <div>
-                <p>
-                  Most preparations are dispensed in unbroken original packs...
-                </p>
-              </div>
-            </section>
-          </div>
+              Original packs
+            </h2>
+            <div>
+              <p>
+                Most preparations are dispensed in unbroken original packs...
+              </p>
+            </div>
+          </section>
         </div>
       </div>
     </div>
   </div>
-</main>
+</div>
 `;

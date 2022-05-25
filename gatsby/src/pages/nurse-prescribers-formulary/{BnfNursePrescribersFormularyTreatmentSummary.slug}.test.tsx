@@ -1,5 +1,5 @@
 import { useLocation } from "@reach/router";
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, waitFor } from "@testing-library/react";
 import { useStaticQuery } from "gatsby";
 
 import { mockNursePrescribersPagesQueryData } from "@/hooks/useNursePrescribers.test";
@@ -61,9 +61,11 @@ describe("NursePrescribersFormularyTreatmentSummaryPage", () => {
 	});
 
 	it("should match snapshot for page contents", () => {
-		render(<NursePrescribersFormularyTreatmentSummaryPage {...pageProps} />);
+		const { container } = render(
+			<NursePrescribersFormularyTreatmentSummaryPage {...pageProps} />
+		);
 
-		expect(screen.getByRole("main")).toMatchSnapshot();
+		expect(container).toMatchSnapshot();
 	});
 
 	it("should set page title", async () => {

@@ -1,4 +1,3 @@
-import { useLocation } from "@reach/router";
 import { graphql, Link } from "gatsby";
 import { FC } from "react";
 import striptags from "striptags";
@@ -7,7 +6,6 @@ import {
 	FeedIndicationsAndDosePotContent,
 	type FeedPrep,
 } from "@nice-digital/gatsby-source-bnf";
-import { StackedNav, StackedNavLink } from "@nice-digital/nds-stacked-nav";
 
 import { DetailsPageLayout } from "@/components/DetailsPageLayout/DetailsPageLayout";
 import {
@@ -15,8 +13,9 @@ import {
 	IndicationsAndDoseContent,
 } from "@/components/DrugSections";
 import { MedicalDevicePrepsSection } from "@/components/MedicalDevicePrepsSection/MedicalDevicePrepsSection";
+import { Menu } from "@/components/Menu/Menu";
 import { SectionLink } from "@/components/SectionNav/SectionNav";
-import { isTruthy, type QueryResult } from "@/utils";
+import { decapitalize, isTruthy, type QueryResult } from "@/utils";
 
 import styles from "./{BnfClinicalMedicalDeviceInformationGroup.slug}.module.scss";
 
@@ -90,6 +89,7 @@ const CMPIPage: FC<CMPIPageProps> = ({
 			medicalDeviceType: {
 				clinicalMedicalDeviceInformationGroups,
 				medicalDevice,
+				title: medicalDeviceTypeTitle,
 			},
 			preparations,
 			allergyAndCrossSensitivity,
@@ -103,14 +103,16 @@ const CMPIPage: FC<CMPIPageProps> = ({
 		},
 	},
 }) => {
-	const { pathname } = useLocation(),
-		titleNoHtml = striptags(title),
+	const titleNoHtml = striptags(title),
 		medicalDeviceTitleNoHtml = striptags(medicalDevice.title);
 
 	return (
 		<DetailsPageLayout
+			preheading={`${medicalDeviceTypeTitle}: `}
 			titleHtml={title}
-			metaDescription={`This medical devices topic describes the options that are currently recommended for ${titleNoHtml}.`}
+			metaDescription={`This medical devices topic describes the options that are currently recommended for ${decapitalize(
+				titleNoHtml
+			)}.`}
 			parentTitleParts={[medicalDeviceTitleNoHtml, "Medical devices"]}
 			parentBreadcrumbs={[
 				{
@@ -125,28 +127,18 @@ const CMPIPage: FC<CMPIPageProps> = ({
 			menu={
 				clinicalMedicalDeviceInformationGroups.length > 1
 					? () => (
-							<StackedNav
-								aria-label={medicalDeviceTitleNoHtml}
+							<Menu
 								label={medicalDeviceTitleNoHtml}
+								ariaLabel={medicalDeviceTitleNoHtml}
 								link={{
 									destination: `/medical-devices/${medicalDevice.slug}/`,
 									elementType: Link,
 								}}
-							>
-								{clinicalMedicalDeviceInformationGroups.map((cmpi) => {
-									const pagePath = `/medical-devices/${medicalDevice.slug}/${cmpi.slug}/`;
-									return (
-										<StackedNavLink
-											key={cmpi.title}
-											destination={pagePath}
-											elementType={Link}
-											isCurrent={pathname === pagePath}
-										>
-											<span dangerouslySetInnerHTML={{ __html: cmpi.title }} />
-										</StackedNavLink>
-									);
-								})}
-							</StackedNav>
+								pages={clinicalMedicalDeviceInformationGroups.map((cmpi) => ({
+									title: cmpi.title,
+									href: `/medical-devices/${medicalDevice.slug}/${cmpi.slug}/`,
+								}))}
+							></Menu>
 					  )
 					: undefined
 			}

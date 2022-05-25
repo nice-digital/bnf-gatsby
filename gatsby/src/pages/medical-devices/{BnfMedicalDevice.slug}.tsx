@@ -7,10 +7,12 @@ import { ColumnList } from "@nice-digital/nds-column-list";
 import { Grid, GridItem } from "@nice-digital/nds-grid";
 import { PageHeader } from "@nice-digital/nds-page-header";
 
-import { Layout } from "@/components/Layout/Layout";
 import { MedicalDevicesMenu } from "@/components/MedicalDevicesMenu/MedicalDevicesMenu";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
+import { decapitalize } from "@/utils";
+
+import styles from "./{BnfMedicalDevice.slug}.module.scss";
 
 export interface MedicalDevicePageProps {
 	data: {
@@ -39,10 +41,12 @@ const MedicalDevicePage: FC<MedicalDevicePageProps> = ({
 		titleNoHtml = striptags(title);
 
 	return (
-		<Layout>
+		<>
 			<SEO
 				title={`${titleNoHtml} | Medical devices`}
-				description={`This medical devices topic describes the options that are currently recommended for ${titleNoHtml}.`}
+				description={`This medical devices topic describes the options that are currently recommended for ${decapitalize(
+					titleNoHtml
+				)}.`}
 			/>
 
 			<Breadcrumbs>
@@ -67,22 +71,27 @@ const MedicalDevicePage: FC<MedicalDevicePageProps> = ({
 				<GridItem cols={12} md={4} lg={3} className="hide-print">
 					<MedicalDevicesMenu />
 				</GridItem>
-				<GridItem cols={12} md={8} lg={9}>
-					<ColumnList aria-label={`Medical device types for ${titleNoHtml}`}>
-						{medicalDeviceTypes
+				<GridItem cols={12} md={8} lg={9} className={styles.body}>
+					{medicalDeviceTypes.every(
+						(medicalDeviceType) => !medicalDeviceType.hasPreps
+					) ? (
+						medicalDeviceTypes
 							.sort((a, b) => a.slug.localeCompare(b.slug))
-							.map((medicalDeviceType) =>
-								medicalDeviceType.hasPreps ? (
-									<li key={medicalDeviceType.title}>
-										<Link
-											to={`/medical-devices/${slug}/${medicalDeviceType.slug}/`}
-											dangerouslySetInnerHTML={{
-												__html: medicalDeviceType.title,
-											}}
-										/>
-									</li>
-								) : (
-									<>
+							.map((medicalDeviceType) => (
+								<section
+									key={medicalDeviceType.title}
+									aria-labelledby={medicalDeviceType.slug}
+								>
+									<h2
+										id={medicalDeviceType.slug}
+										dangerouslySetInnerHTML={{
+											__html: medicalDeviceType.title,
+										}}
+									/>
+									<ColumnList
+										aria-label={`Products within ${medicalDeviceType.title}`}
+										data-tracking="medical-device-column-list"
+									>
 										{medicalDeviceType.clinicalMedicalDeviceInformationGroups
 											.sort((a, b) => a.slug.localeCompare(b.slug))
 											.map((cmpi) => (
@@ -95,13 +104,48 @@ const MedicalDevicePage: FC<MedicalDevicePageProps> = ({
 													/>
 												</li>
 											))}
-									</>
-								)
-							)}
-					</ColumnList>
+									</ColumnList>
+								</section>
+							))
+					) : (
+						<ColumnList
+							aria-label={`Medical device types for ${titleNoHtml}`}
+							data-tracking="medical-device-column-list"
+						>
+							{medicalDeviceTypes
+								.sort((a, b) => a.slug.localeCompare(b.slug))
+								.map((medicalDeviceType) =>
+									medicalDeviceType.hasPreps ? (
+										<li key={medicalDeviceType.title}>
+											<Link
+												to={`/medical-devices/${slug}/${medicalDeviceType.slug}/`}
+												dangerouslySetInnerHTML={{
+													__html: medicalDeviceType.title,
+												}}
+											/>
+										</li>
+									) : (
+										<>
+											{medicalDeviceType.clinicalMedicalDeviceInformationGroups
+												.sort((a, b) => a.slug.localeCompare(b.slug))
+												.map((cmpi) => (
+													<li key={cmpi.title}>
+														<Link
+															to={`/medical-devices/${slug}/${cmpi.slug}/`}
+															dangerouslySetInnerHTML={{
+																__html: cmpi.title,
+															}}
+														/>
+													</li>
+												))}
+										</>
+									)
+								)}
+						</ColumnList>
+					)}
 				</GridItem>
 			</Grid>
-		</Layout>
+		</>
 	);
 };
 

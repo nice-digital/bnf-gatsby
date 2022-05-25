@@ -2,48 +2,44 @@
 
 exports[`BorderlineSubstanceIntroductionPage should match snapshot for page contents 1`] = `
 <div>
-  <main>
-    <div
-      class="container"
+  <nav
+    aria-label="Breadcrumbs"
+    role="navigation"
+  >
+    <ol
+      class="breadcrumbs"
     >
-      <nav
-        aria-label="Breadcrumbs"
-        role="navigation"
+      <li
+        class="breadcrumbs__crumb"
       >
-        <ol
-          class="breadcrumbs"
+        <a
+          href="https://www.nice.org.uk/"
         >
-          <li
-            class="breadcrumbs__crumb"
-          >
-            <a
-              href="https://www.nice.org.uk/"
-            >
-              NICE
-            </a>
-          </li>
-          <li
-            class="breadcrumbs__crumb"
-          >
-            <a
-              href="/"
-            >
-              BNF
-            </a>
-          </li>
-          <li
-            class="breadcrumbs__crumb"
-          >
-            <span>
-              Borderline Substances
-            </span>
-          </li>
-        </ol>
-      </nav>
-      <script
-        type="application/ld+json"
+          NICE
+        </a>
+      </li>
+      <li
+        class="breadcrumbs__crumb"
       >
-        {
+        <a
+          href="/"
+        >
+          BNF
+        </a>
+      </li>
+      <li
+        class="breadcrumbs__crumb"
+      >
+        <span>
+          Borderline Substances
+        </span>
+      </li>
+    </ol>
+  </nav>
+  <script
+    type="application/ld+json"
+  >
+    {
   "@context": "http://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
@@ -72,197 +68,152 @@ exports[`BorderlineSubstanceIntroductionPage should match snapshot for page cont
     }
   ]
 }
-      </script>
-      <div
-        class="page-header"
-        id="content-start"
+  </script>
+  <div
+    class="page-header"
+    id="content-start"
+  >
+    <h1
+      class="page-header__heading"
+    >
+      <span>
+        Borderline Substances
+      </span>
+    </h1>
+  </div>
+  <div
+    class="grid grid--loose"
+    data-testid="body"
+  >
+    <div
+      class="hide-print"
+      data-g="12 md:4 lg:3"
+    >
+       
+      <button
+        aria-expanded="false"
+        aria-label="Expand menu for borderline substances pages"
+        class="toggleButton"
+        type="button"
       >
-        <h1
-          class="page-header__heading"
+        Borderline substances
+         
+        <svg
+          aria-hidden="true"
+          class="icon"
+          fill="none"
+          focusable="false"
+          height="1em"
+          viewBox="0 0 512 512"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          <span>
-            Borderline Substances
-          </span>
-        </h1>
-      </div>
+          <path
+            d="M478.152 174c0 10.091-3.525 18.661-10.576 25.712l-186 186c-7.243 7.243-15.909 10.864-26 10.864-10.283 0-18.853-3.621-25.712-10.864l-186-186C36.621 192.853 33 184.283 33 174c0-10.091 3.621-18.757 10.864-26L65 126.576C72.424 119.525 81.09 116 91 116c10.091 0 18.661 3.525 25.712 10.576L255.576 265.44 394.44 126.576c7.051-7.051 15.621-10.576 25.712-10.576 9.909 0 18.576 3.525 26 10.576L467.576 148c7.051 7.424 10.576 16.091 10.576 26z"
+            fill="currentColor"
+          />
+        </svg>
+      </button>
+      <nav
+        aria-label="Borderline substances pages"
+        class="stacked-nav"
+        id="collapsible-menu"
+      >
+        <p
+          class="stacked-nav__root"
+        >
+          <a
+            aria-current="false"
+            href="/borderline-substances/"
+          >
+            Borderline substances
+          </a>
+        </p>
+        <ul
+          class="stacked-nav__list"
+        >
+          <li
+            class="stacked-nav__list-item"
+          >
+            <a
+              aria-current="false"
+              href="/borderline-substances/enteral-feeds-non-disease-specific/"
+            >
+              <span
+                class="stacked-nav__content-wrapper"
+              >
+                <span>
+                  Enteral feeds (non-disease specific)
+                </span>
+              </span>
+            </a>
+          </li>
+          <li
+            class="stacked-nav__list-item"
+          >
+            <a
+              aria-current="false"
+              href="/borderline-substances/specialised-formulas/"
+            >
+              <span
+                class="stacked-nav__content-wrapper"
+              >
+                <span>
+                  Specialised formulas
+                </span>
+              </span>
+            </a>
+          </li>
+          <li
+            class="stacked-nav__list-item"
+          >
+            <a
+              aria-current="false"
+              href="/borderline-substances/foods-for-special-diets/"
+            >
+              <span
+                class="stacked-nav__content-wrapper"
+              >
+                <span>
+                  Foods for special diets
+                </span>
+              </span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div
+      data-g="12 md:8 lg:9"
+    >
       <div
-        class="grid grid--loose"
-        data-testid="body"
+        class="grid grid--rev grid--loose"
       >
         <div
-          class="hide-print"
-          data-g="12 md:4 lg:3"
+          data-g="12 lg:3"
         >
           <nav
-            aria-label="Borderline substances"
-            class="stacked-nav"
+            aria-labelledby="on-this-page"
+            class="wrapper"
           >
-            <p
-              class="stacked-nav__root"
+            <h2
+              class="heading"
+              id="on-this-page"
             >
-              <a
-                aria-current="false"
-                href="/borderline-substances/"
-              >
-                Borderline substances
-              </a>
-            </p>
-            <ul
-              class="stacked-nav__list"
-            >
-              <li
-                class="stacked-nav__list-item"
-              >
-                <a
-                  aria-current="false"
-                  href="/borderline-substances/parent-1/"
-                >
-                  <span
-                    class="stacked-nav__content-wrapper"
-                  >
-                    <span>
-                      Parent taxonomy 1
-                    </span>
-                  </span>
-                </a>
-              </li>
-              <li
-                class="stacked-nav__list-item"
-              >
-                <a
-                  aria-current="false"
-                  href="/borderline-substances/taxonomy-1/"
-                >
-                  <span
-                    class="stacked-nav__content-wrapper"
-                  >
-                    <span>
-                      Sub taxonomy 1
-                    </span>
-                  </span>
-                </a>
-              </li>
-              <li
-                class="stacked-nav__list-item"
-              >
-                <a
-                  aria-current="false"
-                  href="/borderline-substances/taxonomy-2/"
-                >
-                  <span
-                    class="stacked-nav__content-wrapper"
-                  >
-                    <span>
-                      Sub taxonomy 2
-                    </span>
-                  </span>
-                </a>
-              </li>
-              <li
-                class="stacked-nav__list-item"
-              >
-                <a
-                  aria-current="false"
-                  href="/borderline-substances/parent-2/"
-                >
-                  <span
-                    class="stacked-nav__content-wrapper"
-                  >
-                    <span>
-                      Parent 2
-                    </span>
-                  </span>
-                </a>
-              </li>
-              <li
-                class="stacked-nav__list-item"
-              >
-                <a
-                  aria-current="false"
-                  href="/borderline-substances/sub-taxonomy-1/"
-                >
-                  <span
-                    class="stacked-nav__content-wrapper"
-                  >
-                    <span>
-                      Sub taxonomy 1
-                    </span>
-                  </span>
-                </a>
-              </li>
-              <li
-                class="stacked-nav__list-item"
-              >
-                <a
-                  aria-current="false"
-                  href="/borderline-substances/parent-3/"
-                >
-                  <span
-                    class="stacked-nav__content-wrapper"
-                  >
-                    <span>
-                      Parent 3
-                    </span>
-                  </span>
-                </a>
-              </li>
-            </ul>
+              On this page
+            </h2>
+            <ol
+              aria-label="Jump links to sections on this page"
+              class="list"
+            />
           </nav>
         </div>
         <div
-          data-g="12 md:8 lg:9"
-        >
-          <div
-            class="grid grid--rev grid--loose"
-          >
-            <div
-              data-g="12 lg:3"
-            >
-              <nav
-                aria-labelledby="on-this-page"
-                class="wrapper"
-              >
-                <h2
-                  class="heading"
-                  id="on-this-page"
-                >
-                  On this page
-                </h2>
-                <ol
-                  aria-label="Jump links to sections on this page"
-                  class="list"
-                />
-              </nav>
-            </div>
-            <div
-              class="body"
-              data-g="12 lg:9"
-            />
-          </div>
-        </div>
+          class="body"
+          data-g="12 lg:9"
+        />
       </div>
     </div>
-  </main>
+  </div>
 </div>
-`;
-
-exports[`BorderlineSubstancesSectionPage should match snapshot for graphql query 1`] = `
-"
-	query ($id: String) {
-		bnfBorderlineSubstancesTaxonomy(id: { eq: $id }) {
-			slug
-			title
-			rootTaxonomy {
-				childTaxonomies {
-					title
-					childTaxonomies {
-						title
-						slug
-					}
-					slug
-				}
-			}
-		}
-	}
-"
 `;

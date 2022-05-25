@@ -279,7 +279,7 @@ describe("Search Page", () => {
 					screen.getByText(
 						(_, node) =>
 							node?.tagName === "P" &&
-							node?.textContent === "Showing 1 to 10 of 234 for aspirin"
+							node?.textContent === "Showing 1 to 10 of 234 results for aspirin"
 					)
 				).toHaveClass("page-header__lead");
 			});
@@ -314,8 +314,7 @@ describe("Search Page", () => {
 				render(<SearchPage />);
 				await waitFor(() => {
 					expect(
-						screen.getByText(/Showing 1 to 1 of 1/i, { exact: false })
-							.textContent
+						screen.getByText(/Showing 1 result /i, { exact: false }).textContent
 					).toContain("for oculo");
 				});
 			});
@@ -325,7 +324,7 @@ describe("Search Page", () => {
 				await waitFor(() => {
 					const resultSummary = screen.getByText(/your search for/i);
 					expect(resultSummary.innerHTML).toEqual(
-						"Your search for <strong>ocelot</strong> returned no results<br>Showing 1 to 1 of 1 for <strong>oculo</strong>"
+						"Your search for <strong>ocelot</strong> returned no results<br>Showing 1 result for <strong>oculo</strong>"
 					);
 				});
 			});

@@ -16,4 +16,10 @@ Feature: Wound management index page
   Scenario: Heading text
     Then I expect that element "h1" matches the text "Wound management products and elasticated garments"
 
-# TODO: Add scenario for testing sub-nav links once the pages exist
+  Scenario: Sub-navigation links
+    When I click the "Antimicrobial dressings" link
+    Then I expect that the path is "/wound-management/antimicrobial-dressings/"
+
+  Scenario: In-page links adapted from the feed
+    When I click the "Vapour-permeable films and membranes" link
+    Then I expect that the path is "/wound-management/advanced-wound-dressings/#vapour-permeable-films-and-membranes"

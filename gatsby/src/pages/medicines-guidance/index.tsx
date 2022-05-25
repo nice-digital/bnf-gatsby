@@ -5,7 +5,6 @@ import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
 import { ColumnList } from "@nice-digital/nds-column-list";
 import { PageHeader } from "@nice-digital/nds-page-header";
 
-import { Layout } from "@/components/Layout/Layout";
 import { SEO } from "@/components/SEO/SEO";
 import { useMedicinesGuidancePages } from "@/hooks/useMedicinesGuidancePages";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
@@ -15,7 +14,7 @@ const GuidanceIndexPage: FC = () => {
 		guidancePages = useMedicinesGuidancePages();
 
 	return (
-		<Layout>
+		<>
 			<SEO
 				title="Medicines guidance"
 				description="Browse medicines guidance, prescribing advice and related topics."
@@ -31,14 +30,17 @@ const GuidanceIndexPage: FC = () => {
 
 			<PageHeader id="content-start" heading="Medicines guidance" />
 
-			<ColumnList aria-label="Pages in the medicines guidance section">
+			<ColumnList
+				aria-label="Pages in the medicines guidance section"
+				data-tracking="medicines-guidance-column-list"
+			>
 				{guidancePages.map(({ href, title }) => (
 					<li key={href}>
 						<Link to={href} dangerouslySetInnerHTML={{ __html: title }} />
 					</li>
 				))}
 			</ColumnList>
-		</Layout>
+		</>
 	);
 };
 

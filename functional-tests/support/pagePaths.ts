@@ -33,7 +33,17 @@ export const pagePaths = {
 	spacers: "/medical-devices/spacers/",
 	"urine protein testing strips":
 		"/medical-devices/urine-protein-testing-strips/urine-protein-testing-strips/",
+	// Wound management
 	"wound management": "/wound-management",
+	"advanced wound dressings": "/wound-management/advanced-wound-dressings/",
+	"antimicrobial dressings": "/wound-management/antimicrobial-dressings/",
+	"complex adjunct therapies": "/wound-management/complex-adjunct-therapies/",
+	bandages: "/wound-management/bandages/",
+	"odour absorbent dressings":
+		"/wound-management/advanced-wound-dressings/odour-absorbent-dressings/",
+	"protease-modulating matrix dressings":
+		"/wound-management/specialised-dressings/protease-modulating-matrix-dressings/",
+	"medicated bandages": "/wound-management/bandages/medicated-bandages/",
 	// Medicines guidance
 	"guidance on prescribing": "/medicines-guidance/guidance-on-prescribing/",
 	"prescription writing": "/medicines-guidance/prescription-writing/",
@@ -43,8 +53,11 @@ export const pagePaths = {
 	laxatives: "/nurse-prescribers-formulary/laxatives/",
 	"general guidance": "/nurse-prescribers-formulary/general-guidance/",
 	"local anaesthetics": "/nurse-prescribers-formulary/local-anaesthetics/",
+	// Borderline substances
 	"borderline substances": "/borderline-substances/",
 	"feed supplements": "/borderline-substances/feed-supplements/",
+	"high-fibre supplements":
+		"/borderline-substances/feed-supplements/high-fibre-supplements/",
 } as const;
 
 export type PageName = keyof typeof pagePaths;

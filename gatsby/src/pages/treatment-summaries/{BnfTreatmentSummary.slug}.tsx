@@ -6,7 +6,12 @@ import { DetailsPageLayout } from "@/components/DetailsPageLayout/DetailsPageLay
 import { RecordSectionsContent } from "@/components/RecordSectionsContent/RecordSectionsContent";
 import { RelatedDrugs } from "@/components/RelatedDrugs/RelatedDrugs";
 import { Tag, TagList } from "@/components/TagList/TagList";
-import { type SlugAndTitle, type RecordSection, isTruthy } from "@/utils";
+import {
+	type SlugAndTitle,
+	type RecordSection,
+	isTruthy,
+	decapitalize,
+} from "@/utils";
 
 export type TreatmentSummaryPageProps = {
 	data: {
@@ -35,7 +40,9 @@ const TreatmentSummaryPage: FC<TreatmentSummaryPageProps> = ({
 		<DetailsPageLayout
 			useSectionNav
 			titleHtml={title}
-			metaDescription={`This treatment summary topic describes ${titleNoHtml}`}
+			metaDescription={`This treatment summary topic describes ${decapitalize(
+				titleNoHtml
+			)}`}
 			parentTitleParts={["Treatment summaries"]}
 			parentBreadcrumbs={[
 				{ href: "/treatment-summaries/", text: "Treatment summaries" },

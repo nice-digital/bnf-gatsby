@@ -1,5 +1,5 @@
 import { useLocation } from "@reach/router";
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, waitFor } from "@testing-library/react";
 import { useStaticQuery } from "gatsby";
 
 import { mockAboutPagesQueryData } from "@/hooks/useAboutPages.test";
@@ -52,9 +52,9 @@ describe("AboutSectionPage", () => {
 	});
 
 	it("should match snapshot for page contents", () => {
-		render(<AboutSectionPage {...pageProps} />);
+		const { container } = render(<AboutSectionPage {...pageProps} />);
 
-		expect(screen.getByRole("main")).toMatchSnapshot();
+		expect(container).toMatchSnapshot();
 	});
 
 	it("should set page title", async () => {
