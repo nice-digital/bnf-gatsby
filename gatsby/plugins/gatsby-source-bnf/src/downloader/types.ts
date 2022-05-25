@@ -491,6 +491,8 @@ export interface FeedMedicalDevice {
 	title: string;
 	/** The medical device types. Usually there is only one of these, but theoretically there could be more. */
 	medicalDeviceTypes: [FeedMedicalDeviceType, ...FeedMedicalDeviceType[]];
+	/** The indications and dose section for the medical device. */
+	indicationsAndDose?: FeedIndicationsAndDosePot;
 }
 
 /** An individual medical device. Preparations can appear at this level but they can also appear at the clinical medical device information group level. */

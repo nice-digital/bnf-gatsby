@@ -2,13 +2,18 @@ import { graphql, Link } from "gatsby";
 import { FC } from "react";
 import striptags from "striptags";
 
-import { type FeedPrep } from "@nice-digital/gatsby-source-bnf";
+import {
+	FeedIndicationsAndDosePotContent,
+	type FeedPrep,
+} from "@nice-digital/gatsby-source-bnf";
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
 import { Grid, GridItem } from "@nice-digital/nds-grid";
 import { PageHeader } from "@nice-digital/nds-page-header";
 
+import { BasePot, IndicationsAndDoseContent } from "@/components/DrugSections";
 import { MedicalDevicePrepsSection } from "@/components/MedicalDevicePrepsSection/MedicalDevicePrepsSection";
 import { Menu } from "@/components/Menu/Menu";
+import { SectionNav } from "@/components/SectionNav/SectionNav";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 import { decapitalize, QueryResult } from "@/utils";
@@ -28,6 +33,11 @@ export interface MedicalDeviceTypePageProps {
 					slug: string;
 				}[];
 			};
+			indicationsAndDose:
+				| (BasePot & {
+						content: QueryResult<FeedIndicationsAndDosePotContent>;
+				  })
+				| null;
 			preparations: QueryResult<FeedPrep>[];
 		};
 	};
@@ -35,7 +45,12 @@ export interface MedicalDeviceTypePageProps {
 
 const MedicalDeviceTypePage: FC<MedicalDeviceTypePageProps> = ({
 	data: {
-		bnfMedicalDeviceType: { title, medicalDevice, preparations },
+		bnfMedicalDeviceType: {
+			title,
+			medicalDevice,
+			preparations,
+			indicationsAndDose,
+		},
 	},
 }) => {
 	const { siteTitleShort } = useSiteMetadata(),
@@ -97,6 +112,44 @@ const MedicalDeviceTypePage: FC<MedicalDeviceTypePageProps> = ({
 						></Menu>
 					</GridItem>
 				) : null}
+				{indicationsAndDose && (
+					<>
+						<GridItem cols={12} md={8} lg={9} className={styles.sections}>
+							<SectionNav
+								sections={[
+									indicationsAndDose
+										? {
+												id: indicationsAndDose.slug,
+												title: indicationsAndDose.potName,
+										  }
+										: undefined,
+									preparations.length > 0
+										? {
+												id: "medical-device-types",
+												title: "Medical device types",
+										  }
+										: undefined,
+								]}
+							></SectionNav>
+						</GridItem>
+
+						<GridItem cols={12} md={8} lg={9} className={styles.sections}>
+							{" "}
+							<section aria-labelledby={indicationsAndDose.slug}>
+								<h2
+									id={indicationsAndDose.slug}
+									dangerouslySetInnerHTML={{
+										__html: indicationsAndDose.potName,
+									}}
+								/>
+								<IndicationsAndDoseContent
+									collapsible={false}
+									content={indicationsAndDose.content}
+								/>
+							</section>
+						</GridItem>
+					</>
+				)}
 				<GridItem
 					cols={12}
 					md={hasStackedNav ? 8 : 12}
@@ -123,6 +176,13 @@ export const query = graphql`
 				medicalDeviceTypes {
 					title
 					slug
+				}
+			}
+			indicationsAndDose {
+				potName
+				slug
+				content {
+					...IndicationsAndDoseContent
 				}
 			}
 			preparations {

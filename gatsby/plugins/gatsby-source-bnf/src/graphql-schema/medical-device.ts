@@ -42,6 +42,9 @@ export const medicalDeviceSchema = `
 
 		"The clinical medical device information groups. These contain preparation-specific content such as device descriptions, compliance standards and prescribing & dispensing information."
 		clinicalMedicalDeviceInformationGroups: [${BnfNode.ClinicalMedicalDeviceInformationGroup}!]! @link
+
+		"The indications and dose section for the medical device."
+		indicationsAndDose: ${BnfNode.MedicalDeviceIndicationsAndDose}
 	}
 
 	"""
