@@ -24,11 +24,11 @@ export async function scrollInToView(
 
 	if (navsection) {
 		await browser.execute(() => {
-			const theLink = Array.from(document.querySelectorAll("a")).find(
-				(el) => el.textContent === "BioXtra® gel"
-			);
+			const navsectionel = document.querySelector<HTMLElement>(
+				'[aria-labelledby="navigate-to-section"]'
+			)!;
 
-			if (theLink) theLink.style.zIndex = "500";
+			navsectionel.style.display = "none";
 		});
 
 		console.log("Element selector #####", element.selector);
