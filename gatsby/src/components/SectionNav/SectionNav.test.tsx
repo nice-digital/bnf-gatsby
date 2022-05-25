@@ -49,7 +49,6 @@ describe("SectionNav", () => {
 				name: `Show Navigate to section`,
 			});
 			userEvent.click(button);
-			screen.debug();
 			expect(button).toHaveAttribute("aria-expanded", "true");
 		});
 

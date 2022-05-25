@@ -1,5 +1,3 @@
-import { read } from "fs";
-
 import classNames from "classnames";
 import { FC, useState, useRef, useEffect } from "react";
 import striptags from "striptags";
