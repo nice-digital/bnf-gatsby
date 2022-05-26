@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MedicalDeviceTypePage Body Indications and dose should match snapshot for indications and dose section 1`] = `
+<section
+  aria-labelledby="indications-and-dose"
+>
+  <h2
+    id="indications-and-dose"
+  >
+    Indications and dose
+  </h2>
+  <section
+    aria-labelledby="irrigation-solutions-indications-and-dose"
+  >
+    <h3
+      class="visually-hidden"
+      id="irrigation-solutions-indications-and-dose"
+    >
+      For Irrigation solutions
+    </h3>
+    <section
+      aria-labelledby="irrigation-solutions-indication-1"
+      class="indicationWrapper"
+    >
+      <h4
+        class="indicationHeading"
+        id="irrigation-solutions-indication-1"
+      >
+        <span
+          class="indicationText"
+        >
+          Skin cleansing
+        </span>
+        <span
+          class="visually-hidden"
+        >
+           for Irrigation solutions
+        </span>
+      </h4>
+      <section
+        class="routeOfAdministration"
+      >
+        <h5
+          class="routeOfAdministrationHeading"
+        >
+          To the skin
+        </h5>
+        <dl
+          class="patientGroups"
+        >
+          <div
+            class="patientGroupDose child"
+          >
+            <dt
+              class="patientGroup"
+            >
+              Child
+            </dt>
+            <dd
+              class="doseStatement"
+            >
+              Use for topical irrigation of wounds.
+            </dd>
+          </div>
+          <div
+            class="patientGroupDose adult"
+          >
+            <dt
+              class="patientGroup"
+            >
+              Adult
+            </dt>
+            <dd
+              class="doseStatement"
+            >
+              Use for topical irrigation of wounds.
+            </dd>
+          </div>
+        </dl>
+      </section>
+    </section>
+  </section>
+</section>
+`;
