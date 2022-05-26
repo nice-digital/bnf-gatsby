@@ -128,8 +128,9 @@ exports[`CautionaryAdvisoryLabelsPage should match snapshot for page contents 1`
         class="toggleButton"
         type="button"
       >
-        Labels
-         
+        <span>
+          Labels
+        </span>
         <svg
           aria-hidden="true"
           class="icon"
