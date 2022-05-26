@@ -96,8 +96,9 @@ exports[`BorderlineSubstanceIntroductionPage should match snapshot for page cont
         class="toggleButton"
         type="button"
       >
-        Borderline substances
-         
+        <span>
+          Borderline substances
+        </span>
         <svg
           aria-hidden="true"
           class="icon"
