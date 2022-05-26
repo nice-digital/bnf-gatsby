@@ -65,7 +65,7 @@ describe("mobile menu", () => {
 
 		expect(
 			screen.queryByRole("button", {
-				name: /Expand menu for example pages/i,
+				name: "Expand menu for example pages",
 			})
 		).toBeNull();
 
@@ -81,7 +81,7 @@ describe("mobile menu", () => {
 
 		expect(
 			screen.getAllByRole("link", {
-				name: /My menu/i,
+				name: "My menu",
 			})[0]
 		).toHaveAttribute("href", "#collapsible-menu");
 
@@ -101,7 +101,7 @@ describe("mobile menu", () => {
 
 		expect(
 			screen.getAllByRole("link", {
-				name: /Another page/i,
+				name: "Another page title",
 			})[0]
 		).toBeInTheDocument;
 
@@ -112,7 +112,7 @@ describe("mobile menu", () => {
 		render(<Menu {...menuProps} />);
 
 		const toggleBtn = screen.getByRole("button", {
-			name: /Expand menu for example pages/i,
+			name: "Expand menu for example pages",
 		});
 		expect(toggleBtn).toBeInTheDocument();
 		expect(toggleBtn).toHaveAttribute("aria-expanded", "false");
@@ -122,7 +122,7 @@ describe("mobile menu", () => {
 		render(<Menu {...menuProps} />);
 
 		const toggleBtn = screen.getByRole("button", {
-			name: /Expand menu for example pages/i,
+			name: "Expand menu for example pages",
 		});
 
 		userEvent.click(toggleBtn);
