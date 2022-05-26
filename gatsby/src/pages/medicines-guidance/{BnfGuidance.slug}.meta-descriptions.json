@@ -1,7 +1,7 @@
 {
   "guidance-on-prescribing": {
-    "bnf": "Read general advice on prescribing, providing patient focused advice, including assessing risks versus benefits of potential prescribing decisions.",
-    "bnfc": "Read general advice on prescribing, providing patient focused advice, including assessing risks versus benefits of potential prescribing decisions."
+    "bnf": "Read general advice on prescribing including biological and biosimilar medicines, complementary and alternative medicines, and unlicensed medicines. Also provides guidance on areas such as drugs and driving, security and validity of prescriptions, and PGDs.",
+    "bnfc": "Read general advice on prescribing including biological and biosimilar medicines, complementary and alternative medicines, and unlicensed medicines. Also provides guidance on areas such as drugs and driving, security and validity of prescriptions, and PGDs."
   },
   "prescription-writing": {
     "bnf": "Read the BNF guidance on how to write prescriptions, including recommendations on legal requirements and formatting.",
@@ -16,16 +16,16 @@
     "bnfc": "Read guidance on who can request and issue emergency supply of prescription only medicines and controlled drugs, and under what conditions."
   },
   "controlled-drugs-and-drug-dependence": {
-    "bnf": "Regulations on controlled drug schedules and drug classes. Includes guidance on travelling abroad, drugs likely to cause dependence or misuse.",
-    "bnfc": "Regulations on controlled drug schedules and drug classes. Includes guidance on travelling abroad, drugs likely to cause dependence or misuse."
+    "bnf": "Regulations on controlled drug schedules and drug classes. Includes prescription requirements, guidance on travelling abroad, drugs likely to cause dependence or misuse.",
+    "bnfc": "Regulations on controlled drug schedules and drug classes. Includes prescription requirements, guidance on travelling abroad, drugs likely to cause dependence or misuse."
   },
   "adverse-reactions-to-drugs": {
     "bnf": "Information on the yellow card and black triangle schemes as well as how to report side effects and suspected adverse drug reactions.",
     "bnfc": "Information on the yellow card and black triangle schemes as well as how to report side effects and suspected adverse drug reactions."
   },
   "guidance-on-intravenous-infusions": {
-    "bnf": "Guidance on the administration and preparation of medications via intravenous (IV) infusion.",
-    "bnfc": "Guidance on the administration and preparation of medications via intravenous (IV) infusion."
+    "bnf": "Guidance on the preparation and administration of medications via intravenous (IV) infusion.",
+    "bnfc": "Guidance on the preparation and administration of medications via intravenous (IV) infusion."
   },
   "medicines-optimisation": {
     "bnf": "Medicines optimisation helps to ensure that medicines are taken as intended, supporting management of long-term conditions and appropriate polypharmacy.",
@@ -40,20 +40,20 @@
     "bnfc": null
   },
   "prescribing-in-hepatic-impairment": {
-    "bnf": "Hepatic impairment may alter responses to drugs. Prescribing advice for patients with liver diseases such as jaundice, ascites, or evidence of encephalopathy.",
-    "bnfc": "Hepatic impairment may alter responses to drugs. Prescribing advice for patients with liver diseases such as jaundice, ascites, or evidence of encephalopathy."
+    "bnf": "Hepatic impairment may alter responses to drugs. Prescribing advice for patients with evidence of liver disease in the form of jaundice, ascites or hepatic encephalopathy.",
+    "bnfc": "Hepatic impairment may alter responses to drugs. Special considerations when prescribing drugs for children with liver disease."
   },
   "prescribing-in-renal-impairment": {
-    "bnf": "Prescribing in patients with AKI, CKD, and reduced kidney function. Read about dosage adjustment and estimating renal function, GFR, eGFR, creatinine clearance.",
-    "bnfc": "Prescribing in patients with AKI, CKD, and reduced kidney function. Read about dosage adjustment and estimating renal function, GFR, eGFR, creatinine clearance."
+    "bnf": "Prescribing advice for patients with renal impairment including those with AKI or CKD. Read about dose adjustment and estimating renal function using eGFR and creatinine clearance.",
+    "bnfc": "Prescribing advice for patients with renal impairment including those with AKI or CKD. Read about dose adjustment and estimating renal function using eGFR and creatinine clearance."
   },
   "prescribing-in-pregnancy": {
-    "bnf": "Drugs can have harmful effects on the embryo or fetus at any time during pregnancy. This page looks at medicines with teratogenic potential and other risks.",
-    "bnfc": "Drugs can have harmful effects on the embryo or fetus at any time during pregnancy. This page looks at medicines with teratogenic potential and other risks."
+    "bnf": "Drugs can have harmful effects on the embryo or fetus at any time during pregnancy. This page offers guidance on use of medicines during the different stages of pregnancy and includes important MHRA/CHM advice.",
+    "bnfc": "Drugs can have harmful effects on the embryo or fetus at any time during pregnancy. This page offers guidance on use of medicines during the different stages of pregnancy and includes important MHRA/CHM advice."
   },
   "prescribing-in-breast-feeding": {
-    "bnf": "Drugs to be used with caution, that are contraindicated in breastfeeding, or can be prescribed as they are present in milk in amounts too small to be harmful.",
-    "bnfc": "Drugs to be used with caution, that are contraindicated in breastfeeding, or can be prescribed as they are present in milk in amounts too small to be harmful."
+    "bnf": "Prescribing considerations for drugs which are used in breast-feeding and important MHRA/CHM advice.",
+    "bnfc": "Prescribing considerations for drugs which are used in breast-feeding and important MHRA/CHM advice."
   },
   "prescribing-in-the-elderly": {
     "bnf": "Guidelines on prescribing for older patients who often receive multiple drugs, and are at risk of additional adverse effects.",
@@ -65,7 +65,7 @@
   },
   "prescribing-in-dental-practice": {
     "bnf": "Guidance on drug management of dental and oral conditions. Includes general guidance, medical emergencies and other problems in dental practice.",
-    "bnfc": "Guidance on drug management of dental and oral conditions. Includes general guidance, medical emergencies and other problems in dental practice."
+    "bnfc": "Guidance on drug management of dental and oral conditions. Includes general guidance."
   },
   "drugs-and-sport": {
     "bnf": "Doctors who prescribe drugs or treatment with the intention of improperly enhancing an individual's performance in sport contravene the GMC's guidance.",
