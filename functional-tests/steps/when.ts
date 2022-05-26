@@ -35,6 +35,7 @@ When(/^I click the "([^"]*)" link$/, async (linkText: string) => {
 	await scrollInToView(selector, contextSelector);
 
 	const element = await (await $(contextSelector)).$(selector);
+	await browser.pause(750);
 	await element.click();
 
 	await waitForUrlToChange(urlStr);

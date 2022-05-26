@@ -24,9 +24,9 @@ export async function scrollInToView(
 		await browser.execute(async (location: { x: number; y: number }) => {
 			await window.scroll(0, location.y - 50);
 		}, element.getLocation() as unknown as { x: number; y: number });
-		await browser.pause(1000);
 	} else {
 		await element.scrollIntoView();
-		await waitForScrollToElement(selector, 5000, contextSelector);
 	}
+
+	await browser.pause(750);
 }
