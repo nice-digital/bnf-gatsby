@@ -85,7 +85,7 @@
   },
   "life-support-algorithm-image": {
     "bnf": "Graphical representation of adult advanced life support algorithm.",
-    "bnfc": "Graphical representation of advanced life support algorithm for children."
+    "bnfc": "Graphical representations of basic and advanced life support algorithms for children."
   },
   "non-medical-prescribing": {
     "bnf": "A range of non-medical healthcare professionals can prescribe medicines for patients as either Independent or Supplementary Prescribers.",
