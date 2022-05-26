@@ -73,15 +73,5 @@
     "onSave": "test-file"
   },
   "xmlTools.splitAttributesOnFormat": false,
-  "xmlTools.enforcePrettySelfClosingTagOnFormat": true,
-  "explorer.fileNesting.enabled": true,
-  "explorer.fileNesting.patterns": {
-    "*.ts": "${capture}.js,${capture}.test.ts",
-    "*.js": "${capture}.js.map, ${capture}.min.js, ${capture}.d.ts",
-    "*.jsx": "${capture}.js",
-    "*.tsx": "${capture}.ts, ${capture}.test.tsx, ${capture}.module.scss",
-    "tsconfig.json": "tsconfig.*.json",
-    "package.json": "package-lock.json, yarn.lock"
-  },
-  "explorer.fileNesting.expand": true
+  "xmlTools.enforcePrettySelfClosingTagOnFormat": true
 }
