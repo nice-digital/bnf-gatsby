@@ -97,7 +97,6 @@ exports[`Wound management index page should match page snapshot 1`] = `
         <span>
           Wound management products
         </span>
-         
         <svg
           aria-hidden="true"
           class="icon"

@@ -130,7 +130,6 @@ exports[`NursePrescribersFormularyApprovedListPage should match snapshot for pag
         <span>
           Approved list for prescribing by Community Practitioner Nurse Prescribers (NPF)
         </span>
-         
         <svg
           aria-hidden="true"
           class="icon"

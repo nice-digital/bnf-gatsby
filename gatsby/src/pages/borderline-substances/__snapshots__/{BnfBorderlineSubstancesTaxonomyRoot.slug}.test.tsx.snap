@@ -114,7 +114,6 @@ exports[`BorderlineSubstancesRootPage Body Single level should match snapshot 1`
         <span>
           Specialised formulas
         </span>
-         
         <svg
           aria-hidden="true"
           class="icon"
@@ -334,7 +333,6 @@ exports[`BorderlineSubstancesRootPage Body Two levels should match snapshot 1`] 
         <span>
           Foods for special diets
         </span>
-         
         <svg
           aria-hidden="true"
           class="icon"

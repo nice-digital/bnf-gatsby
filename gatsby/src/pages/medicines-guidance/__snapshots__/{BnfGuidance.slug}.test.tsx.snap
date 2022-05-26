@@ -130,7 +130,6 @@ exports[`MedicinesGuidancePage should match snapshot for page contents 1`] = `
         <span>
           Guidance on prescribing
         </span>
-         
         <svg
           aria-hidden="true"
           class="icon"

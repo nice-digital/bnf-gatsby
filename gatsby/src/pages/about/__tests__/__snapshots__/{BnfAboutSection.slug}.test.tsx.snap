@@ -130,7 +130,6 @@ exports[`AboutSectionPage should match snapshot for page contents 1`] = `
         <span>
           Changes
         </span>
-         
         <svg
           aria-hidden="true"
           class="icon"

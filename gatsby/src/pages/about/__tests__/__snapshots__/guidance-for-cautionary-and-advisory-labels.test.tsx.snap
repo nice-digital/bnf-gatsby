@@ -129,7 +129,6 @@ exports[`CautionaryAdvisoryGuidancePage should match snapshot for page contents 
         <span>
           Guidance for cautionary and advisory labels
         </span>
-         
         <svg
           aria-hidden="true"
           class="icon"

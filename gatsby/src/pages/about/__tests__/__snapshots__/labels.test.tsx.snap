@@ -131,7 +131,6 @@ exports[`CautionaryAdvisoryLabelsPage should match snapshot for page contents 1`
         <span>
           Labels
         </span>
-         
         <svg
           aria-hidden="true"
           class="icon"
