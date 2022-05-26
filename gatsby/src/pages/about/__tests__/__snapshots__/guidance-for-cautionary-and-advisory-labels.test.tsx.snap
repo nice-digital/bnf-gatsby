@@ -126,7 +126,9 @@ exports[`CautionaryAdvisoryGuidancePage should match snapshot for page contents 
         class="toggleButton"
         type="button"
       >
-        Guidance for cautionary and advisory labels
+        <span>
+          Guidance for cautionary and advisory labels
+        </span>
          
         <svg
           aria-hidden="true"

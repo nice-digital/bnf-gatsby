@@ -127,7 +127,9 @@ exports[`AboutSectionPage should match snapshot for page contents 1`] = `
         class="toggleButton"
         type="button"
       >
-        Changes
+        <span>
+          Changes
+        </span>
          
         <svg
           aria-hidden="true"

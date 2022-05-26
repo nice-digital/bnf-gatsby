@@ -1,3 +1,4 @@
+import { useLocation } from "@reach/router";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Link } from "gatsby";
@@ -62,7 +63,11 @@ describe("mobile menu", () => {
 
 		render(<Menu {...menuProps} />);
 
-		expect(screen.queryByText("My menu", { selector: "button" })).toBeNull();
+		expect(
+			screen.queryByRole("button", {
+				name: /Expand menu for example pages/i,
+			})
+		).toBeNull();
 
 		spy.mockRestore();
 	});
@@ -75,10 +80,30 @@ describe("mobile menu", () => {
 		render(<Menu {...menuProps} />);
 
 		expect(
-			screen.queryByText("My menu", {
-				selector: "a.toggleButton",
-			})
+			screen.getAllByRole("link", {
+				name: /My menu/i,
+			})[0]
 		).toHaveAttribute("href", "#collapsible-menu");
+
+		spy.mockRestore();
+	});
+
+	it("should use the page title where available for the menu link", () => {
+		(useLocation as jest.Mock).mockReturnValue(
+			new URL("https://bnf-gatsby-tests.nice.org.uk/another-page/")
+		);
+
+		const spy = jest.spyOn(React, "useLayoutEffect").mockImplementation(() => {
+			/*noop*/
+		});
+
+		render(<Menu {...menuProps} />);
+
+		expect(
+			screen.getAllByRole("link", {
+				name: /Another page/i,
+			})[0]
+		).toBeInTheDocument;
 
 		spy.mockRestore();
 	});
@@ -86,31 +111,18 @@ describe("mobile menu", () => {
 	it("should render collapsed mobile menu button client side", () => {
 		render(<Menu {...menuProps} />);
 
-		const toggleBtn = screen.getByText("My menu", {
-			selector: "button",
+		const toggleBtn = screen.getByRole("button", {
+			name: /Expand menu for example pages/i,
 		});
 		expect(toggleBtn).toBeInTheDocument();
 		expect(toggleBtn).toHaveAttribute("aria-expanded", "false");
 	});
 
-	it("should render label for screenreaders", () => {
-		render(<Menu {...menuProps} />);
-
-		const toggleBtn = screen.getByText("My menu", {
-			selector: "button",
-		});
-		expect(toggleBtn).toBeInTheDocument();
-		expect(toggleBtn).toHaveAttribute(
-			"aria-label",
-			"Expand menu for example pages"
-		);
-	});
-
 	it("should collapse toggle button on click", () => {
 		render(<Menu {...menuProps} />);
 
-		const toggleBtn = screen.getByText("My menu", {
-			selector: "button",
+		const toggleBtn = screen.getByRole("button", {
+			name: /Expand menu for example pages/i,
 		});
 
 		userEvent.click(toggleBtn);

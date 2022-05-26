@@ -127,7 +127,9 @@ exports[`NursePrescribersFormularyApprovedListPage should match snapshot for pag
         class="toggleButton"
         type="button"
       >
-        Approved list for prescribing by Community Practitioner Nurse Prescribers (NPF)
+        <span>
+          Approved list for prescribing by Community Practitioner Nurse Prescribers (NPF)
+        </span>
          
         <svg
           aria-hidden="true"

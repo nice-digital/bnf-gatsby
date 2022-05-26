@@ -111,7 +111,9 @@ exports[`BorderlineSubstancesRootPage Body Single level should match snapshot 1`
         class="toggleButton"
         type="button"
       >
-        Specialised formulas
+        <span>
+          Specialised formulas
+        </span>
          
         <svg
           aria-hidden="true"
@@ -329,7 +331,9 @@ exports[`BorderlineSubstancesRootPage Body Two levels should match snapshot 1`] 
         class="toggleButton"
         type="button"
       >
-        Foods for special diets
+        <span>
+          Foods for special diets
+        </span>
          
         <svg
           aria-hidden="true"

@@ -131,7 +131,9 @@ exports[`NursePrescribersFormularyTreatmentSummaryPage should match snapshot for
         class="toggleButton"
         type="button"
       >
-        Analgesics
+        <span>
+          Analgesics
+        </span>
          
         <svg
           aria-hidden="true"

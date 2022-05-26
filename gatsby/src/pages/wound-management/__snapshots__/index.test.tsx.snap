@@ -94,7 +94,9 @@ exports[`Wound management index page should match page snapshot 1`] = `
         class="toggleButton"
         type="button"
       >
-        Wound management products
+        <span>
+          Wound management products
+        </span>
          
         <svg
           aria-hidden="true"

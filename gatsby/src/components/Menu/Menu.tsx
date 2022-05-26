@@ -56,11 +56,12 @@ export const Menu: FC<MenuProps> = ({ ariaLabel, label, link, pages }) => {
 						isExpanded ? "Collapse" : "Expand"
 					} menu for ${decapitalize(ariaLabel || `${label} pages`)}`}
 				>
-					{currentPageTitle} <ChevronDownIcon className={styles.icon} />
+					<span dangerouslySetInnerHTML={{ __html: currentPageTitle }} />{" "}
+					<ChevronDownIcon className={styles.icon} />
 				</button>
 			) : (
 				<a className={styles.toggleButton} href="#collapsible-menu">
-					{currentPageTitle}
+					<span dangerouslySetInnerHTML={{ __html: currentPageTitle }} />
 					<ChevronDownIcon className={styles.icon} />
 				</a>
 			)}

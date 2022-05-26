@@ -127,7 +127,9 @@ exports[`MedicinesGuidancePage should match snapshot for page contents 1`] = `
         class="toggleButton"
         type="button"
       >
-        Guidance on prescribing
+        <span>
+          Guidance on prescribing
+        </span>
          
         <svg
           aria-hidden="true"
