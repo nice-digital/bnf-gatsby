@@ -2,14 +2,15 @@ import * as React from "react";
 
 import { Alert } from "@nice-digital/nds-alert";
 
+import { isBNF } from "./../../site";
 import styles from "./IEBanner.module.scss";
 
 export const IEBanner: React.FC = () => {
 	const currentDate = new Date();
 	const today = new Date(
 		currentDate.getFullYear(),
-		currentDate.getMonth() + 1,
-		currentDate.getDay()
+		currentDate.getMonth(),
+		currentDate.getDate()
 	);
 	const retirementDate = new Date("2022-06-15");
 	const tense = today >= retirementDate ? "was" : "will be";
@@ -24,8 +25,8 @@ export const IEBanner: React.FC = () => {
 						Microsoft on June 15th, 2022.
 					</p>
 					<p>
-						The NICE BNF does not support IE11; we strongly recommend that you
-						use an alternative browser such as{" "}
+						The NICE {isBNF ? "BNF" : "BNFC"} does not support IE11; we strongly
+						recommend that you use an alternative browser such as{" "}
 						<a href="https://www.microsoft.com/en-us/edge">Edge</a>,{" "}
 						<a href="https://www.google.com/chrome/">Chrome</a> or{" "}
 						<a href="https://www.mozilla.org/en-GB/firefox/new/">Firefox</a>{" "}
