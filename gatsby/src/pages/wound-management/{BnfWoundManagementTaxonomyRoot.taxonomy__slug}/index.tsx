@@ -1,4 +1,3 @@
-import { useLocation } from "@reach/router";
 import { graphql, Link } from "gatsby";
 import React, { type FC } from "react";
 
@@ -6,7 +5,6 @@ import { FeedPrep } from "@nice-digital/gatsby-source-bnf";
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
 import { Grid, GridItem } from "@nice-digital/nds-grid";
 import { PageHeader } from "@nice-digital/nds-page-header";
-import { StackedNav, StackedNavLink } from "@nice-digital/nds-stacked-nav";
 
 import { Menu } from "@/components/Menu/Menu";
 import {
@@ -27,38 +25,43 @@ export type ProductGroup = {
 
 export interface WoundManagementTaxonomyPageProps {
 	data: {
-		allBnfWoundManagementTaxonomy: {
+		allBnfWoundManagementTaxonomyRoot: {
 			taxonomies: {
-				title: string;
-				slug: string;
+				taxonomy: {
+					title: string;
+					slug: string;
+				};
 			}[];
 		};
-		bnfWoundManagementTaxonomy: {
-			title: string;
-			slug: string;
-			text: string | null;
-			childTaxonomies: {
+		bnfWoundManagementTaxonomyRoot: {
+			taxonomy: {
 				title: string;
 				slug: string;
 				text: string | null;
-				productGroups: ProductGroup[];
 				childTaxonomies: {
 					title: string;
 					slug: string;
+					text: string | null;
+					productGroups: ProductGroup[];
+					childTaxonomies: {
+						title: string;
+						slug: string;
+					}[];
 				}[];
-			}[];
+			};
 		};
 	};
 }
 
 const WoundManagementTaxonomyPage: FC<WoundManagementTaxonomyPageProps> = ({
 	data: {
-		allBnfWoundManagementTaxonomy: { taxonomies },
-		bnfWoundManagementTaxonomy: { slug, title, text, childTaxonomies },
+		allBnfWoundManagementTaxonomyRoot: { taxonomies },
+		bnfWoundManagementTaxonomyRoot: {
+			taxonomy: { slug, title, text, childTaxonomies },
+		},
 	},
 }) => {
 	const { siteTitleShort } = useSiteMetadata(),
-		{ pathname } = useLocation(),
 		sortedTaxonomies = childTaxonomies.sort((a, b) =>
 			a.title > b.title ? 1 : -1
 		),
@@ -101,7 +104,7 @@ const WoundManagementTaxonomyPage: FC<WoundManagementTaxonomyPageProps> = ({
 					<Menu
 						label="Wound management products"
 						link={{ destination: "/wound-management/", elementType: Link }}
-						pages={taxonomies.map(({ slug, title }) => ({
+						pages={taxonomies.map(({ taxonomy: { slug, title } }) => ({
 							href: `/wound-management/${slug}/`,
 							title,
 						}))}
@@ -170,32 +173,34 @@ const WoundManagementTaxonomyPage: FC<WoundManagementTaxonomyPageProps> = ({
 
 export const query = graphql`
 	query ($id: String) {
-		allBnfWoundManagementTaxonomy(
-			filter: { parentTaxonomy: { title: { eq: null } } }
-		) {
+		allBnfWoundManagementTaxonomyRoot {
 			taxonomies: nodes {
-				title
-				slug
+				taxonomy {
+					title
+					slug
+				}
 			}
 		}
-		bnfWoundManagementTaxonomy(id: { eq: $id }) {
-			title
-			slug
-			text
-			childTaxonomies {
+		bnfWoundManagementTaxonomyRoot(id: { eq: $id }) {
+			taxonomy {
 				title
 				slug
 				text
-				productGroups {
-					title
-					description
-					products {
-						name
-					}
-				}
 				childTaxonomies {
 					title
 					slug
+					text
+					productGroups {
+						title
+						description
+						products {
+							name
+						}
+					}
+					childTaxonomies {
+						title
+						slug
+					}
 				}
 			}
 		}

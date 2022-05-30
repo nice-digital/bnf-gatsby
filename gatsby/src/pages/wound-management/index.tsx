@@ -4,7 +4,6 @@ import React, { type FC } from "react";
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
 import { Grid, GridItem } from "@nice-digital/nds-grid";
 import { PageHeader } from "@nice-digital/nds-page-header";
-import { StackedNav, StackedNavLink } from "@nice-digital/nds-stacked-nav";
 
 import { Menu } from "@/components/Menu/Menu";
 import { RecordSectionsContent } from "@/components/RecordSectionsContent/RecordSectionsContent";
@@ -24,10 +23,12 @@ export type WoundManagementIndexPageProps = {
 			title: string;
 			sections: RecordSection[];
 		} | null;
-		allBnfWoundManagementTaxonomy: {
+		allBnfWoundManagementTaxonomyRoot: {
 			taxonomies: {
-				title: string;
-				slug: string;
+				taxonomy: {
+					title: string;
+					slug: string;
+				};
 			}[];
 		};
 	};
@@ -65,7 +66,7 @@ const navSections: SectionNavProps = {
 const WoundManagementIndexPage: FC<WoundManagementIndexPageProps> = ({
 	data: {
 		bnfWoundManagementIntroduction,
-		allBnfWoundManagementTaxonomy: { taxonomies },
+		allBnfWoundManagementTaxonomyRoot: { taxonomies },
 	},
 }) => {
 	const { siteTitleShort } = useSiteMetadata();
@@ -101,7 +102,7 @@ const WoundManagementIndexPage: FC<WoundManagementIndexPageProps> = ({
 							elementType: Link,
 							isCurrent: true,
 						}}
-						pages={taxonomies.map(({ slug, title }) => ({
+						pages={taxonomies.map(({ taxonomy: { slug, title } }) => ({
 							href: `/wound-management/${slug}/`,
 							title,
 						}))}
@@ -127,12 +128,12 @@ export const query = graphql`
 				...RecordSection
 			}
 		}
-		allBnfWoundManagementTaxonomy(
-			filter: { parentTaxonomy: { title: { eq: null } } }
-		) {
+		allBnfWoundManagementTaxonomyRoot {
 			taxonomies: nodes {
-				title
-				slug
+				taxonomy {
+					title
+					slug
+				}
 			}
 		}
 	}

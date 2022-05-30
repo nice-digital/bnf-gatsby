@@ -415,12 +415,16 @@ exports[`InteractantPage body should match snapshot for page body 1`] = `
                   <dl
                     class="supplementaryInfo"
                   >
-                    <dt>
-                      Severity:
-                    </dt>
-                    <dd>
-                      Severe
-                    </dd>
+                    <div
+                      class="severeText"
+                    >
+                      <dt>
+                        Severity:
+                      </dt>
+                      <dd>
+                        Severe
+                      </dd>
+                    </div>
                   </dl>
                 </div>
               </li>
