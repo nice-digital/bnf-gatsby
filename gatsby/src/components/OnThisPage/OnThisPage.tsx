@@ -7,6 +7,7 @@ import { Toggle } from "../Toggle/Toggle";
 import styles from "./OnThisPage.module.scss";
 
 const hideThreshold = 7;
+const shortenedListSize = 5;
 
 export type OnThisPageProps = {
 	sections: {
@@ -33,11 +34,13 @@ export const OnThisPage: FC<OnThisPageProps> = ({ sections }) => {
 				className={styles.list}
 				aria-label="Jump links to sections on this page"
 			>
-				{sections.map(({ id, title }, i) => (
-					<li key={id}>
-						<a href={`#${id}`} dangerouslySetInnerHTML={{ __html: title }} />
-					</li>
-				))}
+				{sections.map(({ id, title }, i) => {
+					return i < shortenedListSize || !isHidingMoreLinks ? (
+						<li key={id}>
+							<a href={`#${id}`} dangerouslySetInnerHTML={{ __html: title }} />
+						</li>
+					) : null;
+				})}
 			</ol>
 			{isClient && isHidingMoreLinks ? (
 				<button type="button" onClick={dispatch}>
