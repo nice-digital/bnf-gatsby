@@ -192,23 +192,7 @@ exports[`BorderlineSubstanceIntroductionPage should match snapshot for page cont
       >
         <div
           data-g="12 lg:3"
-        >
-          <nav
-            aria-labelledby="on-this-page"
-            class="wrapper"
-          >
-            <h2
-              class="heading"
-              id="on-this-page"
-            >
-              On this page
-            </h2>
-            <ol
-              aria-label="Jump links to sections on this page"
-              class="list"
-            />
-          </nav>
-        </div>
+        />
         <div
           class="body"
           data-g="12 lg:9"
