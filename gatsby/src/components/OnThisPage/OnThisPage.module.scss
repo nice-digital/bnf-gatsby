@@ -62,3 +62,9 @@ $back-to-top-clearance: core.rem(core.$nds-spacing-xx-large);
     }
   }
 }
+
+.moreLinksButton {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}

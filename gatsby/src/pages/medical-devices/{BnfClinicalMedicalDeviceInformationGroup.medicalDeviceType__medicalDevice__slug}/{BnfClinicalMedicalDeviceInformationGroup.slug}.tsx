@@ -138,7 +138,6 @@ const CMPIPage: FC<CMPIPageProps> = ({
 					}))}
 				></Menu>
 			)}
-			useSectionNav
 			sections={[
 				getSimplePotSectionLink(deviceDescription),
 				indicationsAndDose

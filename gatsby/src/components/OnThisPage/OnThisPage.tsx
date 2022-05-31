@@ -43,7 +43,11 @@ export const OnThisPage: FC<OnThisPageProps> = ({ sections }) => {
 				})}
 			</ol>
 			{isClient && isHidingMoreLinks ? (
-				<button type="button" onClick={dispatch}>
+				<button
+					type="button"
+					onClick={dispatch}
+					className={styles.moreLinksButton}
+				>
 					<Toggle isOpen={false}>Show all sections</Toggle>
 				</button>
 			) : null}
