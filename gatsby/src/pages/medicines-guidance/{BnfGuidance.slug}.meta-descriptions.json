@@ -1,7 +1,7 @@
 {
   "guidance-on-prescribing": {
     "bnf": "Read general advice on prescribing including biological and biosimilar medicines, complementary and alternative medicines, and unlicensed medicines. Also provides guidance on areas such as drugs and driving, security and validity of prescriptions, and PGDs.",
-    "bnfc": "Read general advice on prescribing including biological and biosimilar medicines, complementary and alternative medicines, and unlicensed medicines. Also provides guidance on areas such as drugs and driving, security and validity of prescriptions, and PGDs."
+    "bnfc": "Read general advice on prescribing in children including biological and biosmilar medicines, complementary and alternative medicines, and unlicensed medicines. Also provides guidance on administration of medicines to children, managing medicines in school and information on excipients and electrolytes."
   },
   "prescription-writing": {
     "bnf": "Read the BNF guidance on how to write prescriptions, including recommendations on legal requirements and formatting.",
@@ -40,16 +40,16 @@
     "bnfc": null
   },
   "prescribing-in-hepatic-impairment": {
-    "bnf": "Hepatic impairment may alter responses to drugs. Prescribing advice for patients with evidence of liver disease in the form of jaundice, ascites or hepatic encephalopathy.",
-    "bnfc": "Hepatic impairment may alter responses to drugs. Special considerations when prescribing drugs for children with liver disease."
+    "bnf": "Prescribing advise for patients with hepatic impairment.",
+    "bnfc": "'Hepatic impairment may alter responses to drugs. Special considerations when prescribing drugs for children with liver disease."
   },
   "prescribing-in-renal-impairment": {
     "bnf": "Prescribing advice for patients with renal impairment including those with AKI or CKD. Read about dose adjustment and estimating renal function using eGFR and creatinine clearance.",
     "bnfc": "Prescribing advice for patients with renal impairment including those with AKI or CKD. Read about dose adjustment and estimating renal function using eGFR and creatinine clearance."
   },
   "prescribing-in-pregnancy": {
-    "bnf": "Drugs can have harmful effects on the embryo or fetus at any time during pregnancy. This page offers guidance on use of medicines during the different stages of pregnancy and includes important MHRA/CHM advice.",
-    "bnfc": "Drugs can have harmful effects on the embryo or fetus at any time during pregnancy. This page offers guidance on use of medicines during the different stages of pregnancy and includes important MHRA/CHM advice."
+    "bnf": "Drugs can have harmful effects on the embryo or fetus at any time during pregnancy. Information and advice around the use of drugs during pregnancy.",
+    "bnfc": "Drugs can have harmful effects on the embryo or fetus at any time during pregnancy. Information and advice around the use of drugs during pregnancy."
   },
   "prescribing-in-breast-feeding": {
     "bnf": "Prescribing considerations for drugs which are used in breast-feeding and important MHRA/CHM advice.",
@@ -60,16 +60,16 @@
     "bnfc": null
   },
   "prescribing-in-palliative-care": {
-    "bnf": "Read BNF advice on pain management and symptom control in end of life care. Includes opioid conversion charts and guidance on continuous subcutaneous infusion.",
-    "bnfc": "Read BNFC advice on pain management and symptom control in end of life care. Includes opioid conversion charts and guidance on continuous subcutaneous infusion."
+    "bnf": "Information and advice around the use of drugs in palliative care",
+    "bnfc": "‘Information and advice around the use of drugs in palliative care"
   },
   "prescribing-in-dental-practice": {
     "bnf": "Guidance on drug management of dental and oral conditions. Includes general guidance, medical emergencies and other problems in dental practice.",
     "bnfc": "Guidance on drug management of dental and oral conditions. Includes general guidance."
   },
   "drugs-and-sport": {
-    "bnf": "Doctors who prescribe drugs or treatment with the intention of improperly enhancing an individual's performance in sport contravene the GMC's guidance.",
-    "bnfc": "Doctors who prescribe drugs or treatment with the intention of improperly enhancing an individual's performance in sport contravene the GMC's guidance."
+    "bnf": "Information and advice on the use of drugs in sport.",
+    "bnfc": "Information and advice on the use of drugs in sport."
   },
   "index-of-manufacturers": {
     "bnf": "An alphabetical list of manufacturers and other companies referenced in the BNF, with their medicines information or general contact details.",
