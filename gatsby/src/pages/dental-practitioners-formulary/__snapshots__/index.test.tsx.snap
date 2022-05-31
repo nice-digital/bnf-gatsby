@@ -102,24 +102,24 @@ exports[`DentalPractitionersFormularyPageProps should match snapshot for page co
       data-g="12 md:12 lg:12"
     >
       <div
-        class="grid grid--rev grid--loose"
+        class="grid grid--loose"
       >
         <div
-          data-g="12 lg:3"
+          data-g="12 md:8 lg:9"
         >
           <nav
-            aria-labelledby="on-this-page"
-            class="wrapper"
+            aria-labelledby="navigate-to-section"
+            class="nav"
           >
             <h2
               class="heading"
-              id="on-this-page"
+              id="navigate-to-section"
             >
-              On this page
+              Navigate to section
             </h2>
             <ol
               aria-label="Jump links to sections on this page"
-              class="list"
+              class="linkList"
             >
               <li>
                 <a
@@ -140,7 +140,7 @@ exports[`DentalPractitionersFormularyPageProps should match snapshot for page co
         </div>
         <div
           class="body"
-          data-g="12 lg:9"
+          data-g="12 md:8 lg:9"
         >
           <section
             aria-labelledby="list-of-dental-preparations"
