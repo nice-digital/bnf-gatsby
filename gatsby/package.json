@@ -30,6 +30,9 @@
     "wait": "wait-on http-get://localhost:8000 --delay 10000 --interval 5000 --timeout 300000 --log",
     "audit:teamcity": "npm audit --audit-level=moderate --json|npm-audit-reporter-teamcity"
   },
+  "browserslist": [
+    "extends @nice-digital/browserslist-config"
+  ],
   "dependencies": {
     "@nice-digital/browserslist-config": "^2.0.1",
     "@nice-digital/design-system": "^1.7.3",
