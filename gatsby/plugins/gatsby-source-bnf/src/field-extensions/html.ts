@@ -1,11 +1,10 @@
 import { type FieldResolveContext } from "../node-model";
 
 import { replaceRelativeAnchors } from "./anchors/anchor-replacer";
-import { replaceXRefs } from "./anchors/xref-replacer";
 
 /**
  * Custom Gatsby field extension to process HTML string fields.
- * It replaces xrefs and internal anchors with anchor tags, resolving the ids into URL paths to the relevant page.
+ * It replaces internal anchors with anchor tags, resolving the ids into URL paths to the relevant page.
  *
  * @example Use within a GraphQL schema like:
  * 	content: String! @html
@@ -34,7 +33,6 @@ export const htmlFieldExtension = {
 
 				if (typeof fieldValue === "string") {
 					fieldValue = replaceRelativeAnchors(fieldValue, context.nodeModel);
-					fieldValue = replaceXRefs(fieldValue, context.nodeModel);
 
 					return fieldValue;
 				} else if (
@@ -43,7 +41,6 @@ export const htmlFieldExtension = {
 				) {
 					return fieldValue.map((s) => {
 						s = replaceRelativeAnchors(s, context.nodeModel);
-						s = replaceXRefs(s, context.nodeModel);
 
 						return s;
 					});
