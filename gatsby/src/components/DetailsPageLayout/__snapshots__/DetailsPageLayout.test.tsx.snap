@@ -36,6 +36,7 @@ exports[`DetailsPageLayout Body should match snapshot for body 1`] = `
           >
             <li>
               <a
+                class=""
                 href="#test-1"
               >
                 Test 1
@@ -43,6 +44,7 @@ exports[`DetailsPageLayout Body should match snapshot for body 1`] = `
             </li>
             <li>
               <a
+                class=""
                 href="#test-2"
               >
                 Test 2

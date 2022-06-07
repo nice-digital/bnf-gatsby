@@ -259,6 +259,7 @@ exports[`AboutSectionPage should match snapshot for page contents 1`] = `
             >
               <li>
                 <a
+                  class=""
                   href="#introduction"
                 >
                   Introduction
@@ -266,6 +267,7 @@ exports[`AboutSectionPage should match snapshot for page contents 1`] = `
               </li>
               <li>
                 <a
+                  class="activeHeading"
                   href="#significant-changes"
                 >
                   Significant changes
