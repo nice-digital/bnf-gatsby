@@ -68,3 +68,7 @@ $back-to-top-clearance: core.rem(core.$nds-spacing-xx-large);
   border: 0;
   cursor: pointer;
 }
+
+.activeHeading {
+  font-weight: bold;
+}
