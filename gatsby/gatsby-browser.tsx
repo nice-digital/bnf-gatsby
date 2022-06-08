@@ -49,6 +49,12 @@ export const onRouteUpdate = ({
 export const wrapPageElement = ({
 	element,
 	props,
-}: WrapPageElementBrowserArgs): ReactElement => (
-	<Layout {...props}>{element}</Layout>
-);
+}: WrapPageElementBrowserArgs): ReactElement => {
+	const isIE = !!window.document.documentMode;
+
+	return (
+		<Layout isIE={isIE} {...props}>
+			{element}
+		</Layout>
+	);
+};

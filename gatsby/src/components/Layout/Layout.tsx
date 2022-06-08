@@ -1,9 +1,8 @@
 import React, { ReactNode } from "react";
+import { Helmet } from "react-helmet";
 
 import { Footer, Main } from "@nice-digital/global-nav";
 import { Container } from "@nice-digital/nds-container";
-
-import { useIsClient } from "@/hooks/useIsClient";
 
 import { IEBanner } from "../IEBanner/IEBanner";
 import { SiteDistinction } from "../SiteDistinction/SiteDistinction";
@@ -15,6 +14,7 @@ import "./../../styles/global.scss";
 
 type LayoutProps = {
 	children: ReactNode;
+	isIE?: boolean;
 };
 
 declare global {
@@ -23,14 +23,10 @@ declare global {
 	}
 }
 
-export const Layout: React.FC<LayoutProps> = ({ children }: LayoutProps) => {
-	const isClient = useIsClient();
-	let isIE = false;
-	if (isClient) {
-		const doc: Document = window.document;
-		isIE = !!doc.documentMode;
-	}
-
+export const Layout: React.FC<LayoutProps> = ({
+	children,
+	isIE,
+}: LayoutProps) => {
 	return (
 		<>
 			{isIE && <IEBanner />}

@@ -21,6 +21,11 @@ export const onPreRenderHTML = ({
 		></script>
 	);
 
+	// Add IE11 normalize polyfill
+	components.push(
+		<script src="/js/unorm.min.js" type="text/javascript"></script>
+	);
+
 	replaceHeadComponents(components);
 };
 
