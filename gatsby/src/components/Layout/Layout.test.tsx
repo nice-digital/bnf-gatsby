@@ -26,10 +26,8 @@ describe("Layout", () => {
 	});
 
 	it("Should render a banner whenever IE11 is detected", () => {
-		Object.defineProperty(global.document, "documentMode", { value: "test" }); // Spoof IE by adding a documentMode property to the document object
-
 		render(
-			<Layout>
+			<Layout isIE={true}>
 				<div>Content</div>
 			</Layout>
 		);

@@ -16,3 +16,5 @@ functional-tests/bnf-website-build
 functional-tests/bnfc-website-build
 
 gatsby/public
+
+gatsby/static/js/unorm.min.js
