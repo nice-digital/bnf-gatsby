@@ -67,6 +67,12 @@ $back-to-top-clearance: core.rem(core.$nds-spacing-xx-large);
   background: transparent;
   border: 0;
   cursor: pointer;
+  margin: 0 0 core.rem(core.$nds-spacing-medium);
+  padding-left: 0;
+
+  @include core.mq($from: lg) {
+    padding-left: core.rem(core.$nds-spacing-x-small);
+  }
 }
 
 .activeHeading {
