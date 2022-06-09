@@ -11,7 +11,7 @@ $back-to-top-clearance: core.rem(core.$nds-spacing-xx-large);
 
   @include core.mq($from: lg) {
     $height-reduction: $brand-banner-clearance + $back-to-top-clearance;
-    height: calc(100vh - #{$height-reduction});
+    max-height: calc(100vh - #{$height-reduction});
     position: sticky;
   }
 }
