@@ -16,17 +16,19 @@ export async function scrollInToView(
 	// it _might_ be conflicting with scroll restoration in Gatsby https://www.gatsbyjs.com/docs/how-to/routing/scroll-restoration/
 	await browser.pause(250);
 
-	const navsection = await $(
+	const hasNavsection = await $(
 		'[aria-labelledby="navigate-to-section"]'
 	).isExisting();
 
-	if (navsection) {
-		await browser.execute(async (location: { x: number; y: number }) => {
-			await window.scroll(0, location.y - 50);
-		}, element.getLocation() as unknown as { x: number; y: number });
+	if (hasNavsection) {
+		await browser.execute(async () => {
+			document
+				.querySelector<HTMLElement>('[aria-labelledby="navigate-to-section"]')
+				?.remove();
+		});
 	} else {
 		await element.scrollIntoView();
 	}
 
-	await browser.pause(750);
+	await browser.pause(250);
 }
