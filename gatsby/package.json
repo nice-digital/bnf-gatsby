@@ -79,5 +79,8 @@
     "striptags": "^3.2.0",
     "ts-node": "^10.4.0",
     "wait-on": "^6.0.0"
-  }
+  },
+  "browserslist": [
+    "extends @nice-digital/browserslist-config"
+  ]
 }
