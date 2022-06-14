@@ -1,5 +1,6 @@
 import throttle from "lodash.throttle";
 import React, { FC, useEffect, useReducer, useState } from "react";
+import striptags from "striptags";
 
 import { useIsClient } from "@/hooks/useIsClient";
 
@@ -80,7 +81,7 @@ export const OnThisPage: FC<OnThisPageProps> = ({ sections }) => {
 							<a
 								className={activeHeadingId === id ? styles.activeHeading : ""}
 								href={`#${id}`}
-								dangerouslySetInnerHTML={{ __html: title }}
+								dangerouslySetInnerHTML={{ __html: striptags(title) }}
 							/>
 						</li>
 					) : null;
