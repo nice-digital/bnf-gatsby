@@ -10,21 +10,21 @@ exports[`MedicalDeviceTypePage Body Indications and dose should match snapshot f
     Indications and dose
   </h2>
   <section
-    aria-labelledby="irrigation-solutions-indications-and-dose"
+    aria-labelledby="Irrigation-solutions-indications-and-dose"
   >
     <h3
       class="visually-hidden"
-      id="irrigation-solutions-indications-and-dose"
+      id="Irrigation-solutions-indications-and-dose"
     >
       For Irrigation solutions
     </h3>
     <section
-      aria-labelledby="irrigation-solutions-indication-1"
+      aria-labelledby="Irrigation-solutions-indication-1"
       class="indicationWrapper"
     >
       <h4
         class="indicationHeading"
-        id="irrigation-solutions-indication-1"
+        id="Irrigation-solutions-indication-1"
       >
         <span
           class="indicationText"

@@ -148,21 +148,21 @@ exports[`Wound management taxonomy page should match page snapshot 1`] = `
         >
           <li>
             <a
-              href="#iv-3000"
+              href="#IV3000"
             >
               IV3000
             </a>
           </li>
           <li>
             <a
-              href="#mepore-iv"
+              href="#Mepore-IV"
             >
               Mepore IV
             </a>
           </li>
           <li>
             <a
-              href="#pharmapore-pu-iv"
+              href="#Pharmapore-PU-IV"
             >
               Pharmapore-PU IV
             </a>
@@ -237,7 +237,7 @@ exports[`Wound management taxonomy page should match page snapshot 1`] = `
               <div>
                 <h2
                   class="productGroupHeading"
-                  id="iv-3000"
+                  id="IV3000"
                 >
                   IV3000
                 </h2>
@@ -338,7 +338,7 @@ exports[`Wound management taxonomy page should match page snapshot 1`] = `
               <div>
                 <h2
                   class="productGroupHeading"
-                  id="mepore-iv"
+                  id="Mepore-IV"
                 >
                   Mepore IV
                 </h2>
@@ -411,7 +411,7 @@ exports[`Wound management taxonomy page should match page snapshot 1`] = `
               <div>
                 <h2
                   class="productGroupHeading"
-                  id="pharmapore-pu-iv"
+                  id="Pharmapore-PU-IV"
                 >
                   Pharmapore-PU IV
                 </h2>

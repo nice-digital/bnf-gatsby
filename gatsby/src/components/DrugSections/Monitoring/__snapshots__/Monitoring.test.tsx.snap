@@ -119,11 +119,11 @@ exports[`Monitoring outer section should match snapshot 1`] = `
     </section>
   </section>
   <section
-    aria-labelledby="monitoring-requirements-solpadol-caplets"
+    aria-labelledby="monitoring-requirements-Solpadol(r)-caplets"
   >
     <h3
       class=""
-      id="monitoring-requirements-solpadol-caplets"
+      id="monitoring-requirements-Solpadol(r)-caplets"
     >
       <span
         class="visually-hidden"
@@ -135,10 +135,10 @@ exports[`Monitoring outer section should match snapshot 1`] = `
       </span>
     </h3>
     <section
-      aria-labelledby="patient-programmes-solpadol-caplets"
+      aria-labelledby="patient-programmes-Solpadol(r)-caplets"
     >
       <h4
-        id="patient-programmes-solpadol-caplets"
+        id="patient-programmes-Solpadol(r)-caplets"
       >
         Patient monitoring programmes
         <span
