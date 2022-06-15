@@ -1,5 +1,5 @@
-import slugify from "@sindresorhus/slugify";
 import { type FC } from "react";
+import slugify from "slugify";
 import striptags from "striptags";
 
 import { type FeedMonitoringPot } from "@nice-digital/gatsby-source-bnf";

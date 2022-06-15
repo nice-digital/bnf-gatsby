@@ -1,6 +1,6 @@
-import slugify from "@sindresorhus/slugify";
 import { graphql, Link } from "gatsby";
 import React, { type FC } from "react";
+import slugify from "slugify";
 import striptags from "striptags";
 
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";

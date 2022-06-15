@@ -1,6 +1,6 @@
-import slugify from "@sindresorhus/slugify";
 import classNames from "classnames";
 import { Fragment, type FC, useMemo } from "react";
+import slugify from "slugify";
 import striptags from "striptags";
 
 import { type FeedIndicationsAndDosePotContent } from "@nice-digital/gatsby-source-bnf";
