@@ -6,18 +6,14 @@ import { isBNF } from "./../../site";
 import styles from "./IEBanner.module.scss";
 
 export const IEBanner: React.FC = () => {
-	const currentDate = new Date();
-	const retirementDate = new Date("2022-06-15T00:00:00.000Z");
-	const tense = currentDate >= retirementDate ? "was" : "will be";
-
 	return (
 		<div className={styles.banner}>
 			<div className="container">
 				<Alert type="caution" className={styles.banner}>
 					<h2>Browser support</h2>
 					<p>
-						Your browser, Internet Explorer 11 (IE11), {tense} retired by
-						Microsoft on June 15th, 2022.
+						Your browser, Internet Explorer 11 (IE11), was retired by Microsoft
+						on June 15th, 2022.
 					</p>
 					<p>
 						The NICE {isBNF ? "BNF" : "BNFC"} does not support IE11; we strongly
