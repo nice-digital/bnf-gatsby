@@ -1,0 +1,5 @@
+@use '@nice-digital/nds-core/scss/core';
+
+.banner {
+  padding: core.rem(core.$nds-spacing-medium) 0;
+}
