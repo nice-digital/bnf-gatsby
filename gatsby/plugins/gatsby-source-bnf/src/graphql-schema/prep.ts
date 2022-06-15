@@ -60,5 +60,8 @@ export const prepSchema = `
 
 		"The colour of the preparation, if available. This will only ever be present for wound management preparations."
 		colour: String
+
+		"A flag to indicate whether (true) or not (false) this pack is for ACBS indications."
+		acbs: Boolean
 	}
 `;

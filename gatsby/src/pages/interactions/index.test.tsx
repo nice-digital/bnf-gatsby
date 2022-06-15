@@ -54,7 +54,7 @@ describe("InteractionsIndexPage", () => {
 					.querySelector("meta[name='description']")
 					?.getAttribute("content")
 			).toEqual(
-				"Use the interactions A to Z to look up a drug and see which other drugs it interacts with and how serious those interactions are."
+				"Use the interactions A to Z to look up a drug and see which other drugs it interacts with and the severity of these interactions."
 			);
 		});
 	});

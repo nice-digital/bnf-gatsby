@@ -128,7 +128,17 @@ export const Prep: FC<PrepProps> = ({ prep, children }) => (
 								{pack.unit && (
 									<div className={styles.packDefinitionListItem}>
 										<dt>Unit</dt>
-										<dd>{pack.unit}</dd>
+										<dd>
+											{pack.unit}
+											{pack.acbs && (
+												<>
+													{" "}
+													<abbr title="Advisory Committee on Borderline Substances">
+														(ACBS)
+													</abbr>
+												</>
+											)}
+										</dd>
 									</div>
 								)}
 								<div className={styles.packDefinitionListItem}>

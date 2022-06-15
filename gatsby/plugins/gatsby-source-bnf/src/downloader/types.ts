@@ -491,6 +491,8 @@ export interface FeedMedicalDevice {
 	title: string;
 	/** The medical device types. Usually there is only one of these, but theoretically there could be more. */
 	medicalDeviceTypes: [FeedMedicalDeviceType, ...FeedMedicalDeviceType[]];
+	/** The indications and dose section for the medical device. */
+	indicationsAndDose?: FeedIndicationsAndDosePot;
 }
 
 /** An individual medical device. Preparations can appear at this level but they can also appear at the clinical medical device information group level. */
@@ -571,6 +573,8 @@ export interface FeedPack {
 	drugTariffPrice?: string;
 	/** The colour of the preparation, if available. This will only ever be present for wound management preparations. */
 	colour?: string;
+	/** A flag to indicate whether (`true`) or not (`false`) this pack is for ACBS indications. */
+	acbs?: boolean;
 }
 
 export type FeedLegalCategory = "POM" | "P" | "GSL" | "Not Applicable";

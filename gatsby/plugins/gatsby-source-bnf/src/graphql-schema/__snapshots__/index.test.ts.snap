@@ -648,6 +648,9 @@ exports[`schema should match snapshot 1`] = `
 
 		\\"The clinical medical device information groups. These contain preparation-specific content such as device descriptions, compliance standards and prescribing & dispensing information.\\"
 		clinicalMedicalDeviceInformationGroups: [BnfClinicalMedicalDeviceInformationGroup!]! @link
+
+		\\"The indications and dose section for the medical device.\\"
+		indicationsAndDose: BnfMedicalDeviceIndicationsAndDose
 	}
 
 	\\"\\"\\"
@@ -953,6 +956,9 @@ exports[`schema should match snapshot 1`] = `
 
 		\\"The colour of the preparation, if available. This will only ever be present for wound management preparations.\\"
 		colour: String
+
+		\\"A flag to indicate whether (true) or not (false) this pack is for ACBS indications.\\"
+		acbs: Boolean
 	}
 
 
@@ -1084,6 +1090,11 @@ exports[`schema should match snapshot 1`] = `
 
 		\\"The root taxonomy\\"
 		rootTaxonomy: BnfWoundManagementTaxonomy! @link
+	}
+
+	type BnfWoundManagementTaxonomyRoot implements Node @dontInfer {
+		\\"The taxonomy node\\"
+		taxonomy: BnfWoundManagementTaxonomy! @link
 	}
 
 	type BnfWoundManagementTaxonomyProductGroup implements Node @dontInfer {

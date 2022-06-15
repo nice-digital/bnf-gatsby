@@ -27,6 +27,12 @@
   padding-left: core.rem(core.$nds-spacing-medium);
 }
 
+.severeText {
+  color: core.$nds-colour-error;
+  display: inline-block;
+  margin-right: core.rem(core.$nds-spacing-small);
+}
+
 .supplementaryInfo {
   margin-top: core.rem(core.$nds-spacing-medium);
 

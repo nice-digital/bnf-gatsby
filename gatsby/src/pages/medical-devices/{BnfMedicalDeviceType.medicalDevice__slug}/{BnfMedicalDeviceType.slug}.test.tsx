@@ -50,6 +50,7 @@ const props: MedicalDeviceTypePageProps = {
 					sugarFree: false,
 				},
 			],
+			indicationsAndDose: null,
 		},
 	},
 };
@@ -221,6 +222,94 @@ describe("MedicalDeviceTypePage", () => {
 				expect(
 					within(stackedNav).getByRole("link", { name: "Film gloves" })
 				).toHaveAttribute("aria-current", "true");
+			});
+		});
+
+		describe("Indications and dose", () => {
+			const indicationsAndDose: MedicalDeviceTypePageProps["data"]["bnfMedicalDeviceType"]["indicationsAndDose"] =
+				{
+					potName: "Indications and dose",
+					slug: "indications-and-dose",
+					content: {
+						contentFor: "Irrigation solutions",
+						doseAdjustments: null,
+						doseEquivalence: null,
+						extremesOfBodyWeight: null,
+						indicationAndDoseGroups: [
+							{
+								routesAndPatientGroups: [
+									{
+										routeOfAdministration: "To the skin",
+										patientGroups: [
+											{
+												detailedPatientGroup: "Child",
+												doseStatement: "Use for topical irrigation of wounds.",
+												patientGroup: "child",
+											},
+											{
+												detailedPatientGroup: "Adult",
+												doseStatement: "Use for topical irrigation of wounds.",
+												patientGroup: "adult",
+											},
+										],
+									},
+								],
+								therapeuticIndications: [
+									{
+										indication: "Skin cleansing",
+										sctIndication: null,
+										sctTherapeuticIntent: null,
+									},
+								],
+							},
+						],
+						pharmacokinetics: null,
+						potency: null,
+					},
+				};
+
+			const indicationsAndDoseProps: MedicalDeviceTypePageProps = {
+				data: {
+					bnfMedicalDeviceType: {
+						...props.data.bnfMedicalDeviceType,
+						indicationsAndDose,
+					},
+				},
+			};
+
+			it("should render indications and dose section link and associated section", () => {
+				render(<MedicalDeviceTypePage {...indicationsAndDoseProps} />);
+				expect(
+					screen.getByRole("link", { name: indicationsAndDose.potName })
+				).toHaveAttribute("href", `#${indicationsAndDose.slug}`);
+				expect(
+					screen.getByRole("region", { name: indicationsAndDose.potName })
+				).toBeInTheDocument();
+				expect(
+					screen.getByRole("heading", {
+						level: 2,
+						name: indicationsAndDose.potName,
+					})
+				).toBeInTheDocument();
+			});
+
+			it("should render navigate to section with links for the two headings", () => {
+				render(<MedicalDeviceTypePage {...indicationsAndDoseProps} />);
+				const navigateToSection = screen.getByRole("navigation", {
+					name: "Navigate to section",
+				});
+				expect(
+					within(navigateToSection)
+						.getAllByRole("link")
+						.map((n) => n.textContent)
+				).toStrictEqual(["Indications and dose", "Medical device types"]);
+			});
+
+			it("should match snapshot for indications and dose section", () => {
+				render(<MedicalDeviceTypePage {...indicationsAndDoseProps} />);
+				expect(
+					screen.getByRole("region", { name: indicationsAndDose.potName })
+				).toMatchSnapshot();
 			});
 		});
 

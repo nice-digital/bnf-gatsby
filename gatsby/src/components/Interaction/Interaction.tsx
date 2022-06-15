@@ -49,12 +49,18 @@ export const Interaction: React.FC<InteractionProps> = ({
 									<div dangerouslySetInnerHTML={{ __html: message }}></div>
 									{(evidence !== null || !isNormalInteraction) && (
 										<dl className={styles.supplementaryInfo}>
-											{!isNormalInteraction && (
-												<>
-													<dt>Severity:</dt>
-													<dd>{severity}</dd>
-												</>
-											)}
+											{!isNormalInteraction &&
+												(severity === "Severe" ? (
+													<div className={styles.severeText}>
+														<dt>Severity:</dt>
+														<dd>{severity}</dd>
+													</div>
+												) : (
+													<>
+														<dt>Severity:</dt>
+														<dd>{severity}</dd>
+													</>
+												))}
 											{evidence !== null && (
 												<>
 													<dt>Evidence:</dt>

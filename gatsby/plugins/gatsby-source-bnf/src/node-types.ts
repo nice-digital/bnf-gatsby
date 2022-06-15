@@ -58,6 +58,7 @@ export const BnfNode = {
 	WoundManagementIntroduction: "BnfWoundManagementIntroduction",
 	WoundManagementProductGroup: "BnfWoundManagementProductGroup",
 	WoundManagementTaxonomy: "BnfWoundManagementTaxonomy",
+	WoundManagementTaxonomyRoot: "BnfWoundManagementTaxonomyRoot",
 	WoundManagementTaxonomyProductGroup: "BnfWoundManagementTaxonomyProductGroup",
 } as const;
 
