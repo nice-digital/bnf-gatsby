@@ -7,13 +7,8 @@ import styles from "./IEBanner.module.scss";
 
 export const IEBanner: React.FC = () => {
 	const currentDate = new Date();
-	const today = new Date(
-		currentDate.getFullYear(),
-		currentDate.getMonth(),
-		currentDate.getDate()
-	);
-	const retirementDate = new Date("2022-06-15");
-	const tense = today >= retirementDate ? "was" : "will be";
+	const retirementDate = new Date("2022-06-15T00:00:00.000Z");
+	const tense = currentDate >= retirementDate ? "was" : "will be";
 
 	return (
 		<div className={styles.banner}>
