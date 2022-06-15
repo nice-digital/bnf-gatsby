@@ -15,9 +15,7 @@ exports[`IEBanner should match snapshot 1`] = `
           Browser support
         </h2>
         <p>
-          Your browser, Internet Explorer 11 (IE11), 
-          will be
-           retired by Microsoft on June 15th, 2022.
+          Your browser, Internet Explorer 11 (IE11), was retired by Microsoft on June 15th, 2022.
         </p>
         <p>
           The NICE 
