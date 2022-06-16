@@ -28,6 +28,9 @@ export const nationalFundingSchema = `
 		"What the content is for (the name of a drug class, drug or preparation). May contain HTML mark-up"
 		contentFor: String!
 
+		"Slugified contentFor field"
+		slug: String! @slug(field: "contentFor")
+
 		"The initial paragraph of text at the start of the national funding pot. May contain HTML mark-up"
 		initialText: String! @html
 

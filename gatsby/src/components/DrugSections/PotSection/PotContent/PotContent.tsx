@@ -1,6 +1,4 @@
 import { ReactElement, type FC } from "react";
-import slugify from "slugify";
-import striptags from "striptags";
 
 import { type FeedBasePotContent } from "@nice-digital/gatsby-source-bnf";
 
@@ -9,6 +7,7 @@ import { BasePot } from "../../types";
 export interface PotContentProps {
 	pot: BasePot;
 	contentFor: string;
+	contentForSlug: string;
 	contentForPrefix: "For" | "For all";
 	showHeading: boolean;
 	children: ReactElement<FeedBasePotContent>;
@@ -19,9 +18,10 @@ export const PotContent: FC<PotContentProps> = ({
 	contentForPrefix,
 	showHeading,
 	contentFor,
+	contentForSlug,
 	children,
 }) => {
-	const slug = `${pot.slug}-${slugify(striptags(contentFor))}`;
+	const slug = `${pot.slug}-${contentForSlug}`;
 
 	return (
 		<section aria-labelledby={slug}>

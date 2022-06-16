@@ -2,24 +2,27 @@ import { type ReactElement } from "react";
 
 import { type FeedBasePotContent } from "@nice-digital/gatsby-source-bnf";
 
+import { type WithSlug } from "@/utils";
+
 import styles from "../DrugSection.module.scss";
 import { BasePot } from "../types";
 
 import { PotContent } from "./PotContent/PotContent";
 
-export interface PotSectionProps<TContent extends FeedBasePotContent>
-	extends BasePot {
-	drugClassContent: TContent[];
-	drugContent: TContent | null;
-	prepContent: TContent[];
+export interface PotSectionProps<
+	TPotContent extends WithSlug<FeedBasePotContent>
+> extends BasePot {
+	drugClassContent: TPotContent[];
+	drugContent: TPotContent | null;
+	prepContent: TPotContent[];
 	children: (renderArgs: {
 		contentForPrefix: string;
-		content: TContent;
+		content: TPotContent;
 		pot: BasePot;
 	}) => ReactElement;
 }
 
-export const PotSection = <TPotContent extends FeedBasePotContent>({
+export const PotSection = <TPotContent extends WithSlug<FeedBasePotContent>>({
 	drugClassContent,
 	drugContent,
 	prepContent,
@@ -35,6 +38,7 @@ export const PotSection = <TPotContent extends FeedBasePotContent>({
 					key={content.contentFor}
 					pot={pot}
 					contentFor={content.contentFor}
+					contentForSlug={content.slug}
 					contentForPrefix="For all"
 					showHeading={true}
 				>
@@ -47,6 +51,7 @@ export const PotSection = <TPotContent extends FeedBasePotContent>({
 					key={drugContent.contentFor}
 					pot={pot}
 					contentFor={drugContent.contentFor}
+					contentForSlug={drugContent.slug}
 					contentForPrefix="For"
 					showHeading={
 						(!!prepContent && prepContent.length > 0) ||
@@ -66,6 +71,7 @@ export const PotSection = <TPotContent extends FeedBasePotContent>({
 					key={content.contentFor}
 					pot={pot}
 					contentFor={content.contentFor}
+					contentForSlug={content.slug}
 					contentForPrefix="For"
 					showHeading={true}
 				>

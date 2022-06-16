@@ -430,18 +430,21 @@ export const query = graphql`
 				slug
 				drugClassContent {
 					contentFor
+					slug
 					monitoringOfPatientParameters
 					patientMonitoringProgrammes
 					therapeuticDrugMonitoring
 				}
 				drugContent {
 					contentFor
+					slug
 					monitoringOfPatientParameters
 					patientMonitoringProgrammes
 					therapeuticDrugMonitoring
 				}
 				prepContent {
 					contentFor
+					slug
 					monitoringOfPatientParameters
 					patientMonitoringProgrammes
 					therapeuticDrugMonitoring
