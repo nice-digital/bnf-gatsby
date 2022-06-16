@@ -347,13 +347,6 @@ export const query = graphql`
 					slug
 				}
 			}
-			constituentDrugs {
-				message
-				constituents {
-					title
-					slug
-				}
-			}
 			allergyAndCrossSensitivity {
 				...SimplePot
 			}
