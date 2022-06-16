@@ -1,10 +1,12 @@
 import { render, screen, within } from "@testing-library/react";
 
-import { FeedBasePotContent } from "@nice-digital/gatsby-source-bnf";
+import { type FeedBasePotContent } from "@nice-digital/gatsby-source-bnf";
+
+import { type WithSlug } from "@/utils";
 
 import { PotSection, type PotSectionProps } from "./PotSection";
 
-interface CustomPot extends FeedBasePotContent {
+interface CustomPot extends WithSlug<FeedBasePotContent> {
 	something: string;
 }
 
@@ -43,10 +45,12 @@ describe("PotSection", () => {
 			[propsProperty]: [
 				{
 					contentFor: "first",
+					slug: "first",
 					something: "Some content",
 				},
 				{
 					contentFor: "second",
+					slug: "second",
 					something: "Some more content",
 				},
 			],
@@ -119,6 +123,7 @@ describe("PotSection", () => {
 			...minimumProps,
 			drugContent: {
 				contentFor: "budesonide",
+				slug: "budesonide",
 				something: "Some drug content",
 			},
 		};
@@ -156,7 +161,11 @@ describe("PotSection", () => {
 				<PotSection
 					{...drugProps}
 					drugClassContent={[
-						{ contentFor: "corticosteroids", something: "any content" },
+						{
+							contentFor: "corticosteroids",
+							slug: "corticosteroids",
+							something: "any content",
+						},
 					]}
 				/>
 			);
@@ -171,7 +180,11 @@ describe("PotSection", () => {
 				<PotSection
 					{...drugProps}
 					prepContent={[
-						{ contentFor: "Rhinocort Aqua®", something: "any content" },
+						{
+							contentFor: "Rhinocort Aqua®",
+							slug: "rhinocort-aqua",
+							something: "any content",
+						},
 					]}
 				/>
 			);

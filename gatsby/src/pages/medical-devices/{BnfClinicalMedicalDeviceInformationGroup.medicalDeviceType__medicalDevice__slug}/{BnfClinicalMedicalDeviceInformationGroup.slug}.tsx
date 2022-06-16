@@ -1,5 +1,5 @@
 import { graphql, Link } from "gatsby";
-import { FC } from "react";
+import { type FC } from "react";
 import striptags from "striptags";
 
 import {
@@ -15,7 +15,12 @@ import {
 import { MedicalDevicePrepsSection } from "@/components/MedicalDevicePrepsSection/MedicalDevicePrepsSection";
 import { Menu } from "@/components/Menu/Menu";
 import { SectionLink } from "@/components/SectionNav/SectionNav";
-import { decapitalize, isTruthy, type QueryResult } from "@/utils";
+import {
+	decapitalize,
+	isTruthy,
+	type WithSlug,
+	type QueryResult,
+} from "@/utils";
 
 import styles from "./{BnfClinicalMedicalDeviceInformationGroup.slug}.module.scss";
 
@@ -24,6 +29,7 @@ interface CMPISimplePotProps {
 	slug: string;
 	content: {
 		contentFor: string;
+		slug: string;
 		content: string;
 	};
 }
@@ -50,7 +56,7 @@ export interface CMPIPageProps {
 			deviceDescription: CMPISimplePotProps | null;
 			indicationsAndDose:
 				| (BasePot & {
-						content: QueryResult<FeedIndicationsAndDosePotContent>;
+						content: QueryResult<WithSlug<FeedIndicationsAndDosePotContent>>;
 				  })
 				| null;
 			patientAndCarerAdvice: CMPISimplePotProps | null;

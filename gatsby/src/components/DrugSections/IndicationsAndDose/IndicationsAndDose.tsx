@@ -1,15 +1,20 @@
 import { type FC } from "react";
 
-import { type FeedIndicationsAndDosePot } from "@nice-digital/gatsby-source-bnf";
+import {
+	type FeedIndicationsAndDosePotContent,
+	type FeedIndicationsAndDosePot,
+} from "@nice-digital/gatsby-source-bnf";
 
 import { AccordionGroup } from "@/components/AccordionGroup/AccordionGroup";
 import { IndicationsAndDoseContent } from "@/components/DrugSections/IndicationsAndDose/IndicationsAndDoseContent/IndicationsAndDoseContent";
-import { type QueryResult, type WithSlug } from "@/utils";
+import { WithSlugDeep, type QueryResult, type WithSlug } from "@/utils";
 
 import styles from "./IndicationsAndDose.module.scss";
 
 export type IndicationsAndDoseProps = WithSlug<
-	QueryResult<FeedIndicationsAndDosePot>
+	QueryResult<
+		WithSlugDeep<FeedIndicationsAndDosePot, FeedIndicationsAndDosePotContent>
+	>
 >;
 
 export const IndicationsAndDose: FC<IndicationsAndDoseProps> = ({

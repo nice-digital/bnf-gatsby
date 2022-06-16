@@ -232,6 +232,7 @@ describe("MedicalDeviceTypePage", () => {
 					slug: "indications-and-dose",
 					content: {
 						contentFor: "Irrigation solutions",
+						slug: "irrigation-solutions",
 						doseAdjustments: null,
 						doseEquivalence: null,
 						extremesOfBodyWeight: null,

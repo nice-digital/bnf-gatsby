@@ -17,6 +17,7 @@ const minimumProps: IndicationsAndDoseProps = {
 
 const diazepamDrugContent: IndicationsAndDoseProps["drugContent"] = {
 		contentFor: "diazepam",
+		slug: "diazepam",
 		indicationAndDoseGroups: [
 			{
 				therapeuticIndications: [],
@@ -32,18 +33,22 @@ const diazepamDrugContent: IndicationsAndDoseProps["drugContent"] = {
 	opioidsDrugClassContent: IndicationsAndDoseProps["drugContent"] = {
 		...diazepamDrugContent,
 		contentFor: "opioids",
+		slug: "opioids",
 	},
 	antipsychoticDrugClassContent: IndicationsAndDoseProps["drugContent"] = {
 		...diazepamDrugContent,
 		contentFor: "antipsychotic drugs",
+		slug: "antipsychotic-drugs",
 	},
 	kapakePrepContent: IndicationsAndDoseProps["drugContent"] = {
 		...diazepamDrugContent,
 		contentFor: "Kapake® 15/500",
+		slug: "kapake-15-500",
 	},
 	solpadolPrepContent: IndicationsAndDoseProps["drugContent"] = {
 		...diazepamDrugContent,
 		contentFor: "Solpadol® effervescent tablets",
+		slug: "solpadol-effervescent-tablets",
 	};
 
 describe("IndicationsAndDose", () => {

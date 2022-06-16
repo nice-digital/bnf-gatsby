@@ -9,6 +9,7 @@ import {
 
 const content: IndicationsAndDoseContentProps["content"] = {
 	contentFor: "<strong>diazepam</strong>",
+	slug: "diazepam",
 	doseAdjustments: null,
 	doseEquivalence: null,
 	extremesOfBodyWeight: null,

@@ -1,16 +1,21 @@
 import { type FC } from "react";
 
-import { type FeedSimplePot } from "@nice-digital/gatsby-source-bnf";
+import {
+	type FeedFeedSimplePotContent,
+	type FeedSimplePot,
+} from "@nice-digital/gatsby-source-bnf";
 import { Panel } from "@nice-digital/nds-panel";
 
-import { type WithSlug } from "@/utils";
+import { type WithSlugDeep, type WithSlug } from "@/utils";
 
 import sectionStyles from "../DrugSection.module.scss";
 import { PotContent } from "../PotSection/PotContent/PotContent";
 
 import styles from "./ImportantSafetyInfo.module.scss";
 
-export type ImportantSafetyInfoProps = WithSlug<FeedSimplePot>;
+export type ImportantSafetyInfoProps = WithSlug<
+	WithSlugDeep<FeedSimplePot, FeedFeedSimplePotContent>
+>;
 
 export const ImportantSafetyInfo: FC<ImportantSafetyInfoProps> = ({
 	drugClassContent,
@@ -23,11 +28,12 @@ export const ImportantSafetyInfo: FC<ImportantSafetyInfoProps> = ({
 			<Panel variant="primary" className={styles.panel}>
 				<h2 id={pot.slug} dangerouslySetInnerHTML={{ __html: pot.potName }} />
 
-				{drugClassContent?.map(({ content, contentFor }) => (
+				{drugClassContent?.map(({ content, contentFor, slug }) => (
 					<PotContent
 						key={contentFor}
 						pot={pot}
 						contentFor={contentFor}
+						contentForSlug={slug}
 						contentForPrefix="For all"
 						showHeading={true}
 					>
@@ -43,6 +49,7 @@ export const ImportantSafetyInfo: FC<ImportantSafetyInfoProps> = ({
 						key={drugContent.contentFor}
 						pot={pot}
 						contentFor={drugContent.contentFor}
+						contentForSlug={drugContent.slug}
 						contentForPrefix="For"
 						showHeading={
 							(!!prepContent && prepContent.length > 0) ||
@@ -56,11 +63,12 @@ export const ImportantSafetyInfo: FC<ImportantSafetyInfoProps> = ({
 					</PotContent>
 				)}
 
-				{prepContent?.map(({ content, contentFor }) => (
+				{prepContent?.map(({ content, contentFor, slug }) => (
 					<PotContent
 						key={contentFor}
 						pot={pot}
 						contentFor={contentFor}
+						contentForSlug={slug}
 						contentForPrefix="For"
 						showHeading={true}
 					>

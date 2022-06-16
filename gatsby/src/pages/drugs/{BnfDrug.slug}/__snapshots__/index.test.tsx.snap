@@ -14,11 +14,11 @@ exports[`DrugPage Important safety information should match snapshot for importa
       Important safety information
     </h2>
     <section
-      aria-labelledby="important-safety-information-diazepam"
+      aria-labelledby="important-safety-information-undefined"
     >
       <h3
         class="visually-hidden"
-        id="important-safety-information-diazepam"
+        id="important-safety-information-undefined"
       >
         <span
           class="visually-hidden"
@@ -157,13 +157,6 @@ exports[`DrugPage should match snapshot for graphql query 1`] = `
 					slug
 				}
 			}
-			constituentDrugs {
-				message
-				constituents {
-					title
-					slug
-				}
-			}
 			allergyAndCrossSensitivity {
 				...SimplePot
 			}
@@ -240,18 +233,21 @@ exports[`DrugPage should match snapshot for graphql query 1`] = `
 				slug
 				drugClassContent {
 					contentFor
+					slug
 					monitoringOfPatientParameters
 					patientMonitoringProgrammes
 					therapeuticDrugMonitoring
 				}
 				drugContent {
 					contentFor
+					slug
 					monitoringOfPatientParameters
 					patientMonitoringProgrammes
 					therapeuticDrugMonitoring
 				}
 				prepContent {
 					contentFor
+					slug
 					monitoringOfPatientParameters
 					patientMonitoringProgrammes
 					therapeuticDrugMonitoring

@@ -36,10 +36,12 @@ describe("SimplePot", () => {
 			[propsProperty]: [
 				{
 					contentFor: "first",
+					slug: "first",
 					content: "<p>Some content</p>",
 				},
 				{
 					contentFor: "second",
+					slug: "second",
 					content: "<p>Some more content</p>",
 				},
 			],
@@ -112,6 +114,7 @@ describe("SimplePot", () => {
 			...minimumProps,
 			drugContent: {
 				contentFor: "budesonide",
+				slug: "budesonide",
 				content: "<p>Some drug content</p>",
 			},
 		};
@@ -149,7 +152,11 @@ describe("SimplePot", () => {
 				<SimplePot
 					{...drugProps}
 					drugClassContent={[
-						{ content: "any content", contentFor: "corticosteroids" },
+						{
+							content: "any content",
+							contentFor: "corticosteroids",
+							slug: "corticosteroids",
+						},
 					]}
 				/>
 			);
@@ -164,7 +171,11 @@ describe("SimplePot", () => {
 				<SimplePot
 					{...drugProps}
 					prepContent={[
-						{ content: "any content", contentFor: "Rhinocort Aqua®" },
+						{
+							content: "any content",
+							contentFor: "Rhinocort Aqua®",
+							slug: "rhinocort-aqua",
+						},
 					]}
 				/>
 			);
