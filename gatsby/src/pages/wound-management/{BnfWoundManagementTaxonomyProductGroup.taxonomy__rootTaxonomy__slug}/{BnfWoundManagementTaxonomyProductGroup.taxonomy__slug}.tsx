@@ -1,7 +1,5 @@
 import { graphql, Link } from "gatsby";
 import React, { type FC } from "react";
-import slugify from "slugify";
-import striptags from "striptags";
 
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
 import { Grid, GridItem } from "@nice-digital/nds-grid";
@@ -31,6 +29,7 @@ export interface WoundManagementProductPageProps {
 				};
 				productGroups: {
 					title: string;
+					slug: string;
 					description: string;
 					products: {
 						name: string;
@@ -57,9 +56,9 @@ const WoundManagementProductPage: FC<WoundManagementProductPageProps> = ({
 			a.title > b.title ? 1 : -1
 		),
 		navSections: SectionNavProps = {
-			sections: sortedProductGroups.map(({ title }) => {
+			sections: sortedProductGroups.map(({ title, slug }) => {
 				return {
-					id: slugify(striptags(title)),
+					id: slug,
 					title,
 				};
 			}),
@@ -118,56 +117,57 @@ const WoundManagementProductPage: FC<WoundManagementProductPageProps> = ({
 							className={styles.productGroupList}
 							aria-label={`List of products: ${title}`}
 						>
-							{sortedProductGroups.map(({ title, description, products }) => (
-								<li key={title}>
-									<Accordion
-										title={
-											<div>
-												<h2
-													className={styles.productGroupHeading}
-													id={slugify(striptags(title))}
-												>
-													{title}
-												</h2>
-												{description && (
-													<div
-														dangerouslySetInnerHTML={{ __html: description }}
-													></div>
-												)}
-											</div>
-										}
-									>
-										{products.length > 0 ? (
-											<table>
-												<thead>
-													<tr>
-														<th>Product</th>
-														<th>Price</th>
-													</tr>
-												</thead>
-												<tbody>
-													{products.map(({ name, manufacturer, packs }) => (
-														<tr key={name}>
-															<td>
-																{name}{" "}
-																<span className={styles.manufacturer}>
-																	{manufacturer}
-																</span>
-															</td>
-															<td>{packs[0]?.nhsIndicativePrice || "£0.00"}</td>
+							{sortedProductGroups.map(
+								({ title, slug, description, products }) => (
+									<li key={title}>
+										<Accordion
+											title={
+												<div>
+													<h2 className={styles.productGroupHeading} id={slug}>
+														{title}
+													</h2>
+													{description && (
+														<div
+															dangerouslySetInnerHTML={{ __html: description }}
+														></div>
+													)}
+												</div>
+											}
+										>
+											{products.length > 0 ? (
+												<table>
+													<thead>
+														<tr>
+															<th>Product</th>
+															<th>Price</th>
 														</tr>
-													))}
-												</tbody>
-											</table>
-										) : (
-											<p>
-												Please note, there is currently no specific information
-												about this product.
-											</p>
-										)}
-									</Accordion>
-								</li>
-							))}
+													</thead>
+													<tbody>
+														{products.map(({ name, manufacturer, packs }) => (
+															<tr key={name}>
+																<td>
+																	{name}{" "}
+																	<span className={styles.manufacturer}>
+																		{manufacturer}
+																	</span>
+																</td>
+																<td>
+																	{packs[0]?.nhsIndicativePrice || "£0.00"}
+																</td>
+															</tr>
+														))}
+													</tbody>
+												</table>
+											) : (
+												<p>
+													Please note, there is currently no specific
+													information about this product.
+												</p>
+											)}
+										</Accordion>
+									</li>
+								)
+							)}
 						</ul>
 					</AccordionGroup>
 				</GridItem>
@@ -188,6 +188,7 @@ export const query = graphql`
 				}
 				productGroups {
 					title
+					slug
 					description
 					products {
 						name

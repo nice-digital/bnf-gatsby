@@ -56,6 +56,9 @@ export const woundManagementSchema = `
 		"The title of the wound management product group."
 		title: String!
 
+		"The slugified title"
+		slug: String! @slug(field: "title")
+
 		"The description of the wound management product group. May contain HTML mark-up."
 		description: String @html
 
