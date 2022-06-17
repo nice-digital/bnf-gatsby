@@ -30,6 +30,7 @@ const props: WoundManagementProductPageProps = {
 								packs: [
 									{
 										nhsIndicativePrice: "£0.45",
+										colour: null,
 									},
 								],
 							},
@@ -39,6 +40,7 @@ const props: WoundManagementProductPageProps = {
 								packs: [
 									{
 										nhsIndicativePrice: "£1.55",
+										colour: null,
 									},
 								],
 							},
@@ -48,6 +50,7 @@ const props: WoundManagementProductPageProps = {
 								packs: [
 									{
 										nhsIndicativePrice: "£1.49",
+										colour: null,
 									},
 								],
 							},
@@ -65,6 +68,7 @@ const props: WoundManagementProductPageProps = {
 								packs: [
 									{
 										nhsIndicativePrice: "£0.32",
+										colour: null,
 									},
 								],
 							},
@@ -82,6 +86,7 @@ const props: WoundManagementProductPageProps = {
 								packs: [
 									{
 										nhsIndicativePrice: "£0.07",
+										colour: null,
 									},
 								],
 							},
@@ -91,6 +96,7 @@ const props: WoundManagementProductPageProps = {
 								packs: [
 									{
 										nhsIndicativePrice: "£0.08",
+										colour: null,
 									},
 								],
 							},
@@ -100,6 +106,7 @@ const props: WoundManagementProductPageProps = {
 								packs: [
 									{
 										nhsIndicativePrice: "£0.17",
+										colour: null,
 									},
 								],
 							},
