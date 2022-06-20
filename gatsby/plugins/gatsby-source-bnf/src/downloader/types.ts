@@ -285,10 +285,10 @@ export interface FeedMedicinalForm {
 }
 
 /** A single section of simple (unstructured) content for a BNF drug or medical device. A monograph will include content from relevant drug classes (groups of drugs that share the same properties), the drug itself, and specific preparations where the properties differ from those of the generic drug. This record has these three parts of content in the `drugClassContent`, `drugContent` and `prepContent` fields respectively. */
-export type FeedSimplePot = FeedBasePot<FeedFeedSimplePotContent>;
+export type FeedSimplePot = FeedBasePot<FeedSimplePotContent>;
 
 /** The details of the indications and doses for a drug, drug class or preparation. */
-export interface FeedFeedSimplePotContent extends FeedBasePotContent {
+export interface FeedSimplePotContent extends FeedBasePotContent {
 	/** What the content is for (the name of a drug class, drug or preparation). May contain HTML mark-up */
 	contentFor: string;
 	/** The content. May contain HTML mark-up. */

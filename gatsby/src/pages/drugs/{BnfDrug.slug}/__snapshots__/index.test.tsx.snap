@@ -14,11 +14,11 @@ exports[`DrugPage Important safety information should match snapshot for importa
       Important safety information
     </h2>
     <section
-      aria-labelledby="important-safety-information-undefined"
+      aria-labelledby="important-safety-information-diazepam"
     >
       <h3
         class="visually-hidden"
-        id="important-safety-information-undefined"
+        id="important-safety-information-diazepam"
       >
         <span
           class="visually-hidden"

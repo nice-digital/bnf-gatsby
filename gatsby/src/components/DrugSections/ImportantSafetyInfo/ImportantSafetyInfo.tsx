@@ -1,7 +1,7 @@
 import { type FC } from "react";
 
 import {
-	type FeedFeedSimplePotContent,
+	type FeedSimplePotContent,
 	type FeedSimplePot,
 } from "@nice-digital/gatsby-source-bnf";
 import { Panel } from "@nice-digital/nds-panel";
@@ -14,7 +14,7 @@ import { PotContent } from "../PotSection/PotContent/PotContent";
 import styles from "./ImportantSafetyInfo.module.scss";
 
 export type ImportantSafetyInfoProps = WithSlug<
-	WithSlugDeep<FeedSimplePot, FeedFeedSimplePotContent>
+	WithSlugDeep<FeedSimplePot, FeedSimplePotContent>
 >;
 
 export const ImportantSafetyInfo: FC<ImportantSafetyInfoProps> = ({
