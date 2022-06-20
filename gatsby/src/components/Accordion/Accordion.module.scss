@@ -35,6 +35,12 @@
     margin-bottom: core.rem(core.$nds-spacing-medium);
   }
 
+  /* stylelint-disable selector-max-compound-selectors */
+  :not([open]) > & ~ * {
+    // Hacky fallbacks for browsers that don't support details/summary natively eg IE11
+    display: none;
+  }
+
   // Hack for IE11 whilst we still support it: https://css-tricks.com/two-issues-styling-the-details-element-and-how-to-solve-them/
   @supports not (-ms-ime-align: auto) {
     cursor: pointer;
