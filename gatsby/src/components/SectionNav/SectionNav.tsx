@@ -51,59 +51,83 @@ export const SectionNav: FC<SectionNavProps> = ({
 	}, [isStuck]);
 
 	return (
-		<nav
-			aria-labelledby="navigate-to-section"
-			className={classNames(
-				styles.nav,
-				readableMaxWidth ? styles.navReadableMaxWidth : null,
-				isStuck ? styles.stuck : null,
-				className
+		<>
+			<nav
+				aria-labelledby="navigate-to-section"
+				className={classNames(
+					styles.nav,
+					readableMaxWidth ? styles.navReadableMaxWidth : null,
+					className
+				)}
+				ref={ref}
+			>
+				<h2 id="navigate-to-section" className={styles.heading}>
+					<span>{headingText}</span>
+				</h2>
+				<ol
+					aria-label="Jump links to sections on this page"
+					className={styles.linkList}
+				>
+					{sections.filter(isTruthy).map((section) => (
+						<li key={section?.id}>
+							<a href={`#${section?.id}`} onClick={() => setIsExpanded(false)}>
+								{striptags(section?.title || "")}
+							</a>
+						</li>
+					))}
+				</ol>
+			</nav>
+			{isStuck && (
+				<nav
+					aria-labelledby="sticky-navigate-to-section"
+					className={classNames(
+						styles.nav,
+						styles.stuck,
+						readableMaxWidth ? styles.navReadableMaxWidth : null,
+						className
+					)}
+				>
+					<div className={styles.fixed}>
+						<div className="container">
+							<h2 id="sticky-navigate-to-section" className={styles.heading}>
+								<button
+									type="button"
+									className={styles.toggleButton}
+									aria-label={`${isExpanded ? "Hide" : "Show"} ${headingText}`}
+									aria-expanded={isExpanded}
+									onClick={toggleDropdown}
+									data-tracking={isExpanded}
+								>
+									<ChevronDownIcon
+										className={classNames(
+											styles.icon,
+											isExpanded && styles.iconExpanded
+										)}
+									/>
+									{headingText}
+								</button>
+							</h2>
+							{isExpanded ? (
+								<ol
+									aria-label="Jump links to sections on this page"
+									className={styles.linkList}
+								>
+									{sections.filter(isTruthy).map((section) => (
+										<li key={section?.id}>
+											<a
+												href={`#${section?.id}`}
+												onClick={() => setIsExpanded(false)}
+											>
+												{striptags(section?.title || "")}
+											</a>
+										</li>
+									))}
+								</ol>
+							) : null}
+						</div>
+					</div>
+				</nav>
 			)}
-			ref={ref}
-		>
-			<div className={isStuck ? styles.fixed : ""}>
-				<div className={isStuck ? "container" : ""}>
-					<h2 id="navigate-to-section" className={styles.heading}>
-						{isStuck ? (
-							<button
-								type="button"
-								className={styles.toggleButton}
-								aria-label={`${isExpanded ? "Hide" : "Show"} ${headingText}`}
-								aria-expanded={isExpanded}
-								onClick={toggleDropdown}
-								data-tracking={isExpanded}
-							>
-								<ChevronDownIcon
-									className={classNames(
-										styles.icon,
-										isExpanded && styles.iconExpanded
-									)}
-								/>
-								{headingText}
-							</button>
-						) : (
-							<span>{headingText}</span>
-						)}
-					</h2>
-					{isExpanded ? (
-						<ol
-							aria-label="Jump links to sections on this page"
-							className={styles.linkList}
-						>
-							{sections.filter(isTruthy).map((section) => (
-								<li key={section?.id}>
-									<a
-										href={`#${section?.id}`}
-										onClick={() => setIsExpanded(false)}
-									>
-										{striptags(section?.title || "")}
-									</a>
-								</li>
-							))}
-						</ol>
-					) : null}
-				</div>
-			</div>
-		</nav>
+		</>
 	);
 };

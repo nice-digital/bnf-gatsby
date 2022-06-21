@@ -14,7 +14,7 @@ $gutter: core.rem(core.$nds-spacing-medium);
 
   &.stuck {
     margin-left: -$gutter;
-    position: sticky;
+    position: fixed;
     top: 0;
     width: calc(100% + $gutter * 2);
     z-index: 1;
