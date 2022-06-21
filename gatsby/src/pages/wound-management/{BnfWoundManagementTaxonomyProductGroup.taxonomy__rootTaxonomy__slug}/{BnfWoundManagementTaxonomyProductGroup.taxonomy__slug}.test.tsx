@@ -175,11 +175,6 @@ describe("Wound management taxonomy page", () => {
 	it("should render correct number of sections in the sub nav", () => {
 		render(<WoundManagementProductPage {...props} />);
 
-		const sectionNavButton = screen.getByRole("button", {
-			name: "Show Navigate to section",
-		});
-		userEvent.click(sectionNavButton);
-
 		const subNav = screen.getByRole("navigation", {
 			name: "Navigate to section",
 		});

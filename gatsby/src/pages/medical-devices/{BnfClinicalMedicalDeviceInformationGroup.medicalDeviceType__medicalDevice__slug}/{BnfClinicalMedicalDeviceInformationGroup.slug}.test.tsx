@@ -250,11 +250,6 @@ describe("CMPIPage", () => {
 						/>
 					);
 
-					const sectionNavButton = screen.getByRole("button", {
-						name: "Show Navigate to section",
-					});
-					userEvent.click(sectionNavButton);
-
 					expect(
 						screen.getByRole("link", { name: "Test pot" })
 					).toHaveAttribute("href", "#test-pot");
@@ -320,11 +315,6 @@ describe("CMPIPage", () => {
 
 			it("should render indications and dose section link and associated section", () => {
 				render(<CMPIPage {...indicationsAndDoseProps} />);
-
-				const sectionNavButton = screen.getByRole("button", {
-					name: "Show Navigate to section",
-				});
-				userEvent.click(sectionNavButton);
 
 				expect(
 					screen.getByRole("link", { name: indicationsAndDose.potName })

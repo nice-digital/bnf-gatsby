@@ -228,11 +228,6 @@ describe("DrugPage", () => {
 				/>
 			);
 
-			const sectionNavButton = screen.getByRole("button", {
-				name: "Show Navigate to section",
-			});
-			userEvent.click(sectionNavButton);
-
 			expect(
 				screen.getByRole("link", { name: "Important safety information" })
 			).toHaveAttribute("href", "#important-safety-information");
@@ -319,11 +314,6 @@ describe("DrugPage", () => {
 					/>
 				);
 
-				const sectionNavButton = screen.getByRole("button", {
-					name: "Show Navigate to section",
-				});
-				userEvent.click(sectionNavButton);
-
 				expect(
 					screen.getByRole("link", { name: "Constituent drugs" })
 				).toHaveAttribute("href", "#constituent-drugs");
@@ -394,11 +384,6 @@ describe("DrugPage", () => {
 							}}
 						/>
 					);
-
-					const sectionNavButton = screen.getByRole("button", {
-						name: "Show Navigate to section",
-					});
-					userEvent.click(sectionNavButton);
 
 					expect(
 						screen.getByRole("link", { name: "Interactions" })
@@ -488,11 +473,6 @@ describe("DrugPage", () => {
 							}}
 						/>
 					);
-
-					const sectionNavButton = screen.getByRole("button", {
-						name: "Show Navigate to section",
-					});
-					userEvent.click(sectionNavButton);
 
 					expect(
 						screen.getByRole("link", { name: "Interactions" })
@@ -610,11 +590,6 @@ describe("DrugPage", () => {
 					/>
 				);
 
-				const sectionNavButton = screen.getByRole("button", {
-					name: "Show Navigate to section",
-				});
-				userEvent.click(sectionNavButton);
-
 				expect(
 					screen.getByRole("link", { name: "Monitoring requirements" })
 				).toHaveAttribute("href", "#monitoring-requirements");
@@ -641,11 +616,6 @@ describe("DrugPage", () => {
 						}}
 					/>
 				);
-
-				const sectionNavButton = screen.getByRole("button", {
-					name: "Show Navigate to section",
-				});
-				userEvent.click(sectionNavButton);
 
 				expect(
 					screen.getByRole("link", { name: "Medicinal forms" })
@@ -755,11 +725,6 @@ describe("DrugPage", () => {
 						}}
 					/>
 				);
-
-				const sectionNavButton = screen.getByRole("button", {
-					name: "Show Navigate to section",
-				});
-				userEvent.click(sectionNavButton);
 
 				expect(
 					screen.getByRole("link", { name: "Some pot name" })

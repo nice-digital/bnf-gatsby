@@ -223,11 +223,6 @@ describe("BorderlineSubstancesProductGroupPage", () => {
 		it("should render navigate to section with link to each substance", () => {
 			render(<BorderlineSubstancesProductGroupPage {...minimumProps} />);
 
-			const sectionNavButton = screen.getByRole("button", {
-				name: "Show Navigate to section",
-			});
-			userEvent.click(sectionNavButton);
-
 			const navigateToSection = screen.getByRole("navigation", {
 				name: "Navigate to section",
 			});
