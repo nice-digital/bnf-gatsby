@@ -25,7 +25,8 @@ export const SectionNav: FC<SectionNavProps> = ({
 	className,
 	readableMaxWidth = false,
 }) => {
-	const [isExpanded, setIsExpanded] = useState(false);
+	const [isExpanded, setIsExpanded] = useState(true);
+	const [isStuck, setIsStuck] = useState(false);
 	const headingText = "Navigate to section";
 
 	const ref = useRef<HTMLDivElement | null>(null);
@@ -34,11 +35,16 @@ export const SectionNav: FC<SectionNavProps> = ({
 		rootMargin: "-1px 0px 0px 0px",
 		threshold: 1,
 	});
-	const isStuck = !entry?.isIntersecting;
 
 	const toggleDropdown = () => {
 		setIsExpanded(!isExpanded);
 	};
+
+	useEffect(() => {
+		if (entry) {
+			setIsStuck(!entry.isIntersecting);
+		}
+	}, [entry]);
 
 	useEffect(() => {
 		isStuck ? setIsExpanded(false) : setIsExpanded(true);
@@ -86,7 +92,10 @@ export const SectionNav: FC<SectionNavProps> = ({
 						>
 							{sections.filter(isTruthy).map((section) => (
 								<li key={section?.id}>
-									<a href={`#${section?.id}`}>
+									<a
+										href={`#${section?.id}`}
+										onClick={() => setIsExpanded(false)}
+									>
 										{striptags(section?.title || "")}
 									</a>
 								</li>
