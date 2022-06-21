@@ -29,7 +29,11 @@ const elementYPosition = (
 		) as Element;
 	}
 
-	return element.getBoundingClientRect().y;
+	const pixelScrollOffset = parseFloat(
+		window.getComputedStyle(document.documentElement).scrollPaddingTop
+	);
+
+	return element.getBoundingClientRect().y - pixelScrollOffset;
 };
 
 export async function isAtTopOfScreen(
