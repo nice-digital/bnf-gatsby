@@ -35,6 +35,7 @@ export type MedicalDeviceTypeNodeInput = Merge<
 		medicalDevice: string;
 		hasPreps: boolean;
 		clinicalMedicalDeviceInformationGroups: string[];
+		indicationsAndDose?: CMPIIndicationsAndDosePot | undefined;
 	}
 >;
 
@@ -69,6 +70,7 @@ export const createMedicalDeviceNodes = (
 			...medicalDevice,
 			id: medicalDevice.sid,
 			phpid: medicalDevice.id,
+			indicationsAndDose: medicalDevice.indicationsAndDose,
 			medicalDeviceTypes: medicalDevice.medicalDeviceTypes.map(
 				(medicalDeviceType) =>
 					createMedicalDeviceTypeNode(
@@ -105,6 +107,12 @@ const createMedicalDeviceTypeNode = (
 			clinicalMedicalDeviceInformationGroups?.map((cmpi) =>
 				createCMPINode(cmpi, medicalDeviceType, sourceNodesArgs)
 			) || [],
+		indicationsAndDose: medicalDevice.indicationsAndDose?.drugContent
+			? {
+					potName: medicalDevice.indicationsAndDose.potName,
+					content: medicalDevice.indicationsAndDose.drugContent,
+			  }
+			: undefined,
 	};
 
 	createBnfNode(nodeContent, BnfNode.MedicalDeviceType, sourceNodesArgs);

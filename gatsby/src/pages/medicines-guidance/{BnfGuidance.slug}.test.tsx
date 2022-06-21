@@ -76,7 +76,7 @@ describe("MedicinesGuidancePage", () => {
 				document.querySelector(`meta[name="description"]`)
 			).toHaveAttribute(
 				"content",
-				"Read general advice on prescribing, providing patient focused advice, including assessing risks versus benefits of potential prescribing decisions."
+				"Read general advice on prescribing including biological and biosimilar medicines, complementary and alternative medicines, and unlicensed medicines. Also provides guidance on areas such as drugs and driving, security and validity of prescriptions, and PGDs."
 			);
 		});
 	});
@@ -94,7 +94,7 @@ describe("MedicinesGuidancePage", () => {
 				document.querySelector(`meta[name="description"]`)
 			).toHaveAttribute(
 				"content",
-				"Read general advice on prescribing, providing patient focused advice, including assessing risks versus benefits of potential prescribing decisions."
+				"Read general advice on prescribing in children including biological and biosmilar medicines, complementary and alternative medicines, and unlicensed medicines. Also provides guidance on administration of medicines to children, managing medicines in school and information on excipients and electrolytes."
 			);
 		});
 	});

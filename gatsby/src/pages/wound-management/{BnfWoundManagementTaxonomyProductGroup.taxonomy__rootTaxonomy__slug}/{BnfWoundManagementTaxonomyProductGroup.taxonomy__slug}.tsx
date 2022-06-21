@@ -37,6 +37,7 @@ export interface WoundManagementProductPageProps {
 						manufacturer: string;
 						packs: {
 							nhsIndicativePrice: string;
+							colour: string | null;
 						}[];
 					}[];
 				}[];
@@ -150,6 +151,7 @@ const WoundManagementProductPage: FC<WoundManagementProductPageProps> = ({
 														<tr key={name}>
 															<td>
 																{name}{" "}
+																{packs[0]?.colour && `(${packs[0]?.colour}) `}
 																<span className={styles.manufacturer}>
 																	{manufacturer}
 																</span>
@@ -194,6 +196,7 @@ export const query = graphql`
 						manufacturer
 						packs {
 							nhsIndicativePrice
+							colour
 						}
 					}
 				}

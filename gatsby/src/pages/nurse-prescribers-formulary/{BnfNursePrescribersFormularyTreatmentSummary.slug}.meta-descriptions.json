@@ -48,19 +48,19 @@
     "bnfc": null
   },
   "nicotine-replacement-therapy": {
-    "bnf": "Read advice on nicotine replacement therapy for nurse prescribers covers nicotine patches, gum, lozenges, tablets, inhalator, nasal and oral sprays.",
+    "bnf": "Read advice for nurse prescribers on nicotine replacement therapy and choice of nicotine replacement preparation.",
     "bnfc": null
   },
   "other-skin-conditions": {
-    "bnf": "Read advice on treating skin conditions for nurse prescribers, covers pruritus (itchy skin), fungal infections and boils. Includes crotamiton and clotrimazole.",
+    "bnf": "Read advice on treating skin conditions for nurse prescribers, covers pruritus (itchy skin), fungal infections and boils. Includes crotamiton and clotrimazole, econazole, miconaxole and magnesium sulfate paste.",
     "bnfc": null
   },
   "peak-flow-meters": {
-    "bnf": "Read advice on peak flow meters for managing asthma in adults and children, covers standard-range and low-range flow meters and peak flow charts.",
+    "bnf": "Read advice for nurse prescribers on peak flow meters for managing asthma in adults and children, covers standard-range and low-range flow meters and peak flow charts.",
     "bnfc": null
   },
   "prevention-of-neural-tube-defects": {
-    "bnf": "Read advice on folic acid supplements taken before and during pregnancy for the prevention of neural tube defects.",
+    "bnf": "Read advice for nurse prescribers on folic acid supplements taken before and during pregnancy for the prevention of neural tube defects.",
     "bnfc": null
   },
   "removal-of-earwax": {
@@ -68,7 +68,7 @@
     "bnfc": null
   },
   "stoma-appliances": {
-    "bnf": "Read advice on stoma bags, flanges and other accessories for nurses, includes drug tariff information.",
+    "bnf": "Read advice for nurse prescribers on stoma bags, flanges and other accessories, includes drug tariff information.",
     "bnfc": null
   },
   "stoma-care": {
@@ -76,7 +76,7 @@
     "bnfc": null
   },
   "urinary-catheters-and-appliances": {
-    "bnf": "Read advice on urinary catheters and urinary appliances for nurse prescribers, covers the maintenance of catheters and drug tariff information.",
+    "bnf": "Read advice for nurse prescribers on urinary catheters and urinary appliances, covers the maintenance of indwelling catheters and drug tariff information.",
     "bnfc": null
   }
 }

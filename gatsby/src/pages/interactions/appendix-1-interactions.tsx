@@ -27,7 +27,7 @@ const InteractionsIndexPage: FC<InteractionsIntroductionPageProps> = ({
 		<>
 			<SEO
 				title="Appendix 1 Interactions | Interactions"
-				description="Read about how pharmacodynamic and pharmacokinetic interactions can occur, potential effects of these interactions, and how their severity is graded in the BNF."
+				description={`Read about how pharmacodynamic and pharmacokinetic interactions can occur, potential effects of these interactions, and how their severity is graded in the ${siteTitleShort}.`}
 			/>
 
 			<Breadcrumbs>
