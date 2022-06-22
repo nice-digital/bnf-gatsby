@@ -124,25 +124,20 @@ const CMPIPage: FC<CMPIPageProps> = ({
 					href: `/medical-devices/${medicalDevice.slug}/`,
 				},
 			]}
-			menu={
-				clinicalMedicalDeviceInformationGroups.length > 1
-					? () => (
-							<Menu
-								label={medicalDeviceTitleNoHtml}
-								ariaLabel={medicalDeviceTitleNoHtml}
-								link={{
-									destination: `/medical-devices/${medicalDevice.slug}/`,
-									elementType: Link,
-								}}
-								pages={clinicalMedicalDeviceInformationGroups.map((cmpi) => ({
-									title: cmpi.title,
-									href: `/medical-devices/${medicalDevice.slug}/${cmpi.slug}/`,
-								}))}
-							></Menu>
-					  )
-					: undefined
-			}
-			useSectionNav
+			menu={() => (
+				<Menu
+					label={medicalDeviceTitleNoHtml}
+					ariaLabel={medicalDeviceTitleNoHtml}
+					link={{
+						destination: `/medical-devices/${medicalDevice.slug}/`,
+						elementType: Link,
+					}}
+					pages={clinicalMedicalDeviceInformationGroups.map((cmpi) => ({
+						title: cmpi.title,
+						href: `/medical-devices/${medicalDevice.slug}/${cmpi.slug}/`,
+					}))}
+				></Menu>
+			)}
 			sections={[
 				getSimplePotSectionLink(deviceDescription),
 				indicationsAndDose
