@@ -1,5 +1,4 @@
 import { render, waitFor, screen, within } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 
 import { SlugAndTitle } from "@/utils";
 
@@ -118,7 +117,6 @@ describe("TreatmentSummaryPage", () => {
 	describe("body", () => {
 		it("should render hash link to each record section", () => {
 			render(<TreatmentSummaryPage {...minimumProps} />);
-
 			expect(screen.getByRole("link", { name: "Section 1" })).toHaveAttribute(
 				"href",
 				"#section-1"

@@ -40,12 +40,14 @@ export const SectionNav: FC<SectionNavProps> = ({
 		setIsExpanded(!isExpanded);
 	};
 
+	// Use intersection observer entry to check whether the sticky nav should display or not
 	useEffect(() => {
 		if (entry) {
 			setIsStuck(!entry.isIntersecting);
 		}
 	}, [entry]);
 
+	// Automatically collapse the nav whenever we enter sticky mode
 	useEffect(() => {
 		isStuck ? setIsExpanded(false) : setIsExpanded(true);
 	}, [isStuck]);

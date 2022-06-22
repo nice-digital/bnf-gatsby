@@ -1,5 +1,4 @@
 import { render, waitFor, screen, within } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 
 import DrugPage, { query, type DrugPageProps } from ".";
 
