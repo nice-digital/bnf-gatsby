@@ -3,6 +3,7 @@ import { graphql } from "gatsby";
 export const IndicationsAndDoseFragments = graphql`
 	fragment IndicationsAndDoseContent on BnfIndicationsAndDoseContent {
 		contentFor
+		slug
 		doseAdjustments
 		extremesOfBodyWeight
 		doseEquivalence

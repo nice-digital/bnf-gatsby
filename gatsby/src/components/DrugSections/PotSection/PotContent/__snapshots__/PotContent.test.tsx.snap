@@ -3,11 +3,11 @@
 exports[`PotContent should match snapshot 1`] = `
 <div>
   <section
-    aria-labelledby="simple-pot-anti-d-rh-0-immunoglobulin"
+    aria-labelledby="simple-pot-anti-d-rh0-immunoglobulin"
   >
     <h3
       class=""
-      id="simple-pot-anti-d-rh-0-immunoglobulin"
+      id="simple-pot-anti-d-rh0-immunoglobulin"
     >
       <span
         class="visually-hidden"

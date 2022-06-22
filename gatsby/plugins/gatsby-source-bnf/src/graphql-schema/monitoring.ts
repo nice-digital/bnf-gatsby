@@ -28,6 +28,9 @@ export const monitoringSchema = `
 		"What the content is for (the name of a drug class, drug or preparation). May contain HTML mark-up"
 		contentFor: String!
 
+		"Slugified contentFor field"
+		slug: String! @slug(field: "contentFor")
+
 		"The therapeutic drug monitoring section. May contain HTML mark-up"
 		therapeuticDrugMonitoring: String
 

@@ -11,6 +11,7 @@ describe("PotContent", () => {
 		children: <p>Child element</p>,
 		showHeading: true,
 		contentFor: "Anti-D (RH<sub>0</sub>) immunoglobulin",
+		contentForSlug: "anti-d-rh0-immunoglobulin",
 		contentForPrefix: "For",
 	};
 

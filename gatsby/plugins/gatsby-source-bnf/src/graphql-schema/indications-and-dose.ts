@@ -28,6 +28,9 @@ export const indicationsAndDoseSchema = `
 		"What the content is for (the name of a drug class, drug or preparation). May contain HTML mark-up"
 		contentFor: String! @html
 
+		"Slugified contentFor field"
+		slug: String! @slug(field: "contentFor")
+
 		"The indication and dose groups."
 		indicationAndDoseGroups: [${BnfNode.IndicationAndDoseGroup}!]!
 

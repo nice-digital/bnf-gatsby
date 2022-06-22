@@ -36,10 +36,12 @@ describe("ImportantSafetyInfo", () => {
 			[propsProperty]: [
 				{
 					contentFor: "first",
+					slug: "first",
 					content: "<p>Some content</p>",
 				},
 				{
 					contentFor: "second",
+					slug: "second",
 					content: "<p>Some more content</p>",
 				},
 			],
@@ -122,6 +124,7 @@ describe("ImportantSafetyInfo", () => {
 			...minimumProps,
 			drugContent: {
 				contentFor: "budesonide",
+				slug: "budesonide",
 				content: "<p>Some drug content</p>",
 			},
 		};
@@ -172,7 +175,11 @@ describe("ImportantSafetyInfo", () => {
 				<ImportantSafetyInfo
 					{...drugProps}
 					drugClassContent={[
-						{ content: "any content", contentFor: "corticosteroids" },
+						{
+							content: "any content",
+							contentFor: "corticosteroids",
+							slug: "corticosteroids",
+						},
 					]}
 				/>
 			);
@@ -187,7 +194,11 @@ describe("ImportantSafetyInfo", () => {
 				<ImportantSafetyInfo
 					{...drugProps}
 					prepContent={[
-						{ content: "any content", contentFor: "Rhinocort Aqua®" },
+						{
+							content: "any content",
+							contentFor: "Rhinocort Aqua®",
+							slug: "rhinocort-aqua",
+						},
 					]}
 				/>
 			);

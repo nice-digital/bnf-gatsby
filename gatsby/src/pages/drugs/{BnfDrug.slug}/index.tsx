@@ -6,6 +6,7 @@ import { type Except } from "type-fest";
 import {
 	type FeedDrug,
 	type FeedBaseNamedPot,
+	type FeedBasePotContent,
 } from "@nice-digital/gatsby-source-bnf";
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
 import { PageHeader } from "@nice-digital/nds-page-header";
@@ -58,7 +59,10 @@ type IgnoredDrugFields = keyof Pick<
 export interface DrugPageProps {
 	data: {
 		bnfDrug: QueryResult<
-			WithSlugDeep<Except<FeedDrug, IgnoredDrugFields>, FeedBaseNamedPot>
+			Except<
+				WithSlugDeep<FeedDrug, FeedBaseNamedPot | FeedBasePotContent>,
+				IgnoredDrugFields
+			>
 		> &
 			WithSlug<{
 				indicationsAndDose: IndicationsAndDoseProps | null;
@@ -347,13 +351,6 @@ export const query = graphql`
 					slug
 				}
 			}
-			constituentDrugs {
-				message
-				constituents {
-					title
-					slug
-				}
-			}
 			allergyAndCrossSensitivity {
 				...SimplePot
 			}
@@ -430,18 +427,21 @@ export const query = graphql`
 				slug
 				drugClassContent {
 					contentFor
+					slug
 					monitoringOfPatientParameters
 					patientMonitoringProgrammes
 					therapeuticDrugMonitoring
 				}
 				drugContent {
 					contentFor
+					slug
 					monitoringOfPatientParameters
 					patientMonitoringProgrammes
 					therapeuticDrugMonitoring
 				}
 				prepContent {
 					contentFor
+					slug
 					monitoringOfPatientParameters
 					patientMonitoringProgrammes
 					therapeuticDrugMonitoring

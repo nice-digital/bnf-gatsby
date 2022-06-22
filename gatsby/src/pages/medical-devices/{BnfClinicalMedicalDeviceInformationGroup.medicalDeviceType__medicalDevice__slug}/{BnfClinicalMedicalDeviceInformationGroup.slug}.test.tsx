@@ -241,6 +241,7 @@ describe("CMPIPage", () => {
 										slug: "test-pot",
 										content: {
 											contentFor: "AS Saliva Orthana® lozenges",
+											slug: "as-saliva-orthana-lozenges",
 											content: "<p>Some content</p>",
 										},
 									},
@@ -270,6 +271,7 @@ describe("CMPIPage", () => {
 					slug: "indications-and-dose",
 					content: {
 						contentFor: "AS Saliva Orthana® lozenges",
+						slug: "as-saliva-orthana-lozenges",
 						doseAdjustments: null,
 						doseEquivalence: null,
 						extremesOfBodyWeight: null,

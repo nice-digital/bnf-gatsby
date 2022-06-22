@@ -1,22 +1,25 @@
 import { graphql, Link } from "gatsby";
-import { FC } from "react";
+import { type FC } from "react";
 import striptags from "striptags";
 
 import {
-	FeedIndicationsAndDosePotContent,
+	type FeedIndicationsAndDosePotContent,
 	type FeedPrep,
 } from "@nice-digital/gatsby-source-bnf";
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
 import { Grid, GridItem } from "@nice-digital/nds-grid";
 import { PageHeader } from "@nice-digital/nds-page-header";
 
-import { BasePot, IndicationsAndDoseContent } from "@/components/DrugSections";
+import {
+	type BasePot,
+	IndicationsAndDoseContent,
+} from "@/components/DrugSections";
 import { MedicalDevicePrepsSection } from "@/components/MedicalDevicePrepsSection/MedicalDevicePrepsSection";
 import { Menu } from "@/components/Menu/Menu";
 import { SectionNav } from "@/components/SectionNav/SectionNav";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
-import { decapitalize, QueryResult } from "@/utils";
+import { decapitalize, type QueryResult, type WithSlug } from "@/utils";
 
 import styles from "./{BnfMedicalDeviceType.slug}.module.scss";
 
@@ -35,7 +38,7 @@ export interface MedicalDeviceTypePageProps {
 			};
 			indicationsAndDose:
 				| (BasePot & {
-						content: QueryResult<FeedIndicationsAndDosePotContent>;
+						content: QueryResult<WithSlug<FeedIndicationsAndDosePotContent>>;
 				  })
 				| null;
 			preparations: QueryResult<FeedPrep>[];

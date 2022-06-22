@@ -14,6 +14,10 @@ import { Toggle } from "../Toggle/Toggle";
 
 import styles from "./Accordion.module.scss";
 
+const supportsDetailsElement =
+	typeof document === "undefined" ||
+	"open" in document.createElement("details");
+
 export enum AccordionTheme {
 	Warning,
 }
@@ -39,12 +43,18 @@ export const Accordion: FC<AccordionProps> = ({
 }) => {
 	const [isOpen, setIsOpen] = useState(open),
 		themeClass = theme === AccordionTheme.Warning ? styles.warningTheme : "",
-		{ isGroupOpen } = useAccordionGroup();
+		{ isGroupOpen } = useAccordionGroup(),
+		summaryClickHandler = () => {
+			// Fallback for IE11/other browsers not supporting details/summary natively
+			if (!supportsDetailsElement) setIsOpen((wasOpen) => !wasOpen);
+		};
 
+	// Handle the group being expanded/collapsed
 	useEffect(() => {
 		setIsOpen(isGroupOpen);
 	}, [isGroupOpen]);
 
+	// Handle the prop changing
 	useEffect(() => {
 		setIsOpen(open);
 	}, [open]);
@@ -60,6 +70,7 @@ export const Accordion: FC<AccordionProps> = ({
 		>
 			<summary
 				className={styles.summary}
+				onClick={summaryClickHandler}
 				data-tracking={isOpen ? hideLabel : showLabel}
 			>
 				<Toggle isOpen={isOpen} className={styles.toggleLabel}>

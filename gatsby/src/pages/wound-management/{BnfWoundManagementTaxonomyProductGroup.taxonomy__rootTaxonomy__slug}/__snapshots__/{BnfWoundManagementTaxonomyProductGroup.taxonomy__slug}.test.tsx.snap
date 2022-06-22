@@ -148,7 +148,7 @@ exports[`Wound management taxonomy page should match page snapshot 1`] = `
         >
           <li>
             <a
-              href="#iv-3000"
+              href="#iv3000"
             >
               IV3000
             </a>
@@ -237,7 +237,7 @@ exports[`Wound management taxonomy page should match page snapshot 1`] = `
               <div>
                 <h2
                   class="productGroupHeading"
-                  id="iv-3000"
+                  id="iv3000"
                 >
                   IV3000
                 </h2>

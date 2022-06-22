@@ -76,6 +76,7 @@ describe("DrugPage", () => {
 								drugClassContent: [],
 								drugContent: {
 									contentFor: "adrenaline/epinephrine",
+									slug: "adrenaline-epinephrine",
 									content:
 										"<p>Manufacturers advise use with caution in severe impairment.</p>",
 								},
@@ -87,6 +88,7 @@ describe("DrugPage", () => {
 								drugClassContent: [],
 								drugContent: {
 									contentFor: "adrenaline/epinephrine",
+									slug: "adrenaline-epinephrine",
 									content: "<h4>Test content</h4>",
 								},
 								prepContent: [],
@@ -97,6 +99,7 @@ describe("DrugPage", () => {
 								drugClassContent: [],
 								drugContent: {
 									contentFor: "adrenaline/epinephrine",
+									slug: "adrenaline-epinephrine",
 									monitoringOfPatientParameters:
 										"<p>Monitor blood pressure and ECG.</p>",
 									patientMonitoringProgrammes: null,
@@ -184,6 +187,7 @@ describe("DrugPage", () => {
 				drugClassContent: [],
 				drugContent: {
 					contentFor: "diazepam",
+					slug: "diazepam",
 					content:
 						"<p>This is very important safety information right here</p>",
 				},

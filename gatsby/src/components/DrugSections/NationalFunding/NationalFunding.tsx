@@ -1,17 +1,20 @@
-import slugify from "@sindresorhus/slugify";
 import { type FC } from "react";
+import slugify from "slugify";
 import striptags from "striptags";
 
-import { type FeedNationalFundingPot } from "@nice-digital/gatsby-source-bnf";
+import {
+	type FeedNationalFundingPotContent,
+	type FeedNationalFundingPot,
+} from "@nice-digital/gatsby-source-bnf";
 
-import { type QueryResult, type WithSlug } from "@/utils";
+import { type QueryResult, type WithSlug, type WithSlugDeep } from "@/utils";
 
 import { PotSection } from "../PotSection/PotSection";
 
 import { NationalFundingContent } from "./NationalFundingContent/NationalFundingContent";
 
 export type NationalFundingProps = QueryResult<
-	WithSlug<FeedNationalFundingPot>
+	WithSlug<WithSlugDeep<FeedNationalFundingPot, FeedNationalFundingPotContent>>
 >;
 
 export const NationalFunding: FC<NationalFundingProps> = (props) => (
@@ -20,6 +23,7 @@ export const NationalFunding: FC<NationalFundingProps> = (props) => (
 			contentForPrefix,
 			content: {
 				contentFor,
+				slug,
 				initialText,
 				niceDecisionsTitle,
 				niceDecisions,
@@ -31,15 +35,13 @@ export const NationalFunding: FC<NationalFundingProps> = (props) => (
 				nonNhs,
 			},
 		}) => {
-			const sectionSlugPostfix = slugify(striptags(contentFor));
-
 			return (
 				<>
 					<p dangerouslySetInnerHTML={{ __html: initialText }} />
 
 					{niceDecisions.length > 0 ? (
 						<NationalFundingContent
-							slug={`nice-decisions-${sectionSlugPostfix}`}
+							slug={`nice-decisions-${slug}`}
 							heading={niceDecisionsTitle || "NICE decisions"}
 							decisions={niceDecisions}
 							contentFor={contentFor}
@@ -49,7 +51,7 @@ export const NationalFunding: FC<NationalFundingProps> = (props) => (
 
 					{smcDecisions.length > 0 ? (
 						<NationalFundingContent
-							slug={`smc-decisions-${sectionSlugPostfix}`}
+							slug={`smc-decisions-${slug}`}
 							heading={
 								smcDecisionsTitle ||
 								"Scottish Medicines Consortium (SMC) decisions"
@@ -62,7 +64,7 @@ export const NationalFunding: FC<NationalFundingProps> = (props) => (
 
 					{awmsgDecisions.length > 0 ? (
 						<NationalFundingContent
-							slug={`awmsg-decisions-${sectionSlugPostfix}`}
+							slug={`awmsg-decisions-${slug}`}
 							heading={
 								awmsgDecisionsTitle ||
 								"All Wales Medicines Strategy Group (AWMSG)"
@@ -74,8 +76,8 @@ export const NationalFunding: FC<NationalFundingProps> = (props) => (
 					) : null}
 
 					{nonNhs && (
-						<section aria-labelledby={`nhs-restrictions-${sectionSlugPostfix}`}>
-							<h4 id={`nhs-restrictions-${sectionSlugPostfix}`}>
+						<section aria-labelledby={`nhs-restrictions-${slug}`}>
+							<h4 id={`nhs-restrictions-${slug}`}>
 								{nonNhsTitle || "NHS restrictions"}
 							</h4>
 							<div dangerouslySetInnerHTML={{ __html: nonNhs }} />

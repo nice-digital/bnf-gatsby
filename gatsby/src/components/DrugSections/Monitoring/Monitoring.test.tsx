@@ -19,6 +19,7 @@ describe("Monitoring", () => {
 					drugClassContent={[
 						{
 							contentFor: "corticosteroids",
+							slug: "corticosteroids",
 							patientMonitoringProgrammes:
 								"<p>Some patient monitoring for all corticosteroids</p>",
 							monitoringOfPatientParameters: null,
@@ -26,6 +27,7 @@ describe("Monitoring", () => {
 						},
 						{
 							contentFor: "opioids",
+							slug: "opioids",
 							monitoringOfPatientParameters:
 								"<p>Patient parameters for all opioids</p>",
 							therapeuticDrugMonitoring: null,
@@ -34,6 +36,7 @@ describe("Monitoring", () => {
 					]}
 					drugContent={{
 						contentFor: "co-codamol",
+						slug: "co-codamol",
 						therapeuticDrugMonitoring: "<p>Therapeutic for co-codamol</p>",
 						monitoringOfPatientParameters: null,
 						patientMonitoringProgrammes: null,
@@ -41,6 +44,7 @@ describe("Monitoring", () => {
 					prepContent={[
 						{
 							contentFor: "Solpadol® caplets",
+							slug: "solpadol-caplets",
 							patientMonitoringProgrammes:
 								"<p>Patient monitoring for a prep</p>",
 							therapeuticDrugMonitoring: null,
@@ -81,6 +85,7 @@ describe("Monitoring", () => {
 			...minimumProps,
 			drugContent: {
 				contentFor: "furosemide",
+				slug: "furosemide",
 				monitoringOfPatientParameters: null,
 				patientMonitoringProgrammes: null,
 				therapeuticDrugMonitoring: null,

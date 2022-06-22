@@ -16,6 +16,7 @@ describe("NationalFunding", () => {
 
 	const drugContent: NationalFundingProps["drugContent"] = {
 		contentFor: "diazepam",
+		slug: "diazepam",
 		initialText: "For full details see funding body website.",
 		awmsgDecisions: [],
 		awmsgDecisionsTitle: "All Wales Medicines Strategy Group (AWMSG) decisions",

@@ -8,7 +8,7 @@ import {
 	type FeedMedicalDeviceType,
 	type FeedClinicalMedicalDeviceInformationGroup,
 	type FeedSimplePot,
-	type FeedFeedSimplePotContent,
+	type FeedSimplePotContent,
 	type FeedIndicationsAndDosePotContent,
 } from "../downloader/types";
 import { BnfNode } from "../node-types";
@@ -17,7 +17,7 @@ import { createBnfNode } from "./utils";
 
 interface MedicalDeviceSimplePot {
 	potName: string;
-	content: FeedFeedSimplePotContent;
+	content: FeedSimplePotContent;
 }
 
 export type MedicalDeviceNodeInput = Merge<
