@@ -1,5 +1,6 @@
 import classNames from "classnames";
 import { FC, useState, useRef, useEffect } from "react";
+import ReactDOM from "react-dom";
 import striptags from "striptags";
 
 import ChevronDownIcon from "@nice-digital/icons/lib/ChevronDown";
@@ -52,6 +53,10 @@ export const SectionNav: FC<SectionNavProps> = ({
 		isStuck ? setIsExpanded(false) : setIsExpanded(true);
 	}, [isStuck]);
 
+	// We'll need to launch the sticky menu into a portal so it's in a sensible stacking context
+	const portal: HTMLElement | null =
+		document.getElementById("sticky-nav-portal");
+
 	return (
 		<>
 			<nav
@@ -79,57 +84,62 @@ export const SectionNav: FC<SectionNavProps> = ({
 					))}
 				</ol>
 			</nav>
-			{isStuck && (
-				<nav
-					aria-labelledby="sticky-navigate-to-section"
-					className={classNames(
-						styles.nav,
-						styles.stuck,
-						readableMaxWidth ? styles.navReadableMaxWidth : null,
-						className
-					)}
-				>
-					<div className={styles.fixed}>
-						<div className="container">
-							<h2 id="sticky-navigate-to-section" className={styles.heading}>
-								<button
-									type="button"
-									className={styles.toggleButton}
-									aria-label={`${isExpanded ? "Hide" : "Show"} ${headingText}`}
-									aria-expanded={isExpanded}
-									onClick={toggleDropdown}
-									data-tracking={isExpanded}
-								>
-									<ChevronDownIcon
-										className={classNames(
-											styles.icon,
-											isExpanded && styles.iconExpanded
-										)}
-									/>
-									{headingText}
-								</button>
-							</h2>
-							{isExpanded ? (
-								<ol
-									aria-label="Jump links to sections on this page"
-									className={styles.linkList}
-								>
-									{sections.filter(isTruthy).map((section) => (
-										<li key={section?.id}>
-											<a
-												href={`#${section?.id}`}
-												onClick={() => setIsExpanded(false)}
-											>
-												{striptags(section?.title || "")}
-											</a>
-										</li>
-									))}
-								</ol>
-							) : null}
+			{isStuck &&
+				portal &&
+				ReactDOM.createPortal(
+					<nav
+						aria-labelledby="sticky-navigate-to-section"
+						className={classNames(
+							styles.nav,
+							styles.stuck,
+							readableMaxWidth ? styles.navReadableMaxWidth : null,
+							className
+						)}
+					>
+						<div className={styles.fixed}>
+							<div className="container">
+								<h2 id="sticky-navigate-to-section" className={styles.heading}>
+									<button
+										type="button"
+										className={styles.toggleButton}
+										aria-label={`${
+											isExpanded ? "Hide" : "Show"
+										} ${headingText}`}
+										aria-expanded={isExpanded}
+										onClick={toggleDropdown}
+										data-tracking={isExpanded}
+									>
+										<ChevronDownIcon
+											className={classNames(
+												styles.icon,
+												isExpanded && styles.iconExpanded
+											)}
+										/>
+										{headingText}
+									</button>
+								</h2>
+								{isExpanded ? (
+									<ol
+										aria-label="Jump links to sections on this page"
+										className={styles.linkList}
+									>
+										{sections.filter(isTruthy).map((section) => (
+											<li key={section?.id}>
+												<a
+													href={`#${section?.id}`}
+													onClick={() => setIsExpanded(false)}
+												>
+													{striptags(section?.title || "")}
+												</a>
+											</li>
+										))}
+									</ol>
+								) : null}
+							</div>
 						</div>
-					</div>
-				</nav>
-			)}
+					</nav>,
+					portal
+				)}
 		</>
 	);
 };

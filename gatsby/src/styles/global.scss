@@ -52,3 +52,9 @@ body {
 footer {
   margin-top: 0 !important;
 }
+
+/* stylelint-disable-next-line selector-max-id */
+#sticky-nav-portal {
+  position: relative;
+  z-index: 100; // Ugly, but necessary to be positioned over the back to top section, which has a z-index of 99
+}

@@ -5,7 +5,7 @@
   border-top: core.rem(core.$nds-spacing-x-small) solid;
   position: sticky;
   top: -0.1px; // Hack to avoid 1px gap due to some weird Chrome sub pixel rounding
-  z-index: 2;
+  z-index: 101; // Has to be visible over the sticky section nav (z: 100) and back to top (z:99)
 
   &.bnf {
     border-top-color: $bnf-brand-colour;

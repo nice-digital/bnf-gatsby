@@ -38,6 +38,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }: LayoutProps) => {
 			<Main>
 				<SiteDistinction />
 				<Container>{children}</Container>
+				<div id="sticky-nav-portal"></div>
 			</Main>
 			<Footer service={isBNF ? "bnf" : "bnfc"} />
 		</>
