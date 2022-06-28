@@ -34,7 +34,7 @@ export const SectionNav: FC<SectionNavProps> = ({
 
 	const entry = useIntersectionObserver(ref, {
 		rootMargin: "-1px 0px 0px 0px",
-		threshold: 1,
+		threshold: 0,
 	});
 
 	const toggleDropdown = () => {
