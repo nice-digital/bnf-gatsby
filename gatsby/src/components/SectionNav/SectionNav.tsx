@@ -54,8 +54,9 @@ export const SectionNav: FC<SectionNavProps> = ({
 	}, [isStuck]);
 
 	// We'll need to launch the sticky menu into a portal so it's in a sensible stacking context
-	const portal: HTMLElement | null =
-		document.getElementById("sticky-nav-portal");
+	const portal: HTMLElement | null = document
+		? document.getElementById("sticky-nav-portal")
+		: null;
 
 	return (
 		<>
