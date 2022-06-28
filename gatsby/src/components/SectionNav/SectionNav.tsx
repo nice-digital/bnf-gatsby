@@ -6,6 +6,7 @@ import striptags from "striptags";
 import ChevronDownIcon from "@nice-digital/icons/lib/ChevronDown";
 
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
+import { useIsClient } from "@/hooks/useIsClient";
 import { isTruthy } from "@/utils";
 
 import styles from "./SectionNav.module.scss";
@@ -29,6 +30,7 @@ export const SectionNav: FC<SectionNavProps> = ({
 	const [isExpanded, setIsExpanded] = useState(true);
 	const [isStuck, setIsStuck] = useState(false);
 	const headingText = "Navigate to section";
+	const isClient = useIsClient();
 
 	const ref = useRef<HTMLDivElement | null>(null);
 
@@ -55,7 +57,7 @@ export const SectionNav: FC<SectionNavProps> = ({
 
 	// We'll need to launch the sticky menu into a portal so it's in a sensible stacking context
 	let portal: HTMLElement | null = null;
-	if (document) {
+	if (isClient) {
 		portal = document.getElementById("sticky-nav-portal");
 	}
 
