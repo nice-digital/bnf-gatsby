@@ -7,22 +7,24 @@ import styles from "../DrugSection.module.scss";
 import { type BasePot } from "../types";
 
 export type RelatedTreatmentSummariesProps = BasePot & {
-	relatedTreatmentSummaries: SlugAndTitle[];
+	treatmentSummaries: SlugAndTitle[];
+	pathPrefix: string;
 };
 
 export const RelatedTreatmentSummaries: FC<RelatedTreatmentSummariesProps> = ({
 	slug: potSlug,
 	potName,
-	relatedTreatmentSummaries,
+	treatmentSummaries,
+	pathPrefix,
 }) => (
 	<section aria-labelledby={potSlug} className={styles.section}>
 		<h2 id={potSlug} dangerouslySetInnerHTML={{ __html: potName }} />
 
 		<TagList aria-labelledby={potSlug}>
-			{relatedTreatmentSummaries
+			{treatmentSummaries
 				.sort((a, b) => a.slug.localeCompare(b.slug))
 				.map(({ slug, title }) => (
-					<Tag key={slug} href={`/treatment-summaries/${slug}/`}>
+					<Tag key={slug} href={`/${pathPrefix}/${slug}/`}>
 						{title}
 					</Tag>
 				))}

@@ -255,6 +255,9 @@ exports[`schema should match snapshot 1`] = `
 		\\"Any treatment summaries that contain a link to back this drug\\"
 		relatedTreatmentSummaries: [BnfTreatmentSummary!]! @link
 
+		\\"Any NPF treatment summaries that contain a link to back this drug\\"
+		relatedNursePrescribersTreatmentSummaries: [BnfNursePrescribersFormularyTreatmentSummary!]! @link
+
 		\\"The constituent drugs. This will be populated if the drug is a combination (e.g. 'tramadol with paracetamol') where each constituent exists in the BNF as a monograph in its own right.\\"
 		constituentDrugs: BnfConstituentDrugs
 

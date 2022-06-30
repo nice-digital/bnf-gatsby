@@ -71,6 +71,7 @@ export interface DrugPageProps {
 					constituents: SlugAndTitle[];
 				} | null;
 				relatedTreatmentSummaries: SlugAndTitle[];
+				relatedNursePrescribersTreatmentSummaries: SlugAndTitle[];
 				medicinalForms: {
 					initialStatement: string;
 					specialOrderManufacturersStatement: string | null;
@@ -98,6 +99,7 @@ const DrugPage: FC<DrugPageProps> = ({
 			monitoringRequirements,
 			nationalFunding,
 			relatedTreatmentSummaries,
+			relatedNursePrescribersTreatmentSummaries,
 			...bnfDrug
 		},
 	},
@@ -138,10 +140,23 @@ const DrugPage: FC<DrugPageProps> = ({
 					? {
 							slug: "related-treatment-summaries",
 							potName: "Related treatment summaries",
-							relatedTreatmentSummaries,
+							treatmentSummaries: relatedTreatmentSummaries,
+							pathPrefix: "treatment-summaries",
 					  }
 					: null,
 			[relatedTreatmentSummaries]
+		),
+		relatedNursePrescribersTreatmentSummariesSection = useMemo(
+			() =>
+				relatedNursePrescribersTreatmentSummaries.length > 0
+					? {
+							slug: "related-npf-treatment-summaries",
+							potName: "Related Nurse Prescribers’ treatment summaries",
+							treatmentSummaries: relatedNursePrescribersTreatmentSummaries,
+							pathPrefix: "nurse-prescribers-formulary",
+					  }
+					: null,
+			[relatedNursePrescribersTreatmentSummaries]
 		),
 		otherDrugsInClassSection = useMemo(
 			() =>
@@ -171,6 +186,10 @@ const DrugPage: FC<DrugPageProps> = ({
 			potMap.set(interactionsSection, Interactions);
 			potMap.set(medicinalFormsSection, MedicinalForms);
 			potMap.set(relatedTreatmentSummariesSection, RelatedTreatmentSummaries);
+			potMap.set(
+				relatedNursePrescribersTreatmentSummariesSection,
+				RelatedTreatmentSummaries
+			);
 			potMap.set(otherDrugsInClassSection, DrugsInClass);
 			return potMap;
 		}, [
@@ -182,6 +201,7 @@ const DrugPage: FC<DrugPageProps> = ({
 			monitoringRequirements,
 			nationalFunding,
 			relatedTreatmentSummariesSection,
+			relatedNursePrescribersTreatmentSummariesSection,
 			otherDrugsInClassSection,
 		]);
 
@@ -216,6 +236,7 @@ const DrugPage: FC<DrugPageProps> = ({
 		bnfDrug.exceptionsToLegalCategory,
 		medicinalFormsSection,
 		relatedTreatmentSummariesSection,
+		relatedNursePrescribersTreatmentSummariesSection,
 		otherDrugsInClassSection,
 	].filter(isTruthy);
 
@@ -488,6 +509,10 @@ export const query = graphql`
 				...SimplePot
 			}
 			relatedTreatmentSummaries {
+				title
+				slug
+			}
+			relatedNursePrescribersTreatmentSummaries {
 				title
 				slug
 			}

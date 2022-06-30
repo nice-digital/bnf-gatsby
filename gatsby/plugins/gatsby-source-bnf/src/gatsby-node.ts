@@ -73,6 +73,8 @@ export const sourceNodes = async (
 		{
 			drugs: feedData.drugs,
 			treatmentSummaries: feedData.treatmentSummaries,
+			nursePrescribersTreatmentSummaries:
+				feedData.nursePrescribersFormulary.npfTreatmentSummaries || [],
 			interactions: feedData.interactions,
 		},
 		sourceNodesArgs
