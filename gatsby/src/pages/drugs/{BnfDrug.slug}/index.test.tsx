@@ -705,7 +705,7 @@ describe("DrugPage", () => {
 
 				expect(
 					screen.queryByRole("heading", { level: 2, name: "Some pot name" })
-				).toBeNull;
+				).toBeNull();
 
 				expect(
 					screen.queryByRole("region", { name: "Some pot name" })
@@ -763,7 +763,7 @@ describe("DrugPage", () => {
 						level: 2,
 						name: "Related treatment summaries",
 					})
-				).toBeNull;
+				).toBeNull();
 
 				expect(
 					screen.queryByRole("region", { name: "Related treatment summaries" })
@@ -848,7 +848,7 @@ describe("DrugPage", () => {
 						level: 2,
 						name: "Related Nurse Prescribers’ treatment summaries",
 					})
-				).toBeNull;
+				).toBeNull();
 
 				expect(
 					screen.queryByRole("region", {
@@ -944,7 +944,7 @@ describe("DrugPage", () => {
 						level: 2,
 						name: "Other drugs in class",
 					})
-				).toBeNull;
+				).toBeNull();
 
 				expect(
 					screen.queryByRole("region", { name: "Other drugs in class" })
