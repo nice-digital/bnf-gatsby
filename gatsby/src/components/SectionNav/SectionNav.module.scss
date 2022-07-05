@@ -1,6 +1,7 @@
 @use '@nice-digital/nds-core/scss/core';
 
 $gutter: core.rem(core.$nds-spacing-medium);
+$nav-box-shadow: 0 0 4px 3px rgba(0, 0, 0, 0.16);
 
 .nav {
   background: core.$nds-colour-nice-white;
@@ -27,6 +28,7 @@ $gutter: core.rem(core.$nds-spacing-medium);
 
 .fixed {
   background: core.$nds-colour-true-white;
+  box-shadow: $nav-box-shadow;
   height: 2.7rem;
   left: 0;
   padding: core.rem(core.$nds-spacing-small) 0;
@@ -91,11 +93,15 @@ $gutter: core.rem(core.$nds-spacing-medium);
 
   .fixed & {
     background: core.$nds-colour-true-white;
+    box-shadow: $nav-box-shadow;
+    clip-path: inset(0 -5px -5px);
     left: -1rem;
     max-height: 90vh;
     overflow: auto;
-    padding: core.rem(core.$nds-spacing-medium);
+    padding: 0 core.rem(core.$nds-spacing-medium)
+      core.rem(core.$nds-spacing-medium);
     position: relative;
+    top: 11px; // Rendering this in rem causes an ugly border
     width: calc(100% + 2rem);
 
     @include core.mq($from: md) {
