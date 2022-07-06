@@ -10,6 +10,9 @@ exports[`Layout should match snapshot 1`] = `
         Content
       </div>
     </div>
+    <div
+      id="sticky-nav-portal"
+    />
   </main>
 </div>
 `;

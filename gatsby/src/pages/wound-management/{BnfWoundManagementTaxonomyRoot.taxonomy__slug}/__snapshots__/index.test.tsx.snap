@@ -196,7 +196,9 @@ exports[`Wound management taxonomy page should match page snapshot 1`] = `
           class="heading"
           id="navigate-to-section"
         >
-          Navigate to section
+          <span>
+            Navigate to section
+          </span>
         </h2>
         <ol
           aria-label="Jump links to sections on this page"

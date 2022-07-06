@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SectionNav should match snapshot client side 1`] = `
+<div>
+  <nav
+    aria-labelledby="navigate-to-section"
+    class="nav"
+  >
+    <h2
+      class="heading"
+      id="navigate-to-section"
+    >
+      <span>
+        Navigate to section
+      </span>
+    </h2>
+    <ol
+      aria-label="Jump links to sections on this page"
+      class="linkList"
+    >
+      <li>
+        <a
+          href="#wound-type-1889862293"
+        >
+          test-1
+        </a>
+      </li>
+      <li>
+        <a
+          href="#wound-type-1889862294"
+        >
+          test-2
+        </a>
+      </li>
+    </ol>
+  </nav>
+</div>
+`;
+
+exports[`SectionNav should match snapshot server side 1`] = `
+<div>
+  <nav
+    aria-labelledby="navigate-to-section"
+    class="nav"
+  >
+    <h2
+      class="heading"
+      id="navigate-to-section"
+    >
+      <span>
+        Navigate to section
+      </span>
+    </h2>
+    <ol
+      aria-label="Jump links to sections on this page"
+      class="linkList"
+    >
+      <li>
+        <a
+          href="#wound-type-1889862293"
+        >
+          test-1
+        </a>
+      </li>
+      <li>
+        <a
+          href="#wound-type-1889862294"
+        >
+          test-2
+        </a>
+      </li>
+    </ol>
+  </nav>
+</div>
+`;

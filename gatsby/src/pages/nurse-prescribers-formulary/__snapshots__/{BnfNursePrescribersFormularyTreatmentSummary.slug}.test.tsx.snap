@@ -256,7 +256,9 @@ exports[`NursePrescribersFormularyTreatmentSummaryPage should match snapshot for
               class="heading"
               id="navigate-to-section"
             >
-              Navigate to section
+              <span>
+                Navigate to section
+              </span>
             </h2>
             <ol
               aria-label="Jump links to sections on this page"

@@ -252,7 +252,9 @@ exports[`NursePrescribersFormularyApprovedListPage should match snapshot for pag
               class="heading"
               id="navigate-to-section"
             >
-              Navigate to section
+              <span>
+                Navigate to section
+              </span>
             </h2>
             <ol
               aria-label="Jump links to sections on this page"

@@ -5,7 +5,7 @@
   border-top: core.rem(core.$nds-spacing-x-small) solid;
   position: sticky;
   top: -0.1px; // Hack to avoid 1px gap due to some weird Chrome sub pixel rounding
-  z-index: 1;
+  z-index: 101; // Has to be visible over the sticky section nav (z: 100) and back to top (z:99)
 
   &.bnf {
     border-top-color: $bnf-brand-colour;
@@ -43,7 +43,8 @@
   justify-content: center;
   letter-spacing: 1px;
   line-height: 1.5rem;
-  padding: core.rem(core.$nds-spacing-small);
+  padding: core.rem(core.$nds-spacing-small) core.rem(core.$nds-spacing-small)
+    calc(core.rem(core.$nds-spacing-small) + 1px); // Extra 1px ensures that the tab aligns perfectly with the sticky nav
   position: relative;
   text-decoration: none;
   text-shadow: 1px 0 0 currentColor;
