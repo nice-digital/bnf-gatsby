@@ -11,6 +11,7 @@ export const RecordSection = graphql`
 
 	fragment NationalFundingContent on BnfNationalFundingPotContent {
 		contentFor
+		slug
 		initialText
 		niceDecisionsTitle
 		niceDecisions {

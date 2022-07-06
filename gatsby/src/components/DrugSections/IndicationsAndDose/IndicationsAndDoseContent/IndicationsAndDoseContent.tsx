@@ -1,17 +1,15 @@
-import slugify from "@sindresorhus/slugify";
 import classNames from "classnames";
 import { Fragment, type FC, useMemo } from "react";
-import striptags from "striptags";
 
 import { type FeedIndicationsAndDosePotContent } from "@nice-digital/gatsby-source-bnf";
 
 import { Accordion } from "@/components/Accordion/Accordion";
-import { QueryResult } from "@/utils";
+import { type QueryResult, type WithSlug } from "@/utils";
 
 import styles from "./IndicationsAndDoseContent.module.scss";
 
 export interface IndicationsAndDoseContentProps {
-	content: QueryResult<FeedIndicationsAndDosePotContent>;
+	content: WithSlug<QueryResult<FeedIndicationsAndDosePotContent>>;
 	/** The string to be rendered before the `contentFor` field.
 	 *
 	 * Defaults to `For`. Pass `For all` for drug classes to read `For all tetracyclines` for example. */
@@ -23,6 +21,7 @@ export interface IndicationsAndDoseContentProps {
 export const IndicationsAndDoseContent: FC<IndicationsAndDoseContentProps> = ({
 	content: {
 		contentFor,
+		slug,
 		indicationAndDoseGroups,
 		doseEquivalence,
 		doseAdjustments,
@@ -33,8 +32,6 @@ export const IndicationsAndDoseContent: FC<IndicationsAndDoseContentProps> = ({
 	contentForPrefix = "For",
 	collapsible,
 }) => {
-	const slug = slugify(striptags(contentFor));
-
 	const body = useMemo(
 		() => (
 			<>

@@ -258,6 +258,7 @@ exports[`CautionaryAdvisoryGuidancePage should match snapshot for page contents 
             >
               <li>
                 <a
+                  class=""
                   href="#introduction"
                 >
                   Introduction
@@ -265,6 +266,7 @@ exports[`CautionaryAdvisoryGuidancePage should match snapshot for page contents 
               </li>
               <li>
                 <a
+                  class="activeHeading"
                   href="#original-packs"
                 >
                   Original packs

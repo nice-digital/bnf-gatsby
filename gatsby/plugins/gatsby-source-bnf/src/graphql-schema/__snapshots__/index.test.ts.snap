@@ -444,6 +444,9 @@ exports[`schema should match snapshot 1`] = `
 		\\"What the content is for (the name of a drug class, drug or preparation). May contain HTML mark-up\\"
 		contentFor: String! @html
 
+		\\"Slugified contentFor field\\"
+		slug: String! @slug(field: \\"contentFor\\")
+
 		\\"The indication and dose groups.\\"
 		indicationAndDoseGroups: [BnfIndicationAndDoseGroup!]!
 
@@ -778,6 +781,9 @@ exports[`schema should match snapshot 1`] = `
 		\\"What the content is for (the name of a drug class, drug or preparation). May contain HTML mark-up\\"
 		contentFor: String!
 
+		\\"Slugified contentFor field\\"
+		slug: String! @slug(field: \\"contentFor\\")
+
 		\\"The therapeutic drug monitoring section. May contain HTML mark-up\\"
 		therapeuticDrugMonitoring: String
 
@@ -815,6 +821,9 @@ exports[`schema should match snapshot 1`] = `
 	type BnfNationalFundingPotContent {
 		\\"What the content is for (the name of a drug class, drug or preparation). May contain HTML mark-up\\"
 		contentFor: String!
+
+		\\"Slugified contentFor field\\"
+		slug: String! @slug(field: \\"contentFor\\")
 
 		\\"The initial paragraph of text at the start of the national funding pot. May contain HTML mark-up\\"
 		initialText: String! @html
@@ -989,6 +998,9 @@ exports[`schema should match snapshot 1`] = `
 		\\"What the content is for (the name of a drug class, drug or preparation). May contain HTML mark-up\\"
 		contentFor: String! @html
 
+		\\"Slugified contentFor field\\"
+		slug: String! @slug(field: \\"contentFor\\")
+
 		\\"The content. May contain HTML mark-up.\\"
 		content: String! @html
 	}
@@ -1106,6 +1118,9 @@ exports[`schema should match snapshot 1`] = `
 	type BnfWoundManagementProductGroup @dontInfer {
 		\\"The title of the wound management product group.\\"
 		title: String!
+
+		\\"The slugified title\\"
+		slug: String! @slug(field: \\"title\\")
 
 		\\"The description of the wound management product group. May contain HTML mark-up.\\"
 		description: String @html

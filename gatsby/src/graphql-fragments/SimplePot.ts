@@ -6,14 +6,17 @@ export const RecordSection = graphql`
 		slug
 		drugClassContent {
 			contentFor
+			slug
 			content
 		}
 		drugContent {
 			contentFor
+			slug
 			content
 		}
 		prepContent {
 			contentFor
+			slug
 			content
 		}
 	}

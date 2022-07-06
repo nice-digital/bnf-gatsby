@@ -145,26 +145,14 @@ exports[`MedicinalFormsPage Body should match snapshot for page body 1`] = `
       data-g="12 md:12 lg:12"
     >
       <div
-        class="grid grid--rev grid--loose"
+        class="grid grid--loose"
       >
         <div
-          data-g="12 lg:3"
-        >
-          <div
-            class="alert alert--info"
-          >
-            <p>
-              NICE does not sell any drugs, medicines or pharmaceutical products.
-            </p>
-          </div>
-        </div>
-        <div
-          class="body"
-          data-g="12 lg:9"
+          data-g="12 md:8 lg:9"
         >
           <nav
             aria-labelledby="navigate-to-section"
-            class="nav sectionNav"
+            class="nav"
           >
             <h2
               class="heading"
@@ -194,6 +182,11 @@ exports[`MedicinalFormsPage Body should match snapshot for page body 1`] = `
               </li>
             </ol>
           </nav>
+        </div>
+        <div
+          class="body"
+          data-g="12 md:8 lg:9"
+        >
           <p>
             Test initial statement
           </p>

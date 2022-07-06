@@ -224,6 +224,7 @@ exports[`MedicinesGuidancePage should match snapshot for page contents 1`] = `
             >
               <li>
                 <a
+                  class=""
                   href="#general-guidance"
                 >
                   General guidance
@@ -231,6 +232,7 @@ exports[`MedicinesGuidancePage should match snapshot for page contents 1`] = `
               </li>
               <li>
                 <a
+                  class="activeHeading"
                   href="#biological-medicines"
                 >
                   Biological medicines

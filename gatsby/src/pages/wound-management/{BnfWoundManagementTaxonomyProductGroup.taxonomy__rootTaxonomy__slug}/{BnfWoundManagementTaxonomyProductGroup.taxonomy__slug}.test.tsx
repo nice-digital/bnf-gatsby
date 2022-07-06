@@ -20,6 +20,7 @@ const props: WoundManagementProductPageProps = {
 				productGroups: [
 					{
 						title: "IV3000",
+						slug: "iv3000",
 						description:
 							"<p>For intravenous and subcutaneous catheter sites</p>",
 						products: [
@@ -57,6 +58,7 @@ const props: WoundManagementProductPageProps = {
 					},
 					{
 						title: "Mepore IV",
+						slug: "mepore-iv",
 						description:
 							"<p>For intravenous and subcutaneous catheter sites</p>",
 						products: [
@@ -74,6 +76,7 @@ const props: WoundManagementProductPageProps = {
 					},
 					{
 						title: "Pharmapore-PU IV",
+						slug: "pharmapore-pu-iv",
 						description:
 							"<p>For intravenous and subcutaneous catheter sites</p>",
 						products: [
@@ -225,6 +228,7 @@ describe("Wound management taxonomy page", () => {
 							productGroups: [
 								{
 									title: "No products here",
+									slug: "no-products-here",
 									description: "<p>No products here</p>",
 									products: [],
 								},
