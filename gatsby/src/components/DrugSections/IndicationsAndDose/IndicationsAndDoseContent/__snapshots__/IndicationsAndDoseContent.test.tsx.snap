@@ -81,6 +81,28 @@ exports[`IndicationsAndDoseContent should match snapshot 1`] = `
             Initially 2.5 mg twice daily.
           </dd>
         </div>
+        <div
+          class="patientGroupDose neonate"
+        >
+          <dt
+            class="patientGroup"
+          >
+            Neonate (body surface area up to 1.3 m
+            <sup>
+              2
+            </sup>
+            )
+          </dt>
+          <dd
+            class="doseStatement"
+          >
+            Initially 9.4 g/m
+            <sup>
+              2
+            </sup>
+             daily in divided doses
+          </dd>
+        </div>
       </dl>
     </section>
     <section

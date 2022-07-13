@@ -79,9 +79,12 @@ export const IndicationsAndDoseContent: FC<IndicationsAndDoseContentProps> = ({
 											key={routeOfAdministration}
 											className={styles.routeOfAdministration}
 										>
-											<h5 className={styles.routeOfAdministrationHeading}>
-												{routeOfAdministration}
-											</h5>
+											<h5
+												className={styles.routeOfAdministrationHeading}
+												dangerouslySetInnerHTML={{
+													__html: routeOfAdministration,
+												}}
+											/>
 											<dl className={styles.patientGroups}>
 												{patientGroups.map(
 													({
@@ -96,9 +99,12 @@ export const IndicationsAndDoseContent: FC<IndicationsAndDoseContentProps> = ({
 																styles[patientGroup]
 															)}
 														>
-															<dt className={styles.patientGroup}>
-																{detailedPatientGroup}
-															</dt>
+															<dt
+																className={styles.patientGroup}
+																dangerouslySetInnerHTML={{
+																	__html: detailedPatientGroup,
+																}}
+															/>
 															<dd
 																className={styles.doseStatement}
 																dangerouslySetInnerHTML={{

@@ -43,6 +43,13 @@ const content: IndicationsAndDoseContentProps["content"] = {
 							detailedPatientGroup: "Child 1–4 years",
 							doseStatement: "Initially 2.5 mg twice daily.",
 						},
+						{
+							patientGroup: "neonate",
+							detailedPatientGroup:
+								"Neonate (body surface area up to 1.3 m<sup>2</sup>)",
+							doseStatement:
+								"Initially 9.4&nbsp;g/m<sup>2</sup> daily in divided doses",
+						},
 					],
 				},
 				{
@@ -205,11 +212,12 @@ describe("IndicationsAndDoseContent", () => {
 
 				const terms = screen.getAllByRole("term");
 
-				expect(terms).toHaveLength(3);
+				expect(terms).toHaveLength(4);
 
 				expect(terms.map((t) => t.textContent)).toStrictEqual([
 					"Child 1–11 months",
 					"Child 1–4 years",
+					"Neonate (body surface area up to 1.3 m2)",
 					"Adult",
 				]);
 			});
