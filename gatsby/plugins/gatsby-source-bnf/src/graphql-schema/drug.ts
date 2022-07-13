@@ -35,6 +35,9 @@ export const drugSchema = `
 		"Any treatment summaries that contain a link to back this drug"
 		relatedTreatmentSummaries: [${BnfNode.TreatmentSummary}!]! @link
 
+		"Any NPF treatment summaries that contain a link to back this drug"
+		relatedNursePrescribersTreatmentSummaries: [${BnfNode.NursePrescribersFormularyTreatmentSummary}!]! @link
+
 		"The constituent drugs. This will be populated if the drug is a combination (e.g. 'tramadol with paracetamol') where each constituent exists in the BNF as a monograph in its own right."
 		constituentDrugs: ${BnfNode.ConstituentDrugs}
 

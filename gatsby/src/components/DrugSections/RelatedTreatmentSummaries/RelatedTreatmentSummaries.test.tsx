@@ -9,10 +9,11 @@ describe("RelatedTreatmentSummaries", () => {
 	const props: RelatedTreatmentSummariesProps = {
 		potName: "Related treatment summaries",
 		slug: "related-treatment-summaries",
-		relatedTreatmentSummaries: [
+		treatmentSummaries: [
 			{ slug: "acne", title: "Acne" },
 			{ slug: "dementia", title: "Dementia" },
 		],
+		pathPrefix: "treatment-summaries",
 	};
 
 	it("should render section with accessible name", () => {

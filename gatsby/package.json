@@ -33,7 +33,7 @@
   "dependencies": {
     "@nice-digital/browserslist-config": "^2.0.1",
     "@nice-digital/design-system": "^1.7.4",
-    "@nice-digital/global-nav": "^4.1.831",
+    "@nice-digital/global-nav": "^4.1.838",
     "@nice-digital/search-client": "^2.0.1426",
     "gatsby": "4.6.1",
     "gatsby-plugin-catch-links": "^4.6.0",

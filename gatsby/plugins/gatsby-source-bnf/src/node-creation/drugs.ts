@@ -39,6 +39,7 @@ export type DrugNodeInput = Merge<
 			}
 		>;
 		relatedTreatmentSummaries: string[];
+		relatedNursePrescribersTreatmentSummaries: string[];
 		primaryClassification: SID | null;
 		secondaryClassifications: SID[];
 		interactants: SID[];
@@ -48,6 +49,7 @@ export type DrugNodeInput = Merge<
 export interface DrugCreationArgs {
 	drugs: FeedDrug[];
 	treatmentSummaries: FeedSimpleRecord[];
+	nursePrescribersTreatmentSummaries: FeedSimpleRecord[];
 	interactions: FeedInteractions;
 }
 
@@ -55,6 +57,7 @@ export const createDrugNodes = (
 	{
 		drugs,
 		treatmentSummaries,
+		nursePrescribersTreatmentSummaries,
 		interactions: { messages, supplementaryInformation },
 	}: DrugCreationArgs,
 	sourceNodesArgs: SourceNodesArgs
@@ -112,6 +115,14 @@ export const createDrugNodes = (
 						sections.some((section) => section.content.includes(`/drug/${sid}`))
 					)
 					.map((treatmentSummary) => treatmentSummary.id),
+				relatedNursePrescribersTreatmentSummaries:
+					nursePrescribersTreatmentSummaries
+						.filter(({ sections }) =>
+							sections.some((section) =>
+								section.content.includes(`/drug/${sid}`)
+							)
+						)
+						.map((npfTreatmentSummary) => npfTreatmentSummary.id),
 				primaryClassification: primaryClassification
 					? findLeafClassification(primaryClassification)
 					: null,

@@ -133,7 +133,12 @@ describe("createDrugNodes", () => {
 
 	it("should create node for every drug", () => {
 		createDrugNodes(
-			{ drugs, treatmentSummaries: [], interactions },
+			{
+				drugs,
+				treatmentSummaries: [],
+				nursePrescribersTreatmentSummaries: [],
+				interactions,
+			},
 			sourceNodesArgs
 		);
 
@@ -142,7 +147,12 @@ describe("createDrugNodes", () => {
 
 	it("should use drug id as phpid and sid as node id", () => {
 		createDrugNodes(
-			{ drugs, treatmentSummaries: [], interactions },
+			{
+				drugs,
+				treatmentSummaries: [],
+				nursePrescribersTreatmentSummaries: [],
+				interactions,
+			},
 			sourceNodesArgs
 		);
 
@@ -154,7 +164,12 @@ describe("createDrugNodes", () => {
 
 	it("should map constituents to sid and exclude constituents that aren't drug monographs", () => {
 		createDrugNodes(
-			{ drugs, treatmentSummaries: [], interactions },
+			{
+				drugs,
+				treatmentSummaries: [],
+				nursePrescribersTreatmentSummaries: [],
+				interactions,
+			},
 			sourceNodesArgs
 		);
 
@@ -169,7 +184,12 @@ describe("createDrugNodes", () => {
 
 	it("should map interactants to sid", () => {
 		createDrugNodes(
-			{ drugs, treatmentSummaries: [], interactions },
+			{
+				drugs,
+				treatmentSummaries: [],
+				nursePrescribersTreatmentSummaries: [],
+				interactions,
+			},
 			sourceNodesArgs
 		);
 
@@ -222,6 +242,7 @@ describe("createDrugNodes", () => {
 						],
 					},
 				],
+				nursePrescribersTreatmentSummaries: [],
 				interactions,
 			},
 			sourceNodesArgs
@@ -238,7 +259,12 @@ describe("createDrugNodes", () => {
 
 	it("should set primary classification from lowest leaf node SID", () => {
 		createDrugNodes(
-			{ drugs, treatmentSummaries: [], interactions },
+			{
+				drugs,
+				treatmentSummaries: [],
+				nursePrescribersTreatmentSummaries: [],
+				interactions,
+			},
 			sourceNodesArgs
 		);
 
@@ -249,7 +275,12 @@ describe("createDrugNodes", () => {
 
 	it("should set secondary classifications from lowest leaf node SIDs", () => {
 		createDrugNodes(
-			{ drugs, treatmentSummaries: [], interactions },
+			{
+				drugs,
+				treatmentSummaries: [],
+				nursePrescribersTreatmentSummaries: [],
+				interactions,
+			},
 			sourceNodesArgs
 		);
 

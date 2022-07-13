@@ -39,6 +39,7 @@ const drug: DrugPageProps["data"]["bnfDrug"] = {
 	renalImpairment: null,
 	professionSpecificInformation: null,
 	relatedTreatmentSummaries: [],
+	relatedNursePrescribersTreatmentSummaries: [],
 	sideEffects: null,
 	treatmentCessation: null,
 	unlicensedUse: null,
@@ -704,7 +705,7 @@ describe("DrugPage", () => {
 
 				expect(
 					screen.queryByRole("heading", { level: 2, name: "Some pot name" })
-				).toBeNull;
+				).toBeNull();
 
 				expect(
 					screen.queryByRole("region", { name: "Some pot name" })
@@ -762,7 +763,7 @@ describe("DrugPage", () => {
 						level: 2,
 						name: "Related treatment summaries",
 					})
-				).toBeNull;
+				).toBeNull();
 
 				expect(
 					screen.queryByRole("region", { name: "Related treatment summaries" })
@@ -823,6 +824,95 @@ describe("DrugPage", () => {
 			});
 		});
 
+		describe("Related NPF treatment summaries", () => {
+			it("should not render related NPF treatments section when there are none", () => {
+				render(
+					<DrugPage
+						data={{
+							bnfDrug: {
+								...drug,
+								relatedNursePrescribersTreatmentSummaries: [],
+							},
+						}}
+					/>
+				);
+
+				expect(
+					screen.queryByRole("link", {
+						name: "Related Nurse Prescribers’ treatment summaries",
+					})
+				).toBeNull();
+
+				expect(
+					screen.queryByRole("heading", {
+						level: 2,
+						name: "Related Nurse Prescribers’ treatment summaries",
+					})
+				).toBeNull();
+
+				expect(
+					screen.queryByRole("region", {
+						name: "Related Nurse Prescribers’ treatment summaries",
+					})
+				).toBeNull();
+			});
+
+			it("should render related NPF treatment summaries section and heading", () => {
+				render(
+					<DrugPage
+						data={{
+							bnfDrug: {
+								...drug,
+								relatedNursePrescribersTreatmentSummaries: [
+									{
+										slug: "analgesics",
+										title: "Analgesics",
+									},
+								],
+							},
+						}}
+					/>
+				);
+
+				expect(
+					screen.getByRole("heading", {
+						level: 2,
+						name: "Related Nurse Prescribers’ treatment summaries",
+					})
+				).toHaveAttribute("id", "related-npf-treatment-summaries");
+
+				expect(
+					screen.getByRole("region", {
+						name: "Related Nurse Prescribers’ treatment summaries",
+					})
+				).toBeInTheDocument();
+			});
+
+			it("should render link to related NPF treatment summary", () => {
+				render(
+					<DrugPage
+						data={{
+							bnfDrug: {
+								...drug,
+								relatedNursePrescribersTreatmentSummaries: [
+									{
+										slug: "analgesics",
+										title: "Analgesics",
+									},
+								],
+							},
+						}}
+					/>
+				);
+
+				expect(
+					screen.getByRole("link", {
+						name: "Analgesics",
+					})
+				).toHaveAttribute("href", "/nurse-prescribers-formulary/analgesics/");
+			});
+		});
+
 		describe("Other drugs in class", () => {
 			const primaryClassification = {
 				title: "Antacids",
@@ -854,7 +944,7 @@ describe("DrugPage", () => {
 						level: 2,
 						name: "Other drugs in class",
 					})
-				).toBeNull;
+				).toBeNull();
 
 				expect(
 					screen.queryByRole("region", { name: "Other drugs in class" })
