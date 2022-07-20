@@ -1,15 +1,20 @@
-@use '@nice-digital/nds-core/scss/core';
+@use '../../styles/colours';
+@use '@nice-digital/nds-core/scss/media-queries';
+@use '@nice-digital/nds-core/scss/spacing';
+@use '@nice-digital/nds-core/scss/typography';
+@use '@nice-digital/nds-core/scss/utils';
+@use '@nice-digital/nds-core/scss/visibility';
 
-$brand-banner-clearance: core.rem(core.$nds-spacing-xx-large);
-$back-to-top-clearance: core.rem(core.$nds-spacing-xx-large);
+$brand-banner-clearance: utils.rem(spacing.$xx-large);
+$back-to-top-clearance: utils.rem(spacing.$xx-large);
 
 .wrapper {
-  @include core.nds-hide-print;
+  @include visibility.hide-print;
   display: flex;
   flex-direction: column;
   top: $brand-banner-clearance;
 
-  @include core.mq($from: lg) {
+  @include media-queries.mq($from: lg) {
     $height-reduction: $brand-banner-clearance + $back-to-top-clearance;
     max-height: calc(100vh - #{$height-reduction});
     position: sticky;
@@ -17,38 +22,38 @@ $back-to-top-clearance: core.rem(core.$nds-spacing-xx-large);
 }
 
 .heading {
-  @include core.nds-h4;
+  @include typography.h4;
   margin-top: 0;
 
-  @include core.mq($from: lg) {
-    padding-left: core.rem(core.$nds-spacing-x-small);
+  @include media-queries.mq($from: lg) {
+    padding-left: utils.rem(spacing.$x-small);
   }
 }
 
 .list {
   list-style: none;
-  margin: 0 0 core.rem(core.$nds-spacing-medium);
+  margin: 0 0 utils.rem(spacing.$medium);
 
-  @include core.mq($from: lg) {
+  @include media-queries.mq($from: lg) {
     margin-bottom: 0;
     overflow: auto;
-    padding: core.rem(core.$nds-spacing-x-small); // To make room for focus ring
-    padding-right: core.rem(core.$nds-spacing-small);
-    scrollbar-width: core.rem(core.$nds-spacing-small);
+    padding: utils.rem(spacing.$x-small); // To make room for focus ring
+    padding-right: utils.rem(spacing.$small);
+    scrollbar-width: utils.rem(spacing.$small);
 
     &::-webkit-scrollbar {
-      background-color: core.$nds-colour-nice-grey-3;
+      background-color: colours.$on-this-page-scrollbar-background;
       display: block;
-      width: core.rem(core.$nds-spacing-small);
+      width: utils.rem(spacing.$small);
     }
 
     &::-webkit-scrollbar-thumb {
-      background-color: core.$nds-colour-nice-grey-1;
+      background-color: colours.$on-this-page-scrollbar-thumb;
     }
   }
 
   li {
-    margin-bottom: core.rem(core.$nds-spacing-small);
+    margin-bottom: utils.rem(spacing.$small);
   }
 
   a {
@@ -67,11 +72,11 @@ $back-to-top-clearance: core.rem(core.$nds-spacing-xx-large);
   background: transparent;
   border: 0;
   cursor: pointer;
-  margin: 0 0 core.rem(core.$nds-spacing-medium);
+  margin: 0 0 utils.rem(spacing.$medium);
   padding-left: 0;
 
-  @include core.mq($from: lg) {
-    padding-left: core.rem(core.$nds-spacing-x-small);
+  @include media-queries.mq($from: lg) {
+    padding-left: utils.rem(spacing.$x-small);
   }
 }
 

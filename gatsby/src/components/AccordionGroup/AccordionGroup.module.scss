@@ -1,7 +1,10 @@
-@use '@nice-digital/nds-core/scss/core';
+@use '@nice-digital/nds-core/scss/focus';
+@use '@nice-digital/nds-core/scss/spacing';
+@use '@nice-digital/nds-core/scss/typography';
+@use '@nice-digital/nds-core/scss/utils';
 
 .toggleButton {
-  @include core.nds-link-default;
+  @include typography.link-default;
   align-items: center;
   appearance: none;
   background: none;
@@ -9,11 +12,11 @@
   cursor: pointer;
   display: flex;
   flex-wrap: nowrap;
-  margin: core.rem(core.$nds-spacing-medium 0);
+  margin: utils.rem(spacing.$medium 0);
   padding: 0;
 
   &:focus {
-    @include core.nds-default-focus-style;
+    @include focus.default-focus-style;
   }
 
   &:focus:not(:focus-visible) {
@@ -21,7 +24,7 @@
   }
 
   &:focus-visible {
-    @include core.nds-default-focus-style;
+    @include focus.default-focus-style;
   }
 
   @media print {

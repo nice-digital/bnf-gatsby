@@ -1,18 +1,23 @@
-@use '@nice-digital/nds-core/scss/core';
-@import '../../styles/settings';
+@use '../../styles/colours';
+@use '../../styles/settings';
+@use '@nice-digital/nds-core/scss/focus';
+@use '@nice-digital/nds-core/scss/media-queries';
+@use '@nice-digital/nds-core/scss/utils';
+@use '@nice-digital/nds-core/scss/spacing';
+@use '@nice-digital/nds-core/scss/typography';
 
 .wrapper {
-  border-top: core.rem(core.$nds-spacing-x-small) solid;
+  border-top: utils.rem(spacing.$x-small) solid;
   position: sticky;
   top: -0.1px; // Hack to avoid 1px gap due to some weird Chrome sub pixel rounding
   z-index: 101; // Has to be visible over the sticky section nav (z: 100) and back to top (z:99)
 
   &.bnf {
-    border-top-color: $bnf-brand-colour;
+    border-top-color: settings.$bnf-brand-colour;
   }
 
   &.bnfc {
-    border-top-color: $bnfc-brand-colour;
+    border-top-color: settings.$bnfc-brand-colour;
   }
 }
 
@@ -29,41 +34,41 @@
 
 .currentSiteTab,
 .otherSiteTab {
-  @include core.nds-font-size(-1);
+  @include typography.font-size(-1);
   align-items: center;
   appearance: none;
   background: none;
   border: 0;
-  color: core.$nds-colour-true-black;
+  color: colours.$site-distinction-tab-text;
   display: flex;
   flex-direction: row;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 700;
-  gap: core.rem(core.$nds-spacing-x-small);
+  gap: utils.rem(spacing.$x-small);
   justify-content: center;
   letter-spacing: 1px;
   line-height: 1.5rem;
-  padding: core.rem(core.$nds-spacing-small) core.rem(core.$nds-spacing-small)
-    calc(core.rem(core.$nds-spacing-small) + 1px); // Extra 1px ensures that the tab aligns perfectly with the sticky nav
+  padding: utils.rem(spacing.$small) utils.rem(spacing.$small)
+    calc(utils.rem(spacing.$small) + 1px); // Extra 1px ensures that the tab aligns perfectly with the sticky nav
   position: relative;
   text-decoration: none;
   text-shadow: 1px 0 0 currentColor;
   top: -1px; // To avoid a 1px gap in Chrome
 
   &:hover {
-    color: core.$nds-colour-true-black;
+    color: colours.$site-distinction-tab-text;
   }
 }
 
 .currentSiteTab {
   z-index: 1; // To sit above the other site tab
 
-  @include core.nds-when-is(button) {
+  @include utils.when-is(button) {
     cursor: pointer;
   }
 
   &:focus {
-    @include core.nds-default-focus-style;
+    @include focus.default-focus-style;
   }
 
   &:focus:not(:focus-visible) {
@@ -71,15 +76,15 @@
   }
 
   &:focus-visible {
-    @include core.nds-default-focus-style;
+    @include focus.default-focus-style;
   }
 
   .bnf & {
-    background: $bnf-brand-colour;
+    background: settings.$bnf-brand-colour;
   }
 
   .bnfc & {
-    background: $bnfc-brand-colour;
+    background: settings.$bnfc-brand-colour;
   }
 }
 
@@ -91,7 +96,7 @@
 
   &:hover {
     text-decoration: underline;
-    text-decoration-thickness: core.rem(core.$nds-spacing-xx-small);
+    text-decoration-thickness: utils.rem(spacing.$xx-small);
   }
 
   &:focus {
@@ -99,15 +104,15 @@
   }
 
   &:visited {
-    color: core.$nds-colour-true-black;
+    color: colours.$site-distinction-tab-text;
   }
 
   .bnf & {
-    background: $bnfc-brand-colour;
+    background: settings.$bnfc-brand-colour;
   }
 
   .bnfc & {
-    background: $bnf-brand-colour;
+    background: settings.$bnf-brand-colour;
   }
 
   &.otherSiteTabExpanded {
@@ -123,11 +128,10 @@
   transition: all 0.25s ease;
 
   .currentSiteTab:hover & {
-    transform: translateY(#{core.rem(core.$nds-spacing-xx-small)});
+    transform: translateY(#{utils.rem(spacing.$xx-small)});
 
     &.iconExpanded {
-      transform: translateY(-#{core.rem(core.$nds-spacing-xx-small)})
-        rotate(180deg);
+      transform: translateY(-#{utils.rem(spacing.$xx-small)}) rotate(180deg);
     }
   }
 
@@ -141,7 +145,7 @@
   width: 80%;
 }
 
-@include core.mq($from: md) {
+@include media-queries.mq($from: md) {
   :global(.breadcrumbs) {
     width: 100%;
   }

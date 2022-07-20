@@ -1,0 +1,61 @@
+@use '@nice-digital/nds-core/scss/colours/tokens/global';
+
+// Accordion
+$accordion-details-border: global.$custom-grey-3;
+$accordion-toggle-warning-label: global.$nice-black;
+$accordion-summary-hover: global.$nice-blue-tint-1;
+
+// CautionaryAndAdvisoryLabel
+$label-background: global.$white;
+$label-border: global.$nice-black;
+
+// Hero
+$hero-background: global.$white;
+$hero-last-updated-background: global.$nice-cream-3;
+
+// Index
+$index-drugs-column-background: global.$white;
+$index-drugs-column-border: global.$custom-grey-2;
+$index-feature-item-background: global.$white;
+$index-feature-item-border: global.$custom-grey-2;
+
+// Indications
+$indication-dose-neonate-1: global.$nice-teal;
+$indication-dose-neonate-2: global.$nice-teal-tint-3;
+$indication-dose-child: global.$custom-purple-1;
+$indication-dose-adult: global.$nice-teal;
+$indication-content-wrapper-background: global.$white;
+$indication-content-wrapper-border: global.$custom-grey-2;
+
+// Interactions
+$interaction-adjacent-border: global.$custom-grey-1;
+$interaction-clear-filter-button-background: global.$nice-cream-3;
+$interaction-severe: global.$custom-red-1;
+$interaction-info-panel-background: global.$nice-cream-3;
+$interaction-list-item-border: global.$custom-grey-1;
+
+// Menu
+$menu-toggle-button-background: global.$nice-cream-3;
+
+// OnThisPage
+$on-this-page-scrollbar-background: global.$nice-cream-3;
+$on-this-page-scrollbar-thumb: global.$custom-grey-1;
+
+// Preps
+$prep-tag-background: global.$white;
+
+// SectionNav
+$section-nav-background: global.$white;
+$section-nav-border: global.$custom-grey-2;
+$section-nav-fixed-background: global.$white;
+$section-nav-fixed-linklist-background: global.$white;
+
+// SiteDistinction
+$site-distinction-tab-text: global.$black;
+
+// Substance
+$substance-label-background: global.$black-tint-1;
+$substance-label-text: global.$white;
+
+// Tags
+$tag-background: global.$white;

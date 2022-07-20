@@ -1,6 +1,7 @@
 // Put all styles for embedded feed HTML in here!
 /* stylelint-disable selector-class-pattern */
-@use '@nice-digital/nds-core/scss/core';
+@use '@nice-digital/nds-core/scss/spacing';
+@use '@nice-digital/nds-core/scss/utils';
 
 .evidence-grading-label {
   // Hide evidence grading until we decide whether we're keeping them
@@ -14,5 +15,5 @@
 
 .contact-details {
   // Example: /medicines-guidance/index-of-manufacturers/
-  margin-bottom: core.rem(core.$nds-spacing-medium);
+  margin-bottom: utils.rem(spacing.$medium);
 }

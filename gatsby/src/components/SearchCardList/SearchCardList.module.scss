@@ -1,4 +1,6 @@
-@use '@nice-digital/nds-core/scss/core';
+@use '@nice-digital/nds-core/scss/colours' as core-colours;
+@use '@nice-digital/nds-core/scss/spacing';
+@use '@nice-digital/nds-core/scss/utils';
 
 .list {
   list-style: none;
@@ -8,8 +10,8 @@
 }
 
 .card {
-  border-bottom: 1px solid core.$nds-colour-border;
-  margin-bottom: core.rem(core.$nds-spacing-medium);
-  padding-bottom: core.rem(core.$nds-spacing-small);
+  border-bottom: 1px solid core-colours.$border;
+  margin-bottom: utils.rem(spacing.$medium);
+  padding-bottom: utils.rem(spacing.$small);
   position: relative;
 }

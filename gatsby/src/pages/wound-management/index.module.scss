@@ -1,11 +1,13 @@
-@use '@nice-digital/nds-core/scss/core';
+@use '@nice-digital/nds-core/scss/colours' as core-colours;
+@use '@nice-digital/nds-core/scss/spacing';
+@use '@nice-digital/nds-core/scss/utils';
 
 .woundManagementIndex {
   table {
-    border-bottom: 1px solid core.$nds-colour-border;
+    border-bottom: 1px solid core-colours.$border;
     border-collapse: separate;
     display: table;
-    padding-bottom: core.rem(core.$nds-spacing-small);
+    padding-bottom: utils.rem(spacing.$small);
 
     tr {
       background: none;
@@ -15,8 +17,7 @@
     td {
       background: none;
       border: 0;
-      padding: 0 core.rem(core.$nds-spacing-large)
-        core.rem(core.$nds-spacing-small) 0;
+      padding: 0 utils.rem(spacing.$large) utils.rem(spacing.$small) 0;
     }
 
     ul {
