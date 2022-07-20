@@ -23,6 +23,7 @@ $back-to-top-clearance: utils.rem(spacing.$xx-large);
 
 .heading {
   @include typography.h4;
+  font-family: typography.get-font-family(sans);
   margin-top: 0;
 
   @include media-queries.mq($from: lg) {

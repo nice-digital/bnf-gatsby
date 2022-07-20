@@ -93,6 +93,7 @@
   background: colours.$prep-tag-background;
   border: 1px solid core-colours.$border !important;
   display: inline-block;
+  font-family: typography.get-font-family(sans);
   font-weight: 700;
   padding: utils.rem(spacing.$xx-small) utils.rem(spacing.$x-small);
   text-decoration: none !important;

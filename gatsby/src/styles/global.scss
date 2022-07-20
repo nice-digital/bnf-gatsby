@@ -7,8 +7,6 @@ $nds-output-visibility-classes: false;
 
 @import './settings';
 
-@import './lato';
-
 @import '~@nice-digital/design-system/scss/base';
 
 html {
@@ -22,12 +20,6 @@ html {
 }
 
 body {
-  // We're using font-display for Google fonts loading so on a slow connection you see FOUT
-  // Trebuchet is closer to Lato than Arial and supported on 97-99.7% of devices (https://www.cssfontstack.com/Trebuchet-MS)
-  // so gives less of a jump when the font swaps.
-  // We use Roboto for Android devices
-  font-family: 'Lato', 'Trebuchet MS', 'Roboto', 'Helvetica Neue', Helvetica,
-    Arial, sans-serif;
   overflow-wrap: break-word; // To avoid really long links breaking out if their container and overlapping other content
   position: relative;
 }
