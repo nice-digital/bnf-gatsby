@@ -1,5 +1,4 @@
 @use '../../styles/colours';
-@use '../../styles/settings';
 @use '@nice-digital/nds-core/scss/focus';
 @use '@nice-digital/nds-core/scss/media-queries';
 @use '@nice-digital/nds-core/scss/utils';
@@ -13,11 +12,11 @@
   z-index: 101; // Has to be visible over the sticky section nav (z: 100) and back to top (z:99)
 
   &.bnf {
-    border-top-color: settings.$bnf-brand-colour;
+    border-top-color: colours.$site-distinction-bnf-background;
   }
 
   &.bnfc {
-    border-top-color: settings.$bnfc-brand-colour;
+    border-top-color: colours.$site-distinction-bnfc-background;
   }
 }
 
@@ -80,11 +79,11 @@
   }
 
   .bnf & {
-    background: settings.$bnf-brand-colour;
+    background: colours.$site-distinction-bnf-background;
   }
 
   .bnfc & {
-    background: settings.$bnfc-brand-colour;
+    background: colours.$site-distinction-bnfc-background;
   }
 }
 
@@ -108,11 +107,11 @@
   }
 
   .bnf & {
-    background: settings.$bnfc-brand-colour;
+    background: colours.$site-distinction-bnfc-background;
   }
 
   .bnfc & {
-    background: settings.$bnf-brand-colour;
+    background: colours.$site-distinction-bnf-background;
   }
 
   &.otherSiteTabExpanded {

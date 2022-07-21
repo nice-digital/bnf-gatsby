@@ -1,13 +1,10 @@
 @use '@nice-digital/nds-core/scss/spacing';
 @use '@nice-digital/nds-core/scss/utils';
-
-$nds-include-spacing-modifiers: false;
-$nds-output-text-classes: false;
-$nds-output-visibility-classes: false;
-
-@import './settings';
-
-@import '~@nice-digital/design-system/scss/base';
+@use '@nice-digital/design-system/scss/base' with (
+  $include-spacing-modifiers: false,
+  $output-text-classes: false,
+  $output-visibility-classes: false
+);
 
 html {
   overflow-x: visible; // Override the overflow from NDS, otherwise position sticky doesn't work

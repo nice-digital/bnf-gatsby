@@ -1,3 +1,6 @@
+import "@fontsource/inter/400.css";
+import "@fontsource/inter/600.css";
+import "@fontsource/lora/600.css";
 import { type RouteUpdateArgs, type WrapPageElementBrowserArgs } from "gatsby";
 import { type ReactElement } from "react";
 

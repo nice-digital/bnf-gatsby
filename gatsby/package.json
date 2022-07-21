@@ -31,6 +31,8 @@
     "audit:teamcity": "npm audit --audit-level=moderate --json|npm-audit-reporter-teamcity"
   },
   "dependencies": {
+    "@fontsource/inter": "^4.5.11",
+    "@fontsource/lora": "^4.5.10",
     "@nice-digital/browserslist-config": "^2.0.1",
     "@nice-digital/design-system": "3.0.0-alpha.0",
     "@nice-digital/global-nav": "^5.0.862-GN-187-Rebrand",
