@@ -1,41 +1,46 @@
-@use '~@nice-digital/nds-core/scss/core';
+@use '../../styles/colours';
+@use '@nice-digital/nds-core/scss/layout';
+@use '@nice-digital/nds-core/scss/media-queries';
+@use '@nice-digital/nds-core/scss/spacing';
+@use '@nice-digital/nds-core/scss/typography';
+@use '@nice-digital/nds-core/scss/utils';
 
 .hero {
-  background: core.$nds-colour-nice-white;
+  background: colours.$hero-background;
   left: 50%;
-  margin-bottom: core.rem(core.$nds-spacing-large);
+  margin-bottom: utils.rem(spacing.$large);
   margin-left: -50vw;
   margin-right: -50vw;
   overflow: hidden;
-  padding-bottom: core.rem(core.$nds-spacing-large);
+  padding-bottom: utils.rem(spacing.$large);
   position: relative;
   right: 50%;
   width: 100vw;
 
   .heroContainer {
-    @include core.nds-container;
+    @include layout.container;
   }
 
   .title {
-    @include core.nds-h1;
+    @include typography.h1;
   }
 
   .intro {
-    @include core.nds-lead;
+    @include typography.lead;
     max-width: unset;
   }
 
   .lastUpdated {
     h2 {
-      @include core.nds-h5;
+      @include typography.h5;
       margin: 0;
     }
 
     time {
-      @include core.nds-h3;
+      @include typography.h3;
       display: block;
       font-weight: 700;
-      margin: 0 0 core.rem(core.$nds-spacing-medium);
+      margin: 0 0 utils.rem(spacing.$medium);
     }
   }
 }
@@ -44,10 +49,10 @@
   flex: 0 1 100%;
 }
 
-@include core.mq($from: md) {
+@include media-queries.mq($from: md) {
   .heroContainer {
     align-items: center;
-    column-gap: core.rem(core.$nds-spacing-medium);
+    column-gap: utils.rem(spacing.$medium);
     display: flex;
     flex-flow: row;
     flex-wrap: wrap;
@@ -58,10 +63,10 @@
   }
 
   .lastUpdated {
-    background-color: core.$nds-colour-nice-grey-3;
-    padding: core.rem(core.$nds-spacing-medium);
-    padding-left: core.rem(core.$nds-spacing-medium);
-    padding-right: core.rem(core.$nds-spacing-large);
+    background-color: colours.$hero-last-updated-background;
+    padding: utils.rem(spacing.$medium);
+    padding-left: utils.rem(spacing.$medium);
+    padding-right: utils.rem(spacing.$large);
   }
 
   .lastUpdated * {

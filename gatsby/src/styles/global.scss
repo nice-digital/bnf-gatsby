@@ -1,19 +1,15 @@
-@use '@nice-digital/nds-core/scss/core';
-
-$nds-include-spacing-modifiers: false;
-$nds-output-text-classes: false;
-$nds-output-visibility-classes: false;
-
-@import './settings';
-
-@import './lato';
-
-@import '~@nice-digital/design-system/scss/base';
+@use '@nice-digital/nds-core/scss/spacing';
+@use '@nice-digital/nds-core/scss/utils';
+@use '@nice-digital/design-system/scss/base' with (
+  $include-spacing-modifiers: false,
+  $output-text-classes: false,
+  $output-visibility-classes: false
+);
 
 html {
   overflow-x: visible; // Override the overflow from NDS, otherwise position sticky doesn't work
   scroll-behavior: smooth;
-  scroll-padding-top: core.rem(core.$nds-spacing-x-large);
+  scroll-padding-top: utils.rem(spacing.$x-large);
 
   @media (prefers-reduced-motion) {
     scroll-behavior: auto;
@@ -21,12 +17,6 @@ html {
 }
 
 body {
-  // We're using font-display for Google fonts loading so on a slow connection you see FOUT
-  // Trebuchet is closer to Lato than Arial and supported on 97-99.7% of devices (https://www.cssfontstack.com/Trebuchet-MS)
-  // so gives less of a jump when the font swaps.
-  // We use Roboto for Android devices
-  font-family: 'Lato', 'Trebuchet MS', 'Roboto', 'Helvetica Neue', Helvetica,
-    Arial, sans-serif;
   overflow-wrap: break-word; // To avoid really long links breaking out if their container and overlapping other content
   position: relative;
 }

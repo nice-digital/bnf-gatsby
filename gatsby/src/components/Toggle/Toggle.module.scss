@@ -1,9 +1,12 @@
-@use '@nice-digital/nds-core/scss/core';
+@use '@nice-digital/nds-core/scss/colours' as core-colours;
+@use '@nice-digital/nds-core/scss/spacing';
+@use '@nice-digital/nds-core/scss/typography';
+@use '@nice-digital/nds-core/scss/utils';
 
 .label {
-  @include core.nds-link-default;
+  @include typography.link-default;
   align-items: center;
-  color: core.$nds-colour-link;
+  color: core-colours.$link;
   display: flex;
   flex-wrap: nowrap;
   text-decoration: underline;
@@ -11,7 +14,7 @@
 
 .icon {
   display: block;
-  margin-right: core.rem(core.$nds-spacing-small);
+  margin-right: utils.rem(spacing.$small);
   transition: all 0.25s ease;
 
   &.open {

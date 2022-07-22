@@ -1,17 +1,21 @@
-@use '@nice-digital/nds-core/scss/core';
+@use '../../styles/colours';
+@use '@nice-digital/nds-core/scss/colours' as core-colours;
+@use '@nice-digital/nds-core/scss/focus';
+@use '@nice-digital/nds-core/scss/media-queries';
+@use '@nice-digital/nds-core/scss/spacing';
+@use '@nice-digital/nds-core/scss/utils';
 
 .toggleButton {
   appearance: none;
-  background: core.$nds-colour-nice-grey-3;
-  border: 1px solid core.$nds-colour-border;
-  color: core.$nds-colour-link;
+  background: colours.$menu-toggle-button-background;
+  border: 1px solid core-colours.$border;
+  color: core-colours.$link;
   cursor: pointer;
   display: block;
   line-height: 1;
   /* stylelint-disable indentation, function-parentheses-space-inside */
-  padding: core.rem(
-    core.$nds-spacing-medium core.$nds-spacing-large core.$nds-spacing-medium
-      core.$nds-spacing-small
+  padding: utils.rem(
+    spacing.$medium spacing.$large spacing.$medium spacing.$small
   );
   position: relative;
   text-align: left;
@@ -19,11 +23,11 @@
   width: 100%;
 
   &:visited {
-    color: core.$nds-colour-link;
+    color: core-colours.$link;
   }
 
   &:focus {
-    @include core.nds-default-focus-style;
+    @include focus.default-focus-style;
     z-index: 1;
   }
 
@@ -38,7 +42,7 @@
   }
 
   &[aria-expanded='false'] {
-    margin: 0 0 core.rem(core.$nds-spacing-medium) 0;
+    margin: 0 0 utils.rem(spacing.$medium) 0;
   }
 
   &[aria-expanded='false'] + :global(.stacked-nav) {
@@ -57,21 +61,21 @@
     }
   }
 
-  @include core.mq($from: sm) {
+  @include media-queries.mq($from: sm) {
     display: none;
   }
 }
 
-@include core.mq($from: sm) {
+@include media-queries.mq($from: sm) {
   :global(#collapsible-menu) {
     display: block;
   }
 }
 
 .icon {
-  color: core.$nds-colour-link;
+  color: core-colours.$link;
   position: absolute;
-  right: core.rem(core.$nds-spacing-small);
+  right: utils.rem(spacing.$small);
   top: 50%;
   transform: translateY(-50%);
   transition: all 0.25s ease;

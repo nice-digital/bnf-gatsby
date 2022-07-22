@@ -1,4 +1,7 @@
-@use '@nice-digital/nds-core/scss/core';
+@use '../../styles/colours';
+@use '@nice-digital/nds-core/scss/spacing';
+@use '@nice-digital/nds-core/scss/typography';
+@use '@nice-digital/nds-core/scss/utils';
 
 .messageList {
   list-style: none;
@@ -6,16 +9,16 @@
 }
 
 .interactantTitle {
-  @include core.nds-h5();
+  @include typography.h5();
 }
 
 .message {
-  margin-bottom: core.rem(core.$nds-spacing-medium);
+  margin-bottom: utils.rem(spacing.$medium);
 }
 
 .message + .message {
-  border-top: 2px dashed core.$nds-colour-nice-grey-1;
-  padding-top: core.rem(core.$nds-spacing-medium);
+  border-top: 2px dashed colours.$interaction-adjacent-border;
+  padding-top: utils.rem(spacing.$medium);
 
   p:first-of-type {
     margin-top: 0;
@@ -23,26 +26,26 @@
 }
 
 .severeMessage {
-  border-left: core.rem(core.$nds-spacing-small) solid core.$nds-colour-error;
-  padding-left: core.rem(core.$nds-spacing-medium);
+  border-left: utils.rem(spacing.$small) solid colours.$interaction-severe;
+  padding-left: utils.rem(spacing.$medium);
 }
 
 .severeText {
-  color: core.$nds-colour-error;
+  color: colours.$interaction-severe;
   display: inline-block;
-  margin-right: core.rem(core.$nds-spacing-small);
+  margin-right: utils.rem(spacing.$small);
 }
 
 .supplementaryInfo {
-  margin-top: core.rem(core.$nds-spacing-medium);
+  margin-top: utils.rem(spacing.$medium);
 
   dt,
   dd {
     display: inline;
-    margin: 0 core.rem(core.$nds-spacing-small) 0 0;
+    margin: 0 utils.rem(spacing.$small) 0 0;
   }
 
   dd + dt {
-    margin-left: core.rem(core.$nds-spacing-small);
+    margin-left: utils.rem(spacing.$small);
   }
 }
