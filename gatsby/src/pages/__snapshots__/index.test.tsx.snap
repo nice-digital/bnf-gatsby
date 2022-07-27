@@ -64,42 +64,46 @@ exports[`HomePage should match snapshot for BNF 1`] = `
 }
         </script>
         <div
-          class="text"
+          class="body"
         >
-          <h1
-            class="title"
+          <div
+            class="text"
           >
-            British National Formulary
-             (
-            BNF
-            )
-          </h1>
-          <p
-            class="intro"
+            <h1
+              class="title"
+            >
+              British National Formulary
+               (
+              BNF
+              )
+            </h1>
+            <p
+              class="intro"
+            >
+              Key information on the selection, prescribing, dispensing and administration of medicines.
+            </p>
+          </div>
+          <div
+            class="lastUpdated"
+            data-tracking="last-updated"
           >
-            Key information on the selection, prescribing, dispensing and administration of medicines.
-          </p>
-        </div>
-        <div
-          class="lastUpdated"
-          data-tracking="last-updated"
-        >
-          <h2
-            class="h5"
-          >
-            Last updated: 
-          </h2>
-          <time
-            class="h3"
-            datetime="2022-04-06T00:38:57.911"
-          >
-            6 April 2022
-          </time>
-          <a
-            href="/about/changes/"
-          >
-            See what's changed
-          </a>
+            <h2
+              class="lastUpdatedLabel"
+            >
+              Last updated: 
+            </h2>
+            <time
+              class="lastUpdatedDate"
+              datetime="2022-04-06T00:38:57.911"
+            >
+              6 April 2022
+            </time>
+            <a
+              href="/about/changes/"
+            >
+              See what's changed
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -130,392 +134,262 @@ exports[`HomePage should match snapshot for BNF 1`] = `
           <li
             class="alphabet__letter alphabet__letter--chunky"
           >
-            <span
-              class="alphabet__link-wrapper"
+            <a
+              class="alphabet__link"
+              href="/drugs/#a"
             >
-              <a
-                class="alphabet__link"
-                href="/drugs/#a"
-              >
-                A
-              </a>
-               
-            </span>
+              A
+            </a>
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
           >
-            <span
-              class="alphabet__link-wrapper"
+            <a
+              class="alphabet__link"
+              href="/drugs/#b"
             >
-              <a
-                class="alphabet__link"
-                href="/drugs/#b"
-              >
-                B
-              </a>
-               
-            </span>
+              B
+            </a>
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
           >
-            <span
-              class="alphabet__link-wrapper"
+            <a
+              class="alphabet__link"
+              href="/drugs/#c"
             >
-              <a
-                class="alphabet__link"
-                href="/drugs/#c"
-              >
-                C
-              </a>
-               
-            </span>
+              C
+            </a>
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
           >
-            <span
-              class="alphabet__link-wrapper"
+            <a
+              class="alphabet__link"
+              href="/drugs/#d"
             >
-              <a
-                class="alphabet__link"
-                href="/drugs/#d"
-              >
-                D
-              </a>
-               
-            </span>
+              D
+            </a>
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
           >
-            <span
-              class="alphabet__link-wrapper"
+            <a
+              class="alphabet__link"
+              href="/drugs/#e"
             >
-              <a
-                class="alphabet__link"
-                href="/drugs/#e"
-              >
-                E
-              </a>
-               
-            </span>
+              E
+            </a>
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
           >
-            <span
-              class="alphabet__link-wrapper"
+            <a
+              class="alphabet__link"
+              href="/drugs/#f"
             >
-              <a
-                class="alphabet__link"
-                href="/drugs/#f"
-              >
-                F
-              </a>
-               
-            </span>
+              F
+            </a>
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
           >
-            <span
-              class="alphabet__link-wrapper"
+            <a
+              class="alphabet__link"
+              href="/drugs/#g"
             >
-              <a
-                class="alphabet__link"
-                href="/drugs/#g"
-              >
-                G
-              </a>
-               
-            </span>
+              G
+            </a>
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
           >
-            <span
-              class="alphabet__link-wrapper"
+            <a
+              class="alphabet__link"
+              href="/drugs/#h"
             >
-              <a
-                class="alphabet__link"
-                href="/drugs/#h"
-              >
-                H
-              </a>
-               
-            </span>
+              H
+            </a>
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
           >
-            <span
-              class="alphabet__link-wrapper"
+            <a
+              class="alphabet__link"
+              href="/drugs/#i"
             >
-              <a
-                class="alphabet__link"
-                href="/drugs/#i"
-              >
-                I
-              </a>
-               
-            </span>
+              I
+            </a>
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
           >
-            <span
-              class="alphabet__link-wrapper"
+            <a
+              class="alphabet__link"
+              href="/drugs/#j"
             >
-              <a
-                class="alphabet__link"
-                href="/drugs/#j"
-              >
-                J
-              </a>
-               
-            </span>
+              J
+            </a>
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
           >
-            <span
-              class="alphabet__link-wrapper"
+            <a
+              class="alphabet__link"
+              href="/drugs/#k"
             >
-              <a
-                class="alphabet__link"
-                href="/drugs/#k"
-              >
-                K
-              </a>
-               
-            </span>
+              K
+            </a>
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
           >
-            <span
-              class="alphabet__link-wrapper"
+            <a
+              class="alphabet__link"
+              href="/drugs/#l"
             >
-              <a
-                class="alphabet__link"
-                href="/drugs/#l"
-              >
-                L
-              </a>
-               
-            </span>
+              L
+            </a>
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
           >
-            <span
-              class="alphabet__link-wrapper"
+            <a
+              class="alphabet__link"
+              href="/drugs/#m"
             >
-              <a
-                class="alphabet__link"
-                href="/drugs/#m"
-              >
-                M
-              </a>
-               
-            </span>
+              M
+            </a>
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
           >
-            <span
-              class="alphabet__link-wrapper"
+            <a
+              class="alphabet__link"
+              href="/drugs/#n"
             >
-              <a
-                class="alphabet__link"
-                href="/drugs/#n"
-              >
-                N
-              </a>
-               
-            </span>
+              N
+            </a>
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
           >
-            <span
-              class="alphabet__link-wrapper"
+            <a
+              class="alphabet__link"
+              href="/drugs/#o"
             >
-              <a
-                class="alphabet__link"
-                href="/drugs/#o"
-              >
-                O
-              </a>
-               
-            </span>
+              O
+            </a>
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
           >
-            <span
-              class="alphabet__link-wrapper"
+            <a
+              class="alphabet__link"
+              href="/drugs/#p"
             >
-              <a
-                class="alphabet__link"
-                href="/drugs/#p"
-              >
-                P
-              </a>
-               
-            </span>
+              P
+            </a>
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
           >
-            <span
-              class="alphabet__link-wrapper"
+            <a
+              class="alphabet__link"
+              href="/drugs/#q"
             >
-              <a
-                class="alphabet__link"
-                href="/drugs/#q"
-              >
-                Q
-              </a>
-               
-            </span>
+              Q
+            </a>
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
           >
-            <span
-              class="alphabet__link-wrapper"
+            <a
+              class="alphabet__link"
+              href="/drugs/#r"
             >
-              <a
-                class="alphabet__link"
-                href="/drugs/#r"
-              >
-                R
-              </a>
-               
-            </span>
+              R
+            </a>
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
           >
-            <span
-              class="alphabet__link-wrapper"
+            <a
+              class="alphabet__link"
+              href="/drugs/#s"
             >
-              <a
-                class="alphabet__link"
-                href="/drugs/#s"
-              >
-                S
-              </a>
-               
-            </span>
+              S
+            </a>
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
           >
-            <span
-              class="alphabet__link-wrapper"
+            <a
+              class="alphabet__link"
+              href="/drugs/#t"
             >
-              <a
-                class="alphabet__link"
-                href="/drugs/#t"
-              >
-                T
-              </a>
-               
-            </span>
+              T
+            </a>
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
           >
-            <span
-              class="alphabet__link-wrapper"
+            <a
+              class="alphabet__link"
+              href="/drugs/#u"
             >
-              <a
-                class="alphabet__link"
-                href="/drugs/#u"
-              >
-                U
-              </a>
-               
-            </span>
+              U
+            </a>
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
           >
-            <span
-              class="alphabet__link-wrapper"
+            <a
+              class="alphabet__link"
+              href="/drugs/#v"
             >
-              <a
-                class="alphabet__link"
-                href="/drugs/#v"
-              >
-                V
-              </a>
-               
-            </span>
+              V
+            </a>
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
           >
-            <span
-              class="alphabet__link-wrapper"
+            <a
+              class="alphabet__link"
+              href="/drugs/#w"
             >
-              <a
-                class="alphabet__link"
-                href="/drugs/#w"
-              >
-                W
-              </a>
-               
-            </span>
+              W
+            </a>
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
           >
-            <span
-              class="alphabet__link-wrapper"
+            <a
+              class="alphabet__link"
+              href="/drugs/#x"
             >
-              <a
-                class="alphabet__link"
-                href="/drugs/#x"
-              >
-                X
-              </a>
-               
-            </span>
+              X
+            </a>
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
           >
-            <span
-              class="alphabet__link-wrapper"
+            <a
+              class="alphabet__link"
+              href="/drugs/#y"
             >
-              <a
-                class="alphabet__link"
-                href="/drugs/#y"
-              >
-                Y
-              </a>
-               
-            </span>
+              Y
+            </a>
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
           >
-            <span
-              class="alphabet__link-wrapper"
+            <a
+              class="alphabet__link"
+              href="/drugs/#z"
             >
-              <a
-                class="alphabet__link"
-                href="/drugs/#z"
-              >
-                Z
-              </a>
-               
-            </span>
+              Z
+            </a>
           </li>
         </ol>
       </div>
@@ -829,42 +703,46 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
 }
         </script>
         <div
-          class="text"
+          class="body"
         >
-          <h1
-            class="title"
+          <div
+            class="text"
           >
-            British National Formulary
-             (
-            BNF
-            )
-          </h1>
-          <p
-            class="intro"
+            <h1
+              class="title"
+            >
+              British National Formulary
+               (
+              BNF
+              )
+            </h1>
+            <p
+              class="intro"
+            >
+              Key information on the selection, prescribing, dispensing and administration of medicines.
+            </p>
+          </div>
+          <div
+            class="lastUpdated"
+            data-tracking="last-updated"
           >
-            Key information on the selection, prescribing, dispensing and administration of medicines.
-          </p>
-        </div>
-        <div
-          class="lastUpdated"
-          data-tracking="last-updated"
-        >
-          <h2
-            class="h5"
-          >
-            Last updated: 
-          </h2>
-          <time
-            class="h3"
-            datetime="2022-04-06T00:38:57.911"
-          >
-            6 April 2022
-          </time>
-          <a
-            href="/about/changes/"
-          >
-            See what's changed
-          </a>
+            <h2
+              class="lastUpdatedLabel"
+            >
+              Last updated: 
+            </h2>
+            <time
+              class="lastUpdatedDate"
+              datetime="2022-04-06T00:38:57.911"
+            >
+              6 April 2022
+            </time>
+            <a
+              href="/about/changes/"
+            >
+              See what's changed
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -895,392 +773,262 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
           <li
             class="alphabet__letter alphabet__letter--chunky"
           >
-            <span
-              class="alphabet__link-wrapper"
+            <a
+              class="alphabet__link"
+              href="/drugs/#a"
             >
-              <a
-                class="alphabet__link"
-                href="/drugs/#a"
-              >
-                A
-              </a>
-               
-            </span>
+              A
+            </a>
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
           >
-            <span
-              class="alphabet__link-wrapper"
+            <a
+              class="alphabet__link"
+              href="/drugs/#b"
             >
-              <a
-                class="alphabet__link"
-                href="/drugs/#b"
-              >
-                B
-              </a>
-               
-            </span>
+              B
+            </a>
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
           >
-            <span
-              class="alphabet__link-wrapper"
+            <a
+              class="alphabet__link"
+              href="/drugs/#c"
             >
-              <a
-                class="alphabet__link"
-                href="/drugs/#c"
-              >
-                C
-              </a>
-               
-            </span>
+              C
+            </a>
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
           >
-            <span
-              class="alphabet__link-wrapper"
+            <a
+              class="alphabet__link"
+              href="/drugs/#d"
             >
-              <a
-                class="alphabet__link"
-                href="/drugs/#d"
-              >
-                D
-              </a>
-               
-            </span>
+              D
+            </a>
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
           >
-            <span
-              class="alphabet__link-wrapper"
+            <a
+              class="alphabet__link"
+              href="/drugs/#e"
             >
-              <a
-                class="alphabet__link"
-                href="/drugs/#e"
-              >
-                E
-              </a>
-               
-            </span>
+              E
+            </a>
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
           >
-            <span
-              class="alphabet__link-wrapper"
+            <a
+              class="alphabet__link"
+              href="/drugs/#f"
             >
-              <a
-                class="alphabet__link"
-                href="/drugs/#f"
-              >
-                F
-              </a>
-               
-            </span>
+              F
+            </a>
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
           >
-            <span
-              class="alphabet__link-wrapper"
+            <a
+              class="alphabet__link"
+              href="/drugs/#g"
             >
-              <a
-                class="alphabet__link"
-                href="/drugs/#g"
-              >
-                G
-              </a>
-               
-            </span>
+              G
+            </a>
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
           >
-            <span
-              class="alphabet__link-wrapper"
+            <a
+              class="alphabet__link"
+              href="/drugs/#h"
             >
-              <a
-                class="alphabet__link"
-                href="/drugs/#h"
-              >
-                H
-              </a>
-               
-            </span>
+              H
+            </a>
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
           >
-            <span
-              class="alphabet__link-wrapper"
+            <a
+              class="alphabet__link"
+              href="/drugs/#i"
             >
-              <a
-                class="alphabet__link"
-                href="/drugs/#i"
-              >
-                I
-              </a>
-               
-            </span>
+              I
+            </a>
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
           >
-            <span
-              class="alphabet__link-wrapper"
+            <a
+              class="alphabet__link"
+              href="/drugs/#j"
             >
-              <a
-                class="alphabet__link"
-                href="/drugs/#j"
-              >
-                J
-              </a>
-               
-            </span>
+              J
+            </a>
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
           >
-            <span
-              class="alphabet__link-wrapper"
+            <a
+              class="alphabet__link"
+              href="/drugs/#k"
             >
-              <a
-                class="alphabet__link"
-                href="/drugs/#k"
-              >
-                K
-              </a>
-               
-            </span>
+              K
+            </a>
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
           >
-            <span
-              class="alphabet__link-wrapper"
+            <a
+              class="alphabet__link"
+              href="/drugs/#l"
             >
-              <a
-                class="alphabet__link"
-                href="/drugs/#l"
-              >
-                L
-              </a>
-               
-            </span>
+              L
+            </a>
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
           >
-            <span
-              class="alphabet__link-wrapper"
+            <a
+              class="alphabet__link"
+              href="/drugs/#m"
             >
-              <a
-                class="alphabet__link"
-                href="/drugs/#m"
-              >
-                M
-              </a>
-               
-            </span>
+              M
+            </a>
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
           >
-            <span
-              class="alphabet__link-wrapper"
+            <a
+              class="alphabet__link"
+              href="/drugs/#n"
             >
-              <a
-                class="alphabet__link"
-                href="/drugs/#n"
-              >
-                N
-              </a>
-               
-            </span>
+              N
+            </a>
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
           >
-            <span
-              class="alphabet__link-wrapper"
+            <a
+              class="alphabet__link"
+              href="/drugs/#o"
             >
-              <a
-                class="alphabet__link"
-                href="/drugs/#o"
-              >
-                O
-              </a>
-               
-            </span>
+              O
+            </a>
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
           >
-            <span
-              class="alphabet__link-wrapper"
+            <a
+              class="alphabet__link"
+              href="/drugs/#p"
             >
-              <a
-                class="alphabet__link"
-                href="/drugs/#p"
-              >
-                P
-              </a>
-               
-            </span>
+              P
+            </a>
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
           >
-            <span
-              class="alphabet__link-wrapper"
+            <a
+              class="alphabet__link"
+              href="/drugs/#q"
             >
-              <a
-                class="alphabet__link"
-                href="/drugs/#q"
-              >
-                Q
-              </a>
-               
-            </span>
+              Q
+            </a>
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
           >
-            <span
-              class="alphabet__link-wrapper"
+            <a
+              class="alphabet__link"
+              href="/drugs/#r"
             >
-              <a
-                class="alphabet__link"
-                href="/drugs/#r"
-              >
-                R
-              </a>
-               
-            </span>
+              R
+            </a>
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
           >
-            <span
-              class="alphabet__link-wrapper"
+            <a
+              class="alphabet__link"
+              href="/drugs/#s"
             >
-              <a
-                class="alphabet__link"
-                href="/drugs/#s"
-              >
-                S
-              </a>
-               
-            </span>
+              S
+            </a>
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
           >
-            <span
-              class="alphabet__link-wrapper"
+            <a
+              class="alphabet__link"
+              href="/drugs/#t"
             >
-              <a
-                class="alphabet__link"
-                href="/drugs/#t"
-              >
-                T
-              </a>
-               
-            </span>
+              T
+            </a>
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
           >
-            <span
-              class="alphabet__link-wrapper"
+            <a
+              class="alphabet__link"
+              href="/drugs/#u"
             >
-              <a
-                class="alphabet__link"
-                href="/drugs/#u"
-              >
-                U
-              </a>
-               
-            </span>
+              U
+            </a>
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
           >
-            <span
-              class="alphabet__link-wrapper"
+            <a
+              class="alphabet__link"
+              href="/drugs/#v"
             >
-              <a
-                class="alphabet__link"
-                href="/drugs/#v"
-              >
-                V
-              </a>
-               
-            </span>
+              V
+            </a>
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
           >
-            <span
-              class="alphabet__link-wrapper"
+            <a
+              class="alphabet__link"
+              href="/drugs/#w"
             >
-              <a
-                class="alphabet__link"
-                href="/drugs/#w"
-              >
-                W
-              </a>
-               
-            </span>
+              W
+            </a>
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
           >
-            <span
-              class="alphabet__link-wrapper"
+            <a
+              class="alphabet__link"
+              href="/drugs/#x"
             >
-              <a
-                class="alphabet__link"
-                href="/drugs/#x"
-              >
-                X
-              </a>
-               
-            </span>
+              X
+            </a>
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
           >
-            <span
-              class="alphabet__link-wrapper"
+            <a
+              class="alphabet__link"
+              href="/drugs/#y"
             >
-              <a
-                class="alphabet__link"
-                href="/drugs/#y"
-              >
-                Y
-              </a>
-               
-            </span>
+              Y
+            </a>
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
           >
-            <span
-              class="alphabet__link-wrapper"
+            <a
+              class="alphabet__link"
+              href="/drugs/#z"
             >
-              <a
-                class="alphabet__link"
-                href="/drugs/#z"
-              >
-                Z
-              </a>
-               
-            </span>
+              Z
+            </a>
           </li>
         </ol>
       </div>

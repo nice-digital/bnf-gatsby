@@ -74,7 +74,7 @@ exports[`BorderlineSubstanceIntroductionPage should match snapshot for page cont
     id="content-start"
   >
     <h1
-      class="page-header__heading"
+      class="page-header__heading "
     >
       <span>
         Borderline Substances

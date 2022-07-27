@@ -91,7 +91,7 @@ exports[`BorderlineSubstancesRootPage Body Single level should match snapshot 1`
     id="content-start"
   >
     <h1
-      class="page-header__heading"
+      class="page-header__heading "
     >
       Specialised formulas
     </h1>
@@ -310,7 +310,7 @@ exports[`BorderlineSubstancesRootPage Body Two levels should match snapshot 1`] 
     id="content-start"
   >
     <h1
-      class="page-header__heading"
+      class="page-header__heading "
     >
       Foods for special diets
     </h1>

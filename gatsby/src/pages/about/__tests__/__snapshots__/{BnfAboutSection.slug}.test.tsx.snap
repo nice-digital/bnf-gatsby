@@ -105,7 +105,7 @@ exports[`AboutSectionPage should match snapshot for page contents 1`] = `
     id="content-start"
   >
     <h1
-      class="page-header__heading"
+      class="page-header__heading "
     >
       <span>
         Changes

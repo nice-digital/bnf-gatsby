@@ -108,7 +108,7 @@ exports[`Wound management taxonomy page should match page snapshot 1`] = `
     id="content-start"
   >
     <h1
-      class="page-header__heading"
+      class="page-header__heading "
     >
       <span>
         Vapour–permeable, transparent, adhesive film dressing.

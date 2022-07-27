@@ -61,42 +61,46 @@ exports[`Hero should match snapshot for BNF 1`] = `
 }
       </script>
       <div
-        class="text"
+        class="body"
       >
-        <h1
-          class="title"
+        <div
+          class="text"
         >
-          British National Formulary
-           (
-          BNF
-          )
-        </h1>
-        <p
-          class="intro"
+          <h1
+            class="title"
+          >
+            British National Formulary
+             (
+            BNF
+            )
+          </h1>
+          <p
+            class="intro"
+          >
+            Key information on the selection, prescribing, dispensing and administration of medicines.
+          </p>
+        </div>
+        <div
+          class="lastUpdated"
+          data-tracking="last-updated"
         >
-          Key information on the selection, prescribing, dispensing and administration of medicines.
-        </p>
-      </div>
-      <div
-        class="lastUpdated"
-        data-tracking="last-updated"
-      >
-        <h2
-          class="h5"
-        >
-          Last updated: 
-        </h2>
-        <time
-          class="h3"
-          datetime="2022-04-06T00:38:57.911"
-        >
-          6 April 2022
-        </time>
-        <a
-          href="/about/changes/"
-        >
-          See what's changed
-        </a>
+          <h2
+            class="lastUpdatedLabel"
+          >
+            Last updated: 
+          </h2>
+          <time
+            class="lastUpdatedDate"
+            datetime="2022-04-06T00:38:57.911"
+          >
+            6 April 2022
+          </time>
+          <a
+            href="/about/changes/"
+          >
+            See what's changed
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -164,42 +168,46 @@ exports[`Hero should match snapshot for BNFC 1`] = `
 }
       </script>
       <div
-        class="text"
+        class="body"
       >
-        <h1
-          class="title"
+        <div
+          class="text"
         >
-          British National Formulary for Children
-           (
-          BNFC
-          )
-        </h1>
-        <p
-          class="intro"
+          <h1
+            class="title"
+          >
+            British National Formulary for Children
+             (
+            BNFC
+            )
+          </h1>
+          <p
+            class="intro"
+          >
+            Key information on the selection, prescribing, dispensing and administration of medicines used for children.
+          </p>
+        </div>
+        <div
+          class="lastUpdated"
+          data-tracking="last-updated"
         >
-          Key information on the selection, prescribing, dispensing and administration of medicines used for children.
-        </p>
-      </div>
-      <div
-        class="lastUpdated"
-        data-tracking="last-updated"
-      >
-        <h2
-          class="h5"
-        >
-          Last updated: 
-        </h2>
-        <time
-          class="h3"
-          datetime="2022-04-06T00:38:57.911"
-        >
-          6 April 2022
-        </time>
-        <a
-          href="/about/changes/"
-        >
-          See what's changed
-        </a>
+          <h2
+            class="lastUpdatedLabel"
+          >
+            Last updated: 
+          </h2>
+          <time
+            class="lastUpdatedDate"
+            datetime="2022-04-06T00:38:57.911"
+          >
+            6 April 2022
+          </time>
+          <a
+            href="/about/changes/"
+          >
+            See what's changed
+          </a>
+        </div>
       </div>
     </div>
   </div>

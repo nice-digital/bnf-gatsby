@@ -104,7 +104,7 @@ exports[`CautionaryAdvisoryGuidancePage should match snapshot for page contents 
     id="content-start"
   >
     <h1
-      class="page-header__heading"
+      class="page-header__heading "
     >
       <span>
         Guidance for cautionary and advisory labels

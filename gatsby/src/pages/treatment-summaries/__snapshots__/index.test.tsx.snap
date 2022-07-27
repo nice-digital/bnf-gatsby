@@ -74,7 +74,7 @@ exports[`TreatmentSummariesIndexPage should match snapshot for page body 1`] = `
     id="content-start"
   >
     <h1
-      class="page-header__heading"
+      class="page-header__heading "
     >
       Treatment summaries
        A to Z

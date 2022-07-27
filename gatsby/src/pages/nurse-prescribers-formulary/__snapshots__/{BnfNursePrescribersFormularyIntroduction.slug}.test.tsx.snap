@@ -105,7 +105,7 @@ exports[`NursePrescribersFormularyApprovedListPage should match snapshot for pag
     id="content-start"
   >
     <h1
-      class="page-header__heading"
+      class="page-header__heading "
     >
       <span>
         Approved list for prescribing by Community Practitioner Nurse Prescribers (NPF)

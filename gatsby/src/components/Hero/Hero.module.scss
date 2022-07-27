@@ -16,50 +16,61 @@
   position: relative;
   right: 50%;
   width: 100vw;
-
-  .heroContainer {
-    @include layout.container;
-  }
-
-  .title {
-    @include typography.h1;
-  }
-
-  .intro {
-    @include typography.lead;
-    max-width: unset;
-  }
-
-  .lastUpdated {
-    h2 {
-      @include typography.h5;
-      margin: 0;
-    }
-
-    time {
-      @include typography.h3;
-      display: block;
-      font-weight: 700;
-      margin: 0 0 utils.rem(spacing.$medium);
-    }
-  }
 }
 
 .breadcrumbs {
   flex: 0 1 100%;
 }
 
+.heroContainer {
+  @include layout.container;
+}
+
+.text {
+  margin-bottom: utils.rem(spacing.$large);
+}
+
+.title {
+  @include typography.h1;
+  margin-bottom: utils.rem(spacing.$medium);
+}
+
+.intro {
+  @include typography.lead;
+  margin: 0;
+  max-width: unset;
+}
+
+.lastUpdated {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.lastUpdatedLabel {
+  @include typography.h5;
+  font-family: typography.get-font-family(sans);
+  font-weight: bold;
+  margin: 0;
+}
+
+.lastUpdatedDate {
+  @include typography.h3;
+  font-family: typography.get-font-family(sans);
+  margin: 0 0 utils.rem(spacing.$medium);
+}
+
 @include media-queries.mq($from: md) {
-  .heroContainer {
-    align-items: center;
-    column-gap: utils.rem(spacing.$medium);
+  .body {
+    align-items: baseline;
+    column-gap: utils.rem(spacing.$large);
     display: flex;
     flex-flow: row;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
   }
 
   .text {
     flex-grow: 1;
+    margin: 0;
   }
 
   .lastUpdated {

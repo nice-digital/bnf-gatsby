@@ -109,7 +109,7 @@ exports[`NursePrescribersFormularyTreatmentSummaryPage should match snapshot for
     id="content-start"
   >
     <h1
-      class="page-header__heading"
+      class="page-header__heading "
     >
       <span>
         Analgesics
