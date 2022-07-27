@@ -2,6 +2,7 @@
 @use '@nice-digital/nds-core/scss/colours' as core-colours;
 @use '@nice-digital/nds-core/scss/focus';
 @use '@nice-digital/nds-core/scss/spacing';
+@use '@nice-digital/nds-core/scss/typography';
 @use '@nice-digital/nds-core/scss/utils';
 
 .details {
@@ -29,6 +30,11 @@
   &:hover,
   &:hover * {
     color: #006bbd; // Specific to BNF accordions for now - Nick may move this into the design system later
+  }
+
+  // Could be h3/h4 here so use * to cover all bases
+  > * {
+    font-family: typography.get-font-family(sans);
   }
 
   > :last-child {
