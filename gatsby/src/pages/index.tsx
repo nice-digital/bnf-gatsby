@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import { Link } from "gatsby";
 import { FC } from "react";
 
@@ -22,15 +23,15 @@ const HomePage: FC = () => {
 				<SEO />
 				<Hero />
 				<Grid
-					gutter="loose"
 					className={styles.grid}
+					gutter="loose"
 					data-tracking="browse-a-to-z"
 				>
 					<GridItem md={6} cols={12} className={styles.drugsColumn}>
 						<h2>Drugs</h2>
 						<p>
 							Drug monographs describe the uses, doses, safety issues, medicinal
-							forms and other considerations involved in the use of a drug.
+							forms and other considerations involved in the use of a&nbsp;drug.
 						</p>
 						<h3 className="h4">Browse drugs by A to Z</h3>
 						<Alphabet
@@ -50,11 +51,11 @@ const HomePage: FC = () => {
 					<GridItem md={6} cols={12} className={styles.featureColumn}>
 						<div>
 							<h2>Treatment summaries</h2>
-							<p>Browse an A to Z list of treatment summaries covering:</p>
+							<p>Browse an A to Z list of treatment summaries&nbsp;covering:</p>
 							<ul>
-								<li>drug use related to a particular body system</li>
-								<li>drug management or treatment of common conditions</li>
-								<li>comparisons between groups of drugs.</li>
+								<li>drug use related to a particular body&nbsp;system</li>
+								<li>drug management or treatment of common&nbsp;conditions</li>
+								<li>comparisons between groups of&nbsp;drugs.</li>
 							</ul>
 							<Button
 								to="/treatment-summaries/"
@@ -70,8 +71,8 @@ const HomePage: FC = () => {
 
 							<p>
 								Check for drug interactions. Includes information on the
-								severity of an interaction and the type of evidence to support
-								it.
+								severity of an interaction and the type of evidence to
+								support&nbsp;it.
 							</p>
 							<Button to="/interactions/" variant="primary" elementType={Link}>
 								View interactions A to Z
@@ -84,7 +85,7 @@ const HomePage: FC = () => {
 
 				<Grid
 					gutter="loose"
-					className={styles.grid}
+					className={classNames(styles.grid, styles.navBlocks)}
 					data-tracking="browse-by-category"
 				>
 					<GridItem md={isBNF ? 6 : 4} cols={12}>
@@ -104,7 +105,7 @@ const HomePage: FC = () => {
 							</Link>{" "}
 							and{" "}
 							<Link to="/medicines-guidance/prescribing-in-renal-impairment/">
-								prescribing in renal impairment
+								prescribing in renal&nbsp;impairment
 							</Link>
 							.
 						</p>
@@ -118,7 +119,7 @@ const HomePage: FC = () => {
 
 							<p>
 								Wound management products and elasticated garments. Browse by
-								wound type or product type.
+								wound type or product&nbsp;type.
 							</p>
 						</GridItem>
 					)}
@@ -130,7 +131,7 @@ const HomePage: FC = () => {
 
 						<p>
 							Indication, dose and medicinal product information for medical
-							devices. Browse devices by type.
+							devices. Browse devices by&nbsp;type.
 						</p>
 					</GridItem>
 
@@ -141,12 +142,18 @@ const HomePage: FC = () => {
 
 						<p>
 							Foods and toilet preparations, that in certain conditions have the
-							characteristics of drugs.
+							characteristics of&nbsp;drugs.
 						</p>
 					</GridItem>
 				</Grid>
+
 				<hr />
-				<Grid gutter="loose" className={styles.grid} data-tracking="formulary">
+
+				<Grid
+					gutter="loose"
+					className={classNames(styles.grid, styles.navBlocks)}
+					data-tracking="formulary"
+				>
 					<GridItem md={6} cols={12}>
 						<h2>
 							<Link to="/nurse-prescribers-formulary/">
@@ -155,7 +162,8 @@ const HomePage: FC = () => {
 						</h2>
 
 						<p>
-							Medicines approved by the NHS for Nurse Practitioner prescribing.
+							Medicines approved by the NHS for Nurse
+							Practitioner&nbsp;prescribing.
 						</p>
 					</GridItem>
 
@@ -166,41 +174,44 @@ const HomePage: FC = () => {
 							</Link>
 						</h2>
 
-						<p>Medicines approved by the NHS for dental prescribing. </p>
+						<p>Medicines approved by the NHS for dental&nbsp;prescribing. </p>
 					</GridItem>
 				</Grid>
+
 				<hr />
+
 				<Grid
 					gutter="loose"
-					className={styles.grid}
+					className={classNames(styles.grid, styles.navBlocks)}
 					data-tracking="reference-tables"
 				>
 					<GridItem cols={12} sm={6} md={4}>
-						<h2 className="h3">
+						<h2>
 							<Link to="/about/approximate-conversions-and-units/">
-								Approximate conversions and units
+								Approximate conversions and&nbsp;units
 							</Link>
 						</h2>
 
 						<p>
 							Conversions and units tables. Includes growth chart with average
-							weight and height, by gender and age (neonate, child and adult).
+							weight and height, by gender and age (neonate, child
+							and&nbsp;adult).
 						</p>
 					</GridItem>
 
 					<GridItem cols={12} sm={6} md={4}>
-						<h2 className="h3">
+						<h2>
 							<Link to="/about/labels/">Cautionary and advisory labels</Link>
 						</h2>
 
 						<p>
 							Cautionary, warning and advisory labels applied to medications
-							used in the {siteTitleShort}.
+							used in the&nbsp;{siteTitleShort}.
 						</p>
 					</GridItem>
 
 					<GridItem cols={12} sm={6} md={4}>
-						<h2 className="h3">
+						<h2>
 							<Link to="/about/abbreviations-and-symbols/">
 								Abbreviations and symbols
 							</Link>
@@ -208,8 +219,8 @@ const HomePage: FC = () => {
 
 						<p>
 							Glossary of symbols and abbreviations. Includes Latin, medication
-							and dosage abbreviations used in the {siteTitleShort} and
-							prescribing.
+							and dosage abbreviations used in the {siteTitleShort}{" "}
+							and&nbsp;prescribing.
 						</p>
 					</GridItem>
 				</Grid>

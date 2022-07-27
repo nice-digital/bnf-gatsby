@@ -119,7 +119,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
           Drugs
         </h2>
         <p>
-          Drug monographs describe the uses, doses, safety issues, medicinal forms and other considerations involved in the use of a drug.
+          Drug monographs describe the uses, doses, safety issues, medicinal forms and other considerations involved in the use of a drug.
         </p>
         <h3
           class="h4"
@@ -402,17 +402,17 @@ exports[`HomePage should match snapshot for BNF 1`] = `
             Treatment summaries
           </h2>
           <p>
-            Browse an A to Z list of treatment summaries covering:
+            Browse an A to Z list of treatment summaries covering:
           </p>
           <ul>
             <li>
-              drug use related to a particular body system
+              drug use related to a particular body system
             </li>
             <li>
-              drug management or treatment of common conditions
+              drug management or treatment of common conditions
             </li>
             <li>
-              comparisons between groups of drugs.
+              comparisons between groups of drugs.
             </li>
           </ul>
           <a
@@ -427,7 +427,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
             Interactions
           </h2>
           <p>
-            Check for drug interactions. Includes information on the severity of an interaction and the type of evidence to support it.
+            Check for drug interactions. Includes information on the severity of an interaction and the type of evidence to support it.
           </p>
           <a
             class="btn"
@@ -440,7 +440,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
     </div>
     <hr />
     <div
-      class="grid grid--loose"
+      class="grid grid--loose grid navBlocks"
       data-tracking="browse-by-category"
     >
       <div
@@ -474,7 +474,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
           <a
             href="/medicines-guidance/prescribing-in-renal-impairment/"
           >
-            prescribing in renal impairment
+            prescribing in renal impairment
           </a>
           .
         </p>
@@ -490,7 +490,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
           </a>
         </h2>
         <p>
-          Wound management products and elasticated garments. Browse by wound type or product type.
+          Wound management products and elasticated garments. Browse by wound type or product type.
         </p>
       </div>
       <div
@@ -504,7 +504,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
           </a>
         </h2>
         <p>
-          Indication, dose and medicinal product information for medical devices. Browse devices by type.
+          Indication, dose and medicinal product information for medical devices. Browse devices by type.
         </p>
       </div>
       <div
@@ -518,13 +518,13 @@ exports[`HomePage should match snapshot for BNF 1`] = `
           </a>
         </h2>
         <p>
-          Foods and toilet preparations, that in certain conditions have the characteristics of drugs.
+          Foods and toilet preparations, that in certain conditions have the characteristics of drugs.
         </p>
       </div>
     </div>
     <hr />
     <div
-      class="grid grid--loose"
+      class="grid grid--loose grid navBlocks"
       data-tracking="formulary"
     >
       <div
@@ -538,7 +538,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
           </a>
         </h2>
         <p>
-          Medicines approved by the NHS for Nurse Practitioner prescribing.
+          Medicines approved by the NHS for Nurse Practitioner prescribing.
         </p>
       </div>
       <div
@@ -552,37 +552,33 @@ exports[`HomePage should match snapshot for BNF 1`] = `
           </a>
         </h2>
         <p>
-          Medicines approved by the NHS for dental prescribing. 
+          Medicines approved by the NHS for dental prescribing. 
         </p>
       </div>
     </div>
     <hr />
     <div
-      class="grid grid--loose"
+      class="grid grid--loose grid navBlocks"
       data-tracking="reference-tables"
     >
       <div
         data-g="12 sm:6 md:4"
       >
-        <h2
-          class="h3"
-        >
+        <h2>
           <a
             href="/about/approximate-conversions-and-units/"
           >
-            Approximate conversions and units
+            Approximate conversions and units
           </a>
         </h2>
         <p>
-          Conversions and units tables. Includes growth chart with average weight and height, by gender and age (neonate, child and adult).
+          Conversions and units tables. Includes growth chart with average weight and height, by gender and age (neonate, child and adult).
         </p>
       </div>
       <div
         data-g="12 sm:6 md:4"
       >
-        <h2
-          class="h3"
-        >
+        <h2>
           <a
             href="/about/labels/"
           >
@@ -590,7 +586,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
           </a>
         </h2>
         <p>
-          Cautionary, warning and advisory labels applied to medications used in the 
+          Cautionary, warning and advisory labels applied to medications used in the 
           BNF
           .
         </p>
@@ -598,9 +594,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
       <div
         data-g="12 sm:6 md:4"
       >
-        <h2
-          class="h3"
-        >
+        <h2>
           <a
             href="/about/abbreviations-and-symbols/"
           >
@@ -610,7 +604,8 @@ exports[`HomePage should match snapshot for BNF 1`] = `
         <p>
           Glossary of symbols and abbreviations. Includes Latin, medication and dosage abbreviations used in the 
           BNF
-           and prescribing.
+           
+          and prescribing.
         </p>
       </div>
     </div>
@@ -758,7 +753,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
           Drugs
         </h2>
         <p>
-          Drug monographs describe the uses, doses, safety issues, medicinal forms and other considerations involved in the use of a drug.
+          Drug monographs describe the uses, doses, safety issues, medicinal forms and other considerations involved in the use of a drug.
         </p>
         <h3
           class="h4"
@@ -1041,17 +1036,17 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
             Treatment summaries
           </h2>
           <p>
-            Browse an A to Z list of treatment summaries covering:
+            Browse an A to Z list of treatment summaries covering:
           </p>
           <ul>
             <li>
-              drug use related to a particular body system
+              drug use related to a particular body system
             </li>
             <li>
-              drug management or treatment of common conditions
+              drug management or treatment of common conditions
             </li>
             <li>
-              comparisons between groups of drugs.
+              comparisons between groups of drugs.
             </li>
           </ul>
           <a
@@ -1066,7 +1061,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
             Interactions
           </h2>
           <p>
-            Check for drug interactions. Includes information on the severity of an interaction and the type of evidence to support it.
+            Check for drug interactions. Includes information on the severity of an interaction and the type of evidence to support it.
           </p>
           <a
             class="btn"
@@ -1079,7 +1074,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
     </div>
     <hr />
     <div
-      class="grid grid--loose"
+      class="grid grid--loose grid navBlocks"
       data-tracking="browse-by-category"
     >
       <div
@@ -1113,7 +1108,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
           <a
             href="/medicines-guidance/prescribing-in-renal-impairment/"
           >
-            prescribing in renal impairment
+            prescribing in renal impairment
           </a>
           .
         </p>
@@ -1129,7 +1124,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
           </a>
         </h2>
         <p>
-          Indication, dose and medicinal product information for medical devices. Browse devices by type.
+          Indication, dose and medicinal product information for medical devices. Browse devices by type.
         </p>
       </div>
       <div
@@ -1143,13 +1138,13 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
           </a>
         </h2>
         <p>
-          Foods and toilet preparations, that in certain conditions have the characteristics of drugs.
+          Foods and toilet preparations, that in certain conditions have the characteristics of drugs.
         </p>
       </div>
     </div>
     <hr />
     <div
-      class="grid grid--loose"
+      class="grid grid--loose grid navBlocks"
       data-tracking="formulary"
     >
       <div
@@ -1163,7 +1158,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
           </a>
         </h2>
         <p>
-          Medicines approved by the NHS for Nurse Practitioner prescribing.
+          Medicines approved by the NHS for Nurse Practitioner prescribing.
         </p>
       </div>
       <div
@@ -1177,37 +1172,33 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
           </a>
         </h2>
         <p>
-          Medicines approved by the NHS for dental prescribing. 
+          Medicines approved by the NHS for dental prescribing. 
         </p>
       </div>
     </div>
     <hr />
     <div
-      class="grid grid--loose"
+      class="grid grid--loose grid navBlocks"
       data-tracking="reference-tables"
     >
       <div
         data-g="12 sm:6 md:4"
       >
-        <h2
-          class="h3"
-        >
+        <h2>
           <a
             href="/about/approximate-conversions-and-units/"
           >
-            Approximate conversions and units
+            Approximate conversions and units
           </a>
         </h2>
         <p>
-          Conversions and units tables. Includes growth chart with average weight and height, by gender and age (neonate, child and adult).
+          Conversions and units tables. Includes growth chart with average weight and height, by gender and age (neonate, child and adult).
         </p>
       </div>
       <div
         data-g="12 sm:6 md:4"
       >
-        <h2
-          class="h3"
-        >
+        <h2>
           <a
             href="/about/labels/"
           >
@@ -1215,7 +1206,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
           </a>
         </h2>
         <p>
-          Cautionary, warning and advisory labels applied to medications used in the 
+          Cautionary, warning and advisory labels applied to medications used in the 
           BNFC
           .
         </p>
@@ -1223,9 +1214,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
       <div
         data-g="12 sm:6 md:4"
       >
-        <h2
-          class="h3"
-        >
+        <h2>
           <a
             href="/about/abbreviations-and-symbols/"
           >
@@ -1235,7 +1224,8 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
         <p>
           Glossary of symbols and abbreviations. Includes Latin, medication and dosage abbreviations used in the 
           BNFC
-           and prescribing.
+           
+          and prescribing.
         </p>
       </div>
     </div>

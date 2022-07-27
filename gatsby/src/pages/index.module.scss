@@ -1,5 +1,7 @@
 @use '../styles/colours';
+@use '@nice-digital/nds-core/scss/media-queries';
 @use '@nice-digital/nds-core/scss/spacing';
+@use '@nice-digital/nds-core/scss/typography';
 @use '@nice-digital/nds-core/scss/utils';
 
 .homeWrapper {
@@ -25,6 +27,10 @@
   background-color: colours.$index-drugs-column-background;
   border: 1px solid colours.$index-drugs-column-border;
   padding: utils.rem(spacing.$large);
+
+  > :last-child {
+    margin-bottom: 0;
+  }
 }
 
 .featureColumn {
@@ -56,4 +62,12 @@
 
 .grid {
   row-gap: utils.rem(spacing.$large);
+}
+
+.navBlocks {
+  h2 {
+    @include typography.font(h4);
+    font-family: typography.get-font-family(sans);
+    margin-top: 0;
+  }
 }

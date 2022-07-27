@@ -58,6 +58,8 @@ $nav-box-shadow: 0 0 4px 3px rgba(0, 0, 0, 0.16);
   border: 0;
   cursor: pointer;
   display: flex;
+  font-family: typography.get-font-family(sans);
+  font-weight: normal;
   text-decoration: underline;
 
   &:hover {
@@ -104,7 +106,7 @@ $nav-box-shadow: 0 0 4px 3px rgba(0, 0, 0, 0.16);
     overflow: auto;
     padding: 0 utils.rem(spacing.$medium) utils.rem(spacing.$medium);
     position: relative;
-    top: 11px; // Rendering this in rem causes an ugly border
+    top: 8px; // Rendering this in rem causes an ugly border
     width: calc(100% + 2rem);
 
     @include media-queries.mq($from: md) {
