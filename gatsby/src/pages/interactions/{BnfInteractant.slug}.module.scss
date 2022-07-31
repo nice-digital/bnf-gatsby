@@ -31,12 +31,6 @@
   }
 }
 
-.informationPanel {
-  background: colours.$interaction-info-panel-background;
-  margin-bottom: utils.rem(spacing.$large);
-  padding: utils.rem(spacing.$medium);
-}
-
 .informationPanelHeading {
   @include typography.h6();
 }
