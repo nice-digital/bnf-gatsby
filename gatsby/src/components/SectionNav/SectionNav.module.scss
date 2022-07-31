@@ -44,6 +44,7 @@ $nav-box-shadow: 0 0 4px 3px rgba(0, 0, 0, 0.16);
 
 .heading {
   @include typography.h4;
+  font-family: typography.get-font-family(sans);
   margin-top: 0;
 
   .fixed & {
