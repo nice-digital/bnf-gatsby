@@ -1,13 +1,17 @@
-@use '@nice-digital/nds-core/scss/core';
+@use '@nice-digital/nds-core/scss/colours' as core-colours;
+@use '@nice-digital/nds-core/scss/focus';
+@use '@nice-digital/nds-core/scss/spacing';
+@use '@nice-digital/nds-core/scss/typography';
+@use '@nice-digital/nds-core/scss/utils';
 
 .wrapper {
-  border-bottom: 1px solid core.$nds-colour-border;
-  margin-bottom: core.rem(core.$nds-spacing-large);
-  padding-bottom: core.rem(core.$nds-spacing-large);
+  border-bottom: 1px solid core-colours.$border;
+  margin-bottom: utils.rem(spacing.$large);
+  padding-bottom: utils.rem(spacing.$large);
 }
 
 .toggleAllButton {
-  @include core.nds-link-default;
+  @include typography.link-default;
   appearance: none;
   background: none;
   border: 0;
@@ -15,7 +19,7 @@
   padding: 0;
 
   &:focus {
-    @include core.nds-default-focus-style;
+    @include focus.default-focus-style;
   }
 
   &:focus:not(:focus-visible) {
@@ -23,7 +27,7 @@
   }
 
   &:focus-visible {
-    @include core.nds-default-focus-style;
+    @include focus.default-focus-style;
   }
 
   @media print {

@@ -68,7 +68,7 @@ describe("HomePage", () => {
 			["Borderline substances", 2],
 			["Nurse prescribers formulary", 2],
 			["Dental practitioners formulary", 2],
-			["Approximate conversions and units", 2],
+			["Approximate conversions and units", 2],
 			["Cautionary and advisory labels", 2],
 			["Abbreviations and symbols", 2],
 		])("should render a '%s' level %d heading", (name, level) => {

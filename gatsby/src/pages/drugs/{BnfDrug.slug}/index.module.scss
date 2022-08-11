@@ -1,7 +1,9 @@
-@use '@nice-digital/nds-core/scss/core';
 @use 'sass:math';
+@use '@nice-digital/nds-core/scss/media-queries';
+@use '@nice-digital/nds-core/scss/spacing';
+@use '@nice-digital/nds-core/scss/utils';
 
-$gutter: core.rem(core.$nds-spacing-large);
+$gutter: utils.rem(spacing.$large);
 
 @media print {
   .sectionNav,
@@ -10,7 +12,7 @@ $gutter: core.rem(core.$nds-spacing-large);
   }
 }
 
-@include core.mq($from: md) {
+@include media-queries.mq($from: md) {
   $right-col-width: percentage(math.div(4, 12));
 
   .sectionNav {
@@ -62,7 +64,7 @@ $gutter: core.rem(core.$nds-spacing-large);
   }
 }
 
-@include core.mq($from: lg) {
+@include media-queries.mq($from: lg) {
   $right-col-width: percentage(math.div(3, 12));
 
   .contentWrapper {

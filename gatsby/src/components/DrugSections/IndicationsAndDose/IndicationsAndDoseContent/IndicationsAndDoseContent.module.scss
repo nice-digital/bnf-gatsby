@@ -1,23 +1,27 @@
 @use 'sass:color';
-@use '@nice-digital/nds-core/scss/core';
+@use '../../../../styles/colours';
+@use '@nice-digital/nds-core/scss/spacing';
+@use '@nice-digital/nds-core/scss/typography';
+@use '@nice-digital/nds-core/scss/utils';
 
 .indicationWrapper {
-  background: core.$nds-colour-nice-white;
-  border: 1px solid core.$nds-colour-nice-grey-2;
-  margin-bottom: core.rem(core.$nds-spacing-medium);
-  padding: core.rem(core.$nds-spacing-medium);
+  background: colours.$indication-content-wrapper-background;
+  border: 1px solid colours.$indication-content-wrapper-border;
+  margin-bottom: utils.rem(spacing.$medium);
+  padding: utils.rem(spacing.$medium);
 }
 
 .indicationHeading {
   break-inside: avoid;
+  font-family: typography.get-font-family(sans);
   line-height: 1.3;
-  margin: core.rem(0 0 core.$nds-spacing-medium);
+  margin: utils.rem(0 0 spacing.$medium);
   max-width: none;
 }
 
 .indicationText {
   display: block;
-  margin-top: core.rem(core.$nds-spacing-small);
+  margin-top: utils.rem(spacing.$small);
 
   &:first-child {
     margin-top: 0;
@@ -25,7 +29,7 @@
 }
 
 .routeOfAdministration {
-  margin-bottom: core.rem(core.$nds-spacing-medium);
+  margin-bottom: utils.rem(spacing.$medium);
 
   &:last-child {
     margin-bottom: 0;
@@ -33,9 +37,9 @@
 }
 
 .routeOfAdministrationHeading {
-  @include core.nds-p;
+  @include typography.p;
   break-inside: avoid;
-  margin: core.rem(0 0 core.$nds-spacing-medium);
+  margin: utils.rem(0 0 spacing.$medium);
   max-width: none;
 }
 
@@ -45,8 +49,8 @@
 
 .patientGroupDose {
   break-inside: avoid;
-  margin-bottom: core.rem(core.$nds-spacing-medium);
-  padding-left: core.rem(core.$nds-spacing-medium);
+  margin-bottom: utils.rem(spacing.$medium);
+  padding-left: utils.rem(spacing.$medium);
   position: relative;
 
   &:last-child {
@@ -59,7 +63,7 @@
     left: 0;
     position: absolute;
     top: 0;
-    width: core.rem(core.$nds-spacing-small);
+    width: utils.rem(spacing.$small);
   }
 
   /* stylelint-disable function-parentheses-space-inside */
@@ -67,25 +71,25 @@
   &.neonate::before {
     background: repeating-linear-gradient(
       -45deg,
-      core.$nds-colour-nice-teal-2,
-      core.$nds-colour-nice-teal-2 1px,
-      core.$nds-colour-nice-ice-teal 1px,
-      core.$nds-colour-nice-ice-teal 12px
+      colours.$indication-dose-neonate-1,
+      colours.$indication-dose-neonate-1 1px,
+      colours.$indication-dose-neonate-2 1px,
+      colours.$indication-dose-neonate-2 12px
     );
   }
 
   &.child::before {
     background: repeating-linear-gradient(
       45deg,
-      color.adjust(core.$nds-colour-nice-purple, $lightness: 75%),
-      color.adjust(core.$nds-colour-nice-purple, $lightness: 75%) 1px,
-      core.$nds-colour-nice-purple 1px,
-      core.$nds-colour-nice-purple 12px
+      color.adjust(colours.$indication-dose-child, $lightness: 75%),
+      color.adjust(colours.$indication-dose-child, $lightness: 75%) 1px,
+      colours.$indication-dose-child 1px,
+      colours.$indication-dose-child 12px
     );
   }
 
   &.adult::before {
-    background: core.$nds-colour-nice-teal-2;
+    background: colours.$indication-dose-adult;
   }
 }
 

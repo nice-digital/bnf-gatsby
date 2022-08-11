@@ -1,6 +1,8 @@
-@use 'sass:color';
-@use '@nice-digital/nds-core/scss/core';
-@import '../styles/settings';
+@use '../styles/colours';
+@use '@nice-digital/nds-core/scss/media-queries';
+@use '@nice-digital/nds-core/scss/spacing';
+@use '@nice-digital/nds-core/scss/typography';
+@use '@nice-digital/nds-core/scss/utils';
 
 .homeWrapper {
   h2 {
@@ -17,14 +19,18 @@
 
   li {
     display: inline-block;
-    margin-right: core.rem(core.$nds-spacing-medium);
+    margin-right: utils.rem(spacing.$medium);
   }
 }
 
 .drugsColumn {
-  background-color: core.$nds-colour-nice-white;
-  border: 1px solid core.$nds-colour-nice-grey-2;
-  padding: core.rem(core.$nds-spacing-large);
+  background-color: colours.$index-drugs-column-background;
+  border: 1px solid colours.$index-drugs-column-border;
+  padding: utils.rem(spacing.$large);
+
+  > :last-child {
+    margin-bottom: 0;
+  }
 }
 
 .featureColumn {
@@ -32,14 +38,14 @@
   flex-direction: column;
 
   > :first-child {
-    margin-bottom: core.rem(core.$nds-spacing-large);
+    margin-bottom: utils.rem(spacing.$large);
   }
 
   > * {
-    background-color: core.$nds-colour-nice-white;
-    border: 1px solid core.$nds-colour-nice-grey-2;
+    background-color: colours.$index-feature-item-background;
+    border: 1px solid colours.$index-feature-item-border;
     flex-grow: 1;
-    padding: core.rem(core.$nds-spacing-large);
+    padding: utils.rem(spacing.$large);
   }
 
   a {
@@ -50,10 +56,18 @@
 .drugsColumn,
 .featureColumn {
   p {
-    margin-bottom: core.rem(core.$nds-spacing-medium);
+    margin-bottom: utils.rem(spacing.$medium);
   }
 }
 
 .grid {
-  row-gap: core.rem(core.$nds-spacing-large);
+  row-gap: utils.rem(spacing.$large);
+}
+
+.navBlocks {
+  h2 {
+    @include typography.font(h4);
+    font-family: typography.get-font-family(sans);
+    margin-top: 0;
+  }
 }

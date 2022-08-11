@@ -39,22 +39,32 @@ export const Hero: React.FC = () => {
 					<Breadcrumb to="https://www.nice.org.uk/">NICE</Breadcrumb>
 					<Breadcrumb>{siteTitleShort}</Breadcrumb>
 				</Breadcrumbs>
-				<div className={styles.text}>
-					<h1 className={styles.title}>
-						{siteTitleLong} ({siteTitleShort})
-					</h1>
-					<p className={styles.intro}>
-						{isBNF
-							? "Key information on the selection, prescribing, dispensing and administration of medicines."
-							: "Key information on the selection, prescribing, dispensing and administration of medicines used for children."}
-					</p>
-				</div>
-				<div className={styles.lastUpdated} data-tracking="last-updated">
-					<h2 className="h5">Last updated: </h2>
-					<time className="h3" dateTime={lastUpdatedDate}>
-						{lastUpdatedDateFormatted}
-					</time>
-					<Link to="/about/changes/">See what&apos;s changed</Link>
+				<div className={styles.body}>
+					<div className={styles.text}>
+						<h1 className={styles.title}>
+							{siteTitleLong} ({siteTitleShort})
+						</h1>
+						<p className={styles.intro}>
+							{isBNF ? (
+								<>
+									Key information on the selection, prescribing, dispensing and
+									administration of&nbsp;medicines.
+								</>
+							) : (
+								<>
+									Key information on the selection, prescribing, dispensing and
+									administration of medicines used for&nbsp;children.
+								</>
+							)}
+						</p>
+					</div>
+					<div className={styles.lastUpdated} data-tracking="last-updated">
+						<h2 className={styles.lastUpdatedLabel}>Last updated: </h2>
+						<time className={styles.lastUpdatedDate} dateTime={lastUpdatedDate}>
+							{lastUpdatedDateFormatted}
+						</time>
+						<Link to="/about/changes/">See what&apos;s changed</Link>
+					</div>
 				</div>
 			</div>
 		</div>

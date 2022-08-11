@@ -1,4 +1,4 @@
-@use '@nice-digital/nds-core/scss/core';
+@use '@nice-digital/nds-core/scss/typography';
 
 .productGroupList {
   list-style: none;
@@ -7,7 +7,7 @@
 }
 
 .productGroupHeading {
-  @include core.nds-h3;
+  @include typography.h3;
   margin-top: 0;
 }
 

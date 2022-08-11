@@ -1,10 +1,15 @@
-@use '@nice-digital/nds-core/scss/core';
+@use '../../styles/colours';
+@use '@nice-digital/nds-core/scss/colours' as core-colours;
+@use '@nice-digital/nds-core/scss/focus';
+@use '@nice-digital/nds-core/scss/spacing';
+@use '@nice-digital/nds-core/scss/typography';
+@use '@nice-digital/nds-core/scss/utils';
 
 .details {
   background: none;
-  border: 1px solid #8c8c8c; // TODO: add var to design system (nds-colour-border-dark) and replace it here
-  margin: core.rem(core.$nds-spacing-medium 0);
-  padding: core.rem(core.$nds-spacing-medium);
+  border: 1px solid colours.$accordion-details-border;
+  margin: utils.rem(spacing.$medium 0);
+  padding: utils.rem(spacing.$medium);
 
   > :last-child {
     margin-bottom: 0;
@@ -27,12 +32,17 @@
     color: #006bbd; // Specific to BNF accordions for now - Nick may move this into the design system later
   }
 
+  // Could be h3/h4 here so use * to cover all bases
+  > * {
+    font-family: typography.get-font-family(sans);
+  }
+
   > :last-child {
     margin: 0;
   }
 
   [open] > & {
-    margin-bottom: core.rem(core.$nds-spacing-medium);
+    margin-bottom: utils.rem(spacing.$medium);
   }
 
   /* stylelint-disable selector-max-compound-selectors */
@@ -46,7 +56,7 @@
     cursor: pointer;
 
     &:focus {
-      @include core.nds-default-focus-style;
+      @include focus.default-focus-style;
     }
 
     &:focus:not(:focus-visible) {
@@ -54,25 +64,25 @@
     }
 
     &:focus-visible {
-      @include core.nds-default-focus-style;
+      @include focus.default-focus-style;
     }
   }
 }
 
 .toggleLabel {
-  margin-top: core.rem(core.$nds-spacing-x-small);
+  margin-top: utils.rem(spacing.$x-small);
 }
 
 .warningTheme {
-  background: core.$nds-colour-caution-background;
-  border: 1px solid core.$nds-colour-caution;
+  background: core-colours.$caution-background;
+  border: 1px solid core-colours.$caution;
 
   .toggleLabel {
-    color: core.$nds-colour-nice-rich-black;
+    color: colours.$accordion-toggle-warning-label;
   }
 
   .summary:hover,
   .summary:hover * {
-    color: #407291; // TODO: this is a colour from the forthcoming brand updates that isn't in NDS yet. We should replace this with a ref to it once it's been updated
+    color: colours.$accordion-summary-hover;
   }
 }
