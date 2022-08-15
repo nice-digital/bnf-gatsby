@@ -8,6 +8,7 @@ import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
 import { Button } from "@nice-digital/nds-button";
 import { Input } from "@nice-digital/nds-input";
 import { PageHeader } from "@nice-digital/nds-page-header";
+import { Panel } from "@nice-digital/nds-panel";
 
 import {
 	Interaction,
@@ -193,10 +194,7 @@ const InteractantPage: FC<InteractantPageProps> = ({
 
 					<div className={styles.grid}>
 						<div className={styles.rightCol}>
-							<div
-								className={styles.informationPanel}
-								data-tracking="interaction-information"
-							>
+							<Panel data-tracking="interaction-information">
 								<h2 className={styles.informationPanelHeading}>
 									Drug interaction information
 								</h2>
@@ -208,7 +206,7 @@ const InteractantPage: FC<InteractantPageProps> = ({
 										Find out more about BNF interactions information
 									</Link>
 								</p>
-							</div>
+							</Panel>
 						</div>
 						<div className={styles.leftCol}>
 							{isClient && (

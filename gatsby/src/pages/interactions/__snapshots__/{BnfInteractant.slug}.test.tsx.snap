@@ -91,7 +91,7 @@ exports[`InteractantPage body should match snapshot for page body 1`] = `
     id="content-start"
   >
     <h1
-      class="page-header__heading"
+      class="page-header__heading "
     >
       <span
         class="page-header__pre-heading"
@@ -143,7 +143,7 @@ exports[`InteractantPage body should match snapshot for page body 1`] = `
       class="rightCol"
     >
       <div
-        class="informationPanel"
+        class="panel"
         data-tracking="interaction-information"
       >
         <h2

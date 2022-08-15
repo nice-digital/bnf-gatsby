@@ -1,10 +1,12 @@
-@use '@nice-digital/nds-core/scss/core';
+@use '../../styles/colours';
+@use '@nice-digital/nds-core/scss/spacing';
+@use '@nice-digital/nds-core/scss/utils';
 
 .label {
-  background: core.$nds-colour-nice-white;
-  border: 1px solid core.$nds-colour-nice-black;
-  border-radius: core.rem(core.$nds-spacing-x-small);
-  padding: core.rem(core.$nds-spacing-medium);
+  background: colours.$label-background;
+  border: 1px solid colours.$label-border;
+  border-radius: utils.rem(spacing.$x-small);
+  padding: utils.rem(spacing.$medium);
 
   > :first-child {
     margin-top: 0;

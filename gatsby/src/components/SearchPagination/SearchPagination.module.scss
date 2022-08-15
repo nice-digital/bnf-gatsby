@@ -1,5 +1,6 @@
-@use '@nice-digital/nds-core/scss/core';
+@use '@nice-digital/nds-core/scss/spacing';
+@use '@nice-digital/nds-core/scss/utils';
 
 .pagination {
-  margin: core.rem(core.$nds-spacing-large) 0;
+  margin: utils.rem(spacing.$large) 0;
 }
