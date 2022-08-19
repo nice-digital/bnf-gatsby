@@ -26,7 +26,7 @@ export const SEO: FC<SEOProps> = ({
 	// A global CSS class allows us to distinguish BNF from BNFC in (S)CSS styles
 	const globalCSSClassName = isBNF ? "site-bnf" : "site-bnfc";
 
-	const defaultDescription = `Free online access to the UK ${siteTitleShort} (${siteTitleLong}) content published by NICE`;
+	const defaultDescription = `Online access to the ${siteTitleShort} (${siteTitleLong}) content within the UK, provided by NICE`;
 
 	return (
 		<>
