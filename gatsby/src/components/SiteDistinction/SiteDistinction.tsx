@@ -19,7 +19,9 @@ export const SiteDistinction: FC = () => {
 		[isExpanded, setIsExpanded] = useState(false),
 		[shouldPreFetch, setShouldPreFetch] = useState(false),
 		otherSiteHref = useMemo(() => {
-			const url = new URL(isClient ? window.location.href : siteUrl + pathname);
+			const url = new URL(
+				isClient ? window.location.href + pathname.slice(1) : siteUrl + pathname
+			);
 			url.host = url.host.replace(
 				isBNF ? "bnf" : "bnfc",
 				isBNF ? "bnfc" : "bnf"
