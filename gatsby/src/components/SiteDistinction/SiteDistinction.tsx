@@ -13,13 +13,13 @@ import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 import styles from "./SiteDistinction.module.scss";
 
 export const SiteDistinction: FC = () => {
-	const { href, pathname } = useLocation(),
+	const { pathname } = useLocation(),
 		isClient = useIsClient(),
 		{ isBNF, siteTitleShort, siteUrl } = useSiteMetadata(),
 		[isExpanded, setIsExpanded] = useState(false),
 		[shouldPreFetch, setShouldPreFetch] = useState(false),
 		otherSiteHref = useMemo(() => {
-			const url = new URL(isClient ? href : siteUrl + pathname);
+			const url = new URL(isClient ? window.location.href : siteUrl + pathname);
 			url.host = url.host.replace(
 				isBNF ? "bnf" : "bnfc",
 				isBNF ? "bnfc" : "bnf"
@@ -27,7 +27,7 @@ export const SiteDistinction: FC = () => {
 			if (!url.searchParams.has("ref"))
 				url.searchParams.append("ref", "switch");
 			return url.toString();
-		}, [href, pathname, siteUrl, isBNF, isClient]);
+		}, [pathname, siteUrl, isBNF, isClient]);
 
 	useEffect(() => {
 		// If the page changes then it makes sense to collapse the other site link
