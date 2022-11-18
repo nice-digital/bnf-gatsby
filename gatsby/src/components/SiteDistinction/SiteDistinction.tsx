@@ -27,8 +27,14 @@ export const SiteDistinction: FC = () => {
 			if (!url.searchParams.has("ref"))
 				url.searchParams.append("ref", "switch");
 			return url.toString();
+		}, [
+			pathname,
+			siteUrl,
+			isBNF,
+			isClient,
 			// eslint-disable-next-line react-hooks/exhaustive-deps
-		}, [pathname, siteUrl, isBNF, isClient, window.location.hash]);
+			isClient ? window.location.hash : null,
+		]);
 
 	useEffect(() => {
 		// If the page changes then it makes sense to collapse the other site link
