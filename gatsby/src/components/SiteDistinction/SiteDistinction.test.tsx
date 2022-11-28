@@ -28,6 +28,13 @@ describe("SiteDistinction", () => {
 				siteTitleShort,
 				isBNF,
 			});
+
+			// Need to mock window.location.href as it won't work here
+			Object.defineProperty(window, "location", {
+				get() {
+					return { href: "https://bnf-gatsby-tests.nice.org.uk/test/" };
+				},
+			});
 		});
 
 		it("should match snapshot server side", () => {
