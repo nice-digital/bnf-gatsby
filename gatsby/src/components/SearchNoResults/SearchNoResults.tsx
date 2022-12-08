@@ -51,7 +51,7 @@ export const SearchNoResults: FC<SearchNoResultsProps> = ({ searchText }) => {
 						<a
 							rel="noreferrer"
 							target="_blank"
-							href={`https://www.nice.org.uk/search?ndt=Guidance&q${searchText}&sp=on`}
+							href={`https://www.nice.org.uk/search?ndt=Guidance&q=${searchText}&sp=on`}
 						>
 							NICE guidance
 						</a>
