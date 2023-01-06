@@ -8,7 +8,7 @@
     "noEmit": false,
     "outDir": "./dist",
     "rootDir": "../",
-    "types": ["node", "webdriverio/async", "@wdio/cucumber-framework"]
+    "types": ["node", "@wdio/globals/types", "@wdio/cucumber-framework"]
   },
   "include": ["./**/*"],
   "exclude": [
