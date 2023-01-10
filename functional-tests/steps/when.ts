@@ -1,4 +1,4 @@
-import { When } from "@cucumber/cucumber";
+import { When } from "@wdio/cucumber-framework";
 
 import { scrollInToView } from "../support/action/scrollInToView";
 import { waitForScrollToElement } from "../support/action/waitForScrollToElement";

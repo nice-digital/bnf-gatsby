@@ -34,7 +34,7 @@ export const config: WebdriverIO.Config = {
 	logLevel: "error",
 
 	// Run against the production build of the Gatsby site by default as dev mode renders on demand so causes timing issues
-	baseUrl: "http://localhost:9000/",
+	baseUrl: "http://localhost:8000/",
 	reporters: [
 		"spec",
 		isTeamCity && "teamcity",
@@ -50,10 +50,7 @@ export const config: WebdriverIO.Config = {
 
 	framework: "cucumber",
 	cucumberOpts: {
-		require: [
-			"./steps/**/*.ts",
-			"./node_modules/@nice-digital/wdio-cucumber-steps/lib",
-		],
+		require: ["./steps/**/*.ts"],
 		tagExpression: "not @pending", // See https://docs.cucumber.io/tag-expressions/
 		// Need quite a long timeout here because some of the Axe a11y tests take a while for longer pages (like drugs A to Z)
 		timeout: 60000,
