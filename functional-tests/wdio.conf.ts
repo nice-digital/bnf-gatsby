@@ -50,7 +50,10 @@ export const config: WebdriverIO.Config = {
 
 	framework: "cucumber",
 	cucumberOpts: {
-		require: ["./steps/**/*.ts"],
+		require: [
+			"./steps/**/*.ts",
+			"./node_modules/@nice-digital/wdio-cucumber-steps/lib/*.js",
+		],
 		tagExpression: "not @pending", // See https://docs.cucumber.io/tag-expressions/
 		// Need quite a long timeout here because some of the Axe a11y tests take a while for longer pages (like drugs A to Z)
 		timeout: 60000,
