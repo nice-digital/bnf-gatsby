@@ -17,5 +17,5 @@ export async function scrollInToView(
 	await browser.pause(250);
 
 	await element.scrollIntoView();
-	await waitForScrollToElement(selector, 5000, contextSelector);
+	// await waitForScrollToElement(selector, 5000, contextSelector);
 }
