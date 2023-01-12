@@ -10,7 +10,8 @@ When(/^I click the ([^"]*) breadcrumb$/, async (breadcrumbText: string) => {
 	const pageTitle = await browser.getTitle(),
 		breadcrumbsListSelector = await getSelector("breadcrumbs list");
 
-	await scrollInToView(breadcrumbsListSelector, "main");
+	//await scrollInToView(breadcrumbsListSelector, "main");
+
 	const breadcrumbListElement = await $(breadcrumbsListSelector),
 		breadcrumbElement = await breadcrumbListElement.$(`=${breadcrumbText}`);
 
@@ -32,7 +33,7 @@ When(/^I click the "([^"]*)" link$/, async (linkText: string) => {
 		// Look for anchors within main to avoid conflicting with links in the Global Nav
 		contextSelector = "main";
 
-	await scrollInToView(selector, contextSelector);
+	//await scrollInToView(selector, contextSelector);
 
 	const element = await (await $(contextSelector)).$(selector);
 	await element.click();
