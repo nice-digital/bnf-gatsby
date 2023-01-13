@@ -68,7 +68,8 @@ export const config: WebdriverIO.Config = {
 		// Clear session storage after each test because Gatsby stores scroll
 		// positions of each page, which causes issues running multiple tests
 		// on the same page in the same browser instance when scrolling to links
-		await browser.execute("sessionStorage.clear()");
+		await browser.execute("window.sessionStorage.clear()");
+		//browser.clearSessionStorage();
 	},
 
 	autoCompileOpts: {
