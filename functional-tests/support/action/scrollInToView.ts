@@ -1,5 +1,6 @@
 import { checkIfElementExists } from "@nice-digital/wdio-cucumber-steps/lib/support/lib/checkIfElementExists";
 
+import { scrollGodDamn } from "./scrollGodDamn";
 import { waitForScrollToElement } from "./waitForScrollToElement";
 
 export async function scrollInToView(
@@ -16,6 +17,7 @@ export async function scrollInToView(
 	// it _might_ be conflicting with scroll restoration in Gatsby https://www.gatsbyjs.com/docs/how-to/routing/scroll-restoration/
 	await browser.pause(250);
 
-	await element.scrollIntoView();
+	// await element.scrollIntoView();
+	await scrollGodDamn(selector, contextSelector);
 	await waitForScrollToElement(selector, 5000, contextSelector);
 }
