@@ -1,14 +1,10 @@
 import { checkIfElementExists } from "@nice-digital/wdio-cucumber-steps/lib/support/lib/checkIfElementExists";
 
-const elementYPosition = (
-	selector: string,
-	contextSelector?: string
-): number => {
+const elementYPosition = (selector: string, contextSelector?: string) => {
 	let element: Element;
 	if (selector.indexOf("=") > -1) {
 		// WDIO selectors can be in the form TAG=TEXT so parse these out into xpath
 		// selectors so we can execute this in the browser
-
 		const parts = selector.split("="),
 			tag = parts[0] || "*",
 			text = parts[1],
@@ -22,10 +18,8 @@ const elementYPosition = (
 			XPathResult.FIRST_ORDERED_NODE_TYPE,
 			null
 		).singleNodeValue as Element;
-		console.log("A", element.tagName, element.innerHTML);
 		(element as HTMLElement).scrollIntoView();
 	} else {
-		console.log("B");
 		element = (
 			contextSelector
 				? document.querySelector(contextSelector)?.querySelector(selector)
@@ -33,24 +27,13 @@ const elementYPosition = (
 		) as Element;
 		element.scrollIntoView();
 	}
-
-	return 0;
 };
 
-export async function scrollNow(
-	selector: string,
-	contextSelector?: string
-): Promise<boolean> {
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+export async function scrollNow(selector: string, contextSelector?: string) {
 	await checkIfElementExists(selector);
 
-	const yPos = await browser.execute(
-		elementYPosition,
-		selector,
-		contextSelector
-	);
-
-	// Scrolling to an element is never exactly 0 pixels, so leave a bit of tolerance +/- 1px
-	return yPos >= -1 && yPos <= 1;
+	await browser.execute(elementYPosition, selector, contextSelector);
 }
 
 /**
@@ -60,7 +43,7 @@ export async function scrollNow(
  * @param {String} selector
  * @param {Number} timeoutMs Timeout for waiting, in milliseconds
  */
-export async function scrollGodDamn(
+export async function scrollIntoView_NICE(
 	selector: string,
 	contextSelector?: string
 ): Promise<void> {
