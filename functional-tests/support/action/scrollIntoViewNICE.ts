@@ -1,10 +1,14 @@
 import { checkIfElementExists } from "@nice-digital/wdio-cucumber-steps/lib/support/lib/checkIfElementExists";
 
-const elementYPosition = (selector: string, contextSelector?: string) => {
+const scrollIntoViewNICE = (
+	selector: string,
+	contextSelector?: string
+): number => {
 	let element: Element;
 	if (selector.indexOf("=") > -1) {
 		// WDIO selectors can be in the form TAG=TEXT so parse these out into xpath
 		// selectors so we can execute this in the browser
+
 		const parts = selector.split("="),
 			tag = parts[0] || "*",
 			text = parts[1],
@@ -27,13 +31,19 @@ const elementYPosition = (selector: string, contextSelector?: string) => {
 		) as Element;
 		element.scrollIntoView();
 	}
+
+	return 0;
 };
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export async function scrollNow(selector: string, contextSelector?: string) {
+export async function scrollNow(
+	selector: string,
+	contextSelector?: string
+): Promise<boolean> {
 	await checkIfElementExists(selector);
 
-	await browser.execute(elementYPosition, selector, contextSelector);
+	await browser.execute(scrollIntoViewNICE, selector, contextSelector);
+
+	return true;
 }
 
 /**
@@ -43,7 +53,7 @@ export async function scrollNow(selector: string, contextSelector?: string) {
  * @param {String} selector
  * @param {Number} timeoutMs Timeout for waiting, in milliseconds
  */
-export async function scrollIntoView_NICE(
+export async function scrollIntoView(
 	selector: string,
 	contextSelector?: string
 ): Promise<void> {

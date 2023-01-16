@@ -1,6 +1,6 @@
 import { checkIfElementExists } from "@nice-digital/wdio-cucumber-steps/lib/support/lib/checkIfElementExists";
 
-import { scrollIntoView_NICE } from "./scrollIntoView_NICE";
+import { scrollIntoView } from "./scrollIntoViewNICE";
 import { waitForScrollToElement } from "./waitForScrollToElement";
 
 export async function scrollInToView(
@@ -17,8 +17,7 @@ export async function scrollInToView(
 	// it _might_ be conflicting with scroll restoration in Gatsby https://www.gatsbyjs.com/docs/how-to/routing/scroll-restoration/
 	await browser.pause(250);
 
-	// replace scrollIntoView with custom function as webdriverio has changed it's implementation
-	// from v7 to v8 which stopped working in our cases
-	await scrollIntoView_NICE(selector, contextSelector);
+	// note this is our own implementation of scrollIntoView
+	await scrollIntoView(selector, contextSelector);
 	await waitForScrollToElement(selector, 5000, contextSelector);
 }
