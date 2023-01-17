@@ -10,7 +10,7 @@ When(/^I click the ([^"]*) breadcrumb$/, async (breadcrumbText: string) => {
 	const pageTitle = await browser.getTitle(),
 		breadcrumbsListSelector = await getSelector("breadcrumbs list");
 
-	//await scrollInToView(breadcrumbsListSelector, "main");
+	await scrollInToView(breadcrumbsListSelector, "main");
 
 	const breadcrumbListElement = await $(breadcrumbsListSelector),
 		breadcrumbElement = await breadcrumbListElement.$(`=${breadcrumbText}`);

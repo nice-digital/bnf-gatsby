@@ -69,7 +69,6 @@ export const config: WebdriverIO.Config = {
 		// positions of each page, which causes issues running multiple tests
 		// on the same page in the same browser instance when scrolling to links
 		await browser.execute("window.sessionStorage.clear()");
-		//browser.clearSessionStorage();
 	},
 
 	autoCompileOpts: {
