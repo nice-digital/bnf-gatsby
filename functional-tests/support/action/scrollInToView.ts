@@ -1,6 +1,6 @@
+import { scrollIntoView } from "@nice-digital/wdio-cucumber-steps/lib/support/action/scrollIntoView";
 import { checkIfElementExists } from "@nice-digital/wdio-cucumber-steps/lib/support/lib/checkIfElementExists";
 
-import { scrollIntoView } from "./scrollIntoViewNICE";
 import { waitForScrollToElement } from "./waitForScrollToElement";
 
 export async function scrollInToView(
@@ -8,10 +8,6 @@ export async function scrollInToView(
 	contextSelector?: string
 ): Promise<void> {
 	await checkIfElementExists(selector);
-
-	const element = contextSelector
-		? await (await $(contextSelector)).$(selector)
-		: await $(selector);
 
 	// TODO: Why do we need to pause here? For some reason the scrollIntoView call below doesn't always work.
 	// it _might_ be conflicting with scroll restoration in Gatsby https://www.gatsbyjs.com/docs/how-to/routing/scroll-restoration/
