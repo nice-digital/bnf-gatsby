@@ -1,4 +1,4 @@
-import { When } from "@cucumber/cucumber";
+import { When } from "@wdio/cucumber-framework";
 
 import { scrollInToView } from "../support/action/scrollInToView";
 import { waitForScrollToElement } from "../support/action/waitForScrollToElement";
@@ -11,6 +11,7 @@ When(/^I click the ([^"]*) breadcrumb$/, async (breadcrumbText: string) => {
 		breadcrumbsListSelector = await getSelector("breadcrumbs list");
 
 	await scrollInToView(breadcrumbsListSelector, "main");
+
 	const breadcrumbListElement = await $(breadcrumbsListSelector),
 		breadcrumbElement = await breadcrumbListElement.$(`=${breadcrumbText}`);
 
