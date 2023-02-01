@@ -4,6 +4,7 @@ exports[`NursePrescribersFormularyTreatmentSummaryPage should match snapshot for
 <div>
   <nav
     aria-label="Breadcrumbs"
+    data-component="breadcrumbs"
     role="navigation"
   >
     <ol

@@ -4,6 +4,7 @@ exports[`BorderlineSubstanceIntroductionPage should match snapshot for page cont
 <div>
   <nav
     aria-label="Breadcrumbs"
+    data-component="breadcrumbs"
     role="navigation"
   >
     <ol
@@ -118,6 +119,7 @@ exports[`BorderlineSubstanceIntroductionPage should match snapshot for page cont
       <nav
         aria-label="Borderline substances pages"
         class="stacked-nav"
+        data-component="stacked-nav"
         id="collapsible-menu"
       >
         <p

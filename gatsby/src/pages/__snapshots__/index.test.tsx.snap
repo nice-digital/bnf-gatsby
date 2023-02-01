@@ -15,6 +15,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
         <nav
           aria-label="Breadcrumbs"
           class="breadcrumbs"
+          data-component="breadcrumbs"
           role="navigation"
         >
           <ol
@@ -135,6 +136,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
             class="alphabet__letter alphabet__letter--chunky"
           >
             <a
+              aria-label=""
               class="alphabet__link"
               href="/drugs/#a"
             >
@@ -145,6 +147,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
             class="alphabet__letter alphabet__letter--chunky"
           >
             <a
+              aria-label=""
               class="alphabet__link"
               href="/drugs/#b"
             >
@@ -155,6 +158,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
             class="alphabet__letter alphabet__letter--chunky"
           >
             <a
+              aria-label=""
               class="alphabet__link"
               href="/drugs/#c"
             >
@@ -165,6 +169,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
             class="alphabet__letter alphabet__letter--chunky"
           >
             <a
+              aria-label=""
               class="alphabet__link"
               href="/drugs/#d"
             >
@@ -175,6 +180,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
             class="alphabet__letter alphabet__letter--chunky"
           >
             <a
+              aria-label=""
               class="alphabet__link"
               href="/drugs/#e"
             >
@@ -185,6 +191,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
             class="alphabet__letter alphabet__letter--chunky"
           >
             <a
+              aria-label=""
               class="alphabet__link"
               href="/drugs/#f"
             >
@@ -195,6 +202,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
             class="alphabet__letter alphabet__letter--chunky"
           >
             <a
+              aria-label=""
               class="alphabet__link"
               href="/drugs/#g"
             >
@@ -205,6 +213,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
             class="alphabet__letter alphabet__letter--chunky"
           >
             <a
+              aria-label=""
               class="alphabet__link"
               href="/drugs/#h"
             >
@@ -215,6 +224,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
             class="alphabet__letter alphabet__letter--chunky"
           >
             <a
+              aria-label=""
               class="alphabet__link"
               href="/drugs/#i"
             >
@@ -225,6 +235,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
             class="alphabet__letter alphabet__letter--chunky"
           >
             <a
+              aria-label=""
               class="alphabet__link"
               href="/drugs/#j"
             >
@@ -235,6 +246,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
             class="alphabet__letter alphabet__letter--chunky"
           >
             <a
+              aria-label=""
               class="alphabet__link"
               href="/drugs/#k"
             >
@@ -245,6 +257,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
             class="alphabet__letter alphabet__letter--chunky"
           >
             <a
+              aria-label=""
               class="alphabet__link"
               href="/drugs/#l"
             >
@@ -255,6 +268,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
             class="alphabet__letter alphabet__letter--chunky"
           >
             <a
+              aria-label=""
               class="alphabet__link"
               href="/drugs/#m"
             >
@@ -265,6 +279,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
             class="alphabet__letter alphabet__letter--chunky"
           >
             <a
+              aria-label=""
               class="alphabet__link"
               href="/drugs/#n"
             >
@@ -275,6 +290,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
             class="alphabet__letter alphabet__letter--chunky"
           >
             <a
+              aria-label=""
               class="alphabet__link"
               href="/drugs/#o"
             >
@@ -285,6 +301,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
             class="alphabet__letter alphabet__letter--chunky"
           >
             <a
+              aria-label=""
               class="alphabet__link"
               href="/drugs/#p"
             >
@@ -295,6 +312,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
             class="alphabet__letter alphabet__letter--chunky"
           >
             <a
+              aria-label=""
               class="alphabet__link"
               href="/drugs/#q"
             >
@@ -305,6 +323,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
             class="alphabet__letter alphabet__letter--chunky"
           >
             <a
+              aria-label=""
               class="alphabet__link"
               href="/drugs/#r"
             >
@@ -315,6 +334,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
             class="alphabet__letter alphabet__letter--chunky"
           >
             <a
+              aria-label=""
               class="alphabet__link"
               href="/drugs/#s"
             >
@@ -325,6 +345,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
             class="alphabet__letter alphabet__letter--chunky"
           >
             <a
+              aria-label=""
               class="alphabet__link"
               href="/drugs/#t"
             >
@@ -335,6 +356,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
             class="alphabet__letter alphabet__letter--chunky"
           >
             <a
+              aria-label=""
               class="alphabet__link"
               href="/drugs/#u"
             >
@@ -345,6 +367,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
             class="alphabet__letter alphabet__letter--chunky"
           >
             <a
+              aria-label=""
               class="alphabet__link"
               href="/drugs/#v"
             >
@@ -355,6 +378,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
             class="alphabet__letter alphabet__letter--chunky"
           >
             <a
+              aria-label=""
               class="alphabet__link"
               href="/drugs/#w"
             >
@@ -365,6 +389,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
             class="alphabet__letter alphabet__letter--chunky"
           >
             <a
+              aria-label=""
               class="alphabet__link"
               href="/drugs/#x"
             >
@@ -375,6 +400,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
             class="alphabet__letter alphabet__letter--chunky"
           >
             <a
+              aria-label=""
               class="alphabet__link"
               href="/drugs/#y"
             >
@@ -385,6 +411,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
             class="alphabet__letter alphabet__letter--chunky"
           >
             <a
+              aria-label=""
               class="alphabet__link"
               href="/drugs/#z"
             >
@@ -649,6 +676,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
         <nav
           aria-label="Breadcrumbs"
           class="breadcrumbs"
+          data-component="breadcrumbs"
           role="navigation"
         >
           <ol
@@ -769,6 +797,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
             class="alphabet__letter alphabet__letter--chunky"
           >
             <a
+              aria-label=""
               class="alphabet__link"
               href="/drugs/#a"
             >
@@ -779,6 +808,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
             class="alphabet__letter alphabet__letter--chunky"
           >
             <a
+              aria-label=""
               class="alphabet__link"
               href="/drugs/#b"
             >
@@ -789,6 +819,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
             class="alphabet__letter alphabet__letter--chunky"
           >
             <a
+              aria-label=""
               class="alphabet__link"
               href="/drugs/#c"
             >
@@ -799,6 +830,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
             class="alphabet__letter alphabet__letter--chunky"
           >
             <a
+              aria-label=""
               class="alphabet__link"
               href="/drugs/#d"
             >
@@ -809,6 +841,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
             class="alphabet__letter alphabet__letter--chunky"
           >
             <a
+              aria-label=""
               class="alphabet__link"
               href="/drugs/#e"
             >
@@ -819,6 +852,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
             class="alphabet__letter alphabet__letter--chunky"
           >
             <a
+              aria-label=""
               class="alphabet__link"
               href="/drugs/#f"
             >
@@ -829,6 +863,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
             class="alphabet__letter alphabet__letter--chunky"
           >
             <a
+              aria-label=""
               class="alphabet__link"
               href="/drugs/#g"
             >
@@ -839,6 +874,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
             class="alphabet__letter alphabet__letter--chunky"
           >
             <a
+              aria-label=""
               class="alphabet__link"
               href="/drugs/#h"
             >
@@ -849,6 +885,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
             class="alphabet__letter alphabet__letter--chunky"
           >
             <a
+              aria-label=""
               class="alphabet__link"
               href="/drugs/#i"
             >
@@ -859,6 +896,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
             class="alphabet__letter alphabet__letter--chunky"
           >
             <a
+              aria-label=""
               class="alphabet__link"
               href="/drugs/#j"
             >
@@ -869,6 +907,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
             class="alphabet__letter alphabet__letter--chunky"
           >
             <a
+              aria-label=""
               class="alphabet__link"
               href="/drugs/#k"
             >
@@ -879,6 +918,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
             class="alphabet__letter alphabet__letter--chunky"
           >
             <a
+              aria-label=""
               class="alphabet__link"
               href="/drugs/#l"
             >
@@ -889,6 +929,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
             class="alphabet__letter alphabet__letter--chunky"
           >
             <a
+              aria-label=""
               class="alphabet__link"
               href="/drugs/#m"
             >
@@ -899,6 +940,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
             class="alphabet__letter alphabet__letter--chunky"
           >
             <a
+              aria-label=""
               class="alphabet__link"
               href="/drugs/#n"
             >
@@ -909,6 +951,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
             class="alphabet__letter alphabet__letter--chunky"
           >
             <a
+              aria-label=""
               class="alphabet__link"
               href="/drugs/#o"
             >
@@ -919,6 +962,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
             class="alphabet__letter alphabet__letter--chunky"
           >
             <a
+              aria-label=""
               class="alphabet__link"
               href="/drugs/#p"
             >
@@ -929,6 +973,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
             class="alphabet__letter alphabet__letter--chunky"
           >
             <a
+              aria-label=""
               class="alphabet__link"
               href="/drugs/#q"
             >
@@ -939,6 +984,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
             class="alphabet__letter alphabet__letter--chunky"
           >
             <a
+              aria-label=""
               class="alphabet__link"
               href="/drugs/#r"
             >
@@ -949,6 +995,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
             class="alphabet__letter alphabet__letter--chunky"
           >
             <a
+              aria-label=""
               class="alphabet__link"
               href="/drugs/#s"
             >
@@ -959,6 +1006,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
             class="alphabet__letter alphabet__letter--chunky"
           >
             <a
+              aria-label=""
               class="alphabet__link"
               href="/drugs/#t"
             >
@@ -969,6 +1017,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
             class="alphabet__letter alphabet__letter--chunky"
           >
             <a
+              aria-label=""
               class="alphabet__link"
               href="/drugs/#u"
             >
@@ -979,6 +1028,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
             class="alphabet__letter alphabet__letter--chunky"
           >
             <a
+              aria-label=""
               class="alphabet__link"
               href="/drugs/#v"
             >
@@ -989,6 +1039,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
             class="alphabet__letter alphabet__letter--chunky"
           >
             <a
+              aria-label=""
               class="alphabet__link"
               href="/drugs/#w"
             >
@@ -999,6 +1050,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
             class="alphabet__letter alphabet__letter--chunky"
           >
             <a
+              aria-label=""
               class="alphabet__link"
               href="/drugs/#x"
             >
@@ -1009,6 +1061,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
             class="alphabet__letter alphabet__letter--chunky"
           >
             <a
+              aria-label=""
               class="alphabet__link"
               href="/drugs/#y"
             >
@@ -1019,6 +1072,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
             class="alphabet__letter alphabet__letter--chunky"
           >
             <a
+              aria-label=""
               class="alphabet__link"
               href="/drugs/#z"
             >

@@ -22,6 +22,7 @@ exports[`NursePrescribersFormularyTreatmentSummaryPage should match snapshot for
 <div>
   <nav
     aria-label="Breadcrumbs"
+    data-component="breadcrumbs"
     role="navigation"
   >
     <ol
@@ -153,6 +154,7 @@ exports[`NursePrescribersFormularyTreatmentSummaryPage should match snapshot for
       <nav
         aria-label="Nurse Prescribers' Formulary pages"
         class="stacked-nav"
+        data-component="stacked-nav"
         id="collapsible-menu"
       >
         <p

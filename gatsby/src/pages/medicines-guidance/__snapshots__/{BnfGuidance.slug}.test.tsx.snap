@@ -18,6 +18,7 @@ exports[`MedicinesGuidancePage should match snapshot for page contents 1`] = `
 <div>
   <nav
     aria-label="Breadcrumbs"
+    data-component="breadcrumbs"
     role="navigation"
   >
     <ol
@@ -149,6 +150,7 @@ exports[`MedicinesGuidancePage should match snapshot for page contents 1`] = `
       <nav
         aria-label="Medicines guidance pages"
         class="stacked-nav"
+        data-component="stacked-nav"
         id="collapsible-menu"
       >
         <p

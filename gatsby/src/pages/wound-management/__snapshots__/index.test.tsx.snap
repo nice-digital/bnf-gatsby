@@ -4,6 +4,7 @@ exports[`Wound management index page should match page snapshot 1`] = `
 <div>
   <nav
     aria-label="Breadcrumbs"
+    data-component="breadcrumbs"
     role="navigation"
   >
     <ol
@@ -116,6 +117,7 @@ exports[`Wound management index page should match page snapshot 1`] = `
       <nav
         aria-label="Wound management products pages"
         class="stacked-nav"
+        data-component="stacked-nav"
         id="collapsible-menu"
       >
         <p

@@ -19,6 +19,7 @@ exports[`CautionaryAdvisoryLabelsPage should match snapshot for page contents 1`
 <div>
   <nav
     aria-label="Breadcrumbs"
+    data-component="breadcrumbs"
     role="navigation"
   >
     <ol
@@ -150,6 +151,7 @@ exports[`CautionaryAdvisoryLabelsPage should match snapshot for page contents 1`
       <nav
         aria-label="About section pages"
         class="stacked-nav"
+        data-component="stacked-nav"
         id="collapsible-menu"
       >
         <p

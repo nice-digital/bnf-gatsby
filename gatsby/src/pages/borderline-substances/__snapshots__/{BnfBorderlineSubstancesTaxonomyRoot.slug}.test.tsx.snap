@@ -4,6 +4,7 @@ exports[`BorderlineSubstancesRootPage Body Single level should match snapshot 1`
 <div>
   <nav
     aria-label="Breadcrumbs"
+    data-component="breadcrumbs"
     role="navigation"
   >
     <ol
@@ -133,6 +134,7 @@ exports[`BorderlineSubstancesRootPage Body Single level should match snapshot 1`
       <nav
         aria-label="Borderline substances pages"
         class="stacked-nav"
+        data-component="stacked-nav"
         id="collapsible-menu"
       >
         <p
@@ -223,6 +225,7 @@ exports[`BorderlineSubstancesRootPage Body Two levels should match snapshot 1`] 
 <div>
   <nav
     aria-label="Breadcrumbs"
+    data-component="breadcrumbs"
     role="navigation"
   >
     <ol
@@ -352,6 +355,7 @@ exports[`BorderlineSubstancesRootPage Body Two levels should match snapshot 1`] 
       <nav
         aria-label="Borderline substances pages"
         class="stacked-nav"
+        data-component="stacked-nav"
         id="collapsible-menu"
       >
         <p
