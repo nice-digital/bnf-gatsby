@@ -5,7 +5,7 @@ import striptags from "striptags";
 import RemoveIcon from "@nice-digital/icons/lib/Remove";
 import { Alert } from "@nice-digital/nds-alert";
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
-import { Button } from "@nice-digital/nds-button";
+import { Button, ButtonProps } from "@nice-digital/nds-button";
 import { Input } from "@nice-digital/nds-input";
 import { PageHeader } from "@nice-digital/nds-page-header";
 import { Panel } from "@nice-digital/nds-panel";
@@ -224,7 +224,7 @@ const InteractantPage: FC<InteractantPageProps> = ({
 											value={filterTerm}
 										/>
 										<Button
-											variant={Button.variants.secondary}
+											variant={Button.variants.secondary as ButtonProps.variant}
 											className={styles.filterButton}
 											type="submit"
 										>

@@ -1,6 +1,4 @@
 import { type FC } from "react";
-import slugify from "slugify";
-import striptags from "striptags";
 
 import {
 	type FeedNationalFundingPotContent,

@@ -1,6 +1,5 @@
 import { graphql, Link } from "gatsby";
 import React, { type FC } from "react";
-import striptags from "striptags";
 
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
 import { Grid, GridItem } from "@nice-digital/nds-grid";
