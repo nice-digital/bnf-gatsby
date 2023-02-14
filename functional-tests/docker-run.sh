@@ -14,31 +14,31 @@ function cleanupBeforeStart() {
 function runTests() {
   if [[ -v TEAMCITY_VERSION ]]; then
     # Assume that on TeamCity we've created the containers in the background with `docker-compose up --no-start` but not started them
-    docker-compose start
+    docker compose start
   else
-    docker-compose up --scale bnf-selenium-chrome=2 -d
+    docker compose up --scale bnf-selenium-chrome=2 -d
   fi
 
   # Wait for the web app to be up before running the tests
-  docker-compose run -T bnf-test-runner npm run wait-then-test
+  docker compose run -T bnf-test-runner npm run wait-then-test
   # Or for dev mode, uncomment:
   #docker-compose exec bnf-test-runner sh
 }
 
 function processTestOutput() {
   # Generate an Allure test report
-  docker-compose run -T bnf-test-runner allure generate --clean
+  docker compose run -T bnf-test-runner allure generate --clean
 
   # Copy logs to use as a TeamCity artifact for debugging purposes
   mkdir -p docker-output
   docker cp bnf-test-runner:/bnf-gatsby/tests/allure-report ./docker-output
 
-  docker-compose logs --no-color > ./docker-output/logs.txt
+  docker compose logs --no-color > ./docker-output/logs.txt
 }
 
 function cleanup() {
   # Stop in the background so the script finishes quicker - we don't need to wait
-  nohup docker-compose down --remove-orphans --volumes > /dev/null 2>&1 &
+  nohup docker compose down --remove-orphans --volumes > /dev/null 2>&1 &
 }
 
 function exitWithCode()

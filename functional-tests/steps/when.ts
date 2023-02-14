@@ -1,10 +1,21 @@
 import { When } from "@wdio/cucumber-framework";
 
+import { clickElement } from "@nice-digital/wdio-cucumber-steps/lib/support/action/clickElement";
+import { openWebsite } from "@nice-digital/wdio-cucumber-steps/lib/support/action/openWebsite";
+
+import { acceptCookieBanner } from "../support/action/acceptCookieBanner";
 import { scrollInToView } from "../support/action/scrollInToView";
+import { typeInSearchBox } from "../support/action/typeInSearchBox";
+import { waitForReact } from "../support/action/waitForReact";
 import { waitForScrollToElement } from "../support/action/waitForScrollToElement";
+import { waitForSearchLoad } from "../support/action/waitForSearchLoad";
 import { waitForTitleToChange } from "../support/action/waitForTitleToChange";
 import { waitForUrlToChange } from "../support/action/waitForUrlToChange";
+import { getPath } from "../support/pagePaths";
 import { getSelector } from "../support/selectors";
+
+// import { waitFor } from "@nice-digital/wdio-cucumber-steps/lib/support/action/waitFor";
+// import { checkIfElementExists } from "@nice-digital/wdio-cucumber-steps/lib/support/lib/checkIfElementExists";
 
 When(/^I click the ([^"]*) breadcrumb$/, async (breadcrumbText: string) => {
 	const pageTitle = await browser.getTitle(),
@@ -53,4 +64,25 @@ When(/^I click the "([^"]*)" link$/, async (linkText: string) => {
 		const targetElementId = newUrl.hash;
 		await waitForScrollToElement(targetElementId);
 	}
+});
+
+When("I search for {}", async (searchTerm: string) => {
+	const pageTitle = await browser.getTitle();
+	await typeInSearchBox(searchTerm);
+
+	const searchButtonSelector = await getSelector("header search button");
+	await clickElement("click", "element", searchButtonSelector);
+	await waitForTitleToChange(pageTitle);
+	await waitForSearchLoad();
+});
+
+When("I view the search results page for {}", async (searchTerm: string) => {
+	await openWebsite(
+		"url",
+		getPath("search") + "?q=" + encodeURIComponent(searchTerm)
+	);
+
+	await waitForReact();
+	await acceptCookieBanner();
+	await waitForSearchLoad();
 });
