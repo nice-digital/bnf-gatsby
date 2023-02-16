@@ -1,4 +1,4 @@
-!/bin/bash
+#!/bin/bash
 
 # Runs functional tests via Docker
 
