@@ -1,6 +1,6 @@
 Feature: Search Page
-  As a user of CKS
-  I want to be able to use the CKS Search Page
+  As a user of BNF
+  I want to be able to use the BNF Search Page
 
   Background:
     Given I have a screen that is 1366 by 768 pixels
@@ -23,8 +23,6 @@ Feature: Search Page
     When I view the search results page for cancer
     Then I expect to see a list of 15 search results
 
-# Scenario: Total number of results
-#   When I view the search results page for cancer
-#   Then I expect to see 492 total search results for cancer
-
-# TODO: Current page number, page titles, pagination, spelling corrections, no results, empty search
+  Scenario: Total number of results
+    When I view the search results page for cancer
+    Then I expect to see 492 total search results for cancer

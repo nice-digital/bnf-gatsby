@@ -64,6 +64,15 @@ services:
         aliases:
           - bnfc-functional-tests.nice.org.uk
 
+  mock-api:
+    build: https://github.com/nice-digital/mocks-apis.git#main:search-apis
+    container_name: mock-api
+    networks:
+      default:
+        aliases:
+          # Pretend to be the test search api endpoint
+          - test-search-api.nice.org.uk
+
 networks:
   default:
     name: bnf-gatsby-functional-tests

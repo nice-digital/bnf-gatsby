@@ -177,7 +177,7 @@ const SearchIndexPage: FC = () => {
 			</Breadcrumbs>
 
 			<PageHeader
-				id="content-start"
+				id="search-results-summary"
 				heading={`${siteTitleShort} search results`}
 				lead={
 					loading ? (
