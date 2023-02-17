@@ -86,3 +86,36 @@ When("I view the search results page for {}", async (searchTerm: string) => {
 	await acceptCookieBanner();
 	await waitForSearchLoad();
 });
+
+When(/^I type "([^"]*)" in the header search box$/, typeInSearchBox);
+
+When(
+	/^I click "([^"]*)" in the autocomplete options$/,
+	async (text: string) => {
+		const pageTitle = await browser.getTitle();
+
+		const optionElement = await $(await getSelector("autocomplete option"));
+		await optionElement.waitForExist({ timeout: 20000 });
+
+		const anchorSelector = await getSelector("autocomplete anchor");
+
+		// For some reason we can't click on an autocomplete suggestion via wdio's
+		// browser.click(element). So we have to use this workaround:
+		await browser.execute(
+			(text, optionAnchorSelector) => {
+				document.querySelectorAll(optionAnchorSelector).forEach((element) => {
+					if (
+						element.textContent &&
+						element.textContent.toLowerCase().indexOf(text.toLowerCase()) > -1
+					) {
+						(element as HTMLElement).click();
+						return;
+					}
+				});
+			},
+			text,
+			anchorSelector
+		);
+		await waitForTitleToChange(pageTitle);
+	}
+);

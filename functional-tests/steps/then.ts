@@ -68,7 +68,18 @@ Then(
 			"element",
 			selector,
 			"",
-			`${numberOfResults} results for ${searchTerm}`
+			`Showing 1 to 10 of ${numberOfResults} results for ${searchTerm}`
 		);
+	}
+);
+
+Then(
+	/^I expect to see "([^"]*)" in the autocomplete suggestions$/,
+	async (text: string) => {
+		const optionElement = await $(await getSelector("autocomplete option"));
+		await optionElement.waitForExist({ timeout: 20000 });
+
+		const menuSelector = await getSelector("autocomplete menu");
+		await checkContainsText("element", menuSelector, "", text);
 	}
 );
