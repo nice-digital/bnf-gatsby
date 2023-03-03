@@ -14,9 +14,6 @@ import { waitForUrlToChange } from "../support/action/waitForUrlToChange";
 import { getPath } from "../support/pagePaths";
 import { getSelector } from "../support/selectors";
 
-// import { waitFor } from "@nice-digital/wdio-cucumber-steps/lib/support/action/waitFor";
-// import { checkIfElementExists } from "@nice-digital/wdio-cucumber-steps/lib/support/lib/checkIfElementExists";
-
 When(/^I click the ([^"]*) breadcrumb$/, async (breadcrumbText: string) => {
 	const pageTitle = await browser.getTitle(),
 		breadcrumbsListSelector = await getSelector("breadcrumbs list");
