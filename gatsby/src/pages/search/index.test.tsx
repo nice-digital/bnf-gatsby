@@ -255,7 +255,7 @@ describe("Search Page", () => {
 			// eslint-disable-next-line testing-library/no-node-access
 			expect(heading1.parentElement).toHaveProperty(
 				"id",
-				"search-results-summary"
+				"search-results-title"
 			);
 		});
 

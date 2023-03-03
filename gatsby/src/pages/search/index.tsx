@@ -184,7 +184,7 @@ const SearchIndexPage: FC = () => {
 						"Loading search results…"
 					) : data ? (
 						<div
-							id="search-results-summary"
+							id="search-results-text"
 							data-original-search-text={data.originalSearch?.searchText || ""}
 							data-final-search-text={data.finalSearchText}
 							data-result-count={data.resultCount}
