@@ -70,8 +70,10 @@ services:
     networks:
       default:
         aliases:
-          # Pretend to be the test search api endpoint
-          - test-search-api.nice.org.uk
+          # The TC pipeline has a build step that switches between these two urls
+          # If the branch == main it will point to the live endpoint otherwise point to alpha
+          - alpha-search-api.nice.org.uk
+          - search-api.nice.org.uk
 
 networks:
   default:
