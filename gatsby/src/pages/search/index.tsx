@@ -177,14 +177,14 @@ const SearchIndexPage: FC = () => {
 			</Breadcrumbs>
 
 			<PageHeader
-				id="search-results-summary"
+				id="content-start"
 				heading={`${siteTitleShort} search results`}
 				lead={
 					loading ? (
 						"Loading search results…"
 					) : data ? (
 						<div
-							id="search-results-text"
+							id="search-results-summary"
 							data-original-search-text={data.originalSearch?.searchText || ""}
 							data-final-search-text={data.finalSearchText}
 							data-result-count={data.resultCount}
