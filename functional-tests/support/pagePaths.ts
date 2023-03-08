@@ -58,6 +58,7 @@ export const pagePaths = {
 	"feed supplements": "/borderline-substances/feed-supplements/",
 	"high-fibre supplements":
 		"/borderline-substances/feed-supplements/high-fibre-supplements/",
+	search: "/search/",
 } as const;
 
 export type PageName = keyof typeof pagePaths;

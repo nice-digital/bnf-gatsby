@@ -1,9 +1,17 @@
 import { When } from "@wdio/cucumber-framework";
 
+import { clickElement } from "@nice-digital/wdio-cucumber-steps/lib/support/action/clickElement";
+import { openWebsite } from "@nice-digital/wdio-cucumber-steps/lib/support/action/openWebsite";
+
+import { acceptCookieBanner } from "../support/action/acceptCookieBanner";
 import { scrollInToView } from "../support/action/scrollInToView";
+import { typeInSearchBox } from "../support/action/typeInSearchBox";
+import { waitForReact } from "../support/action/waitForReact";
 import { waitForScrollToElement } from "../support/action/waitForScrollToElement";
+import { waitForSearchLoad } from "../support/action/waitForSearchLoad";
 import { waitForTitleToChange } from "../support/action/waitForTitleToChange";
 import { waitForUrlToChange } from "../support/action/waitForUrlToChange";
+import { getPath } from "../support/pagePaths";
 import { getSelector } from "../support/selectors";
 
 When(/^I click the ([^"]*) breadcrumb$/, async (breadcrumbText: string) => {
@@ -54,3 +62,57 @@ When(/^I click the "([^"]*)" link$/, async (linkText: string) => {
 		await waitForScrollToElement(targetElementId);
 	}
 });
+
+When("I search for {}", async (searchTerm: string) => {
+	const pageTitle = await browser.getTitle();
+	await typeInSearchBox(searchTerm);
+
+	const searchButtonSelector = await getSelector("header search button");
+	await clickElement("click", "element", searchButtonSelector);
+	await waitForTitleToChange(pageTitle);
+	await waitForSearchLoad();
+});
+
+When("I view the search results page for {}", async (searchTerm: string) => {
+	await openWebsite(
+		"url",
+		getPath("search") + "?q=" + encodeURIComponent(searchTerm)
+	);
+
+	await waitForReact();
+	await acceptCookieBanner();
+	await waitForSearchLoad();
+});
+
+When(/^I type "([^"]*)" in the header search box$/, typeInSearchBox);
+
+When(
+	/^I click "([^"]*)" in the autocomplete options$/,
+	async (text: string) => {
+		const pageTitle = await browser.getTitle();
+
+		const optionElement = await $(await getSelector("autocomplete option"));
+		await optionElement.waitForExist({ timeout: 20000 });
+
+		const anchorSelector = await getSelector("autocomplete anchor");
+
+		// For some reason we can't click on an autocomplete suggestion via wdio's
+		// browser.click(element). So we have to use this workaround:
+		await browser.execute(
+			(text, optionAnchorSelector) => {
+				document.querySelectorAll(optionAnchorSelector).forEach((element) => {
+					if (
+						element.textContent &&
+						element.textContent.toLowerCase().indexOf(text.toLowerCase()) > -1
+					) {
+						(element as HTMLElement).click();
+						return;
+					}
+				});
+			},
+			text,
+			anchorSelector
+		);
+		await waitForTitleToChange(pageTitle);
+	}
+);
