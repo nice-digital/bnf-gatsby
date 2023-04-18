@@ -5,6 +5,7 @@ exports[`Layout should match snapshot 1`] = `
   <main>
     <div
       class="container"
+      data-component="container"
     >
       <div>
         Content

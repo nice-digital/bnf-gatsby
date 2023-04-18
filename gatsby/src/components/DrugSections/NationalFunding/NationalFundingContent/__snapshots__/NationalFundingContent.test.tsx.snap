@@ -26,6 +26,7 @@ exports[`NationalFundingContent should match snapshot 1`] = `
     <li>
       <article
         class="card"
+        data-component="card"
       >
         <header
           class="card__header"
@@ -68,6 +69,7 @@ exports[`NationalFundingContent should match snapshot 1`] = `
     <li>
       <article
         class="card"
+        data-component="card"
       >
         <header
           class="card__header"

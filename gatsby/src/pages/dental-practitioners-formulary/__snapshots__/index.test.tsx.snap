@@ -17,6 +17,7 @@ exports[`DentalPractitionersFormularyPageProps should match snapshot for page co
 <div>
   <nav
     aria-label="Breadcrumbs"
+    data-component="breadcrumbs"
     role="navigation"
   >
     <ol
@@ -84,6 +85,7 @@ exports[`DentalPractitionersFormularyPageProps should match snapshot for page co
   </script>
   <div
     class="page-header"
+    data-component="page-header"
     id="content-start"
   >
     <h1
@@ -99,12 +101,14 @@ exports[`DentalPractitionersFormularyPageProps should match snapshot for page co
     data-testid="body"
   >
     <div
+      data-component="grid-item"
       data-g="12 md:12 lg:12"
     >
       <div
         class="grid grid--loose"
       >
         <div
+          data-component="grid-item"
           data-g="12 md:8 lg:9"
         >
           <nav
@@ -142,6 +146,7 @@ exports[`DentalPractitionersFormularyPageProps should match snapshot for page co
         </div>
         <div
           class="body"
+          data-component="grid-item"
           data-g="12 md:8 lg:9"
         >
           <section

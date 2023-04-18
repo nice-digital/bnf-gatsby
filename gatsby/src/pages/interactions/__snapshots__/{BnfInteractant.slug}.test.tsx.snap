@@ -4,6 +4,7 @@ exports[`InteractantPage body should match snapshot for page body 1`] = `
 <div>
   <nav
     aria-label="Breadcrumbs"
+    data-component="breadcrumbs"
     role="navigation"
   >
     <ol
@@ -88,6 +89,7 @@ exports[`InteractantPage body should match snapshot for page body 1`] = `
   </script>
   <div
     class="page-header"
+    data-component="page-header"
     id="content-start"
   >
     <h1
@@ -144,6 +146,7 @@ exports[`InteractantPage body should match snapshot for page body 1`] = `
     >
       <div
         class="panel"
+        data-component="panel"
         data-tracking="interaction-information"
       >
         <h2
@@ -181,6 +184,7 @@ exports[`InteractantPage body should match snapshot for page body 1`] = `
         >
           <div
             class="input filterInput"
+            data-component="input"
           >
             <label
               class="input__label"
@@ -199,6 +203,7 @@ exports[`InteractantPage body should match snapshot for page body 1`] = `
           </div>
           <button
             class="btn btn--secondary filterButton"
+            data-component="button--secondary"
             type="submit"
           >
             Filter

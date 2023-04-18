@@ -4,6 +4,7 @@ exports[`TreatmentSummariesIndexPage should match snapshot for page body 1`] = `
 <div>
   <nav
     aria-label="Breadcrumbs"
+    data-component="breadcrumbs"
     role="navigation"
   >
     <ol
@@ -71,6 +72,7 @@ exports[`TreatmentSummariesIndexPage should match snapshot for page body 1`] = `
   </script>
   <div
     class="page-header"
+    data-component="page-header"
     id="content-start"
   >
     <h1
@@ -91,6 +93,7 @@ exports[`TreatmentSummariesIndexPage should match snapshot for page body 1`] = `
   >
     <li
       class="alphabet__letter "
+      data-component="alphabet-letter"
     >
       <a
         href="#a"
@@ -100,6 +103,7 @@ exports[`TreatmentSummariesIndexPage should match snapshot for page body 1`] = `
     </li>
     <li
       class="alphabet__letter "
+      data-component="alphabet-letter"
     >
       <a
         href="#b"
@@ -110,6 +114,7 @@ exports[`TreatmentSummariesIndexPage should match snapshot for page body 1`] = `
   </ol>
   <ol
     class="a-z-list "
+    data-component="a-z-list"
   >
     <li
       class="a-z-list__item "
@@ -123,6 +128,7 @@ exports[`TreatmentSummariesIndexPage should match snapshot for page body 1`] = `
       <ol
         aria-labelledby="a"
         class="column-list column-list--boxed"
+        data-component="column-list--boxed"
         data-tracking="a-to-z-column-list"
       >
         <li>
@@ -153,6 +159,7 @@ exports[`TreatmentSummariesIndexPage should match snapshot for page body 1`] = `
       <ol
         aria-labelledby="b"
         class="column-list column-list--boxed"
+        data-component="column-list--boxed"
         data-tracking="a-to-z-column-list"
       >
         <li>
