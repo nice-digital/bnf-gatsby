@@ -7,6 +7,7 @@ exports[`ImportantSafetyInfo drug class content should match snapshot for drug c
 >
   <div
     class="panel panel--primary panel"
+    data-component="panel--primary"
   >
     <h2
       id="important-safety-information"
@@ -72,6 +73,7 @@ exports[`ImportantSafetyInfo drug content should match snapshot for drug content
 >
   <div
     class="panel panel--primary panel"
+    data-component="panel--primary"
   >
     <h2
       id="important-safety-information"
@@ -113,6 +115,7 @@ exports[`ImportantSafetyInfo prep content should match snapshot for prep content
 >
   <div
     class="panel panel--primary panel"
+    data-component="panel--primary"
   >
     <h2
       id="important-safety-information"

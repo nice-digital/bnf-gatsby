@@ -4,6 +4,7 @@ exports[`Wound management taxonomy page should match page snapshot 1`] = `
 <div>
   <nav
     aria-label="Breadcrumbs"
+    data-component="breadcrumbs"
     role="navigation"
   >
     <ol
@@ -105,6 +106,7 @@ exports[`Wound management taxonomy page should match page snapshot 1`] = `
   </script>
   <div
     class="page-header"
+    data-component="page-header"
     id="content-start"
   >
     <h1
@@ -130,6 +132,7 @@ exports[`Wound management taxonomy page should match page snapshot 1`] = `
     class="grid grid--loose"
   >
     <div
+      data-component="grid-item"
       data-g="12 lg:9"
     >
       <nav

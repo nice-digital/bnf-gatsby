@@ -4,6 +4,7 @@ exports[`Wound management index page should match page snapshot 1`] = `
 <div>
   <nav
     aria-label="Breadcrumbs"
+    data-component="breadcrumbs"
     role="navigation"
   >
     <ol
@@ -71,6 +72,7 @@ exports[`Wound management index page should match page snapshot 1`] = `
   </script>
   <div
     class="page-header"
+    data-component="page-header"
     id="content-start"
   >
     <h1
@@ -85,6 +87,7 @@ exports[`Wound management index page should match page snapshot 1`] = `
   >
     <div
       class="hide-print"
+      data-component="grid-item"
       data-g="12 md:4 lg:3"
     >
        
@@ -116,6 +119,7 @@ exports[`Wound management index page should match page snapshot 1`] = `
       <nav
         aria-label="Wound management products pages"
         class="stacked-nav"
+        data-component="stacked-nav"
         id="collapsible-menu"
       >
         <p
@@ -167,6 +171,7 @@ exports[`Wound management index page should match page snapshot 1`] = `
       </nav>
     </div>
     <div
+      data-component="grid-item"
       data-g="12 md:8 lg:9"
     >
       <nav

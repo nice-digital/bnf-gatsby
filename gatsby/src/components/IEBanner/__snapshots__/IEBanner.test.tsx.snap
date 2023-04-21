@@ -9,7 +9,8 @@ exports[`IEBanner should match snapshot 1`] = `
       class="container"
     >
       <div
-        class="alert alert--caution"
+        class="banner"
+        data-component="alert--caution"
       >
         <h2>
           Browser support

@@ -7,6 +7,7 @@ exports[`SiteDistinction BNF site should match snapshot client side 1`] = `
   >
     <div
       class="container container"
+      data-component="container"
     >
       <p
         class="tabs"
@@ -68,6 +69,7 @@ exports[`SiteDistinction BNF site should match snapshot server side 1`] = `
   >
     <div
       class="container container"
+      data-component="container"
     >
       <p
         class="tabs"
@@ -126,6 +128,7 @@ exports[`SiteDistinction BNFC site should match snapshot client side 1`] = `
   >
     <div
       class="container container"
+      data-component="container"
     >
       <p
         class="tabs"
@@ -187,6 +190,7 @@ exports[`SiteDistinction BNFC site should match snapshot server side 1`] = `
   >
     <div
       class="container container"
+      data-component="container"
     >
       <p
         class="tabs"

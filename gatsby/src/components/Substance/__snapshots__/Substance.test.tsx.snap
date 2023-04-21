@@ -32,6 +32,7 @@ exports[`substance should match snapshot 1`] = `
        
       <div
         class="alert alert--info"
+        data-component="alert--info"
       >
         <div
           class="alertContent"

@@ -15,6 +15,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
         <nav
           aria-label="Breadcrumbs"
           class="breadcrumbs"
+          data-component="breadcrumbs"
           role="navigation"
         >
           <ol
@@ -113,6 +114,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
     >
       <div
         class="drugsColumn"
+        data-component="grid-item"
         data-g="12 md:6"
       >
         <h2>
@@ -133,9 +135,11 @@ exports[`HomePage should match snapshot for BNF 1`] = `
         >
           <li
             class="alphabet__letter alphabet__letter--chunky"
+            data-component="alphabet-letter--chunky"
           >
             <a
               class="alphabet__link"
+              data-component="alphabet"
               href="/drugs/#a"
             >
               A
@@ -143,9 +147,11 @@ exports[`HomePage should match snapshot for BNF 1`] = `
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
+            data-component="alphabet-letter--chunky"
           >
             <a
               class="alphabet__link"
+              data-component="alphabet"
               href="/drugs/#b"
             >
               B
@@ -153,9 +159,11 @@ exports[`HomePage should match snapshot for BNF 1`] = `
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
+            data-component="alphabet-letter--chunky"
           >
             <a
               class="alphabet__link"
+              data-component="alphabet"
               href="/drugs/#c"
             >
               C
@@ -163,9 +171,11 @@ exports[`HomePage should match snapshot for BNF 1`] = `
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
+            data-component="alphabet-letter--chunky"
           >
             <a
               class="alphabet__link"
+              data-component="alphabet"
               href="/drugs/#d"
             >
               D
@@ -173,9 +183,11 @@ exports[`HomePage should match snapshot for BNF 1`] = `
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
+            data-component="alphabet-letter--chunky"
           >
             <a
               class="alphabet__link"
+              data-component="alphabet"
               href="/drugs/#e"
             >
               E
@@ -183,9 +195,11 @@ exports[`HomePage should match snapshot for BNF 1`] = `
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
+            data-component="alphabet-letter--chunky"
           >
             <a
               class="alphabet__link"
+              data-component="alphabet"
               href="/drugs/#f"
             >
               F
@@ -193,9 +207,11 @@ exports[`HomePage should match snapshot for BNF 1`] = `
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
+            data-component="alphabet-letter--chunky"
           >
             <a
               class="alphabet__link"
+              data-component="alphabet"
               href="/drugs/#g"
             >
               G
@@ -203,9 +219,11 @@ exports[`HomePage should match snapshot for BNF 1`] = `
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
+            data-component="alphabet-letter--chunky"
           >
             <a
               class="alphabet__link"
+              data-component="alphabet"
               href="/drugs/#h"
             >
               H
@@ -213,9 +231,11 @@ exports[`HomePage should match snapshot for BNF 1`] = `
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
+            data-component="alphabet-letter--chunky"
           >
             <a
               class="alphabet__link"
+              data-component="alphabet"
               href="/drugs/#i"
             >
               I
@@ -223,9 +243,11 @@ exports[`HomePage should match snapshot for BNF 1`] = `
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
+            data-component="alphabet-letter--chunky"
           >
             <a
               class="alphabet__link"
+              data-component="alphabet"
               href="/drugs/#j"
             >
               J
@@ -233,9 +255,11 @@ exports[`HomePage should match snapshot for BNF 1`] = `
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
+            data-component="alphabet-letter--chunky"
           >
             <a
               class="alphabet__link"
+              data-component="alphabet"
               href="/drugs/#k"
             >
               K
@@ -243,9 +267,11 @@ exports[`HomePage should match snapshot for BNF 1`] = `
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
+            data-component="alphabet-letter--chunky"
           >
             <a
               class="alphabet__link"
+              data-component="alphabet"
               href="/drugs/#l"
             >
               L
@@ -253,9 +279,11 @@ exports[`HomePage should match snapshot for BNF 1`] = `
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
+            data-component="alphabet-letter--chunky"
           >
             <a
               class="alphabet__link"
+              data-component="alphabet"
               href="/drugs/#m"
             >
               M
@@ -263,9 +291,11 @@ exports[`HomePage should match snapshot for BNF 1`] = `
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
+            data-component="alphabet-letter--chunky"
           >
             <a
               class="alphabet__link"
+              data-component="alphabet"
               href="/drugs/#n"
             >
               N
@@ -273,9 +303,11 @@ exports[`HomePage should match snapshot for BNF 1`] = `
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
+            data-component="alphabet-letter--chunky"
           >
             <a
               class="alphabet__link"
+              data-component="alphabet"
               href="/drugs/#o"
             >
               O
@@ -283,9 +315,11 @@ exports[`HomePage should match snapshot for BNF 1`] = `
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
+            data-component="alphabet-letter--chunky"
           >
             <a
               class="alphabet__link"
+              data-component="alphabet"
               href="/drugs/#p"
             >
               P
@@ -293,9 +327,11 @@ exports[`HomePage should match snapshot for BNF 1`] = `
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
+            data-component="alphabet-letter--chunky"
           >
             <a
               class="alphabet__link"
+              data-component="alphabet"
               href="/drugs/#q"
             >
               Q
@@ -303,9 +339,11 @@ exports[`HomePage should match snapshot for BNF 1`] = `
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
+            data-component="alphabet-letter--chunky"
           >
             <a
               class="alphabet__link"
+              data-component="alphabet"
               href="/drugs/#r"
             >
               R
@@ -313,9 +351,11 @@ exports[`HomePage should match snapshot for BNF 1`] = `
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
+            data-component="alphabet-letter--chunky"
           >
             <a
               class="alphabet__link"
+              data-component="alphabet"
               href="/drugs/#s"
             >
               S
@@ -323,9 +363,11 @@ exports[`HomePage should match snapshot for BNF 1`] = `
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
+            data-component="alphabet-letter--chunky"
           >
             <a
               class="alphabet__link"
+              data-component="alphabet"
               href="/drugs/#t"
             >
               T
@@ -333,9 +375,11 @@ exports[`HomePage should match snapshot for BNF 1`] = `
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
+            data-component="alphabet-letter--chunky"
           >
             <a
               class="alphabet__link"
+              data-component="alphabet"
               href="/drugs/#u"
             >
               U
@@ -343,9 +387,11 @@ exports[`HomePage should match snapshot for BNF 1`] = `
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
+            data-component="alphabet-letter--chunky"
           >
             <a
               class="alphabet__link"
+              data-component="alphabet"
               href="/drugs/#v"
             >
               V
@@ -353,9 +399,11 @@ exports[`HomePage should match snapshot for BNF 1`] = `
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
+            data-component="alphabet-letter--chunky"
           >
             <a
               class="alphabet__link"
+              data-component="alphabet"
               href="/drugs/#w"
             >
               W
@@ -363,9 +411,11 @@ exports[`HomePage should match snapshot for BNF 1`] = `
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
+            data-component="alphabet-letter--chunky"
           >
             <a
               class="alphabet__link"
+              data-component="alphabet"
               href="/drugs/#x"
             >
               X
@@ -373,9 +423,11 @@ exports[`HomePage should match snapshot for BNF 1`] = `
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
+            data-component="alphabet-letter--chunky"
           >
             <a
               class="alphabet__link"
+              data-component="alphabet"
               href="/drugs/#y"
             >
               Y
@@ -383,9 +435,11 @@ exports[`HomePage should match snapshot for BNF 1`] = `
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
+            data-component="alphabet-letter--chunky"
           >
             <a
               class="alphabet__link"
+              data-component="alphabet"
               href="/drugs/#z"
             >
               Z
@@ -395,6 +449,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
       </div>
       <div
         class="featureColumn"
+        data-component="grid-item"
         data-g="12 md:6"
       >
         <div>
@@ -417,6 +472,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
           </ul>
           <a
             class="btn"
+            data-component="button--primary"
             href="/treatment-summaries/"
           >
             View treatment summaries A to Z
@@ -431,6 +487,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
           </p>
           <a
             class="btn"
+            data-component="button--primary"
             href="/interactions/"
           >
             View interactions A to Z
@@ -444,6 +501,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
       data-tracking="browse-by-category"
     >
       <div
+        data-component="grid-item"
         data-g="12 md:6"
       >
         <h2>
@@ -480,6 +538,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
         </p>
       </div>
       <div
+        data-component="grid-item"
         data-g="12 md:6"
       >
         <h2>
@@ -494,6 +553,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
         </p>
       </div>
       <div
+        data-component="grid-item"
         data-g="12 md:6"
       >
         <h2>
@@ -508,6 +568,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
         </p>
       </div>
       <div
+        data-component="grid-item"
         data-g="12 md:6"
       >
         <h2>
@@ -528,6 +589,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
       data-tracking="formulary"
     >
       <div
+        data-component="grid-item"
         data-g="12 md:6"
       >
         <h2>
@@ -542,6 +604,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
         </p>
       </div>
       <div
+        data-component="grid-item"
         data-g="12 md:6"
       >
         <h2>
@@ -562,6 +625,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
       data-tracking="reference-tables"
     >
       <div
+        data-component="grid-item"
         data-g="12 sm:6 md:4"
       >
         <h2>
@@ -576,6 +640,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
         </p>
       </div>
       <div
+        data-component="grid-item"
         data-g="12 sm:6 md:4"
       >
         <h2>
@@ -592,6 +657,7 @@ exports[`HomePage should match snapshot for BNF 1`] = `
         </p>
       </div>
       <div
+        data-component="grid-item"
         data-g="12 sm:6 md:4"
       >
         <h2>
@@ -649,6 +715,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
         <nav
           aria-label="Breadcrumbs"
           class="breadcrumbs"
+          data-component="breadcrumbs"
           role="navigation"
         >
           <ol
@@ -747,6 +814,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
     >
       <div
         class="drugsColumn"
+        data-component="grid-item"
         data-g="12 md:6"
       >
         <h2>
@@ -767,9 +835,11 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
         >
           <li
             class="alphabet__letter alphabet__letter--chunky"
+            data-component="alphabet-letter--chunky"
           >
             <a
               class="alphabet__link"
+              data-component="alphabet"
               href="/drugs/#a"
             >
               A
@@ -777,9 +847,11 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
+            data-component="alphabet-letter--chunky"
           >
             <a
               class="alphabet__link"
+              data-component="alphabet"
               href="/drugs/#b"
             >
               B
@@ -787,9 +859,11 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
+            data-component="alphabet-letter--chunky"
           >
             <a
               class="alphabet__link"
+              data-component="alphabet"
               href="/drugs/#c"
             >
               C
@@ -797,9 +871,11 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
+            data-component="alphabet-letter--chunky"
           >
             <a
               class="alphabet__link"
+              data-component="alphabet"
               href="/drugs/#d"
             >
               D
@@ -807,9 +883,11 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
+            data-component="alphabet-letter--chunky"
           >
             <a
               class="alphabet__link"
+              data-component="alphabet"
               href="/drugs/#e"
             >
               E
@@ -817,9 +895,11 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
+            data-component="alphabet-letter--chunky"
           >
             <a
               class="alphabet__link"
+              data-component="alphabet"
               href="/drugs/#f"
             >
               F
@@ -827,9 +907,11 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
+            data-component="alphabet-letter--chunky"
           >
             <a
               class="alphabet__link"
+              data-component="alphabet"
               href="/drugs/#g"
             >
               G
@@ -837,9 +919,11 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
+            data-component="alphabet-letter--chunky"
           >
             <a
               class="alphabet__link"
+              data-component="alphabet"
               href="/drugs/#h"
             >
               H
@@ -847,9 +931,11 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
+            data-component="alphabet-letter--chunky"
           >
             <a
               class="alphabet__link"
+              data-component="alphabet"
               href="/drugs/#i"
             >
               I
@@ -857,9 +943,11 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
+            data-component="alphabet-letter--chunky"
           >
             <a
               class="alphabet__link"
+              data-component="alphabet"
               href="/drugs/#j"
             >
               J
@@ -867,9 +955,11 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
+            data-component="alphabet-letter--chunky"
           >
             <a
               class="alphabet__link"
+              data-component="alphabet"
               href="/drugs/#k"
             >
               K
@@ -877,9 +967,11 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
+            data-component="alphabet-letter--chunky"
           >
             <a
               class="alphabet__link"
+              data-component="alphabet"
               href="/drugs/#l"
             >
               L
@@ -887,9 +979,11 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
+            data-component="alphabet-letter--chunky"
           >
             <a
               class="alphabet__link"
+              data-component="alphabet"
               href="/drugs/#m"
             >
               M
@@ -897,9 +991,11 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
+            data-component="alphabet-letter--chunky"
           >
             <a
               class="alphabet__link"
+              data-component="alphabet"
               href="/drugs/#n"
             >
               N
@@ -907,9 +1003,11 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
+            data-component="alphabet-letter--chunky"
           >
             <a
               class="alphabet__link"
+              data-component="alphabet"
               href="/drugs/#o"
             >
               O
@@ -917,9 +1015,11 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
+            data-component="alphabet-letter--chunky"
           >
             <a
               class="alphabet__link"
+              data-component="alphabet"
               href="/drugs/#p"
             >
               P
@@ -927,9 +1027,11 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
+            data-component="alphabet-letter--chunky"
           >
             <a
               class="alphabet__link"
+              data-component="alphabet"
               href="/drugs/#q"
             >
               Q
@@ -937,9 +1039,11 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
+            data-component="alphabet-letter--chunky"
           >
             <a
               class="alphabet__link"
+              data-component="alphabet"
               href="/drugs/#r"
             >
               R
@@ -947,9 +1051,11 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
+            data-component="alphabet-letter--chunky"
           >
             <a
               class="alphabet__link"
+              data-component="alphabet"
               href="/drugs/#s"
             >
               S
@@ -957,9 +1063,11 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
+            data-component="alphabet-letter--chunky"
           >
             <a
               class="alphabet__link"
+              data-component="alphabet"
               href="/drugs/#t"
             >
               T
@@ -967,9 +1075,11 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
+            data-component="alphabet-letter--chunky"
           >
             <a
               class="alphabet__link"
+              data-component="alphabet"
               href="/drugs/#u"
             >
               U
@@ -977,9 +1087,11 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
+            data-component="alphabet-letter--chunky"
           >
             <a
               class="alphabet__link"
+              data-component="alphabet"
               href="/drugs/#v"
             >
               V
@@ -987,9 +1099,11 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
+            data-component="alphabet-letter--chunky"
           >
             <a
               class="alphabet__link"
+              data-component="alphabet"
               href="/drugs/#w"
             >
               W
@@ -997,9 +1111,11 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
+            data-component="alphabet-letter--chunky"
           >
             <a
               class="alphabet__link"
+              data-component="alphabet"
               href="/drugs/#x"
             >
               X
@@ -1007,9 +1123,11 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
+            data-component="alphabet-letter--chunky"
           >
             <a
               class="alphabet__link"
+              data-component="alphabet"
               href="/drugs/#y"
             >
               Y
@@ -1017,9 +1135,11 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
           </li>
           <li
             class="alphabet__letter alphabet__letter--chunky"
+            data-component="alphabet-letter--chunky"
           >
             <a
               class="alphabet__link"
+              data-component="alphabet"
               href="/drugs/#z"
             >
               Z
@@ -1029,6 +1149,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
       </div>
       <div
         class="featureColumn"
+        data-component="grid-item"
         data-g="12 md:6"
       >
         <div>
@@ -1051,6 +1172,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
           </ul>
           <a
             class="btn"
+            data-component="button--primary"
             href="/treatment-summaries/"
           >
             View treatment summaries A to Z
@@ -1065,6 +1187,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
           </p>
           <a
             class="btn"
+            data-component="button--primary"
             href="/interactions/"
           >
             View interactions A to Z
@@ -1078,6 +1201,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
       data-tracking="browse-by-category"
     >
       <div
+        data-component="grid-item"
         data-g="12 md:4"
       >
         <h2>
@@ -1114,6 +1238,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
         </p>
       </div>
       <div
+        data-component="grid-item"
         data-g="12 md:4"
       >
         <h2>
@@ -1128,6 +1253,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
         </p>
       </div>
       <div
+        data-component="grid-item"
         data-g="12 md:4"
       >
         <h2>
@@ -1148,6 +1274,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
       data-tracking="formulary"
     >
       <div
+        data-component="grid-item"
         data-g="12 md:6"
       >
         <h2>
@@ -1162,6 +1289,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
         </p>
       </div>
       <div
+        data-component="grid-item"
         data-g="12 md:6"
       >
         <h2>
@@ -1182,6 +1310,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
       data-tracking="reference-tables"
     >
       <div
+        data-component="grid-item"
         data-g="12 sm:6 md:4"
       >
         <h2>
@@ -1196,6 +1325,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
         </p>
       </div>
       <div
+        data-component="grid-item"
         data-g="12 sm:6 md:4"
       >
         <h2>
@@ -1212,6 +1342,7 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
         </p>
       </div>
       <div
+        data-component="grid-item"
         data-g="12 sm:6 md:4"
       >
         <h2>

@@ -12,6 +12,7 @@ exports[`Hero should match snapshot for BNF 1`] = `
       <nav
         aria-label="Breadcrumbs"
         class="breadcrumbs"
+        data-component="breadcrumbs"
         role="navigation"
       >
         <ol
@@ -119,6 +120,7 @@ exports[`Hero should match snapshot for BNFC 1`] = `
       <nav
         aria-label="Breadcrumbs"
         class="breadcrumbs"
+        data-component="breadcrumbs"
         role="navigation"
       >
         <ol

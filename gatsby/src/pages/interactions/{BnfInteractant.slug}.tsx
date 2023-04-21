@@ -90,7 +90,7 @@ const InteractantPage: FC<InteractantPageProps> = ({
 	const { siteTitleShort } = useSiteMetadata(),
 		titleNoHtml = striptags(title);
 
-	const [sortBySeverity, setSortBySeverity] = useState<boolean>(false);
+	const [sortBySeverity, setSortBySeverity] = useState<boolean>(false); // Sort by severity or by default order
 	const [filterTerm, setFilterTerm] = useState<string>(""); // Stores current value of input
 	const [searchFilterTerm, setSearchFilterTerm] = useState<string>(""); // Stores value of input used when search is triggered
 	const [interactionsList, setInteractionsList] = useState<InteractionProps[]>(

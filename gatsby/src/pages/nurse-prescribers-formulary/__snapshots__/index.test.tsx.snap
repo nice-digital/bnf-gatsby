@@ -4,6 +4,7 @@ exports[`NursePrescribersFormularyTreatmentSummaryPage should match snapshot for
 <div>
   <nav
     aria-label="Breadcrumbs"
+    data-component="breadcrumbs"
     role="navigation"
   >
     <ol
@@ -71,6 +72,7 @@ exports[`NursePrescribersFormularyTreatmentSummaryPage should match snapshot for
   </script>
   <div
     class="page-header"
+    data-component="page-header"
     id="content-start"
   >
     <h1
@@ -108,6 +110,7 @@ exports[`NursePrescribersFormularyTreatmentSummaryPage should match snapshot for
   <ol
     aria-label="Treatment summary pages"
     class="column-list column-list--boxed"
+    data-component="column-list--boxed"
     data-tracking="treatment-summary-column-list"
   >
     <li>
