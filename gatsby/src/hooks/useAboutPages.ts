@@ -30,7 +30,7 @@ export const useAboutPages = (): MenuPageLink[] => {
 		useStaticQuery<AboutPages>(
 			graphql`
 				query AboutPages {
-					allBnfAboutSection(sort: { fields: order, order: ASC }) {
+					allBnfAboutSection(sort: { order: ASC }) {
 						aboutSectionPages: nodes {
 							slug
 							title

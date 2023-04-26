@@ -22,7 +22,7 @@ export const useMedicinesGuidancePages = (): MenuPageLink[] => {
 	const { allBnfGuidance } = useStaticQuery<MedicinesGuidanceQueryResult>(
 		graphql`
 			{
-				allBnfGuidance(sort: { fields: order, order: ASC }) {
+				allBnfGuidance(sort: { order: ASC }) {
 					pages: nodes {
 						slug
 						title

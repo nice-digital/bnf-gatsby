@@ -30,10 +30,8 @@ const TreatmentSummariesIndexPage: FC<TreatmentSummariesIndexPageProps> = ({
 
 export const query = graphql`
 	{
-		allTreatmentSummaries: allBnfTreatmentSummary(
-			sort: { fields: title, order: ASC }
-		) {
-			letters: group(field: initial) {
+		allTreatmentSummaries: allBnfTreatmentSummary(sort: { title: ASC }) {
+			letters: group(field: { initial: SELECT }) {
 				...TreatmentSummaryGroup
 			}
 		}
