@@ -40,7 +40,7 @@ export const downloadFeed = async (
 		activity.setStatus(`Downloading feed from ${url}`);
 		axiosResponse = await axios.get<Feed>(url, requestConfig);
 	} catch (e) {
-		activity.panic("Error downloading feed JSON", e);
+		activity.panic("Error downloading feed JSON", e as Error);
 		return null;
 	}
 
@@ -75,7 +75,7 @@ export const downloadImageZIP = async (
 		activity.setStatus(`Downloading images ZIP from ${url}`);
 		axiosResponse = await axios.get<Buffer>(url, requestConfig);
 	} catch (e) {
-		activity.panic("Error downloading images ZIP", e);
+		activity.panic("Error downloading images ZIP", e as Error);
 		return null;
 	}
 
