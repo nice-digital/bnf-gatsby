@@ -30,8 +30,8 @@ const DrugsIndexPage: FC<DrugsIndexPageProps> = ({
 
 export const query = graphql`
 	{
-		allDrugs: allBnfDrug(sort: { fields: title, order: ASC }) {
-			letters: group(field: initial) {
+		allDrugs: allBnfDrug(sort: { title: ASC }) {
+			letters: group(field: { initial: SELECT }) {
 				...DrugGroup
 			}
 		}

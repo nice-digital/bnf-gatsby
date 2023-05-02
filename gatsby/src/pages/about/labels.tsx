@@ -62,7 +62,7 @@ export const CautionaryAdvisoryLabelsPage: FC<
 
 export const query = graphql`
 	{
-		allBnfCautionaryAndAdvisoryLabel(sort: { fields: number, order: ASC }) {
+		allBnfCautionaryAndAdvisoryLabel(sort: { number: ASC }) {
 			advisoryLabels: nodes {
 				description
 				englishRecommendation

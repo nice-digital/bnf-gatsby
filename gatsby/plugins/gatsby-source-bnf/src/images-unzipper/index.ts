@@ -16,7 +16,7 @@ export const extractImageZIP = async (
 	{ activityTimer }: Pick<Reporter, "activityTimer">
 ): Promise<ImagesBasePath> => {
 	// Create a hash of the file contents for a long-cacheable URL path
-	const zipHashFolder = createHash("md4").update(zipBuffer).digest("hex"),
+	const zipHashFolder = createHash("md5").update(zipBuffer).digest("hex"),
 		baseImagesPath = path.join(process.cwd(), "public", "img", zipHashFolder),
 		zip = await JSZip().loadAsync(zipBuffer),
 		files = Object.keys(zip.files);
@@ -43,7 +43,7 @@ export const extractImageZIP = async (
 
 		await Promise.all(fileWritePromises);
 	} catch (e) {
-		extractActivity.panic("Error extracting zip file of images", e);
+		extractActivity.panic("Error extracting zip file of images", e as Error);
 		throw "Error extracting zip file of images";
 	}
 
