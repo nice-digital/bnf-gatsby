@@ -1,4 +1,8 @@
-import { type RouteUpdateArgs, type WrapPageElementBrowserArgs } from "gatsby";
+import {
+	ShouldUpdateScrollArgs,
+	type RouteUpdateArgs,
+	type WrapPageElementBrowserArgs,
+} from "gatsby";
 import { type ReactElement } from "react";
 
 import { Layout } from "@/components/Layout/Layout";
@@ -52,3 +56,75 @@ export const wrapPageElement = ({
 }: WrapPageElementBrowserArgs): ReactElement => (
 	<Layout {...props}>{element}</Layout>
 );
+
+/**
+ * Gatsby hook for overriding scroll position
+ * See https://www.gatsbyjs.org/docs/browser-apis/#shouldUpdateScroll
+ */
+export const shouldUpdateScroll = ({
+	routerProps: { location },
+	prevRouterProps,
+	getSavedScrollPosition,
+}: ShouldUpdateScrollArgs): boolean | string | [number, number] => {
+	if (
+		// If there's no previous route props we're coming from an external site, which means
+		// we want to scroll to the hash (if there is one), and _not_ a saved scroll position
+		!prevRouterProps ||
+		// Or we're linking to as hash within the same page
+		(prevRouterProps.location.pathname === location.pathname && location.hash)
+	) {
+		// Provide our own scroll to hash to avoid Gatsby using a stored scroll position
+		requestAnimationFrame(() => {
+			requestAnimationFrame(() => {
+				const targetElement = location.hash
+					? document.querySelector(location.hash)
+					: null;
+
+				if (targetElement) {
+					targetElement.setAttribute("tabIndex", "-1");
+					(targetElement as HTMLElement).focus();
+					targetElement.scrollIntoView();
+				}
+			});
+		});
+		return false;
+	}
+
+	const savedScrollY = (getSavedScrollPosition(location)?.[1] || 0) as number;
+	if (savedScrollY > 0) {
+		window.scrollTo(0, savedScrollY);
+		return false;
+	}
+
+	if (location.hash) {
+		requestAnimationFrame(() => {
+			requestAnimationFrame(() => {
+				const targetElement = document.querySelector(location.hash);
+
+				// Default to Gatsby's default behaviour if the element doesn't exist
+				if (!targetElement) return true;
+
+				// Provide our own scroll to hash to avoid Gatsby using a stored scroll position
+				targetElement.setAttribute("tabIndex", "-1");
+				(targetElement as HTMLElement).focus();
+				targetElement.scrollIntoView();
+			});
+		});
+		return false;
+	}
+
+	requestAnimationFrame(() => {
+		requestAnimationFrame(() => {
+			const contentStartElement = document.getElementById("content-start");
+
+			if (!contentStartElement) return true;
+
+			contentStartElement.setAttribute("tabIndex", "-1");
+			contentStartElement.focus();
+			contentStartElement.scrollIntoView();
+		});
+	});
+	// Default to scrolling to the content start element as the standard navigation behaviour
+
+	return false;
+};
