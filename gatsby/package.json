@@ -34,7 +34,7 @@
     "@fontsource/inter": "^4.5.15",
     "@fontsource/lora": "^4.5.13",
     "@nice-digital/browserslist-config": "^2.0.1",
-    "@nice-digital/design-system": "^5.0.9",
+    "@nice-digital/design-system": "^5.0.10",
     "@nice-digital/global-nav": "^5.0.928",
     "@nice-digital/search-client": "^2.0.1426",
     "gatsby": "^5.9.0",
