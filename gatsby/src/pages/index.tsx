@@ -7,12 +7,16 @@ import { Button } from "@nice-digital/nds-button";
 import { Grid, GridItem } from "@nice-digital/nds-grid";
 
 import { Hero } from "@/components/Hero/Hero";
-import { SEO } from "@/components/SEO/SEO";
+import { NEWSEO } from "@/components/SEO/NEWSEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
 import styles from "./index.module.scss";
 
 const alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
+
+export function Head(): JSX.Element {
+	return <NEWSEO />;
+}
 
 const HomePage: FC = () => {
 	const { isBNF, siteTitleShort } = useSiteMetadata();
@@ -20,7 +24,6 @@ const HomePage: FC = () => {
 	return (
 		<>
 			<div className={styles.homeWrapper}>
-				<SEO />
 				<Hero />
 				<Grid
 					className={styles.grid}

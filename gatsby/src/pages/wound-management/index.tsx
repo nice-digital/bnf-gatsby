@@ -11,6 +11,7 @@ import {
 	SectionNav,
 	type SectionNavProps,
 } from "@/components/SectionNav/SectionNav";
+import { NEWSEO } from "@/components/SEO/NEWSEO";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 import { type RecordSection } from "@/utils";
@@ -63,6 +64,19 @@ const navSections: SectionNavProps = {
 	],
 };
 
+export function Head({
+	data: { bnfWoundManagementIntroduction },
+}: WoundManagementIndexPageProps): JSX.Element {
+	const title = bnfWoundManagementIntroduction?.title || "";
+
+	return (
+		<NEWSEO
+			title={title}
+			description="Browse wound management products and elasticated garments, by type."
+		/>
+	);
+}
+
 const WoundManagementIndexPage: FC<WoundManagementIndexPageProps> = ({
 	data: {
 		bnfWoundManagementIntroduction,
@@ -77,11 +91,6 @@ const WoundManagementIndexPage: FC<WoundManagementIndexPageProps> = ({
 
 	return (
 		<>
-			<SEO
-				title={title}
-				description="Browse wound management products and elasticated garments, by type."
-			/>
-
 			<Breadcrumbs>
 				<Breadcrumb key="NICE" to="https://www.nice.org.uk/">
 					NICE

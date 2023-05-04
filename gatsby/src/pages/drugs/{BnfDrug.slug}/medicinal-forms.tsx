@@ -16,6 +16,7 @@ import { AccordionGroup } from "@/components/AccordionGroup/AccordionGroup";
 import labelStyles from "@/components/CautionaryAndAdvisoryLabel/CautionaryAndAdvisoryLabel.module.scss";
 import { DetailsPageLayout } from "@/components/DetailsPageLayout/DetailsPageLayout";
 import { Prep } from "@/components/Prep/Prep";
+import { NEWSEO } from "@/components/SEO/NEWSEO";
 import { type QueryResult, WithSlug, decapitalize } from "@/utils";
 
 import styles from "./medicinal-forms.module.scss";
@@ -44,6 +45,34 @@ export interface MedicinalFormsPageProps {
 	};
 }
 
+export function Head({
+	data: { bnfDrug },
+}: MedicinalFormsPageProps): JSX.Element {
+	const { title, medicinalForms } = bnfDrug,
+		/** The ancestors from the parent page e.g. ["About"] */
+		parentTitleParts = [striptags(title), "Drugs"];
+
+	// Construct the meta description
+	const formList = Array.isArray(medicinalForms)
+		? medicinalForms.map(({ form }) => form)
+		: [];
+	const formattedFormList =
+		formList.length === 1
+			? formList[0]
+			: `${formList.slice(0, -1).join(", ")} and ${formList.slice(-1)}`;
+
+	return (
+		<NEWSEO
+			title={["Medicinal Forms", ...parentTitleParts]
+				.filter(Boolean)
+				.join(" | ")}
+			description={`Pricing and pack information for ${formattedFormList} forms of ${striptags(
+				title
+			)}`}
+		/>
+	);
+}
+
 const asideInfo: ReactElement = (
 	<Alert>
 		<p>NICE does not sell any drugs, medicines or pharmaceutical products.</p>
@@ -65,21 +94,10 @@ const MedicinalFormsPage: FC<MedicinalFormsPageProps> = ({
 }) => {
 	const titleNoHTML = striptags(title);
 
-	// Construct the meta description
-	const formList = medicinalForms.map(({ form }) => form);
-	const formattedFormList =
-		formList.length === 1
-			? formList[0]
-			: `${formList.slice(0, -1).join(", ")} and ${formList.slice(-1)}`;
-
 	return (
 		<DetailsPageLayout
 			preheading={`${title} `}
 			titleHtml="Medicinal forms"
-			metaDescription={`Pricing and pack information for ${formattedFormList} forms of ${striptags(
-				title
-			)}`}
-			parentTitleParts={[striptags(title), "Drugs"]}
 			parentBreadcrumbs={[
 				{
 					href: `/drugs/`,

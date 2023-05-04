@@ -75,10 +75,10 @@ export const DetailsPageLayout: React.FC<DetailsPageLayoutProps> = ({
 
 	return (
 		<>
-			<SEO
+			{/* <SEO
 				title={[titleNoHtml, ...parentTitleParts].filter(Boolean).join(" | ")}
 				description={metaDescription}
-			/>
+			/> */}
 
 			<Breadcrumbs>{breadcrumbElements}</Breadcrumbs>
 

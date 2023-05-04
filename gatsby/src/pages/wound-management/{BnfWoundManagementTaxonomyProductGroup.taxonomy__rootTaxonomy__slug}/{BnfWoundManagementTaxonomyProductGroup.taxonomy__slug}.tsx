@@ -12,7 +12,7 @@ import {
 	SectionNav,
 	type SectionNavProps,
 } from "@/components/SectionNav/SectionNav";
-import { SEO } from "@/components/SEO/SEO";
+import { NEWSEO } from "@/components/SEO/NEWSEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 import { decapitalize } from "@/utils";
 
@@ -46,6 +46,23 @@ export interface WoundManagementProductPageProps {
 	};
 }
 
+export function Head({
+	data: {
+		bnfWoundManagementTaxonomyProductGroup: {
+			taxonomy: { title, rootTaxonomy },
+		},
+	},
+}: WoundManagementProductPageProps): JSX.Element {
+	return (
+		<NEWSEO
+			title={`${title} | ${rootTaxonomy.title} | Wound management`}
+			description={`This wound management topic describes the options that are currently recommended for ${decapitalize(
+				title
+			)}`}
+		/>
+	);
+}
+
 const WoundManagementProductPage: FC<WoundManagementProductPageProps> = ({
 	data: {
 		bnfWoundManagementTaxonomyProductGroup: {
@@ -68,13 +85,6 @@ const WoundManagementProductPage: FC<WoundManagementProductPageProps> = ({
 
 	return (
 		<>
-			<SEO
-				title={`${title} | ${rootTaxonomy.title} | Wound management`}
-				description={`This wound management topic describes the options that are currently recommended for ${decapitalize(
-					title
-				)}`}
-			/>
-
 			<Breadcrumbs>
 				<Breadcrumb to="https://www.nice.org.uk/">NICE</Breadcrumb>
 				<Breadcrumb to="/" elementType={Link}>

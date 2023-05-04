@@ -6,7 +6,7 @@ import { PageHeader } from "@nice-digital/nds-page-header";
 
 import { AccordionGroup } from "@/components/AccordionGroup/AccordionGroup";
 import { SectionNav } from "@/components/SectionNav/SectionNav";
-import { SEO } from "@/components/SEO/SEO";
+import { NEWSEO } from "@/components/SEO/NEWSEO";
 import Substance, {
 	type SubstanceType,
 } from "@/components/Substance/Substance";
@@ -47,6 +47,35 @@ const flattenSubstancesWithLabel = (
 	...childTaxonomies.reduce(flattenSubstancesWithLabel, []),
 ];
 
+export function Head({
+	data: { bnfBorderlineSubstancesTaxonomyProductGroup },
+}: BorderlineSubstancesProductGroupPageProps): JSX.Element {
+	const {
+			taxonomy: {
+				title,
+				parentTaxonomy,
+				rootTaxonomy,
+				substances,
+				childTaxonomies,
+			},
+		} = bnfBorderlineSubstancesTaxonomyProductGroup,
+		allSubstances = childTaxonomies.reduce(
+			flattenSubstancesWithLabel,
+			substances.map((substance) => ({ substance }))
+		);
+
+	return (
+		<NEWSEO
+			title={`${title} | ${parentTaxonomy.title} | ${rootTaxonomy.title} | Borderline substances`}
+			description={`Read about the ${
+				allSubstances.length
+			} ACBS recommended products for ${decapitalize(
+				title
+			)}. Details include formulations, ACBS indications and indicative prices.`}
+		/>
+	);
+}
+
 const BorderlineSubstancesProductGroupPage: FC<
 	BorderlineSubstancesProductGroupPageProps
 > = ({
@@ -71,15 +100,6 @@ const BorderlineSubstancesProductGroupPage: FC<
 
 	return (
 		<>
-			<SEO
-				title={`${title} | ${parentTaxonomy.title} | ${rootTaxonomy.title} | Borderline substances`}
-				description={`Read about the ${
-					allSubstances.length
-				} ACBS recommended products for ${decapitalize(
-					title
-				)}. Details include formulations, ACBS indications and indicative prices.`}
-			/>
-
 			<Breadcrumbs>
 				<Breadcrumb to="https://www.nice.org.uk/">NICE</Breadcrumb>
 				<Breadcrumb to="/" elementType={Link}>
@@ -96,7 +116,6 @@ const BorderlineSubstancesProductGroupPage: FC<
 				</Breadcrumb>
 				<Breadcrumb>{title}</Breadcrumb>
 			</Breadcrumbs>
-
 			<PageHeader
 				id="content-start"
 				heading={title}
@@ -112,7 +131,6 @@ const BorderlineSubstancesProductGroupPage: FC<
 				}
 				preheading={`${parentTaxonomy.title}: `}
 			/>
-
 			<section
 				aria-label={`Substances within ${title}`}
 				className={styles.section}

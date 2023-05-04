@@ -1,5 +1,6 @@
 import { graphql, Link } from "gatsby";
 import React, { type FC } from "react";
+import striptags from "striptags";
 
 import { FeedPrep } from "@nice-digital/gatsby-source-bnf";
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
@@ -11,6 +12,7 @@ import {
 	SectionNav,
 	type SectionNavProps,
 } from "@/components/SectionNav/SectionNav";
+import { NEWSEO } from "@/components/SEO/NEWSEO";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 import { decapitalize } from "@/utils";
@@ -53,6 +55,23 @@ export interface WoundManagementTaxonomyPageProps {
 	};
 }
 
+export function Head({
+	data: {
+		bnfWoundManagementTaxonomyRoot: {
+			taxonomy: { title },
+		},
+	},
+}: WoundManagementTaxonomyPageProps): JSX.Element {
+	return (
+		<NEWSEO
+			title={`${title} | Wound management`}
+			description={`This wound management topic describes the options that are currently recommended for ${decapitalize(
+				title
+			)}`}
+		/>
+	);
+}
+
 const WoundManagementTaxonomyPage: FC<WoundManagementTaxonomyPageProps> = ({
 	data: {
 		allBnfWoundManagementTaxonomyRoot: { taxonomies },
@@ -76,13 +95,6 @@ const WoundManagementTaxonomyPage: FC<WoundManagementTaxonomyPageProps> = ({
 
 	return (
 		<>
-			<SEO
-				title={`${title} | Wound management`}
-				description={`This wound management topic describes the options that are currently recommended for ${decapitalize(
-					title
-				)}`}
-			/>
-
 			<Breadcrumbs>
 				<Breadcrumb to="https://www.nice.org.uk/">NICE</Breadcrumb>
 				<Breadcrumb to="/" elementType={Link}>

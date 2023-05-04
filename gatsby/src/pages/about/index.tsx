@@ -5,9 +5,13 @@ import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
 import { ColumnList } from "@nice-digital/nds-column-list";
 import { PageHeader } from "@nice-digital/nds-page-header";
 
-import { SEO } from "@/components/SEO/SEO";
+import { NEWSEO } from "@/components/SEO/NEWSEO";
 import { useAboutPages } from "@/hooks/useAboutPages";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
+
+export function Head(): JSX.Element {
+	return <NEWSEO title="About" />;
+}
 
 const AboutIndexPage: FC = () => {
 	const { siteTitleShort } = useSiteMetadata(),
@@ -15,8 +19,6 @@ const AboutIndexPage: FC = () => {
 
 	return (
 		<>
-			<SEO title="About" />
-
 			<Breadcrumbs>
 				<Breadcrumb to="https://www.nice.org.uk/">NICE</Breadcrumb>
 				<Breadcrumb to="/" elementType={Link}>

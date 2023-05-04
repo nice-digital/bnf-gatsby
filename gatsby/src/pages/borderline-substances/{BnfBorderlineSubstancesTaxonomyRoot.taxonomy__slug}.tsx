@@ -7,6 +7,7 @@ import { Grid, GridItem } from "@nice-digital/nds-grid";
 import { PageHeader } from "@nice-digital/nds-page-header";
 
 import { BorderlineSubstancesMenu } from "@/components/BorderlineSubstancesMenu/BorderlineSubstancesMenu";
+import { NEWSEO } from "@/components/SEO/NEWSEO";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 import { type SlugAndTitle } from "@/utils";
@@ -27,6 +28,15 @@ export type BorderlineSubstancesRootPageProps = {
 	};
 };
 
+export function Head({
+	data: { bnfBorderlineSubstancesTaxonomyRoot },
+}: BorderlineSubstancesRootPageProps): JSX.Element {
+	const {
+		taxonomy: { title },
+	} = bnfBorderlineSubstancesTaxonomyRoot;
+	return <NEWSEO title={`${title} | Borderline substances`} />;
+}
+
 const BorderlineSubstancesRootPage: FC<BorderlineSubstancesRootPageProps> = ({
 	data: {
 		bnfBorderlineSubstancesTaxonomyRoot: {
@@ -42,8 +52,6 @@ const BorderlineSubstancesRootPage: FC<BorderlineSubstancesRootPageProps> = ({
 
 	return (
 		<>
-			<SEO title={`${title} | Borderline substances`} />
-
 			<Breadcrumbs>
 				<Breadcrumb to="https://www.nice.org.uk/">NICE</Breadcrumb>
 				<Breadcrumb to="/" elementType={Link}>

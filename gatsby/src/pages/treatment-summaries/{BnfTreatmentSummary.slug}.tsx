@@ -5,6 +5,7 @@ import striptags from "striptags";
 import { DetailsPageLayout } from "@/components/DetailsPageLayout/DetailsPageLayout";
 import { RecordSectionsContent } from "@/components/RecordSectionsContent/RecordSectionsContent";
 import { RelatedDrugs } from "@/components/RelatedDrugs/RelatedDrugs";
+import { NEWSEO } from "@/components/SEO/NEWSEO";
 import { Tag, TagList } from "@/components/TagList/TagList";
 import {
 	type SlugAndTitle,
@@ -24,6 +25,24 @@ export type TreatmentSummaryPageProps = {
 	};
 };
 
+export function Head({
+	data: { bnfTreatmentSummary },
+}: TreatmentSummaryPageProps): JSX.Element {
+	const { title } = bnfTreatmentSummary;
+	const titleNoHtml = striptags(title),
+		/** The ancestors from the parent page e.g. ["About"] */
+		parentTitleParts = ["Treatment summaries"];
+
+	return (
+		<NEWSEO
+			title={[titleNoHtml, ...parentTitleParts].filter(Boolean).join(" | ")}
+			description={`This treatment summary topic describes ${decapitalize(
+				titleNoHtml
+			)}`}
+		/>
+	);
+}
+
 const TreatmentSummaryPage: FC<TreatmentSummaryPageProps> = ({
 	data: {
 		bnfTreatmentSummary: {
@@ -34,15 +53,9 @@ const TreatmentSummaryPage: FC<TreatmentSummaryPageProps> = ({
 		},
 	},
 }) => {
-	const titleNoHtml = striptags(title);
-
 	return (
 		<DetailsPageLayout
 			titleHtml={title}
-			metaDescription={`This treatment summary topic describes ${decapitalize(
-				titleNoHtml
-			)}`}
-			parentTitleParts={["Treatment summaries"]}
 			parentBreadcrumbs={[
 				{ href: "/treatment-summaries/", text: "Treatment summaries" },
 			]}

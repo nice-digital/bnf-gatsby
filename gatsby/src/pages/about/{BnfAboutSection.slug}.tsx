@@ -1,9 +1,11 @@
 import { graphql } from "gatsby";
 import React, { type FC } from "react";
+import striptags from "striptags";
 
 import { AboutSectionMenu } from "@/components/AboutSectionMenu/AboutSectionMenu";
 import { DetailsPageLayout } from "@/components/DetailsPageLayout/DetailsPageLayout";
 import { RecordSectionsContent } from "@/components/RecordSectionsContent/RecordSectionsContent";
+import { NEWSEO } from "@/components/SEO/NEWSEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 import {
 	type SlugAndTitle,
@@ -12,6 +14,29 @@ import {
 } from "@/utils";
 
 import metas from "./{BnfAboutSection.slug}.meta-descriptions.json";
+
+interface HeadProps {
+	data: {
+		currentAboutPage: {
+			title: string;
+			metaDescription: string;
+		};
+	};
+}
+
+export function Head({ data: { currentAboutPage } }: HeadProps): JSX.Element {
+	const { title, metaDescription } = currentAboutPage;
+	const titleNoHtml = striptags(title),
+		/** The ancestors from the parent page e.g. ["About"] */
+		parentTitleParts = ["About"];
+
+	return (
+		<NEWSEO
+			title={[titleNoHtml, ...parentTitleParts].filter(Boolean).join(" | ")}
+			description={metaDescription}
+		/>
+	);
+}
 
 export type AboutSectionPageProps = {
 	data: {
@@ -43,7 +68,6 @@ const AboutSectionPage: FC<AboutSectionPageProps> = ({
 	return (
 		<DetailsPageLayout
 			titleHtml={title}
-			parentTitleParts={["About"]}
 			parentBreadcrumbs={[{ href: "/about/", text: "About" }]}
 			menu={AboutSectionMenu}
 			sections={sections.map(({ slug, title }) => ({

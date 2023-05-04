@@ -1,9 +1,11 @@
 import { graphql } from "gatsby";
 import React, { FC } from "react";
+import striptags from "striptags";
 
 import { BorderlineSubstancesMenu } from "@/components/BorderlineSubstancesMenu/BorderlineSubstancesMenu";
 import { DetailsPageLayout } from "@/components/DetailsPageLayout/DetailsPageLayout";
 import { RecordSectionsContent } from "@/components/RecordSectionsContent/RecordSectionsContent";
+import { NEWSEO } from "@/components/SEO/NEWSEO";
 import { type RecordSection } from "@/utils";
 
 export type BorderlineSubstanceIntroductionPageProps = {
@@ -15,6 +17,25 @@ export type BorderlineSubstanceIntroductionPageProps = {
 	};
 };
 
+export function Head({
+	data: { bnfBorderlineSubstancesIntroduction },
+}: BorderlineSubstanceIntroductionPageProps): JSX.Element {
+	console.log("FROM HEAD ", bnfBorderlineSubstancesIntroduction);
+	const { title } = bnfBorderlineSubstancesIntroduction,
+		/** The ancestors from the parent page e.g. ["About"] */
+		parentTitleParts = ["Borderline Substances"],
+		titleNoHtml = striptags(title);
+
+	return (
+		<NEWSEO
+			title={[titleNoHtml, ...parentTitleParts].filter(Boolean).join(" | ")}
+			description={
+				"Find information on ACBS approved foods and other borderline substances which have been formulated for use in managing medical conditions."
+			}
+		/>
+	);
+}
+
 const BorderlineSubstanceIntroductionPage: FC<
 	BorderlineSubstanceIntroductionPageProps
 > = ({
@@ -25,13 +46,11 @@ const BorderlineSubstanceIntroductionPage: FC<
 	return (
 		<DetailsPageLayout
 			titleHtml={title}
-			parentTitleParts={["Borderline Substances"]}
 			sections={sections.map(({ slug, title }) => ({
 				id: slug,
 				title,
 			}))}
 			menu={BorderlineSubstancesMenu}
-			metaDescription="Find information on ACBS approved foods and other borderline substances which have been formulated for use in managing medical conditions."
 		>
 			<RecordSectionsContent sections={sections} />
 		</DetailsPageLayout>

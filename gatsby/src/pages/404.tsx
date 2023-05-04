@@ -4,14 +4,17 @@ import React from "react";
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
 import { PageHeader } from "@nice-digital/nds-page-header";
 
-import { SEO } from "../components/SEO/SEO";
+import { NEWSEO } from "@/components/SEO/NEWSEO";
 
 import { isBNF } from "./../site";
+
+export function Head(): JSX.Element {
+	return <NEWSEO title="Page not found" noIndex={true} />;
+}
 
 const NotFoundPage: React.FC = () => {
 	return (
 		<>
-			<SEO title="Page not found" noIndex={true} />
 			<Breadcrumbs>
 				<Breadcrumb to="https://www.nice.org.uk/">NICE</Breadcrumb>
 				<Breadcrumb to="/" elementType={Link}>

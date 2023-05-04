@@ -10,6 +10,8 @@ import { PageHeader } from "@nice-digital/nds-page-header";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
+import { NEWSEO } from "../SEO/NEWSEO";
+
 export interface AtoZLink {
 	title: string;
 	slug: string;
@@ -31,9 +33,15 @@ export interface AtoZListPageProps {
 const byTitleAlphabetically = (a: AtoZLink, b: AtoZLink) =>
 	a.title.localeCompare(b.title);
 
-export const AtoZListPage: FC<AtoZListPageProps> = ({
+export function Head({
 	title,
 	metaDescription,
+}: AtoZListPageProps): JSX.Element {
+	return <NEWSEO title={`${title} A to Z`} description={metaDescription} />;
+}
+
+export const AtoZListPage: FC<AtoZListPageProps> = ({
+	title,
 	path,
 	letters,
 	pageDescription,
@@ -52,8 +60,6 @@ export const AtoZListPage: FC<AtoZListPageProps> = ({
 
 	return (
 		<>
-			<SEO title={`${title} A to Z`} description={metaDescription} />
-
 			<Breadcrumbs>
 				<Breadcrumb to="https://www.nice.org.uk/">NICE</Breadcrumb>
 				<Breadcrumb to="/" elementType={Link}>

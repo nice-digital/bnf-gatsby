@@ -5,9 +5,18 @@ import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
 import { ColumnList } from "@nice-digital/nds-column-list";
 import { PageHeader } from "@nice-digital/nds-page-header";
 
-import { SEO } from "@/components/SEO/SEO";
+import { NEWSEO } from "@/components/SEO/NEWSEO";
 import { useMedicinesGuidancePages } from "@/hooks/useMedicinesGuidancePages";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
+
+export function Head(): JSX.Element {
+	return (
+		<NEWSEO
+			title="Medicines guidance"
+			description="Browse medicines guidance, prescribing advice and related topics."
+		/>
+	);
+}
 
 const GuidanceIndexPage: FC = () => {
 	const { siteTitleShort } = useSiteMetadata(),
@@ -15,11 +24,6 @@ const GuidanceIndexPage: FC = () => {
 
 	return (
 		<>
-			<SEO
-				title="Medicines guidance"
-				description="Browse medicines guidance, prescribing advice and related topics."
-			/>
-
 			<Breadcrumbs>
 				<Breadcrumb to="https://www.nice.org.uk/">NICE</Breadcrumb>
 				<Breadcrumb to="/" elementType={Link}>

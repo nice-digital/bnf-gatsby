@@ -8,6 +8,7 @@ import { Grid, GridItem } from "@nice-digital/nds-grid";
 import { PageHeader } from "@nice-digital/nds-page-header";
 
 import { MedicalDevicesMenu } from "@/components/MedicalDevicesMenu/MedicalDevicesMenu";
+import { NEWSEO } from "@/components/SEO/NEWSEO";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 import { decapitalize } from "@/utils";
@@ -32,6 +33,24 @@ export interface MedicalDevicePageProps {
 	};
 }
 
+export function Head({
+	data: { bnfMedicalDevice },
+}: MedicalDevicePageProps): JSX.Element {
+	const { title } = bnfMedicalDevice,
+		titleNoHtml = striptags(title),
+		/** The ancestors from the parent page e.g. ["About"] */
+		parentTitleParts = ["Medical devices"];
+
+	return (
+		<NEWSEO
+			title={[titleNoHtml, ...parentTitleParts].filter(Boolean).join(" | ")}
+			description={`This medical devices topic describes the options that are currently recommended for ${decapitalize(
+				titleNoHtml
+			)}.`}
+		/>
+	);
+}
+
 const MedicalDevicePage: FC<MedicalDevicePageProps> = ({
 	data: {
 		bnfMedicalDevice: { title, slug, medicalDeviceTypes },
@@ -42,13 +61,6 @@ const MedicalDevicePage: FC<MedicalDevicePageProps> = ({
 
 	return (
 		<>
-			<SEO
-				title={`${titleNoHtml} | Medical devices`}
-				description={`This medical devices topic describes the options that are currently recommended for ${decapitalize(
-					titleNoHtml
-				)}.`}
-			/>
-
 			<Breadcrumbs>
 				<Breadcrumb key="NICE" to="https://www.nice.org.uk/">
 					NICE

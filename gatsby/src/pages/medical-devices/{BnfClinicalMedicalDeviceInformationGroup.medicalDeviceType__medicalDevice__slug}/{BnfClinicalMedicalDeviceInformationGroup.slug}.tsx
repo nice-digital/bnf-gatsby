@@ -15,6 +15,7 @@ import {
 import { MedicalDevicePrepsSection } from "@/components/MedicalDevicePrepsSection/MedicalDevicePrepsSection";
 import { Menu } from "@/components/Menu/Menu";
 import { SectionLink } from "@/components/SectionNav/SectionNav";
+import { NEWSEO } from "@/components/SEO/NEWSEO";
 import {
 	decapitalize,
 	isTruthy,
@@ -88,6 +89,29 @@ const getSimplePotSectionLink = (
 		  }
 		: undefined;
 
+export function Head({
+	data: { bnfClinicalMedicalDeviceInformationGroup },
+}: CMPIPageProps): JSX.Element {
+	const { title } = bnfClinicalMedicalDeviceInformationGroup,
+		medicalDeviceTitleNoHtml = striptags(
+			bnfClinicalMedicalDeviceInformationGroup.medicalDeviceType.medicalDevice
+				.title
+		);
+
+	const titleNoHtml = striptags(title),
+		/** The ancestors from the parent page e.g. ["About"] */
+		parentTitleParts = [medicalDeviceTitleNoHtml, "Medical devices"];
+
+	return (
+		<NEWSEO
+			title={[titleNoHtml, ...parentTitleParts].filter(Boolean).join(" | ")}
+			description={`This medical devices topic describes the options that are currently recommended for ${decapitalize(
+				titleNoHtml
+			)}.`}
+		/>
+	);
+}
+
 const CMPIPage: FC<CMPIPageProps> = ({
 	data: {
 		bnfClinicalMedicalDeviceInformationGroup: {
@@ -109,17 +133,12 @@ const CMPIPage: FC<CMPIPageProps> = ({
 		},
 	},
 }) => {
-	const titleNoHtml = striptags(title),
-		medicalDeviceTitleNoHtml = striptags(medicalDevice.title);
+	const medicalDeviceTitleNoHtml = striptags(medicalDevice.title);
 
 	return (
 		<DetailsPageLayout
 			preheading={`${medicalDeviceTypeTitle}: `}
 			titleHtml={title}
-			metaDescription={`This medical devices topic describes the options that are currently recommended for ${decapitalize(
-				titleNoHtml
-			)}.`}
-			parentTitleParts={[medicalDeviceTitleNoHtml, "Medical devices"]}
 			parentBreadcrumbs={[
 				{
 					text: "Medical devices",

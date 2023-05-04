@@ -15,6 +15,7 @@ import {
 	type InteractionProps,
 } from "@/components/Interaction/Interaction";
 import interactionStyles from "@/components/Interaction/Interaction.module.scss";
+import { NEWSEO } from "@/components/SEO/NEWSEO";
 import { SEO } from "@/components/SEO/SEO";
 import { useIsClient } from "@/hooks/useIsClient";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
@@ -81,6 +82,20 @@ const sortInteractions = (
 		});
 };
 
+export function Head({
+	data: { bnfInteractant },
+}: InteractantPageProps): JSX.Element {
+	const { title } = bnfInteractant,
+		titleNoHtml = striptags(title);
+
+	return (
+		<NEWSEO
+			title={`${titleNoHtml} | Interactions`}
+			description={`See the list of drugs that interact with ${titleNoHtml}. Includes information on severity of interaction and the level of evidence for it.`}
+		/>
+	);
+}
+
 const InteractantPage: FC<InteractantPageProps> = ({
 	data: {
 		bnfInteractant: { title, drug, interactions, supplementaryInformation },
@@ -131,11 +146,6 @@ const InteractantPage: FC<InteractantPageProps> = ({
 
 	return (
 		<>
-			<SEO
-				title={`${titleNoHtml} | Interactions`}
-				description={`See the list of drugs that interact with ${titleNoHtml}. Includes information on severity of interaction and the level of evidence for it.`}
-			/>
-
 			<Breadcrumbs>
 				<Breadcrumb to="https://www.nice.org.uk/">NICE</Breadcrumb>
 				<Breadcrumb to="/" elementType={Link}>

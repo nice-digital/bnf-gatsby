@@ -4,6 +4,7 @@ import { FC } from "react";
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
 import { PageHeader } from "@nice-digital/nds-page-header";
 
+import { NEWSEO } from "@/components/SEO/NEWSEO";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
@@ -16,6 +17,16 @@ export interface InteractionsIntroductionPageProps {
 	};
 }
 
+export function Head(): JSX.Element {
+	const { siteTitleShort } = useSiteMetadata();
+	return (
+		<NEWSEO
+			title="Appendix 1 Interactions | Interactions"
+			description={`Read about how pharmacodynamic and pharmacokinetic interactions can occur, potential effects of these interactions, and how their severity is graded in the ${siteTitleShort}.`}
+		/>
+	);
+}
+
 const InteractionsIndexPage: FC<InteractionsIntroductionPageProps> = ({
 	data: {
 		bnfInteractionsIntroduction: { title, sections },
@@ -25,11 +36,6 @@ const InteractionsIndexPage: FC<InteractionsIntroductionPageProps> = ({
 
 	return (
 		<>
-			<SEO
-				title="Appendix 1 Interactions | Interactions"
-				description={`Read about how pharmacodynamic and pharmacokinetic interactions can occur, potential effects of these interactions, and how their severity is graded in the ${siteTitleShort}.`}
-			/>
-
 			<Breadcrumbs>
 				<Breadcrumb to="https://www.nice.org.uk/">NICE</Breadcrumb>
 				<Breadcrumb to="/" elementType={Link}>

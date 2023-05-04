@@ -1,5 +1,6 @@
 import { graphql } from "gatsby";
 import React, { FC } from "react";
+import striptags from "striptags";
 
 import { DetailsPageLayout } from "@/components/DetailsPageLayout/DetailsPageLayout";
 import { NursePrescribersFormularyMenu } from "@/components/NursePrescribersFormularyMenu/NursePrescribersFormularyMenu";
@@ -9,6 +10,7 @@ import {
 	sectionHeading as relatedDrugsHeading,
 	sectionId as relatedDrugsId,
 } from "@/components/RelatedDrugs/RelatedDrugs";
+import { NEWSEO } from "@/components/SEO/NEWSEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 import {
 	type RecordSection,
@@ -30,19 +32,15 @@ export type NursePrescribersFormularyTreatmentSummaryPageProps = {
 	};
 };
 
-const NursePrescribersFormularyTreatmentSummaryPage: FC<
-	NursePrescribersFormularyTreatmentSummaryPageProps
-> = ({
-	data: {
-		bnfNursePrescribersFormularyTreatmentSummary: {
-			title,
-			sections,
-			slug,
-			relatedDrugs,
-		},
-	},
-	location: { pathname },
-}) => {
+export function Head({
+	data: { bnfNursePrescribersFormularyTreatmentSummary },
+	location,
+}: NursePrescribersFormularyTreatmentSummaryPageProps): JSX.Element {
+	const { slug, title } = bnfNursePrescribersFormularyTreatmentSummary;
+	const titleNoHtml = striptags(title),
+		/** The ancestors from the parent page e.g. ["About"] */
+		parentTitleParts = ["Nurse Prescribers' Formulary"];
+
 	const { isBNF } = useSiteMetadata(),
 		metaDescription = (metas as MetaDescriptionsMap)[slug]?.[
 			isBNF ? "bnf" : "bnfc"
@@ -50,13 +48,31 @@ const NursePrescribersFormularyTreatmentSummaryPage: FC<
 
 	if (typeof metaDescription !== "string")
 		throw new Error(
-			`Couldn't find meta description for page '${title}' at path '${pathname}'. Has the page been added or renamed?`
+			`Couldn't find meta description for page '${title}' at path '${location.pathname}'. Has the page been added or renamed?`
 		);
 
 	return (
+		<NEWSEO
+			title={[titleNoHtml, ...parentTitleParts].filter(Boolean).join(" | ")}
+			description={metaDescription}
+		/>
+	);
+}
+
+const NursePrescribersFormularyTreatmentSummaryPage: FC<
+	NursePrescribersFormularyTreatmentSummaryPageProps
+> = ({
+	data: {
+		bnfNursePrescribersFormularyTreatmentSummary: {
+			title,
+			sections,
+			relatedDrugs,
+		},
+	},
+}) => {
+	return (
 		<DetailsPageLayout
 			titleHtml={title}
-			parentTitleParts={["Nurse Prescribers' Formulary"]}
 			menu={NursePrescribersFormularyMenu}
 			asideContent={<></>}
 			parentBreadcrumbs={[
@@ -75,7 +91,6 @@ const NursePrescribersFormularyTreatmentSummaryPage: FC<
 						? { id: relatedDrugsId, title: relatedDrugsHeading }
 						: []
 				)}
-			metaDescription={metaDescription}
 		>
 			<RecordSectionsContent sections={sections} />
 			<RelatedDrugs drugs={relatedDrugs} />

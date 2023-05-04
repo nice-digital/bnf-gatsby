@@ -30,6 +30,7 @@ import {
 	InteractionsContent,
 } from "@/components/DrugSections";
 import { SectionNav } from "@/components/SectionNav/SectionNav";
+import { NEWSEO } from "@/components/SEO/NEWSEO";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 import {
@@ -82,6 +83,75 @@ export interface DrugPageProps {
 				interactants: SlugAndTitle[];
 			}>;
 	};
+	location: {
+		pathname: string;
+	};
+}
+
+export function Head({
+	data: { bnfDrug },
+	location,
+}: DrugPageProps): JSX.Element {
+	const {
+		slug,
+		title,
+		indicationsAndDose,
+		monitoringRequirements,
+		importantSafetyInformation,
+	} = bnfDrug;
+	const titleNoHtml = striptags(title),
+		/** The ancestors from the parent page e.g. ["About"] */
+		parentTitleParts = ["Drugs"];
+
+	// Construct meta description from specific sections present in this monograph
+	let metaDescriptionSections: string[] = [
+		bnfDrug.sideEffects,
+		bnfDrug.renalImpairment,
+		bnfDrug.pregnancy,
+		bnfDrug.breastFeeding,
+		bnfDrug.contraIndications,
+		monitoringRequirements,
+		importantSafetyInformation,
+		bnfDrug.directionsForAdministration,
+		bnfDrug.drugAction,
+	]
+		.filter(isTruthy)
+		.map(({ potName }) => potName.toLowerCase());
+
+	if (indicationsAndDose) {
+		metaDescriptionSections.unshift("dose, uses");
+	}
+
+	// Trim any sections beyond the maximum, then glue all their names together
+	const MAX_META_DESCRIPTION_SECTIONS = 7;
+	if (metaDescriptionSections.length > MAX_META_DESCRIPTION_SECTIONS) {
+		metaDescriptionSections = metaDescriptionSections.slice(
+			0,
+			MAX_META_DESCRIPTION_SECTIONS
+		);
+	}
+
+	const metaDescriptionSectionText =
+		metaDescriptionSections.length === 1
+			? metaDescriptionSections[0]
+			: `${metaDescriptionSections
+					.slice(0, -1)
+					.join(", ")} and ${metaDescriptionSections.slice(-1)}`;
+
+	// Add a fallback in case a future drug is published without any valid sections at all
+	const metaDescription =
+		metaDescriptionSections.length === 0
+			? `View ${decapitalize(titleNoHtml)} information.`
+			: `View ${decapitalize(
+					titleNoHtml
+			  )} information, including ${metaDescriptionSectionText}.`;
+
+	return (
+		<NEWSEO
+			title={[titleNoHtml, ...parentTitleParts].filter(Boolean).join(" | ")}
+			description={metaDescription}
+		/>
+	);
 }
 
 const DrugPage: FC<DrugPageProps> = ({
@@ -240,53 +310,8 @@ const DrugPage: FC<DrugPageProps> = ({
 		otherDrugsInClassSection,
 	].filter(isTruthy);
 
-	// Construct meta description from specific sections present in this monograph
-	let metaDescriptionSections: string[] = [
-		bnfDrug.sideEffects,
-		bnfDrug.renalImpairment,
-		bnfDrug.pregnancy,
-		bnfDrug.breastFeeding,
-		bnfDrug.contraIndications,
-		monitoringRequirements,
-		importantSafetyInformation,
-		bnfDrug.directionsForAdministration,
-		bnfDrug.drugAction,
-	]
-		.filter(isTruthy)
-		.map(({ potName }) => potName.toLowerCase());
-
-	if (indicationsAndDose) {
-		metaDescriptionSections.unshift("dose, uses");
-	}
-
-	// Trim any sections beyond the maximum, then glue all their names together
-	const MAX_META_DESCRIPTION_SECTIONS = 7;
-	if (metaDescriptionSections.length > MAX_META_DESCRIPTION_SECTIONS) {
-		metaDescriptionSections = metaDescriptionSections.slice(
-			0,
-			MAX_META_DESCRIPTION_SECTIONS
-		);
-	}
-
-	const metaDescriptionSectionText =
-		metaDescriptionSections.length === 1
-			? metaDescriptionSections[0]
-			: `${metaDescriptionSections
-					.slice(0, -1)
-					.join(", ")} and ${metaDescriptionSections.slice(-1)}`;
-
-	// Add a fallback in case a future drug is published without any valid sections at all
-	const metaDescription =
-		metaDescriptionSections.length === 0
-			? `View ${decapitalize(titleNoHtml)} information.`
-			: `View ${decapitalize(
-					titleNoHtml
-			  )} information, including ${metaDescriptionSectionText}.`;
-
 	return (
 		<>
-			<SEO title={`${titleNoHtml} | Drugs`} description={metaDescription} />
-
 			<Breadcrumbs>
 				<Breadcrumb to="https://www.nice.org.uk/">NICE</Breadcrumb>
 				<Breadcrumb to="/" elementType={Link}>

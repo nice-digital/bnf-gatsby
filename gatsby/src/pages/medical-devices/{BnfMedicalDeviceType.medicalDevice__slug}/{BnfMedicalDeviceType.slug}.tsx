@@ -17,6 +17,7 @@ import {
 import { MedicalDevicePrepsSection } from "@/components/MedicalDevicePrepsSection/MedicalDevicePrepsSection";
 import { Menu } from "@/components/Menu/Menu";
 import { SectionNav } from "@/components/SectionNav/SectionNav";
+import { NEWSEO } from "@/components/SEO/NEWSEO";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 import { decapitalize, type QueryResult, type WithSlug } from "@/utils";
@@ -46,6 +47,21 @@ export interface MedicalDeviceTypePageProps {
 	};
 }
 
+export function Head({
+	data: { bnfMedicalDeviceType },
+}: MedicalDeviceTypePageProps): JSX.Element {
+	const { title, medicalDevice } = bnfMedicalDeviceType,
+		titleNoHtml = striptags(title);
+	return (
+		<NEWSEO
+			title={`${titleNoHtml} | ${medicalDevice.title} | Medical devices`}
+			description={`This medical device type describes the options that are currently recommended for ${decapitalize(
+				titleNoHtml
+			)}.`}
+		/>
+	);
+}
+
 const MedicalDeviceTypePage: FC<MedicalDeviceTypePageProps> = ({
 	data: {
 		bnfMedicalDeviceType: {
@@ -65,13 +81,6 @@ const MedicalDeviceTypePage: FC<MedicalDeviceTypePageProps> = ({
 
 	return (
 		<>
-			<SEO
-				title={`${titleNoHtml} | ${medicalDevice.title} | Medical devices`}
-				description={`This medical device type describes the options that are currently recommended for ${decapitalize(
-					titleNoHtml
-				)}.`}
-			/>
-
 			<Breadcrumbs>
 				<Breadcrumb key="NICE" to="https://www.nice.org.uk/">
 					NICE

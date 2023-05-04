@@ -56,6 +56,7 @@ export const resolveLegalCategory = (
 
 export interface PrepProps {
 	prep: QueryResult<FeedPrep>;
+	children?: React.ReactNode;
 }
 
 export const Prep: FC<PrepProps> = ({ prep, children }) => (
