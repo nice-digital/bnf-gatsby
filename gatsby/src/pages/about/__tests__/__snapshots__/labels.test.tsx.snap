@@ -3,7 +3,7 @@
 exports[`CautionaryAdvisoryLabelsPage should match snapshot for graphql query 1`] = `
 "
 	{
-		allBnfCautionaryAndAdvisoryLabel(sort: { fields: number, order: ASC }) {
+		allBnfCautionaryAndAdvisoryLabel(sort: { number: ASC }) {
 			advisoryLabels: nodes {
 				description
 				englishRecommendation

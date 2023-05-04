@@ -31,7 +31,7 @@ describe("images-unzipper", () => {
 		it("should return image base path with hash of image zip", async () => {
 			const imagesBasePath = await extractImageZIP(zipBuffer, reporter);
 
-			expect(imagesBasePath).toBe("/img/d06535079bdf2fd3013f95f9d8830ee8/");
+			expect(imagesBasePath).toBe("/img/f99313de4f9cb568532e1620ea5cad5c/");
 		});
 
 		it("should write each file to the public folder", async () => {
@@ -41,7 +41,7 @@ describe("images-unzipper", () => {
 
 			expect(mocked.writeFile).toHaveBeenCalledTimes(2);
 			expect(mocked.writeFile.mock.calls[0][0]).toEndWith(
-				`${sep}img${sep}d06535079bdf2fd3013f95f9d8830ee8${sep}blue.png`
+				`${sep}img${sep}f99313de4f9cb568532e1620ea5cad5c${sep}blue.png`
 			);
 		});
 	});

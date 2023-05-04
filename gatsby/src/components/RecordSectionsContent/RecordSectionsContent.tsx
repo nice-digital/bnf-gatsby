@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
 import { type RecordSection } from "@/utils";
 
@@ -7,6 +7,7 @@ import styles from "./RecordSectionsContent.module.scss";
 export type RecordSectionsContentProps = {
 	sections: RecordSection[];
 	className?: string;
+	children?: ReactNode;
 };
 
 /**

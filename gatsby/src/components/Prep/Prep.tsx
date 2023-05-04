@@ -1,4 +1,4 @@
-import { type FC } from "react";
+import { ReactNode, type FC } from "react";
 
 import {
 	type FeedPrep,
@@ -56,6 +56,7 @@ export const resolveLegalCategory = (
 
 export interface PrepProps {
 	prep: QueryResult<FeedPrep>;
+	children?: ReactNode;
 }
 
 export const Prep: FC<PrepProps> = ({ prep, children }) => (

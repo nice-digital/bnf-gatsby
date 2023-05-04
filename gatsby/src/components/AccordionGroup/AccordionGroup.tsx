@@ -8,7 +8,7 @@ import { Toggle } from "../Toggle/Toggle";
 import styles from "./AccordionGroup.module.scss";
 
 export interface AccordionGroupProps {
-	children: ReactNode;
+	children?: ReactNode;
 	toggleText?: (isOpen: boolean) => ReactNode;
 	onToggle?: (isOpen: boolean) => void;
 }

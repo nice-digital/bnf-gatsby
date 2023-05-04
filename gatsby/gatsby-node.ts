@@ -93,12 +93,12 @@ export const onCreatePage = ({
 		)
 	) {
 		const medicalDeviceType = getNodesByType(BnfNode.MedicalDeviceType).find(
-			(n) => n.id === page.context.id
+			(n) => n.id === page.context?.id
 		);
 
 		if (!medicalDeviceType)
 			throw Error(
-				`Could not find medical device type node with id ${page.context.id}`
+				`Could not find medical device type node with id ${page.context?.id}`
 			);
 
 		if (!medicalDeviceType.hasPreps) {

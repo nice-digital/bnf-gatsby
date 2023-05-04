@@ -108,6 +108,7 @@ export const shouldUpdateScroll = ({
 				targetElement.setAttribute("tabIndex", "-1");
 				(targetElement as HTMLElement).focus();
 				targetElement.scrollIntoView();
+				return false;
 			});
 		});
 		return false;
@@ -122,6 +123,7 @@ export const shouldUpdateScroll = ({
 			contentStartElement.setAttribute("tabIndex", "-1");
 			contentStartElement.focus();
 			contentStartElement.scrollIntoView();
+			return false;
 		});
 	});
 	// Default to scrolling to the content start element as the standard navigation behaviour
