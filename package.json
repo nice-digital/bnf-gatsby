@@ -63,7 +63,7 @@
     "xml-js": "^1.6.11"
   },
   "volta": {
-    "node": "14.18.2"
+    "node": "18.16.0"
   },
   "dependencies": {
     "jest-fetch-mock": "^3.0.3"
