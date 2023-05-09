@@ -83,3 +83,8 @@ Then(
 		await checkContainsText("element", menuSelector, "", text);
 	}
 );
+
+Then("I expect the url to contain {string}", async (expectedUrl: string) => {
+	const actualUrl = await browser.getUrl();
+	expect(actualUrl).toContain(expectedUrl);
+});

@@ -15,7 +15,7 @@
   "author": "",
   "license": "MIT",
   "volta": {
-    "node": "18.13.0"
+    "node": "18.16.0"
   },
   "devDependencies": {
     "@nice-digital/wdio-cucumber-steps": "^3.0.0",
