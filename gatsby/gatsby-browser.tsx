@@ -114,19 +114,5 @@ export const shouldUpdateScroll = ({
 		return false;
 	}
 
-	requestAnimationFrame(() => {
-		requestAnimationFrame(() => {
-			const contentStartElement = document.getElementById("content-start");
-
-			if (!contentStartElement) return true;
-
-			contentStartElement.setAttribute("tabIndex", "-1");
-			contentStartElement.focus();
-			contentStartElement.scrollIntoView();
-			return false;
-		});
-	});
-	// Default to scrolling to the content start element as the standard navigation behaviour
-
 	return false;
 };
