@@ -133,7 +133,7 @@ module.exports = {
 					// use NetworkFirst for page-data.json and for HTML pages
 					runtimeCaching: [
 						{
-							urlPattern: /(\.js$|\.css$|static\/)/,
+							urlPattern: /(\.js$|\.css$|static\/|#)/,
 							handler: `CacheFirst`,
 						},
 						{
@@ -155,7 +155,7 @@ module.exports = {
 						},
 						{
 							urlPattern:
-								/^https?:.*\.(png|jpg|jpeg|webp|svg|gif|tiff|js|woff|woff2|json|css)$/,
+								/^https?:.*\.(png|jpg|jpeg|webp|svg|gif|tiff|js|woff|woff2|json|css)(\?.*)?(#.*)?$/,
 							handler: `StaleWhileRevalidate`,
 						},
 					],
