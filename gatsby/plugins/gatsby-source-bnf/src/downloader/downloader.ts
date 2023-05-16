@@ -80,7 +80,7 @@ export const downloadImageZIP = async (
 	}
 
 	const sizeMB = Math.round(
-		Buffer.byteLength(axiosResponse.data) / 1024 / 1024
+		Buffer.from(axiosResponse.data).byteLength / 1024 / 1024
 	);
 
 	activity.setStatus(`Downloaded ${sizeMB}MB images ZIP`);
