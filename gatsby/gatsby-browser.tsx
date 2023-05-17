@@ -114,5 +114,8 @@ export const shouldUpdateScroll = ({
 		return false;
 	}
 
+	// Scroll to top as default to preserve existing BNF navigation behaviour
+	window.scrollTo(0, 0);
+
 	return false;
 };
