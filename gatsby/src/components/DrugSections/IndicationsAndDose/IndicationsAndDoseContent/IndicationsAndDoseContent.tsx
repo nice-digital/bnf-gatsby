@@ -74,7 +74,7 @@ export const IndicationsAndDoseContent: FC<IndicationsAndDoseContentProps> = ({
 									/>
 								</h4>
 								{routesAndPatientGroups.map(
-									({ routeOfAdministration, patientGroups }) => (
+									({ routeOfAdministration, patientGroups }, index) => (
 										<section
 											key={routeOfAdministration}
 											className={styles.routeOfAdministration}
@@ -87,13 +87,16 @@ export const IndicationsAndDoseContent: FC<IndicationsAndDoseContentProps> = ({
 											/>
 											<dl className={styles.patientGroups}>
 												{patientGroups.map(
-													({
-														patientGroup,
-														detailedPatientGroup,
-														doseStatement,
-													}) => (
+													(
+														{
+															patientGroup,
+															detailedPatientGroup,
+															doseStatement,
+														},
+														index
+													) => (
 														<div
-															key={patientGroup}
+															key={`${patientGroup}_${index}`}
 															className={classNames(
 																styles.patientGroupDose,
 																styles[patientGroup]

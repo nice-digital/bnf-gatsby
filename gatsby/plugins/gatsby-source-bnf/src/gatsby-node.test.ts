@@ -101,7 +101,7 @@ describe("gatsby-node", () => {
 			expect(downloadFeed).toHaveBeenCalledTimes(1);
 			expect(downloadFeed).toHaveBeenCalledWith(
 				pluginOptions,
-				"/img/d06535079bdf2fd3013f95f9d8830ee8/",
+				"/img/f99313de4f9cb568532e1620ea5cad5c/",
 				expect.anything()
 			);
 		});

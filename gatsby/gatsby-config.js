@@ -39,8 +39,6 @@ module.exports = {
 				site: isBNF ? "bnf" : "bnfc",
 			},
 		},
-		// Only use preact in production because of the pesky prefreshGlueCode.js errors
-		process.env.NODE_ENV === "development" ? undefined : `gatsby-plugin-preact`,
 		// Avoid errors like "ModuleNotFoundError: Module not found: Error: Can't resolve '@/components/Layout/Layout'" when using custom paths in tsconfig.json
 		`gatsby-plugin-tsconfig-paths`,
 		{
@@ -135,7 +133,7 @@ module.exports = {
 					// use NetworkFirst for page-data.json and for HTML pages
 					runtimeCaching: [
 						{
-							urlPattern: /(\.js$|\.css$|static\/)/,
+							urlPattern: /(\.js$|\.css$|static\/|#)/,
 							handler: `CacheFirst`,
 						},
 						{
@@ -157,7 +155,7 @@ module.exports = {
 						},
 						{
 							urlPattern:
-								/^https?:.*\.(png|jpg|jpeg|webp|svg|gif|tiff|js|woff|woff2|json|css)$/,
+								/^https?:.*\.(png|jpg|jpeg|webp|svg|gif|tiff|js|woff|woff2|json|css)(\?.*)?(#.*)?$/,
 							handler: `StaleWhileRevalidate`,
 						},
 					],

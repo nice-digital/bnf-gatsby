@@ -30,8 +30,8 @@ const InteractionsIndexPage: FC<InteractionsIndexPageProps> = ({
 
 export const query = graphql`
 	{
-		allInteractants: allBnfInteractant(sort: { fields: title, order: ASC }) {
-			letters: group(field: initial) {
+		allInteractants: allBnfInteractant(sort: { title: ASC }) {
+			letters: group(field: { initial: SELECT }) {
 				...InteractantGroup
 			}
 		}
