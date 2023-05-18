@@ -118,12 +118,6 @@ export const shouldUpdateScroll = ({
 
 	requestAnimationFrame(() => {
 		requestAnimationFrame(() => {
-			const contentStartElement = document.getElementById("content-start");
-
-			if (!contentStartElement) return true;
-
-			contentStartElement.setAttribute("tabIndex", "-1");
-
 			//scrolling to 0,0 to preserve existing BNF navigation behaviour
 			window.scrollTo(0, 0);
 			return false;
