@@ -108,14 +108,24 @@ export const shouldUpdateScroll = ({
 				targetElement.setAttribute("tabIndex", "-1");
 				(targetElement as HTMLElement).focus();
 				targetElement.scrollIntoView();
-				return false;
 			});
 		});
 		return false;
 	}
 
-	// Scroll to top as default to preserve existing BNF navigation behaviour
-	window.scrollTo(0, 0);
+	requestAnimationFrame(() => {
+		requestAnimationFrame(() => {
+			const contentStartElement = document.getElementById("content-start");
+
+			if (!contentStartElement) return true;
+
+			contentStartElement.setAttribute("tabIndex", "-1");
+
+			//scrolling to 0,0 to preserve existing BNF navigation behaviour
+			window.scrollTo(0, 0);
+		});
+	});
+	// Default to scrolling to the content start element as the standard navigation behaviour
 
 	return false;
 };
