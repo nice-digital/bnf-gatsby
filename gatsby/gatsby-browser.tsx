@@ -48,6 +48,8 @@ export const onRouteUpdate = ({
 			referrer: document.referrer,
 		});
 	}
+	// Default return statement when prevLocation is falsy
+	return;
 };
 
 export const wrapPageElement = ({
@@ -108,6 +110,7 @@ export const shouldUpdateScroll = ({
 				targetElement.setAttribute("tabIndex", "-1");
 				(targetElement as HTMLElement).focus();
 				targetElement.scrollIntoView();
+				return false;
 			});
 		});
 		return false;
@@ -123,9 +126,10 @@ export const shouldUpdateScroll = ({
 
 			//scrolling to 0,0 to preserve existing BNF navigation behaviour
 			window.scrollTo(0, 0);
+			return false;
 		});
 	});
 	// Default to scrolling to the content start element as the standard navigation behaviour
 
-	return false;
+	return true;
 };
