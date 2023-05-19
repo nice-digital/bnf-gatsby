@@ -48,8 +48,6 @@ export const onRouteUpdate = ({
 			referrer: document.referrer,
 		});
 	}
-	// Default return statement when prevLocation is falsy
-	return;
 };
 
 export const wrapPageElement = ({
@@ -118,12 +116,12 @@ export const shouldUpdateScroll = ({
 
 	requestAnimationFrame(() => {
 		requestAnimationFrame(() => {
-			//scrolling to 0,0 to preserve existing BNF navigation behaviour
+			// scroll to top to preserve existing BNF navigation behaviour
 			window.scrollTo(0, 0);
 			return false;
 		});
 	});
 	// Default to scrolling to the content start element as the standard navigation behaviour
 
-	return true;
+	return false;
 };
