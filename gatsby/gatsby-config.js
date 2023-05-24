@@ -60,6 +60,7 @@ module.exports = {
 			resolve: `gatsby-plugin-sitemap`,
 			options: {
 				excludes: [`/search/`],
+				output: `/sitemap/`,
 			},
 		},
 		{
