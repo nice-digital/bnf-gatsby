@@ -37,7 +37,9 @@ module.exports = {
 	transformIgnorePatterns: ["/node_modules/", "/dist/"],
 	setupFilesAfterEnv: ["./src/jest.setup.ts", "jest-extended/all"],
 	testPathIgnorePatterns: ["./config/"],
-	testURL: "https://bnf-gatsby-tests.nice.org.uk",
+	testEnvironmentOptions: {
+		url: "https://bnf-gatsby-tests.nice.org.uk",
+	},
 	testEnvironment: "jsdom",
 	globals: {
 		"ts-jest": {
