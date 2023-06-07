@@ -62,11 +62,12 @@ describe("Medicines guidance index page", () => {
 	});
 
 	it("should render a Gatsby Link component for each item", async () => {
+		const user = userEvent.setup();
 		render(<MedicinesGuidanceIndexPage />);
 		const testLink = screen.getByRole("link", {
 			name: "Guidance on prescribing",
 		});
-		userEvent.click(testLink);
+		user.click(testLink);
 
 		await waitFor(() =>
 			expect(navigate).toHaveBeenCalledWith(

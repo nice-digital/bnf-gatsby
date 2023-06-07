@@ -95,6 +95,7 @@ describe("Accordion", () => {
 	});
 
 	it("should update label when expanded", async () => {
+		const user = userEvent.setup();
 		render(
 			<Accordion title="Test" open={false}>
 				<p>Body content</p>
@@ -108,7 +109,7 @@ describe("Accordion", () => {
 			}
 		);
 
-		userEvent.click(summary);
+		user.click(summary);
 
 		await waitFor(() => {
 			expect(summary).toHaveTextContent("Hide Test");
@@ -170,6 +171,7 @@ describe("Accordion", () => {
 	});
 
 	it("should have appropriate data tracking attribute", async () => {
+		const user = userEvent.setup();
 		render(
 			<Accordion title="Test" open={false}>
 				<p>Body content</p>
@@ -182,7 +184,7 @@ describe("Accordion", () => {
 
 		expect(summaryElement).toHaveAttribute("data-tracking", "Show");
 
-		userEvent.click(summaryElement);
+		user.click(summaryElement);
 
 		await waitFor(() => {
 			expect(summaryElement).toHaveAttribute("data-tracking", "Hide");

@@ -56,9 +56,10 @@ describe("About index page", () => {
 	});
 
 	it("should render a Gatsby Link component for each item", async () => {
+		const user = userEvent.setup();
 		render(<AboutIndexPage />);
 		const testLink = screen.getByRole("link", { name: "Test link" });
-		userEvent.click(testLink);
+		user.click(testLink);
 
 		await waitFor(() =>
 			expect(navigate).toHaveBeenCalledWith("/about/test-link/")

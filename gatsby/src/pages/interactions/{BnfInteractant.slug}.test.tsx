@@ -231,6 +231,7 @@ describe("InteractantPage", () => {
 		});
 
 		it("should toggle between the two different sorting buttons whenever one is pressed", async () => {
+			const user = userEvent.setup();
 			render(<InteractantPage data={dataProp} />);
 
 			const nameSortButtonArgs: [string, { name: string }] = [
@@ -257,7 +258,7 @@ describe("InteractantPage", () => {
 			expect(nameSortButton).not.toBeInTheDocument();
 			expect(severitySortButton).toBeInTheDocument();
 
-			userEvent.click(severitySortButton);
+			user.click(severitySortButton);
 
 			await waitFor(() => {
 				nameSortButton = screen.getByRole(...nameSortButtonArgs);
@@ -272,7 +273,7 @@ describe("InteractantPage", () => {
 			expect(nameSortButton).toBeInTheDocument();
 			expect(severitySortButton).not.toBeInTheDocument();
 
-			userEvent.click(nameSortButton);
+			user.click(nameSortButton);
 
 			await waitFor(() => {
 				nameSortButton = screen.queryByRole(...nameSortButtonArgs);
@@ -292,11 +293,12 @@ describe("InteractantPage", () => {
 		});
 
 		it("should sort the interaction results by severity after hitting the 'Sort by severity' button", async () => {
+			const user = userEvent.setup();
 			render(<InteractantPage data={dataProp} />);
 			const sortButton = screen.getByRole("button", {
 				name: "Sort by: Severity",
 			});
-			userEvent.click(sortButton);
+			user.click(sortButton);
 
 			await waitFor(() =>
 				expect(
@@ -312,17 +314,18 @@ describe("InteractantPage", () => {
 		});
 
 		it("should limit the result set when a filter value is supplied", async () => {
+			const user = userEvent.setup();
 			render(<InteractantPage data={dataProp} />);
 			const filterButton = screen.getByRole("button", {
 				name: "Filter",
 			});
-			userEvent.type(screen.getByRole("textbox"), "Test");
+			user.type(screen.getByRole("textbox"), "Test");
 
 			await waitFor(async () =>
 				expect(await screen.findByRole("textbox")).toHaveValue("Test")
 			);
 
-			userEvent.click(filterButton);
+			user.click(filterButton);
 
 			await waitFor(() =>
 				expect(
@@ -334,22 +337,23 @@ describe("InteractantPage", () => {
 		});
 
 		it("should successfully list a filtered result set in severity order when specified", async () => {
+			const user = userEvent.setup();
 			render(<InteractantPage data={dataProp} />);
 			const filterButton = screen.getByRole("button", {
 				name: "Filter",
 			});
-			userEvent.type(screen.getByRole("textbox"), "Test");
+			user.type(screen.getByRole("textbox"), "Test");
 
 			await waitFor(async () =>
 				expect(await screen.findByRole("textbox")).toHaveValue("Test")
 			);
 
-			userEvent.click(filterButton);
+			user.click(filterButton);
 
 			const sortButton = screen.getByRole("button", {
 				name: "Sort by: Severity",
 			});
-			userEvent.click(sortButton);
+			user.click(sortButton);
 
 			await waitFor(() =>
 				expect(
@@ -408,6 +412,7 @@ describe("InteractantPage", () => {
 
 	describe("filtering", () => {
 		it("should push a formSubmit event to the data layer when filter button submits form", async () => {
+			const user = userEvent.setup();
 			window.dataLayer = [];
 			render(<InteractantPage data={dataProp} />);
 
@@ -417,7 +422,7 @@ describe("InteractantPage", () => {
 				name: "Filter",
 			});
 
-			userEvent.type(inputElement, "some filter text");
+			user.type(inputElement, "some filter text");
 
 			await waitFor(async () =>
 				expect(await inputElement).toHaveValue("some filter text")

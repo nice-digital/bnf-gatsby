@@ -58,12 +58,13 @@ describe("TagList", () => {
 	});
 
 	it("should used gatsby Link for anchor", async () => {
+		const user = userEvent.setup();
 		render(
 			<TagList data-test="true">
 				<Tag href="/test/">Test</Tag>
 			</TagList>
 		);
-		userEvent.click(screen.getByRole("link"));
+		user.click(screen.getByRole("link"));
 
 		await waitFor(() => expect(navigate).toHaveBeenCalledWith("/test/"));
 	});

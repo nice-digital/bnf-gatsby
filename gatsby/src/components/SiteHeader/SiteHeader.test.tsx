@@ -26,6 +26,7 @@ describe("SiteHeader", () => {
 		});
 
 		it("should render the suggestion link correctly", async () => {
+			const user = userEvent.setup();
 			useSiteMetadataMock.mockReturnValueOnce({
 				isBNF: false,
 			});
@@ -37,7 +38,7 @@ describe("SiteHeader", () => {
 				JSON.stringify(mockAutocompleteEndPointSuggestionsForDrug)
 			);
 
-			userEvent.type(await screen.findByRole("combobox"), "SODIUM");
+			user.type(await screen.findByRole("combobox"), "SODIUM");
 
 			await waitFor(async () =>
 				expect(await screen.findByRole("combobox")).toHaveValue("SODIUM")
@@ -52,6 +53,7 @@ describe("SiteHeader", () => {
 		});
 
 		it("should render search query as first option for screen readers", async () => {
+			const user = userEvent.setup();
 			useSiteMetadataMock.mockReturnValueOnce({
 				isBNF: true,
 			});
@@ -62,7 +64,7 @@ describe("SiteHeader", () => {
 			fetchMock.mockResponse(
 				JSON.stringify(mockAutocompleteEndPointSuggestionsForDrug)
 			);
-			userEvent.type(await screen.findByRole("combobox"), "SODIUM");
+			user.type(await screen.findByRole("combobox"), "SODIUM");
 
 			await waitFor(() => {
 				const suggestedElements = screen.queryAllByRole("option");
@@ -73,6 +75,7 @@ describe("SiteHeader", () => {
 		});
 
 		it("should apply the BNF formulary prefix for autocomplete results for BNF", async () => {
+			const user = userEvent.setup();
 			useSiteMetadataMock.mockReturnValueOnce({
 				isBNF: true,
 			});
@@ -83,7 +86,7 @@ describe("SiteHeader", () => {
 			fetchMock.mockResponse(
 				JSON.stringify(mockAutocompleteEndPointSuggestionsForDrug)
 			);
-			userEvent.type(await screen.findByRole("combobox"), "SODIUM");
+			user.type(await screen.findByRole("combobox"), "SODIUM");
 
 			await waitFor(() => {
 				const suggestedElements = screen.queryAllByRole("option");
@@ -94,6 +97,7 @@ describe("SiteHeader", () => {
 		});
 
 		it("should apply the BNFC formulary prefix for autocomplete results for BNFC", async () => {
+			const user = userEvent.setup();
 			useSiteMetadataMock.mockReturnValueOnce({
 				isBNF: false,
 			});
@@ -104,7 +108,7 @@ describe("SiteHeader", () => {
 			fetchMock.mockResponse(
 				JSON.stringify(mockAutocompleteEndPointSuggestionsForDrug)
 			);
-			userEvent.type(await screen.findByRole("combobox"), "SODIUM");
+			user.type(await screen.findByRole("combobox"), "SODIUM");
 
 			await waitFor(() => {
 				const suggestedElements = screen.queryAllByRole("option");
@@ -115,6 +119,7 @@ describe("SiteHeader", () => {
 		});
 
 		it("should have a correctly formatted url for autocomplete queries", async () => {
+			const user = userEvent.setup();
 			useSiteMetadataMock.mockReturnValueOnce({
 				isBNF: false,
 				searchUrl: "/test-api-url",
@@ -126,7 +131,7 @@ describe("SiteHeader", () => {
 			fetchMock.mockResponse(
 				JSON.stringify([{ Title: "test", Link: "/test" }])
 			);
-			userEvent.type(await screen.findByRole("combobox"), "anything");
+			user.type(await screen.findByRole("combobox"), "anything");
 
 			await waitFor(() => {
 				expect(fetchMock).toHaveBeenCalledTimes(1);
@@ -159,6 +164,7 @@ describe("SiteHeader", () => {
 		])(
 			"should show label for %s typeahead suggestions - %s",
 			async (TypeAheadType, expected, isBNF) => {
+				const user = userEvent.setup();
 				useSiteMetadataMock.mockReturnValueOnce({
 					isBNF,
 				});
@@ -169,7 +175,7 @@ describe("SiteHeader", () => {
 				fetchMock.mockResponse(
 					JSON.stringify([{ TitleHtml: "test", Link: "/test", TypeAheadType }])
 				);
-				await userEvent.type(await screen.findByRole("combobox"), "any");
+				await user.type(await screen.findByRole("combobox"), "any");
 
 				await waitFor(() => {
 					const form = screen.getByRole("search");

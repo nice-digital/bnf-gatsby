@@ -62,11 +62,12 @@ describe("Medical devices index page", () => {
 	});
 
 	it("should render a Gatsby Link component for each item", async () => {
+		const user = userEvent.setup();
 		render(<MedicalDevicesIndexPage />);
 		const testLink = screen.getByRole("link", {
 			name: "Artificial saliva products",
 		});
-		userEvent.click(testLink);
+		user.click(testLink);
 
 		await waitFor(() =>
 			expect(navigate).toHaveBeenCalledWith(

@@ -119,13 +119,14 @@ describe("mobile menu", () => {
 	});
 
 	it("should collapse toggle button on click", async () => {
+		const user = userEvent.setup();
 		render(<Menu {...menuProps} />);
 
 		const toggleBtn = screen.getByRole("button", {
 			name: "Expand menu for example pages",
 		});
 
-		userEvent.click(toggleBtn);
+		user.click(toggleBtn);
 
 		await waitFor(() => {
 			expect(toggleBtn).toHaveAttribute("aria-expanded", "true");

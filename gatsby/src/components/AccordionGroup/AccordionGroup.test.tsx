@@ -44,15 +44,17 @@ describe("AccordionGroup", () => {
 	});
 
 	it("should have default hide text", async () => {
+		const user = userEvent.setup();
 		render(<AccordionGroup>{accordions}</AccordionGroup>);
 		const toggleButton = screen.getByRole("button");
-		userEvent.click(toggleButton);
+		user.click(toggleButton);
 		await waitFor(() => {
 			expect(toggleButton).toHaveTextContent("Hide all sections");
 		});
 	});
 
 	it("should use toggle text function", async () => {
+		const user = userEvent.setup();
 		render(
 			<AccordionGroup
 				toggleText={(isOpen) => (isOpen ? "Hide it!" : "Show it!")}
@@ -62,7 +64,7 @@ describe("AccordionGroup", () => {
 		);
 		const toggleButton = screen.getByRole("button");
 		expect(toggleButton).toHaveTextContent("Show it!");
-		userEvent.click(toggleButton);
+		user.click(toggleButton);
 
 		await waitFor(() => {
 			expect(toggleButton).toHaveTextContent("Hide it!");
@@ -70,9 +72,10 @@ describe("AccordionGroup", () => {
 	});
 
 	it("should toggle aria expanded on toggle", async () => {
+		const user = userEvent.setup();
 		render(<AccordionGroup>{accordions}</AccordionGroup>);
 		const toggleButton = screen.getByRole("button");
-		userEvent.click(toggleButton);
+		user.click(toggleButton);
 
 		await waitFor(() => {
 			expect(toggleButton).toHaveAttribute("aria-expanded", "true");
@@ -80,10 +83,11 @@ describe("AccordionGroup", () => {
 	});
 
 	it("should toggle data tracking attrbiute on toggle", async () => {
+		const user = userEvent.setup();
 		render(<AccordionGroup>{accordions}</AccordionGroup>);
 		const toggleButton = screen.getByRole("button");
 		expect(toggleButton).toHaveAttribute("data-tracking", "Show all sections");
-		userEvent.click(toggleButton);
+		user.click(toggleButton);
 		await waitFor(() => {
 			expect(toggleButton).toHaveAttribute(
 				"data-tracking",
@@ -93,20 +97,22 @@ describe("AccordionGroup", () => {
 	});
 
 	it("should call toggle function with correct isOpen boolean argument", async () => {
+		const user = userEvent.setup();
 		const toggleFn = jest.fn();
 		render(<AccordionGroup onToggle={toggleFn}>{accordions}</AccordionGroup>);
-		userEvent.click(screen.getByRole("button"));
+		user.click(screen.getByRole("button"));
 		await waitFor(() => {
 			expect(toggleFn).toHaveBeenCalledWith(true);
 		});
 
-		userEvent.click(screen.getByRole("button"));
+		user.click(screen.getByRole("button"));
 		await waitFor(() => {
 			expect(toggleFn).toHaveBeenCalledWith(false);
 		});
 	});
 
 	it("should show all child accordions on show button click", async () => {
+		const user = userEvent.setup();
 		render(<AccordionGroup>{accordions}</AccordionGroup>);
 
 		const accordionElements = screen
@@ -115,7 +121,7 @@ describe("AccordionGroup", () => {
 
 		expect(accordionElements).toSatisfyAll((a: HTMLDetailsElement) => !a.open);
 
-		userEvent.click(screen.getByRole("button"));
+		user.click(screen.getByRole("button"));
 
 		await waitFor(() => {
 			expect(accordionElements).toSatisfyAll((a: HTMLDetailsElement) => a.open);
@@ -123,12 +129,13 @@ describe("AccordionGroup", () => {
 	});
 
 	it("should not show descendent accordions on show button click", () => {
+		const user = userEvent.setup();
 		render(<AccordionGroup>{accordions}</AccordionGroup>);
 
 		const nestedAccordion = screen.getAllByRole<HTMLDetailsElement>("group")[2];
 
 		expect(nestedAccordion).toHaveProperty("open", false);
-		userEvent.click(screen.getByRole("button"));
+		user.click(screen.getByRole("button"));
 		expect(nestedAccordion).toHaveProperty("open", false);
 	});
 });
