@@ -47,15 +47,15 @@ describe("createClassificationNodes", () => {
 		const nodeInput = createNode.mock.calls[0][0] as ClassificationNodeInput;
 
 		expect(nodeInput).toMatchInlineSnapshot(`
-		Object {
-		  "drugs": Array [],
+		{
+		  "drugs": [],
 		  "id": "_123",
-		  "internal": Object {
-		    "content": "{\\"id\\":\\"_123\\",\\"order\\":0,\\"name\\":\\"Root\\",\\"moreSpecificClassifications\\":[],\\"parentClassification\\":null,\\"rootClassification\\":\\"_123\\",\\"drugs\\":[]}",
+		  "internal": {
+		    "content": "{"id":"_123","order":0,"name":"Root","moreSpecificClassifications":[],"parentClassification":null,"rootClassification":"_123","drugs":[]}",
 		    "contentDigest": undefined,
 		    "type": "BnfClassification",
 		  },
-		  "moreSpecificClassifications": Array [],
+		  "moreSpecificClassifications": [],
 		  "name": "Root",
 		  "order": 0,
 		  "parentClassification": null,
@@ -70,15 +70,15 @@ describe("createClassificationNodes", () => {
 		const nodeInput = createNode.mock.calls[1][0] as ClassificationNodeInput;
 
 		expect(nodeInput).toMatchInlineSnapshot(`
-		Object {
-		  "drugs": Array [],
+		{
+		  "drugs": [],
 		  "id": "_456",
-		  "internal": Object {
-		    "content": "{\\"id\\":\\"_456\\",\\"order\\":1,\\"name\\":\\"Root with children\\",\\"moreSpecificClassifications\\":[\\"_789\\"],\\"parentClassification\\":null,\\"rootClassification\\":\\"_456\\",\\"drugs\\":[]}",
+		  "internal": {
+		    "content": "{"id":"_456","order":1,"name":"Root with children","moreSpecificClassifications":["_789"],"parentClassification":null,"rootClassification":"_456","drugs":[]}",
 		    "contentDigest": undefined,
 		    "type": "BnfClassification",
 		  },
-		  "moreSpecificClassifications": Array [
+		  "moreSpecificClassifications": [
 		    "_789",
 		  ],
 		  "name": "Root with children",
@@ -95,17 +95,17 @@ describe("createClassificationNodes", () => {
 		const nodeInput = createNode.mock.calls[2][0] as ClassificationNodeInput;
 
 		expect(nodeInput).toMatchInlineSnapshot(`
-		Object {
-		  "drugs": Array [
+		{
+		  "drugs": [
 		    "_543",
 		  ],
 		  "id": "_789",
-		  "internal": Object {
-		    "content": "{\\"id\\":\\"_789\\",\\"order\\":2,\\"name\\":\\"Sub\\",\\"moreSpecificClassifications\\":[],\\"parentClassification\\":\\"_456\\",\\"rootClassification\\":\\"_456\\",\\"drugs\\":[\\"_543\\"]}",
+		  "internal": {
+		    "content": "{"id":"_789","order":2,"name":"Sub","moreSpecificClassifications":[],"parentClassification":"_456","rootClassification":"_456","drugs":["_543"]}",
 		    "contentDigest": undefined,
 		    "type": "BnfClassification",
 		  },
-		  "moreSpecificClassifications": Array [],
+		  "moreSpecificClassifications": [],
 		  "name": "Sub",
 		  "order": 2,
 		  "parentClassification": "_456",

@@ -61,14 +61,17 @@ describe("Medical devices index page", () => {
 		expect(within(linkList).getAllByRole("listitem")).toHaveLength(2);
 	});
 
-	it("should render a Gatsby Link component for each item", () => {
+	it("should render a Gatsby Link component for each item", async () => {
 		render(<MedicalDevicesIndexPage />);
 		const testLink = screen.getByRole("link", {
 			name: "Artificial saliva products",
 		});
 		userEvent.click(testLink);
-		expect(navigate).toHaveBeenCalledWith(
-			"/medical-devices/artificial-saliva-products/"
+
+		await waitFor(() =>
+			expect(navigate).toHaveBeenCalledWith(
+				"/medical-devices/artificial-saliva-products/"
+			)
 		);
 	});
 });

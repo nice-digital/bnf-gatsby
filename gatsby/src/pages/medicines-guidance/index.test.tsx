@@ -61,14 +61,17 @@ describe("Medicines guidance index page", () => {
 		expect(within(linkList).getAllByRole("listitem")).toHaveLength(2);
 	});
 
-	it("should render a Gatsby Link component for each item", () => {
+	it("should render a Gatsby Link component for each item", async () => {
 		render(<MedicinesGuidanceIndexPage />);
 		const testLink = screen.getByRole("link", {
 			name: "Guidance on prescribing",
 		});
 		userEvent.click(testLink);
-		expect(navigate).toHaveBeenCalledWith(
-			"/medicines-guidance/guidance-on-prescribing/"
+
+		await waitFor(() =>
+			expect(navigate).toHaveBeenCalledWith(
+				"/medicines-guidance/guidance-on-prescribing/"
+			)
 		);
 	});
 });

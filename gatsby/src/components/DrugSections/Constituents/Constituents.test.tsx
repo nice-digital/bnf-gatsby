@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { navigate } from "gatsby";
 
@@ -81,12 +81,13 @@ describe("Constituents", () => {
 		).toHaveAttribute("href", "/drugs/timolol-maleate/");
 	});
 
-	it("should use Gatsbys links component for mongraph links", () => {
+	it("should use Gatsbys links component for mongraph links", async () => {
 		render(<Constituents {...props} />);
 
 		userEvent.click(screen.getByRole("link", { name: "bimatoprost" }));
-
-		expect(navigate).toHaveBeenCalledWith("/drugs/bimatoprost/");
+		await waitFor(() =>
+			expect(navigate).toHaveBeenCalledWith("/drugs/bimatoprost/")
+		);
 	});
 
 	it("should match snapshot", () => {
