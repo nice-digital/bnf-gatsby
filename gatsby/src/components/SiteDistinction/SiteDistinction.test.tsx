@@ -134,12 +134,13 @@ describe("SiteDistinction", () => {
 				await waitFor(() => expect(svg).toHaveClass("icon iconExpanded"));
 			});
 
-			it("should prefetch other site link", async () => {
+			it("should prefetch correct link for other site", async () => {
 				const user = userEvent.setup();
 				render(<SiteDistinction />);
 				const button = screen.getByRole("button", {
 					name: `Show ${otherSiteTitleShort} link`,
 				});
+
 				user.click(button);
 
 				let prefetch: Element | null = null;
@@ -151,7 +152,9 @@ describe("SiteDistinction", () => {
 
 				expect(prefetch).toHaveAttribute(
 					"href",
-					"https://bnfc-gatsby-tests.nice.org.uk/test/?ref=switch"
+					isBNF
+						? "https://bnfc-gatsby-tests.nice.org.uk/test/?ref=switch"
+						: "https://bnf-gatsby-tests.nice.org.uk/test/?ref=switch"
 				);
 			});
 		});
