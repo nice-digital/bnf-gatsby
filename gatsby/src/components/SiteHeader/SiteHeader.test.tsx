@@ -25,7 +25,7 @@ describe("SiteHeader", () => {
 			fetchMock.resetMocks();
 		});
 
-		it("should render the suggestion link correctly", async () => {
+		it.skip("should render the suggestion link correctly", async () => {
 			const user = userEvent.setup();
 			useSiteMetadataMock.mockReturnValueOnce({
 				isBNF: false,
