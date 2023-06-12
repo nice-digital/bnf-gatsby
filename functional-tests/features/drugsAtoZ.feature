@@ -28,6 +28,6 @@ Feature: Drugs A to Z page
     Then I expect that the path is "/drugs/#c"
 
   Scenario: Link to Cabazitaxel drug
-    When I click the "Cabazitaxel" link
-    Then I expect that the path is "/drugs/cabazitaxel/"
+    When I click the "Cabazitaxel [Specialist drug]" link
+    Then I expect that the path is "/drugs/cabazitaxel-specialist-drug/"
 

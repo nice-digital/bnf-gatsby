@@ -28,6 +28,6 @@ Feature: Interactions A to Z page
     Then I expect that the path is "/interactions/#c"
 
   Scenario: Link to Cabazitaxel interaction
-    When I click the "Cabazitaxel" link
-    Then I expect that the path is "/interactions/cabazitaxel/"
+    When I click the "Cabazitaxel [Specialist drug]" link
+    Then I expect that the path is "/interactions/cabazitaxel-specialist-drug/"
 
