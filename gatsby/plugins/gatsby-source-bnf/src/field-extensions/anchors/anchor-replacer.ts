@@ -120,7 +120,7 @@ const anchorReplacer =
 						grandParentNode.slug || slugify(grandParentNode.title)
 				  }/${slug}/`
 				: `${basePath}/${
-						parentNode?.slug || slugify(parentNode?.title || "")
+						parentNode?.slug || slugify(parentNode?.title as string)
 				  }/#${slug}`;
 		} else if (nodeType === BnfNode.NursePrescribersFormularyIntroduction) {
 			newPath = `${basePath}/approved-list-for-prescribing-by-community-practitioner-nurse-prescribers-npf/`;
