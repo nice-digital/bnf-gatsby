@@ -115,6 +115,10 @@ const anchorReplacer =
 				type: nodeType,
 			});
 
+			if (!parentNode && !grandParentNode) {
+				throw new Error(`No valid parent nodes for ${slug}!`);
+			}
+
 			newPath = grandParentNode
 				? `${basePath}/${
 						grandParentNode.slug || slugify(grandParentNode.title)
