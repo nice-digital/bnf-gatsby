@@ -19,7 +19,7 @@ Feature: Wound management taxonomy page
 
   Scenario: In-page links to product pages
     When I click the "Polyurethane matrix dressing" link
-    Then I expect that the path is "/wound-management/advanced-wound-dressings/polyurethane-matrix-dressing/"
+    Then I expect that the path is "/wound-management/advanced-wound-dressings/polyurethane-matrix-dressings/"
 
   Scenario Outline: <pageName> at <screenSize> accessibility issues
     Given I am using a <screenSize> size browser
