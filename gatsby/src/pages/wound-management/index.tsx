@@ -58,7 +58,7 @@ const navSections: SectionNavProps = {
 		},
 		{
 			title: "Wounds with signs of infection",
-			id: "wound-type-977151263",
+			id: "wound-type--977151263",
 		},
 	],
 };
