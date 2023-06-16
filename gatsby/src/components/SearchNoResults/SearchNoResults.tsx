@@ -35,7 +35,7 @@ export const SearchNoResults: FC<SearchNoResultsProps> = ({ searchText }) => {
 					See if there are search results for <b>{searchText}</b> on our other
 					services:
 				</p>
-				<ul aria-label={`Search for "${searchText}" on our other services`}>
+				<ul aria-label={`Search for ${searchText} on our other services`}>
 					<li>
 						<a
 							rel="noreferrer"

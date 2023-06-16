@@ -44,7 +44,7 @@ describe("RecordSectionsContent", () => {
 	it("should render HTML content inside section", () => {
 		const section = screen.getByRole("region", { name: "Section 2" });
 		expect(section.innerHTML).toMatchInlineSnapshot(
-			`"<h2 id=\\"section-2\\">Section 2</h2><div><p>Section 2 content</p></div>"`
+			`"<h2 id="section-2">Section 2</h2><div><p>Section 2 content</p></div>"`
 		);
 	});
 

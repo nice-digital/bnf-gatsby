@@ -21,15 +21,15 @@ const useSiteMetadataMock = useSiteMetadata as jest.Mock;
 
 describe("SiteHeader", () => {
 	describe("Autocomplete", () => {
-		it("should apply the BNF forumlary prefix for autocomplete results for BNF", async () => {
-			useSiteMetadataMock.mockReturnValueOnce({
+		it("should apply the BNF formulary prefix for autocomplete results for BNF", async () => {
+			useSiteMetadataMock.mockReturnValue({
 				isBNF: true,
 			});
 
 			render(<SiteHeader />);
 
 			// Global nav uses a fetch to load autocomplete suggestions, and changing the input value triggers this fetch
-			fetchMock.mockResponseOnce(
+			fetchMock.mockResponse(
 				JSON.stringify(mockAutocompleteEndPointSuggestionsForDrug)
 			);
 			userEvent.type(await screen.findByRole("combobox"), "SODIUM");
@@ -41,15 +41,15 @@ describe("SiteHeader", () => {
 				);
 			});
 		});
-		it("should apply the BNFC forumlary prefix for autocomplete results for BNFC", async () => {
-			useSiteMetadataMock.mockReturnValueOnce({
+		it("should apply the BNFC formulary prefix for autocomplete results for BNFC", async () => {
+			useSiteMetadataMock.mockReturnValue({
 				isBNF: false,
 			});
 
 			render(<SiteHeader />);
 
 			// Global nav uses a fetch to load autocomplete suggestions, and changing the input value triggers this fetch
-			fetchMock.mockResponseOnce(
+			fetchMock.mockResponse(
 				JSON.stringify(mockAutocompleteEndPointSuggestionsForDrug)
 			);
 			userEvent.type(await screen.findByRole("combobox"), "SODIUM");
@@ -63,7 +63,7 @@ describe("SiteHeader", () => {
 		});
 
 		it("should have a correctly formatted url for autocomplete queries", async () => {
-			useSiteMetadataMock.mockReturnValueOnce({
+			useSiteMetadataMock.mockReturnValue({
 				isBNF: false,
 				searchUrl: "/test-api-url",
 			});
@@ -71,7 +71,7 @@ describe("SiteHeader", () => {
 			render(<SiteHeader />);
 
 			// Global nav uses a fetch to load autocomplete suggestions, and changing the input value triggers this fetch
-			fetchMock.mockResponseOnce(
+			fetchMock.mockResponse(
 				JSON.stringify([{ Title: "test", Link: "/test" }])
 			);
 			userEvent.type(await screen.findByRole("combobox"), "anything");
@@ -86,17 +86,21 @@ describe("SiteHeader", () => {
 		});
 
 		it("should render the suggestion link correctly", async () => {
-			useSiteMetadataMock.mockReturnValueOnce({
+			useSiteMetadataMock.mockReturnValue({
 				isBNF: false,
 			});
 
 			render(<SiteHeader />);
 
 			// Global nav uses a fetch to load autocomplete suggestions, and changing the input value triggers this fetch
-			fetchMock.mockResponseOnce(
+			fetchMock.mockResponse(
 				JSON.stringify(mockAutocompleteEndPointSuggestionsForDrug)
 			);
 			userEvent.type(await screen.findByRole("combobox"), "SODIUM");
+
+			await waitFor(async () =>
+				expect(await screen.findByRole("combobox")).toHaveValue("SODIUM")
+			);
 
 			await waitFor(() => {
 				const link = screen.getByRole("link", {
@@ -128,14 +132,14 @@ describe("SiteHeader", () => {
 		])(
 			"should show label for %s typeahead suggestions - %s",
 			async (TypeAheadType, expected, isBNF) => {
-				useSiteMetadataMock.mockReturnValueOnce({
+				useSiteMetadataMock.mockReturnValue({
 					isBNF,
 				});
 
 				render(<SiteHeader />);
 
 				// Global nav uses a fetch to load autocomplete suggestions, and changing the input value triggers this fetch
-				fetchMock.mockResponseOnce(
+				fetchMock.mockResponse(
 					JSON.stringify([{ TitleHtml: "test", Link: "/test", TypeAheadType }])
 				);
 				userEvent.type(await screen.findByRole("combobox"), "anything");

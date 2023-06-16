@@ -20,16 +20,16 @@ describe("gatsby-node", () => {
 			expect(createTypes.mock.calls[0][0]).toMatchInlineSnapshot(`
 			"
 				  type BnfDrug implements Node {
-					\\"The lowercase first letter of the title, used for grouping\\"
-					initial: String! @initial(field: \\"title\\")
+					"The lowercase first letter of the title, used for grouping"
+					initial: String! @initial(field: "title")
 				  }
 				  type BnfTreatmentSummary implements Node {
-					\\"The lowercase first letter of the title, used for grouping\\"
-					initial: String! @initial(field: \\"title\\")
+					"The lowercase first letter of the title, used for grouping"
+					initial: String! @initial(field: "title")
 				  }
 				  type BnfInteractant implements Node {
-					\\"The lowercase first letter of the title, used for grouping\\"
-					initial: String! @initial(field: \\"title\\")
+					"The lowercase first letter of the title, used for grouping"
+					initial: String! @initial(field: "title")
 				  }
 				"
 		`);
