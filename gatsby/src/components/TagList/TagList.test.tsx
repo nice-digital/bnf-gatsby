@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { navigate } from "gatsby";
 
@@ -57,7 +57,7 @@ describe("TagList", () => {
 		);
 	});
 
-	it("should used gatsby Link for anchor", () => {
+	it("should used gatsby Link for anchor", async () => {
 		render(
 			<TagList data-test="true">
 				<Tag href="/test/">Test</Tag>
@@ -65,6 +65,8 @@ describe("TagList", () => {
 		);
 		userEvent.click(screen.getByRole("link"));
 
-		expect(navigate).toHaveBeenCalledWith("/test/");
+		await waitFor(() => {
+			expect(navigate).toHaveBeenCalledWith("/test/");
+		});
 	});
 });

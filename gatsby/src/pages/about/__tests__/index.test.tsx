@@ -55,10 +55,13 @@ describe("About index page", () => {
 		expect(within(linkList).getAllByRole("listitem")).toHaveLength(2);
 	});
 
-	it("should render a Gatsby Link component for each item", () => {
+	it("should render a Gatsby Link component for each item", async () => {
 		render(<AboutIndexPage />);
 		const testLink = screen.getByRole("link", { name: "Test link" });
 		userEvent.click(testLink);
-		expect(navigate).toHaveBeenCalledWith("/about/test-link/");
+
+		await waitFor(() => {
+			expect(navigate).toHaveBeenCalledWith("/about/test-link/");
+		});
 	});
 });

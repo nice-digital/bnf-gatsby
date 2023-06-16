@@ -72,28 +72,33 @@ describe("SiteDistinction", () => {
 				).toHaveAttribute("aria-expanded", "false");
 			});
 
-			it("should expand on click", () => {
+			it("should expand on click", async () => {
 				render(<SiteDistinction />);
 				const button = screen.getByRole("button", {
 					name: `Show ${otherSiteTitleShort} link`,
 				});
 				userEvent.click(button);
-				expect(button).toHaveAttribute("aria-expanded", "true");
+				await waitFor(() => {
+					expect(button).toHaveAttribute("aria-expanded", "true");
+				});
 			});
 
-			it("should change label text to hide other site link on click", () => {
+			it("should change label text to hide other site link on click", async () => {
 				render(<SiteDistinction />);
 				const button = screen.getByRole("button", {
 					name: `Show ${otherSiteTitleShort} link`,
 				});
 				userEvent.click(button);
-				expect(button).toHaveAttribute(
-					"aria-label",
-					`Hide ${otherSiteTitleShort} link`
-				);
+
+				await waitFor(() => {
+					expect(button).toHaveAttribute(
+						"aria-label",
+						`Hide ${otherSiteTitleShort} link`
+					);
+				});
 			});
 
-			it("should change data tracking attribute on button click", () => {
+			it("should change data tracking attribute on button click", async () => {
 				render(<SiteDistinction />);
 				const button = screen.getByRole("button", {
 					name: `Show ${otherSiteTitleShort} link`,
@@ -103,13 +108,16 @@ describe("SiteDistinction", () => {
 					`show-${otherSiteTitleShort.toLowerCase()}-link`
 				);
 				userEvent.click(button);
-				expect(button).toHaveAttribute(
-					"data-tracking",
-					`hide-${otherSiteTitleShort.toLowerCase()}-link`
-				);
+
+				await waitFor(() => {
+					expect(button).toHaveAttribute(
+						"data-tracking",
+						`hide-${otherSiteTitleShort.toLowerCase()}-link`
+					);
+				});
 			});
 
-			it("should render an icon with an expanded class on click", () => {
+			it("should render an icon with an expanded class on click", async () => {
 				render(<SiteDistinction />);
 				const button = screen.getByRole("button", {
 					name: `Show ${otherSiteTitleShort} link`,
@@ -119,7 +127,10 @@ describe("SiteDistinction", () => {
 				const svg = button.querySelector("svg");
 				expect(svg?.classList.value).toEqual("icon");
 				userEvent.click(button);
-				expect(svg).toHaveClass("icon iconExpanded");
+
+				await waitFor(() => {
+					expect(svg).toHaveClass("icon iconExpanded");
+				});
 			});
 
 			it("should prefetch other site link", async () => {

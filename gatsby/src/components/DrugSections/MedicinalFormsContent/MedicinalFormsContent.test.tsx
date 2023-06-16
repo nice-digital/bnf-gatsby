@@ -1,4 +1,4 @@
-import { render, screen, within } from "@testing-library/react";
+import { render, screen, within, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { navigate } from "gatsby";
 
@@ -65,7 +65,7 @@ describe("MedicinalFormsContent", () => {
 			],
 		};
 
-		it("should render Gatsby link to medicinal forms page with only 1 form", () => {
+		it("should render Gatsby link to medicinal forms page with only 1 form", async () => {
 			render(
 				<MedicinalFormsContent
 					{...minimumProps}
@@ -79,16 +79,21 @@ describe("MedicinalFormsContent", () => {
 
 			userEvent.click(link);
 
-			expect(link).toHaveAttribute(
-				"href",
-				"/drugs/anti-d-rh0-immunoglobulin/medicinal-forms/"
-			);
-			expect(navigate).toHaveBeenCalledWith(
-				"/drugs/anti-d-rh0-immunoglobulin/medicinal-forms/"
-			);
+			await waitFor(() => {
+				expect(link).toHaveAttribute(
+					"href",
+					"/drugs/anti-d-rh0-immunoglobulin/medicinal-forms/"
+				);
+			});
+
+			await waitFor(() => {
+				expect(navigate).toHaveBeenCalledWith(
+					"/drugs/anti-d-rh0-immunoglobulin/medicinal-forms/"
+				);
+			});
 		});
 
-		it("should render Gatsby link to medicinal forms page with 2 or more forms", () => {
+		it("should render Gatsby link to medicinal forms page with 2 or more forms", async () => {
 			render(<MedicinalFormsContent {...propsWithForms} />);
 
 			const link = screen.getByRole("link", {
@@ -101,9 +106,12 @@ describe("MedicinalFormsContent", () => {
 				"href",
 				"/drugs/anti-d-rh0-immunoglobulin/medicinal-forms/"
 			);
-			expect(navigate).toHaveBeenCalledWith(
-				"/drugs/anti-d-rh0-immunoglobulin/medicinal-forms/"
-			);
+
+			await waitFor(() => {
+				expect(navigate).toHaveBeenCalledWith(
+					"/drugs/anti-d-rh0-immunoglobulin/medicinal-forms/"
+				);
+			});
 		});
 
 		it("should not render forms list when there is only 1 form", () => {
@@ -135,7 +143,7 @@ describe("MedicinalFormsContent", () => {
 			expect(within(list).getAllByRole("link")).toHaveLength(2);
 		});
 
-		it("should render link medicinal form to section with hash on medicinal forms page", () => {
+		it("should render link medicinal form to section with hash on medicinal forms page", async () => {
 			render(<MedicinalFormsContent {...propsWithForms} />);
 
 			const tabletsLink = screen.getByRole("link", { name: "Tablets" });
@@ -146,9 +154,12 @@ describe("MedicinalFormsContent", () => {
 				"href",
 				"/drugs/anti-d-rh0-immunoglobulin/medicinal-forms/#tablets"
 			);
-			expect(navigate).toHaveBeenCalledWith(
-				"/drugs/anti-d-rh0-immunoglobulin/medicinal-forms/#tablets"
-			);
+
+			await waitFor(() => {
+				expect(navigate).toHaveBeenCalledWith(
+					"/drugs/anti-d-rh0-immunoglobulin/medicinal-forms/#tablets"
+				);
+			});
 		});
 
 		it("should match snapshot", () => {

@@ -1,5 +1,5 @@
 import { useLocation } from "@reach/router";
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Link } from "gatsby";
 import React from "react";
@@ -118,7 +118,7 @@ describe("mobile menu", () => {
 		expect(toggleBtn).toHaveAttribute("aria-expanded", "false");
 	});
 
-	it("should collapse toggle button on click", () => {
+	it("should collapse toggle button on click", async () => {
 		render(<Menu {...menuProps} />);
 
 		const toggleBtn = screen.getByRole("button", {
@@ -127,10 +127,15 @@ describe("mobile menu", () => {
 
 		userEvent.click(toggleBtn);
 
-		expect(toggleBtn).toHaveAttribute("aria-expanded", "true");
-		expect(toggleBtn).toHaveAttribute(
-			"aria-label",
-			"Collapse menu for example pages"
-		);
+		await waitFor(() => {
+			expect(toggleBtn).toHaveAttribute("aria-expanded", "true");
+		});
+
+		await waitFor(() => {
+			expect(toggleBtn).toHaveAttribute(
+				"aria-label",
+				"Collapse menu for example pages"
+			);
+		});
 	});
 });

@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { renderToString } from "react-dom/server";
 
@@ -174,7 +174,7 @@ describe("IndicationsAndDose", () => {
 			expect(screen.getByRole("button")).toBeInTheDocument();
 		});
 
-		it("should expand all sections on toggle button click", () => {
+		it("should expand all sections on toggle button click", async () => {
 			render(<IndicationsAndDose {...props} />);
 
 			expect(
@@ -183,12 +183,14 @@ describe("IndicationsAndDose", () => {
 
 			userEvent.click(screen.getByRole("button"));
 
-			expect(
-				screen.getAllByRole<HTMLDetailsElement>("group").map((d) => d.open)
-			).toSatisfyAll((open) => open);
+			await waitFor(() => {
+				expect(
+					screen.getAllByRole<HTMLDetailsElement>("group").map((d) => d.open)
+				).toSatisfyAll((open) => open);
+			});
 		});
 
-		it("should have appropriate data tracking attribute on the expand/collapse all sections button", () => {
+		it("should have appropriate data tracking attribute on the expand/collapse all sections button", async () => {
 			render(<IndicationsAndDose {...props} />);
 
 			expect(
@@ -203,14 +205,16 @@ describe("IndicationsAndDose", () => {
 				})
 			);
 
-			expect(
-				screen.getByRole("button", {
-					name: "Hide all indications and dose (3)",
-				})
-			).toHaveAttribute("data-tracking", "Hide all sections");
+			await waitFor(() => {
+				expect(
+					screen.getByRole("button", {
+						name: "Hide all indications and dose (3)",
+					})
+				).toHaveAttribute("data-tracking", "Hide all sections");
+			});
 		});
 
-		it("should toggle button text on button click", () => {
+		it("should toggle button text on button click", async () => {
 			render(<IndicationsAndDose {...props} />);
 
 			expect(screen.getByRole("button")).toHaveTextContent(
@@ -219,9 +223,11 @@ describe("IndicationsAndDose", () => {
 
 			userEvent.click(screen.getByRole("button"));
 
-			expect(screen.getByRole("button")).toHaveTextContent(
-				"Hide all indications and dose (3)"
-			);
+			await waitFor(() => {
+				expect(screen.getByRole("button")).toHaveTextContent(
+					"Hide all indications and dose (3)"
+				);
+			});
 		});
 	});
 });
