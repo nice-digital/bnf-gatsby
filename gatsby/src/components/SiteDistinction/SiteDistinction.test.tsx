@@ -147,7 +147,10 @@ describe("SiteDistinction", () => {
 					expect(prefetch).toHaveAttribute("as", "document");
 				});
 
-				expect(prefetch).toHaveAttribute("href", expectedHref);
+				expect(prefetch).toHaveAttribute(
+					"href",
+					"https://bnfc-gatsby-tests.nice.org.uk/test/?ref=switch"
+				);
 			});
 		});
 

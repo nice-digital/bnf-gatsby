@@ -5,162 +5,162 @@ exports[`schema should match snapshot 1`] = `
 	type BnfAboutSection implements Node & BnfSimpleRecord @dontInfer {
 		order: Int!
 
-		"The title of the section. May contain HTML markup."
+		\\"The title of the section. May contain HTML markup.\\"
 		title: String!
 
-		"The review date of the record, formatted into a string."
+		\\"The review date of the record, formatted into a string.\\"
 		reviewDate: Date @dateformat
 
-		"The slugified and lowercased title, used as a URL path"
-		slug: String! @slug(field: "title")
+		\\"The slugified and lowercased title, used as a URL path\\"
+		slug: String! @slug(field: \\"title\\")
 
-		"The sections of the record."
+		\\"The sections of the record.\\"
 		sections: [BnfRecordSection!]!
 	}
 
 
-	"""
+	\\"\\"\\"
 	The borderline substances introduction record.
-	"""
+	\\"\\"\\"
 	type BnfBorderlineSubstancesIntroduction implements Node & BnfSimpleRecord @dontInfer {
-		"The title of the section. May contain HTML markup."
+		\\"The title of the section. May contain HTML markup.\\"
 		title: String! @html
 
-		"The review date of the record, formatted into a string."
+		\\"The review date of the record, formatted into a string.\\"
 		reviewDate: Date @dateformat
 
-		"The slugified and lowercased title, used as a URL path"
-		slug: String! @slug(field: "title")
+		\\"The slugified and lowercased title, used as a URL path\\"
+		slug: String! @slug(field: \\"title\\")
 
-		"The sections of the record."
+		\\"The sections of the record.\\"
 		sections: [BnfRecordSection!]!
 	}
 
-	"""
+	\\"\\"\\"
 	The borderline substance taxonomy as a tree structure.
-	"""
+	\\"\\"\\"
 	type BnfBorderlineSubstancesTaxonomy implements Node @dontInfer {
-		"The title of the taxonomy node. May contain HTML mark-up."
+		\\"The title of the taxonomy node. May contain HTML mark-up.\\"
 		title: String! @html
 
-		"The slugified and lowercased title, used as a URL path"
+		\\"The slugified and lowercased title, used as a URL path\\"
 		slug: String!
 
-		"The review date of the record, formatted into a string."
+		\\"The review date of the record, formatted into a string.\\"
 		reviewDate: Date @dateformat
 
-		"The borderline substances that are applicable for this point in the borderline substances taxonomy."
+		\\"The borderline substances that are applicable for this point in the borderline substances taxonomy.\\"
 		substances: [BnfBorderlineSubstance!]!
 
-		"Any children records of the borderline substances taxonomy."
+		\\"Any children records of the borderline substances taxonomy.\\"
 		childTaxonomies: [BnfBorderlineSubstancesTaxonomy!]! @link
 
-		"The parent taxonomy. Will be null for root taxonomies."
+		\\"The parent taxonomy. Will be null for root taxonomies.\\"
 		parentTaxonomy: BnfBorderlineSubstancesTaxonomy @link
 
-		"The root taxonomy"
+		\\"The root taxonomy\\"
 		rootTaxonomy: BnfBorderlineSubstancesTaxonomy! @link
 	}
 
-	"""
+	\\"\\"\\"
 	The root of the borderline substances tree, e.g. 'Foods for special diets' etc
-	"""
+	\\"\\"\\"
 	type BnfBorderlineSubstancesTaxonomyRoot implements Node @dontInfer {
 		taxonomy: BnfBorderlineSubstancesTaxonomy! @link
 	}
 
-	"""
+	\\"\\"\\"
 	A group of products - the level at which we create sub-pages
-	"""
+	\\"\\"\\"
 	type BnfBorderlineSubstancesTaxonomyProductGroup implements Node @dontInfer {
 		taxonomy: BnfBorderlineSubstancesTaxonomy! @link
 	}
 
-	"""
+	\\"\\"\\"
 	An individual borderline substance. This comprises a number of presentations, each of which may contain zero or more preparations.
-	"""
+	\\"\\"\\"
 	type BnfBorderlineSubstance @dontInfer {
-		"The PHPID of the borderline substance"
+		\\"The PHPID of the borderline substance\\"
 		id: ID!
 
-		"The title of the borderline substance. May contain HTML mark-up."
+		\\"The title of the borderline substance. May contain HTML mark-up.\\"
 		title: String! @html
 
-		"The slugified and lowercased title, used as a URL path/hash"
-		slug: String! @slug(field: "title")
+		\\"The slugified and lowercased title, used as a URL path/hash\\"
+		slug: String! @slug(field: \\"title\\")
 
-		"An optional introductory note for the borderline substance. May contain HTML mark-up."
+		\\"An optional introductory note for the borderline substance. May contain HTML mark-up.\\"
 		introductionNote: String @html
 
-		"The presentation details for the borderline substance."
+		\\"The presentation details for the borderline substance.\\"
 		presentations: [BnfBorderlineSubstancePresentation!]!
 	}
 
-	"""
+	\\"\\"\\"
 	The presentation of a borderline substance, i.e. its formulation and nutritional content. Also comprises zero or more preparations.
-	"""
+	\\"\\"\\"
 	type BnfBorderlineSubstancePresentation @dontInfer {
-		"The formulation of the borderline substance, for example 'Liquid (tube feed) per 100 mL'."
+		\\"The formulation of the borderline substance, for example 'Liquid (tube feed) per 100 mL'.\\"
 		formulation: String
 
-		"The energy content of the borderline substance in kilojoules."
+		\\"The energy content of the borderline substance in kilojoules.\\"
 		energyKj: String
 
-		"The energy content of the borderline substance in kilocalories."
+		\\"The energy content of the borderline substance in kilocalories.\\"
 		energyKCal: String
 
-		"The protein content of the borderline substance in grams."
+		\\"The protein content of the borderline substance in grams.\\"
 		proteinGrams: String
 
-		"The protein constituents of the borderline substance."
+		\\"The protein constituents of the borderline substance.\\"
 		proteinConstituents: [String!]!
 
-		"The carbohydrate content of the borderline substance in grams."
+		\\"The carbohydrate content of the borderline substance in grams.\\"
 		carbohydrateGrams: String
 
-		"The carbohydrate constituents of the borderline substance."
+		\\"The carbohydrate constituents of the borderline substance.\\"
 		carbohydrateConstituents: [String!]!
 
-		"The fat content of the borderline substance in grams."
+		\\"The fat content of the borderline substance in grams.\\"
 		fatGrams: String
 
-		"The fat constituents of the borderline substance."
+		\\"The fat constituents of the borderline substance.\\"
 		fatConstituents: [String!]!
 
-		"The fibre content of the borderline substance in grams."
+		\\"The fibre content of the borderline substance in grams.\\"
 		fibreGrams: String
 
-		"The fibre constituents of the borderline substance."
+		\\"The fibre constituents of the borderline substance.\\"
 		fibreConstituents: [String!]!
 
-		"A list of any special characteristics of the borderline substance."
+		\\"A list of any special characteristics of the borderline substance.\\"
 		specialCharacteristics: [String!]!
 
-		"A list of the Advisory Committee on Borderline Substances (ACBS) indications. May contain HTML mark-up."
+		\\"A list of the Advisory Committee on Borderline Substances (ACBS) indications. May contain HTML mark-up.\\"
 		acbs: [String!]! @html
 
-		"The presentation note for the borderline substance."
+		\\"The presentation note for the borderline substance.\\"
 		presentationNote: String @html
 
-		"The Rx advice for the borderline substance."
+		\\"The Rx advice for the borderline substance.\\"
 		rxAdvice: String @html
 
-		"The preparations for the borderline substance."
+		\\"The preparations for the borderline substance.\\"
 		borderlineSubstancePreps: [BnfPrep!]!
 	}
 
 
 	type BnfCautionaryAndAdvisoryGuidance implements Node & BnfSimpleRecord @dontInfer {
-		"The title of the section. May contain HTML markup."
+		\\"The title of the section. May contain HTML markup.\\"
 		title: String!
 
-		"The review date of the record."
+		\\"The review date of the record.\\"
 		reviewDate: Date @dateformat
 
-		"The slugified and lowercased title, used as a URL path"
-		slug: String! @slug(field: "title")
+		\\"The slugified and lowercased title, used as a URL path\\"
+		slug: String! @slug(field: \\"title\\")
 
-		"The sections of the record."
+		\\"The sections of the record.\\"
 		sections: [BnfRecordSection!]!
 	}
 
@@ -168,237 +168,237 @@ exports[`schema should match snapshot 1`] = `
 	type BnfCautionaryAndAdvisoryLabel implements Node @dontInfer {
 		number: Int!
 
-		"A description of the label. May contain HTML mark-up. "
+		\\"A description of the label. May contain HTML mark-up. \\"
 		description: String!
 
-		"The label recommendation in English."
+		\\"The label recommendation in English.\\"
 		englishRecommendation: String!
 
-		"The Welsh translation of the label recommendation."
+		\\"The Welsh translation of the label recommendation.\\"
 		welshRecommendation: String!
 	}
 
 
-	"""
+	\\"\\"\\"
 	The classifications for a drug, as a small taxonomy, represented as a tree data structure.
-	"""
+	\\"\\"\\"
 	type BnfClassification implements Node @dontInfer {
-		"The name of the classification. May contain HTML mark-up."
+		\\"The name of the classification. May contain HTML mark-up.\\"
 		name: String!
 
-		"The order of this classifications within the tree structure"
+		\\"The order of this classifications within the tree structure\\"
 		order: Int!
 
-		"The slugified and lowercased name"
-		slug: String! @slug(field: "name")
+		\\"The slugified and lowercased name\\"
+		slug: String! @slug(field: \\"name\\")
 
-		"The more specific classifications where available. For example, 'HIV-integrase inhibitors' is a more specific classification of 'antivirals'"
+		\\"The more specific classifications where available. For example, 'HIV-integrase inhibitors' is a more specific classification of 'antivirals'\\"
 		moreSpecificClassifications: [BnfClassification!]! @link
 
-		"The classification that's the direct parent, e.g. 'antivirals' is the parent of 'HIV-integrase inhibitors'"
+		\\"The classification that's the direct parent, e.g. 'antivirals' is the parent of 'HIV-integrase inhibitors'\\"
 		parentClassification: BnfClassification @link
 
-		"The classification that's at the root of this taxonomy"
+		\\"The classification that's at the root of this taxonomy\\"
 		rootClassification: BnfClassification! @link
 
-		"All drugs in this class, regardless of whether they're primary or secondary"
+		\\"All drugs in this class, regardless of whether they're primary or secondary\\"
 		drugs: [BnfDrug!]! @link
 	}
 
 
 	type BnfDentalPractitionersFormulary implements Node & BnfSimpleRecord @dontInfer {
-		"The title of the section. May contain HTML markup."
+		\\"The title of the section. May contain HTML markup.\\"
 		title: String!
 
-		"The review date of the record."
+		\\"The review date of the record.\\"
 		reviewDate: Date @dateformat
 
-		"The slugified and lowercased title, used as a URL path"
-		slug: String! @slug(field: "title")
+		\\"The slugified and lowercased title, used as a URL path\\"
+		slug: String! @slug(field: \\"title\\")
 
-		"The sections of the record."
+		\\"The sections of the record.\\"
 		sections: [BnfRecordSection!]!
 	}
 
 
-	"""
+	\\"\\"\\"
 	A drug monograph
-	"""
+	\\"\\"\\"
 	type BnfDrug implements Node @dontInfer {
-		"The PHP ID for the drug e.g. PHP5693"
+		\\"The PHP ID for the drug e.g. PHP5693\\"
 		phpid: ID!
 
-		"The SID for the drug e.g. _694410247"
+		\\"The SID for the drug e.g. _694410247\\"
 		sid: ID!
 
-		"The title for the drug. May include HTML markup. E.g. anti-D (Rh0) immunoglobulin has a subscript 0"
+		\\"The title for the drug. May include HTML markup. E.g. anti-D (Rh0) immunoglobulin has a subscript 0\\"
 		title: String!
 
-		"The slugified and lowercased title, used as a URL path"
-		slug: String! @slug(field: "title")
+		\\"The slugified and lowercased title, used as a URL path\\"
+		slug: String! @slug(field: \\"title\\")
 
-		"The review date, if available for this record."
+		\\"The review date, if available for this record.\\"
 		reviewDate: Date @dateformat
 
-		"The lowest level primary classification to which this drug belongs. Note: it's nullable because not all drugs have a primary classification, e.g. Cranberry"
+		\\"The lowest level primary classification to which this drug belongs. Note: it's nullable because not all drugs have a primary classification, e.g. Cranberry\\"
 		primaryClassification: BnfClassification @link
 
-		"The lowest level secondary classifications to which this drug belongs."
+		\\"The lowest level secondary classifications to which this drug belongs.\\"
 		secondaryClassifications: [BnfClassification!]! @link
 
-		"The interactant with the same sid as this drug, if it exists, otherwise null"
-		interactant: BnfInteractant @link(by: "sid", from: "sid")
+		\\"The interactant with the same sid as this drug, if it exists, otherwise null\\"
+		interactant: BnfInteractant @link(by: \\"sid\\", from: \\"sid\\")
 
-		"The list of individual interactants for the substance(s) in this drug. An empty list indicates that there are no interactants associated with this drug."
-		interactants: [BnfInteractant!]! @link(by: "sid")
+		\\"The list of individual interactants for the substance(s) in this drug. An empty list indicates that there are no interactants associated with this drug.\\"
+		interactants: [BnfInteractant!]! @link(by: \\"sid\\")
 
-		"Any treatment summaries that contain a link to back this drug"
+		\\"Any treatment summaries that contain a link to back this drug\\"
 		relatedTreatmentSummaries: [BnfTreatmentSummary!]! @link
 
-		"Any NPF treatment summaries that contain a link to back this drug"
+		\\"Any NPF treatment summaries that contain a link to back this drug\\"
 		relatedNursePrescribersTreatmentSummaries: [BnfNursePrescribersFormularyTreatmentSummary!]! @link
 
-		"The constituent drugs. This will be populated if the drug is a combination (e.g. 'tramadol with paracetamol') where each constituent exists in the BNF as a monograph in its own right."
+		\\"The constituent drugs. This will be populated if the drug is a combination (e.g. 'tramadol with paracetamol') where each constituent exists in the BNF as a monograph in its own right.\\"
 		constituentDrugs: BnfConstituentDrugs
 
-		"The allergy and cross-sensitivity section for the drug, including any relevant drug classes and preparations."
+		\\"The allergy and cross-sensitivity section for the drug, including any relevant drug classes and preparations.\\"
 		allergyAndCrossSensitivity: BnfSimplePot
 
-		"The breast feeding section for the drug, including any relevant drug classes and preparations."
+		\\"The breast feeding section for the drug, including any relevant drug classes and preparations.\\"
 		breastFeeding: BnfSimplePot
 
-		"The cautions section for the drug, including any relevant drug classes and preparations."
+		\\"The cautions section for the drug, including any relevant drug classes and preparations.\\"
 		cautions: BnfSimplePot
 
-		"The conception and contraception section for the drug, including any relevant drug classes and preparations."
+		\\"The conception and contraception section for the drug, including any relevant drug classes and preparations.\\"
 		conceptionAndContraception: BnfSimplePot
 
-		"The contra-indications section for the drug, including any relevant drug classes and preparations."
+		\\"The contra-indications section for the drug, including any relevant drug classes and preparations.\\"
 		contraIndications: BnfSimplePot
 
-		"The directions for administration section for the drug, including any relevant drug classes and preparations."
+		\\"The directions for administration section for the drug, including any relevant drug classes and preparations.\\"
 		directionsForAdministration: BnfSimplePot
 
-		"The drug action section for the drug, including any relevant drug classes and preparations"
+		\\"The drug action section for the drug, including any relevant drug classes and preparations\\"
 		drugAction: BnfSimplePot
 
-		"The effect on laboratory tests section for the drug, including any relevant drug classes and preparations."
+		\\"The effect on laboratory tests section for the drug, including any relevant drug classes and preparations.\\"
 		effectOnLaboratoryTests: BnfSimplePot
 
-		"The exceptions to legal category section for the drug, including any relevant drug classes and preparations."
+		\\"The exceptions to legal category section for the drug, including any relevant drug classes and preparations.\\"
 		exceptionsToLegalCategory: BnfSimplePot
 
-		"The handling and storage section for the drug, including any relevant drug classes and preparations."
+		\\"The handling and storage section for the drug, including any relevant drug classes and preparations.\\"
 		handlingAndStorage: BnfSimplePot
 
-		"The hepatic impairment section for the drug, including any relevant drug classes and preparations."
+		\\"The hepatic impairment section for the drug, including any relevant drug classes and preparations.\\"
 		hepaticImpairment: BnfSimplePot
 
-		"The important safety information section for the drug, including any relevant drug classes and preparations."
+		\\"The important safety information section for the drug, including any relevant drug classes and preparations.\\"
 		importantSafetyInformation: BnfSimplePot
 
-		"The less suitable for prescribing section for the drug, including any relevant drug classes and preparations."
+		\\"The less suitable for prescribing section for the drug, including any relevant drug classes and preparations.\\"
 		lessSuitableForPrescribing: BnfSimplePot
 
-		"The indications and dose section for the drug, including any relevant drug classes and preparations."
+		\\"The indications and dose section for the drug, including any relevant drug classes and preparations.\\"
 		indicationsAndDose: BnfIndicationsAndDose
 
-		"The medicinal forms for the drug."
+		\\"The medicinal forms for the drug.\\"
 		medicinalForms: BnfMedicinalForms!
 
-		"The monitoring requirements section for the drug, including any relevant drug classes and preparations."
+		\\"The monitoring requirements section for the drug, including any relevant drug classes and preparations.\\"
 		monitoringRequirements: BnfMonitoringPot
 
-		"The national funding section for the drug, including any relevant drug classes and preparations."
+		\\"The national funding section for the drug, including any relevant drug classes and preparations.\\"
 		nationalFunding: BnfNationalFundingPot
 
-		"The palliative care section for the drug, including any relevant drug classes and preparations."
+		\\"The palliative care section for the drug, including any relevant drug classes and preparations.\\"
 		palliativeCare: BnfSimplePot
 
-		"The patient and carer advice section for the drug, including any relevant drug classes and preparations."
+		\\"The patient and carer advice section for the drug, including any relevant drug classes and preparations.\\"
 		patientAndCarerAdvice: BnfSimplePot
 
-		"The pregnancy section for the drug, including any relevant drug classes and preparations."
+		\\"The pregnancy section for the drug, including any relevant drug classes and preparations.\\"
 		pregnancy: BnfSimplePot
 
-		"The prescribing and dispensing information section for the drug, including any relevant drug classes and preparations. Note that this section used to contain information about prescribing and dispensing in palliative care, but this will now appear in the palliative care section."
+		\\"The prescribing and dispensing information section for the drug, including any relevant drug classes and preparations. Note that this section used to contain information about prescribing and dispensing in palliative care, but this will now appear in the palliative care section.\\"
 		prescribingAndDispensingInformation: BnfSimplePot
 
-		"The profession specific information section for the drug, including any relevant drug classes and preparations."
+		\\"The profession specific information section for the drug, including any relevant drug classes and preparations.\\"
 		professionSpecificInformation: BnfSimplePot
 
-		"The pre-treatment screening section for the drug, including any relevant drug classes and preparations."
+		\\"The pre-treatment screening section for the drug, including any relevant drug classes and preparations.\\"
 		preTreatmentScreening: BnfSimplePot
 
-		"The renal impairment section for the drug, including any relevant drug classes and preparations."
+		\\"The renal impairment section for the drug, including any relevant drug classes and preparations.\\"
 		renalImpairment: BnfSimplePot
 
-		"The side effects section for the drug, including any relevant drug classes and preparations."
+		\\"The side effects section for the drug, including any relevant drug classes and preparations.\\"
 		sideEffects: BnfSimplePot
 
-		"The treatment cessation section for the drug, including any relevant drug classes and preparations."
+		\\"The treatment cessation section for the drug, including any relevant drug classes and preparations.\\"
 		treatmentCessation: BnfSimplePot
 
-		"The unlicensed use section for the drug, including any relevant drug classes and preparations."
+		\\"The unlicensed use section for the drug, including any relevant drug classes and preparations.\\"
 		unlicensedUse: BnfSimplePot
 	}
 
-	"""
+	\\"\\"\\"
 	A wrapper for the constituent drugs of a combination drug.
-	"""
+	\\"\\"\\"
 	type BnfConstituentDrugs {
-		"The standard message to be included with the constituent drugs."
+		\\"The standard message to be included with the constituent drugs.\\"
 		message: String!
 
-		"The constituents of the combination drug."
-		constituents: [BnfDrug!]! @link(by: "sid")
+		\\"The constituents of the combination drug.\\"
+		constituents: [BnfDrug!]! @link(by: \\"sid\\")
 	}
 
-	"""
+	\\"\\"\\"
 	The medicinal forms for a drug. A medicinal form is how a drug is made up for a patient to take, such as 'tablet', 'capsule', or 'solution for injection'. Each medicinal form will contain details of the available preparations of the drug. In some cases, a drug monograph may appear in the BNF without any preparations and medicinal forms (for example, if the drug only has special-order preparations that the BNF does not list). In this case, the 'initialStatement' will indicate that there are no medicines listed.
-	"""
+	\\"\\"\\"
 	type BnfMedicinalForms {
-		"The initial statement for the medicinal forms for a drug. This will either be a standard licensing variation statement or a statement to indicate that there are no medicines listed."
+		\\"The initial statement for the medicinal forms for a drug. This will either be a standard licensing variation statement or a statement to indicate that there are no medicines listed.\\"
 		initialStatement: String!
 
-		"The BNF does not contain details of special-order preparations, but where these are available, this field contains a statement to say for which forms special-order preparations are available"
+		\\"The BNF does not contain details of special-order preparations, but where these are available, this field contains a statement to say for which forms special-order preparations are available\\"
 		specialOrderManufacturersStatement: String
 
-		"The medicinal forms. May be empty if there are no licensed medicines listed in the BNF."
+		\\"The medicinal forms. May be empty if there are no licensed medicines listed in the BNF.\\"
 		medicinalForms: [BnfMedicinalForm!]!
 	}
 
-	"""
+	\\"\\"\\"
 	The properties for a medicinal form. This contains all the preparations and packs for a specific medicinal form for a drug, as well as information about applicable cautionary and advisory labels, excipients and electrolytes.
-	"""
+	\\"\\"\\"
 	type BnfMedicinalForm {
-		"The name of the medicinal form."
+		\\"The name of the medicinal form.\\"
 		form: String!
 
-		"The slugified and lowercased form name, used as a section id, and hash target"
-		slug: String! @slug(field: "form")
+		\\"The slugified and lowercased form name, used as a section id, and hash target\\"
+		slug: String! @slug(field: \\"form\\")
 
-		"A list of any cautionary and advisory labels for the medicinal form."
+		\\"A list of any cautionary and advisory labels for the medicinal form.\\"
 		cautionaryAndAdvisoryLabels: [BnfMedicinalFormLabel!]!
 
-		"A list of any excipients for the medicinal form, provided as a text statement."
+		\\"A list of any excipients for the medicinal form, provided as a text statement.\\"
 		excipients: String
 
-		"A list of any electrolytes for the medicinal form, provided as a text statement."
+		\\"A list of any electrolytes for the medicinal form, provided as a text statement.\\"
 		electrolytes: String
 
-		"The preparations of the drug for the medicinal form."
+		\\"The preparations of the drug for the medicinal form.\\"
 		preps: [BnfPrep!]!
 	}
 
-	"""
+	\\"\\"\\"
 	A cautionary/advisory label for this form. It differs slightly from the labels used elsewhere, as it also includes a qualifier for this particular medicinal form.
-	"""
+	\\"\\"\\"
 	type BnfMedicinalFormLabel {
-		"A label for this medicinal form"
-		label: BnfCautionaryAndAdvisoryLabel! @link(by: "number")
+		\\"A label for this medicinal form\\"
+		label: BnfCautionaryAndAdvisoryLabel! @link(by: \\"number\\")
 
-		"A qualifying statement that elaborates on this label"
+		\\"A qualifying statement that elaborates on this label\\"
 		qualifier: String
 	}
 
@@ -406,729 +406,729 @@ exports[`schema should match snapshot 1`] = `
 	type BnfGuidance implements Node & BnfSimpleRecord @dontInfer {
 		order: Int!
 
-		"The title of the section. May contain HTML markup."
+		\\"The title of the section. May contain HTML markup.\\"
 		title: String!
 
-		"The review date of the record."
+		\\"The review date of the record.\\"
 		reviewDate: Date @dateformat
 
-		"The slugified and lowercased title, used as a URL path"
-		slug: String! @slug(field: "title")
+		\\"The slugified and lowercased title, used as a URL path\\"
+		slug: String! @slug(field: \\"title\\")
 
-		"The sections of the record."
+		\\"The sections of the record.\\"
 		sections: [BnfRecordSection!]!
 	}
 
 
-	"""
+	\\"\\"\\"
 	A single section of simple (unstructured) content for a BNF drug or medical device. A monograph will include content from relevant drug classes (groups of drugs that share the same properties), the drug itself, and specific preparations where the properties differ from those of the generic drug. This record has these three parts of content in the drugClassContent, drugContent and prepContent fields respectively.
-	"""
+	\\"\\"\\"
 	type BnfIndicationsAndDose @dontInfer {
-		"The name/title of the pot."
+		\\"The name/title of the pot.\\"
 		potName: String!
 
-		"The slugified and lowercased pot name, used as a DOM ID and hash target"
-		slug: String! @slug(field: "potName")
+		\\"The slugified and lowercased pot name, used as a DOM ID and hash target\\"
+		slug: String! @slug(field: \\"potName\\")
 
-		"The indications and dose pot content that relates to relevant drug classes for the drug. This field will contain more than one entry when the drug belongs to multiple drug classes with relevant content for the pot."
+		\\"The indications and dose pot content that relates to relevant drug classes for the drug. This field will contain more than one entry when the drug belongs to multiple drug classes with relevant content for the pot.\\"
 		drugClassContent: [BnfIndicationsAndDoseContent]
 
-		"The indications and dose pot content that relates to the drug."
+		\\"The indications and dose pot content that relates to the drug.\\"
 		drugContent: BnfIndicationsAndDoseContent
 
-		"Any indications and dose pot content that relates to specific preparations. This field will contain more than one entry when the drug has multiple preparations with specific relevant content for the pot."
+		\\"Any indications and dose pot content that relates to specific preparations. This field will contain more than one entry when the drug has multiple preparations with specific relevant content for the pot.\\"
 		prepContent: [BnfIndicationsAndDoseContent]
 	}
 
-	"""
+	\\"\\"\\"
 	The details of the indications and doses for a drug, drug class or preparation.
-	"""
+	\\"\\"\\"
 	type BnfIndicationsAndDoseContent @dontInfer {
-		"What the content is for (the name of a drug class, drug or preparation). May contain HTML mark-up"
+		\\"What the content is for (the name of a drug class, drug or preparation). May contain HTML mark-up\\"
 		contentFor: String! @html
 
-		"Slugified contentFor field"
-		slug: String! @slug(field: "contentFor")
+		\\"Slugified contentFor field\\"
+		slug: String! @slug(field: \\"contentFor\\")
 
-		"The indication and dose groups."
+		\\"The indication and dose groups.\\"
 		indicationAndDoseGroups: [BnfIndicationAndDoseGroup!]!
 
-		"Dose adjustments due to interactions content. May contain HTML mark-up."
+		\\"Dose adjustments due to interactions content. May contain HTML mark-up.\\"
 		doseAdjustments: String @html
 
-		"Extremes of body weight content. May contain HTML mark-up."
+		\\"Extremes of body weight content. May contain HTML mark-up.\\"
 		extremesOfBodyWeight: String @html
 
-		"dose equivalence and conversion content. May contain HTML mark-up."
+		\\"dose equivalence and conversion content. May contain HTML mark-up.\\"
 		doseEquivalence: String @html
 
-		"Potency content. May contain HTML mark-up."
+		\\"Potency content. May contain HTML mark-up.\\"
 		potency: String @html
 
-		"Pharmacokinetics content. May contain HTML mark-up."
+		\\"Pharmacokinetics content. May contain HTML mark-up.\\"
 		pharmacokinetics: String @html
 	}
 
-	"""
+	\\"\\"\\"
 	A grouping of one or more indications and the doses relevant for those indications.
-	"""
+	\\"\\"\\"
 	type BnfIndicationAndDoseGroup @dontInfer {
-		"The therapeutic indications."
+		\\"The therapeutic indications.\\"
 		therapeuticIndications: [BnfTherapeuticIndication!]!
 
-		"The routes, indications, patient groups and doses statements."
+		\\"The routes, indications, patient groups and doses statements.\\"
 		routesAndPatientGroups: [BnfRouteAndPatientGroups!]!
 	}
 
-	"""
+	\\"\\"\\"
 	The therapeutic indication, including SNOMED CT coding where available.
-	"""
+	\\"\\"\\"
 	type BnfTherapeuticIndication @dontInfer {
-		"If available, the SNOMED CT identifier that encodes the indication. This value is a should be represented as a 64-bit integer, but it is represented as a String in this JSON to avoid any potential problems of 32-bit integer overflows."
+		\\"If available, the SNOMED CT identifier that encodes the indication. This value is a should be represented as a 64-bit integer, but it is represented as a String in this JSON to avoid any potential problems of 32-bit integer overflows.\\"
 		sctIndication: String
 
-		"If available, the English preferred name of the SNOMED CT concept that encodes the therapeutic intent of the indication."
+		\\"If available, the English preferred name of the SNOMED CT concept that encodes the therapeutic intent of the indication.\\"
 		sctTherapeuticIntent: String
 
-		"The indication. May contain HTML mark-up."
+		\\"The indication. May contain HTML mark-up.\\"
 		indication: String! @html
 	}
 
-	"""
+	\\"\\"\\"
 	The route of administration and one or more patient groups with doses for that route.
-	"""
+	\\"\\"\\"
 	type BnfRouteAndPatientGroups @dontInfer {
-		"The route of administration."
+		\\"The route of administration.\\"
 		routeOfAdministration: String!
 
-		"The patient groups and dose statements for the given route of administration."
+		\\"The patient groups and dose statements for the given route of administration.\\"
 		patientGroups: [BnfPatientGroup!]!
 	}
 
-	"""
+	\\"\\"\\"
 	A dose statement and the patient group that the dose applies to (e.g. adult or child).
-	"""
+	\\"\\"\\"
 	type BnfPatientGroup @dontInfer {
-		"The patient group that the dose applies to which can only be adult, child, or neonate."
+		\\"The patient group that the dose applies to which can only be adult, child, or neonate.\\"
 		patientGroup: String!
 
-		"Details of the patient group that the dose applies to (e.g. adult or child)."
+		\\"Details of the patient group that the dose applies to (e.g. adult or child).\\"
 		detailedPatientGroup: String!
 
-		"The dose statement. May contain HTML mark-up."
+		\\"The dose statement. May contain HTML mark-up.\\"
 		doseStatement: String! @html
 	}
 
 
 
-	"""
+	\\"\\"\\"
 	An introduction page for the interactants section
-	"""
+	\\"\\"\\"
 	type BnfInteractionsIntroduction implements Node @dontInfer {
-		"The title of the introduction page"
+		\\"The title of the introduction page\\"
 		title: String!
 
-		"The content sections for the introduction page"
+		\\"The content sections for the introduction page\\"
 		sections: [BnfInteractionsIntroductionSection!]!
 	}
 
-	"""
+	\\"\\"\\"
 	A content section within the interaction introduction
-	"""
+	\\"\\"\\"
 	type BnfInteractionsIntroductionSection @dontInfer {
-		"The title of the section"
+		\\"The title of the section\\"
 		title: String!
 
-		"The unique ID of the section."
+		\\"The unique ID of the section.\\"
 		id: String!
 
-		"The content for the section. May contain HTML markup. "
+		\\"The content for the section. May contain HTML markup. \\"
 		content: String! @html
 	}
 
-	"""
+	\\"\\"\\"
 	An interactant, which is a substance against which interaction messages are authored. Interactions are generally authored against moieties while some drug monographs are authored against salts (e.g. 'warfarin' and 'warfarin sodium').
-	"""
+	\\"\\"\\"
 	type BnfInteractant implements Node @dontInfer {
-		"The SID for the Interactant e.g. _694410247 which may, or may not, match the sid of a drug"
+		\\"The SID for the Interactant e.g. _694410247 which may, or may not, match the sid of a drug\\"
 		sid: String!
 
-		"The drug that matches this interactant, that is, the drug with same id if it exists, otherwise null"
-		drug: BnfDrug @link(by: "sid", from: "sid")
+		\\"The drug that matches this interactant, that is, the drug with same id if it exists, otherwise null\\"
+		drug: BnfDrug @link(by: \\"sid\\", from: \\"sid\\")
 
-		"The title for the interactant. May include HTML markup. E.g. anti-D (Rh0) immunoglobulin has a subscript 0"
+		\\"The title for the interactant. May include HTML markup. E.g. anti-D (Rh0) immunoglobulin has a subscript 0\\"
 		title: String!
 
-		"The slugified and lowercased title, used as a URL path"
-		slug: String! @slug(field: "title")
+		\\"The slugified and lowercased title, used as a URL path\\"
+		slug: String! @slug(field: \\"title\\")
 
-		"An array of interactions related to this particular interactant"
+		\\"An array of interactions related to this particular interactant\\"
 		interactions: [BnfInteraction!]!
 
-		"Additional information regarding specific interactants"
+		\\"Additional information regarding specific interactants\\"
 		supplementaryInformation: [BnfInteractionSupplementaryInformation!]!
 	}
 
-	"""
+	\\"\\"\\"
 	An interaction, which is a combination of two interactants and an array of interaction messages that give further
 	details on this combination.
-	"""
+	\\"\\"\\"
 	type BnfInteraction @dontInfer {
-		"The second interactant"
-		interactant: BnfInteractant! @link(by: "sid")
+		\\"The second interactant\\"
+		interactant: BnfInteractant! @link(by: \\"sid\\")
 
-		"The messages for this interaction"
+		\\"The messages for this interaction\\"
 		messages: [BnfInteractionMessage!]!
 	}
 
-	"""
+	\\"\\"\\"
 	An interaction message, which contains am HTML explanation of the nature of the interaction as well as details
 	of its severity.
-	"""
+	\\"\\"\\"
 	type BnfInteractionMessage @dontInfer {
-		"An HTML explanation of the nature of the interaction"
+		\\"An HTML explanation of the nature of the interaction\\"
 		message: String! @html
 
-		"A grading of how severe this interaction might be, e.g. severe/moderate"
+		\\"A grading of how severe this interaction might be, e.g. severe/moderate\\"
 		severity: String!
 
-		"An integer that corresponds to the level of severity, with higher numbers indicating greater severity. Useful for sorting. Severe = 4; Moderate = 3; Mild = 2; Normal = 1; Unknown = 0"
+		\\"An integer that corresponds to the level of severity, with higher numbers indicating greater severity. Useful for sorting. Severe = 4; Moderate = 3; Mild = 2; Normal = 1; Unknown = 0\\"
 		severityOrder: Int!
 
-		"The evidence for the interaction. This will only be present for messages that are not describing additive effects (i.e. 'additiveEffect' is false). Can only be 'Study', 'Anecdotal', or 'Theoretical'."
+		\\"The evidence for the interaction. This will only be present for messages that are not describing additive effects (i.e. 'additiveEffect' is false). Can only be 'Study', 'Anecdotal', or 'Theoretical'.\\"
 		evidence: String
 
-		"Whether the interaction is an additive effect (true) or not (false)."
+		\\"Whether the interaction is an additive effect (true) or not (false).\\"
 		additiveEffect: Boolean!
 	}
 
-	"""
+	\\"\\"\\"
 	Additional information regarding specific interactants
-	"""
+	\\"\\"\\"
 	type BnfInteractionSupplementaryInformation @dontInfer {
-		"The title of this piece of supplementary information"
+		\\"The title of this piece of supplementary information\\"
 		title: String!
-		"An HTML block containing the body of this piece of supplementary information"
+		\\"An HTML block containing the body of this piece of supplementary information\\"
 		information: String!
 	}
 
 
-	"""
+	\\"\\"\\"
 	All the properties for a single medical device monograph.
-	"""
+	\\"\\"\\"
 	type BnfMedicalDevice implements Node @dontInfer {
-		"The PHP ID for the medical device."
+		\\"The PHP ID for the medical device.\\"
 		phpid: ID!
 
-		"The SID for the medical device."
+		\\"The SID for the medical device.\\"
 		sid: ID!
 
-		"The title for the medical device. May include HTML mark-up."
+		\\"The title for the medical device. May include HTML mark-up.\\"
 		title: String! @html
 
-		"The slugified and lowercased title, used as a URL path"
-		slug: String! @slug(field: "title")
+		\\"The slugified and lowercased title, used as a URL path\\"
+		slug: String! @slug(field: \\"title\\")
 
-		"The medical device types. Usually there is only one of these, but theoretically there could be more."
+		\\"The medical device types. Usually there is only one of these, but theoretically there could be more.\\"
 		medicalDeviceTypes: [BnfMedicalDeviceType!]! @link
 	}
 
-	"""
+	\\"\\"\\"
 	An individual medical device. Preparations can appear at this level but they can also appear at the clinical medical device information group level.
-	"""
+	\\"\\"\\"
 	type BnfMedicalDeviceType implements Node @dontInfer {
-		"The medical device to which this device type belongs"
+		\\"The medical device to which this device type belongs\\"
 		medicalDevice: BnfMedicalDevice! @link
 
-		"The title for the medical device type. May include HTML mark-up. E.g. 'Hypertonic sodium chloride solutions' or 'Skin adhesives'"
+		\\"The title for the medical device type. May include HTML mark-up. E.g. 'Hypertonic sodium chloride solutions' or 'Skin adhesives'\\"
 		title: String! @html
 
-		"The slugified and lowercased title, used as a URL path"
-		slug: String! @slug(field: "title")
+		\\"The slugified and lowercased title, used as a URL path\\"
+		slug: String! @slug(field: \\"title\\")
 
-		"A flag as to whether this medical device type has preps associated with it or not. A value of true means there are preps  and no clinical medical device information groups."
+		\\"A flag as to whether this medical device type has preps associated with it or not. A value of true means there are preps  and no clinical medical device information groups.\\"
 		hasPreps: Boolean!
 
-		"The general preparations for the medical device type. This will only be present if there are no clinical medical device information groups."
+		\\"The general preparations for the medical device type. This will only be present if there are no clinical medical device information groups.\\"
 		preparations: [BnfPrep!]!
 
-		"The clinical medical device information groups. These contain preparation-specific content such as device descriptions, compliance standards and prescribing & dispensing information."
+		\\"The clinical medical device information groups. These contain preparation-specific content such as device descriptions, compliance standards and prescribing & dispensing information.\\"
 		clinicalMedicalDeviceInformationGroups: [BnfClinicalMedicalDeviceInformationGroup!]! @link
 
-		"The indications and dose section for the medical device."
+		\\"The indications and dose section for the medical device.\\"
 		indicationsAndDose: BnfMedicalDeviceIndicationsAndDose
 	}
 
-	"""
+	\\"\\"\\"
 	This object contains content that is relevant to a set of medical device preparations.
-	"""
+	\\"\\"\\"
 	type BnfClinicalMedicalDeviceInformationGroup implements Node @dontInfer {
-		"The medical device type to which this CMPI belongs"
+		\\"The medical device type to which this CMPI belongs\\"
 		medicalDeviceType: BnfMedicalDeviceType! @link
 
-		"The name of the CMPI e.g. 'AS Saliva Orthana® lozenges' or 'MucoClear® 3%', taken from either the device description or the indications and dose"
+		\\"The name of the CMPI e.g. 'AS Saliva Orthana® lozenges' or 'MucoClear® 3%', taken from either the device description or the indications and dose\\"
 		title: String! @html
 
-		"The slugified and lowercased title, used as a URL path"
-		slug: String! @slug(field: "title")
+		\\"The slugified and lowercased title, used as a URL path\\"
+		slug: String! @slug(field: \\"title\\")
 
-		"The device description for the clinical medical device information group."
+		\\"The device description for the clinical medical device information group.\\"
 		deviceDescription: BnfMedicalDeviceSimplePot
 
-		"The compliance standards for the clinical medical device information group."
+		\\"The compliance standards for the clinical medical device information group.\\"
 		complianceStandards: BnfMedicalDeviceSimplePot
 
-		"The indications and dose section for the clinical medical device information group."
+		\\"The indications and dose section for the clinical medical device information group.\\"
 		indicationsAndDose: BnfMedicalDeviceIndicationsAndDose
 
-		"The allergy and cross-sensitivity section for the clinical medical device information group."
+		\\"The allergy and cross-sensitivity section for the clinical medical device information group.\\"
 		allergyAndCrossSensitivity: BnfMedicalDeviceSimplePot
 
-		"The treatment cessation section for the clinical medical device information group."
+		\\"The treatment cessation section for the clinical medical device information group.\\"
 		treatmentCessation: BnfMedicalDeviceSimplePot
 
-		"The prescribing and dispensing information section for the clinical medical device information group."
+		\\"The prescribing and dispensing information section for the clinical medical device information group.\\"
 		prescribingAndDispensingInformation: BnfMedicalDeviceSimplePot
 
-		"The patient and carer advice section for the clinical medical device information group."
+		\\"The patient and carer advice section for the clinical medical device information group.\\"
 		patientAndCarerAdvice: BnfMedicalDeviceSimplePot
 
-		"The profession specific information section for the clinical medical device information group."
+		\\"The profession specific information section for the clinical medical device information group.\\"
 		professionSpecificInformation: BnfMedicalDeviceSimplePot
 
-		"The preparations that are relevant to the clinical medical device information group."
+		\\"The preparations that are relevant to the clinical medical device information group.\\"
 		preparations: [BnfPrep!]!
 	}
 
-	"""
+	\\"\\"\\"
 	Simple pot content specifically for medical devices
-	"""
+	\\"\\"\\"
 	type BnfMedicalDeviceSimplePot @dontInfer {
-		"The name/title of the pot. E.g. 'Device description' or 'Prescribing and dispensing information'"
+		\\"The name/title of the pot. E.g. 'Device description' or 'Prescribing and dispensing information'\\"
 		potName: String!
 
-		"The slugified and lowercased pot name, used as an ID/hash link"
-		slug: String! @slug(field: "potName")
+		\\"The slugified and lowercased pot name, used as an ID/hash link\\"
+		slug: String! @slug(field: \\"potName\\")
 
 		content: BnfSimplePotContent!
 	}
 
-	"""
+	\\"\\"\\"
 	A single section of simple (unstructured) content for a BNF medical device.
-	"""
+	\\"\\"\\"
 	type BnfMedicalDeviceIndicationsAndDose @dontInfer {
-		"The name/title of the pot."
+		\\"The name/title of the pot.\\"
 		potName: String!
 
-		"The slugified and lowercased pot name, used as a DOM ID and hash target"
-		slug: String! @slug(field: "potName")
+		\\"The slugified and lowercased pot name, used as a DOM ID and hash target\\"
+		slug: String! @slug(field: \\"potName\\")
 
 		content: BnfIndicationsAndDoseContent!
 	}
 
 
-	"""
+	\\"\\"\\"
 	The metadata relating to the export that produced the app JSON output. An export is a job that is run to collate all of the published BNF content at a particular point in time (the 'content cut' date).
-	"""
+	\\"\\"\\"
 	type BnfMetadata implements Node @dontInfer {
-		"The date and time that the export that produced this output started."
+		\\"The date and time that the export that produced this output started.\\"
 		exportStarted: Date! @dateformat
 
-		"The exporter run-tag of the publication. This is the internal RPS designator for the export that generated this output. This value should be given to RPS if there is a problem with this JSON so that we can correlate the content in our systems."
+		\\"The exporter run-tag of the publication. This is the internal RPS designator for the export that generated this output. This value should be given to RPS if there is a problem with this JSON so that we can correlate the content in our systems.\\"
 		runTag: String!
 
-		"The publication. A value of 'bnf' shows that the JSON contains the British National Formulary content, while a value of 'bnfc' shows that the JSON contains the BNF for Children content."
+		\\"The publication. A value of 'bnf' shows that the JSON contains the British National Formulary content, while a value of 'bnfc' shows that the JSON contains the BNF for Children content.\\"
 		publication: String!
 
-		"The output will contain records published in the CMS up to this date and time. The format used is ISO 8601-1:2019 compliant (without a time zone designator), e.g. '2021-07-06T00:37:25.918'."
+		\\"The output will contain records published in the CMS up to this date and time. The format used is ISO 8601-1:2019 compliant (without a time zone designator), e.g. '2021-07-06T00:37:25.918'.\\"
 		contentCut: Date! @dateformat
 
-		"The version of the Dictionary of Medicines and Devices (dm+d) dataset (which contains preparation data) used by the export that produced this output. The value is presented in yyyy.m.w format, e.g. '2021.5.4'."
+		\\"The version of the Dictionary of Medicines and Devices (dm+d) dataset (which contains preparation data) used by the export that produced this output. The value is presented in yyyy.m.w format, e.g. '2021.5.4'.\\"
 		dmdVersion: String!
 
-		"The version of the international edition of SNOMED CT used by the export that produced this output."
+		\\"The version of the international edition of SNOMED CT used by the export that produced this output.\\"
 		snomedInternationalVersion: String!
 
-		"The version of the UK clinical extension of SNOMED CT used by the export that produced this output."
+		\\"The version of the UK clinical extension of SNOMED CT used by the export that produced this output.\\"
 		snomedUKExtensionVersion: String!
 
-		"The version of the UK drug extension of SNOMED CT used by the export that produced this output."
+		\\"The version of the UK drug extension of SNOMED CT used by the export that produced this output.\\"
 		snomedUKDrugExtensionVersion: String!
 	}
 
 
-	"""
+	\\"\\"\\"
 	A single section of monitoring requirements content for a BNF drug or medical device. A monograph will include content from relevant drug classes (groups of drugs that share the same properties), the drug itself, and specific preparations where the properties differ from those of the generic drug. This record has these three parts of content in the drugClassContent, drugContent and prepContent fields respectively.
-	"""
+	\\"\\"\\"
 	type BnfMonitoringPot {
-		"The name/title of the pot."
+		\\"The name/title of the pot.\\"
 		potName: String!
 
-		"The slugified and lowercased pot name, used as an ID/hash link"
-		slug: String! @slug(field: "potName")
+		\\"The slugified and lowercased pot name, used as an ID/hash link\\"
+		slug: String! @slug(field: \\"potName\\")
 
-		"The monitoring requirements pot content that relates to relevant drug classes for the drug. This field will contain more than one entry when the drug belongs to multiple drug classes with relevant content for the pot."
+		\\"The monitoring requirements pot content that relates to relevant drug classes for the drug. This field will contain more than one entry when the drug belongs to multiple drug classes with relevant content for the pot.\\"
 		drugClassContent: [BnfMonitoringPotContent!]!
 
-		"The monitoring requirements pot content that relates to the drug."
+		\\"The monitoring requirements pot content that relates to the drug.\\"
 		drugContent: BnfMonitoringPotContent
 
-		"Any monitoring requirements pot content that relates to specific preparations. This field will contain more than one entry when the drug has multiple preparations with specific relevant content for the pot."
+		\\"Any monitoring requirements pot content that relates to specific preparations. This field will contain more than one entry when the drug has multiple preparations with specific relevant content for the pot.\\"
 		prepContent: [BnfMonitoringPotContent!]!
 	}
 
-	"""
+	\\"\\"\\"
 	The sections covering monitoring requirements.
-	"""
+	\\"\\"\\"
 	type BnfMonitoringPotContent {
-		"What the content is for (the name of a drug class, drug or preparation). May contain HTML mark-up"
+		\\"What the content is for (the name of a drug class, drug or preparation). May contain HTML mark-up\\"
 		contentFor: String!
 
-		"Slugified contentFor field"
-		slug: String! @slug(field: "contentFor")
+		\\"Slugified contentFor field\\"
+		slug: String! @slug(field: \\"contentFor\\")
 
-		"The therapeutic drug monitoring section. May contain HTML mark-up"
+		\\"The therapeutic drug monitoring section. May contain HTML mark-up\\"
 		therapeuticDrugMonitoring: String
 
-		"The monitoring of patient parameters section. May contain HTML mark-up"
+		\\"The monitoring of patient parameters section. May contain HTML mark-up\\"
 		monitoringOfPatientParameters: String
 
-		"The patient monitoring programmes section. May contain HTML mark-up"
+		\\"The patient monitoring programmes section. May contain HTML mark-up\\"
 		patientMonitoringProgrammes: String
 	}
 
 
-	"""
+	\\"\\"\\"
 	A single section of national funding content for a BNF drug or medical device. A monograph will include content from relevant drug classes (groups of drugs that share the same properties), the drug itself, and specific preparations where the properties differ from those of the generic drug. This record has these three parts of content in the drugClassContent, drugContent and prepContent fields respectively.
-	"""
+	\\"\\"\\"
 	type BnfNationalFundingPot {
-		"The name/title of the pot."
+		\\"The name/title of the pot.\\"
 		potName: String!
 
-		"The slugified and lowercased pot name, used as an ID/hash link"
-		slug: String! @slug(field: "potName")
+		\\"The slugified and lowercased pot name, used as an ID/hash link\\"
+		slug: String! @slug(field: \\"potName\\")
 
-		"The national funding pot content that relates to relevant drug classes for the drug. This field will contain more than one entry when the drug belongs to multiple drug classes with relevant content for the pot."
+		\\"The national funding pot content that relates to relevant drug classes for the drug. This field will contain more than one entry when the drug belongs to multiple drug classes with relevant content for the pot.\\"
 		drugClassContent: [BnfNationalFundingPotContent!]!
 
-		"The national funding pot content that relates to the drug."
+		\\"The national funding pot content that relates to the drug.\\"
 		drugContent: BnfNationalFundingPotContent
 
-		"Any national funding pot content that relates to specific preparations. This field will contain more than one entry when the drug has multiple preparations with specific relevant content for the pot."
+		\\"Any national funding pot content that relates to specific preparations. This field will contain more than one entry when the drug has multiple preparations with specific relevant content for the pot.\\"
 		prepContent: [BnfNationalFundingPotContent!]!
 	}
 
-	"""
+	\\"\\"\\"
 	The relevant decisions from NICE, SMC and AWMSG as well as NHS restrictions.
-	"""
+	\\"\\"\\"
 	type BnfNationalFundingPotContent {
-		"What the content is for (the name of a drug class, drug or preparation). May contain HTML mark-up"
+		\\"What the content is for (the name of a drug class, drug or preparation). May contain HTML mark-up\\"
 		contentFor: String!
 
-		"Slugified contentFor field"
-		slug: String! @slug(field: "contentFor")
+		\\"Slugified contentFor field\\"
+		slug: String! @slug(field: \\"contentFor\\")
 
-		"The initial paragraph of text at the start of the national funding pot. May contain HTML mark-up"
+		\\"The initial paragraph of text at the start of the national funding pot. May contain HTML mark-up\\"
 		initialText: String! @html
 
-		"Title for the NICE funding decisions."
+		\\"Title for the NICE funding decisions.\\"
 		niceDecisionsTitle: String @html
 
-		"The NICE funding decisions."
+		\\"The NICE funding decisions.\\"
 		niceDecisions: [BnfFundingDecision!]!
 
-		"Title for the SMC funding decisions."
+		\\"Title for the SMC funding decisions.\\"
 		smcDecisionsTitle: String @html
 
-		"The SMC funding decisions."
+		\\"The SMC funding decisions.\\"
 		smcDecisions: [BnfFundingDecision!]!
 
-		"Title for the AWMSG funding decisions."
+		\\"Title for the AWMSG funding decisions.\\"
 		awmsgDecisionsTitle: String @html
 
-		"The AWMSG funding decisions."
+		\\"The AWMSG funding decisions.\\"
 		awmsgDecisions: [BnfFundingDecision!]!
 
-		"Title for the non-NHS content."
+		\\"Title for the non-NHS content.\\"
 		nonNhsTitle: String @html
 
-		"Whether the drug can be accessed through the NHS, based on whether it is approved for national funding. May contain HTML mark-up."
+		\\"Whether the drug can be accessed through the NHS, based on whether it is approved for national funding. May contain HTML mark-up.\\"
 		nonNhs: String @html
 	}
 
-	"""
+	\\"\\"\\"
 	A specific funding decision.
-	"""
+	\\"\\"\\"
 	type BnfFundingDecision {
-		"The funding identifier (e.g. TA177)"
+		\\"The funding identifier (e.g. TA177)\\"
 		fundingIdentifier: String! @html
 
-		"The slugified and lowercased funding identifier, used as an ID/hash link"
-		slug: String! @slug(field: "fundingIdentifier")
+		\\"The slugified and lowercased funding identifier, used as an ID/hash link\\"
+		slug: String! @slug(field: \\"fundingIdentifier\\")
 
-		"The title of the funding decision, usually including the date that the decision was published. May contain HTML mark-up"
+		\\"The title of the funding decision, usually including the date that the decision was published. May contain HTML mark-up\\"
 		title: String @html
 
-		"The URL to the relevant funding body's decision."
+		\\"The URL to the relevant funding body's decision.\\"
 		url: String!
 
-		"A summary of the decision."
+		\\"A summary of the decision.\\"
 		approvedForUse: String! @html
 	}
 
 
 	type BnfNursePrescribersFormularyIntroduction implements Node & BnfSimpleRecord @dontInfer {
-		"The title of the section. May contain HTML markup."
+		\\"The title of the section. May contain HTML markup.\\"
 		title: String!
 
-		"The review date of the record, formatted into a string."
+		\\"The review date of the record, formatted into a string.\\"
 		reviewDate: Date @dateformat
 
-		"The slugified and lowercased title, used as a URL path"
-		slug: String! @slug(field: "title")
+		\\"The slugified and lowercased title, used as a URL path\\"
+		slug: String! @slug(field: \\"title\\")
 
-		"The sections of the record."
+		\\"The sections of the record.\\"
 		sections: [BnfRecordSection!]!
 	}
 
 	type BnfNursePrescribersFormularyTreatmentSummary implements Node & BnfSimpleRecord @dontInfer {
-		"The title of the section. May contain HTML markup."
+		\\"The title of the section. May contain HTML markup.\\"
 		title: String!
 
-		"The review date of the record, formatted into a string."
+		\\"The review date of the record, formatted into a string.\\"
 		reviewDate: Date @dateformat
 
-		"The slugified and lowercased title, used as a URL path"
-		slug: String! @slug(field: "title")
+		\\"The slugified and lowercased title, used as a URL path\\"
+		slug: String! @slug(field: \\"title\\")
 
-		"The sections of the record."
+		\\"The sections of the record.\\"
 		sections: [BnfRecordSection!]!
 
-		"Any drugs linked from this NPF treatment summary"
+		\\"Any drugs linked from this NPF treatment summary\\"
 		relatedDrugs: [BnfDrug!]! @link
 	}
 
 
-	"""
+	\\"\\"\\"
 	The properties for a preparation. Context is provided by this object being given in the 'preps' field of MedicinalForm, or on a Medical Device.
-	"""
+	\\"\\"\\"
 	type BnfPrep @dontInfer {
-		"The name of the preparation, for example, 'Anadin Paracetamol 500mg tablets'."
+		\\"The name of the preparation, for example, 'Anadin Paracetamol 500mg tablets'.\\"
 		name: String!
 
-		"The manufacturer/supplier of the preparation, for example, 'GlaxoSmithKline Consumer Healthcare UK Ltd'."
+		\\"The manufacturer/supplier of the preparation, for example, 'GlaxoSmithKline Consumer Healthcare UK Ltd'.\\"
 		manufacturer: String!
 
-		"The dm+d AMP ID for this preparation. This value is a SNOMED CT identifier, which should be represented as a 64-bit integer, but it is represented as a String in this JSON to avoid any potential problems of 32-bit integer overflows."
+		\\"The dm+d AMP ID for this preparation. This value is a SNOMED CT identifier, which should be represented as a 64-bit integer, but it is represented as a String in this JSON to avoid any potential problems of 32-bit integer overflows.\\"
 		ampId: ID!
 
-		"A flag to indicate whether (true) or not (false) this preparation is subject to additional monitoring as required by the European Medicines Agency (EMA). If this flag is true, then an inverted black triangle symbol should be shown (Unicode character U+25BC: ▼)."
+		\\"A flag to indicate whether (true) or not (false) this preparation is subject to additional monitoring as required by the European Medicines Agency (EMA). If this flag is true, then an inverted black triangle symbol should be shown (Unicode character U+25BC: ▼).\\"
 		blackTriangle: Boolean!
 
-		"The controlled drug category for the preparation. If this value is not given then the preparation has no controlled drug status."
+		\\"The controlled drug category for the preparation. If this value is not given then the preparation has no controlled drug status.\\"
 		controlledDrugSchedule: String
 
-		"A marker to indicate whether the preparation is sugar-free or not. This field will not be populated for borderline substance and wound management preparations."
+		\\"A marker to indicate whether the preparation is sugar-free or not. This field will not be populated for borderline substance and wound management preparations.\\"
 		sugarFree: Boolean
 
-		"A list of the active ingredients for the preparation."
+		\\"A list of the active ingredients for the preparation.\\"
 		activeIngredients: [String!]
 
-		"A list of the packs for the preparation. For a borderline substance preparation, the packs are sorted by the 'size' field of the pack as a double-precision floating point number, in ascending order."
+		\\"A list of the packs for the preparation. For a borderline substance preparation, the packs are sorted by the 'size' field of the pack as a double-precision floating point number, in ascending order.\\"
 		packs: [BnfPack!]!
 	}
 
-	"""
+	\\"\\"\\"
 	The properties for a specific pack of a preparation.
-	"""
+	\\"\\"\\"
 	type BnfPack @dontInfer {
-		"The dm+d AMPP ID for this pack, if available. This value is a SNOMED CT identifier, which should be represented as a 64-bit integer, but it is represented as a String in this JSON to avoid any potential problems of 32-bit integer overflows."
+		\\"The dm+d AMPP ID for this pack, if available. This value is a SNOMED CT identifier, which should be represented as a 64-bit integer, but it is represented as a String in this JSON to avoid any potential problems of 32-bit integer overflows.\\"
 		amppId: ID
 
-		"The quantity/size of the pack. The units for this quantity are given in the 'units' field. Will always be present except for wound management preparations."
+		\\"The quantity/size of the pack. The units for this quantity are given in the 'units' field. Will always be present except for wound management preparations.\\"
 		size: String
 
-		"The units of the quantity/size in the 'size' field. Will always be present except for wound management preparations."
+		\\"The units of the quantity/size in the 'size' field. Will always be present except for wound management preparations.\\"
 		unit: String
 
-		"The NHS indicative price, if available, for example, £377.00 or £225,513.09. For wound management preparations, this field may contain the drug tariff price if no NHS indicative price exists."
+		\\"The NHS indicative price, if available, for example, £377.00 or £225,513.09. For wound management preparations, this field may contain the drug tariff price if no NHS indicative price exists.\\"
 		nhsIndicativePrice: String
 
-		"The legal category, if available. Will not be present for +wound management preparations. Can only be 'POM', 'P', 'GSL', or 'Not Applicable'."
+		\\"The legal category, if available. Will not be present for +wound management preparations. Can only be 'POM', 'P', 'GSL', or 'Not Applicable'.\\"
 		legalCategory: String
 
-		"A flag to indicate whether (true) or not (false) this pack is only available through hospital ordering. Will not be present for wound management preparations."
+		\\"A flag to indicate whether (true) or not (false) this pack is only available through hospital ordering. Will not be present for wound management preparations.\\"
 		hospitalOnly: Boolean
 
-		"The drug tariff payment category, if available, for example, 'Part VIIIA Category A'."
+		\\"The drug tariff payment category, if available, for example, 'Part VIIIA Category A'.\\"
 		drugTariff: String
 
-		"The drug tariff price, if available, for example, '£2.94' or '£2,181.53'. For wound management preparations, the drug tariff price may appear in the 'nhsIndicativePrice' field in the case where there is no NHS indicative price available."
+		\\"The drug tariff price, if available, for example, '£2.94' or '£2,181.53'. For wound management preparations, the drug tariff price may appear in the 'nhsIndicativePrice' field in the case where there is no NHS indicative price available.\\"
 		drugTariffPrice: String
 
-		"The colour of the preparation, if available. This will only ever be present for wound management preparations."
+		\\"The colour of the preparation, if available. This will only ever be present for wound management preparations.\\"
 		colour: String
 
-		"A flag to indicate whether (true) or not (false) this pack is for ACBS indications."
+		\\"A flag to indicate whether (true) or not (false) this pack is for ACBS indications.\\"
 		acbs: Boolean
 	}
 
 
-	"""
+	\\"\\"\\"
 	A single section of simple (unstructured) content for a BNF drug or medical device. A monograph will include content from relevant drug classes (groups of drugs that share the same properties), the drug itself, and specific preparations where the properties differ from those of the generic drug. This record has these three parts of content in the drugClassContent, drugContent and prepContent fields respectively.
-	"""
+	\\"\\"\\"
 	type BnfSimplePot {
-		"The name/title of the pot."
+		\\"The name/title of the pot.\\"
 		potName: String!
 
-		"The slugified and lowercased pot name, used as an ID/hash link"
-		slug: String! @slug(field: "potName")
+		\\"The slugified and lowercased pot name, used as an ID/hash link\\"
+		slug: String! @slug(field: \\"potName\\")
 
-		"The simple pot content that relates to relevant drug classes for the drug. This field will contain more than one entry when the drug belongs to multiple drug classes with relevant content for the pot."
+		\\"The simple pot content that relates to relevant drug classes for the drug. This field will contain more than one entry when the drug belongs to multiple drug classes with relevant content for the pot.\\"
 		drugClassContent: [BnfSimplePotContent!]!
 
-		"The simple pot content that relates to the drug."
+		\\"The simple pot content that relates to the drug.\\"
 		drugContent: BnfSimplePotContent
 
-		"Any simple pot content that relates to specific preparations. This field will contain more than one entry when the drug has multiple preparations with specific relevant content for the pot."
+		\\"Any simple pot content that relates to specific preparations. This field will contain more than one entry when the drug has multiple preparations with specific relevant content for the pot.\\"
 		prepContent: [BnfSimplePotContent!]!
 	}
 
-	"""
+	\\"\\"\\"
 	Content for use within a BnfSimplePot
-	"""
+	\\"\\"\\"
 	type BnfSimplePotContent {
-		"What the content is for (the name of a drug class, drug or preparation). May contain HTML mark-up"
+		\\"What the content is for (the name of a drug class, drug or preparation). May contain HTML mark-up\\"
 		contentFor: String! @html
 
-		"Slugified contentFor field"
-		slug: String! @slug(field: "contentFor")
+		\\"Slugified contentFor field\\"
+		slug: String! @slug(field: \\"contentFor\\")
 
-		"The content. May contain HTML mark-up."
+		\\"The content. May contain HTML mark-up.\\"
 		content: String! @html
 	}
 
 
-	"""
+	\\"\\"\\"
 	A section of a simple record.
-	"""
+	\\"\\"\\"
 	type BnfRecordSection @dontInfer {
-		"The title of the section. May contain HTML markup."
+		\\"The title of the section. May contain HTML markup.\\"
 		title: String!
 
-		"The slugified and lowercased title, used as a URL path"
-		slug: String! @slug(field: "title")
+		\\"The slugified and lowercased title, used as a URL path\\"
+		slug: String! @slug(field: \\"title\\")
 
-		"The review date of the record."
+		\\"The review date of the record.\\"
 		reviewDate: Date @dateformat
 
-		"The content for the section. May contain HTML markup. "
+		\\"The content for the section. May contain HTML markup. \\"
 		content: String! @html
 	}
 
 
-	"""
+	\\"\\"\\"
 	A simple record that just contains a list of sections.
 	For example, treatment summaries, about and guidance records, interactions introduction, etc.
-	"""
+	\\"\\"\\"
 	interface BnfSimpleRecord @dontInfer {
-		"The title of the section. May contain HTML markup."
+		\\"The title of the section. May contain HTML markup.\\"
 		title: String!
 
-		"The slugified and lowercased title, used as a URL path"
-		slug: String! @slug(field: "title")
+		\\"The slugified and lowercased title, used as a URL path\\"
+		slug: String! @slug(field: \\"title\\")
 
-		"The review date of the record."
+		\\"The review date of the record.\\"
 		reviewDate: Date @dateformat
 
-		"The sections of the record."
+		\\"The sections of the record.\\"
 		sections: [BnfRecordSection!]!
 	}
 
 
 	type BnfTreatmentSummary implements Node & BnfSimpleRecord @dontInfer {
-		"The title of the section. May contain HTML markup."
+		\\"The title of the section. May contain HTML markup.\\"
 		title: String!
 
-		"The review date of the record, formatted into a string."
+		\\"The review date of the record, formatted into a string.\\"
 		reviewDate: Date @dateformat
 
-		"The slugified and lowercased title, used as a URL path"
-		slug: String! @slug(field: "title")
+		\\"The slugified and lowercased title, used as a URL path\\"
+		slug: String! @slug(field: \\"title\\")
 
-		"The sections of the record."
+		\\"The sections of the record.\\"
 		sections: [BnfRecordSection!]!
 
-		"Any treatment summaries that contain a link from or to this treatment summary"
+		\\"Any treatment summaries that contain a link from or to this treatment summary\\"
 		relatedTreatmentSummaries: [BnfTreatmentSummary!]! @link
 
-		"Any drugs linked from this treatment summary"
+		\\"Any drugs linked from this treatment summary\\"
 		relatedDrugs: [BnfDrug!]! @link
 	}
 
 
 	type BnfWoundManagementIntroduction implements Node & BnfSimpleRecord @dontInfer {
-		"The title of the section. May contain HTML markup."
+		\\"The title of the section. May contain HTML markup.\\"
 		title: String!
 
-		"The review date of the record, formatted into a string."
+		\\"The review date of the record, formatted into a string.\\"
 		reviewDate: Date @dateformat
 
-		"The slugified and lowercased title, used as a URL path"
-		slug: String! @slug(field: "title")
+		\\"The slugified and lowercased title, used as a URL path\\"
+		slug: String! @slug(field: \\"title\\")
 
-		"The sections of the record."
+		\\"The sections of the record.\\"
 		sections: [BnfRecordSection!]!
 	}
 
 	type BnfWoundManagementTaxonomy implements Node @dontInfer {
-		"The title of the taxonomy node. May contain HTML mark-up."
+		\\"The title of the taxonomy node. May contain HTML mark-up.\\"
 		title: String!
 
-		"The slugified and lowercased title, used as a URL path"
-		slug: String! @slug(field: "title")
+		\\"The slugified and lowercased title, used as a URL path\\"
+		slug: String! @slug(field: \\"title\\")
 
-		"The review date of the record."
+		\\"The review date of the record.\\"
 		reviewDate: Date @dateformat
 
-		"The text of the taxonomy node. May contain HTML mark-up."
+		\\"The text of the taxonomy node. May contain HTML mark-up.\\"
 		text: String @html
 
-		"The wound management product groups and preparations that are applicable for this point in the wound management taxonomy."
+		\\"The wound management product groups and preparations that are applicable for this point in the wound management taxonomy.\\"
 		productGroups: [BnfWoundManagementProductGroup!]!
 
-		"Any children records of the wound management taxonomy."
+		\\"Any children records of the wound management taxonomy.\\"
 		childTaxonomies: [BnfWoundManagementTaxonomy!]! @link
 
-		"The parent taxonomy. Empty for root level taxonomy nodes."
+		\\"The parent taxonomy. Empty for root level taxonomy nodes.\\"
 		parentTaxonomy: BnfWoundManagementTaxonomy @link
 
-		"The root taxonomy"
+		\\"The root taxonomy\\"
 		rootTaxonomy: BnfWoundManagementTaxonomy! @link
 	}
 
 	type BnfWoundManagementTaxonomyRoot implements Node @dontInfer {
-		"The taxonomy node"
+		\\"The taxonomy node\\"
 		taxonomy: BnfWoundManagementTaxonomy! @link
 	}
 
 	type BnfWoundManagementTaxonomyProductGroup implements Node @dontInfer {
-		"The taxonomy node"
+		\\"The taxonomy node\\"
 		taxonomy: BnfWoundManagementTaxonomy! @link
 	}
 
-	"A wound management product group represents a group of wound management products including details of any relevant preparations and prices."
+	\\"A wound management product group represents a group of wound management products including details of any relevant preparations and prices.\\"
 	type BnfWoundManagementProductGroup @dontInfer {
-		"The title of the wound management product group."
+		\\"The title of the wound management product group.\\"
 		title: String!
 
-		"The slugified title"
-		slug: String! @slug(field: "title")
+		\\"The slugified title\\"
+		slug: String! @slug(field: \\"title\\")
 
-		"The description of the wound management product group. May contain HTML mark-up."
+		\\"The description of the wound management product group. May contain HTML mark-up.\\"
 		description: String @html
 
-		"The list of products in the wound management product group."
+		\\"The list of products in the wound management product group.\\"
 		products: [BnfPrep!]!
 	}
 "

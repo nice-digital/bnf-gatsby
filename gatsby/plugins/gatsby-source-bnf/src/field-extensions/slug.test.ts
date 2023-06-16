@@ -8,8 +8,8 @@ describe("slug field extension", () => {
 
 		it("should have string field arg with default title value", () => {
 			expect(slugFieldExtension.args).toMatchInlineSnapshot(`
-			{
-			  "field": {
+			Object {
+			  "field": Object {
 			    "defaultValue": "title",
 			    "type": "String",
 			  },
