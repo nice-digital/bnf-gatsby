@@ -56,7 +56,7 @@ exports[`SearchNoResults should match snapshot for BNF site 1`] = `
          on our other services:
       </p>
       <ul
-        aria-label="Search for "aspirin" on our other services"
+        aria-label="Search for aspirin on our other services"
       >
         <li>
           <a
@@ -174,7 +174,7 @@ exports[`SearchNoResults should match snapshot for BNFC site 1`] = `
          on our other services:
       </p>
       <ul
-        aria-label="Search for "aspirin" on our other services"
+        aria-label="Search for aspirin on our other services"
       >
         <li>
           <a

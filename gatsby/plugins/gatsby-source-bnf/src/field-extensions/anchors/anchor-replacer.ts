@@ -115,13 +115,17 @@ const anchorReplacer =
 				type: nodeType,
 			});
 
-			newPath = grandParentNode
-				? `${basePath}/${
-						grandParentNode.slug || slugify(grandParentNode.title)
-				  }/${slug}/`
-				: `${basePath}/${
-						parentNode?.slug || slugify(parentNode?.title || "")
-				  }/#${slug}`;
+			if (!parentNode && !grandParentNode) {
+				newPath = `${basePath}/${slug}/`;
+			} else {
+				newPath = grandParentNode
+					? `${basePath}/${
+							grandParentNode.slug || slugify(grandParentNode.title)
+					  }/${slug}/`
+					: `${basePath}/${
+							parentNode?.slug || slugify(parentNode?.title as string)
+					  }/#${slug}`;
+			}
 		} else if (nodeType === BnfNode.NursePrescribersFormularyIntroduction) {
 			newPath = `${basePath}/approved-list-for-prescribing-by-community-practitioner-nurse-prescribers-npf/`;
 		} else if (landingPageNodeTypes.includes(nodeType)) {

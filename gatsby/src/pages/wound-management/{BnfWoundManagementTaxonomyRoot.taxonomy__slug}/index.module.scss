@@ -19,6 +19,7 @@
   margin: 0;
 
   li {
+    break-inside: avoid-column;
     line-height: 1.6;
     margin-bottom: 0;
     padding: utils.rem(spacing.$x-small) 0;

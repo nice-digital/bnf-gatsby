@@ -1,10 +1,4 @@
-import {
-	render,
-	waitFor,
-	screen,
-	within,
-	fireEvent,
-} from "@testing-library/react";
+import { render, waitFor, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import { decapitalize } from "@/utils";
@@ -428,7 +422,11 @@ describe("InteractantPage", () => {
 				expect(await inputElement).toHaveValue("some filter text")
 			);
 
-			fireEvent.click(submitButton);
+			await waitFor(() => {
+				expect(inputElement).toHaveValue("some filter text");
+			});
+
+			userEvent.click(submitButton);
 
 			await waitFor(() => {
 				expect(window.dataLayer[0]).toStrictEqual({
