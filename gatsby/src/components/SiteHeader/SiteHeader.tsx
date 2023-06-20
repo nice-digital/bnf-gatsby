@@ -82,7 +82,6 @@ export const SiteHeader: React.FC = () => {
 	return (
 		<div ref={globalNavWrapperRef}>
 			<GlobalNavHeader
-				renderSearchOnly={true}
 				service={isBNF ? "bnf" : "bnfc"}
 				skipLinkId="content-start"
 				onNavigating={(e): void => {
