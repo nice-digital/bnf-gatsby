@@ -73,32 +73,34 @@ describe("SiteDistinction", () => {
 			});
 
 			it("should expand on click", async () => {
+				const user = userEvent.setup();
 				render(<SiteDistinction />);
 				const button = screen.getByRole("button", {
 					name: `Show ${otherSiteTitleShort} link`,
 				});
-				userEvent.click(button);
-				await waitFor(() => {
-					expect(button).toHaveAttribute("aria-expanded", "true");
-				});
+				user.click(button);
+				await waitFor(() =>
+					expect(button).toHaveAttribute("aria-expanded", "true")
+				);
 			});
 
 			it("should change label text to hide other site link on click", async () => {
+				const user = userEvent.setup();
 				render(<SiteDistinction />);
 				const button = screen.getByRole("button", {
 					name: `Show ${otherSiteTitleShort} link`,
 				});
-				userEvent.click(button);
-
-				await waitFor(() => {
+				user.click(button);
+				await waitFor(() =>
 					expect(button).toHaveAttribute(
 						"aria-label",
 						`Hide ${otherSiteTitleShort} link`
-					);
-				});
+					)
+				);
 			});
 
 			it("should change data tracking attribute on button click", async () => {
+				const user = userEvent.setup();
 				render(<SiteDistinction />);
 				const button = screen.getByRole("button", {
 					name: `Show ${otherSiteTitleShort} link`,
@@ -107,17 +109,18 @@ describe("SiteDistinction", () => {
 					"data-tracking",
 					`show-${otherSiteTitleShort.toLowerCase()}-link`
 				);
-				userEvent.click(button);
+				user.click(button);
 
-				await waitFor(() => {
+				await waitFor(() =>
 					expect(button).toHaveAttribute(
 						"data-tracking",
 						`hide-${otherSiteTitleShort.toLowerCase()}-link`
-					);
-				});
+					)
+				);
 			});
 
 			it("should render an icon with an expanded class on click", async () => {
+				const user = userEvent.setup();
 				render(<SiteDistinction />);
 				const button = screen.getByRole("button", {
 					name: `Show ${otherSiteTitleShort} link`,
@@ -126,19 +129,19 @@ describe("SiteDistinction", () => {
 				// eslint-disable-next-line testing-library/no-node-access
 				const svg = button.querySelector("svg");
 				expect(svg?.classList.value).toEqual("icon");
-				userEvent.click(button);
+				user.click(button);
 
-				await waitFor(() => {
-					expect(svg).toHaveClass("icon iconExpanded");
-				});
+				await waitFor(() => expect(svg).toHaveClass("icon iconExpanded"));
 			});
 
-			it("should prefetch other site link", async () => {
+			it("should prefetch correct link for other site", async () => {
+				const user = userEvent.setup();
 				render(<SiteDistinction />);
 				const button = screen.getByRole("button", {
 					name: `Show ${otherSiteTitleShort} link`,
 				});
-				userEvent.click(button);
+
+				user.click(button);
 
 				let prefetch: Element | null = null;
 				await waitFor(() => {
@@ -149,7 +152,9 @@ describe("SiteDistinction", () => {
 
 				expect(prefetch).toHaveAttribute(
 					"href",
-					"https://bnfc-gatsby-tests.nice.org.uk/test/?ref=switch"
+					isBNF
+						? "https://bnfc-gatsby-tests.nice.org.uk/test/?ref=switch"
+						: "https://bnf-gatsby-tests.nice.org.uk/test/?ref=switch"
 				);
 			});
 		});

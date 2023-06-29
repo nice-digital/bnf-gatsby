@@ -26,13 +26,20 @@ module.exports = {
 		"^gatsby(.*)$": "<rootDir>/node_modules/gatsby$1",
 		// See https://www.gatsbyjs.com/docs/reference/release-notes/migrating-from-v2-to-v3/#reach-router
 		"^@reach/router(.*)": "<rootDir>/node_modules/@gatsbyjs/reach-router$1",
+		// Jest is complaining about ESM modules, so we'll use the CJS equivalents instead
+		"@mantine/hooks/esm/use-focus-trap/use-focus-trap":
+			"@mantine/hooks/cjs/use-focus-trap/use-focus-trap",
+		"@mantine/hooks/esm/use-debounced-value/use-debounced-value":
+			"@mantine/hooks/cjs/use-debounced-value/use-debounced-value",
 		// Aliases to match paths in tsconfig.json
 		...tsPathsModuleNameMappings,
 	},
 	transformIgnorePatterns: ["/node_modules/", "/dist/"],
 	setupFilesAfterEnv: ["./src/jest.setup.ts", "jest-extended/all"],
 	testPathIgnorePatterns: ["./config/"],
-	testURL: "https://bnf-gatsby-tests.nice.org.uk",
+	testEnvironmentOptions: {
+		url: "https://bnf-gatsby-tests.nice.org.uk",
+	},
 	testEnvironment: "jsdom",
 	globals: {
 		"ts-jest": {

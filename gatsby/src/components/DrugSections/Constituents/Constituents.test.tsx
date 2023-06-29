@@ -82,12 +82,13 @@ describe("Constituents", () => {
 	});
 
 	it("should use Gatsbys links component for mongraph links", async () => {
+		const user = userEvent.setup();
 		render(<Constituents {...props} />);
 
-		userEvent.click(screen.getByRole("link", { name: "bimatoprost" }));
-		await waitFor(() => {
-			expect(navigate).toHaveBeenCalledWith("/drugs/bimatoprost/");
-		});
+		user.click(screen.getByRole("link", { name: "bimatoprost" }));
+		await waitFor(() =>
+			expect(navigate).toHaveBeenCalledWith("/drugs/bimatoprost/")
+		);
 	});
 
 	it("should match snapshot", () => {

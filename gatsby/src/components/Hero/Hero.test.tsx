@@ -56,7 +56,7 @@ describe("Hero", () => {
 		"
 			query LastUpdatedQuery {
 				bnfMetadata {
-					lastUpdatedDateFormatted: exportStarted(formatString: \\"D MMMM YYYY\\")
+					lastUpdatedDateFormatted: exportStarted(formatString: "D MMMM YYYY")
 					lastUpdatedDate: exportStarted
 					runTag
 				}

@@ -1,4 +1,4 @@
-import { render, screen, within, waitFor } from "@testing-library/react";
+import { render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { navigate } from "gatsby";
 
@@ -66,6 +66,7 @@ describe("MedicinalFormsContent", () => {
 		};
 
 		it("should render Gatsby link to medicinal forms page with only 1 form", async () => {
+			const user = userEvent.setup();
 			render(
 				<MedicinalFormsContent
 					{...minimumProps}
@@ -77,16 +78,14 @@ describe("MedicinalFormsContent", () => {
 				name: "View medicinal form and pricing\xa0information",
 			});
 
-			userEvent.click(link);
+			user.click(link);
 
 			await waitFor(() => {
 				expect(link).toHaveAttribute(
 					"href",
 					"/drugs/anti-d-rh0-immunoglobulin/medicinal-forms/"
 				);
-			});
-
-			await waitFor(() => {
+				// eslint-disable-next-line testing-library/no-wait-for-multiple-assertions
 				expect(navigate).toHaveBeenCalledWith(
 					"/drugs/anti-d-rh0-immunoglobulin/medicinal-forms/"
 				);
@@ -94,13 +93,14 @@ describe("MedicinalFormsContent", () => {
 		});
 
 		it("should render Gatsby link to medicinal forms page with 2 or more forms", async () => {
+			const user = userEvent.setup();
 			render(<MedicinalFormsContent {...propsWithForms} />);
 
 			const link = screen.getByRole("link", {
 				name: "View all medicinal forms and pricing\xa0information",
 			});
 
-			userEvent.click(link);
+			user.click(link);
 
 			expect(link).toHaveAttribute(
 				"href",
@@ -144,11 +144,12 @@ describe("MedicinalFormsContent", () => {
 		});
 
 		it("should render link medicinal form to section with hash on medicinal forms page", async () => {
+			const user = userEvent.setup();
 			render(<MedicinalFormsContent {...propsWithForms} />);
 
 			const tabletsLink = screen.getByRole("link", { name: "Tablets" });
 
-			userEvent.click(tabletsLink);
+			user.click(tabletsLink);
 
 			expect(tabletsLink).toHaveAttribute(
 				"href",

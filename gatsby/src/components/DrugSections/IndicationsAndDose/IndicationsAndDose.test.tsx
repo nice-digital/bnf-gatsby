@@ -175,13 +175,14 @@ describe("IndicationsAndDose", () => {
 		});
 
 		it("should expand all sections on toggle button click", async () => {
+			const user = userEvent.setup();
 			render(<IndicationsAndDose {...props} />);
 
 			expect(
 				screen.getAllByRole<HTMLDetailsElement>("group").map((d) => d.open)
 			).toSatisfyAll((open) => !open);
 
-			userEvent.click(screen.getByRole("button"));
+			user.click(screen.getByRole("button"));
 
 			await waitFor(() => {
 				expect(
@@ -191,6 +192,7 @@ describe("IndicationsAndDose", () => {
 		});
 
 		it("should have appropriate data tracking attribute on the expand/collapse all sections button", async () => {
+			const user = userEvent.setup();
 			render(<IndicationsAndDose {...props} />);
 
 			expect(
@@ -199,7 +201,7 @@ describe("IndicationsAndDose", () => {
 				})
 			).toHaveAttribute("data-tracking", "Show all sections");
 
-			userEvent.click(
+			user.click(
 				screen.getByRole("button", {
 					name: "Show all indications and dose (3)",
 				})
@@ -215,13 +217,14 @@ describe("IndicationsAndDose", () => {
 		});
 
 		it("should toggle button text on button click", async () => {
+			const user = userEvent.setup();
 			render(<IndicationsAndDose {...props} />);
 
 			expect(screen.getByRole("button")).toHaveTextContent(
 				"Show all indications and dose (3)"
 			);
 
-			userEvent.click(screen.getByRole("button"));
+			user.click(screen.getByRole("button"));
 
 			await waitFor(() => {
 				expect(screen.getByRole("button")).toHaveTextContent(
