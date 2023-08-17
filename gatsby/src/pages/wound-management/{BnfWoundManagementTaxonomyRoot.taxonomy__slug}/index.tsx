@@ -154,9 +154,13 @@ const WoundManagementTaxonomyPage: FC<WoundManagementTaxonomyPageProps> = ({
 										) : (
 											<ul className={styles.nestedTaxonomyList}>
 												<li>
-													<Link to={`/wound-management/${slug}/${child.slug}/`}>
-														{child.title}
-													</Link>
+													{child.slug !== "lymphoedema-garments" && (
+														<Link
+															to={`/wound-management/${slug}/${child.slug}/`}
+														>
+															{child.title}
+														</Link>
+													)}
 												</li>
 											</ul>
 										)}
