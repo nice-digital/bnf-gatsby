@@ -125,8 +125,10 @@ const InteractantPage: FC<InteractantPageProps> = ({
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		setSearchFilterTerm(filterTerm);
-		window.dataLayer.push({ event: "formSubmit", formText: filterTerm });
+		const trimmedFilterTerm = filterTerm.trim();
+		setFilterTerm(trimmedFilterTerm);
+		setSearchFilterTerm(trimmedFilterTerm);
+		window.dataLayer.push({ event: "formSubmit", formText: trimmedFilterTerm });
 	};
 
 	return (

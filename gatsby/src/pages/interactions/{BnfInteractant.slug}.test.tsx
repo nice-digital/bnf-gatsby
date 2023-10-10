@@ -330,6 +330,29 @@ describe("InteractantPage", () => {
 			);
 		});
 
+		it("should limit the result set when a filter value is supplied with added whitespace", async () => {
+			const user = userEvent.setup();
+			render(<InteractantPage data={dataProp} />);
+			const filterButton = screen.getByRole("button", {
+				name: "Filter",
+			});
+			user.type(screen.getByRole("textbox"), "  Test      ");
+
+			await waitFor(async () =>
+				expect(await screen.findByRole("textbox")).toHaveValue("Test")
+			);
+
+			user.click(filterButton);
+
+			await waitFor(() =>
+				expect(
+					screen
+						.getAllByRole("heading", { level: 3 })
+						.map((heading) => heading.textContent)
+				).toStrictEqual(["Canagliflozin test", "Test interactant"])
+			);
+		});
+
 		it("should successfully list a filtered result set in severity order when specified", async () => {
 			const user = userEvent.setup();
 			render(<InteractantPage data={dataProp} />);
