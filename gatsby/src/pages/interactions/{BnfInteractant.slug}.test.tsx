@@ -336,10 +336,12 @@ describe("InteractantPage", () => {
 			const filterButton = screen.getByRole("button", {
 				name: "Filter",
 			});
-			user.type(screen.getByRole("textbox"), "  Test      ");
+
+			const searchTerm = "  Test      ";
+			user.type(screen.getByRole("textbox"), searchTerm);
 
 			await waitFor(async () =>
-				expect(await screen.findByRole("textbox")).toHaveValue("Test")
+				expect(await screen.findByRole("textbox")).toHaveValue(searchTerm)
 			);
 
 			user.click(filterButton);
