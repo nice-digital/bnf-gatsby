@@ -75,49 +75,39 @@ describe("SiteHeader", () => {
 			});
 		});
 
-		it("should apply the BNF formulary prefix for autocomplete results for BNF", async () => {
-			const user = userEvent.setup();
-			useSiteMetadataMock.mockReturnValueOnce({
-				isBNF: true,
-			});
+		it.each([
+			[true, "SODIUM BICARBONATE (BNF drugs/monographs)"],
+			[false, "SODIUM BICARBONATE (BNFC drugs/monographs)"],
+		])(
+			`should apply the correct formulary prefix for autocomplete results when isBNF is %p and expectedText is '%s'`,
+			async (isBNF, expectedText) => {
+				const user = userEvent.setup();
+				useSiteMetadataMock.mockReturnValueOnce({
+					isBNF,
+				});
 
-			render(<SiteHeader />);
+				render(<SiteHeader />);
 
-			// Global nav uses a fetch to load autocomplete suggestions, and changing the input value triggers this fetch
-			fetchMock.mockResponse(
-				JSON.stringify(mockAutocompleteEndPointSuggestionsForDrug)
-			);
-			user.type(await screen.findByRole("combobox"), "SODIUM");
-
-			await waitFor(() => {
-				const suggestedElements = screen.queryAllByRole("option");
-				expect(suggestedElements[1].textContent).toEqual(
-					"SODIUM BICARBONATE (BNF drugs/monographs)"
+				// Global nav uses a fetch to load autocomplete suggestions, and changing the input value triggers this fetch
+				fetchMock.mockResponse(
+					JSON.stringify(mockAutocompleteEndPointSuggestionsForDrug)
 				);
-			});
-		});
+				user.type(await screen.findByRole("combobox"), "SODIUM");
 
-		it("should apply the BNFC formulary prefix for autocomplete results for BNFC", async () => {
-			const user = userEvent.setup();
-			useSiteMetadataMock.mockReturnValueOnce({
-				isBNF: false,
-			});
+				await waitFor(() => {
+					const suggestedElements = screen.queryAllByRole("option");
+					// Wait for "Search for SODIUM" option to exist, as expectedText index check fails intermittently
+					const searchForSodiumOption = suggestedElements.find(
+						(option) => option.textContent === "Search for SODIUM"
+					);
+					// eslint-disable-next-line testing-library/no-wait-for-multiple-assertions
+					expect(searchForSodiumOption).toBeTruthy();
 
-			render(<SiteHeader />);
-
-			// Global nav uses a fetch to load autocomplete suggestions, and changing the input value triggers this fetch
-			fetchMock.mockResponse(
-				JSON.stringify(mockAutocompleteEndPointSuggestionsForDrug)
-			);
-			user.type(await screen.findByRole("combobox"), "SODIUM");
-
-			await waitFor(() => {
-				const suggestedElements = screen.queryAllByRole("option");
-				expect(suggestedElements[1].textContent).toEqual(
-					"SODIUM BICARBONATE (BNFC drugs/monographs)"
-				);
-			});
-		});
+					// eslint-disable-next-line testing-library/no-wait-for-multiple-assertions
+					expect(suggestedElements[1].textContent).toEqual(expectedText);
+				});
+			}
+		);
 
 		it("should have a correctly formatted url for autocomplete queries", async () => {
 			const user = userEvent.setup();

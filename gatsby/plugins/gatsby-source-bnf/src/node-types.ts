@@ -62,4 +62,4 @@ export const BnfNode = {
 	WoundManagementTaxonomyProductGroup: "BnfWoundManagementTaxonomyProductGroup",
 } as const;
 
-export type BnfNodeTypes = typeof BnfNode[keyof typeof BnfNode];
+export type BnfNodeTypes = (typeof BnfNode)[keyof typeof BnfNode];
