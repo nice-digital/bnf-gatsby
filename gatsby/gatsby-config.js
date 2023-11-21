@@ -32,6 +32,19 @@ module.exports = {
 	},
 	plugins: [
 		{
+			resolve: "gatsby-plugin-robots-txt",
+			options: {
+				host: siteUrl,
+				sitemap: `${siteUrl}/sitemap/sitemap-index.xml`,
+				policy: [
+					{ userAgent: "GPTBot", disallow: "/" },
+					{ userAgent: "ChatGPT-User", disallow: "/" },
+					{ userAgent: "Google-Extended", disallow: "/" },
+					{ userAgent: "CCBot", disallow: "/" },
+				],
+			},
+		},
+		{
 			resolve: `gatsby-source-bnf`,
 			options: {
 				feedURL: process.env.FEED_URL,

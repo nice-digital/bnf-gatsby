@@ -59,6 +59,7 @@ export const SEO: FC<SEOProps> = ({
 					<meta key={i} name={x.name} content={x.content} />
 				))}
 				{noIndex ? <meta name="robots" content="noindex" /> : null}
+				<meta name="bingbot" content="nocache" />
 				<link rel="icon" href="/favicon.ico" />
 				<link rel="canonical" href={siteUrl + pathname} />
 			</Helmet>
