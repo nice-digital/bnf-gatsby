@@ -8,7 +8,9 @@
     "noEmit": false,
     "outDir": "./dist",
     "rootDir": "../",
-    "types": ["node", "@wdio/globals/types", "@wdio/cucumber-framework"]
+    // TODO uncomment these types when upgrading to wdio8
+    // "types": ["node", "@wdio/globals/types", "@wdio/cucumber-framework"]
+    "types": ["node", "webdriverio/async", "@wdio/cucumber-framework"]
   },
   "include": ["./**/*"],
   "exclude": [
