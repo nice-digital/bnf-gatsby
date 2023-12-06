@@ -30,4 +30,3 @@ Feature: Drugs A to Z page
   Scenario: Link to Cabazitaxel drug
     When I click the "Cabazitaxel [Specialist drug]" link
     Then I expect that the path is "/drugs/cabazitaxel-specialist-drug/"
-
