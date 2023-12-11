@@ -1,7 +1,9 @@
+import type { Options } from "@wdio/types";
+
 const isInDocker = !!process.env.IN_DOCKER,
 	isTeamCity = !!process.env.TEAMCITY_VERSION;
 
-export const config: WebdriverIO.Config = {
+export const config: Options.Testrunner = {
 	// Use devtools to control Chrome when we're running tests locally
 	// Avoids issues with having the wrong ChromeDriver installed via selenium-standalone when Chrome updates every 6 weeks.
 	// We need to use webdriver protocol in Docker because we use the selenium grid.
