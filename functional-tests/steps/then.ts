@@ -1,10 +1,10 @@
-import { Then } from "@cucumber/cucumber";
+import { Then } from "@wdio/cucumber-framework";
 
-import { checkContainsText } from "@nice-digital/wdio-cucumber-steps/lib/support/check/checkContainsText";
-import { checkEqualsText } from "@nice-digital/wdio-cucumber-steps/lib/support/check/checkEqualsText";
+import { checkContainsText } from "@nice-digital/wdio-cucumber-steps/lib/support/check/checkContainsText.js";
+import { checkEqualsText } from "@nice-digital/wdio-cucumber-steps/lib/support/check/checkEqualsText.js";
 
-import { scrollInToView } from "../support/action/scrollInToView";
-import { getSelector, SelectorName } from "../support/selectors";
+import { scrollInToView } from "../support/action/scrollInToView.js";
+import { getSelector, SelectorName } from "../support/selectors/index.js";
 
 Then(
 	/I expect to see label (\d+) \(([^)]+)\)$/,

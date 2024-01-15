@@ -9,6 +9,7 @@ export const config: WebdriverIO.Config = {
 
 	maxInstances: isInDocker ? 2 : 1,
 	path: "/wd/hub",
+	port: 4444,
 
 	specs: ["./features/**/*.feature"],
 
@@ -56,7 +57,7 @@ export const config: WebdriverIO.Config = {
 			// "./node_modules/@nice-digital/wdio-cucumber-steps/lib/index.js",
 			"./node_modules/@nice-digital/wdio-cucumber-steps/lib/index.js",
 		],
-		tagExpression: "not @pending", // See https://docs.cucumber.io/tag-expressions/
+		tags: "not @pending", // See https://docs.cucumber.io/tag-expressions/
 		// Need quite a long timeout here because some of the Axe a11y tests take a while for longer pages (like drugs A to Z)
 		timeout: 60000,
 	},

@@ -1,8 +1,8 @@
-import commonSelectors from "./common";
+import commonSelectors from "./common.js";
 import {
 	path as searchPath,
 	selectors as searchSelectors,
-} from "./pages/search";
+} from "./pages/search.js";
 
 export type SelectorName =
 	| keyof typeof commonSelectors
