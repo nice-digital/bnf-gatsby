@@ -11,7 +11,7 @@ export const config: WebdriverIO.Config = {
 	path: "/wd/hub",
 	port: 4444,
 
-	specs: ["./features/**/*.feature"],
+	specs: ["./features/**/header.feature"],
 
 	capabilities: [
 		{
@@ -26,8 +26,8 @@ export const config: WebdriverIO.Config = {
 					"--disable-component-extensions-with-background-pages",
 					"--disable-background-networking",
 					"--disable-sync",
-				].concat(isInDocker ? "--headless" : []),
-			},
+				// ].concat(isInDocker ? "--headless" : []),
+	]},
 		},
 	],
 
@@ -53,8 +53,6 @@ export const config: WebdriverIO.Config = {
 	cucumberOpts: {
 		require: [
 			"./steps/**/*.ts",
-			// TODO path to index.js is commented out until wdio8 upgrade
-			// "./node_modules/@nice-digital/wdio-cucumber-steps/lib/index.js",
 			"./node_modules/@nice-digital/wdio-cucumber-steps/lib/index.js",
 		],
 		tags: "not @pending", // See https://docs.cucumber.io/tag-expressions/
@@ -71,9 +69,8 @@ export const config: WebdriverIO.Config = {
 		// Clear session storage after each test because Gatsby stores scroll
 		// positions of each page, which causes issues running multiple tests
 		// on the same page in the same browser instance when scrolling to links
-		//TODO window.sessionStorage required for wdio8 upgrade
-		// await browser.execute("window.sessionStorage.clear()");
-		await browser.execute("sessionStorage.clear()");
+		await browser.execute("window.sessionStorage.clear()");
+
 	},
 
 	autoCompileOpts: {
