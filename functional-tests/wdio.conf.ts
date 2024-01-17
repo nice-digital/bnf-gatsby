@@ -33,6 +33,16 @@ export const config: WebdriverIO.Config = {
 			},
 		},
 	],
+	services: [
+		[
+			"intercept",
+			{
+				requestHeaders: {
+					"Access-Control-Allow-Origin": "localhost:9000",
+				},
+			},
+		],
+	],
 
 	bail: 1,
 	logLevel: "error",
