@@ -26,8 +26,11 @@ export const config: WebdriverIO.Config = {
 					"--disable-component-extensions-with-background-pages",
 					"--disable-background-networking",
 					"--disable-sync",
-				// ].concat(isInDocker ? "--headless" : []),
-	]},
+					...(isInDocker ? ["--headless"] : []),
+					// option to turn off CORS checks
+					"--disable-web-security",
+				],
+			},
 		},
 	],
 
@@ -70,7 +73,6 @@ export const config: WebdriverIO.Config = {
 		// positions of each page, which causes issues running multiple tests
 		// on the same page in the same browser instance when scrolling to links
 		await browser.execute("window.sessionStorage.clear()");
-
 	},
 
 	autoCompileOpts: {
