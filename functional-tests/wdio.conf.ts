@@ -33,22 +33,12 @@ export const config: WebdriverIO.Config = {
 			},
 		},
 	],
-	services: [
-		[
-			"intercept",
-			{
-				requestHeaders: {
-					"Access-Control-Allow-Origin": "localhost:9000",
-				},
-			},
-		],
-	],
 
 	bail: 1,
 	logLevel: "error",
 
 	// Run against the production build of the Gatsby site by default as dev mode renders on demand so causes timing issues
-	baseUrl: "http://localhost:9000/",
+	baseUrl: isInDocker ? "http://bnf-functional-tests.nice.org.uk" : "http://localhost:9000/",
 	reporters: [
 		"spec",
 		isTeamCity && "teamcity",
