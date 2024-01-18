@@ -26,9 +26,11 @@ export const config: WebdriverIO.Config = {
 					"--disable-component-extensions-with-background-pages",
 					"--disable-background-networking",
 					"--disable-sync",
-					...(isInDocker ? ["--headless"] : []),
 					// option to turn off CORS checks
 					"--disable-web-security",
+					"--disable-gpu",
+					"--no-sandbox",
+					...(isInDocker ? [] : []),
 				],
 			},
 		},
@@ -38,7 +40,9 @@ export const config: WebdriverIO.Config = {
 	logLevel: "error",
 
 	// Run against the production build of the Gatsby site by default as dev mode renders on demand so causes timing issues
-	baseUrl: isInDocker ? "http://bnf-functional-tests.nice.org.uk" : "http://localhost:9000/",
+	baseUrl: isInDocker
+		? "https://bnf-functional-tests.nice.org.uk/"
+		: "http://localhost:9000/",
 	reporters: [
 		"spec",
 		isTeamCity && "teamcity",
