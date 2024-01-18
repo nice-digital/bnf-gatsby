@@ -11,7 +11,7 @@ export const config: WebdriverIO.Config = {
 	path: "/wd/hub",
 	port: 4444,
 
-	specs: ["./features/**/header.feature"],
+	specs: ["./features/**/*.feature"],
 
 	capabilities: [
 		{
@@ -26,17 +26,18 @@ export const config: WebdriverIO.Config = {
 					"--disable-component-extensions-with-background-pages",
 					"--disable-background-networking",
 					"--disable-sync",
-					// option to turn off CORS checks
+					// options to turn off CORS checks etc
+					// necessary for autocomplete tests to pass due to CORS
 					"--disable-web-security",
 					"--disable-gpu",
 					"--no-sandbox",
-					...(isInDocker ? [] : []),
+					...(isInDocker ? ["--headless"] : []),
 				],
 			},
 		},
 	],
 
-	bail: 1,
+	// bail: 1,
 	logLevel: "error",
 
 	// Run against the production build of the Gatsby site by default as dev mode renders on demand so causes timing issues
