@@ -76,10 +76,9 @@ Then(
 Then(
 	/^I expect to see "([^"]*)" in the autocomplete suggestions$/,
 	async (text: string) => {
-		const optionSelector = await getSelector("autocomplete option");
-		const visibleOptionSelector = optionSelector + ":not(.visually-hidden)";
-		const visibleOptions = await $$(visibleOptionSelector);
-		const optionElement = visibleOptions[0];
+		const optionElement = await $(
+			(await getSelector("autocomplete option")) + ":not(.visually-hidden)"
+		);
 		await optionElement.waitForExist({ timeout: 20000 });
 
 		const menuSelector = await getSelector("autocomplete menu");
