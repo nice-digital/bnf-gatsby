@@ -1,8 +1,8 @@
-# Running BNF functional-testS
+# Running BNF functional-tests
 
 ## :rocket: Set up
 
-1. Reuse the same package -lock.json file.
+1. Clone the project repository (if possible re-use the same package-lock.json file)
 2. Use terminal to install or uninstall npm dependencies via `npm i`
 3. Use terminal to run clean install npm dependencies via `npm ci` .
    Read more [npm docs](https://docs.npmjs.com/cli/v10/commands/npm-ci#description)
@@ -10,7 +10,6 @@
 ### Build app in Gatsby folder
 
 4. Create a _.env.development_ file in this _gatsby_ folder and add the required environment variables as defined in [configuration](#configuration).
-5. Run `npm run build:bnf` or `npm run build:bnfc` to build a specific site and skip setting the `GATSBY_SITE` variable.
 
 ### Configuration
 
@@ -27,12 +26,14 @@ The following environment variables are used to configure the gatsby site and so
 
 Set these environment variables using _.env_ files.
 
+5. Run `npm run build:bnf` or `npm run build:bnfc` to build a specific site and skip setting the `GATSBY_SITE` variable.
+
 ```
 # .env.development
 FEED_URL=https://whatever
 FEED_USER_KEY=abcd1234
 GATSBY_SITE=bnfc # Or bnf
-GATSBY_SEARCH_URL=https://env**-search-api.nice.org.uk/api
+GATSBY_SEARCH_URL=https://[env**]-search-api.nice.org.uk/api
 ```
 
 ### Search proxy for CORS issue
@@ -40,9 +41,8 @@ GATSBY_SEARCH_URL=https://env**-search-api.nice.org.uk/api
 If you experience issue where the Search-api typeahead functional-tests step fail locally. Check the steps to resolve
 
 1. Open file explorer to your project/functional-tests folder
-2. Remove `bnf-website-build` and `bnfc-website-build` file as required
-3. Rebuild Gatsby site with envrionment variables. Use single search endpoint base URL that support functional-tests docker compose file
-   `GATSBY_SEARCH_URL=https://env**-search-api.nice.org.uk/api`
+2. Rebuild Gatsby site with envrionment variables. Use single search endpoint base URL that support functional-tests docker compose file
+   `GATSBY_SEARCH_URL=https://[env**]-search-api.nice.org.uk/api`
    View [configuration](#configuration)
 
 Other Read me to check out [Gatsby README file](https://github.com/nice-digital/bnf-gatsby/tree/main/gatsby#readme)
