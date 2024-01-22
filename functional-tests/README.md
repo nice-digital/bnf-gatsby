@@ -26,7 +26,7 @@ The following environment variables are used to configure the gatsby site and so
 
 Set these environment variables using _.env_ files.
 
-1. Run `npm run build:bnf` or `npm run build:bnfc` to build a specific site
+5. Run `npm run build:bnf` or `npm run build:bnfc` to build a specific site
 
 # .env.development
 
