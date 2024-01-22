@@ -20,29 +20,32 @@ The following environment variables are used to configure the gatsby site and so
 | FEED_URL             | The absolute base URL of the feed, passed as the `feedURL` config option to custom `gatsby-source-bnf` plugin |
 | FEED_USER_KEY        | The API/user key for authentication of the feed.                                                              |
 | GATSBY_SITE          | Which site you're building (`bnf` or `bnfc`)                                                                  |
-| GATSBY_SEARCH_URL    | The single search endpoint base URL e.g. `https://alpha-search-api.nice.org.uk/api`                           |
+| GATSBY_SEARCH_URL    | The single search endpoint base URL e.g. `https://[env**]-search-api.nice.org.uk/api`                         |
 
 > Note: the variables prefixed with `GATSBY_` are made available to client side scripts so are public values, [see the Gatsby docs](https://www.gatsbyjs.com/docs/how-to/local-development/environment-variables/#accessing-environment-variables-in-the-browser).
 
 Set these environment variables using _.env_ files.
 
-5. Run `npm run build:bnf` or `npm run build:bnfc` to build a specific site and skip setting the `GATSBY_SITE` variable.
+1. Run `npm run build:bnf` or `npm run build:bnfc` to build a specific site
 
-```
 # .env.development
+
 FEED_URL=https://whatever
 FEED_USER_KEY=abcd1234
 GATSBY_SITE=bnfc # Or bnf
 GATSBY_SEARCH_URL=https://[env**]-search-api.nice.org.uk/api
+
 ```
 
 ### Search proxy for CORS issue
 
 If you experience issue where the Search-api typeahead functional-tests step fail locally. Check the steps to resolve
 
-1. Open file explorer to your project/functional-tests folder
-2. Rebuild Gatsby site with envrionment variables. Use single search endpoint base URL that support functional-tests docker compose file
+1. Rebuild Gatsby site with envrionment variables. Use single search endpoint base URL that support functional-tests docker compose file
    `GATSBY_SEARCH_URL=https://[env**]-search-api.nice.org.uk/api`
    View [configuration](#configuration)
 
+
+
 Other Read me to check out [Gatsby README file](https://github.com/nice-digital/bnf-gatsby/tree/main/gatsby#readme)
+```
