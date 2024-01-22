@@ -4,11 +4,13 @@ Feature: Medical devices details page
 
   Background:
     Given I am using a desktop size browser
-#TODO this test needs fixing
-#  Scenario: AS Saliva Orthana® spray left hand nav link
-#    When I open the AS Saliva Orthana® lozenges page
-#    And I click the "BioXtra® gel" link
-#    Then I expect that the path is "/medical-devices/artificial-saliva-products/bioxtra-gel/"
+    And I open the medical devices page
+    When I open the artificial saliva products page
+
+  Scenario: AS Saliva Orthana® spray left hand nav link
+    When I open the AS Saliva Orthana® lozenges page
+    And I click the "BioXtra® Dry Mouth Oral Gel" link
+    Then I expect that the path is "/medical-devices/artificial-saliva-products/bioxtra-dry-mouth-oral-gel/"
 
   Scenario: Medical device breadcrumb breadcrumb
     Given I open the AS Saliva Orthana® lozenges page

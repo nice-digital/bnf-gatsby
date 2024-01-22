@@ -1,11 +1,11 @@
-import { Given } from "@cucumber/cucumber";
+import { Given } from "@wdio/cucumber-framework";
 
-import { acceptCookieBanner } from "@nice-digital/wdio-cucumber-steps/lib/support/action/acceptCookieBanner";
-import { openWebsite } from "@nice-digital/wdio-cucumber-steps/lib/support/action/openWebsite";
-import { setWindowSize } from "@nice-digital/wdio-cucumber-steps/lib/support/action/setWindowSize";
+import { acceptCookieBanner } from "@nice-digital/wdio-cucumber-steps/lib/support/action/acceptCookieBanner.js";
+import { openWebsite } from "@nice-digital/wdio-cucumber-steps/lib/support/action/openWebsite.js";
+import { setWindowSize } from "@nice-digital/wdio-cucumber-steps/lib/support/action/setWindowSize.js";
 
-import { waitForReact } from "../support/action/waitForReact";
-import { getPath, PageName } from "../support/pagePaths";
+import { waitForReact } from "../support/action/waitForReact.js";
+import { getPath, PageName } from "../support/pagePaths.js";
 
 Given(/^I open the (.*) page$/, async (pageName: PageName) => {
 	await openWebsite("url", getPath(pageName));

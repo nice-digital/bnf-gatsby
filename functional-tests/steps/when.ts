@@ -1,18 +1,18 @@
 import { When } from "@wdio/cucumber-framework";
 
-import { clickElement } from "@nice-digital/wdio-cucumber-steps/lib/support/action/clickElement";
-import { openWebsite } from "@nice-digital/wdio-cucumber-steps/lib/support/action/openWebsite";
+import { clickElement } from "@nice-digital/wdio-cucumber-steps/lib/support/action/clickElement.js";
+import { openWebsite } from "@nice-digital/wdio-cucumber-steps/lib/support/action/openWebsite.js";
 
-import { acceptCookieBanner } from "../support/action/acceptCookieBanner";
-import { scrollInToView } from "../support/action/scrollInToView";
-import { typeInSearchBox } from "../support/action/typeInSearchBox";
-import { waitForReact } from "../support/action/waitForReact";
-import { waitForScrollToElement } from "../support/action/waitForScrollToElement";
-import { waitForSearchLoad } from "../support/action/waitForSearchLoad";
-import { waitForTitleToChange } from "../support/action/waitForTitleToChange";
-import { waitForUrlToChange } from "../support/action/waitForUrlToChange";
-import { getPath } from "../support/pagePaths";
-import { getSelector } from "../support/selectors";
+import { acceptCookieBanner } from "../support/action/acceptCookieBanner.js";
+import { scrollInToView } from "../support/action/scrollInToView.js";
+import { typeInSearchBox } from "../support/action/typeInSearchBox.js";
+import { waitForReact } from "../support/action/waitForReact.js";
+import { waitForScrollToElement } from "../support/action/waitForScrollToElement.js";
+import { waitForSearchLoad } from "../support/action/waitForSearchLoad.js";
+import { waitForTitleToChange } from "../support/action/waitForTitleToChange.js";
+import { waitForUrlToChange } from "../support/action/waitForUrlToChange.js";
+import { getPath } from "../support/pagePaths.js";
+import { getSelector } from "../support/selectors/index.js";
 
 When(/^I click the ([^"]*) breadcrumb$/, async (breadcrumbText: string) => {
 	const pageTitle = await browser.getTitle(),
