@@ -55,9 +55,14 @@ export const pagePaths = {
 	"local anaesthetics": "/nurse-prescribers-formulary/local-anaesthetics/",
 	// Borderline substances
 	"borderline substances": "/borderline-substances/",
-	"vitamin and mineral supplements": "/borderline-substances/vitamin-and-mineral-supplements/",
 	"cystic fibrosis":
 		"/borderline-substances/vitamin-and-mineral-supplements/cystic-fibrosis/",
+	"feed supplements": "/borderline-substances/feed-supplements/",
+	"high-fibre supplements":
+		"/borderline-substances/feed-supplements/high-fibre-supplements/",
+	"vitamin and mineral supplements":
+		"/borderline-substances/vitamin-and-mineral-supplements/",
+
 	search: "/search/",
 } as const;
 
