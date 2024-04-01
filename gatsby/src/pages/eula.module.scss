@@ -1,0 +1,24 @@
+@use '@nice-digital/nds-core/scss/typography';
+
+$sectionFontSize: 1;
+
+.terms {
+  ol {
+    counter-reset: section;
+    list-style: none;
+  }
+
+  li::before {
+    counter-increment: section;
+    content: counters(section, '.') ' ';
+  }
+
+  > ol > li::before {
+    @include typography.font-size($sectionFontSize);
+  }
+}
+
+.section {
+  @include typography.font-size($sectionFontSize);
+  font-weight: bold;
+}

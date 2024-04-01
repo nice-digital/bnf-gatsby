@@ -8,6 +8,7 @@ import { useIsClient } from "@/hooks/useIsClient";
 import { IEBanner } from "../IEBanner/IEBanner";
 import { SiteDistinction } from "../SiteDistinction/SiteDistinction";
 import { SiteHeader } from "../SiteHeader/SiteHeader";
+import { EULAPanel } from "../EULAPanel/EULAPanel";
 
 import { isBNF } from "./../../site";
 import "./../../styles/feed.scss";
@@ -38,6 +39,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }: LayoutProps) => {
 			<Main>
 				<SiteDistinction />
 				<Container>{children}</Container>
+				<EULAPanel />
 				<div id="sticky-nav-portal"></div>
 			</Main>
 			<Footer service={isBNF ? "bnf" : "bnfc"} />
