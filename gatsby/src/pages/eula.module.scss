@@ -8,6 +8,10 @@ $sectionFontSize: 1;
     list-style: none;
   }
 
+  > ol {
+    margin-left: 0;
+  }
+
   li::before {
     counter-increment: section;
     content: counters(section, '.') ' ';
