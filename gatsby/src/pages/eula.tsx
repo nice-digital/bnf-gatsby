@@ -10,7 +10,7 @@ import { isBNF } from "./../site";
 
 import styles from "./eula.module.scss";
 
-const NotFoundPage: React.FC = () => {
+const EULAPage: React.FC = () => {
 	return (
 		<>
 			<SEO title="NICE BNF End User Licence Agreement" />
@@ -328,4 +328,4 @@ const NotFoundPage: React.FC = () => {
 	);
 };
 
-export default NotFoundPage;
+export default EULAPage;
