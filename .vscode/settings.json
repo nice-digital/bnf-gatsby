@@ -7,10 +7,8 @@
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.rulers": [80, 120],
-  "markdown.extension.toc.levels": "2..6",
   "files.eol": "\n",
   "typescript.tsdk": "node_modules\\typescript\\lib",
-  "npm.includeDirectories": ["gatsby", "functional-tests"],
   "files.exclude": {
     "**/.git": true,
     "**/.svn": true,
@@ -31,11 +29,9 @@
   "css.validate": false,
   "less.validate": false,
   "scss.validate": false,
-  "sasslint.enable": false,
   "eslint.codeActionsOnSave.mode": "problems",
   "eslint.lintTask.enable": true,
   "eslint.format.enable": true,
-  "eslint.packageManager": "npm",
   "debug.javascript.terminalOptions": {
     "skipFiles": ["<node_internals>/**"]
   },
@@ -68,10 +64,7 @@
     "titleBar.activeForeground": "#fff"
   },
   "jest.jestCommandLine": "npm test --",
-  "jest.autoRun": {
-    "watch": false,
-    "onSave": "test-file"
-  },
+  "jest.runMode": { "type": "on-save", "testFileOnly": true },
   "xmlTools.splitAttributesOnFormat": false,
   "xmlTools.enforcePrettySelfClosingTagOnFormat": true
 }

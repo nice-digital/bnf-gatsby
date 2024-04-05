@@ -104,5 +104,11 @@ module.exports = {
 				"import/order": "off",
 			},
 		},
+		{
+			files: ["*.tsx"],
+			rules: {
+				"@typescript-eslint/no-empty-function": "off",
+			},
+		},
 	],
 };

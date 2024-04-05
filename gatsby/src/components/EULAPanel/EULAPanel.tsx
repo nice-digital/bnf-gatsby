@@ -1,5 +1,7 @@
-import { Panel } from "@nice-digital/nds-panel";
 import { Link } from "gatsby";
+
+import { Panel } from "@nice-digital/nds-panel";
+
 import { isBNF } from "./../../site";
 import styles from "./EULAPanel.module.scss";
 
