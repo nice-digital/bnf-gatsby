@@ -18,14 +18,14 @@ export type BuiltIns = Primitive | Date | RegExp;
 export type OrderedDeep<O> = O extends BuiltIns | BuiltIns[]
 	? O
 	: O extends (infer U)[]
-	? (OrderedDeep<U> & { order: number })[]
-	: O extends object
-	? { [K in keyof O]: OrderedDeep<O[K]> }
-	: O;
+		? (OrderedDeep<U> & { order: number })[]
+		: O extends object
+			? { [K in keyof O]: OrderedDeep<O[K]> }
+			: O;
 
 export type TypedNodeInput<
 	TNodeType extends BnfNodeType,
-	TNodeContent
+	TNodeContent,
 > = NodeInput &
 	TNodeContent & {
 		// Internal Gatsby node stuff

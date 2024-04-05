@@ -99,7 +99,7 @@ export const createBorderlineSubstancesNodes = (
 						? false
 						: children.some(
 								(child) => !child.children || child.children.length == 0
-						  )
+							)
 				);
 		});
 	};

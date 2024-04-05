@@ -15,14 +15,12 @@ const drugPathRegex = /"\/drug\/(?<drugId>_\d+)"/g,
 
 const regexReducer =
 	(groupName: "treatmentSummaryId" | "drugId", regex: RegExp) =>
-	(ids: string[], { content }: FeedRecordSection) =>
-		[
-			...ids,
-			...Array.from(
-				content.matchAll(regex),
-				(m) => m.groups?.[groupName]
-			).filter(isTruthy),
-		];
+	(ids: string[], { content }: FeedRecordSection) => [
+		...ids,
+		...Array.from(content.matchAll(regex), (m) => m.groups?.[groupName]).filter(
+			isTruthy
+		),
+	];
 
 export type TreatmentSummaryNodeInput = FeedSimpleRecord & {
 	relatedTreatmentSummaries: string[];

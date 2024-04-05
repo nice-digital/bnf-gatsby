@@ -47,7 +47,9 @@ describe("substance", () => {
 		});
 
 		// eslint-disable-next-line testing-library/no-node-access
-		expect(heading2.parentElement).toHaveTextContent("Fresubin® 1500 Complete");
+		expect(heading2.parentElement).toHaveTextContent(
+			"Fresubin® 1500 Complete"
+		);
 	});
 
 	it("should render an alert containing the introduction note", () => {

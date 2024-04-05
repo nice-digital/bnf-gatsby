@@ -218,7 +218,7 @@ describe("CMPIPage", () => {
 		describe("Simple pots", () => {
 			it.each<
 				[
-					keyof CMPIPageProps["data"]["bnfClinicalMedicalDeviceInformationGroup"]
+					keyof CMPIPageProps["data"]["bnfClinicalMedicalDeviceInformationGroup"],
 				]
 			>([
 				["deviceDescription"],

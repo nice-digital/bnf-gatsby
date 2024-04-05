@@ -27,24 +27,22 @@ const slugToHref = ({ title, slug }: SlugAndTitle): MenuPageLink => ({
  */
 export const useAboutPages = (): MenuPageLink[] => {
 	const { allBnfAboutSection, allBnfCautionaryAndAdvisoryGuidance } =
-		useStaticQuery<AboutPages>(
-			graphql`
-				query AboutPages {
-					allBnfAboutSection(sort: { order: ASC }) {
-						aboutSectionPages: nodes {
-							slug
-							title
-						}
-					}
-					allBnfCautionaryAndAdvisoryGuidance {
-						labelsGuidancePages: nodes {
-							title
-							slug
-						}
+		useStaticQuery<AboutPages>(graphql`
+			query AboutPages {
+				allBnfAboutSection(sort: { order: ASC }) {
+					aboutSectionPages: nodes {
+						slug
+						title
 					}
 				}
-			`
-		);
+				allBnfCautionaryAndAdvisoryGuidance {
+					labelsGuidancePages: nodes {
+						title
+						slug
+					}
+				}
+			}
+		`);
 
 	return [
 		...allBnfAboutSection.aboutSectionPages.map(slugToHref),

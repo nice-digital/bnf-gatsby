@@ -218,12 +218,12 @@ export interface FeedIndicationAndDoseGroup {
 	/** The therapeutic indications. */
 	therapeuticIndications: [
 		FeedTherapeuticIndication,
-		...FeedTherapeuticIndication[]
+		...FeedTherapeuticIndication[],
 	];
 	/** The routes, indications, patient groups and doses statements. */
 	routesAndPatientGroups?: [
 		FeedRouteAndPatientGroups,
-		...FeedRouteAndPatientGroups[]
+		...FeedRouteAndPatientGroups[],
 	];
 }
 
@@ -650,7 +650,7 @@ export interface FeedBorderlineSubstances {
 	/** The taxonomy of borderline substances. */
 	taxonomy: [
 		FeedBorderlineSubstancesTaxonomy,
-		...FeedBorderlineSubstancesTaxonomy[]
+		...FeedBorderlineSubstancesTaxonomy[],
 	];
 }
 

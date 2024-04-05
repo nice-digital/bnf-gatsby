@@ -55,13 +55,13 @@ const TreatmentSummaryPage: FC<TreatmentSummaryPageProps> = ({
 					? {
 							id: "related-drugs",
 							title: "Related drugs",
-					  }
+						}
 					: null,
 				relatedTreatmentSummaries.length > 0
 					? {
 							id: "related-treatment-summaries",
 							title: "Related treatment summaries",
-					  }
+						}
 					: null,
 			].filter(isTruthy)}
 		>

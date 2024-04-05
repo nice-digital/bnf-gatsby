@@ -254,7 +254,7 @@ describe("IndicationsAndDoseContent", () => {
 		it.each<
 			[
 				keyof Except<typeof content, "indicationAndDoseGroups" | "contentFor">,
-				string
+				string,
 			]
 		>([
 			["doseAdjustments", "Dose adjustments due to interactions"],

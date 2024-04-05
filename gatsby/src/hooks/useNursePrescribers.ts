@@ -32,24 +32,22 @@ export const useNursePrescribers = (): {
 	const {
 		allBnfNursePrescribersFormularyIntroduction,
 		allBnfNursePrescribersFormularyTreatmentSummary,
-	} = useStaticQuery<NursePrescribers>(
-		graphql`
-			query NursePrescribers {
-				allBnfNursePrescribersFormularyIntroduction {
-					introduction: nodes {
-						slug
-						title
-					}
-				}
-				allBnfNursePrescribersFormularyTreatmentSummary {
-					summaries: nodes {
-						slug
-						title
-					}
+	} = useStaticQuery<NursePrescribers>(graphql`
+		query NursePrescribers {
+			allBnfNursePrescribersFormularyIntroduction {
+				introduction: nodes {
+					slug
+					title
 				}
 			}
-		`
-	);
+			allBnfNursePrescribersFormularyTreatmentSummary {
+				summaries: nodes {
+					slug
+					title
+				}
+			}
+		}
+	`);
 
 	const menuList = [
 		...allBnfNursePrescribersFormularyTreatmentSummary.summaries.map(
