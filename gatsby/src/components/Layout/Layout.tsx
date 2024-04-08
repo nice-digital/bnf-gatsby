@@ -5,10 +5,10 @@ import { Container } from "@nice-digital/nds-container";
 
 import { useIsClient } from "@/hooks/useIsClient";
 
+import { EULAPanel } from "../EULAPanel/EULAPanel";
 import { IEBanner } from "../IEBanner/IEBanner";
 import { SiteDistinction } from "../SiteDistinction/SiteDistinction";
 import { SiteHeader } from "../SiteHeader/SiteHeader";
-import { EULAPanel } from "../EULAPanel/EULAPanel";
 
 import { isBNF } from "./../../site";
 import "./../../styles/feed.scss";

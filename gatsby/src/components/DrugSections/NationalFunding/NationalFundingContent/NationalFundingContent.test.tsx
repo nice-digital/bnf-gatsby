@@ -29,7 +29,7 @@ describe("NationalFundingContent", () => {
 	};
 
 	beforeEach(() => {
-		// eslint-disable-next-line testing-library/no-render-in-setup
+		// eslint-disable-next-line testing-library/no-render-in-lifecycle
 		render(<NationalFundingContent {...props} />);
 	});
 

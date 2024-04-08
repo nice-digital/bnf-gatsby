@@ -1,8 +1,10 @@
 import { render } from "@testing-library/react";
 import React from "react";
 
-import { EULAPanel } from "./EULAPanel";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
+
+import { EULAPanel } from "./EULAPanel";
+
 const useSiteMetadataMock = useSiteMetadata as jest.Mock;
 
 describe("EULA panel", () => {
