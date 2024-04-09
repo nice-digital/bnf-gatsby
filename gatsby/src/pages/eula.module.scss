@@ -17,7 +17,7 @@ $section-font-size: 1;
     counter-increment: section;
   }
 
-  li.noNumbering::before {
+  .noNumbering::before {
     content: '';
   }
 
