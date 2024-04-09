@@ -139,7 +139,11 @@ exports[`EULA page should match snapshot 1`] = `
                 Are a clinician, healthcare practitioner or adjacent NHS worker (e.g. NHS manager); in which case:
                 <ol>
                   <li>
-                    You must be employed or engaged within the UK public sector on behalf of the National Health Service and using the NICE BNF solely for the benefit of the National Health Service and patients.
+                    You must be
+                     
+                    <strong>
+                      employed or engaged within the UK public sector on behalf of the National Health Service and using the NICE BNF solely for the benefit of the National Health Service and patients.
+                    </strong>
                   </li>
                   <li>
                     You understand that the guidance contained within the NICE BNF is not a substitute for you exercising your own professional judgment. Furthermore, you recognise that the NICE BNF is one of a range of information sources that may inform your judgment and you should not place sole reliance on the NICE BNF.
@@ -255,7 +259,9 @@ exports[`EULA page should match snapshot 1`] = `
           Ending the Contract
         </span>
         <ol>
-          <li>
+          <li
+            class="noNumbering"
+          >
             This contract may be terminated by Us at any time if we reasonably consider you may have broken the terms. If the contract is terminated, your right to Use the NICE BNF terminates.
           </li>
         </ol>
@@ -267,7 +273,9 @@ exports[`EULA page should match snapshot 1`] = `
           Law
         </span>
         <ol>
-          <li>
+          <li
+            class="noNumbering"
+          >
             This contract is subject to English law and the exclusive jurisdiction of the English courts.
           </li>
         </ol>

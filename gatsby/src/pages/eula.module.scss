@@ -17,6 +17,10 @@ $section-font-size: 1;
     counter-increment: section;
   }
 
+  li.noNumbering::before {
+    content: '';
+  }
+
   > ol > li::before {
     @include typography.font-size($section-font-size);
   }

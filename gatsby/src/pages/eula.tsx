@@ -85,10 +85,13 @@ const EULAPage: React.FC = () => {
 										worker (e.g. NHS manager); in which case:
 										<ol>
 											<li>
-												You must be employed or engaged within the UK public
-												sector on behalf of the National Health Service and
-												using the NICE BNF solely for the benefit of the
-												National Health Service and patients.
+												You must be{" "}
+												<strong>
+													employed or engaged within the UK public sector on
+													behalf of the National Health Service and using the
+													NICE BNF solely for the benefit of the National Health
+													Service and patients.
+												</strong>
 											</li>
 											<li>
 												You understand that the guidance contained within the
@@ -256,7 +259,7 @@ const EULAPage: React.FC = () => {
 					<li>
 						<span className={styles.section}>Ending the Contract</span>
 						<ol>
-							<li>
+							<li className={styles.noNumbering}>
 								This contract may be terminated by Us at any time if we
 								reasonably consider you may have broken the terms. If the
 								contract is terminated, your right to Use the NICE BNF
@@ -267,7 +270,7 @@ const EULAPage: React.FC = () => {
 					<li>
 						<span className={styles.section}>Law</span>
 						<ol>
-							<li>
+							<li className={styles.noNumbering}>
 								This contract is subject to English law and the exclusive
 								jurisdiction of the English courts.
 							</li>
