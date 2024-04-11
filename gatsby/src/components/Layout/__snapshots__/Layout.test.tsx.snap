@@ -12,6 +12,29 @@ exports[`Layout should match snapshot 1`] = `
       </div>
     </div>
     <div
+      class="panel"
+    >
+      <div
+        class="container"
+      >
+        <div
+          class="panel"
+          data-component="panel"
+        >
+          <p>
+            The content on the NICE BNFC site (BNFC) is the copyright of BMJ Publishing Group Ltd, the Royal Pharmaceutical Society of Great Britain, and RCPCH Publications Ltd. By using BNFC, you agree to the licence set out in the
+             
+            <a
+              href="/eula"
+            >
+              BNF Publications End User Licence Agreement
+            </a>
+            .
+          </p>
+        </div>
+      </div>
+    </div>
+    <div
       id="sticky-nav-portal"
     />
   </main>

@@ -124,13 +124,13 @@ const MedicalDeviceTypePage: FC<MedicalDeviceTypePageProps> = ({
 										? {
 												id: indicationsAndDose.slug,
 												title: indicationsAndDose.potName,
-										  }
+											}
 										: undefined,
 									preparations.length > 0
 										? {
 												id: "medical-device-types",
 												title: "Medical device types",
-										  }
+											}
 										: undefined,
 								]}
 							></SectionNav>

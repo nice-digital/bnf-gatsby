@@ -8,7 +8,7 @@
 
 The BNF, or British National Formulary, provides guidance to health practitioners on prescribing, dispensing and administering medicines.
 
-It's a microsite, updated once a month from a feed. It's built with Gatsby, a React-based static site generator, and is styled using components from the NICE Design System. 
+It's a microsite, updated once a month from a feed. It's built with Gatsby, a React-based static site generator, and is styled using components from the NICE Design System.
 
 This project produces website for both the BNF (standard formulary) and BNFc (the version for children).
 

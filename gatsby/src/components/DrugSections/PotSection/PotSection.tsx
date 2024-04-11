@@ -10,7 +10,7 @@ import { BasePot } from "../types";
 import { PotContent } from "./PotContent/PotContent";
 
 export interface PotSectionProps<
-	TPotContent extends WithSlug<FeedBasePotContent>
+	TPotContent extends WithSlug<FeedBasePotContent>,
 > extends BasePot {
 	drugClassContent: TPotContent[];
 	drugContent: TPotContent | null;

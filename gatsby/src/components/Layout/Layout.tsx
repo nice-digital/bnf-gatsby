@@ -5,6 +5,7 @@ import { Container } from "@nice-digital/nds-container";
 
 import { useIsClient } from "@/hooks/useIsClient";
 
+import { EULAPanel } from "../EULAPanel/EULAPanel";
 import { IEBanner } from "../IEBanner/IEBanner";
 import { SiteDistinction } from "../SiteDistinction/SiteDistinction";
 import { SiteHeader } from "../SiteHeader/SiteHeader";
@@ -38,6 +39,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }: LayoutProps) => {
 			<Main>
 				<SiteDistinction />
 				<Container>{children}</Container>
+				<EULAPanel />
 				<div id="sticky-nav-portal"></div>
 			</Main>
 			<Footer service={isBNF ? "bnf" : "bnfc"} />

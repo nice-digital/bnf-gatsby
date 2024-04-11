@@ -122,7 +122,7 @@ const DrugPage: FC<DrugPageProps> = ({
 							slug: "interactions",
 							potName: "Interactions",
 							interactants,
-					  }
+						}
 					: null,
 			[interactants]
 		),
@@ -142,7 +142,7 @@ const DrugPage: FC<DrugPageProps> = ({
 							potName: "Related treatment summaries",
 							treatmentSummaries: relatedTreatmentSummaries,
 							pathPrefix: "treatment-summaries",
-					  }
+						}
 					: null,
 			[relatedTreatmentSummaries]
 		),
@@ -154,7 +154,7 @@ const DrugPage: FC<DrugPageProps> = ({
 							potName: "Related Nurse Prescribers’ treatment summaries",
 							treatmentSummaries: relatedNursePrescribersTreatmentSummaries,
 							pathPrefix: "nurse-prescribers-formulary",
-					  }
+						}
 					: null,
 			[relatedNursePrescribersTreatmentSummaries]
 		),
@@ -170,7 +170,7 @@ const DrugPage: FC<DrugPageProps> = ({
 							slug: "other-drugs-in-class",
 							primaryClassification,
 							secondaryClassifications,
-					  }
+						}
 					: null,
 			[primaryClassification, secondaryClassifications, slug]
 		),
@@ -281,7 +281,7 @@ const DrugPage: FC<DrugPageProps> = ({
 			? `View ${decapitalize(titleNoHtml)} information.`
 			: `View ${decapitalize(
 					titleNoHtml
-			  )} information, including ${metaDescriptionSectionText}.`;
+				)} information, including ${metaDescriptionSectionText}.`;
 
 	return (
 		<>

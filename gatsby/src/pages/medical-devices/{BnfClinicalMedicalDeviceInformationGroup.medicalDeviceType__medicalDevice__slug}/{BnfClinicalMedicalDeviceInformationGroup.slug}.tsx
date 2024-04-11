@@ -85,7 +85,7 @@ const getSimplePotSectionLink = (
 		? {
 				id: pot.slug,
 				title: pot.potName,
-		  }
+			}
 		: undefined;
 
 const CMPIPage: FC<CMPIPageProps> = ({
@@ -150,7 +150,7 @@ const CMPIPage: FC<CMPIPageProps> = ({
 					? {
 							id: indicationsAndDose.slug,
 							title: indicationsAndDose.potName,
-					  }
+						}
 					: undefined,
 				getSimplePotSectionLink(allergyAndCrossSensitivity),
 				getSimplePotSectionLink(treatmentCessation),

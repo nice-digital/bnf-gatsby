@@ -1,4 +1,4 @@
-/* eslint-disable testing-library/no-render-in-setup */
+/* eslint-disable testing-library/no-render-in-lifecycle */
 import { render, screen } from "@testing-library/react";
 
 import { type RecordSection } from "@/utils";

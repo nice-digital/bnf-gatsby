@@ -5,12 +5,12 @@
 - [:rocket: Quick setup](#rocket-quick-setup)
 - [What is a source plugin?](#what-is-a-source-plugin)
 - [BNF source plugin](#bnf-source-plugin)
-	- [Plugin usage](#plugin-usage)
-	- [Configuration](#configuration)
-	- [Data fetching](#data-fetching)
-		- [Authentication](#authentication)
-	- [GraphQL node types](#graphql-node-types)
-	- [GraphQL queries](#graphql-queries)
+  - [Plugin usage](#plugin-usage)
+  - [Configuration](#configuration)
+  - [Data fetching](#data-fetching)
+    - [Authentication](#authentication)
+  - [GraphQL node types](#graphql-node-types)
+  - [GraphQL queries](#graphql-queries)
 
 ## :rocket: Quick setup
 
@@ -19,7 +19,7 @@ This readme contains background and useful information for the source plugin. Th
 Follow these steps to start querying the data:
 
 - Run the Gatsby site following the instructions in the root
-- Open http://localhost:8000/___graphql in a browser to view the GraphiQL explorer.
+- Open http://localhost:8000/\_\_\_graphql in a browser to view the GraphiQL explorer.
 
 GraphiQL is an browser-based IDE for GraphQL queries that's built in to Gatsby. Read the [_Introducing GraphiQL_](https://www.gatsbyjs.org/docs/running-queries-with-graphiql/) page on the Gatsby documentation for more information.
 
@@ -110,6 +110,6 @@ These nodes can then be [queried in GraphQL in Gatsby](https://www.gatsbyjs.org/
 }
 ```
 
-Or [open this 'grouped drugs' query in GraphiQL](http://localhost:8000/___graphql?query=query%20MyQuery%20%7B%0A%20%20allBnfDrug%20%7B%0A%20%20%20%20group(field%3A%20initial)%20%7B%0A%20%20%20%20%20%20fieldValue%0A%20%20%20%20%20%20nodes%20%7B%0A%20%20%20%20%20%20%20%20slug%0A%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A&operationName=MyQuery) to explore.
+Or [open this 'grouped drugs' query in GraphiQL](<http://localhost:8000/___graphql?query=query%20MyQuery%20%7B%0A%20%20allBnfDrug%20%7B%0A%20%20%20%20group(field%3A%20initial)%20%7B%0A%20%20%20%20%20%20fieldValue%0A%20%20%20%20%20%20nodes%20%7B%0A%20%20%20%20%20%20%20%20slug%0A%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A&operationName=MyQuery>) to explore.
 
 > Note: these nodes and their fields are all documented via our custom GraphQL schema, so descriptions show up in the GraphiQL explorer.

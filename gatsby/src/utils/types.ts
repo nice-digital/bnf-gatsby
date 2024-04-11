@@ -43,7 +43,7 @@ export type WithSlug<T extends object> = T & Slug;
  * */
 export type WithSlugDeep<
 	Base extends object,
-	SlugTypes extends object
+	SlugTypes extends object,
 > = Simplify<
 	Merge<
 		Base extends SlugTypes ? WithSlug<Base> : Base,
@@ -53,10 +53,10 @@ export type WithSlugDeep<
 					? WithSlugDeep<U, SlugTypes>[] | undefined
 					: Base[Key]
 				: Base[Key] extends object
-				? WithSlugDeep<Base[Key], SlugTypes>
-				: Base[Key] extends object | undefined
-				? WithSlugDeep<NonNullable<Base[Key]>, SlugTypes> | undefined
-				: Base[Key];
+					? WithSlugDeep<Base[Key], SlugTypes>
+					: Base[Key] extends object | undefined
+						? WithSlugDeep<NonNullable<Base[Key]>, SlugTypes> | undefined
+						: Base[Key];
 		}
 	>
 >;
@@ -68,16 +68,17 @@ export type WithSlugDeep<
  * - replaces `undefined` with `null` (GraphQL queries return `null` for empty properties)
  * - makes arrays required (not `null` or `undefined`)
  * */
-export type QueryResult<Base> = Base extends NonNullable<BuiltIns>
-	? Base
-	: Base extends BuiltIns
-	? NonNullable<Base> | null
-	: Base extends (infer U)[]
-	? NonNullable<QueryResult<U>[]>
-	: Base extends object
-	? {
-			[Key in keyof Base]-?: NonNullable<Base[Key]> extends unknown[]
-				? NonNullable<QueryResult<Base[Key]>>
-				: QueryResult<Base[Key]>;
-	  }
-	: unknown;
+export type QueryResult<Base> =
+	Base extends NonNullable<BuiltIns>
+		? Base
+		: Base extends BuiltIns
+			? NonNullable<Base> | null
+			: Base extends (infer U)[]
+				? NonNullable<QueryResult<U>[]>
+				: Base extends object
+					? {
+							[Key in keyof Base]-?: NonNullable<Base[Key]> extends unknown[]
+								? NonNullable<QueryResult<Base[Key]>>
+								: QueryResult<Base[Key]>;
+						}
+					: unknown;

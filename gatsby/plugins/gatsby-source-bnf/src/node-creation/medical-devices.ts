@@ -111,7 +111,7 @@ const createMedicalDeviceTypeNode = (
 			? {
 					potName: medicalDevice.indicationsAndDose.potName,
 					content: medicalDevice.indicationsAndDose.drugContent,
-			  }
+				}
 			: undefined,
 	};
 
@@ -174,7 +174,7 @@ const createCMPINode = (
 			? {
 					potName: indicationsAndDose.potName,
 					content: indicationsAndDose.drugContent,
-			  }
+				}
 			: undefined,
 		preparations,
 		// Flatten all the simple pots as we can discard the drug class and prep info for CMPI. To quote the schema:

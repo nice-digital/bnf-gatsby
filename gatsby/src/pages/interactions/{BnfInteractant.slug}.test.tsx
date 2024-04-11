@@ -451,7 +451,7 @@ describe("InteractantPage", () => {
 				expect(inputElement).toHaveValue("some filter text");
 			});
 
-			userEvent.click(submitButton);
+			await userEvent.click(submitButton);
 
 			await waitFor(() => {
 				expect(window.dataLayer[0]).toStrictEqual({

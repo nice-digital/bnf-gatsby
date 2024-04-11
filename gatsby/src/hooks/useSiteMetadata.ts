@@ -25,20 +25,18 @@ interface Site {
  * @returns The site metadata
  */
 export const useSiteMetadata = (): SiteMetaData => {
-	const { site } = useStaticQuery<Site>(
-		graphql`
-			query SiteMetaData {
-				site {
-					siteMetadata {
-						isBNF
-						siteUrl
-						searchUrl
-						siteTitleShort
-						siteTitleLong
-					}
+	const { site } = useStaticQuery<Site>(graphql`
+		query SiteMetaData {
+			site {
+				siteMetadata {
+					isBNF
+					siteUrl
+					searchUrl
+					siteTitleShort
+					siteTitleLong
 				}
 			}
-		`
-	);
+		}
+	`);
 	return site.siteMetadata;
 };

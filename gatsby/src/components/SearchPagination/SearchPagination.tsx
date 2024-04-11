@@ -35,7 +35,7 @@ export const SearchPagination: FC<SearchPaginationProps> = ({
 						"pa",
 						String(currentPage + 1)
 					),
-			  }
+				}
 			: undefined;
 
 	const previousPageLink =
@@ -46,7 +46,7 @@ export const SearchPagination: FC<SearchPaginationProps> = ({
 						currentPage == 2
 							? removeQueryParam(pathAndQuery, "pa")
 							: upsertQueryParam(pathAndQuery, "pa", String(currentPage - 1)),
-			  }
+				}
 			: undefined;
 
 	return resultCount === 0 ? null : (
