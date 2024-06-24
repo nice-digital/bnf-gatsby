@@ -14,7 +14,7 @@ export const onPreRenderHTML = ({
 
 	components.push(
 		<script
-			src={process.env.GATSBY_COOKIE_BANNER_URL}
+			src={`${process.env.GATSBY_COOKIE_BANNER_URL}v=24062024`}
 			type="text/javascript"
 			key="cookie-banner"
 			async

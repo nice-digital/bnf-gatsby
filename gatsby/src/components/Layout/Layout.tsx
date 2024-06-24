@@ -5,6 +5,7 @@ import { Container } from "@nice-digital/nds-container";
 
 import { useIsClient } from "@/hooks/useIsClient";
 
+import { EULABanner } from "../EULABanner/EULABanner";
 import { EULAPanel } from "../EULAPanel/EULAPanel";
 import { IEBanner } from "../IEBanner/IEBanner";
 import { SiteDistinction } from "../SiteDistinction/SiteDistinction";
@@ -35,6 +36,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }: LayoutProps) => {
 	return (
 		<>
 			{isIE && <IEBanner />}
+			<EULABanner />
 			<SiteHeader />
 			<Main>
 				<SiteDistinction />
