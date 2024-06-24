@@ -1,8 +1,8 @@
-import React from "react";
 import { render, screen } from "@testing-library/react";
+import Cookies from "js-cookie";
+import React from "react";
 
 import { EULABanner } from "./EULABanner";
-import Cookies from "js-cookie";
 
 describe("EULABanner", () => {
 	it("should match snapshot", () => {
@@ -15,7 +15,7 @@ describe("EULABanner", () => {
 		Cookies.get = jest.fn().mockImplementationOnce(() => undefined);
 		render(<EULABanner />);
 		expect(
-			screen.getByText("CKS End User Licence Agreement")
+			screen.getByText("NICE BNF End User Licence Agreement")
 		).toBeInTheDocument();
 	});
 
