@@ -25,6 +25,9 @@ declare global {
 	}
 }
 
+const shouldShowEULABanner =
+	process.env.HIDE_EULA_BANNER === "true" ? false : true;
+
 export const Layout: React.FC<LayoutProps> = ({ children }: LayoutProps) => {
 	const isClient = useIsClient();
 	let isIE = false;
@@ -36,7 +39,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }: LayoutProps) => {
 	return (
 		<>
 			{isIE && <IEBanner />}
-			<EULABanner />
+			{shouldShowEULABanner && <EULABanner />}
 			<SiteHeader />
 			<Main>
 				<SiteDistinction />
