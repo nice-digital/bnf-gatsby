@@ -1,4 +1,36 @@
 @use '@nice-digital/nds-core/scss/colours/tokens/global';
+@use '@nice-digital/nds-core/scss/typography';
+
+$section-font-size: 1;
+
+.terms {
+  ol {
+    counter-reset: section;
+    list-style: none;
+  }
+
+  > ol {
+    margin-left: 0;
+  }
+
+  li::before {
+    content: counters(section, '.') ' ';
+    counter-increment: section;
+  }
+
+  .noNumbering::before {
+    content: '';
+  }
+
+  > ol > li::before {
+    @include typography.font-size($section-font-size);
+  }
+}
+
+.section {
+  @include typography.font-size($section-font-size);
+  font-weight: bold;
+}
 
 // These styles have basically been robbed directly from the cookie-control
 // third party script, so that the notice appears in exactly the same place

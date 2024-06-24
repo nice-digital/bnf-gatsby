@@ -9,7 +9,6 @@ import { EULAContent } from "@/components/EULABanner/EULABanner";
 import { SEO } from "../components/SEO/SEO";
 
 import { isBNF } from "./../site";
-import styles from "./eula.module.scss";
 
 const EULAPage: React.FC = () => {
 	return (
