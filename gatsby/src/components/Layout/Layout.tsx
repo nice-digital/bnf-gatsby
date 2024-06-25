@@ -26,7 +26,7 @@ declare global {
 }
 
 const shouldShowEULABanner =
-	process.env.HIDE_EULA_BANNER === "true" ? false : true;
+	process.env.GATSBY_HIDE_EULA_BANNER === "true" ? false : true;
 
 export const Layout: React.FC<LayoutProps> = ({ children }: LayoutProps) => {
 	const isClient = useIsClient();
