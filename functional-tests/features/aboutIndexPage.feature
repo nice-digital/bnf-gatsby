@@ -4,13 +4,13 @@ Feature: About index page
 
   Background:
     Given I open the about page
-    And I have a screen that is 1366 by 768 pixels
+    And I am using a desktop size browser
 
   Scenario: Detect desktop accessibility issues
     Then the page should have no accessibility issues
 
   Scenario: Detect mobile accessibility issues
-    Given I have a screen that is 320 by 568 pixels
+    Given I am using a mobile size browser
     Then the page should have no accessibility issues
 
   Scenario: NICE breadcrumb

@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import { Layout } from "@/components/Layout/Layout";
 
@@ -25,7 +26,7 @@ describe("Layout", () => {
 		).toBeNull();
 	});
 
-	it("Should render a banner whenever IE11 is detected", () => {
+	it("Should render a banner whenever IE11 is detected", async () => {
 		Object.defineProperty(global.document, "documentMode", { value: "test" }); // Spoof IE by adding a documentMode property to the document object
 
 		render(
@@ -33,6 +34,12 @@ describe("Layout", () => {
 				<div>Content</div>
 			</Layout>
 		);
+
+		const EULAButton = screen.getByRole("button", {
+			name: "I accept these terms",
+		});
+
+		await userEvent.click(EULAButton);
 
 		expect(
 			screen.getByRole("heading", { level: 2, name: "Browser support" })
