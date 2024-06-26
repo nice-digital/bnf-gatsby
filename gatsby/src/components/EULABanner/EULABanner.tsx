@@ -9,40 +9,41 @@ import { PageHeader } from "@nice-digital/nds-page-header";
 import styles from "./EULABanner.module.scss";
 
 const COOKIE_EXPIRY = 365; // In days, i.e. cookie expires a year from when it's set
-const COOKIE_NAME = "BNF-EULA-Accepted";
+const EULA_COOKIE_NAME = "BNF-EULA-Accepted";
+const COOKIE_CONTROL_NAME = "CookieControl";
 
 export const EULABanner: React.FC = () => {
 	const [open, setOpen] = useState(false);
 
+	const checkCookieControlExists = (): boolean => {
+		return !!Cookies.get(COOKIE_CONTROL_NAME);
+	};
+
 	useEffect(() => {
-		// Check for EULA cookie
-		const EULACookieVal = Cookies.get(COOKIE_NAME);
+		const checkCookieControlExistsInterval = setInterval(() => {
+			if (checkCookieControlExists()) {
+				// clear Interval
+				clearInterval(checkCookieControlExistsInterval);
 
-		if (!EULACookieVal) {
-			// Check for the cookie banner - if it's open, then hide the EULA for now.
-			// We can then watch for the banner's dismissal and show the EULA as soon
-			// as the banner has been dismissed
-			const cookieBanner = document.querySelector("#ccc-module");
-			if (cookieBanner) {
-				// Watch for dismissal - reinstate the EULA at that point
-				const callback = () => {
+				// check for EULA cookie
+				if (!Cookies.get(EULA_COOKIE_NAME)) {
 					setOpen(true);
-				};
-
-				const observer = new MutationObserver(callback);
-				observer.observe(cookieBanner.parentElement as HTMLElement, {
-					childList: true,
-				});
-			} else {
-				setOpen(true);
+				}
 			}
+		}, 500);
+
+		if (checkCookieControlExists()) {
+			clearInterval(checkCookieControlExistsInterval);
 		}
+		return () => {
+			clearInterval(checkCookieControlExistsInterval);
+		};
 	}, []);
 
 	// Terms are accepted - dismiss modal and store cookie
 	const handleAccept = () => {
 		setOpen(false);
-		Cookies.set(COOKIE_NAME, "true", {
+		Cookies.set(EULA_COOKIE_NAME, "true", {
 			expires: COOKIE_EXPIRY,
 		});
 	};
