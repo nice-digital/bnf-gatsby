@@ -9,8 +9,8 @@ import { PageHeader } from "@nice-digital/nds-page-header";
 import styles from "./EULABanner.module.scss";
 
 const COOKIE_EXPIRY = 365; // In days, i.e. cookie expires a year from when it's set
-const EULA_COOKIE_NAME = "BNF-EULA-Accepted";
-const COOKIE_CONTROL_NAME = "CookieControl";
+export const EULA_COOKIE_NAME = "BNF-EULA-Accepted";
+export const COOKIE_CONTROL_NAME = "CookieControl";
 
 export const EULABanner: React.FC = () => {
 	const [open, setOpen] = useState(false);
@@ -19,21 +19,21 @@ export const EULABanner: React.FC = () => {
 		return !!Cookies.get(COOKIE_CONTROL_NAME);
 	};
 
+	const toggleBannerBasedOnEULACookie = (): void => {
+		Cookies.get(EULA_COOKIE_NAME) ? setOpen(false) : setOpen(true);
+	};
+
 	useEffect(() => {
 		const checkCookieControlExistsInterval = setInterval(() => {
 			if (checkCookieControlExists()) {
-				// clear Interval
 				clearInterval(checkCookieControlExistsInterval);
-
-				// check for EULA cookie
-				if (!Cookies.get(EULA_COOKIE_NAME)) {
-					setOpen(true);
-				}
+				toggleBannerBasedOnEULACookie();
 			}
 		}, 500);
 
 		if (checkCookieControlExists()) {
 			clearInterval(checkCookieControlExistsInterval);
+			toggleBannerBasedOnEULACookie();
 		}
 		return () => {
 			clearInterval(checkCookieControlExistsInterval);
