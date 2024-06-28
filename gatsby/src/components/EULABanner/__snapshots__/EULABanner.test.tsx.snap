@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EULABanner should match snapshot for COOKIE_CONTROL: true, BNF-EULA-ACCEPTED: true 1`] = `
-<body>
+<body
+  style=""
+>
   <div />
 </body>
 `;
