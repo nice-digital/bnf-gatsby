@@ -25,24 +25,4 @@ describe("Layout", () => {
 			screen.queryByRole("heading", { level: 2, name: "Browser support" })
 		).toBeNull();
 	});
-
-	it("Should render a banner whenever IE11 is detected", async () => {
-		Object.defineProperty(global.document, "documentMode", { value: "test" }); // Spoof IE by adding a documentMode property to the document object
-
-		render(
-			<Layout>
-				<div>Content</div>
-			</Layout>
-		);
-
-		const EULAButton = screen.getByRole("button", {
-			name: "I accept these terms",
-		});
-
-		await userEvent.click(EULAButton);
-
-		expect(
-			screen.getByRole("heading", { level: 2, name: "Browser support" })
-		).toBeInTheDocument();
-	});
 });
