@@ -81,7 +81,7 @@ describe("EULABanner", () => {
 		).toBeInTheDocument();
 	});
 
-	xit("should show the EULABanner if there is no cookie present", () => {
+	it("should show the EULABanner if there is no cookie present", () => {
 		Cookies.get = jest.fn().mockImplementation((name) => {
 			if (name === COOKIE_CONTROL_NAME) return true;
 			if (name === EULA_COOKIE_NAME) return undefined;
@@ -95,7 +95,7 @@ describe("EULABanner", () => {
 		expect(banner).toHaveAttribute("data-state", "open");
 	});
 
-	xit("should not show the EULABanner if there is a cookie present", () => {
+	it("should not show the EULABanner if there is a cookie present", () => {
 		Cookies.get = jest.fn().mockImplementation((name) => {
 			if (name === COOKIE_CONTROL_NAME) return true;
 			if (name === EULA_COOKIE_NAME) return true;
