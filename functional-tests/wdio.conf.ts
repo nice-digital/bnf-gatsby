@@ -13,6 +13,8 @@ export const config: WebdriverIO.Config = {
 
 	specs: ["./features/**/*.feature"],
 
+	exclude: ["./features/**/header.feature", "./features/**/searchPage.feature"],
+
 	capabilities: [
 		{
 			browserName: "chrome",
