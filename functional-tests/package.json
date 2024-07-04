@@ -35,5 +35,8 @@
   },
   "volta": {
     "node": "18.13.0"
+  },
+  "dependencies": {
+    "axe-core": "^4.9.1"
   }
 }

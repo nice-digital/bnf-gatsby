@@ -3,6 +3,7 @@ Feature: Wound management taxonomy page
   I want to be able to use the BNF Wound management taxonomy page
 
   Background:
+    Given I open the home page
     Given I am using a desktop size browser
     And I open the advanced wound dressings page
 

@@ -3,6 +3,7 @@ Feature: Wound management product page
   I want to be able to use the BNF Wound management product page
 
   Background:
+    Given I open the home page
     Given I am using a desktop size browser
     And I open the odour absorbent dressings page
 
