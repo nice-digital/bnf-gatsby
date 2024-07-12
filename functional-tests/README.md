@@ -43,7 +43,7 @@ If you experience issue where the Search-api typeahead functional-tests step fai
 
 1. Rebuild Gatsby site with envrionment variables. Use single search endpoint base URL that support functional-tests docker compose file
    `GATSBY_SEARCH_URL=https://[env**]-search-api.nice.org.uk/api`
-   View [configuration](#configuration)
+   View [#configuration](4 above)
 
 
 

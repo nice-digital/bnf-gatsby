@@ -8,7 +8,7 @@ export async function waitForReact(timeout = 5000): Promise<void> {
 	await browser.waitUntil(
 		() =>
 			browser.execute(
-				() => !!document.documentElement.getAttribute("data-react-helmet")
+				() => !!document.querySelector("head [data-react-helmet]")
 			),
 		{
 			timeout,

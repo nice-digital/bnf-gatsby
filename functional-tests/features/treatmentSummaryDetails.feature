@@ -2,6 +2,7 @@ Feature: Treatment summary details page
   As a use of BNF I can use treatment summary details pages
 
   Background:
+    Given I open the home page
     And I am using a desktop size browser
 
   Scenario: NICE breadcrumb
