@@ -57,9 +57,9 @@ export const pagePaths = {
 	"borderline substances": "/borderline-substances/",
 	"cystic fibrosis":
 		"/borderline-substances/vitamin-and-mineral-supplements/cystic-fibrosis/",
-	"feed supplements": "/borderline-substances/feed-supplements/",
-	"high-fibre supplements":
-		"/borderline-substances/feed-supplements/high-fibre-supplements/",
+	"flavour additives": "/borderline-substances/flavour-additives/",
+	"flavour additive powders":
+		"/borderline-substances/flavour-additives/flavour-additive-powders/",
 	"vitamin and mineral supplements":
 		"/borderline-substances/vitamin-and-mineral-supplements/",
 
