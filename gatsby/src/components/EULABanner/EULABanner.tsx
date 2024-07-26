@@ -8,18 +8,6 @@ import { PageHeader } from "@nice-digital/nds-page-header";
 
 import styles from "./EULABanner.module.scss";
 
-interface OptionalCookies {
-	preferences: string;
-	analytics: string;
-	marketing: string;
-}
-
-interface CookieData {
-	necessaryCookies: string[];
-	optionalCookies: OptionalCookies;
-	[key: string]: string[] | OptionalCookies;
-}
-
 const COOKIE_EXPIRY = 365; // In days, i.e. cookie expires a year from when it's set
 export const EULA_COOKIE_NAME = "BNF-EULA-Accepted";
 export const COOKIE_CONTROL_NAME = "CookieControl";
@@ -28,40 +16,11 @@ export const EULABanner: React.FC = () => {
 	const [open, setOpen] = useState(false);
 
 	const checkCookieControlExists = (): boolean => {
-		const ccDialog = document.querySelector(".ccc-module--slideout");
-
-		console.log(ccDialog);
-
-		const cookie = Cookies.get(COOKIE_CONTROL_NAME);
-		if (!cookie) return false;
-
-		try {
-			const cookieData: CookieData = JSON.parse(cookie);
-			console.log(cookieData);
-
-			Object.keys(cookieData).forEach((key) => {
-				console.log(key, cookieData[key]);
-			});
-
-			if (!cookieData.necessaryCookies) {
-				return false;
-			}
-
-			const { preferences, analytics, marketing } = cookieData.optionalCookies;
-			if (!preferences || !analytics || !marketing) {
-				return false;
-			}
-
-			const { shown } = cookieData.statement;
-			if (shown) {
-				console.log("Cookie control has been shown");
-			}
-
-			// return true;
-		} catch (error) {
-			console.error("Error parsing cookie or checking keys:", error);
-			return false;
-		}
+		const cookieControl = Cookies.get(COOKIE_CONTROL_NAME);
+		const cookieControlExists = !!cookieControl;
+		const cookieDialog = document.querySelector(".ccc-module--slideout");
+		const cookieDialogExists = !!cookieDialog;
+		return cookieControlExists && !cookieDialogExists;
 	};
 
 	const toggleBannerBasedOnEULACookie = (): void => {
