@@ -1,4 +1,5 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import Cookies from "js-cookie";
 import React from "react";
 
@@ -6,6 +7,7 @@ import {
 	EULABanner,
 	COOKIE_CONTROL_NAME,
 	EULA_COOKIE_NAME,
+	COOKIE_EXPIRY,
 } from "./EULABanner";
 
 describe("EULABanner", () => {
@@ -130,5 +132,26 @@ describe("EULABanner", () => {
 
 		const banner = screen.queryByRole("dialog");
 		expect(banner).not.toBeInTheDocument();
+
+		// reset the document body then it doesn't affect other tests
+		document.body.innerHTML = "";
+	});
+
+	it("should call set cookies on accept", async () => {
+		const user = userEvent.setup();
+		Cookies.get = jest.fn().mockImplementation((name) => {
+			if (name === COOKIE_CONTROL_NAME) return true;
+			if (name === EULA_COOKIE_NAME) return undefined;
+			return undefined;
+		});
+		Cookies.set = jest.fn();
+		render(<EULABanner />);
+		user.click(screen.getByRole("button", { name: "I accept these terms" }));
+
+		await waitFor(() => {
+			expect(Cookies.set).toHaveBeenCalledWith(EULA_COOKIE_NAME, "true", {
+				expires: COOKIE_EXPIRY,
+			});
+		});
 	});
 });

@@ -8,7 +8,7 @@ import { PageHeader } from "@nice-digital/nds-page-header";
 
 import styles from "./EULABanner.module.scss";
 
-const COOKIE_EXPIRY = 365; // In days, i.e. cookie expires a year from when it's set
+export const COOKIE_EXPIRY = 365; // In days, i.e. cookie expires a year from when it's set
 export const EULA_COOKIE_NAME = "BNF-EULA-Accepted";
 export const COOKIE_CONTROL_NAME = "CookieControl";
 
