@@ -107,4 +107,28 @@ describe("EULABanner", () => {
 		const banner = screen.queryByRole("dialog");
 		expect(banner).not.toBeInTheDocument();
 	});
+
+	it("should not show the EULABanner if the cookie control dialog is open", () => {
+		const MockCookieBannerRegion = document.createElement("div");
+		MockCookieBannerRegion.setAttribute("role", "region");
+
+		const MockCookieBannerElement = document.createElement("div");
+		MockCookieBannerElement.classList.add("ccc-module--slideout");
+
+		MockCookieBannerRegion.appendChild(MockCookieBannerElement);
+		document.body.appendChild(MockCookieBannerRegion);
+
+		Cookies.get = jest.fn().mockImplementation((name) => {
+			if (name === COOKIE_CONTROL_NAME) return true;
+			if (name === EULA_COOKIE_NAME) return undefined;
+			return undefined;
+		});
+		const { rerender } = render(<EULABanner />);
+
+		jest.runOnlyPendingTimers();
+		rerender(<EULABanner />);
+
+		const banner = screen.queryByRole("dialog");
+		expect(banner).not.toBeInTheDocument();
+	});
 });
