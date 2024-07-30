@@ -15,12 +15,11 @@ export const COOKIE_CONTROL_NAME = "CookieControl";
 export const EULABanner: React.FC = () => {
 	const [open, setOpen] = useState(false);
 
-	const checkCookieControlExistsAndDialogDoesNotExist = (): boolean => {
+	const isCookieControlSetAndDialogHidden = (): boolean => {
 		const cookieControl = Cookies.get(COOKIE_CONTROL_NAME);
 		const cookieControlExists = !!cookieControl;
-		const cookieControlBannerRegion = document.querySelector("[role='region']");
-		const cookieDialog = cookieControlBannerRegion?.querySelector(
-			".ccc-module--slideout"
+		const cookieDialog = document.querySelector(
+			"[role='region'] .ccc-module--slideout"
 		);
 		const cookieDialogExists = !!cookieDialog;
 		return cookieControlExists && !cookieDialogExists;
@@ -32,13 +31,13 @@ export const EULABanner: React.FC = () => {
 
 	useEffect(() => {
 		const checkCookieControlExistsInterval = setInterval(() => {
-			if (checkCookieControlExistsAndDialogDoesNotExist()) {
+			if (isCookieControlSetAndDialogHidden()) {
 				clearInterval(checkCookieControlExistsInterval);
 				toggleBannerBasedOnEULACookie();
 			}
 		}, 500);
 
-		if (checkCookieControlExistsAndDialogDoesNotExist()) {
+		if (isCookieControlSetAndDialogHidden()) {
 			clearInterval(checkCookieControlExistsInterval);
 			toggleBannerBasedOnEULACookie();
 		}
