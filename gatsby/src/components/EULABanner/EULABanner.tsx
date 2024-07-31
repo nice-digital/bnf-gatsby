@@ -30,19 +30,20 @@ export const EULABanner: React.FC = () => {
 	};
 
 	useEffect(() => {
-		const observer = new MutationObserver(() => {
+		const checkBanner = () => {
 			if (isCookieControlSetAndDialogHidden()) {
 				observer.disconnect();
 				toggleBannerBasedOnEULACookie();
 			}
+		};
+
+		const observer = new MutationObserver(() => {
+			checkBanner();
 		});
 
 		observer.observe(document.body, { childList: true, subtree: true });
 
-		if (isCookieControlSetAndDialogHidden()) {
-			observer.disconnect();
-			toggleBannerBasedOnEULACookie();
-		}
+		checkBanner();
 
 		return () => {
 			observer.disconnect();

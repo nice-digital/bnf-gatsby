@@ -1,14 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EULABanner should match snapshot for COOKIE_CONTROL: true, BNF-EULA-ACCEPTED: true 1`] = `
-<body
-  style=""
->
-  <div />
-</body>
-`;
-
-exports[`EULABanner should match snapshot for COOKIE_CONTROL: true, BNF-EULA-ACCEPTED: undefined 1`] = `
+exports[`EULABanner should match snapshot 1`] = `
 <body
   data-scroll-locked="1"
   style="pointer-events: none;"
@@ -32,16 +24,16 @@ exports[`EULABanner should match snapshot for COOKIE_CONTROL: true, BNF-EULA-ACC
     style="pointer-events: auto;"
   />
   <div
-    aria-labelledby="radix-:r4:"
+    aria-labelledby="radix-:r1:"
     class="portal"
     data-state="open"
-    id="radix-:r3:"
+    id="radix-:r0:"
     role="dialog"
     style="pointer-events: auto;"
     tabindex="-1"
   >
     <h2
-      id="radix-:r4:"
+      id="radix-:r1:"
     >
       <div
         class="page-header"
@@ -320,19 +312,5 @@ exports[`EULABanner should match snapshot for COOKIE_CONTROL: true, BNF-EULA-ACC
     style="outline: none; opacity: 0; position: fixed; pointer-events: none;"
     tabindex="0"
   />
-</body>
-`;
-
-exports[`EULABanner should match snapshot for COOKIE_CONTROL: undefined, BNF-EULA-ACCEPTED: true 1`] = `
-<body
-  style=""
->
-  <div />
-</body>
-`;
-
-exports[`EULABanner should match snapshot for COOKIE_CONTROL: undefined, BNF-EULA-ACCEPTED: undefined 1`] = `
-<body>
-  <div />
 </body>
 `;

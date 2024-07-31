@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor, act } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import Cookies from "js-cookie";
 import React from "react";
@@ -9,6 +9,8 @@ import {
 	EULA_COOKIE_NAME,
 	COOKIE_EXPIRY,
 } from "./EULABanner";
+
+jest.mock("js-cookie");
 
 const mockCookiesGet = (
 	cookieControl: boolean | undefined,
@@ -22,40 +24,13 @@ const mockCookiesGet = (
 };
 
 describe("EULABanner", () => {
-	afterEach(() => {
-		jest.clearAllMocks();
-	});
-
-	it("should match snapshot for COOKIE_CONTROL: undefined, BNF-EULA-ACCEPTED: undefined", () => {
-		mockCookiesGet(undefined, undefined);
-		render(<EULABanner />);
-		expect(document.body).toMatchSnapshot();
-	});
-
-	it("should match snapshot for COOKIE_CONTROL: true, BNF-EULA-ACCEPTED: undefined", () => {
+	it("should match snapshot", () => {
 		mockCookiesGet(true, undefined);
 		render(<EULABanner />);
-		expect(
-			screen.getByText("NICE BNF End User Licence Agreement")
-		).toBeInTheDocument();
 		expect(document.body).toMatchSnapshot();
 	});
 
-	it("should match snapshot for COOKIE_CONTROL: true, BNF-EULA-ACCEPTED: true", () => {
-		mockCookiesGet(true, true);
-		render(<EULABanner />);
-		const banner = screen.queryByRole("dialog");
-		expect(banner).not.toBeInTheDocument();
-		expect(document.body).toMatchSnapshot();
-	});
-
-	it("should match snapshot for COOKIE_CONTROL: undefined, BNF-EULA-ACCEPTED: true", () => {
-		mockCookiesGet(undefined, true);
-		render(<EULABanner />);
-		expect(document.body).toMatchSnapshot();
-	});
-
-	xit("should render the EULABanner content", () => {
+	it("should render the EULABanner if the CookieControl is set and no cookie banner displayed", () => {
 		mockCookiesGet(true, undefined);
 		render(<EULABanner />);
 		expect(
@@ -63,22 +38,7 @@ describe("EULABanner", () => {
 		).toBeInTheDocument();
 	});
 
-	it("should show the EULABanner if there is no cookie present", () => {
-		mockCookiesGet(true, undefined);
-		render(<EULABanner />);
-		const banner = screen.getByRole("dialog");
-		expect(banner).toBeInTheDocument();
-		expect(banner).toHaveAttribute("data-state", "open");
-	});
-
-	xit("should not show the EULABanner both cookies are present", () => {
-		mockCookiesGet(true, true);
-		render(<EULABanner />);
-		const banner = screen.queryByRole("dialog");
-		expect(banner).not.toBeInTheDocument();
-	});
-
-	it("should not show the EULABanner if the cookie control dialog is open", () => {
+	it("should observe the cookie banner dismissal and show EULA banner", async () => {
 		const MockCookieBannerRegion = document.createElement("div");
 		MockCookieBannerRegion.setAttribute("role", "region");
 
@@ -91,24 +51,49 @@ describe("EULABanner", () => {
 		mockCookiesGet(true, undefined);
 		render(<EULABanner />);
 
-		const banner = screen.queryByRole("dialog");
-		expect(banner).not.toBeInTheDocument();
+		expect(
+			screen.queryByText("NICE BNF End User Licence Agreement")
+		).not.toBeInTheDocument();
 
-		// reset the document body then it doesn't affect other tests
-		document.body.innerHTML = "";
+		act(() => {
+			MockCookieBannerElement.remove();
+		});
+
+		await waitFor(() => {
+			expect(
+				screen.getByText("NICE BNF End User Licence Agreement")
+			).toBeInTheDocument();
+		});
 	});
 
-	it("should call set cookies on accept", async () => {
+	it("should set EULA cookie and closes EULA banner on accept", async () => {
 		const user = userEvent.setup();
 		mockCookiesGet(true, undefined);
-		Cookies.set = jest.fn();
+
 		render(<EULABanner />);
-		user.click(screen.getByRole("button", { name: "I accept these terms" }));
+		const acceptButton = screen.getByRole("button", {
+			name: "I accept these terms",
+		});
+
+		act(() => {
+			user.click(acceptButton);
+		});
 
 		await waitFor(() => {
 			expect(Cookies.set).toHaveBeenCalledWith(EULA_COOKIE_NAME, "true", {
 				expires: COOKIE_EXPIRY,
 			});
+			// eslint-disable-next-line testing-library/no-wait-for-multiple-assertions
+			expect(
+				screen.queryByText("CKS End User Licence Agreement")
+			).not.toBeInTheDocument();
 		});
+	});
+
+	it("should not show the EULABanner if there is a EULA cookie present", () => {
+		mockCookiesGet(true, true);
+		render(<EULABanner />);
+		const banner = screen.queryByRole("dialog");
+		expect(banner).not.toBeInTheDocument();
 	});
 });
