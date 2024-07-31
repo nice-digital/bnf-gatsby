@@ -10,102 +10,70 @@ import {
 	COOKIE_EXPIRY,
 } from "./EULABanner";
 
-describe("EULABanner", () => {
-	beforeEach(() => {
-		jest.useFakeTimers();
+const mockCookiesGet = (
+	cookieControl: boolean | undefined,
+	eulaAccepted: boolean | undefined
+) => {
+	Cookies.get = jest.fn().mockImplementation((name) => {
+		if (name === COOKIE_CONTROL_NAME) return cookieControl;
+		if (name === EULA_COOKIE_NAME) return eulaAccepted;
+		return undefined;
 	});
+};
 
+describe("EULABanner", () => {
 	afterEach(() => {
-		jest.runOnlyPendingTimers();
-		jest.useRealTimers();
 		jest.clearAllMocks();
 	});
 
-	it("should match snapshot for COOKIE_CONTROL: undefined, BNF-EULA-ACCEPTED: undefined ", () => {
-		Cookies.get = jest.fn().mockImplementation((name) => {
-			if (name === COOKIE_CONTROL_NAME) return undefined;
-			if (name === EULA_COOKIE_NAME) return undefined;
-			return undefined;
-		});
-		const { rerender } = render(<EULABanner />);
-		jest.runOnlyPendingTimers();
-		rerender(<EULABanner />);
+	it("should match snapshot for COOKIE_CONTROL: undefined, BNF-EULA-ACCEPTED: undefined", () => {
+		mockCookiesGet(undefined, undefined);
+		render(<EULABanner />);
 		expect(document.body).toMatchSnapshot();
 	});
 
 	it("should match snapshot for COOKIE_CONTROL: true, BNF-EULA-ACCEPTED: undefined", () => {
-		Cookies.get = jest.fn().mockImplementation((name) => {
-			if (name === COOKIE_CONTROL_NAME) return true;
-			if (name === EULA_COOKIE_NAME) return undefined;
-			return undefined;
-		});
-		const { rerender } = render(<EULABanner />);
-		jest.runOnlyPendingTimers();
-		rerender(<EULABanner />);
+		mockCookiesGet(true, undefined);
+		render(<EULABanner />);
+		expect(
+			screen.getByText("NICE BNF End User Licence Agreement")
+		).toBeInTheDocument();
 		expect(document.body).toMatchSnapshot();
 	});
 
 	it("should match snapshot for COOKIE_CONTROL: true, BNF-EULA-ACCEPTED: true", () => {
-		Cookies.get = jest.fn().mockImplementation((name) => {
-			if (name === COOKIE_CONTROL_NAME) return true;
-			if (name === EULA_COOKIE_NAME) return true;
-			return undefined;
-		});
-		const { rerender } = render(<EULABanner />);
-		jest.runOnlyPendingTimers();
-		rerender(<EULABanner />);
+		mockCookiesGet(true, true);
+		render(<EULABanner />);
+		const banner = screen.queryByRole("dialog");
+		expect(banner).not.toBeInTheDocument();
 		expect(document.body).toMatchSnapshot();
 	});
 
 	it("should match snapshot for COOKIE_CONTROL: undefined, BNF-EULA-ACCEPTED: true", () => {
-		Cookies.get = jest.fn().mockImplementation((name) => {
-			if (name === COOKIE_CONTROL_NAME) return undefined;
-			if (name === EULA_COOKIE_NAME) return true;
-			return undefined;
-		});
-		const { rerender } = render(<EULABanner />);
-		jest.runOnlyPendingTimers();
-		rerender(<EULABanner />);
+		mockCookiesGet(undefined, true);
+		render(<EULABanner />);
 		expect(document.body).toMatchSnapshot();
 	});
 
-	it("should render the EULABanner content", () => {
-		Cookies.get = jest.fn().mockImplementation((name) => {
-			if (name === COOKIE_CONTROL_NAME) return true;
-			if (name === EULA_COOKIE_NAME) return undefined;
-			return undefined;
-		});
-		const { rerender } = render(<EULABanner />);
-		jest.runOnlyPendingTimers();
-		rerender(<EULABanner />);
+	xit("should render the EULABanner content", () => {
+		mockCookiesGet(true, undefined);
+		render(<EULABanner />);
 		expect(
 			screen.getByText("NICE BNF End User Licence Agreement")
 		).toBeInTheDocument();
 	});
 
 	it("should show the EULABanner if there is no cookie present", () => {
-		Cookies.get = jest.fn().mockImplementation((name) => {
-			if (name === COOKIE_CONTROL_NAME) return true;
-			if (name === EULA_COOKIE_NAME) return undefined;
-			return undefined;
-		});
-		const { rerender } = render(<EULABanner />);
-		jest.runOnlyPendingTimers();
-		rerender(<EULABanner />);
+		mockCookiesGet(true, undefined);
+		render(<EULABanner />);
 		const banner = screen.getByRole("dialog");
 		expect(banner).toBeInTheDocument();
 		expect(banner).toHaveAttribute("data-state", "open");
 	});
 
-	it("should not show the EULABanner if there is a cookie present", () => {
-		Cookies.get = jest.fn().mockImplementation((name) => {
-			if (name === COOKIE_CONTROL_NAME) return true;
-			if (name === EULA_COOKIE_NAME) return true;
-			return undefined;
-		});
-		const { rerender } = render(<EULABanner />);
-		jest.runOnlyPendingTimers();
-		rerender(<EULABanner />);
+	xit("should not show the EULABanner both cookies are present", () => {
+		mockCookiesGet(true, true);
+		render(<EULABanner />);
 		const banner = screen.queryByRole("dialog");
 		expect(banner).not.toBeInTheDocument();
 	});
@@ -120,15 +88,8 @@ describe("EULABanner", () => {
 		MockCookieBannerRegion.appendChild(MockCookieBannerElement);
 		document.body.appendChild(MockCookieBannerRegion);
 
-		Cookies.get = jest.fn().mockImplementation((name) => {
-			if (name === COOKIE_CONTROL_NAME) return true;
-			if (name === EULA_COOKIE_NAME) return undefined;
-			return undefined;
-		});
-		const { rerender } = render(<EULABanner />);
-
-		jest.runOnlyPendingTimers();
-		rerender(<EULABanner />);
+		mockCookiesGet(true, undefined);
+		render(<EULABanner />);
 
 		const banner = screen.queryByRole("dialog");
 		expect(banner).not.toBeInTheDocument();
@@ -139,11 +100,7 @@ describe("EULABanner", () => {
 
 	it("should call set cookies on accept", async () => {
 		const user = userEvent.setup();
-		Cookies.get = jest.fn().mockImplementation((name) => {
-			if (name === COOKIE_CONTROL_NAME) return true;
-			if (name === EULA_COOKIE_NAME) return undefined;
-			return undefined;
-		});
+		mockCookiesGet(true, undefined);
 		Cookies.set = jest.fn();
 		render(<EULABanner />);
 		user.click(screen.getByRole("button", { name: "I accept these terms" }));

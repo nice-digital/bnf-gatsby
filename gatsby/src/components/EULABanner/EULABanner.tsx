@@ -30,20 +30,22 @@ export const EULABanner: React.FC = () => {
 	};
 
 	useEffect(() => {
-		const checkCookieControlExistsInterval = setInterval(() => {
+		const observer = new MutationObserver(() => {
 			if (isCookieControlSetAndDialogHidden()) {
-				clearInterval(checkCookieControlExistsInterval);
+				observer.disconnect();
 				toggleBannerBasedOnEULACookie();
 			}
-		}, 500);
+		});
+
+		observer.observe(document.body, { childList: true, subtree: true });
 
 		if (isCookieControlSetAndDialogHidden()) {
-			clearInterval(checkCookieControlExistsInterval);
+			observer.disconnect();
 			toggleBannerBasedOnEULACookie();
 		}
 
 		return () => {
-			clearInterval(checkCookieControlExistsInterval);
+			observer.disconnect();
 		};
 	}, []);
 

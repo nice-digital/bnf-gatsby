@@ -331,7 +331,7 @@ exports[`EULABanner should match snapshot for COOKIE_CONTROL: undefined, BNF-EUL
 </body>
 `;
 
-exports[`EULABanner should match snapshot for COOKIE_CONTROL: undefined, BNF-EULA-ACCEPTED: undefined  1`] = `
+exports[`EULABanner should match snapshot for COOKIE_CONTROL: undefined, BNF-EULA-ACCEPTED: undefined 1`] = `
 <body>
   <div />
 </body>
