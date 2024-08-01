@@ -8,15 +8,21 @@ import { PageHeader } from "@nice-digital/nds-page-header";
 
 import styles from "./EULABanner.module.scss";
 
-const COOKIE_EXPIRY = 365; // In days, i.e. cookie expires a year from when it's set
+export const COOKIE_EXPIRY = 365; // In days, i.e. cookie expires a year from when it's set
 export const EULA_COOKIE_NAME = "BNF-EULA-Accepted";
 export const COOKIE_CONTROL_NAME = "CookieControl";
 
 export const EULABanner: React.FC = () => {
 	const [open, setOpen] = useState(false);
 
-	const checkCookieControlExists = (): boolean => {
-		return !!Cookies.get(COOKIE_CONTROL_NAME);
+	const isCookieControlSetAndDialogHidden = (): boolean => {
+		const cookieControl = Cookies.get(COOKIE_CONTROL_NAME);
+		const cookieControlExists = !!cookieControl;
+		const cookieDialog = document.querySelector(
+			"[role='region'] .ccc-module--slideout"
+		);
+		const cookieDialogExists = !!cookieDialog;
+		return cookieControlExists && !cookieDialogExists;
 	};
 
 	const toggleBannerBasedOnEULACookie = (): void => {
@@ -24,19 +30,23 @@ export const EULABanner: React.FC = () => {
 	};
 
 	useEffect(() => {
-		const checkCookieControlExistsInterval = setInterval(() => {
-			if (checkCookieControlExists()) {
-				clearInterval(checkCookieControlExistsInterval);
+		const checkBanner = () => {
+			if (isCookieControlSetAndDialogHidden()) {
+				observer.disconnect();
 				toggleBannerBasedOnEULACookie();
 			}
-		}, 500);
+		};
 
-		if (checkCookieControlExists()) {
-			clearInterval(checkCookieControlExistsInterval);
-			toggleBannerBasedOnEULACookie();
-		}
+		const observer = new MutationObserver(() => {
+			checkBanner();
+		});
+
+		observer.observe(document.body, { childList: true, subtree: true });
+
+		checkBanner();
+
 		return () => {
-			clearInterval(checkCookieControlExistsInterval);
+			observer.disconnect();
 		};
 	}, []);
 
