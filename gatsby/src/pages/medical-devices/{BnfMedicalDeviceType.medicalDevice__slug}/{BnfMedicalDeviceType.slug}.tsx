@@ -94,6 +94,7 @@ const MedicalDeviceTypePage: FC<MedicalDeviceTypePageProps> = ({
 			<PageHeader
 				id="content-start"
 				heading={<span dangerouslySetInnerHTML={{ __html: title }} />}
+				data-testid="page-header"
 			/>
 
 			<Grid gutter="loose">

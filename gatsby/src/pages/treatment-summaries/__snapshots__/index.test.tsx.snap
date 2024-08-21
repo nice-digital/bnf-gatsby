@@ -71,21 +71,31 @@ exports[`TreatmentSummariesIndexPage should match snapshot for page body 1`] = `
 }
   </script>
   <div
-    class="page-header"
+    class="page-header "
     data-component="page-header"
+    data-testid="page-header"
     id="content-start"
   >
-    <h1
-      class="page-header__heading "
+    <div
+      class="grid"
     >
-      Treatment summaries
-       A to Z
-    </h1>
-    <p
-      class="page-header__lead"
-    >
-      Browse treatment summaries by A to Z. Treatment summaries cover drug use related to a particular body system, drug management or treatment of common conditions, and comparisons between groups of drugs.
-    </p>
+      <div
+        data-component="grid-item"
+        data-g="12 md:12"
+      >
+        <h1
+          class="page-header__heading "
+        >
+          Treatment summaries
+           A to Z
+        </h1>
+        <p
+          class="page-header__lead"
+        >
+          Browse treatment summaries by A to Z. Treatment summaries cover drug use related to a particular body system, drug management or treatment of common conditions, and comparisons between groups of drugs.
+        </p>
+      </div>
+    </div>
   </div>
   <ol
     class="alphabet  "

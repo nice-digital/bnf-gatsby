@@ -102,17 +102,27 @@ exports[`NursePrescribersFormularyApprovedListPage should match snapshot for pag
 }
   </script>
   <div
-    class="page-header"
+    class="page-header "
     data-component="page-header"
+    data-testid="page-header"
     id="content-start"
   >
-    <h1
-      class="page-header__heading "
+    <div
+      class="grid"
     >
-      <span>
-        Approved list for prescribing by Community Practitioner Nurse Prescribers (NPF)
-      </span>
-    </h1>
+      <div
+        data-component="grid-item"
+        data-g="12 md:12"
+      >
+        <h1
+          class="page-header__heading "
+        >
+          <span>
+            Approved list for prescribing by Community Practitioner Nurse Prescribers (NPF)
+          </span>
+        </h1>
+      </div>
+    </div>
   </div>
   <div
     class="grid grid--loose"

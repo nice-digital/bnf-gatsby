@@ -91,6 +91,7 @@ export const DetailsPageLayout: React.FC<DetailsPageLayoutProps> = ({
 				}
 				heading={<span dangerouslySetInnerHTML={{ __html: titleHtml }} />}
 				cta={headerCta}
+				data-testid="page-header"
 			/>
 
 			<Grid gutter="loose" data-testid="body">

@@ -105,28 +105,38 @@ exports[`Wound management taxonomy page should match page snapshot 1`] = `
 }
   </script>
   <div
-    class="page-header"
+    class="page-header "
     data-component="page-header"
+    data-testid="page-header"
     id="content-start"
   >
-    <h1
-      class="page-header__heading "
+    <div
+      class="grid"
     >
-      <span>
-        Vapour–permeable, transparent, adhesive film dressing.
-      </span>
-    </h1>
-    <p
-      class="page-header__lead"
-    >
-      <a
-        class="p"
-        href="/wound-management/advanced-wound-dressings/"
+      <div
+        data-component="grid-item"
+        data-g="12 md:12"
       >
-        View other 
-        advanced wound dressings
-      </a>
-    </p>
+        <h1
+          class="page-header__heading "
+        >
+          <span>
+            Vapour–permeable, transparent, adhesive film dressing.
+          </span>
+        </h1>
+        <p
+          class="page-header__lead"
+        >
+          <a
+            class="p"
+            href="/wound-management/advanced-wound-dressings/"
+          >
+            View other 
+            advanced wound dressings
+          </a>
+        </p>
+      </div>
+    </div>
   </div>
   <div
     class="grid grid--loose"

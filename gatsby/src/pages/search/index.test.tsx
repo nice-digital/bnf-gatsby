@@ -247,13 +247,8 @@ describe("Search Page", () => {
 	describe("Page header", () => {
 		it("should add content start skip link target id to page header", () => {
 			render(<SearchPage />);
-
-			const heading1 = screen.getByRole("heading", {
-				level: 1,
-			});
-
-			// eslint-disable-next-line testing-library/no-node-access
-			expect(heading1.parentElement).toHaveProperty("id", "content-start");
+			const pageHeader = screen.getByTestId("page-header");
+			expect(pageHeader).toHaveProperty("id", "content-start");
 		});
 
 		it("should render a loading message in the page header lead", async () => {

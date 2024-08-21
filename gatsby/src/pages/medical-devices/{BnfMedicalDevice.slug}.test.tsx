@@ -112,11 +112,10 @@ describe("MedicalDevicePage", () => {
 	describe("Page header", () => {
 		it("should add content start skip link target id to page header", () => {
 			render(<MedicalDevicePage {...props} />);
-			const heading1 = screen.getByRole("heading", {
-				level: 1,
-			});
-			// eslint-disable-next-line testing-library/no-node-access
-			expect(heading1.parentElement).toHaveAttribute("id", "content-start");
+
+			const pageHeader = screen.getByTestId("page-header");
+
+			expect(pageHeader).toHaveAttribute("id", "content-start");
 		});
 
 		it("should render heading 1 with current page title", () => {

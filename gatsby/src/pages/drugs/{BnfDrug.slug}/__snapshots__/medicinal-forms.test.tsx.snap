@@ -105,39 +105,49 @@ exports[`MedicinalFormsPage Body should match snapshot for page body 1`] = `
 }
   </script>
   <div
-    class="page-header"
+    class="page-header "
     data-component="page-header"
+    data-testid="page-header"
     id="content-start"
   >
-    <h1
-      class="page-header__heading "
+    <div
+      class="grid"
     >
-      <span
-        class="page-header__pre-heading"
+      <div
+        data-component="grid-item"
+        data-g="12 md:12"
       >
-        <span>
-          Anti-D (Rh
-          <sub>
-            0
-          </sub>
-          ) immunoglobulin 
-        </span>
-      </span>
-      <span>
-        Medicinal forms
-      </span>
-    </h1>
-    <p
-      class="page-header__cta"
-    >
-      <a
-        href="/drugs/anti-d-rh0-immunoglobulin/"
-      >
-        View 
-        Anti-D (Rh0) immunoglobulin
-         drug monograph
-      </a>
-    </p>
+        <h1
+          class="page-header__heading "
+        >
+          <span
+            class="page-header__pre-heading"
+          >
+            <span>
+              Anti-D (Rh
+              <sub>
+                0
+              </sub>
+              ) immunoglobulin 
+            </span>
+          </span>
+          <span>
+            Medicinal forms
+          </span>
+        </h1>
+        <p
+          class="page-header__cta"
+        >
+          <a
+            href="/drugs/anti-d-rh0-immunoglobulin/"
+          >
+            View 
+            Anti-D (Rh0) immunoglobulin
+             drug monograph
+          </a>
+        </p>
+      </div>
+    </div>
   </div>
   <div
     class="grid grid--loose"

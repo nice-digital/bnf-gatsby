@@ -168,6 +168,7 @@ const InteractantPage: FC<InteractantPageProps> = ({
 						</Link>
 					) : null
 				}
+				data-testid="page-header"
 			/>
 
 			{supplementaryInformation.map((supInf) => (

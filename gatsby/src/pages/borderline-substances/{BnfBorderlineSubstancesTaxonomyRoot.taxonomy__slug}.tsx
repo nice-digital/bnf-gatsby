@@ -55,7 +55,11 @@ const BorderlineSubstancesRootPage: FC<BorderlineSubstancesRootPageProps> = ({
 				<Breadcrumb>{title}</Breadcrumb>
 			</Breadcrumbs>
 
-			<PageHeader id="content-start" heading={title} />
+			<PageHeader
+				id="content-start"
+				heading={title}
+				data-testid="page-header"
+			/>
 
 			<Grid gutter="loose" data-testid="body">
 				<GridItem cols={12} md={4} lg={3} className="hide-print">

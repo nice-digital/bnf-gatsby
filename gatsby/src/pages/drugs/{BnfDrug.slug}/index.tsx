@@ -301,6 +301,7 @@ const DrugPage: FC<DrugPageProps> = ({
 			<PageHeader
 				id="content-start"
 				heading={<span dangerouslySetInnerHTML={{ __html: title }} />}
+				data-testid="page-header"
 			/>
 
 			<div className={styles.contentWrapper}>

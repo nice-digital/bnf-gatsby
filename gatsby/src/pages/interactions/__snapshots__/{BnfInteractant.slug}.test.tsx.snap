@@ -88,43 +88,53 @@ exports[`InteractantPage body should match snapshot for page body 1`] = `
 }
   </script>
   <div
-    class="page-header"
+    class="page-header "
     data-component="page-header"
+    data-testid="page-header"
     id="content-start"
   >
-    <h1
-      class="page-header__heading "
+    <div
+      class="grid"
     >
-      <span
-        class="page-header__pre-heading"
+      <div
+        data-component="grid-item"
+        data-g="12 md:12"
       >
-        <span>
-          Anti-D (Rh
-          <sub>
-            0
-          </sub>
-          ) immunoglobulin 
-        </span>
-      </span>
-      Interactions
-    </h1>
-    <p
-      class="page-header__lead"
-    >
-      <a
-        class="p"
-        data-tracking="own-monograph"
-        href="/drugs/acarbose/"
-      >
-        View
-         
-        <span>
-          acarbose
-        </span>
-         
-        drug monograph
-      </a>
-    </p>
+        <h1
+          class="page-header__heading "
+        >
+          <span
+            class="page-header__pre-heading"
+          >
+            <span>
+              Anti-D (Rh
+              <sub>
+                0
+              </sub>
+              ) immunoglobulin 
+            </span>
+          </span>
+          Interactions
+        </h1>
+        <p
+          class="page-header__lead"
+        >
+          <a
+            class="p"
+            data-tracking="own-monograph"
+            href="/drugs/acarbose/"
+          >
+            View
+             
+            <span>
+              acarbose
+            </span>
+             
+            drug monograph
+          </a>
+        </p>
+      </div>
+    </div>
   </div>
   <p
     class="interactionInformation"

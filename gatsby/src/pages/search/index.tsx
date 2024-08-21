@@ -193,6 +193,7 @@ const SearchIndexPage: FC = () => {
 						</div>
 					) : null
 				}
+				data-testid="page-header"
 			/>
 
 			{data?.resultCount === 0 ? (

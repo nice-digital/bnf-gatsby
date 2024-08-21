@@ -71,21 +71,31 @@ exports[`InteractionsIndexPage should match snapshot for page body 1`] = `
 }
   </script>
   <div
-    class="page-header"
+    class="page-header "
     data-component="page-header"
+    data-testid="page-header"
     id="content-start"
   >
-    <h1
-      class="page-header__heading "
+    <div
+      class="grid"
     >
-      Interactions
-       A to Z
-    </h1>
-    <p
-      class="page-header__lead"
-    >
-      Browse drugs by A to Z to check for interactions. Includes information on the severity of an interaction and the type of evidence to support it.
-    </p>
+      <div
+        data-component="grid-item"
+        data-g="12 md:12"
+      >
+        <h1
+          class="page-header__heading "
+        >
+          Interactions
+           A to Z
+        </h1>
+        <p
+          class="page-header__lead"
+        >
+          Browse drugs by A to Z to check for interactions. Includes information on the severity of an interaction and the type of evidence to support it.
+        </p>
+      </div>
+    </div>
   </div>
   <ol
     class="alphabet  "

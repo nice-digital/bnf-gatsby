@@ -128,10 +128,9 @@ describe("DetailsPageLayout", () => {
 					test
 				</DetailsPageLayout>
 			);
-			const heading1 = screen.getByRole("heading", {
-				level: 1,
-			});
-			expect(heading1.parentElement).toHaveProperty("id", "content-start");
+
+			const pageHeader = screen.getByTestId("page-header");
+			expect(pageHeader).toHaveProperty("id", "content-start");
 		});
 
 		it("should render heading 1 with current page title", () => {

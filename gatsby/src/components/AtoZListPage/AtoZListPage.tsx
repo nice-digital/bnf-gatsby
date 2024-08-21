@@ -66,6 +66,7 @@ export const AtoZListPage: FC<AtoZListPageProps> = ({
 				id="content-start"
 				heading={<>{title} A&nbsp;to&nbsp;Z</>}
 				lead={pageDescription}
+				data-testid="page-header"
 			/>
 
 			<AZList alphabet={alphabet}>

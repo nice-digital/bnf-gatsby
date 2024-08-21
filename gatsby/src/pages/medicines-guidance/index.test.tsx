@@ -30,11 +30,9 @@ describe("Medicines guidance index page", () => {
 
 	it("should add content start skip link target id to page header", () => {
 		render(<MedicinesGuidanceIndexPage />);
-		const heading1 = screen.getByRole("heading", {
-			level: 1,
-		});
-		// eslint-disable-next-line testing-library/no-node-access
-		expect(heading1.parentElement).toHaveProperty("id", "content-start");
+
+		const pageHeader = screen.getByTestId("page-header");
+		expect(pageHeader).toHaveProperty("id", "content-start");
 	});
 
 	it("should render the page heading with the expected text", () => {

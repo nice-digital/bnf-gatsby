@@ -25,7 +25,11 @@ const AboutIndexPage: FC = () => {
 				<Breadcrumb>About</Breadcrumb>
 			</Breadcrumbs>
 
-			<PageHeader id="content-start" heading={`About ${siteTitleShort}`} />
+			<PageHeader
+				id="content-start"
+				heading={`About ${siteTitleShort}`}
+				data-testid="page-header"
+			/>
 
 			<ColumnList
 				aria-label="Pages in the about section"

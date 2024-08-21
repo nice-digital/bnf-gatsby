@@ -28,7 +28,11 @@ const MedicalDevicesIndexPage: FC = () => {
 				<Breadcrumb>Medical devices</Breadcrumb>
 			</Breadcrumbs>
 
-			<PageHeader id="content-start" heading="Medical devices" />
+			<PageHeader
+				id="content-start"
+				heading="Medical devices"
+				data-testid="page-header"
+			/>
 
 			<ColumnList
 				aria-label="Pages in the medical devices section"

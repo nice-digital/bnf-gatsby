@@ -28,7 +28,11 @@ const GuidanceIndexPage: FC = () => {
 				<Breadcrumb>Medicines guidance</Breadcrumb>
 			</Breadcrumbs>
 
-			<PageHeader id="content-start" heading="Medicines guidance" />
+			<PageHeader
+				id="content-start"
+				heading="Medicines guidance"
+				data-testid="page-header"
+			/>
 
 			<ColumnList
 				aria-label="Pages in the medicines guidance section"

@@ -71,15 +71,24 @@ exports[`NursePrescribersFormularyTreatmentSummaryPage should match snapshot for
 }
   </script>
   <div
-    class="page-header"
+    class="page-header "
     data-component="page-header"
     id="content-start"
   >
-    <h1
-      class="page-header__heading "
+    <div
+      class="grid"
     >
-      Nurse Prescribers' Formulary
-    </h1>
+      <div
+        data-component="grid-item"
+        data-g="12 md:12"
+      >
+        <h1
+          class="page-header__heading "
+        >
+          Nurse Prescribers' Formulary
+        </h1>
+      </div>
+    </div>
   </div>
   <h2>
     About the Nurse Prescribers’ Formulary

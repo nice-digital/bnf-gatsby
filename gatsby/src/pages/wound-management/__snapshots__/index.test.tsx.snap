@@ -71,15 +71,25 @@ exports[`Wound management index page should match page snapshot 1`] = `
 }
   </script>
   <div
-    class="page-header"
+    class="page-header "
     data-component="page-header"
+    data-testid="page-header"
     id="content-start"
   >
-    <h1
-      class="page-header__heading "
+    <div
+      class="grid"
     >
-      Wound management products and elasticated garments
-    </h1>
+      <div
+        data-component="grid-item"
+        data-g="12 md:12"
+      >
+        <h1
+          class="page-header__heading "
+        >
+          Wound management products and elasticated garments
+        </h1>
+      </div>
+    </div>
   </div>
   <div
     class="grid grid--loose"

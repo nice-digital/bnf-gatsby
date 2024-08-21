@@ -83,11 +83,12 @@ describe("AtoZListPage", () => {
 	it("should add content start skip link target id to page header", () => {
 		render(<AtoZListPage {...props} />);
 
-		const heading1 = screen.getByRole("heading", {
-			level: 1,
-		});
+		// const heading1 = screen.getByRole("heading", {
+		// 	level: 1,
+		// });
+		const pageHeader = screen.getByTestId("page-header");
 		// eslint-disable-next-line testing-library/no-node-access
-		expect(heading1.parentElement).toHaveProperty("id", "content-start");
+		expect(pageHeader).toHaveProperty("id", "content-start");
 	});
 
 	it("should render main heading with A to Z postfix", () => {

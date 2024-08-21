@@ -111,6 +111,7 @@ const BorderlineSubstancesProductGroupPage: FC<
 					) : null
 				}
 				preheading={`${parentTaxonomy.title}: `}
+				data-testid="page-header"
 			/>
 
 			<section

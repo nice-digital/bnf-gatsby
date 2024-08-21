@@ -99,6 +99,7 @@ const WoundManagementProductPage: FC<WoundManagementProductPageProps> = ({
 						View other {rootTaxonomy.title.toLowerCase()}
 					</Link>
 				}
+				data-testid="page-header"
 			/>
 
 			<Grid gutter="loose">

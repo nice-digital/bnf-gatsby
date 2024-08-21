@@ -97,6 +97,7 @@ const WoundManagementTaxonomyPage: FC<WoundManagementTaxonomyPageProps> = ({
 			<PageHeader
 				id="content-start"
 				heading={<span dangerouslySetInnerHTML={{ __html: title }} />}
+				data-testid="page-header"
 			/>
 
 			<Grid gutter="loose" data-testid="body">
