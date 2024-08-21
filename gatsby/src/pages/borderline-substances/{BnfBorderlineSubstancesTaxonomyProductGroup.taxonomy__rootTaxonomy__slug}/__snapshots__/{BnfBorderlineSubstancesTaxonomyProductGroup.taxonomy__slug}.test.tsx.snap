@@ -105,31 +105,41 @@ exports[`BorderlineSubstancesProductGroupPage Body should match snapshot 1`] = `
 }
   </script>
   <div
-    class="page-header"
+    class="page-header "
     data-component="page-header"
+    data-testid="page-header"
     id="content-start"
   >
-    <h1
-      class="page-header__heading "
+    <div
+      class="grid"
     >
-      <span
-        class="page-header__pre-heading"
+      <div
+        data-component="grid-item"
+        data-g="12 md:12"
       >
-        Gluten-free foods: 
-      </span>
-      Bread
-    </h1>
-    <p
-      class="page-header__lead"
-    >
-      <a
-        class="p"
-        href="/borderline-substances/foods-for-special-diets/"
-      >
-        View other 
-        foods for special diets
-      </a>
-    </p>
+        <h1
+          class="page-header__heading "
+        >
+          <span
+            class="page-header__pre-heading"
+          >
+            Gluten-free foods: 
+          </span>
+          Bread
+        </h1>
+        <p
+          class="page-header__lead"
+        >
+          <a
+            class="p"
+            href="/borderline-substances/foods-for-special-diets/"
+          >
+            View other 
+            foods for special diets
+          </a>
+        </p>
+      </div>
+    </div>
   </div>
   <section
     aria-label="Substances within Bread"
