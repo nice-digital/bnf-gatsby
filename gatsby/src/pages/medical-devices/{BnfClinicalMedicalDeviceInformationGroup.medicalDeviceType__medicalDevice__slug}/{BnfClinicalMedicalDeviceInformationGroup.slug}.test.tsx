@@ -115,7 +115,6 @@ describe("CMPIPage", () => {
 			render(<CMPIPage {...props} />);
 
 			const pageHeader = screen.getByTestId("page-header");
-			// eslint-disable-next-line testing-library/no-node-access
 			expect(pageHeader).toHaveAttribute("id", "content-start");
 		});
 

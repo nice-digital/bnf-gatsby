@@ -88,15 +88,25 @@ exports[`BorderlineSubstancesRootPage Body Single level should match snapshot 1`
 }
   </script>
   <div
-    class="page-header"
+    class="page-header "
     data-component="page-header"
+    data-testid="page-header"
     id="content-start"
   >
-    <h1
-      class="page-header__heading "
+    <div
+      class="grid"
     >
-      Specialised formulas
-    </h1>
+      <div
+        data-component="grid-item"
+        data-g="12 md:12"
+      >
+        <h1
+          class="page-header__heading "
+        >
+          Specialised formulas
+        </h1>
+      </div>
+    </div>
   </div>
   <div
     class="grid grid--loose"
