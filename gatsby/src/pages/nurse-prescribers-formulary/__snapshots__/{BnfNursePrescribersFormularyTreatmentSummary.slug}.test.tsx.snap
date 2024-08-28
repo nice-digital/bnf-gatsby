@@ -106,7 +106,7 @@ exports[`NursePrescribersFormularyTreatmentSummaryPage should match snapshot for
 }
   </script>
   <div
-    class="page-header"
+    class="page-header "
     data-component="page-header"
     id="content-start"
   >
