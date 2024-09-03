@@ -71,7 +71,7 @@ exports[`BorderlineSubstanceIntroductionPage should match snapshot for page cont
 }
   </script>
   <div
-    class="page-header"
+    class="page-header "
     data-component="page-header"
     id="content-start"
   >

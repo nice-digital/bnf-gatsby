@@ -36,7 +36,7 @@ exports[`EULABanner should match snapshot 1`] = `
       id="radix-:r1:"
     >
       <div
-        class="page-header"
+        class="page-header "
         data-component="page-header"
       >
         <h1
