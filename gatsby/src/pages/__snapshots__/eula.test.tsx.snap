@@ -71,7 +71,7 @@ exports[`EULA page should match snapshot 1`] = `
 }
   </script>
   <div
-    class="page-header"
+    class="page-header "
     data-component="page-header"
   >
     <h1
