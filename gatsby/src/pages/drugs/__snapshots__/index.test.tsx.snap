@@ -71,7 +71,7 @@ exports[`DrugsIndexPage should match snapshot for page body 1`] = `
 }
   </script>
   <div
-    class="page-header "
+    class="page-header"
     data-component="page-header"
     id="content-start"
   >

@@ -88,7 +88,7 @@ exports[`BorderlineSubstancesRootPage Body Single level should match snapshot 1`
 }
   </script>
   <div
-    class="page-header "
+    class="page-header"
     data-component="page-header"
     id="content-start"
   >
@@ -313,7 +313,7 @@ exports[`BorderlineSubstancesRootPage Body Two levels should match snapshot 1`] 
 }
   </script>
   <div
-    class="page-header "
+    class="page-header"
     data-component="page-header"
     id="content-start"
   >
