@@ -102,7 +102,7 @@ exports[`NursePrescribersFormularyApprovedListPage should match snapshot for pag
 }
   </script>
   <div
-    class="page-header"
+    class="page-header "
     data-component="page-header"
     id="content-start"
   >
