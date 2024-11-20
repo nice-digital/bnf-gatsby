@@ -32,14 +32,14 @@ describe("InteractionsAlert", () => {
 	it("should render the heading with the correct text", () => {
 		render(<InteractionsAlert />);
 		expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent(
-			"Important:"
+			"Important"
 		);
 	});
 
 	it("should render the correct message content", () => {
 		render(<InteractionsAlert />);
 		expect(screen.getByTestId("interactions-a-z-alert")).toHaveTextContent(
-			"for combination products such as co-amilofruse (amiloride+furosemide) and co-trimoxazole (trimethoprim+sulfamethoxazole), check for interactions with the individual drugs. You can find links in the interactions section of the monograph for the combination product."
+			"For combination products such as co-amilofruse (amiloride+furosemide) and co-trimoxazole (trimethoprim+sulfamethoxazole), check for interactions with the individual drugs. You can find links in the interactions section of the monograph for the combination product."
 		);
 	});
 

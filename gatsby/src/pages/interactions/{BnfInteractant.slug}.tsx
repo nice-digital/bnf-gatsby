@@ -169,17 +169,8 @@ const InteractantPage: FC<InteractantPageProps> = ({
 				}
 			/>
 
-			{supplementaryInformation.map((supInf) => (
-				<Alert type="info" key={supInf.title}>
-					<h2 className="h4">{supInf.title}</h2>
-					<div
-						className={styles.alertText}
-						dangerouslySetInnerHTML={{
-							__html: supInf.information,
-						}}
-					></div>
-				</Alert>
-			))}
+			<InteractionsAlert supplementaryInformation={supplementaryInformation} />
+
 			{interactions.length === 0 ? (
 				<p>
 					<span dangerouslySetInnerHTML={{ __html: title }} /> has no specific
@@ -187,7 +178,6 @@ const InteractantPage: FC<InteractantPageProps> = ({
 				</p>
 			) : (
 				<>
-					<InteractionsAlert />
 					<p className={styles.interactionInformation}>
 						<span dangerouslySetInnerHTML={{ __html: title }} /> has the
 						following interaction information:

@@ -117,7 +117,7 @@ describe("AtoZListPage", () => {
 		const alert = screen.getByTestId("interactions-a-z-alert");
 		expect(alert).toBeInTheDocument();
 		expect(alert).toHaveTextContent(
-			"Important:for combination products such as co-amilofruse (amiloride+furosemide) and co-trimoxazole (trimethoprim+sulfamethoxazole), check for interactions with the individual drugs. You can find links in the interactions section of the monograph for the combination product."
+			"ImportantFor combination products such as co-amilofruse (amiloride+furosemide) and co-trimoxazole (trimethoprim+sulfamethoxazole), check for interactions with the individual drugs. You can find links in the interactions section of the monograph for the combination product."
 		);
 	});
 });

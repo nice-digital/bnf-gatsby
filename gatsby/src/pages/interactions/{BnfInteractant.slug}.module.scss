@@ -6,16 +6,6 @@
 @use '@nice-digital/nds-core/scss/typography';
 @use '@nice-digital/nds-core/scss/utils';
 
-.alertText {
-  > :last-child {
-    margin-bottom: 0;
-  }
-
-  p {
-    font-weight: normal;
-  }
-}
-
 .grid {
   @include media-queries.mq($from: md) {
     display: flex;
