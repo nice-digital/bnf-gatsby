@@ -19,8 +19,8 @@ export const InteractionsAlert: FC<InteractionsAlertProps> = ({
 	return (
 		<div className={styles.alertContainer}>
 			<Alert type="caution" role="alert" data-testid="interactions-a-z-alert">
-				<h2 className={styles.interactionsAlertHeading}>Important</h2>
-				<p className={styles.interactionsAlertText}>
+				<h2 className={styles.alertHeading}>Important</h2>
+				<p className={styles.alertText}>
 					For combination products such as co-amilofruse (amiloride+furosemide)
 					and co-trimoxazole (trimethoprim+sulfamethoxazole), check for
 					interactions with the individual drugs. You can find links in the
@@ -29,9 +29,9 @@ export const InteractionsAlert: FC<InteractionsAlertProps> = ({
 			</Alert>
 			{supplementaryInformation.map((supInf) => (
 				<Alert type="info" key={supInf.title}>
-					<h2 className="h4">{supInf.title}</h2>
+					<h2 className={styles.alertHeading}>{supInf.title}</h2>
 					<div
-						className={styles.interactionsAlertText}
+						className={styles.alertText}
 						dangerouslySetInnerHTML={{
 							__html: supInf.information,
 						}}

@@ -2,8 +2,8 @@
 @use '@nice-digital/nds-core/scss/spacing';
 @use '@nice-digital/nds-core/scss/utils';
 
-.interactionsAlertText,
-.interactionsAlertText * {
+.alertText,
+.alertText * {
   max-width: 132ch;
 
   > :last-child {
@@ -15,7 +15,7 @@
   }
 }
 
-.interactionsAlertHeading {
+.alertHeading {
   @include typography.font-size(2);
 }
 

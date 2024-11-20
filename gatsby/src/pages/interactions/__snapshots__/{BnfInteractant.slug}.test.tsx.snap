@@ -136,12 +136,12 @@ exports[`InteractantPage body should match snapshot for page body 1`] = `
       role="alert"
     >
       <h2
-        class="interactionsAlertHeading"
+        class="alertHeading"
       >
         Important
       </h2>
       <p
-        class="interactionsAlertText"
+        class="alertText"
       >
         For combination products such as co-amilofruse (amiloride+furosemide) and co-trimoxazole (trimethoprim+sulfamethoxazole), check for interactions with the individual drugs. You can find links in the interactions section of the monograph for the combination product.
       </p>
