@@ -98,4 +98,32 @@ describe("AtoZListPage", () => {
 		});
 		expect(heading1).toHaveProperty("innerHTML", "Test title A&nbsp;to&nbsp;Z");
 	});
+
+	it("should render the alert when the path is '/interactions'", () => {
+		const interactionPropsWithInteractionsPath: AtoZListPageProps = {
+			...props,
+			path: "interactions",
+		};
+
+		const { container } = render(
+			<AtoZListPage {...interactionPropsWithInteractionsPath} />
+		);
+
+		const alert = screen.getByTestId("interactions-a-z-alert");
+		expect(alert).toBeInTheDocument();
+		expect(container).toHaveTextContent(
+			"Important: for combination products such as co-amilofruse (amiloride+furosemide) and co-trimoxazole (trimethoprim+sulfamethoxazole), check for interactions with the individual drugs. You can find links in the interactions section of the monograph for the combination product."
+		);
+	});
+
+	it("should not render the alert when the path is not '/interactions'", () => {
+		const interactionPropsWithNonInteractionsPath: AtoZListPageProps = {
+			...props,
+			path: "drugs",
+		};
+		render(<AtoZListPage {...interactionPropsWithNonInteractionsPath} />);
+
+		const alert = screen.queryByTestId("interactions-a-z-alert");
+		expect(alert).not.toBeInTheDocument();
+	});
 });

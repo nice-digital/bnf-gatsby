@@ -2,6 +2,7 @@ import { Link } from "gatsby";
 import { type FC } from "react";
 
 import { AZList, AZListItem } from "@nice-digital/nds-a-z-list";
+import { Alert } from "@nice-digital/nds-alert";
 import { Alphabet, Letter } from "@nice-digital/nds-alphabet";
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
 import { ColumnList } from "@nice-digital/nds-column-list";
@@ -67,6 +68,18 @@ export const AtoZListPage: FC<AtoZListPageProps> = ({
 				heading={<>{title} A&nbsp;to&nbsp;Z</>}
 				lead={pageDescription}
 			/>
+			{path === "interactions" && (
+				<Alert type="caution" role="alert" data-testid="interactions-a-z-alert">
+					<h3>Important:</h3>{" "}
+					<p>
+						for combination products such as co-amilofruse
+						(amiloride+furosemide) and co-trimoxazole
+						(trimethoprim+sulfamethoxazole), check for interactions with the
+						individual drugs. You can find links in the interactions section of
+						the monograph for the combination product.
+					</p>
+				</Alert>
+			)}
 
 			<AZList alphabet={alphabet}>
 				{letters.map(({ letter, links }) => (
