@@ -1,7 +1,11 @@
+import { useLocation } from "@reach/router";
 import { render, screen, waitFor, within } from "@testing-library/react";
 
 import { AtoZListPage, type AtoZListPageProps } from "./AtoZListPage";
 
+jest.mock("@reach/router", () => ({
+	useLocation: jest.fn(),
+}));
 const props: AtoZListPageProps = {
 	path: "test-path",
 	title: "Test title",
@@ -30,6 +34,9 @@ const props: AtoZListPageProps = {
 };
 
 describe("AtoZListPage", () => {
+	beforeEach(() => {
+		(useLocation as jest.Mock).mockReturnValue({ pathname: "/interactions" });
+	});
 	it("should set page title", async () => {
 		render(<AtoZListPage {...props} />);
 		await waitFor(() => {
@@ -99,31 +106,18 @@ describe("AtoZListPage", () => {
 		expect(heading1).toHaveProperty("innerHTML", "Test title A&nbsp;to&nbsp;Z");
 	});
 
-	it("should render the alert when the path is '/interactions'", () => {
+	it("should render the combination products alert when the path is '/interactions'", () => {
 		const interactionPropsWithInteractionsPath: AtoZListPageProps = {
 			...props,
 			path: "interactions",
 		};
 
-		const { container } = render(
-			<AtoZListPage {...interactionPropsWithInteractionsPath} />
-		);
+		render(<AtoZListPage {...interactionPropsWithInteractionsPath} />);
 
 		const alert = screen.getByTestId("interactions-a-z-alert");
 		expect(alert).toBeInTheDocument();
-		expect(container).toHaveTextContent(
-			"Important: for combination products such as co-amilofruse (amiloride+furosemide) and co-trimoxazole (trimethoprim+sulfamethoxazole), check for interactions with the individual drugs. You can find links in the interactions section of the monograph for the combination product."
+		expect(alert).toHaveTextContent(
+			"Important:for combination products such as co-amilofruse (amiloride+furosemide) and co-trimoxazole (trimethoprim+sulfamethoxazole), check for interactions with the individual drugs. You can find links in the interactions section of the monograph for the combination product."
 		);
-	});
-
-	it("should not render the alert when the path is not '/interactions'", () => {
-		const interactionPropsWithNonInteractionsPath: AtoZListPageProps = {
-			...props,
-			path: "drugs",
-		};
-		render(<AtoZListPage {...interactionPropsWithNonInteractionsPath} />);
-
-		const alert = screen.queryByTestId("interactions-a-z-alert");
-		expect(alert).not.toBeInTheDocument();
 	});
 });

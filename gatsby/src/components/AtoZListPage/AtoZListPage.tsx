@@ -11,6 +11,8 @@ import { PageHeader } from "@nice-digital/nds-page-header";
 import { SEO } from "@/components/SEO/SEO";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
 
+import { InteractionsAlert } from "../InteractionsAlert/InteractionsAlert";
+
 export interface AtoZLink {
 	title: string;
 	slug: string;
@@ -68,18 +70,7 @@ export const AtoZListPage: FC<AtoZListPageProps> = ({
 				heading={<>{title} A&nbsp;to&nbsp;Z</>}
 				lead={pageDescription}
 			/>
-			{path === "interactions" && (
-				<Alert type="caution" role="alert" data-testid="interactions-a-z-alert">
-					<h3>Important:</h3>{" "}
-					<p>
-						for combination products such as co-amilofruse
-						(amiloride+furosemide) and co-trimoxazole
-						(trimethoprim+sulfamethoxazole), check for interactions with the
-						individual drugs. You can find links in the interactions section of
-						the monograph for the combination product.
-					</p>
-				</Alert>
-			)}
+			<InteractionsAlert />
 
 			<AZList alphabet={alphabet}>
 				{letters.map(({ letter, links }) => (

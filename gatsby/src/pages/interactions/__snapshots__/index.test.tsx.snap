@@ -93,10 +93,9 @@ exports[`InteractionsIndexPage should match snapshot for page body 1`] = `
     data-testid="interactions-a-z-alert"
     role="alert"
   >
-    <h3>
+    <h2>
       Important:
-    </h3>
-     
+    </h2>
     <p>
       for combination products such as co-amilofruse (amiloride+furosemide) and co-trimoxazole (trimethoprim+sulfamethoxazole), check for interactions with the individual drugs. You can find links in the interactions section of the monograph for the combination product.
     </p>

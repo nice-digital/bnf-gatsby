@@ -1,7 +1,11 @@
+import { useLocation } from "@reach/router";
 import { render, waitFor } from "@testing-library/react";
 
 import InteractionsIndexPage, { type InteractionsIndexPageProps } from "./";
 
+jest.mock("@reach/router", () => ({
+	useLocation: jest.fn(),
+}));
 const props: InteractionsIndexPageProps = {
 	data: {
 		allInteractants: {
@@ -38,6 +42,11 @@ const props: InteractionsIndexPageProps = {
 };
 
 describe("InteractionsIndexPage", () => {
+	beforeEach(() => {
+		(useLocation as jest.Mock).mockReturnValue({
+			pathname: "/interactions",
+		});
+	});
 	it("should set page title", async () => {
 		render(<InteractionsIndexPage {...props} />);
 		await waitFor(() => {

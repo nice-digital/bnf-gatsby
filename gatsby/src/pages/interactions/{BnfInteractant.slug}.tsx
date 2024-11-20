@@ -15,6 +15,7 @@ import {
 	type InteractionProps,
 } from "@/components/Interaction/Interaction";
 import interactionStyles from "@/components/Interaction/Interaction.module.scss";
+import { InteractionsAlert } from "@/components/InteractionsAlert/InteractionsAlert";
 import { SEO } from "@/components/SEO/SEO";
 import { useIsClient } from "@/hooks/useIsClient";
 import { useSiteMetadata } from "@/hooks/useSiteMetadata";
@@ -137,7 +138,6 @@ const InteractantPage: FC<InteractantPageProps> = ({
 				title={`${titleNoHtml} | Interactions`}
 				description={`See the list of drugs that interact with ${titleNoHtml}. Includes information on severity of interaction and the level of evidence for it.`}
 			/>
-
 			<Breadcrumbs>
 				<Breadcrumb to="https://www.nice.org.uk/">NICE</Breadcrumb>
 				<Breadcrumb to="/" elementType={Link}>
@@ -148,7 +148,6 @@ const InteractantPage: FC<InteractantPageProps> = ({
 				</Breadcrumb>
 				<Breadcrumb>{titleNoHtml}</Breadcrumb>
 			</Breadcrumbs>
-
 			<PageHeader
 				id="content-start"
 				preheading={<span dangerouslySetInnerHTML={{ __html: title + " " }} />}
@@ -181,7 +180,6 @@ const InteractantPage: FC<InteractantPageProps> = ({
 					></div>
 				</Alert>
 			))}
-
 			{interactions.length === 0 ? (
 				<p>
 					<span dangerouslySetInnerHTML={{ __html: title }} /> has no specific
@@ -189,11 +187,11 @@ const InteractantPage: FC<InteractantPageProps> = ({
 				</p>
 			) : (
 				<>
+					<InteractionsAlert />
 					<p className={styles.interactionInformation}>
 						<span dangerouslySetInnerHTML={{ __html: title }} /> has the
 						following interaction information:
 					</p>
-
 					<div className={styles.grid}>
 						<div className={styles.rightCol}>
 							<Panel data-tracking="interaction-information">
