@@ -117,7 +117,7 @@ describe("AtoZListPage", () => {
 		const alert = screen.getByTestId("interactions-a-z-alert");
 		expect(alert).toBeInTheDocument();
 		expect(alert).toHaveTextContent(
-			"WarningCombination products, for example co-amilofruse (amiloride+furosemide) do not appear in this list. You must check interactions with each constituent medicine."
+			"WarningCombination products, for example co-amilofruse (amiloride+furosemide), do not appear in this list. You must check interactions with each constituent medicine."
 		);
 	});
 });

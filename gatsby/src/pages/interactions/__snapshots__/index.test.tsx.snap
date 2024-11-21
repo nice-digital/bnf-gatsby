@@ -104,7 +104,7 @@ exports[`InteractionsIndexPage should match snapshot for page body 1`] = `
       <p
         class="alertText"
       >
-        Combination products, for example co-amilofruse (amiloride+furosemide) do not appear in this list. You must check interactions with each constituent medicine.
+        Combination products, for example co-amilofruse (amiloride+furosemide), do not appear in this list. You must check interactions with each constituent medicine.
       </p>
     </div>
   </div>

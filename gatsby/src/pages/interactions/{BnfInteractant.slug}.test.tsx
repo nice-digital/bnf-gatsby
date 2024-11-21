@@ -189,7 +189,7 @@ describe("InteractantPage", () => {
 			const alert = screen.getByTestId("interactions-a-z-alert");
 			expect(alert).toBeInTheDocument();
 			expect(alert).toHaveTextContent(
-				"WarningCombination products, for example co-amilofruse (amiloride+furosemide) do not appear in this list. You must check interactions with each constituent medicine."
+				"WarningCombination products, for example co-amilofruse (amiloride+furosemide), do not appear in this list. You must check interactions with each constituent medicine."
 			);
 		});
 		it("should render 'has no specific interactions information' when there are no interactions", () => {

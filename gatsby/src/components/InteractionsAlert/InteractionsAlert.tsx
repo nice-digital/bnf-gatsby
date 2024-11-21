@@ -21,9 +21,9 @@ export const InteractionsAlert: FC<InteractionsAlertProps> = ({
 			<Alert type="caution" role="alert" data-testid="interactions-a-z-alert">
 				<h2 className={styles.alertHeading}>Warning</h2>
 				<p className={styles.alertText}>
-					Combination products, for example co-amilofruse (amiloride+furosemide)
-					do not appear in this list. You must check interactions with each
-					constituent medicine.
+					Combination products, for example co-amilofruse
+					(amiloride+furosemide), do not appear in this list. You must check
+					interactions with each constituent medicine.
 				</p>
 			</Alert>
 			{supplementaryInformation.map((supInf) => (
