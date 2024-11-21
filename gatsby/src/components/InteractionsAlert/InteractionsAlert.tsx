@@ -19,12 +19,11 @@ export const InteractionsAlert: FC<InteractionsAlertProps> = ({
 	return (
 		<div className={styles.alertContainer}>
 			<Alert type="caution" role="alert" data-testid="interactions-a-z-alert">
-				<h2 className={styles.alertHeading}>Important</h2>
+				<h2 className={styles.alertHeading}>Warning</h2>
 				<p className={styles.alertText}>
-					For combination products such as co-amilofruse (amiloride+furosemide)
-					and co-trimoxazole (trimethoprim+sulfamethoxazole), check for
-					interactions with the individual drugs. You can find links in the
-					interactions section of the monograph for the combination product.
+					Combination products, for example co-amilofruse (amiloride+furosemide)
+					do not appear in this list. You must check interactions with each
+					constituent medicine.
 				</p>
 			</Alert>
 			{supplementaryInformation.map((supInf) => (
