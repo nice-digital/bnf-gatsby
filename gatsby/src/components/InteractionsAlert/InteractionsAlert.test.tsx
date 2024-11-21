@@ -48,6 +48,30 @@ describe("InteractionsAlert", () => {
 		expect(screen.getByTestId("interactions-a-z-alert")).toBeInTheDocument();
 	});
 
+	it("renders without crashing when supplementaryInformation is empty", () => {
+		render(<InteractionsAlert />);
+		expect(screen.getByTestId("interactions-a-z-alert")).toBeInTheDocument();
+		expect(
+			screen.getByRole("heading", { name: "Warning" })
+		).toBeInTheDocument();
+	});
+
+	it("renders supplementary information alerts when provided", () => {
+		const supplementaryInformation = [
+			{ title: "Supplement 1", information: "Info about Supplement 1" },
+			{ title: "Supplement 2", information: "Info about Supplement 2" },
+		];
+
+		render(
+			<InteractionsAlert supplementaryInformation={supplementaryInformation} />
+		);
+
+		expect(screen.getByText("Supplement 1")).toBeInTheDocument();
+		expect(screen.getByText("Info about Supplement 1")).toBeInTheDocument();
+		expect(screen.getByText("Supplement 2")).toBeInTheDocument();
+		expect(screen.getByText("Info about Supplement 2")).toBeInTheDocument();
+	});
+
 	it("should render the alert for subpaths of '/interactions'", () => {
 		(useLocation as jest.Mock).mockReturnValue({
 			pathname: "/interactions/abacavir/",
