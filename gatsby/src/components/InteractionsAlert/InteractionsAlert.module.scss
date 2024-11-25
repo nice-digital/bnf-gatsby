@@ -1,0 +1,24 @@
+@use '@nice-digital/nds-core/scss/typography';
+@use '@nice-digital/nds-core/scss/spacing';
+@use '@nice-digital/nds-core/scss/utils';
+
+.alertText,
+.alertText * {
+  max-width: 132ch;
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+
+  p {
+    font-weight: normal;
+  }
+}
+
+.alertHeading {
+  @include typography.font-size(2);
+}
+
+.alertContainer {
+  margin-bottom: utils.rem(spacing.$large);
+}

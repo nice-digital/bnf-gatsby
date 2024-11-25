@@ -1,3 +1,4 @@
+import { useLocation } from "@reach/router";
 import { render, waitFor, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
@@ -7,6 +8,10 @@ import InteractantPage, {
 	query,
 	type InteractantPageProps,
 } from "./{BnfInteractant.slug}";
+
+jest.mock("@reach/router", () => ({
+	useLocation: jest.fn(),
+}));
 
 const interactant: InteractantPageProps["data"]["bnfInteractant"] = {
 	// Note deliberate use of HTML within the title for testing stripping of tags
@@ -85,6 +90,12 @@ const dataProp: InteractantPageProps["data"] = {
 };
 
 describe("InteractantPage", () => {
+	beforeEach(() => {
+		(useLocation as jest.Mock).mockReturnValue({
+			pathname: "/interactions/anti-d-rh0-immunoglobulin/",
+		});
+	});
+
 	it("should match snapshot for graphql query", () => {
 		expect(query).toMatchSnapshot();
 	});
@@ -173,6 +184,14 @@ describe("InteractantPage", () => {
 	});
 
 	describe("body", () => {
+		it("should render the combination products alert", () => {
+			render(<InteractantPage data={dataProp} />);
+			const alert = screen.getByTestId("interactions-a-z-alert");
+			expect(alert).toBeInTheDocument();
+			expect(alert).toHaveTextContent(
+				"WarningCombination products, for example co-amilofruse (amiloride+furosemide), do not appear in this list. You must check interactions with each constituent medicine."
+			);
+		});
 		it("should render 'has no specific interactions information' when there are no interactions", () => {
 			render(
 				<InteractantPage

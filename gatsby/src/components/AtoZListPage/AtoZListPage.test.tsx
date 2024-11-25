@@ -1,7 +1,11 @@
+import { useLocation } from "@reach/router";
 import { render, screen, waitFor, within } from "@testing-library/react";
 
 import { AtoZListPage, type AtoZListPageProps } from "./AtoZListPage";
 
+jest.mock("@reach/router", () => ({
+	useLocation: jest.fn(),
+}));
 const props: AtoZListPageProps = {
 	path: "test-path",
 	title: "Test title",
@@ -30,6 +34,9 @@ const props: AtoZListPageProps = {
 };
 
 describe("AtoZListPage", () => {
+	beforeEach(() => {
+		(useLocation as jest.Mock).mockReturnValue({ pathname: "/interactions" });
+	});
 	it("should set page title", async () => {
 		render(<AtoZListPage {...props} />);
 		await waitFor(() => {
@@ -97,5 +104,20 @@ describe("AtoZListPage", () => {
 			level: 1,
 		});
 		expect(heading1).toHaveProperty("innerHTML", "Test title A&nbsp;to&nbsp;Z");
+	});
+
+	it("should render the combination products alert when the path is '/interactions'", () => {
+		const interactionPropsWithInteractionsPath: AtoZListPageProps = {
+			...props,
+			path: "interactions",
+		};
+
+		render(<AtoZListPage {...interactionPropsWithInteractionsPath} />);
+
+		const alert = screen.getByTestId("interactions-a-z-alert");
+		expect(alert).toBeInTheDocument();
+		expect(alert).toHaveTextContent(
+			"WarningCombination products, for example co-amilofruse (amiloride+furosemide), do not appear in this list. You must check interactions with each constituent medicine."
+		);
 	});
 });
