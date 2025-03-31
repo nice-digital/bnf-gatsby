@@ -98,7 +98,11 @@ describe("Search Page", () => {
 			render(<SearchPage />);
 
 			await waitFor(() => {
-				expect(screen.getByText(/Error page content/i)).toBeInTheDocument();
+				expect(
+					screen.getByText(
+						"Sorry, there has been a problem, and we cannot load the page you are looking for. Please try again."
+					)
+				).toBeInTheDocument();
 			});
 		});
 	});
