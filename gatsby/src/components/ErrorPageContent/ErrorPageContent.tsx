@@ -14,7 +14,11 @@ export const ErrorPageContent: React.FC = () => {
 			</p>
 			<p>
 				If you get this message more than once, please report it using our
-				feedback form : <a> https://www.nice.org.uk/forms/leave-feedback</a>
+				feedback form :{" "}
+				<a href="https://www.nice.org.uk/forms/leave-feedback">
+					{" "}
+					https://www.nice.org.uk/forms/leave-feedback
+				</a>
 			</p>
 		</>
 	);
