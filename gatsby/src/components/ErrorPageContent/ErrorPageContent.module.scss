@@ -1,0 +1,10 @@
+@use '../../styles/colours';
+@use '@nice-digital/nds-core/scss/colours' as core-colours;
+@use '@nice-digital/nds-core/scss/focus';
+@use '@nice-digital/nds-core/scss/spacing';
+@use '@nice-digital/nds-core/scss/typography';
+@use '@nice-digital/nds-core/scss/utils';
+
+.errorHeading {
+  margin-top: utils.rem(spacing.$x-large);
+}
