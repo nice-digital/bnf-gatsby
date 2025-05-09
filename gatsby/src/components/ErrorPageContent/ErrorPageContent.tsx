@@ -10,12 +10,6 @@ export const ErrorPageContent: React.FC = () => {
 		<>
 			<SEO title={`Error`} />
 			<Announcer announcement="An error occurred" />
-			{/* <PageHeader
-				heading={"Sorry, there has been a problem"}
-				lead={"We cannot load the page you are looking for"}
-				id="content-start"
-				verticalPadding="loose"
-			/> */}
 			<h1 className={styles.errorHeading}>Sorry, there has been a problem</h1>
 			<p className="lead">We cannot load the page you are looking for.</p>
 			<p className="lead">Please try again.</p>
