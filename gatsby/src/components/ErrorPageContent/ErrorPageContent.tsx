@@ -7,7 +7,7 @@ import styles from "./ErrorPageContent.module.scss";
 export const ErrorPageContent: React.FC = () => {
 	// TODO error page content
 	return (
-		<>
+		<div className={styles.errorPageContent}>
 			<SEO title={`Error`} />
 			<Announcer announcement="An error occurred" />
 			<h1 className={styles.errorHeading}>Sorry, there has been a problem</h1>
@@ -21,6 +21,6 @@ export const ErrorPageContent: React.FC = () => {
 					https://www.nice.org.uk/forms/leave-feedback
 				</a>
 			</p>
-		</>
+		</div>
 	);
 };

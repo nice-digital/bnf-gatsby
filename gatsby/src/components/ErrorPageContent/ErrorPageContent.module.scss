@@ -5,6 +5,12 @@
 @use '@nice-digital/nds-core/scss/typography';
 @use '@nice-digital/nds-core/scss/utils';
 
-.errorHeading {
-  margin-top: utils.rem(spacing.$x-large);
+.errorPageContent {
+  .errorHeading {
+    margin-top: utils.rem(spacing.$x-large);
+  }
+
+  :global(.lead + .lead) {
+    margin-top: utils.rem(spacing.$x-small);
+  }
 }
