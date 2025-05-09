@@ -99,9 +99,7 @@ describe("Search Page", () => {
 
 			await waitFor(() => {
 				expect(
-					screen.getByText(
-						"Sorry, there has been a problem, and we cannot load the page you are looking for. Please try again."
-					)
+					screen.getByText("Sorry, there has been a problem")
 				).toBeInTheDocument();
 			});
 		});
