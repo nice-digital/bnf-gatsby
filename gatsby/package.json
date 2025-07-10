@@ -34,7 +34,7 @@
     "@fontsource/inter": "^4.5.15",
     "@fontsource/lora": "^4.5.13",
     "@nice-digital/browserslist-config": "^2.0.1",
-    "@nice-digital/design-system": "5.0.28",
+    "@nice-digital/design-system": "^5.5.2",
     "@nice-digital/global-nav": "^7.1.1073",
     "@nice-digital/search-client": "^2.0.1426",
     "@radix-ui/react-dialog": "^1.0.5",
