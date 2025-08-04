@@ -53,7 +53,7 @@ describe("SiteHeader", () => {
 			});
 		});
 
-		it("should render search query as first option for screen readers", async () => {
+		it("should render search query as visually and aria hidden element", async () => {
 			const user = userEvent.setup();
 			useSiteMetadataMock.mockReturnValueOnce({
 				isBNF: true,
@@ -68,10 +68,34 @@ describe("SiteHeader", () => {
 			user.type(await screen.findByRole("combobox"), "SODIUM");
 
 			await waitFor(() => {
-				const suggestedElements = screen.queryAllByRole("option");
+				const suggestedElements = screen.getAllByRole("option", {
+					hidden: true,
+				});
 				expect(suggestedElements[0].textContent).toEqual("Search for SODIUM");
 				// eslint-disable-next-line testing-library/no-wait-for-multiple-assertions
 				expect(suggestedElements[0]).toHaveClass("visually-hidden");
+			});
+		});
+
+		it("should render first search result as first option for screen readers", async () => {
+			const user = userEvent.setup();
+			useSiteMetadataMock.mockReturnValueOnce({
+				isBNF: true,
+			});
+
+			render(<SiteHeader />);
+
+			// Global nav uses a fetch to load autocomplete suggestions, and changing the input value triggers this fetch
+			fetchMock.mockResponse(
+				JSON.stringify(mockAutocompleteEndPointSuggestionsForDrug)
+			);
+			user.type(await screen.findByRole("combobox"), "SODIUM");
+
+			await waitFor(() => {
+				const suggestedElements = screen.getAllByRole("option");
+				expect(suggestedElements[0].textContent).toEqual(
+					"SODIUM BICARBONATE (BNF drugs/monographs)"
+				);
 			});
 		});
 
@@ -95,7 +119,9 @@ describe("SiteHeader", () => {
 				user.type(await screen.findByRole("combobox"), "SODIUM");
 
 				await waitFor(() => {
-					const suggestedElements = screen.queryAllByRole("option");
+					const suggestedElements = screen.getAllByRole("option", {
+						hidden: true,
+					});
 					// Wait for "Search for SODIUM" option to exist, as expectedText index check fails intermittently
 					const searchForSodiumOption = suggestedElements.find(
 						(option) => option.textContent === "Search for SODIUM"
@@ -171,7 +197,7 @@ describe("SiteHeader", () => {
 				await waitFor(() => {
 					const form = screen.getByRole("search");
 					const suggestedElement = within(form).queryAllByRole("option");
-					expect(suggestedElement[1]).toHaveTextContent(`test (${expected})`);
+					expect(suggestedElement[0]).toHaveTextContent(`test (${expected})`);
 				});
 			}
 		);
