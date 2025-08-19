@@ -98,6 +98,11 @@ exports[`DrugsIndexPage should match snapshot for page body 1`] = `
       <a
         href="#a"
       >
+        <span
+          class="visually-hidden"
+        >
+          Browse drugs by the letter 
+        </span>
         A
       </a>
     </li>
@@ -108,6 +113,11 @@ exports[`DrugsIndexPage should match snapshot for page body 1`] = `
       <a
         href="#b"
       >
+        <span
+          class="visually-hidden"
+        >
+          Browse drugs by the letter 
+        </span>
         B
       </a>
     </li>

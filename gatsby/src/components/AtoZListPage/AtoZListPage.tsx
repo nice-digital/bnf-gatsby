@@ -2,7 +2,6 @@ import { Link } from "gatsby";
 import { type FC } from "react";
 
 import { AZList, AZListItem } from "@nice-digital/nds-a-z-list";
-import { Alert } from "@nice-digital/nds-alert";
 import { Alphabet, Letter } from "@nice-digital/nds-alphabet";
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
 import { ColumnList } from "@nice-digital/nds-column-list";
@@ -45,11 +44,19 @@ export const AtoZListPage: FC<AtoZListPageProps> = ({
 
 	const alphabet = () => (
 		<Alphabet>
-			{letters.map(({ letter }) => (
-				<Letter key={letter} to={`#${letter}`}>
-					{letter.trim().toUpperCase() || "n/a"}
-				</Letter>
-			))}
+			{letters.map(({ letter }) => {
+				const trimmedLetter = letter.trim().toUpperCase();
+				return (
+					<Letter key={letter} to={`#${letter}`}>
+						{trimmedLetter ? (
+							<span className="visually-hidden">
+								{`Browse ${title.toLocaleLowerCase()} by the letter `}
+							</span>
+						) : null}
+						{trimmedLetter || "n/a"}
+					</Letter>
+				);
+			})}
 		</Alphabet>
 	);
 

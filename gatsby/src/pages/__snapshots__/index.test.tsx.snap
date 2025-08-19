@@ -142,6 +142,11 @@ exports[`HomePage should match snapshot for BNF 1`] = `
               data-component="alphabet"
               href="/drugs/#a"
             >
+              <span
+                class="visually-hidden"
+              >
+                Browse drugs by the letter
+              </span>
               A
             </a>
           </li>
@@ -154,6 +159,11 @@ exports[`HomePage should match snapshot for BNF 1`] = `
               data-component="alphabet"
               href="/drugs/#b"
             >
+              <span
+                class="visually-hidden"
+              >
+                Browse drugs by the letter
+              </span>
               B
             </a>
           </li>
@@ -166,6 +176,11 @@ exports[`HomePage should match snapshot for BNF 1`] = `
               data-component="alphabet"
               href="/drugs/#c"
             >
+              <span
+                class="visually-hidden"
+              >
+                Browse drugs by the letter
+              </span>
               C
             </a>
           </li>
@@ -178,6 +193,11 @@ exports[`HomePage should match snapshot for BNF 1`] = `
               data-component="alphabet"
               href="/drugs/#d"
             >
+              <span
+                class="visually-hidden"
+              >
+                Browse drugs by the letter
+              </span>
               D
             </a>
           </li>
@@ -190,6 +210,11 @@ exports[`HomePage should match snapshot for BNF 1`] = `
               data-component="alphabet"
               href="/drugs/#e"
             >
+              <span
+                class="visually-hidden"
+              >
+                Browse drugs by the letter
+              </span>
               E
             </a>
           </li>
@@ -202,6 +227,11 @@ exports[`HomePage should match snapshot for BNF 1`] = `
               data-component="alphabet"
               href="/drugs/#f"
             >
+              <span
+                class="visually-hidden"
+              >
+                Browse drugs by the letter
+              </span>
               F
             </a>
           </li>
@@ -214,6 +244,11 @@ exports[`HomePage should match snapshot for BNF 1`] = `
               data-component="alphabet"
               href="/drugs/#g"
             >
+              <span
+                class="visually-hidden"
+              >
+                Browse drugs by the letter
+              </span>
               G
             </a>
           </li>
@@ -226,6 +261,11 @@ exports[`HomePage should match snapshot for BNF 1`] = `
               data-component="alphabet"
               href="/drugs/#h"
             >
+              <span
+                class="visually-hidden"
+              >
+                Browse drugs by the letter
+              </span>
               H
             </a>
           </li>
@@ -238,6 +278,11 @@ exports[`HomePage should match snapshot for BNF 1`] = `
               data-component="alphabet"
               href="/drugs/#i"
             >
+              <span
+                class="visually-hidden"
+              >
+                Browse drugs by the letter
+              </span>
               I
             </a>
           </li>
@@ -250,6 +295,11 @@ exports[`HomePage should match snapshot for BNF 1`] = `
               data-component="alphabet"
               href="/drugs/#j"
             >
+              <span
+                class="visually-hidden"
+              >
+                Browse drugs by the letter
+              </span>
               J
             </a>
           </li>
@@ -262,6 +312,11 @@ exports[`HomePage should match snapshot for BNF 1`] = `
               data-component="alphabet"
               href="/drugs/#k"
             >
+              <span
+                class="visually-hidden"
+              >
+                Browse drugs by the letter
+              </span>
               K
             </a>
           </li>
@@ -274,6 +329,11 @@ exports[`HomePage should match snapshot for BNF 1`] = `
               data-component="alphabet"
               href="/drugs/#l"
             >
+              <span
+                class="visually-hidden"
+              >
+                Browse drugs by the letter
+              </span>
               L
             </a>
           </li>
@@ -286,6 +346,11 @@ exports[`HomePage should match snapshot for BNF 1`] = `
               data-component="alphabet"
               href="/drugs/#m"
             >
+              <span
+                class="visually-hidden"
+              >
+                Browse drugs by the letter
+              </span>
               M
             </a>
           </li>
@@ -298,6 +363,11 @@ exports[`HomePage should match snapshot for BNF 1`] = `
               data-component="alphabet"
               href="/drugs/#n"
             >
+              <span
+                class="visually-hidden"
+              >
+                Browse drugs by the letter
+              </span>
               N
             </a>
           </li>
@@ -310,6 +380,11 @@ exports[`HomePage should match snapshot for BNF 1`] = `
               data-component="alphabet"
               href="/drugs/#o"
             >
+              <span
+                class="visually-hidden"
+              >
+                Browse drugs by the letter
+              </span>
               O
             </a>
           </li>
@@ -322,6 +397,11 @@ exports[`HomePage should match snapshot for BNF 1`] = `
               data-component="alphabet"
               href="/drugs/#p"
             >
+              <span
+                class="visually-hidden"
+              >
+                Browse drugs by the letter
+              </span>
               P
             </a>
           </li>
@@ -334,6 +414,11 @@ exports[`HomePage should match snapshot for BNF 1`] = `
               data-component="alphabet"
               href="/drugs/#q"
             >
+              <span
+                class="visually-hidden"
+              >
+                Browse drugs by the letter
+              </span>
               Q
             </a>
           </li>
@@ -346,6 +431,11 @@ exports[`HomePage should match snapshot for BNF 1`] = `
               data-component="alphabet"
               href="/drugs/#r"
             >
+              <span
+                class="visually-hidden"
+              >
+                Browse drugs by the letter
+              </span>
               R
             </a>
           </li>
@@ -358,6 +448,11 @@ exports[`HomePage should match snapshot for BNF 1`] = `
               data-component="alphabet"
               href="/drugs/#s"
             >
+              <span
+                class="visually-hidden"
+              >
+                Browse drugs by the letter
+              </span>
               S
             </a>
           </li>
@@ -370,6 +465,11 @@ exports[`HomePage should match snapshot for BNF 1`] = `
               data-component="alphabet"
               href="/drugs/#t"
             >
+              <span
+                class="visually-hidden"
+              >
+                Browse drugs by the letter
+              </span>
               T
             </a>
           </li>
@@ -382,6 +482,11 @@ exports[`HomePage should match snapshot for BNF 1`] = `
               data-component="alphabet"
               href="/drugs/#u"
             >
+              <span
+                class="visually-hidden"
+              >
+                Browse drugs by the letter
+              </span>
               U
             </a>
           </li>
@@ -394,6 +499,11 @@ exports[`HomePage should match snapshot for BNF 1`] = `
               data-component="alphabet"
               href="/drugs/#v"
             >
+              <span
+                class="visually-hidden"
+              >
+                Browse drugs by the letter
+              </span>
               V
             </a>
           </li>
@@ -406,6 +516,11 @@ exports[`HomePage should match snapshot for BNF 1`] = `
               data-component="alphabet"
               href="/drugs/#w"
             >
+              <span
+                class="visually-hidden"
+              >
+                Browse drugs by the letter
+              </span>
               W
             </a>
           </li>
@@ -418,6 +533,11 @@ exports[`HomePage should match snapshot for BNF 1`] = `
               data-component="alphabet"
               href="/drugs/#x"
             >
+              <span
+                class="visually-hidden"
+              >
+                Browse drugs by the letter
+              </span>
               X
             </a>
           </li>
@@ -430,6 +550,11 @@ exports[`HomePage should match snapshot for BNF 1`] = `
               data-component="alphabet"
               href="/drugs/#y"
             >
+              <span
+                class="visually-hidden"
+              >
+                Browse drugs by the letter
+              </span>
               Y
             </a>
           </li>
@@ -442,6 +567,11 @@ exports[`HomePage should match snapshot for BNF 1`] = `
               data-component="alphabet"
               href="/drugs/#z"
             >
+              <span
+                class="visually-hidden"
+              >
+                Browse drugs by the letter
+              </span>
               Z
             </a>
           </li>
@@ -842,6 +972,11 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
               data-component="alphabet"
               href="/drugs/#a"
             >
+              <span
+                class="visually-hidden"
+              >
+                Browse drugs by the letter
+              </span>
               A
             </a>
           </li>
@@ -854,6 +989,11 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
               data-component="alphabet"
               href="/drugs/#b"
             >
+              <span
+                class="visually-hidden"
+              >
+                Browse drugs by the letter
+              </span>
               B
             </a>
           </li>
@@ -866,6 +1006,11 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
               data-component="alphabet"
               href="/drugs/#c"
             >
+              <span
+                class="visually-hidden"
+              >
+                Browse drugs by the letter
+              </span>
               C
             </a>
           </li>
@@ -878,6 +1023,11 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
               data-component="alphabet"
               href="/drugs/#d"
             >
+              <span
+                class="visually-hidden"
+              >
+                Browse drugs by the letter
+              </span>
               D
             </a>
           </li>
@@ -890,6 +1040,11 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
               data-component="alphabet"
               href="/drugs/#e"
             >
+              <span
+                class="visually-hidden"
+              >
+                Browse drugs by the letter
+              </span>
               E
             </a>
           </li>
@@ -902,6 +1057,11 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
               data-component="alphabet"
               href="/drugs/#f"
             >
+              <span
+                class="visually-hidden"
+              >
+                Browse drugs by the letter
+              </span>
               F
             </a>
           </li>
@@ -914,6 +1074,11 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
               data-component="alphabet"
               href="/drugs/#g"
             >
+              <span
+                class="visually-hidden"
+              >
+                Browse drugs by the letter
+              </span>
               G
             </a>
           </li>
@@ -926,6 +1091,11 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
               data-component="alphabet"
               href="/drugs/#h"
             >
+              <span
+                class="visually-hidden"
+              >
+                Browse drugs by the letter
+              </span>
               H
             </a>
           </li>
@@ -938,6 +1108,11 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
               data-component="alphabet"
               href="/drugs/#i"
             >
+              <span
+                class="visually-hidden"
+              >
+                Browse drugs by the letter
+              </span>
               I
             </a>
           </li>
@@ -950,6 +1125,11 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
               data-component="alphabet"
               href="/drugs/#j"
             >
+              <span
+                class="visually-hidden"
+              >
+                Browse drugs by the letter
+              </span>
               J
             </a>
           </li>
@@ -962,6 +1142,11 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
               data-component="alphabet"
               href="/drugs/#k"
             >
+              <span
+                class="visually-hidden"
+              >
+                Browse drugs by the letter
+              </span>
               K
             </a>
           </li>
@@ -974,6 +1159,11 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
               data-component="alphabet"
               href="/drugs/#l"
             >
+              <span
+                class="visually-hidden"
+              >
+                Browse drugs by the letter
+              </span>
               L
             </a>
           </li>
@@ -986,6 +1176,11 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
               data-component="alphabet"
               href="/drugs/#m"
             >
+              <span
+                class="visually-hidden"
+              >
+                Browse drugs by the letter
+              </span>
               M
             </a>
           </li>
@@ -998,6 +1193,11 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
               data-component="alphabet"
               href="/drugs/#n"
             >
+              <span
+                class="visually-hidden"
+              >
+                Browse drugs by the letter
+              </span>
               N
             </a>
           </li>
@@ -1010,6 +1210,11 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
               data-component="alphabet"
               href="/drugs/#o"
             >
+              <span
+                class="visually-hidden"
+              >
+                Browse drugs by the letter
+              </span>
               O
             </a>
           </li>
@@ -1022,6 +1227,11 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
               data-component="alphabet"
               href="/drugs/#p"
             >
+              <span
+                class="visually-hidden"
+              >
+                Browse drugs by the letter
+              </span>
               P
             </a>
           </li>
@@ -1034,6 +1244,11 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
               data-component="alphabet"
               href="/drugs/#q"
             >
+              <span
+                class="visually-hidden"
+              >
+                Browse drugs by the letter
+              </span>
               Q
             </a>
           </li>
@@ -1046,6 +1261,11 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
               data-component="alphabet"
               href="/drugs/#r"
             >
+              <span
+                class="visually-hidden"
+              >
+                Browse drugs by the letter
+              </span>
               R
             </a>
           </li>
@@ -1058,6 +1278,11 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
               data-component="alphabet"
               href="/drugs/#s"
             >
+              <span
+                class="visually-hidden"
+              >
+                Browse drugs by the letter
+              </span>
               S
             </a>
           </li>
@@ -1070,6 +1295,11 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
               data-component="alphabet"
               href="/drugs/#t"
             >
+              <span
+                class="visually-hidden"
+              >
+                Browse drugs by the letter
+              </span>
               T
             </a>
           </li>
@@ -1082,6 +1312,11 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
               data-component="alphabet"
               href="/drugs/#u"
             >
+              <span
+                class="visually-hidden"
+              >
+                Browse drugs by the letter
+              </span>
               U
             </a>
           </li>
@@ -1094,6 +1329,11 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
               data-component="alphabet"
               href="/drugs/#v"
             >
+              <span
+                class="visually-hidden"
+              >
+                Browse drugs by the letter
+              </span>
               V
             </a>
           </li>
@@ -1106,6 +1346,11 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
               data-component="alphabet"
               href="/drugs/#w"
             >
+              <span
+                class="visually-hidden"
+              >
+                Browse drugs by the letter
+              </span>
               W
             </a>
           </li>
@@ -1118,6 +1363,11 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
               data-component="alphabet"
               href="/drugs/#x"
             >
+              <span
+                class="visually-hidden"
+              >
+                Browse drugs by the letter
+              </span>
               X
             </a>
           </li>
@@ -1130,6 +1380,11 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
               data-component="alphabet"
               href="/drugs/#y"
             >
+              <span
+                class="visually-hidden"
+              >
+                Browse drugs by the letter
+              </span>
               Y
             </a>
           </li>
@@ -1142,6 +1397,11 @@ exports[`HomePage should match snapshot for BNFC 1`] = `
               data-component="alphabet"
               href="/drugs/#z"
             >
+              <span
+                class="visually-hidden"
+              >
+                Browse drugs by the letter
+              </span>
               Z
             </a>
           </li>
