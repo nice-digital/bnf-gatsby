@@ -3,7 +3,7 @@ import {
 	type RouteUpdateArgs,
 	type WrapPageElementBrowserArgs,
 } from "gatsby";
-import { type ReactElement } from "react";
+import React, { type ReactElement } from "react";
 
 import { Layout } from "@/components/Layout/Layout";
 
@@ -35,12 +35,23 @@ export const onRouteUpdate = ({
 		// Delay before push to the data layer, to make sure the page title has been updated
 		// See https://github.com/gatsbyjs/gatsby/pull/10917/files#diff-bf0d94c8bf47d5c1687e342c2dba1e00R12-R13
 		if ("requestAnimationFrame" in window) {
-			window.requestAnimationFrame(() => {
-				window.requestAnimationFrame(sendPageView);
+			requestAnimationFrame(() => {
+				requestAnimationFrame(sendPageView);
 			});
 		} else {
 			// simulate 2 rAF calls
 			setTimeout(sendPageView, 32);
+		}
+
+		// Update Gatsby announcer with page title for better accessibility
+		// Only do this for actual page changes, not hash changes
+		if (prevPath !== path) {
+			setTimeout(() => {
+				const announcer = document.getElementById("gatsby-announcer");
+				if (announcer && document.title) {
+					announcer.textContent = document.title;
+				}
+			}, 100); // Wait for page title to be updated
 		}
 	} else {
 		window.dataLayer.push({
@@ -118,12 +129,25 @@ export const shouldUpdateScroll = ({
 
 	requestAnimationFrame(() => {
 		requestAnimationFrame(() => {
-			// scroll to top to preserve existing BNF navigation behaviour
+			// Default behavior: scroll to top for standard navigation (like global nav menu)
 			window.scrollTo(0, 0);
-			return false;
+
+			// Focus the main content for screen readers while preserving visual scroll to top
+			const contentStartElement = document.getElementById("content-start");
+			if (contentStartElement) {
+				contentStartElement.setAttribute("tabIndex", "-1");
+				contentStartElement.focus();
+				// Remove tabindex after focus to avoid interfering with normal navigation
+				setTimeout(() => contentStartElement.removeAttribute("tabIndex"), 100);
+			} else {
+				// Fallback to body focus if content-start doesn't exist
+				document.body.setAttribute("tabIndex", "-1");
+				document.body.focus();
+				setTimeout(() => document.body.removeAttribute("tabIndex"), 100);
+			}
 		});
 	});
-	// Default to scrolling to the content start element as the standard navigation behaviour
+	// Default navigation behavior: scroll to top with improved accessibility
 
 	return false;
 };
