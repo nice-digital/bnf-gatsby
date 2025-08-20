@@ -1,6 +1,6 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import Cookies from "js-cookie";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 import { Alert } from "@nice-digital/nds-alert";
 import { Button } from "@nice-digital/nds-button";
@@ -14,6 +14,7 @@ export const COOKIE_CONTROL_NAME = "CookieControl";
 
 export const EULABanner: React.FC = () => {
 	const [open, setOpen] = useState(false);
+	const titleRef = useRef<HTMLDivElement>(null);
 
 	const isCookieControlSetAndDialogHidden = (): boolean => {
 		const cookieControl = Cookies.get(COOKIE_CONTROL_NAME);
@@ -26,7 +27,18 @@ export const EULABanner: React.FC = () => {
 	};
 
 	const toggleBannerBasedOnEULACookie = (): void => {
-		Cookies.get(EULA_COOKIE_NAME) ? setOpen(false) : setOpen(true);
+		const shouldOpen = !Cookies.get(EULA_COOKIE_NAME);
+		setOpen(shouldOpen);
+		
+		// Focus the title when the banner opens
+		if (shouldOpen) {
+			// Use setTimeout to ensure the dialog is rendered before focusing
+			setTimeout(() => {
+				if (titleRef.current) {
+					titleRef.current.focus();
+				}
+			}, 100);
+		}
 	};
 
 	useEffect(() => {
@@ -64,7 +76,9 @@ export const EULABanner: React.FC = () => {
 				<Dialog.Overlay className={styles.overlay} />
 				<Dialog.Content className={styles.portal} aria-describedby={undefined}>
 					<Dialog.Title>
-						<PageHeader heading="NICE BNF End User Licence Agreement" />
+						<div ref={titleRef} tabIndex={-1} style={{ outline: "none" }}>
+							<PageHeader heading="NICE BNF End User Licence Agreement" />
+						</div>
 					</Dialog.Title>
 					<Alert>
 						Please read all the terms on this page. Then indicate that you have

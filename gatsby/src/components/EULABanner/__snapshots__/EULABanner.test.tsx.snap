@@ -36,14 +36,19 @@ exports[`EULABanner should match snapshot 1`] = `
       id="radix-:r1:"
     >
       <div
-        class="page-header "
-        data-component="page-header"
+        style="outline: none;"
+        tabindex="-1"
       >
-        <h1
-          class="page-header__heading "
+        <div
+          class="page-header "
+          data-component="page-header"
         >
-          NICE BNF End User Licence Agreement
-        </h1>
+          <h1
+            class="page-header__heading "
+          >
+            NICE BNF End User Licence Agreement
+          </h1>
+        </div>
       </div>
     </h2>
     <div
