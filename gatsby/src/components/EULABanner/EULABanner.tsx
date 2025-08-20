@@ -29,7 +29,7 @@ export const EULABanner: React.FC = () => {
 	const toggleBannerBasedOnEULACookie = (): void => {
 		const shouldOpen = !Cookies.get(EULA_COOKIE_NAME);
 		setOpen(shouldOpen);
-		
+
 		// Focus the title when the banner opens
 		if (shouldOpen) {
 			// Use setTimeout to ensure the dialog is rendered before focusing
@@ -76,7 +76,7 @@ export const EULABanner: React.FC = () => {
 				<Dialog.Overlay className={styles.overlay} />
 				<Dialog.Content className={styles.portal} aria-describedby={undefined}>
 					<Dialog.Title>
-						<div ref={titleRef} tabIndex={-1} style={{ outline: "none" }}>
+						<div ref={titleRef} tabIndex={-1}>
 							<PageHeader heading="NICE BNF End User Licence Agreement" />
 						</div>
 					</Dialog.Title>

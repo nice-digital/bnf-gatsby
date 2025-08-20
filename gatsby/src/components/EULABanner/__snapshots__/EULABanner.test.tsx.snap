@@ -36,7 +36,6 @@ exports[`EULABanner should match snapshot 1`] = `
       id="radix-:r1:"
     >
       <div
-        style="outline: none;"
         tabindex="-1"
       >
         <div
