@@ -38,16 +38,12 @@ exports[`EULABanner should match snapshot 1`] = `
     >
       NICE BNF End User Licence Agreement
     </h2>
-    <p
-      id="radix-:r2:"
+    <div
+      class="alert alert--info"
+      data-component="alert--info"
     >
-      <div
-        class="alert alert--info"
-        data-component="alert--info"
-      >
-        Please read all the terms on this page. Then indicate that you have read and agree to the terms by clicking the button at the bottom of the page.
-      </div>
-    </p>
+      Please read all the terms on this page. Then indicate that you have read and agree to the terms by clicking the button at the bottom of the page.
+    </div>
     <section>
       <p>
         Please read these terms carefully because although the NICE BNF is freely accessible in the UK on this site it is only available for use, free of charge, by specific users in the circumstances set out in these terms. If you have any questions about this EULA you can contact

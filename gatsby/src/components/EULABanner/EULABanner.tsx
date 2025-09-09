@@ -75,13 +75,11 @@ export const EULABanner: React.FC = () => {
 					<Dialog.Title asChild>
 						<h2>NICE BNF End User Licence Agreement</h2>
 					</Dialog.Title>
-					<Dialog.Description>
-						<Alert>
-							Please read all the terms on this page. Then indicate that you
-							have read and agree to the terms by clicking the button at the
-							bottom of the page.
-						</Alert>
-					</Dialog.Description>
+					<Alert>
+						Please read all the terms on this page. Then indicate that you have
+						read and agree to the terms by clicking the button at the bottom of
+						the page.
+					</Alert>
 					<EULAContent />
 					<Button variant="cta" onClick={handleAccept} id="btn-accept-bnf-eula">
 						I accept these terms
