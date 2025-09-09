@@ -4,7 +4,6 @@ import React, { useState, useEffect, useRef } from "react";
 
 import { Alert } from "@nice-digital/nds-alert";
 import { Button } from "@nice-digital/nds-button";
-import { PageHeader } from "@nice-digital/nds-page-header";
 
 import styles from "./EULABanner.module.scss";
 
@@ -75,11 +74,7 @@ export const EULABanner: React.FC = () => {
 			<Dialog.Portal>
 				<Dialog.Overlay className={styles.overlay} />
 				<Dialog.Content className={styles.portal} aria-describedby={undefined}>
-					<Dialog.Title>
-						<div ref={titleRef} tabIndex={-1}>
-							<PageHeader heading="NICE BNF End User Licence Agreement" />
-						</div>
-					</Dialog.Title>
+					<h2 ref={titleRef}>NICE BNF End User Licence Agreement</h2>
 					<Alert>
 						Please read all the terms on this page. Then indicate that you have
 						read and agree to the terms by clicking the button at the bottom of

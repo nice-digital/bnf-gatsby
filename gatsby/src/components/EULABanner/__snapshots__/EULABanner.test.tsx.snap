@@ -32,23 +32,8 @@ exports[`EULABanner should match snapshot 1`] = `
     style="pointer-events: auto;"
     tabindex="-1"
   >
-    <h2
-      id="radix-:r1:"
-    >
-      <div
-        tabindex="-1"
-      >
-        <div
-          class="page-header "
-          data-component="page-header"
-        >
-          <h1
-            class="page-header__heading "
-          >
-            NICE BNF End User Licence Agreement
-          </h1>
-        </div>
-      </div>
+    <h2>
+      NICE BNF End User Licence Agreement
     </h2>
     <div
       class="alert alert--info"
