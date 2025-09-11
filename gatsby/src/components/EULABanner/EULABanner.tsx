@@ -71,6 +71,7 @@ export const EULABanner: React.FC = () => {
 						const target = e.currentTarget as HTMLElement | null;
 						if (target) target.focus();
 					}}
+					aria-describedby={undefined}
 				>
 					<Dialog.Title asChild>
 						<h2>NICE BNF End User Licence Agreement</h2>
