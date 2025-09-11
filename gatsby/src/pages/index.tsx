@@ -42,6 +42,9 @@ const HomePage: FC = () => {
 						>
 							{alphabet.map((letter) => (
 								<Letter key={`alphabet_${letter}`} to={`/drugs/#${letter}`}>
+									<span className="visually-hidden">
+										Browse drugs by the letter
+									</span>
 									{letter.toUpperCase()}
 								</Letter>
 							))}
