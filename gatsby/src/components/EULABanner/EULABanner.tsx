@@ -4,7 +4,6 @@ import React, { useState, useEffect } from "react";
 
 import { Alert } from "@nice-digital/nds-alert";
 import { Button } from "@nice-digital/nds-button";
-import { PageHeader } from "@nice-digital/nds-page-header";
 
 import styles from "./EULABanner.module.scss";
 
@@ -26,7 +25,8 @@ export const EULABanner: React.FC = () => {
 	};
 
 	const toggleBannerBasedOnEULACookie = (): void => {
-		Cookies.get(EULA_COOKIE_NAME) ? setOpen(false) : setOpen(true);
+		const shouldOpen = !Cookies.get(EULA_COOKIE_NAME);
+		setOpen(shouldOpen);
 	};
 
 	useEffect(() => {
@@ -62,9 +62,19 @@ export const EULABanner: React.FC = () => {
 		<Dialog.Root open={open}>
 			<Dialog.Portal>
 				<Dialog.Overlay className={styles.overlay} />
-				<Dialog.Content className={styles.portal} aria-describedby={undefined}>
-					<Dialog.Title>
-						<PageHeader heading="NICE BNF End User Licence Agreement" />
+				<Dialog.Content
+					className={styles.portal}
+					onOpenAutoFocus={(e) => {
+						// Prevent Radix from focusing the first tabbable (e.g., the button)
+						// and instead focus the dialog container so SRs announce title.
+						e.preventDefault();
+						const target = e.currentTarget as HTMLElement | null;
+						if (target) target.focus();
+					}}
+					aria-describedby={undefined}
+				>
+					<Dialog.Title asChild>
+						<h2>NICE BNF End User Licence Agreement</h2>
 					</Dialog.Title>
 					<Alert>
 						Please read all the terms on this page. Then indicate that you have
