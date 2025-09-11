@@ -24,7 +24,6 @@ exports[`EULABanner should match snapshot 1`] = `
     style="pointer-events: auto;"
   />
   <div
-    aria-describedby="radix-:r2:"
     aria-labelledby="radix-:r1:"
     class="portal"
     data-state="open"
