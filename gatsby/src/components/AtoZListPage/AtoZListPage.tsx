@@ -2,7 +2,6 @@ import { Link } from "gatsby";
 import { type FC } from "react";
 
 import { AZList, AZListItem } from "@nice-digital/nds-a-z-list";
-import { Alert } from "@nice-digital/nds-alert";
 import { Alphabet, Letter } from "@nice-digital/nds-alphabet";
 import { Breadcrumbs, Breadcrumb } from "@nice-digital/nds-breadcrumbs";
 import { ColumnList } from "@nice-digital/nds-column-list";
