@@ -283,35 +283,39 @@ exports[`NursePrescribersFormularyApprovedListPage should match snapshot for pag
               </li>
             </ol>
           </nav>
-          <section
-            aria-labelledby="intro-1"
+          <div
+            data-component="record-sections-content"
           >
-            <h2
-              class="firstHeading"
-              id="intro-1"
+            <section
+              aria-labelledby="intro-1"
             >
-              Intro 1
-            </h2>
-            <div>
-              <p>
-                Approved list content
-              </p>
-            </div>
-          </section>
-          <section
-            aria-labelledby="intro-2"
-          >
-            <h2
-              id="intro-2"
+              <h2
+                class="firstHeading"
+                id="intro-1"
+              >
+                Intro 1
+              </h2>
+              <div>
+                <p>
+                  Approved list content
+                </p>
+              </div>
+            </section>
+            <section
+              aria-labelledby="intro-2"
             >
-              Intro 2
-            </h2>
-            <div>
-              <p>
-                Approved list content 2
-              </p>
-            </div>
-          </section>
+              <h2
+                id="intro-2"
+              >
+                Intro 2
+              </h2>
+              <div>
+                <p>
+                  Approved list content 2
+                </p>
+              </div>
+            </section>
+          </div>
         </div>
       </div>
     </div>
