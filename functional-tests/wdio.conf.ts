@@ -7,7 +7,7 @@ export const config: WebdriverIO.Config = {
 	// We need to use webdriver protocol in Docker because we use the selenium grid.
 	automationProtocol: isInDocker ? "webdriver" : "devtools",
 
-	maxInstances: isInDocker ? 2 : 1,
+	maxInstances: isInDocker ? 4 : 2,
 	path: "/wd/hub",
 	port: 4444,
 
@@ -20,7 +20,7 @@ export const config: WebdriverIO.Config = {
 			browserName: "chrome",
 			"goog:chromeOptions": {
 				args: [
-					"--window-size=1366,768",
+					"--window-size=1920,1080",
 					// Automation optimizations as per https://github.com/GoogleChrome/chrome-launcher/blob/master/docs/chrome-flags-for-tools.md
 					"--disable-dev-shm-usage",
 					"--enable-automation",
