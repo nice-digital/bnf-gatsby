@@ -1,5 +1,18 @@
+import os from "os";
+
 const isInDocker = !!process.env.IN_DOCKER,
-	isTeamCity = !!process.env.TEAMCITY_VERSION;
+	isTeamCity = !!process.env.TEAMCITY_VERSION,
+	cpuCount = os.cpus().length,
+	totalMemGB = os.totalmem() / 1024 ** 3;
+
+const memBasedLimit = Math.floor(totalMemGB / 1);
+
+const maxInstances = Math.max(
+	1,
+	isInDocker
+		? Math.min(cpuCount * 2, memBasedLimit, 10)
+		: Math.min(cpuCount, memBasedLimit, 2)
+);
 
 export const config: WebdriverIO.Config = {
 	// Use devtools to control Chrome when we're running tests locally
@@ -7,7 +20,7 @@ export const config: WebdriverIO.Config = {
 	// We need to use webdriver protocol in Docker because we use the selenium grid.
 	automationProtocol: isInDocker ? "webdriver" : "devtools",
 
-	maxInstances: isInDocker ? 4 : 2,
+	maxInstances: maxInstances,
 	path: "/wd/hub",
 	port: 4444,
 
@@ -60,6 +73,16 @@ export const config: WebdriverIO.Config = {
 		tags: "not @pending", // See https://docs.cucumber.io/tag-expressions/
 		// Need quite a long timeout here because some of the Axe a11y tests take a while for longer pages (like drugs A to Z)
 		timeout: 60000,
+	},
+
+	onPrepare: function () {
+		console.log(
+			`[wdio.conf] Running in ${isInDocker ? "Docker" : "local"}${
+				isTeamCity ? " (TeamCity)" : ""
+			} → maxInstances = ${maxInstances} | CPUs: ${cpuCount} | Memory: ${totalMemGB.toFixed(
+				1
+			)} GB`
+		);
 	},
 
 	afterStep: async function (_test, _scenario, { error }) {
