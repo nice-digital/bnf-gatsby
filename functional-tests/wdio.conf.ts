@@ -5,22 +5,13 @@ const isInDocker = !!process.env.IN_DOCKER,
 	cpuCount = os.cpus().length,
 	totalMemGB = os.totalmem() / 1024 ** 3;
 
-const memBasedLimit = Math.floor(totalMemGB / 1);
-
-const maxInstances = Math.max(
-	1,
-	isInDocker
-		? Math.min(cpuCount * 2, memBasedLimit, 10)
-		: Math.min(cpuCount, memBasedLimit, 2)
-);
-
 export const config: WebdriverIO.Config = {
 	// Use devtools to control Chrome when we're running tests locally
 	// Avoids issues with having the wrong ChromeDriver installed via selenium-standalone when Chrome updates every 6 weeks.
 	// We need to use webdriver protocol in Docker because we use the selenium grid.
 	automationProtocol: isInDocker ? "webdriver" : "devtools",
 
-	maxInstances: maxInstances,
+	maxInstances: isInDocker ? 2 : 1,
 	path: "/wd/hub",
 	port: 4444,
 
@@ -79,9 +70,7 @@ export const config: WebdriverIO.Config = {
 		console.log(
 			`[wdio.conf] Running in ${isInDocker ? "Docker" : "local"}${
 				isTeamCity ? " (TeamCity)" : ""
-			} → maxInstances = ${maxInstances} | CPUs: ${cpuCount} | Memory: ${totalMemGB.toFixed(
-				1
-			)} GB`
+			} → CPUs: ${cpuCount} | Memory: ${totalMemGB.toFixed(1)} GB`
 		);
 	},
 
