@@ -37,7 +37,7 @@
 
 ## :rocket: Set up
 
-1. Install npm dependencies via `npm i` in each folder with a package.json
+1. Install npm dependencies via `npm ci` in each folder with a package.json
 2. Create a _.env.development_ file in this _gatsby_ folder and add the required environment variables as defined in [configuration](#configuration).
 3. Run the _LAUNCH BNF/BNFC_ debug command in VS Code. See the readme in the repository root for more info.
 
@@ -49,13 +49,12 @@ To run the the Gatsby site on its own from the command line:
 2. Clone this repository
 3. Open the root of the repository in VS Code
 4. Install dependencies from npm:
-   1. Run 'npm: Install Dependencies' from the VS Code command palette (_Ctrl+Shift+P_)
-   2. Or run `cd gatsby && npm ci` on the command line
+   1. Run `cd gatsby && npm ci` on the command line
 5. Press _F5_ to build the gatsby site and debug in Chrome
    1. This uses the debugging built into VS Code
    2. Alternatively:
       1. run `npm start` from the _gatsby_ folder
-      2. open http://localhost:8000 in a browser
+      2. open <http://localhost:8000> in a browser
 
 ### Other commands
 
@@ -67,7 +66,7 @@ There are various other commands you can run in a terminal from the _gatsby_ fol
 | `npm run build`      | Builds the production build of the Gatsby site into the _public_ folder      |
 | `npm run build:bnf`  | Builds the production build of the BNF site                                  |
 | `npm run build:bnfc` | Builds the production build of the BNFC site                                 |
-| `npm run serve`      | Serves the built Gatsby files from `npm run build` on http://localhost:9000/ |
+| `npm run serve`      | Serves the built Gatsby files from `npm run build` on <http://localhost:9000/> |
 | `npm run clean`      | Cleans out the .gatsby and public folders                                    |
 
 ## Source plugin
