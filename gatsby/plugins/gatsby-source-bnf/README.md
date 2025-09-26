@@ -19,7 +19,7 @@ This readme contains background and useful information for the source plugin. Th
 Follow these steps to start querying the data:
 
 - Run the Gatsby site following the instructions in the root
-- Open http://localhost:8000/\_\_\_graphql in a browser to view the GraphiQL explorer.
+- Open <http://localhost:8000/\_\_\_graphql> in a browser to view the GraphiQL explorer.
 
 GraphiQL is an browser-based IDE for GraphQL queries that's built in to Gatsby. Read the [_Introducing GraphiQL_](https://www.gatsbyjs.org/docs/running-queries-with-graphiql/) page on the Gatsby documentation for more information.
 
@@ -42,9 +42,9 @@ Add the plugin to _gatsby-config.js_ in the parent Gatsby project:
 
 ```diff
 module.exports = {
-	plugins: [
-+		"gatsby-source-bnf",
-	],
+ plugins: [
++  "gatsby-source-bnf",
+ ],
 };
 ```
 
@@ -52,13 +52,13 @@ module.exports = {
 
 There's no need to install anything else. Gatsby loads local plugins automatically, see [Loading Plugins from Your Local Plugins Folder](https://www.gatsbyjs.org/docs/loading-plugins-from-your-local-plugins-folder/) in the Gatsby docs.
 
-The plugin gets its dependencies from the parent gatsby folder. This because it makes installing dependencies easier - you don't have to run `npm i` in both folders, just the parent folder. This works because of the way that Node resolves modules (see [Loading from node_modules Folders](https://nodejs.org/api/modules.html#modules_loading_from_node_modules_folders) in the Node docs).
+The plugin gets its dependencies from the parent gatsby folder. This because it makes installing dependencies easier - you don't have to run `npm ci` in both folders, just the parent folder. This works because of the way that Node resolves modules (see [Loading from node_modules Folders](https://nodejs.org/api/modules.html#modules_loading_from_node_modules_folders) in the Node docs).
 
 ### Configuration
 
 The plugin has the following configuration options. These should be passed in via gatsby-config.js.
 
-- `feedURL` {String} The absolute base URL of the JSON feed e.g. "https://api.somurl.io/v9/"
+- `feedURL` {String} The absolute base URL of the JSON feed e.g. "<https://api.somurl.io/v9/>"
 - `userKey` {String} The user/API key for authenticating against the feed
 - `site` {"bnf" | "bnfc"} Which site we're currently building
 
@@ -66,16 +66,16 @@ An example configuration might look like this:
 
 ```diff
 module.exports = {
-	plugins: [
-+		{
-+			resolve: `gatsby-source-bnf`,
-+			options: {
-+				feedURL: process.env.FEED_URL,
-+				userKey: process.env.FEED_USER_KEY,
-+				site: "bnf",
-+			},
-+		},
-	],
+ plugins: [
++  {
++   resolve: `gatsby-source-bnf`,
++   options: {
++    feedURL: process.env.FEED_URL,
++    userKey: process.env.FEED_USER_KEY,
++    site: "bnf",
++   },
++  },
+ ],
 };
 ```
 

@@ -42,12 +42,10 @@ The easiest way to get the project running is:
 3. Open the root of the repository in VS Code
    1. Install recommended extensions when prompted
 4. Install dependencies:
-   1. Open the command palette (_Ctrl+Shift+P_) in VS Code, then:
-   2. Run 'npm: Install Dependencies' (and choose 'Run all commands listed below')
-   3. This should run `npm i` for each Node project. If this doesn't work then run `npm i` in each folder with a package.json manually.
+   1. Run `npm ci` in each folder with a package.json manually.
 5. Go to the 'Run and Debug' panel (_Ctrl+Shift+D_) in VS Code
 6. Run `LAUNCH BNF/BNFC`
 
-Launching the app via `LAUNCH BNF/BNFC` runs the Gatsby site in dev mode on http://localhost:8000/, and launches it in Chrome for debugging once it's built and running.
+Launching the app via `LAUNCH BNF/BNFC` runs the Gatsby site in dev mode on <http://localhost:8000/>, and launches it in Chrome for debugging once it's built and running.
 
 > Note: there are more granular ways to run each part of the project, either via an IDE or via the command line. See each sub-folders's readme for more details.

@@ -3,13 +3,12 @@
 ## :rocket: Set up
 
 1. Clone the project repository (if possible re-use the same package-lock.json file)
-2. Use terminal to install or uninstall npm dependencies via `npm i`
-3. Use terminal to run clean install npm dependencies via `npm ci` .
+2. Use terminal to run clean install npm dependencies via `npm ci` .
    Read more [npm docs](https://docs.npmjs.com/cli/v10/commands/npm-ci#description)
 
 ### Build app in Gatsby folder
 
-4. Create a _.env.development_ file in this _gatsby_ folder and add the required environment variables as defined in [configuration](#configuration).
+3. Create a _.env.development_ file in this _gatsby_ folder and add the required environment variables as defined in [configuration](#configuration).
 
 ### Configuration
 
@@ -26,11 +25,11 @@ The following environment variables are used to configure the gatsby site and so
 
 Set these environment variables using _.env_ files.
 
-5. Run `npm run build:bnf` or `npm run build:bnfc` to build a specific site
+4. Run `npm run build:bnf` or `npm run build:bnfc` to build a specific site
 
 # .env.development
 
-FEED_URL=https://whatever
+FEED_URL=<https://whatever>
 FEED_USER_KEY=abcd1234
 GATSBY_SITE=bnfc # Or bnf
 GATSBY_SEARCH_URL=https://[env**]-search-api.nice.org.uk/api
