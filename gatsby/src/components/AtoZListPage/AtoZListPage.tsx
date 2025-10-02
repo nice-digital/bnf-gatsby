@@ -50,7 +50,7 @@ export const AtoZListPage: FC<AtoZListPageProps> = ({
 					<Letter key={letter} to={`#${letter}`}>
 						{trimmedLetter ? (
 							<span className="visually-hidden">
-								{`Browse ${title} by the letter `}
+								{`Browse ${title.toLocaleLowerCase()} by the letter `}
 							</span>
 						) : null}
 						{trimmedLetter || "n/a"}
