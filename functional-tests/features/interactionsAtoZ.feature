@@ -24,7 +24,7 @@ Feature: Interactions A to Z page
     Then I expect that element "h1" contains the text "Interactions"
 
   Scenario: Click letter C
-    When I click the "C" link
+    When I click on the element "[href='#c']"
     Then I expect that the path is "/interactions/#c"
 
   Scenario: Link to Cabazitaxel interaction

@@ -294,35 +294,39 @@ exports[`NursePrescribersFormularyTreatmentSummaryPage should match snapshot for
               </li>
             </ol>
           </nav>
-          <section
-            aria-labelledby="analgesic-1"
+          <div
+            data-component="record-sections-content"
           >
-            <h2
-              class="firstHeading"
-              id="analgesic-1"
+            <section
+              aria-labelledby="analgesic-1"
             >
-              Analgesic 1
-            </h2>
-            <div>
-              <p>
-                Analgesic content
-              </p>
-            </div>
-          </section>
-          <section
-            aria-labelledby="analgesic-2"
-          >
-            <h2
-              id="analgesic-2"
+              <h2
+                class="firstHeading"
+                id="analgesic-1"
+              >
+                Analgesic 1
+              </h2>
+              <div>
+                <p>
+                  Analgesic content
+                </p>
+              </div>
+            </section>
+            <section
+              aria-labelledby="analgesic-2"
             >
-              Analgesic 2
-            </h2>
-            <div>
-              <p>
-                Analgesic content 2
-              </p>
-            </div>
-          </section>
+              <h2
+                id="analgesic-2"
+              >
+                Analgesic 2
+              </h2>
+              <div>
+                <p>
+                  Analgesic content 2
+                </p>
+              </div>
+            </section>
+          </div>
           <section
             aria-labelledby="related-drugs"
           >
