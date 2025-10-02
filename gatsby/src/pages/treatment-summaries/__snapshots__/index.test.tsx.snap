@@ -101,7 +101,7 @@ exports[`TreatmentSummariesIndexPage should match snapshot for page body 1`] = `
         <span
           class="visually-hidden"
         >
-          Browse Treatment summaries by the letter 
+          Browse treatment summaries by the letter 
         </span>
         A
       </a>
@@ -116,7 +116,7 @@ exports[`TreatmentSummariesIndexPage should match snapshot for page body 1`] = `
         <span
           class="visually-hidden"
         >
-          Browse Treatment summaries by the letter 
+          Browse treatment summaries by the letter 
         </span>
         B
       </a>

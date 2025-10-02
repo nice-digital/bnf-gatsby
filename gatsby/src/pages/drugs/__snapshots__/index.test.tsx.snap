@@ -101,7 +101,7 @@ exports[`DrugsIndexPage should match snapshot for page body 1`] = `
         <span
           class="visually-hidden"
         >
-          Browse Drugs by the letter 
+          Browse drugs by the letter 
         </span>
         A
       </a>
@@ -116,7 +116,7 @@ exports[`DrugsIndexPage should match snapshot for page body 1`] = `
         <span
           class="visually-hidden"
         >
-          Browse Drugs by the letter 
+          Browse drugs by the letter 
         </span>
         B
       </a>
