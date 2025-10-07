@@ -234,23 +234,27 @@ exports[`Wound management index page should match page snapshot 1`] = `
           </li>
         </ol>
       </nav>
-      <section
-        aria-labelledby="introduction"
-        class="woundManagementIndex"
+      <div
+        data-component="record-sections-content"
       >
-        <h2
-          class="firstHeading"
-          id="introduction"
+        <section
+          aria-labelledby="introduction"
+          class="woundManagementIndex"
         >
-          Introduction
-        </h2>
-        <div>
-           
-          <p>
-            The correct dressing for wound management depends not only on the type of wound but also on the stage of the healing process
-          </p>
-        </div>
-      </section>
+          <h2
+            class="firstHeading"
+            id="introduction"
+          >
+            Introduction
+          </h2>
+          <div>
+             
+            <p>
+              The correct dressing for wound management depends not only on the type of wound but also on the stage of the healing process
+            </p>
+          </div>
+        </section>
+      </div>
     </div>
   </div>
 </div>

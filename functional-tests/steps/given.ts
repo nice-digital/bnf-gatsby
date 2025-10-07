@@ -21,7 +21,7 @@ Given(/^I open the (.*) page$/, async (pageName: PageName) => {
 });
 
 Given(/^I am using a desktop size browser$/, () =>
-	setWindowSize("1366", "768")
+	setWindowSize("1920", "1080")
 );
 
 Given(/^I am using a mobile size browser$/, () => setWindowSize("320", "568"));

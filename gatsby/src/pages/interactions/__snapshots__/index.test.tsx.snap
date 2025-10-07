@@ -119,6 +119,11 @@ exports[`InteractionsIndexPage should match snapshot for page body 1`] = `
       <a
         href="#a"
       >
+        <span
+          class="visually-hidden"
+        >
+          Browse interactions by the letter 
+        </span>
         A
       </a>
     </li>
@@ -129,6 +134,11 @@ exports[`InteractionsIndexPage should match snapshot for page body 1`] = `
       <a
         href="#b"
       >
+        <span
+          class="visually-hidden"
+        >
+          Browse interactions by the letter 
+        </span>
         B
       </a>
     </li>
