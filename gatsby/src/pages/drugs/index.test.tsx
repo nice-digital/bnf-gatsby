@@ -32,6 +32,10 @@ const props: DrugsIndexPageProps = {
 						},
 					],
 				},
+				{
+					letter: "",
+					links: [],
+				},
 			],
 		},
 	},
