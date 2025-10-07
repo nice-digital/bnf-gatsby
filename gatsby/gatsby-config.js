@@ -19,7 +19,7 @@ const siteUrl =
 			? "http://localhost:8000"
 			: `https://${isBNF ? "bnf" : "bnfc"}.nice.org.uk`,
 	siteTitleShort = isBNF ? "BNF" : "BNFC",
-	siteTitleLong = "British National Formulary" + (isBNF ? "" : " for Children");
+	siteTitleLong = isBNF ? "British National Formulary" : "BNF for Children";
 
 module.exports = {
 	jsxRuntime: "automatic",
