@@ -24,7 +24,7 @@ Feature: Treatment summaries A to Z page
     Then I expect that element "h1" contains the text "Treatment summaries"
 
   Scenario: Click letter C
-    When I click the "C" link
+    When I click on the element "[href='#c']"
     Then I expect that the path is "/treatment-summaries/#c"
 
   Scenario: Link to Dementia treatment summary

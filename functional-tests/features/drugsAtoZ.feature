@@ -24,7 +24,7 @@ Feature: Drugs A to Z page
     Then I expect that element "h1" contains the text "Drugs"
 
   Scenario: Click letter C
-    When I click the "C" link
+    When I click on the element "[href='#c']"
     Then I expect that the path is "/drugs/#c"
 
   Scenario: Link to Cabazitaxel drug

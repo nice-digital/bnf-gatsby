@@ -203,7 +203,11 @@ exports[`BorderlineSubstanceIntroductionPage should match snapshot for page cont
           class="body"
           data-component="grid-item"
           data-g="12 lg:9"
-        />
+        >
+          <div
+            data-component="record-sections-content"
+          />
+        </div>
       </div>
     </div>
   </div>

@@ -1,5 +1,9 @@
+import os from "os";
+
 const isInDocker = !!process.env.IN_DOCKER,
-	isTeamCity = !!process.env.TEAMCITY_VERSION;
+	isTeamCity = !!process.env.TEAMCITY_VERSION,
+	cpuCount = os.cpus().length,
+	totalMemGB = os.totalmem() / 1024 ** 3;
 
 export const config: WebdriverIO.Config = {
 	// Use devtools to control Chrome when we're running tests locally
@@ -20,7 +24,7 @@ export const config: WebdriverIO.Config = {
 			browserName: "chrome",
 			"goog:chromeOptions": {
 				args: [
-					"--window-size=1366,768",
+					"--window-size=1920,1080",
 					// Automation optimizations as per https://github.com/GoogleChrome/chrome-launcher/blob/master/docs/chrome-flags-for-tools.md
 					"--disable-dev-shm-usage",
 					"--enable-automation",
@@ -60,6 +64,14 @@ export const config: WebdriverIO.Config = {
 		tags: "not @pending", // See https://docs.cucumber.io/tag-expressions/
 		// Need quite a long timeout here because some of the Axe a11y tests take a while for longer pages (like drugs A to Z)
 		timeout: 60000,
+	},
+
+	onPrepare: function () {
+		console.log(
+			`[wdio.conf] Running in ${isInDocker ? "Docker" : "local"}${
+				isTeamCity ? " (TeamCity)" : ""
+			} → CPUs: ${cpuCount} | Memory: ${totalMemGB.toFixed(1)} GB`
+		);
 	},
 
 	afterStep: async function (_test, _scenario, { error }) {
