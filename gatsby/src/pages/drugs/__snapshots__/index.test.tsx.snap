@@ -98,6 +98,11 @@ exports[`DrugsIndexPage should match snapshot for page body 1`] = `
       <a
         href="#a"
       >
+        <span
+          class="visually-hidden"
+        >
+          Browse drugs by the letter 
+        </span>
         A
       </a>
     </li>
@@ -108,7 +113,22 @@ exports[`DrugsIndexPage should match snapshot for page body 1`] = `
       <a
         href="#b"
       >
+        <span
+          class="visually-hidden"
+        >
+          Browse drugs by the letter 
+        </span>
         B
+      </a>
+    </li>
+    <li
+      class="alphabet__letter "
+      data-component="alphabet-letter"
+    >
+      <a
+        href="#"
+      >
+        n/a
       </a>
     </li>
   </ol>
@@ -177,6 +197,20 @@ exports[`DrugsIndexPage should match snapshot for page body 1`] = `
           </a>
         </li>
       </ol>
+    </li>
+    <li
+      class="a-z-list__item "
+    >
+      <h2
+        class="a-z-list__item-heading"
+        id=""
+      />
+      <ol
+        aria-labelledby=""
+        class="column-list column-list--boxed"
+        data-component="column-list--boxed"
+        data-tracking="a-to-z-column-list"
+      />
     </li>
   </ol>
 </div>

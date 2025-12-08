@@ -286,35 +286,39 @@ exports[`CautionaryAdvisoryGuidancePage should match snapshot for page contents 
           data-component="grid-item"
           data-g="12 lg:9"
         >
-          <section
-            aria-labelledby="introduction"
+          <div
+            data-component="record-sections-content"
           >
-            <h2
-              class="firstHeading"
-              id="introduction"
+            <section
+              aria-labelledby="introduction"
             >
-              Introduction
-            </h2>
-            <div>
-              <p>
-                Medicinal forms within BNF publications include code numbers...
-              </p>
-            </div>
-          </section>
-          <section
-            aria-labelledby="original-packs"
-          >
-            <h2
-              id="original-packs"
+              <h2
+                class="firstHeading"
+                id="introduction"
+              >
+                Introduction
+              </h2>
+              <div>
+                <p>
+                  Medicinal forms within BNF publications include code numbers...
+                </p>
+              </div>
+            </section>
+            <section
+              aria-labelledby="original-packs"
             >
-              Original packs
-            </h2>
-            <div>
-              <p>
-                Most preparations are dispensed in unbroken original packs...
-              </p>
-            </div>
-          </section>
+              <h2
+                id="original-packs"
+              >
+                Original packs
+              </h2>
+              <div>
+                <p>
+                  Most preparations are dispensed in unbroken original packs...
+                </p>
+              </div>
+            </section>
+          </div>
         </div>
       </div>
     </div>

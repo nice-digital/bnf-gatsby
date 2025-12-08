@@ -149,35 +149,39 @@ exports[`DentalPractitionersFormularyPageProps should match snapshot for page co
           data-component="grid-item"
           data-g="12 md:8 lg:9"
         >
-          <section
-            aria-labelledby="list-of-dental-preparations"
+          <div
+            data-component="record-sections-content"
           >
-            <h2
-              class="firstHeading"
-              id="list-of-dental-preparations"
+            <section
+              aria-labelledby="list-of-dental-preparations"
             >
-              List of Dental Preparations
-            </h2>
-            <div>
-              <p>
-                The following list has been approved by the appropriate Secretaries of State
-              </p>
-            </div>
-          </section>
-          <section
-            aria-labelledby="details-of-dpf-preparations"
-          >
-            <h2
-              id="details-of-dpf-preparations"
+              <h2
+                class="firstHeading"
+                id="list-of-dental-preparations"
+              >
+                List of Dental Preparations
+              </h2>
+              <div>
+                <p>
+                  The following list has been approved by the appropriate Secretaries of State
+                </p>
+              </div>
+            </section>
+            <section
+              aria-labelledby="details-of-dpf-preparations"
             >
-              Details of DPF preparations
-            </h2>
-            <div>
-              <p>
-                Preparations on the List of Dental Preparations which are specified as DPF are described as follows in the DPF.
-              </p>
-            </div>
-          </section>
+              <h2
+                id="details-of-dpf-preparations"
+              >
+                Details of DPF preparations
+              </h2>
+              <div>
+                <p>
+                  Preparations on the List of Dental Preparations which are specified as DPF are described as follows in the DPF.
+                </p>
+              </div>
+            </section>
+          </div>
         </div>
       </div>
     </div>

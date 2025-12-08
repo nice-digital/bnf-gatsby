@@ -287,35 +287,39 @@ exports[`AboutSectionPage should match snapshot for page contents 1`] = `
           data-component="grid-item"
           data-g="12 lg:9"
         >
-          <section
-            aria-labelledby="introduction"
+          <div
+            data-component="record-sections-content"
           >
-            <h2
-              class="firstHeading"
-              id="introduction"
+            <section
+              aria-labelledby="introduction"
             >
-              Introduction
-            </h2>
-            <div>
-              <p>
-                Monthly updates are provided online via Medicines Complete and the NHS Evidence portal. The changes listed below are cumulative (from one print edition to the next).
-              </p>
-            </div>
-          </section>
-          <section
-            aria-labelledby="significant-changes"
-          >
-            <h2
-              id="significant-changes"
+              <h2
+                class="firstHeading"
+                id="introduction"
+              >
+                Introduction
+              </h2>
+              <div>
+                <p>
+                  Monthly updates are provided online via Medicines Complete and the NHS Evidence portal. The changes listed below are cumulative (from one print edition to the next).
+                </p>
+              </div>
+            </section>
+            <section
+              aria-labelledby="significant-changes"
             >
-              Significant changes
-            </h2>
-            <div>
-              <p>
-                Significant changes made since the release of data for the print edition of BNF 82 (September 2021 — March 2022):
-              </p>
-            </div>
-          </section>
+              <h2
+                id="significant-changes"
+              >
+                Significant changes
+              </h2>
+              <div>
+                <p>
+                  Significant changes made since the release of data for the print edition of BNF 82 (September 2021 — March 2022):
+                </p>
+              </div>
+            </section>
+          </div>
         </div>
       </div>
     </div>

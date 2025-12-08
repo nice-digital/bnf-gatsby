@@ -252,38 +252,42 @@ exports[`MedicinesGuidancePage should match snapshot for page contents 1`] = `
           data-component="grid-item"
           data-g="12 lg:9"
         >
-          <section
-            aria-labelledby="general-guidance"
+          <div
+            data-component="record-sections-content"
           >
-            <h2
-              class="firstHeading"
-              id="general-guidance"
+            <section
+              aria-labelledby="general-guidance"
             >
-              General guidance
-            </h2>
-            <div>
-              <p>
-                Medicines should be prescribed only when they are necessary
-              </p>
-            </div>
-          </section>
-          <section
-            aria-labelledby="biological-medicines"
-          >
-            <h2
-              id="biological-medicines"
+              <h2
+                class="firstHeading"
+                id="general-guidance"
+              >
+                General guidance
+              </h2>
+              <div>
+                <p>
+                  Medicines should be prescribed only when they are necessary
+                </p>
+              </div>
+            </section>
+            <section
+              aria-labelledby="biological-medicines"
             >
-              Biological medicines
-            </h2>
-            <div>
-              <p>
-                <b>
-                  Biological medicines
-                </b>
-                 are medicines that are made by or derived from a biological source
-              </p>
-            </div>
-          </section>
+              <h2
+                id="biological-medicines"
+              >
+                Biological medicines
+              </h2>
+              <div>
+                <p>
+                  <b>
+                    Biological medicines
+                  </b>
+                   are medicines that are made by or derived from a biological source
+                </p>
+              </div>
+            </section>
+          </div>
         </div>
       </div>
     </div>

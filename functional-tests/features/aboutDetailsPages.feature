@@ -26,6 +26,7 @@ Feature: About details pages
   Scenario Outline: <pageName> at <screenSize> accessibility issues
     Given I am using a <screenSize> size browser
     When I open the <pageName> page
+    When I wait on element "h1" to exist
     Then the page should have no accessibility issues
     Examples:
       | pageName                                    | screenSize |
