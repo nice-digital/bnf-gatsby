@@ -13,7 +13,7 @@ exports[`EULA panel should match snapshot for BNF site 1`] = `
         data-component="panel"
       >
         <p>
-          The content on the NICE BNFC site (BNFC) is the copyright of BMJ Publishing Group Ltd, the Royal Pharmaceutical Society of Great Britain, and RCPCH Publications Ltd. By using BNFC, you agree to the licence set out in the
+          BNFC content is copyright © BMJ Publishing Group Ltd, Pharmaceutical Press, the Royal Pharmaceutical Society's knowledge business, and RCPCH Publications Ltd. By using BNFC, you agree to the licence set out in the
            
           <a
             href="/eula"
@@ -41,7 +41,7 @@ exports[`EULA panel should match snapshot for BNFC site 1`] = `
         data-component="panel"
       >
         <p>
-          The content on the NICE BNFC site (BNFC) is the copyright of BMJ Publishing Group Ltd, the Royal Pharmaceutical Society of Great Britain, and RCPCH Publications Ltd. By using BNFC, you agree to the licence set out in the
+          BNFC content is copyright © BMJ Publishing Group Ltd, Pharmaceutical Press, the Royal Pharmaceutical Society's knowledge business, and RCPCH Publications Ltd. By using BNFC, you agree to the licence set out in the
            
           <a
             href="/eula"

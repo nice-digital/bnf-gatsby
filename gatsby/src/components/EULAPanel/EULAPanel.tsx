@@ -12,9 +12,10 @@ export const EULAPanel: React.FC = () => {
 				<Panel>
 					{isBNF ? (
 						<p>
-							The content on the NICE BNF site (BNF) is the copyright of BMJ
-							Publishing Group Ltd and the Royal Pharmaceutical Society of Great
-							Britain. By using BNF, you agree to the licence set out in the{" "}
+							BNF content is copyright &copy; BMJ Publishing Group Ltd and
+							Pharmaceutical Press, the Royal Pharmaceutical Society&apos;s
+							knowledge business. By using BNF, you agree to the licence set out
+							in the{" "}
 							<Link to="/eula">
 								BNF Publications End User Licence Agreement
 							</Link>
@@ -22,10 +23,10 @@ export const EULAPanel: React.FC = () => {
 						</p>
 					) : (
 						<p>
-							The content on the NICE BNFC site (BNFC) is the copyright of BMJ
-							Publishing Group Ltd, the Royal Pharmaceutical Society of Great
-							Britain, and RCPCH Publications Ltd. By using BNFC, you agree to
-							the licence set out in the{" "}
+							BNFC content is copyright &copy; BMJ Publishing Group Ltd,
+							Pharmaceutical Press, the Royal Pharmaceutical Society&apos;s
+							knowledge business, and RCPCH Publications Ltd. By using BNFC, you
+							agree to the licence set out in the{" "}
 							<Link to="/eula">
 								BNF Publications End User Licence Agreement
 							</Link>
