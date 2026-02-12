@@ -9,7 +9,9 @@
 html {
   overflow-x: visible; // Override the overflow from NDS, otherwise position sticky doesn't work
   scroll-behavior: smooth;
+  scroll-padding-bottom: utils.rem(spacing.$xx-large);
   scroll-padding-top: utils.rem(spacing.$x-large);
+  // space for back to top link
 
   @media (prefers-reduced-motion) {
     scroll-behavior: auto;
