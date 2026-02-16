@@ -35,7 +35,6 @@ exports[`substance should match snapshot 1`] = `
         aria-live="polite"
         class="alert alert--info"
         data-component="alert--info"
-        role="status"
       >
         <div
           class="alertContent"
