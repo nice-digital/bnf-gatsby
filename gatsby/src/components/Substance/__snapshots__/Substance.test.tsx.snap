@@ -31,8 +31,11 @@ exports[`substance should match snapshot 1`] = `
       </span>
        
       <div
+        aria-atomic="true"
+        aria-live="polite"
         class="alert alert--info"
         data-component="alert--info"
+        role="status"
       >
         <div
           class="alertContent"
