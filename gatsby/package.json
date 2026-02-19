@@ -57,7 +57,7 @@
     "typescript": "^5.0.4"
   },
   "volta": {
-    "node": "18.18.2"
+    "node": "22.22.0"
   },
   "devDependencies": {
     "@types/he": "^1.2.0",
