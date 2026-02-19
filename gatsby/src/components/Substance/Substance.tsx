@@ -26,7 +26,7 @@ const Substance: FC<SubstanceProps> = ({
 				title={
 					<>
 						{introductionNote && (
-							<Alert type="info">
+							<Alert type="info" nonIntrusive>
 								<div
 									className={styles.alertContent}
 									dangerouslySetInnerHTML={{ __html: introductionNote }}
