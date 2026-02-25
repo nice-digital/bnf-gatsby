@@ -41,6 +41,7 @@
     "axe-core": "^4.9.1"
   },
   "overrides": {
-    "edgedriver": "^6.0.0"
+    "edgedriver": "^6.0.0",
+    "tar-fs": "3.0.9"
   }
 }
