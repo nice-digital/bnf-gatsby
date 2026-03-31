@@ -87,6 +87,14 @@
     "ts-node": "^10.9.1",
     "wait-on": "^7.0.1"
   },
+  "overrides": {
+    "gatsby": {
+      "axios": "1.14.0"
+    },
+    "wait-on": {
+      "axios": "1.14.0"
+    }
+  },
   "browserslist": [
     "extends @nice-digital/browserslist-config"
   ]
