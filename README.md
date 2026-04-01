@@ -43,7 +43,8 @@ The easiest way to get the project running is:
    1. Install recommended extensions when prompted
 4. Install dependencies:
    1. Run `npm ci` in each folder with a package.json manually.
-5. Go to the 'Run and Debug' panel (_Ctrl+Shift+D_) in VS Code 6. Run `LAUNCH BNF/BNFC`
+5. Go to the 'Run and Debug' panel (_Ctrl+Shift+D_) in VS Code
+6. Run `LAUNCH BNF/BNFC`
 
 Launching the app via `LAUNCH BNF/BNFC` runs the Gatsby site in dev mode on <http://localhost:8000/>, and launches it in Chrome for debugging once it's built and running.
 
