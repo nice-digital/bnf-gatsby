@@ -68,7 +68,7 @@
     "@types/react": "^18.2.5",
     "@types/react-dom": "^18.2.3",
     "@types/react-helmet": "^6.1.5",
-    "axios": "^0.25.0",
+    "axios": "0.30.3",
     "cpy-cli": "^5.0.0",
     "cross-env": "^7.0.3",
     "dotenv": "^16.0.1",
@@ -86,6 +86,14 @@
     "striptags": "^3.2.0",
     "ts-node": "^10.9.1",
     "wait-on": "^7.0.1"
+  },
+  "overrides": {
+    "gatsby": {
+      "axios": "1.14.0"
+    },
+    "wait-on": {
+      "axios": "1.14.0"
+    }
   },
   "browserslist": [
     "extends @nice-digital/browserslist-config"

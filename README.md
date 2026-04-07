@@ -49,3 +49,18 @@ The easiest way to get the project running is:
 Launching the app via `LAUNCH BNF/BNFC` runs the Gatsby site in dev mode on <http://localhost:8000/>, and launches it in Chrome for debugging once it's built and running.
 
 > Note: there are more granular ways to run each part of the project, either via an IDE or via the command line. See each sub-folders's readme for more details.
+
+## Developer note on pinned and overridden axios versions
+
+As of 31/03/2026 we've had to pin or override the versions of axios due to [a known vulnerability with axios](https://www.stepsecurity.io/blog/axios-compromised-on-npm-malicious-versions-drop-remote-access-trojan) versions `0.30.4` and `1.14.1`.
+
+axios changes in `/gatsby`:
+
+- pinned `axios` direct dependency to `0.30.3`
+- overridden and pinned transient `axios` dependencies in `gatsby@5.16.1` and `wait-on@7.2.0` to `axios@1.14.0`
+
+axios changes in `/functional-tests`:
+
+- overridden and pinned transient `axios` dependency in `wait-on@6.0.1` to version `0.30.3`
+
+**TODO: We will need to review once we have a clear path to upgrade to non vulnerable versions.**
