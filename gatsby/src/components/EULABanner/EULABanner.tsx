@@ -100,9 +100,6 @@ export const EULAContent: React.FC = () => (
 			Data scraping and use for AI training and machine learning purposes is
 			specifically prohibited and the rightsholders have opted out of the text
 			and data mining exception. If you have any questions about this EULA you
-			Data scraping and use for AI training and machine learning purposes is
-			specifically prohibited and the rightsholders have opted out of the text
-			and data mining exception. If you have any questions about this EULA you
 			can contact{" "}
 			<a href="mailto:licensing@rpharms.com.">licensing@rpharms.com</a>.
 		</p>

@@ -82,7 +82,7 @@ exports[`EULA page should match snapshot 1`] = `
   </div>
   <section>
     <p>
-      Please read these terms carefully because although the NICE BNF is freely accessible in the UK on this site it is only available for use, free of charge, by specific users in the circumstances set out in these terms. Data scraping and use for AI training and machine learning purposes is specifically prohibited and the rightsholders have opted out of the text and data mining exception. If you have any questions about this EULA you Data scraping and use for AI training and machine learning purposes is specifically prohibited and the rightsholders have opted out of the text and data mining exception. If you have any questions about this EULA you can contact
+      Please read these terms carefully because although the NICE BNF is freely accessible in the UK on this site it is only available for use, free of charge, by specific users in the circumstances set out in these terms. Data scraping and use for AI training and machine learning purposes is specifically prohibited and the rightsholders have opted out of the text and data mining exception. If you have any questions about this EULA you can contact
        
       <a
         href="mailto:licensing@rpharms.com."
