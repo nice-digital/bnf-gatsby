@@ -208,10 +208,6 @@ export const EULAContent: React.FC = () => (
 								intended for use as training data for AI or large language
 								models and machine learning and use of the NICE BNF for
 								artificial intelligence and Computerised Decision Support by any
-								the exception for text and data mining. The NICE BNF is not
-								intended for use as training data for AI or large language
-								models and machine learning and use of the NICE BNF for
-								artificial intelligence and Computerised Decision Support by any
 								user is absolutely prohibited.
 							</strong>
 						</li>
@@ -396,15 +392,10 @@ export const EULAContent: React.FC = () => (
 									or knowledge, intelligently filtered or presented at
 									appropriate times to enhance health and health care. This
 									encompasses a variety of tools to enhance decision-making in
-									electronic system that provides drug and medicine information
-									or knowledge, intelligently filtered or presented at
-									appropriate times to enhance health and health care. This
-									encompasses a variety of tools to enhance decision-making in
 									the clinical workflow.
 								</li>
 								<li>
 									“Data scraping” means the process of extracting website data
-									using any tool or application (including screen scraping and
 									using any tool or application (including screen scraping and
 									data mining programs) to collect information from a website.
 								</li>
