@@ -2,8 +2,7 @@
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
     "source.organizeImports": "never",
-    "source.fixAll.eslint": "explicit",
-    "source.fixAll": "explicit"
+    "source.fixAll.eslint": "explicit"
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.rulers": [80, 120],
@@ -31,7 +30,7 @@
   "scss.validate": false,
   "eslint.codeActionsOnSave.mode": "problems",
   "eslint.lintTask.enable": true,
-  "eslint.format.enable": true,
+  "eslint.format.enable": false,
   "debug.javascript.terminalOptions": {
     "skipFiles": ["<node_internals>/**"]
   },

@@ -82,10 +82,10 @@ exports[`EULA page should match snapshot 1`] = `
   </div>
   <section>
     <p>
-      Please read these terms carefully because although the NICE BNF is freely accessible in the UK on this site it is only available for use, free of charge, by specific users in the circumstances set out in these terms. If you have any questions about this EULA you can contact
+      Please read these terms carefully because although the NICE BNF is freely accessible in the UK on this site it is only available for use, free of charge, by specific users in the circumstances set out in these terms. Data scraping and use for AI training and machine learning purposes is specifically prohibited and the rightsholders have opted out of the text and data mining exception. If you have any questions about this EULA you can contact
        
       <a
-        href="mailto:licensing@rpharms.com."
+        href="mailto:licensing@rpharms.com"
       >
         licensing@rpharms.com
       </a>
@@ -172,7 +172,7 @@ exports[`EULA page should match snapshot 1`] = `
             </li>
             <li>
               <strong>
-                Data scraping and data mining of the NICE BNF is not permitted by any user for any purpose.
+                Data scraping and data mining of the NICE BNF is not permitted by any user for any purpose. The rightsholders have opted out of the exception for text and data mining. The NICE BNF is not intended for use as training data for AI or large language models and machine learning and use of the NICE BNF for artificial intelligence and Computerised Decision Support by any user is absolutely prohibited.
               </strong>
             </li>
           </ol>
@@ -206,7 +206,7 @@ exports[`EULA page should match snapshot 1`] = `
                   You are not allowed to distribute or resell the NICE BNF (or any part), save that if you are a clinician you are allowed to distribute NICE BNF to patients or colleagues to the extent necessary to enable you to do your job.
                 </li>
                 <li>
-                  You cannot Use the NICE BNF to create other material, such as books, articles, or guidance. This does not prevent you from referring to appropriately referenced extracts of NICE BNF. It does however prevent you from creating other materials (such as knowledge or guidance for doctors or patients) that is based on, or informed by, the NICE BNF.
+                  You cannot Use the NICE BNF to create other material, such as books, articles, or guidance or for Computerised Decision Support. This does not prevent you from referring to appropriately referenced extracts of NICE BNF. It does however prevent you from creating other materials (such as knowledge or guidance for doctors or patients) that is based on, or or doctors or patients) that is based on, or informed by, the NICE BNF.
                 </li>
                 <li>
                   Any rights not expressly set out above are reserved by Us. You shall not have any rights in or to the NICE BNF except where granted in these terms. All rights, including copyright and database rights, in this digital version of the BNF are owned by The Royal Pharmaceutical Society of Great Britain and the BMJ Publishing Group Limited and are protected under UK and International Law. All rights, including copyright and database rights, in this digital version of the BNF for Children are owned by Royal Pharmaceutical Society of Great Britain, BMJ Publishing Group Limited, the Royal College of Paediatrics and Child Health and the Neonatal and Paediatric Pharmacists Group and are protected under UK and International Law. Please see the Notice of Rights for further information -
@@ -316,6 +316,12 @@ exports[`EULA page should match snapshot 1`] = `
                 </li>
                 <li>
                   “UK” means England, Scotland, Northern Ireland and Wales.
+                </li>
+                <li>
+                  “Computerised Decision Support” means any online or offline electronic system that provides drug and medicine information or knowledge, intelligently filtered or presented at appropriate times to enhance health and health care. This encompasses a variety of tools to enhance decision-making in the clinical workflow.
+                </li>
+                <li>
+                  “Data scraping” means the process of extracting website data using any tool or application (including screen scraping and data mining programs) to collect information from a website.
                 </li>
               </ol>
             </li>

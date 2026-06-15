@@ -96,9 +96,12 @@ export const EULAContent: React.FC = () => (
 		<p>
 			Please read these terms carefully because although the NICE BNF is freely
 			accessible in the UK on this site it is only available for use, free of
-			charge, by specific users in the circumstances set out in these terms. If
-			you have any questions about this EULA you can contact{" "}
-			<a href="mailto:licensing@rpharms.com.">licensing@rpharms.com</a>.
+			charge, by specific users in the circumstances set out in these terms.
+			Data scraping and use for AI training and machine learning purposes is
+			specifically prohibited and the rightsholders have opted out of the text
+			and data mining exception. If you have any questions about this EULA you
+			can contact{" "}
+			<a href="mailto:licensing@rpharms.com">licensing@rpharms.com</a>.
 		</p>
 		<div className={styles.terms}>
 			<ol>
@@ -200,7 +203,12 @@ export const EULAContent: React.FC = () => (
 						<li>
 							<strong>
 								Data scraping and data mining of the NICE BNF is not permitted
-								by any user for any purpose.
+								by any user for any purpose. The rightsholders have opted out of
+								the exception for text and data mining. The NICE BNF is not
+								intended for use as training data for AI or large language
+								models and machine learning and use of the NICE BNF for
+								artificial intelligence and Computerised Decision Support by any
+								user is absolutely prohibited.
 							</strong>
 						</li>
 					</ol>
@@ -249,11 +257,13 @@ export const EULAContent: React.FC = () => (
 								</li>
 								<li>
 									You cannot Use the NICE BNF to create other material, such as
-									books, articles, or guidance. This does not prevent you from
-									referring to appropriately referenced extracts of NICE BNF. It
-									does however prevent you from creating other materials (such
-									as knowledge or guidance for doctors or patients) that is
-									based on, or informed by, the NICE BNF.
+									books, articles, or guidance or for Computerised Decision
+									Support. This does not prevent you from referring to
+									appropriately referenced extracts of NICE BNF. It does however
+									prevent you from creating other materials (such as knowledge
+									or guidance for doctors or patients) that is based on, or or
+									doctors or patients) that is based on, or informed by, the
+									NICE BNF.
 								</li>
 								<li>
 									Any rights not expressly set out above are reserved by Us. You
@@ -375,6 +385,19 @@ export const EULAContent: React.FC = () => (
 								</li>
 								<li>
 									“UK” means England, Scotland, Northern Ireland and Wales.
+								</li>
+								<li>
+									“Computerised Decision Support” means any online or offline
+									electronic system that provides drug and medicine information
+									or knowledge, intelligently filtered or presented at
+									appropriate times to enhance health and health care. This
+									encompasses a variety of tools to enhance decision-making in
+									the clinical workflow.
+								</li>
+								<li>
+									“Data scraping” means the process of extracting website data
+									using any tool or application (including screen scraping and
+									data mining programs) to collect information from a website.
 								</li>
 							</ol>
 						</li>
