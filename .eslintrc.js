@@ -8,12 +8,15 @@ module.exports = {
 		"eslint:recommended",
 		"plugin:react/recommended",
 		"plugin:react-hooks/recommended",
-		"plugin:prettier/recommended",
 		"plugin:@typescript-eslint/eslint-recommended",
 		"plugin:@typescript-eslint/recommended",
 		"plugin:testing-library/react",
 		"plugin:import/recommended",
 		"plugin:import/typescript",
+		// Must be last: disables ESLint rules that conflict with Prettier.
+		// Formatting is applied by Prettier directly (npm run prettier:fix),
+		// not via ESLint, to avoid conflicting autofixes mangling text.
+		"prettier",
 	],
 	parserOptions: {
 		sourceType: "module",
