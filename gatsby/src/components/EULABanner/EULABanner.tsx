@@ -101,7 +101,10 @@ export const EULAContent: React.FC = () => (
 			specifically prohibited and the rightsholders have opted out of the text
 			and data mining exception. If you have any questions about this EULA you
 			can contact{" "}
-			<a href="mailto:licensing@rpharms.com">licensing@rpharms.com</a>.
+			<a href="mailto:licensing@pharmaceuticalpress.com">
+				licensing@pharmaceuticalpress.com
+			</a>
+			.
 		</p>
 		<div className={styles.terms}>
 			<ol>
@@ -270,15 +273,17 @@ export const EULAContent: React.FC = () => (
 									shall not have any rights in or to the NICE BNF except where
 									granted in these terms. All rights, including copyright and
 									database rights, in this digital version of the BNF are owned
-									by The Royal Pharmaceutical Society of Great Britain and the
-									BMJ Publishing Group Limited and are protected under UK and
-									International Law. All rights, including copyright and
-									database rights, in this digital version of the BNF for
-									Children are owned by Royal Pharmaceutical Society of Great
-									Britain, BMJ Publishing Group Limited, the Royal College of
-									Paediatrics and Child Health and the Neonatal and Paediatric
-									Pharmacists Group and are protected under UK and International
-									Law. Please see the Notice of Rights for further information -{" "}
+									by Pharmaceutical Press Limited (the wholly owned subsidiary
+									of the Royal College of Pharmacy) and the BMJ Publishing Group
+									Limited and are protected under UK and International Law. All
+									rights, including copyright and database rights, in this
+									digital version of the BNF for Children are owned by
+									Pharmaceutical Press Limited (the wholly owned subsidiary of
+									the Royal College of Pharmacy), BMJ Publishing Group Limited,
+									the Royal College of Paediatrics and Child Health and the
+									Neonatal and Paediatric Pharmacists Group and are protected
+									under UK and International Law. Please see the Notice of
+									Rights for further information -{" "}
 									<a href="https://www.nice.org.uk/terms-and-conditions#notice-of-rights">
 										https://www.nice.org.uk/terms-and-conditions#notice-of-rights
 									</a>
@@ -363,14 +368,18 @@ export const EULAContent: React.FC = () => (
 									and other portable storage devices.
 								</li>
 								<li>
-									“Us” (including “We” or “Our”) means the Pharmaceutical Press,
-									the knowledge business of the Royal Pharmaceutical Society of
-									Great Britain, a company incorporated in England under Royal
-									Charter (number RC000799) and having its principal place of
-									business at 66-68 East Smithfield, London, E1W 1AW acting on
-									behalf of the owners of the NICE BNF as set out in the Notice
-									of Rights. We can be contacted by email at{" "}
-									<a href="mailto:opsteam@rpharms.com">opsteam@rpharms.com</a>.
+									“Us” (including “We” or “Our”) means Pharmaceutical Press
+									Limited (company number 07165037), the knowledge business and
+									wholly owned subsidiary of the Royal College of Pharmacy, a
+									company incorporated in England under Royal Charter (number
+									RC000799) and having its principal place of business and
+									registered office at 66-68 East Smithfield, London, E1W 1AW
+									acting on behalf of the owners of the NICE BNF as set out in
+									the Notice of Rights. We can be contacted by email at{" "}
+									<a href="mailto:opsteam@pharmaceuticalpress.com">
+										opsteam@pharmaceuticalpress.com
+									</a>
+									.
 								</li>
 								<li>
 									“Use” (or “Using”) means accessing the NICE BNF content to
