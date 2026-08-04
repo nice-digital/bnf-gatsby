@@ -264,9 +264,8 @@ export const EULAContent: React.FC = () => (
 									Support. This does not prevent you from referring to
 									appropriately referenced extracts of NICE BNF. It does however
 									prevent you from creating other materials (such as knowledge
-									or guidance for doctors or patients) that is based on, or or
-									doctors or patients) that is based on, or informed by, the
-									NICE BNF.
+									or guidance for doctors or patients) that is based on, or
+									informed by, the NICE BNF.
 								</li>
 								<li>
 									Any rights not expressly set out above are reserved by Us. You

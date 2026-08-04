@@ -48,7 +48,7 @@ exports[`EULABanner should match snapshot 1`] = `
     <section>
       <p>
         Please read these terms carefully because although the NICE BNF is freely accessible in the UK on this site it is only available for use, free of charge, by specific users in the circumstances set out in these terms. Data scraping and use for AI training and machine learning purposes is specifically prohibited and the rightsholders have opted out of the text and data mining exception. If you have any questions about this EULA you can contact
-         
+
         <a
           href="mailto:licensing@pharmaceuticalpress.com"
         >
@@ -90,7 +90,7 @@ exports[`EULABanner should match snapshot 1`] = `
                     <ol>
                       <li>
                         You are allowed to Use the NICE BNF for
-                         
+
                         <strong>
                           personal reference purposes only
                         </strong>
@@ -106,7 +106,7 @@ exports[`EULABanner should match snapshot 1`] = `
                     <ol>
                       <li>
                         You must be
-                         
+
                         <strong>
                           employed or engaged within the UK public sector on behalf of the National Health Service and using the NICE BNF solely for the benefit of the National Health Service and patients.
                         </strong>
@@ -171,11 +171,11 @@ exports[`EULABanner should match snapshot 1`] = `
                     You are not allowed to distribute or resell the NICE BNF (or any part), save that if you are a clinician you are allowed to distribute NICE BNF to patients or colleagues to the extent necessary to enable you to do your job.
                   </li>
                   <li>
-                    You cannot Use the NICE BNF to create other material, such as books, articles, or guidance or for Computerised Decision Support. This does not prevent you from referring to appropriately referenced extracts of NICE BNF. It does however prevent you from creating other materials (such as knowledge or guidance for doctors or patients) that is based on, or or doctors or patients) that is based on, or informed by, the NICE BNF.
+                    You cannot Use the NICE BNF to create other material, such as books, articles, or guidance or for Computerised Decision Support. This does not prevent you from referring to appropriately referenced extracts of NICE BNF. It does however prevent you from creating other materials (such as knowledge or guidance for doctors or patients) that is based on, or informed by, the NICE BNF.
                   </li>
                   <li>
                     Any rights not expressly set out above are reserved by Us. You shall not have any rights in or to the NICE BNF except where granted in these terms. All rights, including copyright and database rights, in this digital version of the BNF are owned by Pharmaceutical Press Limited (the wholly owned subsidiary of the Royal College of Pharmacy) and the BMJ Publishing Group Limited and are protected under UK and International Law. All rights, including copyright and database rights, in this digital version of the BNF for Children are owned by Pharmaceutical Press Limited (the wholly owned subsidiary of the Royal College of Pharmacy), BMJ Publishing Group Limited, the Royal College of Paediatrics and Child Health and the Neonatal and Paediatric Pharmacists Group and are protected under UK and International Law. Please see the Notice of Rights for further information -
-                     
+
                     <a
                       href="https://www.nice.org.uk/terms-and-conditions#notice-of-rights"
                     >
@@ -264,7 +264,7 @@ exports[`EULABanner should match snapshot 1`] = `
                   </li>
                   <li>
                     “Us” (including “We” or “Our”) means Pharmaceutical Press Limited (company number 07165037), the knowledge business and wholly owned subsidiary of the Royal College of Pharmacy, a company incorporated in England under Royal Charter (number RC000799) and having its principal place of business and registered office at 66-68 East Smithfield, London, E1W 1AW acting on behalf of the owners of the NICE BNF as set out in the Notice of Rights. We can be contacted by email at
-                     
+
                     <a
                       href="mailto:opsteam@pharmaceuticalpress.com"
                     >
@@ -273,7 +273,7 @@ exports[`EULABanner should match snapshot 1`] = `
                     .
                   </li>
                   <li>
-                    “Use” (or “Using”) means accessing the NICE BNF content to display on your web-browser, printing off a single screen only and downloading, storing and using the NICE BNF on Portable Devices for temporary internal reference purposes (e.g. where internet access may present difficulties accessing the NICE BNF) and explicitly 
+                    “Use” (or “Using”) means accessing the NICE BNF content to display on your web-browser, printing off a single screen only and downloading, storing and using the NICE BNF on Portable Devices for temporary internal reference purposes (e.g. where internet access may present difficulties accessing the NICE BNF) and explicitly
                     <strong>
                       excludes
                     </strong>
