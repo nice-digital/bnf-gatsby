@@ -93,6 +93,9 @@
     },
     "wait-on": {
       "axios": "1.14.0"
+    },
+    "react-server-dom-webpack": {
+      "react": "$react"
     }
   },
   "browserslist": [

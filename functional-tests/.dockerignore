@@ -4,3 +4,4 @@ allure-report
 docker-output
 bnf-website-build
 bnfc-website-build
+.npmrc

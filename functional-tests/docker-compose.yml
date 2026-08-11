@@ -25,7 +25,10 @@ services:
       - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
 
   bnf-test-runner:
-    build: .
+    build:
+      context: .
+      args:
+        - NPM_TOKEN
     container_name: bnf-test-runner
     depends_on:
       - bnf-selenium-hub

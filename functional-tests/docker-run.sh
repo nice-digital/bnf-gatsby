@@ -2,6 +2,11 @@
 
 # Runs functional tests via Docker
 
+# Prefer the fresh CodeArtifact token from TeamCity (NPM_TOKEN_CODEARTIFACT):
+# the root project also injects an env.NPM_TOKEN which is stale, so it must NOT
+# take precedence. Locally NPM_TOKEN_CODEARTIFACT is unset and NPM_TOKEN wins.
+export NPM_TOKEN="${NPM_TOKEN_CODEARTIFACT:-$NPM_TOKEN}"
+
 # Avoid "Mount denied" errors for Chrome/Firefox containers on Windows
 # See https://github.com/docker/for-win/issues/1829#issuecomment-376328022
 export COMPOSE_CONVERT_WINDOWS_PATHS=1
@@ -12,12 +17,11 @@ function cleanupBeforeStart() {
 }
 
 function runTests() {
-  if [[ -v TEAMCITY_VERSION ]]; then
-    # Assume that on TeamCity we've created the containers in the background with `docker-compose up --no-start` but not started them
-    docker-compose start
-  else
-    docker-compose up --scale bnf-selenium-chrome=2 -d
-  fi
+  # --build so the test runner image is (re)built here, where NPM_TOKEN has just
+  # been exported above. `docker-compose start` would reuse an image built by the
+  # background `up --no-start` step, which may not have had the token in scope.
+  # It's a near-instant no-op when the layers are already fresh.
+  docker-compose up -d --build --scale bnf-selenium-chrome=2
 
   # Wait for the web app to be up before running the tests
   docker-compose run -T bnf-test-runner npm run wait-then-test
