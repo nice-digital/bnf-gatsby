@@ -19,6 +19,11 @@ const stallProbeEnabled = isInDocker && process.env.STALL_PROBE !== "0",
 	// the timer itself is nothing next to the work the page is doing
 	heartbeatIntervalMs = 250;
 
+// Commands that replace the page's JS context and so wipe the probe. wdio names
+// `browser.url()` differently depending on the protocol in use - `navigateTo`
+// over webdriver, `url` over devtools - so match both rather than guessing.
+const NAVIGATION_COMMANDS = new Set(["navigateTo", "url", "refresh", "back"]);
+
 // Which webdriver commands are in flight, so a failed step can report what it
 // was actually blocked on. The step's own waitUntil timeouts can't rescue it:
 // they only fire between polls, never while awaiting a hung command underneath.
@@ -472,23 +477,41 @@ export const config: WebdriverIO.Config = {
 		inFlightCommands.push({ name: commandName, startedAt: Date.now() });
 	},
 
-	afterCommand: function (commandName) {
+	afterCommand: async function (commandName) {
 		// lastIndexOf so nested commands (waitForExist calling isExisting, say)
 		// unwind in the right order
 		const index = inFlightCommands
 			.map((command) => command.name)
 			.lastIndexOf(commandName);
 
-		if (index === -1) return;
+		if (index > -1) {
+			const [finished] = inFlightCommands.splice(index, 1);
 
-		const [finished] = inFlightCommands.splice(index, 1);
+			completedCommands.push({
+				...finished,
+				durationMs: Date.now() - finished.startedAt,
+			});
 
-		completedCommands.push({
-			...finished,
-			durationMs: Date.now() - finished.startedAt,
-		});
+			if (completedCommands.length > 12) completedCommands.shift();
+		}
 
-		if (completedCommands.length > 12) completedCommands.shift();
+		// beforeStep alone is not enough. A navigation destroys the page's JS
+		// context, so a step that opens a page loses the probe installed at its
+		// start - and that is exactly the shape that stalls: build 1694 hung in
+		// `I open the medical devices page` and reported "probe: not installed on
+		// this page", losing the one measurement that can prove whether the main
+		// thread was blocked. Reinstalling the moment the navigation returns
+		// closes that window.
+		//
+		// The install issues execute/executeScript, which re-enter these hooks
+		// once. Neither is a navigation command, so it stops there.
+		if (!stallProbeEnabled || !NAVIGATION_COMMANDS.has(commandName)) return;
+
+		try {
+			await browser.execute(installStallProbe, heartbeatIntervalMs);
+		} catch {
+			// Diagnostics must never be the reason a step fails
+		}
 	},
 
 	afterStep: async function (_test, _scenario, { error }) {
