@@ -1,7 +1,14 @@
 version: '3.8'
 services:
   bnf-selenium-hub:
-    image: selenium/hub:4.1.2-20220217
+    # Matches cks-gatsby, which runs the same wdio 8.46.0 / cucumber 9 stack with
+    # its functional-test performance work removed and does not show the roaming
+    # 60s command stalls this repo does. 4.1.2-20220217 is February 2022: the
+    # stall signature (a command in flight for 120s while the browser sits idle
+    # and healthy, no pending requests, and diagnostics running fine on the SAME
+    # session) puts the lost response in the hub/router, which is the layer this
+    # bump replaces.
+    image: selenium/hub:4.8.0
     container_name: bnf-selenium-hub
     ports:
       - '4442:4442'
@@ -14,7 +21,12 @@ services:
       - JAVA_OPTS=-Dwebdriver.chrome.whitelistedIps=
 
   bnf-selenium-chrome:
-    image: selenium/node-chrome:4.1.2-20220217
+    # Chrome 98 -> 110, pinned to the same tag cks-gatsby uses. Expect a11y
+    # results to move: axe-core reports against whatever the browser renders, so
+    # twelve Chrome releases can add or drop violations in the 78 accessibility
+    # scenarios here. That is the main risk in this bump, and it is why it is a
+    # separate commit that can be reverted on its own.
+    image: selenium/node-chrome:110.0.5481.77-20230210
     #container_name: bnf-selenium-chrome
     shm_size: '2gb'
     depends_on:
