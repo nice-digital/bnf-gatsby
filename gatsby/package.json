@@ -96,7 +96,8 @@
     },
     "react-server-dom-webpack": {
       "react": "$react"
-    }
+    },
+    "shell-quote": "^1.10.0"
   },
   "browserslist": [
     "extends @nice-digital/browserslist-config"
