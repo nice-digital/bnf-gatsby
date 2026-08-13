@@ -17,10 +17,20 @@ function cleanupBeforeStart() {
 }
 
 function runTests() {
-  # --build so the test runner image is (re)built here, where NPM_TOKEN has just
-  # been exported above. `docker-compose start` would reuse an image built by the
-  # background `up --no-start` step, which may not have had the token in scope.
-  # It's a near-instant no-op when the layers are already fresh.
+  # The real build already happened: a TeamCity step launches
+  # `pull && build --parallel --no-cache && up --no-start` in the background so it
+  # overlaps the gatsby builds. That step exports NPM_TOKEN itself, so the token is
+  # not the reason for --build here.
+  #
+  # --build is here because that background step is `nohup ... &` and its exit code
+  # is never checked. If it failed, or has not finished, plain `up` would start
+  # whatever containers a previous or cancelled build left behind - and nothing
+  # cleans docker state beforehand (cleanupBeforeStart only removes report dirs,
+  # and the trap is on ERR, so a cancelled build never reaches cleanup at all).
+  # Same reasoning as cks-gatsby a3c6934. Costs ~2s: every layer comes from cache.
+  #
+  # `docker-compose start` cannot do either job - it neither rebuilds nor scales,
+  # which is why the old TeamCity-only branch of this function had to go.
   docker-compose up -d --build --scale bnf-selenium-chrome=2
 
   # Wait for the web app to be up before running the tests
