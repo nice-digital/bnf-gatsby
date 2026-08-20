@@ -43,6 +43,7 @@ export const IndicationsAndDose: FC<IndicationsAndDoseProps> = ({
 					content={content}
 					collapsible={collapsible}
 					contentForPrefix="For all"
+					showHeading
 				/>
 			))}
 
@@ -51,6 +52,7 @@ export const IndicationsAndDose: FC<IndicationsAndDoseProps> = ({
 					key={content.contentFor}
 					content={content}
 					collapsible={collapsible}
+					showHeading
 				/>
 			))}
 		</>

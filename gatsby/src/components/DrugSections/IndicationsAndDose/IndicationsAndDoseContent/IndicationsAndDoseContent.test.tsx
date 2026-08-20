@@ -122,6 +122,20 @@ describe("IndicationsAndDoseContent", () => {
 			expect(heading).toHaveTextContent("For all diazepam");
 			expect(heading).toHaveClass("visually-hidden");
 		});
+
+		it("should render visible heading with content for and prefix when showHeading is true", () => {
+			render(
+				<IndicationsAndDoseContent
+					content={content}
+					collapsible={false}
+					showHeading
+				/>
+			);
+
+			const heading = screen.getByRole("heading", { level: 3 });
+			expect(heading).toHaveTextContent("For diazepam");
+			expect(heading).not.toHaveClass("visually-hidden");
+		});
 	});
 
 	describe("body", () => {

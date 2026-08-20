@@ -123,6 +123,27 @@ describe("IndicationsAndDose", () => {
 			"For Solpadol® effervescent tablets",
 		]);
 	});
+	it("should visually hide heading for single drug content block", () => {
+		render(
+			<IndicationsAndDose {...minimumProps} drugContent={diazepamDrugContent} />
+		);
+
+		expect(screen.getByRole("heading", { level: 3 })).toHaveClass(
+			"visually-hidden"
+		);
+	});
+
+	it("should render visible heading for single prep content block", () => {
+		render(
+			<IndicationsAndDose {...minimumProps} prepContent={[kapakePrepContent]} />
+		);
+
+		const heading = screen.getByRole("heading", { level: 3 });
+
+		expect(heading).toHaveTextContent("For Kapake® 15/500");
+		expect(heading).not.toHaveClass("visually-hidden");
+	});
+
 	it("should not render single content blocks as accordion", () => {
 		render(
 			<IndicationsAndDose {...minimumProps} drugContent={diazepamDrugContent} />

@@ -16,6 +16,10 @@ export interface IndicationsAndDoseContentProps {
 	contentForPrefix?: "For" | "For all";
 	/** Whether to (`true`) or not (`false`) to wrap this indications and dose content in an accordion to make it collapsible */
 	collapsible: boolean;
+	/** Whether to show the `contentFor` heading when the content isn't collapsible.
+	 *
+	 * Defaults to `false` as a single drug content heading just repeats the page title, but should be `true` for prep and drug class content. */
+	showHeading?: boolean;
 }
 
 export const IndicationsAndDoseContent: FC<IndicationsAndDoseContentProps> = ({
@@ -31,6 +35,7 @@ export const IndicationsAndDoseContent: FC<IndicationsAndDoseContentProps> = ({
 	},
 	contentForPrefix = "For",
 	collapsible,
+	showHeading = false,
 }) => {
 	const body = useMemo(
 		() => (
@@ -233,7 +238,7 @@ export const IndicationsAndDoseContent: FC<IndicationsAndDoseContentProps> = ({
 				<>
 					<h3
 						id={`${slug}-indications-and-dose`}
-						className="visually-hidden"
+						className={showHeading ? undefined : "visually-hidden"}
 						dangerouslySetInnerHTML={{
 							__html: `${contentForPrefix} ${contentFor}`,
 						}}
