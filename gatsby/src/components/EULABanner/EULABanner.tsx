@@ -274,7 +274,7 @@ export const EULAContent: React.FC = () => (
 									database rights, in this digital version of the BNF are owned
 									by Pharmaceutical Press Limited (the wholly owned subsidiary
 									of the Royal College of Pharmacy) and the BMJ Publishing Group
-									Limited and are protected under UK and International Law. All
+									Ltd and are protected under UK and International Law. All
 									rights, including copyright and database rights, in this
 									digital version of the BNF for Children are owned by
 									Pharmaceutical Press Limited (the wholly owned subsidiary of
