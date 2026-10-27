@@ -13,9 +13,9 @@ export const EULAPanel: React.FC = () => {
 					{isBNF ? (
 						<p>
 							BNF content is copyright &copy; BMJ Publishing Group Ltd and
-							Pharmaceutical Press, the Royal Pharmaceutical Society&apos;s
-							knowledge business. By using BNF, you agree to the licence set out
-							in the{" "}
+							Pharmaceutical Press Limited (the Royal College of Pharmacy&apos;s
+							knowledge business). By using BNF, you agree to the licence set
+							out in the{" "}
 							<Link to="/eula">
 								BNF Publications End User Licence Agreement
 							</Link>
@@ -24,9 +24,9 @@ export const EULAPanel: React.FC = () => {
 					) : (
 						<p>
 							BNFC content is copyright &copy; BMJ Publishing Group Ltd,
-							Pharmaceutical Press, the Royal Pharmaceutical Society&apos;s
-							knowledge business, and RCPCH Publications Ltd. By using BNFC, you
-							agree to the licence set out in the{" "}
+							Pharmaceutical Press Limited (the Royal College of Pharmacy&apos;s
+							knowledge business), and RCPCH Publications Limited. By using
+							BNFC, you agree to the licence set out in the{" "}
 							<Link to="/eula">
 								BNF Publications End User Licence Agreement
 							</Link>
